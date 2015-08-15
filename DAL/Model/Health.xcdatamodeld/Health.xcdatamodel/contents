@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="EvaluationData" representedClassName="EvaluationData" syncable="YES">
+        <attribute name="dataId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fat" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="isUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="metabolize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="muscle" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="protein" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date">
+            <userInfo/>
+        </attribute>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="water" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="GoalData" representedClassName="GoalData" syncable="YES">
+        <attribute name="awakeCount" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="awakeTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="dataId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deepSleep" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="eyesCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lightlySleep" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="sleepTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="steps" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timescamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="195"/>
+        <element name="GoalData" positionX="261" positionY="198" width="128" height="210"/>
+    </elements>
+</model>
