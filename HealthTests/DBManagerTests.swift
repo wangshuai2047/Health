@@ -16,7 +16,6 @@ class DBManagerTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        DBManager.shareInstance().userId = UserData.shareInstance().userId
     }
     
     override func tearDown() {

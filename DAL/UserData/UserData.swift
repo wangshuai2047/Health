@@ -8,17 +8,15 @@
 
 import Foundation
 
-struct UserData {
-    
-    var userId: String {
-        return "123test"
-    }
-    var username: String?
-    var sex: Bool?
-    var height: Int?
+// 储存类 必须是class
+class UserData {
+
+    var userId: UInt8?
+    var gender: UInt8?
+    var height: UInt8?
     var weight: Int?
     var name: String?
-    var old: String?
+    var age: UInt8?
     var phone: String?
     var organizationCode: String?
     var head: NSData?

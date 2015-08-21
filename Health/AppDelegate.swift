@@ -14,20 +14,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func test() {
+        
+        DeviceManager.shareInstance()
+        
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        test()
         
-        DBManager.shareInstance().userId = UserData.shareInstance().userId
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            // [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         
-        DBManager.shareInstance().addEvaluationData { (inout insertData: EvaluationData) -> EvaluationData in
-            insertData.dataId = "\(random())"
-            insertData.userId = "dddd"
-            return insertData
+        // 判断是否登录 是否跳过GUI 是否跳过广告
+        // 进入广告界面
+        var navController: UINavigationController?
+        if LoginManager.isShowAds {
+            var adsController = LoginAdsViewController()
+            navController = UINavigationController(rootViewController: adsController)
+            self.window?.rootViewController = navController
         }
+        else if LoginManager.showedGUI {
+            var guiController = GUIViewController()
+            navController = UINavigationController(rootViewController: guiController)
+            self.window?.rootViewController = navController
+        }
+        else if !LoginManager.isLogin {
+            var loginController = LoginViewController()
+            navController = UINavigationController(rootViewController: loginController)
+            self.window?.rootViewController = navController
+        }
+        else
+        {
+            var mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            self.window?.rootViewController = mainStoryBoard.instantiateInitialViewController() as! UITabBarController
+        }
+        navController?.navigationBarHidden = true
         
-//        let result = DBManager.shareInstance().queryEvaluationData(data.dataId)
-//        println(result)
+        window?.makeKeyAndVisible()
         return true
     }
 
