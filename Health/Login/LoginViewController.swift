@@ -16,6 +16,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logoUpConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var reQueryCaptchasButton: UIButton!
+    var reQueryCaptchas: NSTimer?
+    var requeryCaptchasTimerCount: Int8 = 0
+    
     convenience init() {
         self.init(nibName: "LoginViewController", bundle: nil)
     }
@@ -57,18 +62,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - response method
     @IBAction func loginButtonPressed(sender: UIButton?) {
-        // 判断是否需要完善信息
-        if LoginManager.isNeedCompleteInfo {
-            var completeInfoController = CompleteInfoViewController()
-            self.navigationController?.pushViewController(completeInfoController, animated: true)
-        }
-        else {
-            if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UITabBarController
+        
+        LoginManager.login(self.usernameTextField.text, captchas: self.passwordTextField.text) { (error: NSError?) -> Void in
+            if error == nil {
+                // 判断是否需要完善信息
+                if LoginManager.isNeedCompleteInfo {
+                    var completeInfoController = CompleteInfoViewController()
+                    self.navigationController?.pushViewController(completeInfoController, animated: true)
+                }
+                else {
+                    if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UITabBarController
+                    }
+                }
+            }
+            else
+            {
+                UIAlertView(title: "登录失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
             }
         }
-        
-        
         backgroundPressed(sender)
     }
     
@@ -88,6 +100,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func reQueryCaptchas(sender: AnyObject) {
+        reQueryCaptchasButton.enabled = false
+        requeryCaptchasTimerCount = 0
+        reQueryCaptchas = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("requeryCaptchasTimer"), userInfo: nil, repeats: true)
+        // (timeInterval: 1, target: self, selector: Selector("requeryCaptchasTimer"), userInfo: nil, repeats: true)
     }
     
     @IBAction func mobileChanged(sender: AnyObject) {
@@ -98,7 +114,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if !self.usernameTextField.isFirstResponder() && !self.passwordTextField.isFirstResponder() {
             return
         }
-        logoUpConstraint.constant = 10
+        logoUpConstraint.constant = 26 - 195
         view.setNeedsUpdateConstraints()
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
@@ -111,7 +127,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        logoUpConstraint.constant = 124
+        logoUpConstraint.constant = 26
         view.setNeedsUpdateConstraints()
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
@@ -139,4 +155,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Requery Captchas Timer
+    func requeryCaptchasTimer() {
+        
+        let maxRequeryCount: Int8 = 10
+        
+        requeryCaptchasTimerCount++
+        
+        reQueryCaptchasButton.setTitle("\(maxRequeryCount - requeryCaptchasTimerCount)秒后 重新发送验证码", forState: UIControlState.Normal)
+        
+        if requeryCaptchasTimerCount >= maxRequeryCount {
+            reQueryCaptchasButton.enabled = true
+            reQueryCaptchas?.invalidate()
+            reQueryCaptchasButton.setTitle("发送验证码", forState: UIControlState.Normal)
+        }
+    }
 }

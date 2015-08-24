@@ -11,8 +11,10 @@ import CoreBluetooth
 
 class DeviceManager: NSObject {
     
-//    private var weightScaleOne: VScaleManager
+    private var weightScaleOne: VScaleManager
     private var centralManager: CBCentralManager
+    
+    private var scanMyBodyDeviceCu: ((VCStatus) -> Void)?
     
     class func shareInstance() -> DeviceManager {
         struct Singleton {
@@ -27,11 +29,11 @@ class DeviceManager: NSObject {
     }
     
     override init() {
-//        weightScaleOne = VScaleManager()
+        weightScaleOne = VScaleManager()
         centralManager = CBCentralManager()
         
         super.init()
-//        weightScaleOne.delegate = self
+        weightScaleOne.delegate = self
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
@@ -44,6 +46,7 @@ class DeviceManager: NSObject {
     func connectDevice() {
         
     }
+    
 }
 
 extension DeviceManager: CBCentralManagerDelegate {
@@ -78,7 +81,25 @@ extension DeviceManager: CBCentralManagerDelegate {
 }
 
 extension DeviceManager : VScaleManagerDelegate {
+    
+    // MARK: - Mybody Device Method
+    var isDiscoverMyBodyDevice: Bool {
+        return weightScaleOne.curStatus != VCStatus.Disconnected
+    }
+    
+    func scanMyBodyDevice() {
+        weightScaleOne.scan()
+    }
+    
+    func connectMyBodyDevice() {
+        
+    }
+    
+    func startEvaluationWithMyBodyDevice() {
+        
+    }
 
+    // MARK: VScaleManagerDelegate
     func updateDeviceStatus(status: VCStatus) {
         
         var result = ""

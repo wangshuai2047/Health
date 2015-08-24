@@ -17,7 +17,7 @@ class CompleteGenderDataView: UIView {
     
     var gender: UInt8 {
         get {
-            return womanButton.selected ? 0 : 1
+            return womanButton.selected ? 1 : 0
         }
     }
     

@@ -14,15 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func test() {
-        
-        DeviceManager.shareInstance()
-        
-    }
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        test()
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
             // [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(GoalData)
 class GoalData: NSManagedObject {
 
     @NSManaged var awakeCount: NSNumber

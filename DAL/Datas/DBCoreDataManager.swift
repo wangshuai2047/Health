@@ -86,6 +86,7 @@ extension DBManager: DBManagerProtocol {
         let context = self.managedObjectContext!
         var insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
         
+        insertData.dataId = NSUUID().UUIDString
         setDatas(setDatas: &insertData)
         
         if context.save(nil) {
@@ -188,5 +189,76 @@ extension DBManager: DBManagerProtocol {
         }
         
         return nil
+    }
+    
+    var haveConnectedScale: Bool {
+        
+        return false
+        
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "type == 0")
+        
+        var error: NSError? = nil
+        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        
+        if error == nil && listData?.count > 0 {
+            return true
+        }
+        else {
+            return false
+        }
+        
+    }
+    
+    var haveConnectedBracelet: Bool {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "type == 1")
+        
+        var error: NSError? = nil
+        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        
+        if error == nil && listData?.count > 0 {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func addDevice(uuid: String, name: String, type: Int16) {
+        
+        let context = self.managedObjectContext!
+        
+        // 先搜索
+        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "uuid == %@", uuid)
+        
+        var error: NSError? = nil
+        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        
+        if error == nil && listData?.count > 0 {
+            NSLog("Insert Device Fail, exist the UUID")
+        }
+        else {
+            var insertData = NSEntityDescription.insertNewObjectForEntityForName("Device", inManagedObjectContext: context) as! Device
+            
+            insertData.uuid = uuid
+            insertData.name = name
+            insertData.type = NSNumber(short: type)
+            
+            if context.save(nil) {
+                NSLog("Insert Device Data Success")
+            } else {
+                NSLog("Insert Device Data Fail")
+            }
+        }
     }
 }

@@ -37,8 +37,11 @@ typedef NS_ENUM(NSUInteger, VCStatus) {
 @property (nonatomic, readonly) UInt8 height;   //身高
 - (void)setCalulateDataWithUserID:(UInt8)userID gender:(UInt8)gender age:(UInt8)age height:(UInt8)height;
 
-+(VScaleManager *)sharedInstance;
--(void)scan;
++ (VScaleManager *)sharedInstance;
+- (void)scan;
+- (void)scanDevice:(void (^)(NSError *error))complete;
+- (void)scale:(void (^)(VTFatScaleTestResult *result, NSError *error))complete;
+- (void)connect;
 - (void)disconnect;
 @end
 

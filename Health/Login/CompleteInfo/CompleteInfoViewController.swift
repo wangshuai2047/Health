@@ -90,7 +90,7 @@ class CompleteInfoViewController: UIViewController {
         
         if pageControl.currentPage == 4 {
             
-            LoginManager.completeInfomation(headAndNameDataView.name!, gender: genderDataView.gender, age: ageDataView.age, height: heightDataView.height, phone: organizationDataView.phone, organizationCode: organizationDataView.code, complete: { (error) -> Void in
+            LoginManager.completeInfomation(headAndNameDataView.name!, gender: genderDataView.gender, age: ageDataView.age, height: UInt8(heightDataView.height), phone: organizationDataView.phone, organizationCode: organizationDataView.code, complete: { (error) -> Void in
                 
                 if error == nil {
                     // 跳转到主页

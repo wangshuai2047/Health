@@ -14,6 +14,15 @@ class GoalViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationController?.navigationBarHidden = true
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DeviceManager.shareInstance().scanDevices()
     }
 
     override func didReceiveMemoryWarning() {

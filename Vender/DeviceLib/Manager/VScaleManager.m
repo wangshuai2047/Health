@@ -14,6 +14,12 @@
     VTDeviceManager *deviceManager;
     VTDeviceModel *deviceModel;
     NSMutableArray *serviceUUID;
+    
+    NSMutableArray *_scanDeviceCompletes;
+    NSTimer *_scanDeviceTimer;
+    
+    
+    void (^_scaleComplete)(VTFatScaleTestResult *result, NSError *error);
 }
 
 @end
@@ -46,9 +52,12 @@ static VScaleManager *instance = nil;
         deviceManager = [VTDeviceManager sharedInstance];
         deviceManager.delegate = self;
         
-        serviceUUID = cGetServiceUUID;
+        serviceUUID = [NSMutableArray array];
+        // cGetServiceUUID;
         
-        NSLog(@"[VScaleManager]init scanning");
+        NSLog(@"[VScaleManager]init scanning %@", deviceManager.historyList);
+        
+        _scanDeviceCompletes = [NSMutableArray array];
     }
     
     return self;
@@ -57,6 +66,25 @@ static VScaleManager *instance = nil;
 -(void)scan
 {
     [deviceManager scan:serviceUUID];
+}
+
+- (void)scanDevice:(void (^)(NSError *error))complete
+{
+    [_scanDeviceCompletes addObject:[complete copy]];
+    [deviceManager scan:serviceUUID];
+    
+//    _scanDeviceTimer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(scanDeviceTimeOut) userInfo:nil repeats:NO];
+}
+
+- (void)scale:(void (^)(VTFatScaleTestResult *result, NSError *error))complete
+{
+    _scaleComplete = complete;
+    [self connect];
+}
+
+- (void)connect
+{
+    [deviceModel  connect];
 }
 
 - (void)disconnect
@@ -84,6 +112,15 @@ static VScaleManager *instance = nil;
     _gender = gender;
     _age = age;
     _height = height;
+}
+
+- (void)scanDeviceTimeOut {
+    
+    NSArray *tempCompletes = [NSArray arrayWithArray:_scanDeviceCompletes];
+    [_scanDeviceCompletes removeAllObjects];
+    for (void (^_scanDeviceComplete)(NSError *error) in tempCompletes) {
+        _scanDeviceComplete([NSError errorWithDomain:@"VScaleManager" code:0 userInfo:@{NSLocalizedDescriptionKey : @"搜索设备超时"}]);
+    }
 }
 
 #pragma mark -
@@ -177,6 +214,11 @@ static VScaleManager *instance = nil;
                         NSLog(@"VC_STATUS_CACULATING done");
                         [self gotoStatus:VCStatusCaculate];
                         [self.delegate updateUIDataWithFatScale:self.scaleResult];
+                        
+                        if (_scaleComplete) {
+                            _scaleComplete(result, nil);
+                        }
+                        
                         [self gotoStatus:VCStatusServiceReady];
                     }
                         break;
@@ -319,8 +361,12 @@ static VScaleManager *instance = nil;
             NSString *msg = [NSString stringWithFormat:@"%@ %@ %@?", NSLocalizedString(@"Connect to",nil), vendorName,subType];
             //NSLocalizedString(@"Connent to ?",nil);
             
+            /*
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Scale Weight", nil) message:msg delegate:self cancelButtonTitle:NSLocalizedString(@"cancel",nil) otherButtonTitles:NSLocalizedString(@"ok",nil), nil];
             device.delegate = self;
+             [alertView show];
+             */
+//            [_scanDeviceTimer invalidate];
             
             deviceModel = device;
             [self gotoStatus:VCStatusDiscovered];
@@ -338,7 +384,13 @@ static VScaleManager *instance = nil;
              counted:YES
              repeatInterval:0
              enableAtActive:NO];
-            [alertView show];
+            
+            
+            NSArray *tempCompletes = [NSArray arrayWithArray:_scanDeviceCompletes];
+            [_scanDeviceCompletes removeAllObjects];
+            for (void (^_scanDeviceComplete)(NSError *error) in tempCompletes) {
+                _scanDeviceComplete(nil);
+            }
         }
 #endif
     }
@@ -396,6 +448,23 @@ static VScaleManager *instance = nil;
             break;
     }
     
+}
+
+- (NSDictionary *)transformResult:(VTFatScaleTestResult *)result
+{
+    return @{
+             @"userID" : [NSNumber numberWithInt:result.userID],
+             @"gender" : [NSNumber numberWithInt:result.gender],
+             @"age" : [NSNumber numberWithInt:result.age],
+             @"height" : [NSNumber numberWithInt:result.height],
+             @"fatContent" : [NSNumber numberWithFloat:result.fatContent],
+             @"waterContent" : [NSNumber numberWithFloat:result.waterContent],
+             @"boneContent" : [NSNumber numberWithFloat:result.boneContent],
+             @"muscleContent" : [NSNumber numberWithFloat:result.muscleContent],
+             @"visceralFatContent" : [NSNumber numberWithInt:result.visceralFatContent],
+             @"calorie" : [NSNumber numberWithInt:result.calorie],
+             @"bmi" : [NSNumber numberWithFloat:result.bmi],
+             };
 }
 
 @end

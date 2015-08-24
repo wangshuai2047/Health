@@ -18,6 +18,10 @@ protocol DBManagerProtocol {
     func queryGoalData(dataId: String) -> GoalData?
     
     func saveContext()
+    
+    var haveConnectedScale: Bool { get }
+    var haveConnectedBracelet: Bool { get }
+    func addDevice(uuid: String, name: String, type: Int16)
 }
 
 class DBManager {
@@ -35,5 +39,9 @@ class DBManager {
         })
         
         return YYSingle.instance!
+    }
+    
+    init() {
+        userId = "iloveyou"
     }
 }

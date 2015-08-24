@@ -19,26 +19,28 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jcT-E5-Bh0">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="932-iR-5CR">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="932-iR-5CR">
                     <rect key="frame" x="214" y="494" width="172" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="0Bh-CG-PZw"/>
                         <constraint firstAttribute="width" constant="172" id="Cmv-uI-OyI"/>
                     </constraints>
-                    <state key="normal" title="点击进入官网查询">
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="点击进入官网查询" backgroundImage="buttonBg">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="enterUrlButtonPressed:" destination="-1" eventType="touchUpInside" id="gcC-yU-W6F"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnF-Wr-5X6">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnF-Wr-5X6">
                     <rect key="frame" x="420" y="8" width="172" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="0ab-Hm-D3X"/>
                         <constraint firstAttribute="width" constant="172" id="Z3B-Pi-uop"/>
                     </constraints>
-                    <state key="normal" title="4秒 跳过">
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="4秒 跳过" backgroundImage="buttonBg">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -59,4 +61,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="buttonBg" width="19" height="19"/>
+    </resources>
 </document>
