@@ -11,15 +11,112 @@ import Foundation
 // 储存类 必须是class
 class UserData {
 
-    var userId: UInt8?
-    var gender: UInt8?
-    var height: UInt8?
-    var weight: Int?
-    var name: String?
-    var age: UInt8?
-    var phone: String?
-    var organizationCode: String?
-    var head: NSData?
+    var userId: UInt8? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.userId") as? NSNumber)?.unsignedCharValue
+        }
+        set {
+            if newValue == nil {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.userId")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.userId")
+            }
+        }
+    }
+    
+    var gender: UInt8? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.gender") as? NSNumber)?.unsignedCharValue
+        }
+        set {
+            if newValue == nil {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.gender")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.gender")
+            }
+        }
+    }
+    
+    var height: UInt8? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.height") as? NSNumber)?.unsignedCharValue
+        }
+        set {
+            if newValue == nil {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.height")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.height")
+            }
+        }
+    }
+    
+    var weight: Int? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.weight") as? NSNumber)?.integerValue
+        }
+        set {
+            if newValue == nil {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.weight")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.weight")
+            }
+        }
+    }
+    
+    var name: String? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.name") as? String)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.name")
+        }
+    }
+    
+    var age: UInt8? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.age") as? NSNumber)?.unsignedCharValue
+        }
+        set {
+            if newValue == nil {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.age")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.age")
+            }
+        }
+    }
+    
+    var phone: String? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.phone") as? String)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.phone")
+        }
+    }
+    
+    var organizationCode: String? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.organizationCode") as? String)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.organizationCode")
+        }
+    }
+    
+    var head: NSData? {
+        get {
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.head") as? NSData)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.head")
+        }
+    }
+    
     var isBindQQ: Bool?
     var isBindWeChat: Bool?
     var isBindWeiBo: Bool?
@@ -36,4 +133,17 @@ class UserData {
         
         return YYSingle.instance!
     }
+    
+    func clearDatas() {
+        self.userId = nil
+        self.gender = nil
+        self.height = nil
+        self.weight = nil
+        self.name = nil
+        self.age = nil
+        self.phone = nil
+        self.organizationCode = nil
+        self.head = nil
+    }
+    
 }

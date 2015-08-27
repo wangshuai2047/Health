@@ -89,8 +89,14 @@ class EvaluationViewController: UIViewController {
     
     // MARK: - connectDeviceView Response Method
     @IBAction func startEvaluationPressed(sender: AnyObject) {
-        EvaluationManager.shareInstance().startScale { (info, error) -> Void in
+        EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
             println("\(info!)")
+            
+            if error == nil {
+                self.showView(self.evaluationResultView)
+            } else {
+                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+            }
         }
     }
     
@@ -101,7 +107,11 @@ class EvaluationViewController: UIViewController {
     }
     
     @IBAction func tryEvaluationAgainButtonPressed(sender: AnyObject) {
-        showView(connectDeviceView)
+        if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
+            showView(connectDeviceView)
+        } else {
+            showView(notConnectDeviceView)
+        }
     }
     
     private func showView(view: UIView) {
@@ -111,5 +121,9 @@ class EvaluationViewController: UIViewController {
         evaluationResultView.hidden = true
         
         view.hidden = false
+    }
+    
+    func refreshEvaluationResultView(info: [String : AnyObject]) {
+        
     }
 }

@@ -40,5 +40,9 @@ class GoalViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func setGoalPressed(sender: AnyObject) {
+        var controller = SportDetailViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 
 }

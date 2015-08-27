@@ -12,7 +12,6 @@ struct LoginManager {
     
     static var isNeedCompleteInfo: Bool {
         get {
-//            let userData = UserData.shareInstance()
             if UserData.shareInstance().name != nil && UserData.shareInstance().age != nil && UserData.shareInstance().gender != nil && UserData.shareInstance().height != nil {
                 return false
             } else {
@@ -66,16 +65,13 @@ struct LoginManager {
     // 通过手机号 和 验证码登录
     static func login(phone: String, captchas: String, complete: ((NSError?) -> Void)?) {
         
-        UserData.shareInstance().userId = 7
-        UserData.shareInstance().phone = phone
-        
-        if complete != nil {
-            complete!(nil)
-        }
-        return;
-        
-        LoginRequest.login(phone, password: captchas) { (userInfo: NSDictionary?, error: NSError?) -> Void in
+        LoginRequest.login(phone, password: captchas) { (userInfo: [String: AnyObject]?, error: NSError?) -> Void in
             // deal userInfo
+            if error == nil {
+                var userId: NSNumber = userInfo!["userId"] as! NSNumber
+                UserData.shareInstance().userId = userId.unsignedCharValue
+                UserData.shareInstance().phone = phone
+            }
             
             if complete != nil {
                 complete!(error)
@@ -105,23 +101,6 @@ struct LoginManager {
     // 完善信息
     static func completeInfomation(name: String, gender: UInt8, age: UInt8, height: UInt8, phone: String?, organizationCode: String?, complete: ((error: NSError?) -> Void)) {
         
-        UserData.shareInstance().name = name
-        UserData.shareInstance().gender = gender
-        UserData.shareInstance().age = age
-        UserData.shareInstance().height = height
-        
-        if phone != nil {
-            UserData.shareInstance().phone = phone
-        }
-        
-        if organizationCode != nil {
-            UserData.shareInstance().organizationCode = organizationCode
-        }
-        
-        
-        complete(error: nil)
-        return
-        
         if UserData.shareInstance().userId == nil {
             complete(error: NSError(domain: "\(__FUNCTION__)", code: 0, userInfo: [NSLocalizedDescriptionKey: "未登录请先登录"]))
             return
@@ -129,7 +108,7 @@ struct LoginManager {
         
         UserRequest.completeUserInfo(UserData.shareInstance().userId!, gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode) { (error) -> Void in
             
-            if error != nil {
+            if error == nil {
                 UserData.shareInstance().name = name
                 UserData.shareInstance().gender = gender
                 UserData.shareInstance().age = age
@@ -154,10 +133,7 @@ struct LoginManager {
     
     // 登出
     static func logout() {
-        UserData.shareInstance().userId = nil
-        UserData.shareInstance().gender = nil
-        UserData.shareInstance().age = nil
-        UserData.shareInstance().height = nil
+        UserData.shareInstance().clearDatas()
     }
     
     

@@ -39,6 +39,9 @@ struct UserRequest {
     // 完善个人资料
     static func completeUserInfo(userId: UInt8, gender: UInt8, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, complete: ((error: NSError?) -> Void)) {
         
+        complete(error: nil)
+        return
+        
         let urlStr = Request.requestURL("")
         var params = ["userId": "\(userId)", "gender": "\(gender)", "height": "\(height)", "age": "\(age)", "name": "\(name)"]
         

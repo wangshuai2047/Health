@@ -160,9 +160,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func requeryCaptchasTimer() {
         
         let maxRequeryCount: Int8 = 10
-        
         requeryCaptchasTimerCount++
-        
         reQueryCaptchasButton.setTitle("\(maxRequeryCount - requeryCaptchasTimerCount)秒后 重新发送验证码", forState: UIControlState.Normal)
         
         if requeryCaptchasTimerCount >= maxRequeryCount {

@@ -11,7 +11,11 @@ import UIKit
 struct  LoginRequest {
     
     // 通过用户名密码登录
-    static func login(username: String, password: String, complete : ((NSDictionary? , NSError?) -> Void)?) {
+    static func login(username: String, password: String, complete : (([String: AnyObject]? , NSError?) -> Void)) {
+        
+        // 假数据
+        complete(["userId" : NSNumber(integer: 123)], nil)
+        return;
         
         let pushToken = "fefjewioafjaeofja"
         
@@ -19,20 +23,18 @@ struct  LoginRequest {
         Request.startWithRequest(loginUrlStr, method: "POST", params: ["phone" : username, "password" : password, "pushToken" : pushToken]) { (data : NSData!, response : NSURLResponse!, error : NSError!) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
-            if complete != nil {
-                if let err = result.error {
-                    complete!(nil, err)
-                    #if DEBUG
-                        println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
-                    #endif
-                }
-                else {
-                    let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                    complete!(jsonObj, nil)
-                    #if DEBUG
-                        println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
-                    #endif
-                }
+            if let err = result.error {
+                complete(nil, err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(nil, nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
             }
         }
     }

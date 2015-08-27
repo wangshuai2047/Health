@@ -122,13 +122,53 @@ class CompleteInfoViewController: UIViewController {
 
 }
 
+extension CompleteInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        self.headAndNameDataView.headIconButton.setImage(image, forState: UIControlState.Normal)
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
 extension CompleteInfoViewController: UIActionSheetDelegate {
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1 {
             // 拍照
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+                var picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = UIImagePickerControllerSourceType.Camera
+                self.navigationController?.presentViewController(picker, animated: true, completion: nil)
+            }
+            else {
+                UIAlertView(title: "错误", message: "设备不支持拍照", delegate: nil, cancelButtonTitle: "确定").show()
+            }
         }
         else if buttonIndex == 2 {
             // 照片库
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+                var picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+                self.navigationController?.presentViewController(picker, animated: true, completion: nil)
+            }
+            else {
+                UIAlertView(title: "错误", message: "设备不支持选取照片", delegate: nil, cancelButtonTitle: "确定").show()
+            }
+//            if ([UIImagePickerController isPhotoLibraryAvailable]) {
+//                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//                picker.delegate = self;
+//                picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//                picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+//                
+//                if (kIsIOS7OrLater) {
+//                    picker.navigationBar.barTintColor = self.fromController.navigationController.navigationBar.barTintColor;
+//                }
+//                // 设置导航默认标题的颜色及字体大小
+//                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
+//                    NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
+//                [self.fromController presentViewController:picker animated:YES completion:nil];
+            
+                
         }
     }
 }

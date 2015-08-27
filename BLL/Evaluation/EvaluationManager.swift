@@ -29,7 +29,8 @@ class EvaluationManager :NSObject {
     }
     
     var isConnectedMyBodyDevice: Bool {
-        return DBManager.shareInstance().haveConnectedScale
+        return VScaleManager.sharedInstance().curStatus == VCStatus.Connected
+//        return DBManager.shareInstance().haveConnectedScale
     }
     
     func scan(complete: (error: NSError?) -> Void) {
@@ -39,7 +40,7 @@ class EvaluationManager :NSObject {
     }
     
    // 开始测量秤
-    func startScale(complete: (info: [NSObject : AnyObject]?, error: NSError?) -> Void) {
+    func startScale(complete: (info: [String : AnyObject]?, error: NSError?) -> Void) {
         
         /*
         @"userID" : [NSNumber numberWithInt:result.userID],
@@ -58,24 +59,81 @@ class EvaluationManager :NSObject {
         VScaleManager.sharedInstance().scale { (info: VTFatScaleTestResult?, error: NSError?) -> Void in
 //            complete(info: info, error: error)
             
-            // 存数据库
-            DBManager.shareInstance().addEvaluationData({ (inout setDatas: EvaluationData) -> EvaluationData in
+            if error == nil {
+                var tempInfo: [String : AnyObject] = [:]
                 
+                let dataId = NSUUID().UUIDString
+                tempInfo["dataId"] = dataId
                 
-                setDatas.userId = NSNumber(unsignedChar: info!.userID)
-                setDatas.fatContent = info!.fatContent
-                setDatas.waterContent = info!.waterContent
-                setDatas.boneContent = info!.boneContent
-                setDatas.muscleContent = info!.muscleContent
-                setDatas.visceralFatContent = NSNumber(unsignedChar: info!.visceralFatContent)
-                setDatas.calorie = NSNumber(int: info!.calorie)
-                setDatas.bmi = info!.bmi
+                if let userId = info?.userID {
+                    tempInfo["userId"] = NSNumber(unsignedChar: userId)
+                }
                 
-                setDatas.timeStamp = NSDate()
-                setDatas.isUpload = false
+                if let gender = info?.gender {
+                    tempInfo["gender"] = NSNumber(unsignedChar: gender)
+                }
                 
-                return setDatas;
-            })
+                if let age = info?.age {
+                    tempInfo["age"] = NSNumber(unsignedChar: age)
+                }
+                
+                if let height = info?.height {
+                    tempInfo["height"] = NSNumber(unsignedChar: height)
+                }
+                
+                if let fatContent = info?.fatContent {
+                    tempInfo["fatContent"] = NSNumber(float: fatContent)
+                }
+                
+                if let waterContent = info?.waterContent {
+                    tempInfo["waterContent"] = NSNumber(float: waterContent)
+                }
+                
+                if let boneContent = info?.boneContent {
+                    tempInfo["boneContent"] = NSNumber(float: boneContent)
+                }
+                
+                if let muscleContent = info?.muscleContent {
+                    tempInfo["muscleContent"] = NSNumber(float: muscleContent)
+                }
+                
+                if let visceralFatContent = info?.visceralFatContent {
+                    tempInfo["visceralFatContent"] = NSNumber(unsignedChar: visceralFatContent)
+                }
+                
+                if let calorie = info?.calorie {
+                    tempInfo["calorie"] = NSNumber(int: calorie)
+                }
+                
+                if let bmi = info?.bmi {
+                    tempInfo["bmi"] = NSNumber(float: bmi)
+                }
+                
+                complete(info: tempInfo, error: nil)
+                
+                // 存数据库
+                DBManager.shareInstance().addEvaluationData({ (inout setDatas: EvaluationData) -> EvaluationData in
+                    
+                    setDatas.dataId = dataId
+                    setDatas.userId = NSNumber(unsignedChar: info!.userID)
+                    setDatas.fatContent = info!.fatContent
+                    setDatas.waterContent = info!.waterContent
+                    setDatas.boneContent = info!.boneContent
+                    setDatas.muscleContent = info!.muscleContent
+                    setDatas.visceralFatContent = NSNumber(unsignedChar: info!.visceralFatContent)
+                    setDatas.calorie = NSNumber(int: info!.calorie)
+                    setDatas.bmi = info!.bmi
+                    
+                    setDatas.timeStamp = NSDate()
+                    setDatas.isUpload = false
+                    
+                    return setDatas;
+                })
+                
+            }
+            else {
+                complete(info: nil, error: error)
+            }
         }
     }
 }

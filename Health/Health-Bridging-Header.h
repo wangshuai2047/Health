@@ -18,3 +18,7 @@
 
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
+
+//
+#import <SDWebImage/UIButton+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
