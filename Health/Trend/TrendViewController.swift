@@ -10,6 +10,14 @@ import UIKit
 
 class TrendViewController: UIViewController {
 
+    @IBOutlet weak var weightButton: UIButton!
+    @IBOutlet weak var fatButton: UIButton!
+    @IBOutlet weak var muscleButton: UIButton!
+    @IBOutlet weak var waterButton: UIButton!
+    @IBOutlet weak var proteinButton: UIButton!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,4 +41,54 @@ class TrendViewController: UIViewController {
     }
     */
 
+    @IBAction func selectButtonPressed(button: UIButton) {
+        
+        if button.selected {
+            button.selected = false
+        }
+        else {
+            if selectCount() < 2 {
+                button.selected = true
+            }
+        }
+    }
+    
+    func selectCount() -> Int {
+        var selectCount: Int = 0
+        selectCount += weightButton.selected ? 1 : 0
+        selectCount += fatButton.selected ? 1 : 0
+        selectCount += muscleButton.selected ? 1 : 0
+        selectCount += waterButton.selected ? 1 : 0
+        selectCount += proteinButton.selected ? 1 : 0
+        return selectCount
+    }
+}
+
+extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 13
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellId = "TrendTableViewCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+        
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+        }
+        
+        cell?.textLabel?.text = "\(indexPath.row)"
+        
+        return cell!
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
 }

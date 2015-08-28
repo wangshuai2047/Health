@@ -94,9 +94,7 @@ class CompleteInfoViewController: UIViewController {
                 
                 if error == nil {
                     // 跳转到主页
-                    if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UITabBarController
-                    }
+                    AppDelegate.applicationDelegate().changeToMainController()
                 }
                 else {
                     UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()

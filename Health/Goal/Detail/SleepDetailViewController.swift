@@ -10,6 +10,12 @@ import UIKit
 
 class SleepDetailViewController: UIViewController {
 
+    @IBOutlet weak var cicleView: CircleView!
+    
+    convenience init() {
+        self.init(nibName: "SleepDetailViewController", bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,4 +38,7 @@ class SleepDetailViewController: UIViewController {
     }
     */
 
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }

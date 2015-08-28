@@ -72,7 +72,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
                 else {
                     if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UITabBarController
+                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
                     }
                 }
             }

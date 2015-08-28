@@ -19,6 +19,11 @@
 		E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
 		E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
 		E01C815C1B880C3D00A1F7AC /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24521B807BE4004269BB /* DBManager.swift */; };
+		E021FCB21B8F5A8D00565FDB /* TrendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FCB01B8F5A8D00565FDB /* TrendDetailViewController.swift */; };
+		E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E021FCB11B8F5A8D00565FDB /* TrendDetailViewController.xib */; };
+		E021FCB71B8F5B8E00565FDB /* EvaluationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */; };
+		E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */; };
+		E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */; };
 		E02979471B801E4900AAE085 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979461B801E4900AAE085 /* DeviceManager.swift */; };
 		E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979461B801E4900AAE085 /* DeviceManager.swift */; };
 		E029794A1B8028C000AAE085 /* BraceletProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979491B8028C000AAE085 /* BraceletProtocol.swift */; };
@@ -165,6 +170,11 @@
 		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E01C81581B8804AF00A1F7AC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		E021FCB01B8F5A8D00565FDB /* TrendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendDetailViewController.swift; sourceTree = "<group>"; };
+		E021FCB11B8F5A8D00565FDB /* TrendDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendDetailViewController.xib; sourceTree = "<group>"; };
+		E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewController.swift; sourceTree = "<group>"; };
+		E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationDetailViewController.xib; sourceTree = "<group>"; };
+		E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
 		E02979461B801E4900AAE085 /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		E02979491B8028C000AAE085 /* BraceletProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraceletProtocol.swift; sourceTree = "<group>"; };
 		E029794C1B80292500AAE085 /* BluetoothProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothProtocol.swift; sourceTree = "<group>"; };
@@ -381,6 +391,16 @@
 			path = UserData;
 			sourceTree = "<group>";
 		};
+		E021FCB41B8F5B7900565FDB /* EvaluationDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */,
+				E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */,
+			);
+			name = EvaluationDetail;
+			path = Health/Evaluation/EvaluationDetail;
+			sourceTree = SOURCE_ROOT;
+		};
 		E02979451B801E1500AAE085 /* DeviceManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +415,7 @@
 		E05D048C1B8BE7840090137C /* Compents */ = {
 			isa = PBXGroup;
 			children = (
+				E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */,
 				E05D048D1B8BE7DC0090137C /* CircleView.swift */,
 				E05B1A2F1B8E028900B37F1C /* Alert.swift */,
 			);
@@ -560,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				E0F9DB071B854B8200504454 /* EvaluationViewController.swift */,
+				E021FCB41B8F5B7900565FDB /* EvaluationDetail */,
 			);
 			name = Evaluation;
 			path = BLL/Evaluation;
@@ -896,6 +918,8 @@
 		E0F9DB171B854BD900504454 /* TrendDetail */ = {
 			isa = PBXGroup;
 			children = (
+				E021FCB01B8F5A8D00565FDB /* TrendDetailViewController.swift */,
+				E021FCB11B8F5A8D00565FDB /* TrendDetailViewController.xib */,
 			);
 			name = TrendDetail;
 			path = Health/Trend/TrendDetail;
@@ -1038,6 +1062,7 @@
 				E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */,
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
 				E060CD741B84012D0002AEE7 /* ShareSDK.bundle in Resources */,
+				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
 				E060CD7C1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
@@ -1045,6 +1070,7 @@
 				E060CD6A1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */,
 				E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */,
+				E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */,
 				E0F9DAFB1B85488300504454 /* GUIViewController.xib in Resources */,
 				E060CD6E1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
 			);
@@ -1124,7 +1150,9 @@
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
 				E08B32971B85A8B00040ADE7 /* CompleteGenderDataView.swift in Sources */,
+				E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */,
 				E060CD141B8377E50002AEE7 /* AdsRequest.swift in Sources */,
+				E021FCB21B8F5A8D00565FDB /* TrendDetailViewController.swift in Sources */,
 				E095288F1B82B16A00F7B8D0 /* BraceletManager.swift in Sources */,
 				E0FBED3A1B835BEE00A70598 /* LoginViewController.swift in Sources */,
 				E0FBED301B83539000A70598 /* VScaleManager.m in Sources */,
@@ -1146,6 +1174,7 @@
 				E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
 				E05D048E1B8BE7DC0090137C /* CircleView.swift in Sources */,
+				E021FCB71B8F5B8E00565FDB /* EvaluationDetailViewController.swift in Sources */,
 				E0F9DAF91B85488300504454 /* GUIViewController.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
 				E00C00E41B7EC222006A4343 /* GoalData.swift in Sources */,

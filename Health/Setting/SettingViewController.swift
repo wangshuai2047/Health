@@ -10,6 +10,16 @@ import UIKit
 
 class SettingViewController: UIViewController {
 
+    // 数据格式为  (ImageName, Title, 进入的Controller)
+    var list: [(String, String, UIViewController)] = [
+        ("weightIcon", "成员资料修改管理", UIViewController()),
+        ("weightIcon", "社交账号绑定管理", UIViewController()),
+        ("weightIcon", "健康设备管理", UIViewController()),
+        ("weightIcon", "健康中心绑定", UIViewController()),
+        ("weightIcon", "检查软件更新", UIViewController()),
+        ("weightIcon", "用户建议反馈", UIViewController()),
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,4 +42,52 @@ class SettingViewController: UIViewController {
     }
     */
 
+}
+
+extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // +1 最后一项是退出登录
+        return list.count + 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellId = "SettingTableViewCellId"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+        
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+        }
+        
+        if indexPath.row == list.count {
+            cell?.imageView?.image = UIImage()
+            cell?.textLabel?.text = "退出登录"
+        } else {
+            let (imageName, title, _) = list[indexPath.row]
+            cell?.imageView?.image = UIImage(named: imageName)
+            cell?.textLabel?.text = title
+            cell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        }
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.row == list.count {
+            LoginManager.logout()
+            AppDelegate.applicationDelegate().changeToLoginController()
+        } else {
+            let (_, _, controller) = list[indexPath.row]
+            AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70
+    }
 }

@@ -9,5 +9,7 @@
 import UIKit
 
 struct GoalManager {
-   
+    static func isConnectDevice() -> Bool {
+        return true
+    }
 }

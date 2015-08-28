@@ -77,8 +77,7 @@ class EvaluationViewController: UIViewController {
         EvaluationManager.shareInstance().scan { [unowned self] (error) -> Void in
             if error == nil {
                 println("成功扫描到设备")
-                self.connectDeviceView.hidden = false
-                self.notConnectDeviceView.hidden = true
+                self.showView(self.connectDeviceView)
             }
             else {
                 
@@ -93,7 +92,8 @@ class EvaluationViewController: UIViewController {
             println("\(info!)")
             
             if error == nil {
-                self.showView(self.evaluationResultView)
+                self.pushToDetailEvaluationViewController("ABC")
+//                self.showView(self.evaluationResultView)
             } else {
                 Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
@@ -103,7 +103,9 @@ class EvaluationViewController: UIViewController {
     // MARK: - manualInputDataView Response Method
     
     @IBAction func manualInputDataCommitPressed(sender: AnyObject) {
-        showView(evaluationResultView)
+        
+        self.pushToDetailEvaluationViewController("ABC")
+//        showView(evaluationResultView)
     }
     
     @IBAction func tryEvaluationAgainButtonPressed(sender: AnyObject) {
@@ -121,6 +123,12 @@ class EvaluationViewController: UIViewController {
         evaluationResultView.hidden = true
         
         view.hidden = false
+    }
+    
+    func pushToDetailEvaluationViewController(dataId: String) {
+        var detailController = EvaluationDetailViewController()
+        detailController.dataId = dataId
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
     }
     
     func refreshEvaluationResultView(info: [String : AnyObject]) {

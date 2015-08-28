@@ -12,6 +12,24 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    class func applicationDelegate() -> AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
+    
+    class func rootNavgationViewController() -> UINavigationController {
+        return AppDelegate.applicationDelegate().window?.rootViewController as! UINavigationController
+    }
+    
+    func changeToLoginController() -> UINavigationController {
+        self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        return self.window?.rootViewController as! UINavigationController
+    }
+    
+    func changeToMainController() -> UINavigationController {
+        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UINavigationController
+        return self.window?.rootViewController as! UINavigationController
+    }
+    
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -34,14 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = navController
         }
         else if !LoginManager.isLogin {
-            var loginController = LoginViewController()
-            navController = UINavigationController(rootViewController: loginController)
-            self.window?.rootViewController = navController
-        }
-        else
-        {
-            var mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            self.window?.rootViewController = mainStoryBoard.instantiateInitialViewController() as! UITabBarController
+            navController = changeToLoginController()
+        } else {
+            navController = changeToMainController()
         }
         navController?.navigationBarHidden = true
         

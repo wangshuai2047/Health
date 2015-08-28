@@ -1,28 +1,20 @@
 //
-//  SportDetailViewController.swift
+//  TrendDetailViewController.swift
 //  Health
 //
-//  Created by Yalin on 15/8/24.
+//  Created by Yalin on 15/8/27.
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
 import UIKit
 
-class SportDetailViewController: UIViewController {
+class TrendDetailViewController: UIViewController {
 
-    @IBOutlet weak var cicleView: CircleView!
-    
-    convenience init() {
-        self.init(nibName: "SportDetailViewController", bundle: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        cicleView.update([(25, UIColor.orangeColor()), (25, UIColor.blueColor()), (25, UIColor.yellowColor()), (25, UIColor.grayColor())], animated: true)
     }
-    //
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -40,7 +32,4 @@ class SportDetailViewController: UIViewController {
     }
     */
 
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
 }
