@@ -99,7 +99,7 @@ struct LoginManager {
     }
     
     // 完善信息
-    static func completeInfomation(name: String, gender: UInt8, age: UInt8, height: UInt8, phone: String?, organizationCode: String?, complete: ((error: NSError?) -> Void)) {
+    static func completeInfomation(name: String, gender: Bool, age: UInt8, height: UInt8, phone: String?, organizationCode: String?, complete: ((error: NSError?) -> Void)) {
         
         if UserData.shareInstance().userId == nil {
             complete(error: NSError(domain: "\(__FUNCTION__)", code: 0, userInfo: [NSLocalizedDescriptionKey: "未登录请先登录"]))

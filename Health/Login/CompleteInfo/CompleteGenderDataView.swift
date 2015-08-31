@@ -15,9 +15,9 @@ class CompleteGenderDataView: UIView {
     @IBOutlet weak var menButton: UIButton!
     
     
-    var gender: UInt8 {
+    var gender: Bool {
         get {
-            return womanButton.selected ? 1 : 0
+            return womanButton.selected ? false : true
         }
     }
     

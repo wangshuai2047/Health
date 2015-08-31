@@ -16,8 +16,8 @@ class EvaluationViewController: UIViewController {
     
     @IBOutlet weak var manualInputDataView: UIView!
     @IBOutlet weak var weightInputDataTextField: UITextField!
-    @IBOutlet weak var fatContentInputDataTextField: UITextField!
-    @IBOutlet weak var muscleInputDataTextField: UITextField!
+    @IBOutlet weak var waterContentInputDataTextField: UITextField!
+    @IBOutlet weak var visceralFatContentInputDataTextField: UITextField!
     
     @IBOutlet weak var evaluationResultView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -43,6 +43,9 @@ class EvaluationViewController: UIViewController {
         }
         else {
             showView(notConnectDeviceView)
+            EvaluationManager.shareInstance().scan({[unowned self] (error) -> Void in
+                self.showView(self.connectDeviceView)
+            })
         }
     }
 
@@ -64,6 +67,11 @@ class EvaluationViewController: UIViewController {
     
     // MARK: - Response Method
     
+    @IBAction func backgroundPressed(sender: AnyObject) {
+        self.weightInputDataTextField.resignFirstResponder()
+        self.waterContentInputDataTextField.resignFirstResponder()
+        self.visceralFatContentInputDataTextField.resignFirstResponder()
+    }
     // MARK: - notConnectDeviceView Response Method
     @IBAction func buyDevicePressed(sender: AnyObject) {
         
@@ -88,12 +96,11 @@ class EvaluationViewController: UIViewController {
     
     // MARK: - connectDeviceView Response Method
     @IBAction func startEvaluationPressed(sender: AnyObject) {
-        EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
-            println("\(info!)")
+        EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
             
             if error == nil {
-                self.pushToDetailEvaluationViewController("ABC")
-//                self.showView(self.evaluationResultView)
+                self.pushToDetailEvaluationViewController(result!)
+                self.showView(self.connectDeviceView)
             } else {
                 Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
@@ -104,11 +111,19 @@ class EvaluationViewController: UIViewController {
     
     @IBAction func manualInputDataCommitPressed(sender: AnyObject) {
         
-        self.pushToDetailEvaluationViewController("ABC")
-//        showView(evaluationResultView)
+        self.pushToDetailEvaluationViewController(EvaluationManager.shareInstance().startScaleInputData(self.weightInputDataTextField.text.floatValue, waterContent: self.waterContentInputDataTextField.text.floatValue, visceralFatContent: self.visceralFatContentInputDataTextField.text.floatValue))
+        showMainView()
+    }
+    
+    @IBAction func manualInputDataCancelPressed(sender: AnyObject) {
+        showMainView()
     }
     
     @IBAction func tryEvaluationAgainButtonPressed(sender: AnyObject) {
+        showMainView()
+    }
+    
+    private func showMainView() {
         if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
             showView(connectDeviceView)
         } else {
@@ -125,9 +140,9 @@ class EvaluationViewController: UIViewController {
         view.hidden = false
     }
     
-    func pushToDetailEvaluationViewController(dataId: String) {
+    func pushToDetailEvaluationViewController(data: ScaleResult) {
         var detailController = EvaluationDetailViewController()
-        detailController.dataId = dataId
+        detailController.data = data
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
     }
     

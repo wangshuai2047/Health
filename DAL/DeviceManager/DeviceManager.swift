@@ -11,10 +11,13 @@ import CoreBluetooth
 
 class DeviceManager: NSObject {
     
-    private var weightScaleOne: VScaleManager
-    private var centralManager: CBCentralManager
+    var scaleHelper: ScaleProtocol?
     
-    private var scanMyBodyDeviceCu: ((VCStatus) -> Void)?
+    
+//    private var weightScaleOne: VScaleManager
+//    private var centralManager: CBCentralManager
+//    
+//    private var scanMyBodyDeviceCu: ((VCStatus) -> Void)?
     
     class func shareInstance() -> DeviceManager {
         struct Singleton {
@@ -29,26 +32,48 @@ class DeviceManager: NSObject {
     }
     
     override init() {
-        weightScaleOne = VScaleManager()
-        centralManager = CBCentralManager()
+//        weightScaleOne = VScaleManager()
+//        centralManager = CBCentralManager()
         
         super.init()
-        weightScaleOne.delegate = self
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+//        weightScaleOne.delegate = self
+//        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    func scanDevices() {
+    var isConnectDevice: Bool {
+        return scaleHelper != nil
+    }
+    
+    func scanDevices(complete: (error: NSError?) -> Void){
+        
+        ScaleOld.shareInstance().scanDevice {[unowned self] (scale) -> Void in
+            self.scaleHelper = scale
+            complete(error: nil)
+        }
+        
 //        weightScaleOne.scan()FFF0
-        centralManager.scanForPeripheralsWithServices(nil, options: nil)
+//        centralManager.scanForPeripheralsWithServices(nil, options: nil)
 //        centralManager.scanForPeripheralsWithServices([CBUUID(string: "f433bd80-75b8-11e2-97d9-0002a5d5c51b"), CBUUID(string: "FFF0"),CBUUID(string: "FFF1"),CBUUID(string: "FFF2")], options: nil)
     }
     
-    func connectDevice() {
-        
+//    func connectDevice() {
+//        
+//    }
+    
+    func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {
+        scaleHelper?.startScale(complete)
     }
     
+    func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult {
+        return ScaleOld.scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent)
+    }
 }
 
+
+
+
+
+/*
 extension DeviceManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         println("CentralManager is initialized")
@@ -135,3 +160,5 @@ extension DeviceManager : VScaleManagerDelegate {
         println(result)
     }
 }
+
+*/

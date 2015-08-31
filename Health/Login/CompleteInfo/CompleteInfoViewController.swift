@@ -152,21 +152,6 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
             else {
                 UIAlertView(title: "错误", message: "设备不支持选取照片", delegate: nil, cancelButtonTitle: "确定").show()
             }
-//            if ([UIImagePickerController isPhotoLibraryAvailable]) {
-//                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//                picker.delegate = self;
-//                picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//                picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
-//                
-//                if (kIsIOS7OrLater) {
-//                    picker.navigationBar.barTintColor = self.fromController.navigationController.navigationBar.barTintColor;
-//                }
-//                // 设置导航默认标题的颜色及字体大小
-//                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-//                    NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
-//                [self.fromController presentViewController:picker animated:YES completion:nil];
-            
-                
         }
     }
 }

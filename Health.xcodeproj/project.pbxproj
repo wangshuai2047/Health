@@ -35,6 +35,8 @@
 		E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E05B1A321B8E04B000B37F1C /* UserView.xib */; };
 		E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E05B1A351B8E077700B37F1C /* UserSelectView.xib */; };
 		E05D048E1B8BE7DC0090137C /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D048D1B8BE7DC0090137C /* CircleView.swift */; };
+		E05D565B1B92031000DF77B0 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D565A1B92031000DF77B0 /* EvaluationData.swift */; };
+		E05D565C1B92031000DF77B0 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D565A1B92031000DF77B0 /* EvaluationData.swift */; };
 		E060CD111B836F1C0002AEE7 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD101B836F1C0002AEE7 /* LoginRequest.swift */; };
 		E060CD121B836F1C0002AEE7 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD101B836F1C0002AEE7 /* LoginRequest.swift */; };
 		E060CD141B8377E50002AEE7 /* AdsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD131B8377E50002AEE7 /* AdsRequest.swift */; };
@@ -125,8 +127,16 @@
 		E0C50BA01B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA11B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50BA31B862AA0007A9393 /* UserSelectView.swift */; };
-		E0C74E571B8AF86E009DF559 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74E561B8AF86E009DF559 /* EvaluationData.swift */; };
-		E0C74E581B8AFA7D009DF559 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74E561B8AF86E009DF559 /* EvaluationData.swift */; };
+		E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14021B9130480079F957 /* ScaleOld.swift */; };
+		E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14021B9130480079F957 /* ScaleOld.swift */; };
+		E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14071B9130730079F957 /* ScaleProtocol.swift */; };
+		E0DD14091B9130730079F957 /* ScaleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14071B9130730079F957 /* ScaleProtocol.swift */; };
+		E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140A1B913DE40079F957 /* ScaleResult.swift */; };
+		E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140A1B913DE40079F957 /* ScaleResult.swift */; };
+		E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
+		E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
+		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
+		E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F9DAEF1B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
 		E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
 		E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAF11B85456600504454 /* LoginAdsViewController.swift */; };
@@ -182,6 +192,7 @@
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
 		E05B1A351B8E077700B37F1C /* UserSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserSelectView.xib; path = Health/User/UserSelectView.xib; sourceTree = SOURCE_ROOT; };
 		E05D048D1B8BE7DC0090137C /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		E05D565A1B92031000DF77B0 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E060CD101B836F1C0002AEE7 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		E060CD131B8377E50002AEE7 /* AdsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsRequest.swift; sourceTree = "<group>"; };
 		E060CD4F1B84012D0002AEE7 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -279,7 +290,11 @@
 		E0C50B9C1B861DAC007A9393 /* UserReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserReqeustTests.swift; path = HealthTests/Request/UserReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9F1B862381007A9393 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = BLL/User/UserManager.swift; sourceTree = SOURCE_ROOT; };
 		E0C50BA31B862AA0007A9393 /* UserSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSelectView.swift; path = Health/User/UserSelectView.swift; sourceTree = SOURCE_ROOT; };
-		E0C74E561B8AF86E009DF559 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
+		E0DD14021B9130480079F957 /* ScaleOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleOld.swift; sourceTree = "<group>"; };
+		E0DD14071B9130730079F957 /* ScaleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleProtocol.swift; sourceTree = "<group>"; };
+		E0DD140A1B913DE40079F957 /* ScaleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResult.swift; sourceTree = "<group>"; };
+		E0DD140E1B91795A0079F957 /* ConvertString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertString.swift; sourceTree = "<group>"; };
+		E0F70D4F1B93362900341F1C /* ConvertFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertFloat.swift; sourceTree = "<group>"; };
 		E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationManager.swift; sourceTree = "<group>"; };
 		E0F9DAF11B85456600504454 /* LoginAdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAdsViewController.swift; sourceTree = "<group>"; };
 		E0F9DAF21B85456600504454 /* LoginAdsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginAdsViewController.xib; sourceTree = "<group>"; };
@@ -712,6 +727,7 @@
 			children = (
 				E09EC8DC1B7E3FCC00CC07E3 /* BLL */,
 				E09EC8DE1B7E3FCC00CC07E3 /* DAL */,
+				E0DD140D1B9179330079F957 /* Extend */,
 				E09EC8E21B7E3FCC00CC07E3 /* Vender */,
 				E09EC8B41B7E3B5000CC07E3 /* Health */,
 				E09EC8EB1B7E407D00CC07E3 /* Framework */,
@@ -806,6 +822,7 @@
 		E09EC8DE1B7E3FCC00CC07E3 /* DAL */ = {
 			isa = PBXGroup;
 			children = (
+				E0DD14001B9130480079F957 /* Scale */,
 				E08A24551B807BFA004269BB /* HealthKitAndQQHealth */,
 				E08A24561B807BFA004269BB /* Request */,
 				E08A24571B807BFA004269BB /* Third */,
@@ -821,9 +838,9 @@
 			isa = PBXGroup;
 			children = (
 				E09EC8E01B7E3FCC00CC07E3 /* Health.xcdatamodeld */,
-				E0C74E561B8AF86E009DF559 /* EvaluationData.swift */,
 				E00C00E31B7EC222006A4343 /* GoalData.swift */,
 				E01C81581B8804AF00A1F7AC /* Device.swift */,
+				E05D565A1B92031000DF77B0 /* EvaluationData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -877,6 +894,25 @@
 			);
 			name = User;
 			path = "../../../../../../workSpace/Project/好体知/Code/Health/Health/User";
+			sourceTree = "<group>";
+		};
+		E0DD14001B9130480079F957 /* Scale */ = {
+			isa = PBXGroup;
+			children = (
+				E0DD14021B9130480079F957 /* ScaleOld.swift */,
+				E0DD14071B9130730079F957 /* ScaleProtocol.swift */,
+				E0DD140A1B913DE40079F957 /* ScaleResult.swift */,
+			);
+			path = Scale;
+			sourceTree = "<group>";
+		};
+		E0DD140D1B9179330079F957 /* Extend */ = {
+			isa = PBXGroup;
+			children = (
+				E0DD140E1B91795A0079F957 /* ConvertString.swift */,
+				E0F70D4F1B93362900341F1C /* ConvertFloat.swift */,
+			);
+			path = Extend;
 			sourceTree = "<group>";
 		};
 		E0F9DB0D1B854B9900504454 /* Detail */ = {
@@ -1020,6 +1056,7 @@
 				TargetAttributes = {
 					E09EC8B11B7E3B5000CC07E3 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = WCG9JY755C;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1028,6 +1065,7 @@
 					};
 					E09EC8CB1B7E3B5000CC07E3 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = WCG9JY755C;
 						TestTargetID = E09EC8B11B7E3B5000CC07E3;
 					};
 				};
@@ -1146,6 +1184,7 @@
 				E09EC8B81B7E3B5000CC07E3 /* AppDelegate.swift in Sources */,
 				E0F9DB081B854B8200504454 /* EvaluationViewController.swift in Sources */,
 				E0C50BA01B862381007A9393 /* UserManager.swift in Sources */,
+				E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
@@ -1163,19 +1202,22 @@
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
 				E05B1A301B8E028900B37F1C /* Alert.swift in Sources */,
-				E0C74E571B8AF86E009DF559 /* EvaluationData.swift in Sources */,
 				E060CD111B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
 				E08B32941B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift in Sources */,
+				E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */,
 				E08B32A41B85A9CC0040ADE7 /* CompleteInfoViewController.swift in Sources */,
 				E08A24541B807BE4004269BB /* DBManager.swift in Sources */,
 				E08B32821B85A6C50040ADE7 /* GoalManager.swift in Sources */,
 				E029794A1B8028C000AAE085 /* BraceletProtocol.swift in Sources */,
 				E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */,
+				E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */,
+				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
 				E05D048E1B8BE7DC0090137C /* CircleView.swift in Sources */,
 				E021FCB71B8F5B8E00565FDB /* EvaluationDetailViewController.swift in Sources */,
 				E0F9DAF91B85488300504454 /* GUIViewController.swift in Sources */,
+				E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
 				E00C00E41B7EC222006A4343 /* GoalData.swift in Sources */,
 				E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */,
@@ -1184,6 +1226,7 @@
 				E0F9DB051B854B7300504454 /* ActivityViewController.swift in Sources */,
 				E09EC8E31B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */,
+				E05D565B1B92031000DF77B0 /* EvaluationData.swift in Sources */,
 				E08B329A1B85A8C50040ADE7 /* CompleteHeightDataView.swift in Sources */,
 				E08B328B1B85A7210040ADE7 /* TrendManager.swift in Sources */,
 				E0A0B1241B8B53C200E9BF69 /* SportDetailViewController.swift in Sources */,
@@ -1197,11 +1240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0C74E581B8AFA7D009DF559 /* EvaluationData.swift in Sources */,
+				E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */,
+				E0DD14091B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */,
 				E01C815C1B880C3D00A1F7AC /* DBManager.swift in Sources */,
 				E029794B1B8028C000AAE085 /* BraceletProtocol.swift in Sources */,
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
+				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
 				E09528901B82B16A00F7B8D0 /* BraceletManager.swift in Sources */,
 				E0FBED311B83539000A70598 /* VScaleManager.m in Sources */,
@@ -1222,8 +1267,11 @@
 				E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */,
 				E0C50BA11B862381007A9393 /* UserManager.swift in Sources */,
 				E08B328F1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
+				E05D565C1B92031000DF77B0 /* EvaluationData.swift in Sources */,
+				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E00C00E51B7EC222006A4343 /* GoalData.swift in Sources */,
 				E08B328C1B85A7210040ADE7 /* TrendManager.swift in Sources */,
+				E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */,
 				E0C50B9B1B861D97007A9393 /* AdsReqeustTests.swift in Sources */,
 				E09EC8E41B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0FBED461B835C9100A70598 /* ResponseDataFilter.swift in Sources */,
@@ -1278,7 +1326,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yalin yang (VFFW2K6U5E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yalin yang (VFFW2K6U5E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1300,6 +1349,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1322,7 +1372,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yalin yang (VFFW2K6U5E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yalin yang (VFFW2K6U5E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1337,6 +1388,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1349,7 +1401,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Yalin/workSpace/Project/好体知/Code/Health/Vender/ShareSDK/libraries/extends/QQSDK",
@@ -1369,7 +1421,7 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "21ab3fcf-307c-4113-b178-4ec0aa541849";
+				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -1383,7 +1435,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Yalin/workSpace/Project/好体知/Code/Health/Vender/ShareSDK/libraries/extends/QQSDK",
@@ -1403,7 +1455,7 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "21ab3fcf-307c-4113-b178-4ec0aa541849";
+				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -1415,6 +1467,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1438,6 +1492,7 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HealthTests/HealthTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Health.app/Health";
@@ -1451,6 +1506,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1470,6 +1527,7 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HealthTests/HealthTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Health.app/Health";
 				VALID_ARCHS = "armv7 armv7s arm64";

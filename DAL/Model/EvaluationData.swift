@@ -2,7 +2,7 @@
 //  EvaluationData.swift
 //  Health
 //
-//  Created by Yalin on 15/8/24.
+//  Created by Yalin on 15/8/29.
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
@@ -16,13 +16,15 @@ class EvaluationData: NSManagedObject {
     @NSManaged var isUpload: NSNumber
     @NSManaged var timeStamp: NSDate
     @NSManaged var userId: NSNumber
-    @NSManaged var fatContent: NSNumber
-    @NSManaged var waterContent: NSNumber
-    @NSManaged var boneContent: NSNumber
-    @NSManaged var muscleContent: NSNumber
-    @NSManaged var visceralFatContent: NSNumber
-    @NSManaged var calorie: NSNumber
-    @NSManaged var bmi: NSNumber
+    @NSManaged var weight: NSNumber
+    @NSManaged var waterPercentage: NSNumber
+    @NSManaged var visceralFatPercentage: NSNumber
+    @NSManaged var fatPercentage: NSNumber
+    @NSManaged var fatWeight: NSNumber
+    @NSManaged var waterWeight: NSNumber
+    @NSManaged var muscleWeight: NSNumber
+    @NSManaged var proteinWeight: NSNumber
+    @NSManaged var boneWeight: NSNumber
 
     convenience init(context: NSManagedObjectContext) {
         let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)!

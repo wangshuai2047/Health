@@ -25,16 +25,16 @@ class UserData {
         }
     }
     
-    var gender: UInt8? {
+    var gender: Bool? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.gender") as? NSNumber)?.unsignedCharValue
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.gender") as? NSNumber)?.boolValue
         }
         set {
             if newValue == nil {
                 NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.gender")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.gender")
+                NSUserDefaults.standardUserDefaults().setObject(Bool(newValue!), forKey: "UserData.gender")
             }
         }
     }

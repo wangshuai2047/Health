@@ -6,19 +6,21 @@
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="EvaluationData" representedClassName="EvaluationData" syncable="YES">
-        <attribute name="bmi" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="boneContent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="calorie" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="boneWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dataId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fatContent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fatPercentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fatWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="isUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="muscleContent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="muscleWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="proteinWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date">
             <userInfo/>
         </attribute>
         <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="visceralFatContent" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="waterContent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="visceralFatPercentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="waterPercentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="waterWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="GoalData" representedClassName="GoalData" syncable="YES">
         <attribute name="awakeCount" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
@@ -33,9 +35,20 @@
         <attribute name="timescamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="head" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="organizationCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Device" positionX="261" positionY="279" width="128" height="90"/>
-        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="210"/>
+        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="240"/>
         <element name="GoalData" positionX="261" positionY="198" width="128" height="210"/>
+        <element name="User" positionX="261" positionY="288" width="128" height="165"/>
     </elements>
 </model>
