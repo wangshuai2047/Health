@@ -10,6 +10,8 @@ import UIKit
 
 class EvaluationDetailViewController: UIViewController {
     
+    let lightBlue = UIColor(red: 121/255.0, green: 199/255.0, blue: 235/255.0, alpha: 1)
+    let deepBlue: UIColor = UIColor(red: 26/255.0, green: 146/255.0, blue: 214/255.0, alpha: 1)
     var data: ScaleResult?
     
 //    @IBOutlet weak var backgroundScrollView: UIScrollView!
@@ -48,29 +50,7 @@ class EvaluationDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        self.view.addSubview(detailView)
-//        initWithDetailView()
-        
         refreshData()
-        
-        
-    }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        widthConstraint?.constant = backgroundScrollView.frame.size.width
-        
-//        initFatDetailView()
-        
-        
-        //为了兼容iOS7，http://stackoverflow.com/questions/15490140/auto-layout-error
-        //iOS8下无需这句话
-//        self.view.layoutSubviews()
-//    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-//        backgroundScrollView.contentSize = detailView.frame.size
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,27 +59,6 @@ class EvaluationDetailViewController: UIViewController {
     }
     
     // MARK: - Init View
-//    func initWithDetailView(contentView: UIView) {
-//        contentView.addSubview(detailView)
-//        
-//        contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        detailView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        
-//        // top
-//        contentView.addConstraint(NSLayoutConstraint(item: detailView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))
-//        // left
-//        contentView.addConstraint(NSLayoutConstraint(item: detailView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 0))
-//        // right
-//        contentView.addConstraint(NSLayoutConstraint(item: detailView, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0))
-//        
-//        // detail.width
-//        widthConstraint = NSLayoutConstraint(item: detailView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: self.view.frame.size.width)
-//        detailView.addConstraint(widthConstraint!)
-//
-//        // detail.height
-//        detailView.addConstraint(NSLayoutConstraint(item: detailView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 1074))
-//    }
-    
     
     @IBOutlet weak var fatPercentageLowLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var fatPercentageHighLabelLeftConstraint: NSLayoutConstraint!
@@ -142,9 +101,10 @@ class EvaluationDetailViewController: UIViewController {
     func refreshScoreData() {
         // 分数
         let score = data!.score
-        scoreCicleView.update([(Double(score), UIColor.blueColor()), (Double(100.0 - score), UIColor.yellowColor())], animated: true)
+        scoreCicleView.update([(Double(score), deepBlue), (Double(100.0 - score), lightBlue)], animated: true)
         
         scoreLabel.text = "\(score)分"
+        scoreLabel.textColor = deepBlue
         
         physiqueImageView.image = UIImage(named: data!.physique.imageName)
     }
@@ -152,17 +112,17 @@ class EvaluationDetailViewController: UIViewController {
     func refreshDescriptionData() {
         
         let font = UIFont.systemFontOfSize(15)
-        evaluationDescriptionLabel.append("您的体型为隐藏性肥胖。您的得分击败了", font: font, color: UIColor.blueColor())
-        evaluationDescriptionLabel.append("25%", font: font, color: UIColor.redColor())
-        evaluationDescriptionLabel.append("的用户，还需继续努力，朝着", font: font, color: UIColor.blueColor())
-        evaluationDescriptionLabel.append("85", font: font, color: UIColor.redColor())
-        evaluationDescriptionLabel.append("分迈进。本次10项检查中有", font: font, color: UIColor.blueColor())
+        evaluationDescriptionLabel.append("您的体型为隐藏性肥胖。您的得分击败了", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("25%", font: font, color: deepBlue)
+        evaluationDescriptionLabel.append("的用户，还需继续努力，朝着", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("85", font: font, color: deepBlue)
+        evaluationDescriptionLabel.append("分迈进。本次10项检查中有", font: font, color: UIColor.grayColor())
         evaluationDescriptionLabel.append("1", font: font, color: UIColor.redColor())
-        evaluationDescriptionLabel.append("项警告，", font: font, color: UIColor.blueColor())
-        evaluationDescriptionLabel.append("2", font: font, color: UIColor.redColor())
-        evaluationDescriptionLabel.append("项预警，", font: font, color: UIColor.blueColor())
-        evaluationDescriptionLabel.append("7", font: font, color: UIColor.redColor())
-        evaluationDescriptionLabel.append("项健康。", font: font, color: UIColor.blueColor())
+        evaluationDescriptionLabel.append("项警告，", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("2", font: font, color: UIColor.orangeColor())
+        evaluationDescriptionLabel.append("项预警，", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("7", font: font, color: UIColor.greenColor())
+        evaluationDescriptionLabel.append("项健康。", font: font, color: UIColor.grayColor())
     }
     
     func refreshWeightData() {
@@ -183,11 +143,11 @@ class EvaluationDetailViewController: UIViewController {
         fatPercentageHighLabel.text = "\(data!.fatPercentageRange.1)%"
         fatPercentageLowLabel.text = "\(data!.fatPercentageRange.0)%"
         
-        fatPercentageDescriptionLabel.append("标准体脂率为", font: nil, color: UIColor.blueColor())
-        fatPercentageDescriptionLabel.append("21.6%", font: nil, color: UIColor.redColor())
-        fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.blueColor())
-        fatPercentageDescriptionLabel.append("1.33kg", font: nil, color: UIColor.redColor())
-        fatPercentageDescriptionLabel.append("脂肪", font: nil, color: UIColor.blueColor())
+        fatPercentageDescriptionLabel.append("标准体脂率为", font: nil, color: UIColor.grayColor())
+        fatPercentageDescriptionLabel.append("21.6%", font: nil, color: UIColor.greenColor())
+        fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
+        fatPercentageDescriptionLabel.append("1.33kg", font: nil, color: UIColor.greenColor())
+        fatPercentageDescriptionLabel.append("脂肪", font: nil, color: UIColor.grayColor())
     }
     
     func refreshMuscleData() {
@@ -248,18 +208,15 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
             cell?.contentView.clipsToBounds = true
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             
-            
-//            initWithDetailView(cell!.contentView)
         }
         
-        detailView.frame = CGRect(x:0, y: 0, width: tableView.frame.size.width, height: 1074)
-//        detailView.backgroundColor = UIColor.redColor()
+        detailView.frame = CGRect(x:0, y: 0, width: tableView.frame.size.width, height: detailView.frame.size.height)
         cell!.contentView.addSubview(detailView)
         
         return cell!
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 1074
+        return detailView.frame.size.height
     }
 }
