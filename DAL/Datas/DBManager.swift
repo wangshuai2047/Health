@@ -12,6 +12,7 @@ protocol DBManagerProtocol {
     func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData)
     func deleteEvaluationData(dataId: String)
     func queryEvaluationData(dataId: String) -> EvaluationData?
+    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]]
     
     func addGoalData(setDatas:(inout setDatas: GoalData)-> GoalData)
     func deleteGoalData(dataId: String)

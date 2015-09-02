@@ -205,7 +205,6 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-            cell?.contentView.clipsToBounds = true
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             
         }

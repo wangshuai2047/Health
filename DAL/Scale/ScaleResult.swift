@@ -60,6 +60,48 @@ struct ScaleResult {
     }
 }
 
+extension ScaleResult {
+    
+    init(info: [String: NSObject]) {
+        
+        dataId = info["dataId"] as! String
+        userId = (info["userId"] as! NSNumber).unsignedCharValue
+        weight = (info["weight"] as! NSNumber).floatValue
+        waterPercentage = (info["waterPercentage"] as! NSNumber).floatValue
+        visceralFatPercentage = (info["visceralFatPercentage"] as! NSNumber).floatValue
+        fatPercentage = (info["fatPercentage"] as! NSNumber).floatValue
+        fatWeight = (info["fatWeight"] as! NSNumber).floatValue
+        waterWeight = (info["waterWeight"] as! NSNumber).floatValue
+        muscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
+        proteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
+        boneWeight = (info["boneWeight"] as! NSNumber).floatValue
+        
+        gender = UserData.shareInstance().gender!
+        age = UserData.shareInstance().age!
+        height = UserData.shareInstance().height!
+    }
+    
+    init(evaluationdata: EvaluationData) {
+        
+        let dd = evaluationdata.valueForKey("dataId") as! String
+        dataId = evaluationdata.valueForKey("dataId") as! String
+        userId = (evaluationdata.valueForKey("userId") as! NSNumber).unsignedCharValue
+        weight = (evaluationdata.valueForKey("weight") as! NSNumber).floatValue
+        waterPercentage = (evaluationdata.valueForKey("waterPercentage") as! NSNumber).floatValue
+        visceralFatPercentage = (evaluationdata.valueForKey("visceralFatPercentage") as! NSNumber).floatValue
+        fatPercentage = (evaluationdata.valueForKey("fatPercentage") as! NSNumber).floatValue
+        fatWeight = (evaluationdata.valueForKey("fatWeight") as! NSNumber).floatValue
+        waterWeight = (evaluationdata.valueForKey("waterWeight") as! NSNumber).floatValue
+        muscleWeight = (evaluationdata.valueForKey("muscleWeight") as! NSNumber).floatValue
+        proteinWeight = (evaluationdata.valueForKey("proteinWeight") as! NSNumber).floatValue
+        boneWeight = (evaluationdata.valueForKey("boneWeight") as! NSNumber).floatValue
+        
+        gender = UserData.shareInstance().gender!
+        age = UserData.shareInstance().age!
+        height = UserData.shareInstance().height!
+    }
+}
+
 // MARK: - 计算属性
 extension ScaleResult {
     

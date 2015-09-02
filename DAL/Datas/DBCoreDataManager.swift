@@ -137,6 +137,25 @@ extension DBManager: DBManagerProtocol {
         return nil
     }
     
+    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]] {
+        
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@", beginTimescamp, endTimescamp)
+        
+        var error: NSError? = nil
+        let listData = context.executeFetchRequest(request, error: &error) as! [EvaluationData]
+        
+        var datas: [[String: NSObject]] = []
+        for managedObject in listData {
+            datas += [convertModel(managedObject)]
+        }
+        return datas
+    }
+    
     func addGoalData(setDatas: (inout setDatas: GoalData) -> GoalData) {
         
         let context = self.managedObjectContext!
@@ -260,5 +279,54 @@ extension DBManager: DBManagerProtocol {
                 NSLog("Insert Device Data Fail")
             }
         }
+    }
+}
+
+/*
+dataId: String
+@NSManaged var isUpload: NSNumber
+@NSManaged var timeStamp: NSDate
+@NSManaged var userId: NSNumber
+@NSManaged var weight: NSNumber
+@NSManaged var waterPercentage: NSNumber
+@NSManaged var visceralFatPercentage: NSNumber
+@NSManaged var fatPercentage: NSNumber
+@NSManaged var fatWeight: NSNumber
+@NSManaged var waterWeight: NSNumber
+@NSManaged var muscleWeight: NSNumber
+@NSManaged var proteinWeight: NSNumber
+@NSManaged var boneWeight: NSNumber
+*/
+extension DBManager {
+    func convertModel(data: EvaluationData) -> [String: NSObject] {
+        let dataId = data.valueForKey("dataId") as! String
+        let isUpload = (data.valueForKey("isUpload") as! NSNumber)
+        let timeStamp = (data.valueForKey("timeStamp") as! NSDate)
+        let userId = (data.valueForKey("userId") as! NSNumber)
+        let weight = (data.valueForKey("weight") as! NSNumber)
+        let waterPercentage = (data.valueForKey("waterPercentage") as! NSNumber)
+        let visceralFatPercentage = (data.valueForKey("visceralFatPercentage") as! NSNumber)
+        let fatPercentage = (data.valueForKey("fatPercentage") as! NSNumber)
+        let fatWeight = (data.valueForKey("fatWeight") as! NSNumber)
+        let waterWeight = (data.valueForKey("waterWeight") as! NSNumber)
+        let muscleWeight = (data.valueForKey("muscleWeight") as! NSNumber)
+        let proteinWeight = (data.valueForKey("proteinWeight") as! NSNumber)
+        let boneWeight = (data.valueForKey("boneWeight") as! NSNumber)
+        
+        return [
+            "dataId" : dataId,
+            "isUpload" : isUpload,
+            "timeStamp" : timeStamp,
+            "userId" : userId,
+            "weight" : weight,
+            "waterPercentage" : waterPercentage,
+            "visceralFatPercentage" : visceralFatPercentage,
+            "fatPercentage" : fatPercentage,
+            "fatWeight" : fatWeight,
+            "waterWeight" : waterWeight,
+            "muscleWeight" : muscleWeight,
+            "proteinWeight" : proteinWeight,
+            "boneWeight" : boneWeight,
+            ]
     }
 }

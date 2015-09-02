@@ -15,6 +15,7 @@
 		E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */; };
 		E00C01651B7FAB99006A4343 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
+		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
 		E01C81591B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
 		E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
 		E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
@@ -179,6 +180,7 @@
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E01C81581B8804AF00A1F7AC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		E021FCB01B8F5A8D00565FDB /* TrendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendDetailViewController.swift; sourceTree = "<group>"; };
 		E021FCB11B8F5A8D00565FDB /* TrendDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendDetailViewController.xib; sourceTree = "<group>"; };
@@ -404,6 +406,15 @@
 				E00C00EA1B7ECC6D006A4343 /* UserData.swift */,
 			);
 			path = UserData;
+			sourceTree = "<group>";
+		};
+		E015ED991B9516D300D66A6B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */,
+			);
+			name = ViewModel;
+			path = "../../../../../../../workSpace/Project/好体知/Code/Health/Health/Trend/ViewModel";
 			sourceTree = "<group>";
 		};
 		E021FCB41B8F5B7900565FDB /* EvaluationDetail */ = {
@@ -640,6 +651,7 @@
 		E08A24621B807C16004269BB /* Trend */ = {
 			isa = PBXGroup;
 			children = (
+				E015ED991B9516D300D66A6B /* ViewModel */,
 				E0F9DB141B854BCD00504454 /* TrendViewController.swift */,
 				E0F9DB171B854BD900504454 /* TrendDetail */,
 			);
@@ -1220,6 +1232,7 @@
 				E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
 				E00C00E41B7EC222006A4343 /* GoalData.swift in Sources */,
+				E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */,
 				E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */,
 				E08B329D1B85A91E0040ADE7 /* CompleteAgeDataView.swift in Sources */,
 				E08B328E1B85A7660040ADE7 /* ActivityManager.swift in Sources */,

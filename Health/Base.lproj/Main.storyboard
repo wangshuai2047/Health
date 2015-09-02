@@ -596,118 +596,182 @@
                                     <constraint firstAttribute="height" constant="90" id="aHh-IU-kEC"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4N-v1-UPG">
-                                <rect key="frame" x="16" y="162" width="568" height="33.5"/>
-                                <string key="text">请勾选一项或两项指标查看变化趋势
-点击日期查看详情,左右滑动查询</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPC-ju-VkV">
-                                <rect key="frame" x="16" y="203" width="90" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="GHD-UM-hiG"/>
-                                    <constraint firstAttribute="height" constant="45" id="mGK-xx-SGG"/>
-                                </constraints>
-                                <state key="normal" title="体重">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="g6S-9v-Q0Y"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3v-Rf-xoR">
-                                <rect key="frame" x="255" y="203.5" width="90" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="KVl-kl-3dx"/>
-                                    <constraint firstAttribute="height" constant="45" id="Tgx-59-fsw"/>
-                                </constraints>
-                                <state key="normal" title="脂肪">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogn-nR-YPZ">
-                                <rect key="frame" x="494" y="203" width="90" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="62W-hZ-bqP"/>
-                                    <constraint firstAttribute="width" constant="90" id="6Aj-kh-8P7"/>
-                                </constraints>
-                                <state key="normal" title="肌肉">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDq-OV-2F3">
-                                <rect key="frame" x="16" y="256" width="90" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="XYp-8K-t3A"/>
-                                    <constraint firstAttribute="height" constant="45" id="eYG-od-geQ"/>
-                                </constraints>
-                                <state key="normal" title="水分">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DqG-CF-Rrg">
-                                <rect key="frame" x="494" y="256" width="90" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="5jW-BH-DSf"/>
-                                    <constraint firstAttribute="width" constant="90" id="yqD-UQ-Zl3"/>
-                                </constraints>
-                                <state key="normal" title="蛋白质">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0BC-vR-ynj">
-                                <rect key="frame" x="16" y="309" width="568" height="158"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="158" id="mDp-pG-Is7"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0aw-7i-Hia">
-                                <rect key="frame" x="16" y="475" width="568" height="68"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="162" width="600" height="381"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="aTk-qX-pqg">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="349.5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUg-li-PHb">
+                                            <rect key="frame" x="16" y="8" width="568" height="49.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="49.5" id="ey4-zf-GCe"/>
+                                            </constraints>
+                                            <string key="text">请勾选一项或两项指标查看变化趋势
+点击日期查看详情,左右滑动查询</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JQ-H9-CXl">
+                                            <rect key="frame" x="16" y="65" width="90" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="90" id="0t5-Z5-cxd"/>
+                                                <constraint firstAttribute="height" constant="45" id="das-Xp-LGN"/>
+                                            </constraints>
+                                            <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="-4"/>
+                                            <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="体重" image="weightIcon">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="weightIconSelected">
+                                                <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="Tu8-23-09A"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRe-dp-hu6">
+                                            <rect key="frame" x="255" y="65" width="90" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="XLu-q0-aPK"/>
+                                                <constraint firstAttribute="width" constant="90" id="oVq-aZ-Ayi"/>
+                                            </constraints>
+                                            <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="-4"/>
+                                            <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="脂肪" image="fatIcon">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="fatIconSelected">
+                                                <color key="titleColor" red="0.18556992259999999" green="1" blue="0.05936444095" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="kSv-xg-gb9"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psb-lu-XNF">
+                                            <rect key="frame" x="16" y="118" width="90" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="90" id="V5D-W6-UC1"/>
+                                                <constraint firstAttribute="height" constant="45" id="pNi-vf-e79"/>
+                                            </constraints>
+                                            <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="-4"/>
+                                            <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="水分" image="waterIcon">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" red="1" green="0.048461469370000003" blue="0.043985218659999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="FmB-GW-5W8"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUi-Qa-hWd">
+                                            <rect key="frame" x="494" y="118" width="90" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="90" id="Zkq-zK-9qb"/>
+                                                <constraint firstAttribute="height" constant="45" id="kcI-UO-glH"/>
+                                            </constraints>
+                                            <inset key="titleEdgeInsets" minX="9" minY="0.0" maxX="0.0" maxY="-4"/>
+                                            <inset key="imageEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="蛋白质" image="proteinIcon">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="NkY-DR-Tf7"/>
+                                            </connections>
+                                        </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujp-Zc-k0D">
+                                            <rect key="frame" x="0.0" y="171" width="600" height="158"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="158" id="Tv8-M0-bP7"/>
+                                            </constraints>
+                                        </view>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMr-3r-SgC">
+                                            <rect key="frame" x="485" y="65" width="90" height="45"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="HnS-7Y-KDe"/>
+                                                <constraint firstAttribute="width" constant="90" id="K39-gT-tHF"/>
+                                            </constraints>
+                                            <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="-4"/>
+                                            <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="肌肉" image="muscleIcon">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="5nT-od-0XP"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="Psb-lu-XNF" firstAttribute="leading" secondItem="aTk-qX-pqg" secondAttribute="leading" constant="16" id="2ho-wS-SA4"/>
+                                        <constraint firstItem="hRe-dp-hu6" firstAttribute="top" secondItem="NUg-li-PHb" secondAttribute="bottom" constant="8" id="46v-A0-hiG"/>
+                                        <constraint firstItem="GMr-3r-SgC" firstAttribute="top" secondItem="NUg-li-PHb" secondAttribute="bottom" constant="8" id="93Q-ka-XF8"/>
+                                        <constraint firstItem="9JQ-H9-CXl" firstAttribute="leading" secondItem="aTk-qX-pqg" secondAttribute="leading" constant="16" id="Ftq-hp-C8O"/>
+                                        <constraint firstItem="Ujp-Zc-k0D" firstAttribute="leading" secondItem="aTk-qX-pqg" secondAttribute="leading" id="GQh-TU-Zbg"/>
+                                        <constraint firstAttribute="trailing" secondItem="bUi-Qa-hWd" secondAttribute="trailing" constant="16" id="Kmh-UO-Cki"/>
+                                        <constraint firstAttribute="trailing" secondItem="NUg-li-PHb" secondAttribute="trailing" constant="16" id="MJE-an-Yet"/>
+                                        <constraint firstItem="9JQ-H9-CXl" firstAttribute="top" secondItem="NUg-li-PHb" secondAttribute="bottom" constant="8" id="TJZ-JE-941"/>
+                                        <constraint firstItem="NUg-li-PHb" firstAttribute="top" secondItem="aTk-qX-pqg" secondAttribute="top" constant="8" id="d1p-nS-IM2"/>
+                                        <constraint firstAttribute="centerX" secondItem="hRe-dp-hu6" secondAttribute="centerX" id="dPl-qg-IgS"/>
+                                        <constraint firstItem="NUg-li-PHb" firstAttribute="leading" secondItem="aTk-qX-pqg" secondAttribute="leading" constant="16" id="dpk-UF-c0u"/>
+                                        <constraint firstItem="hRe-dp-hu6" firstAttribute="top" secondItem="NUg-li-PHb" secondAttribute="bottom" constant="8" id="i8K-2M-fEy"/>
+                                        <constraint firstItem="Ujp-Zc-k0D" firstAttribute="top" secondItem="bUi-Qa-hWd" secondAttribute="bottom" constant="8" id="pTk-9O-gYt"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ujp-Zc-k0D" secondAttribute="trailing" id="sbu-9V-1ez"/>
+                                        <constraint firstItem="Psb-lu-XNF" firstAttribute="top" secondItem="9JQ-H9-CXl" secondAttribute="bottom" constant="8" id="tAP-jw-CAC"/>
+                                        <constraint firstAttribute="trailing" secondItem="GMr-3r-SgC" secondAttribute="trailing" constant="25" id="tEW-0V-opd"/>
+                                        <constraint firstItem="bUi-Qa-hWd" firstAttribute="top" secondItem="GMr-3r-SgC" secondAttribute="bottom" constant="8" id="tZH-uJ-HJ0"/>
+                                        <constraint firstAttribute="height" constant="349.5" id="xhf-Mw-NUP"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="349.5" id="yfQ-6m-eqR"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="i8K-2M-fEy"/>
+                                        </mask>
+                                    </variation>
+                                </view>
                                 <connections>
-                                    <outlet property="dataSource" destination="UA0-Lq-IUw" id="WWA-Id-uUh"/>
-                                    <outlet property="delegate" destination="UA0-Lq-IUw" id="7nr-Yl-ycR"/>
+                                    <outlet property="dataSource" destination="UA0-Lq-IUw" id="RIN-k5-Rie"/>
+                                    <outlet property="delegate" destination="UA0-Lq-IUw" id="dRa-D8-Grx"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="WaF-19-RTi" secondAttribute="trailing" id="1QN-Rz-ibI"/>
-                            <constraint firstItem="Z4N-v1-UPG" firstAttribute="leading" secondItem="lz7-YJ-HiD" secondAttribute="leading" constant="16" id="2qS-ko-pGn"/>
-                            <constraint firstItem="SDq-OV-2F3" firstAttribute="leading" secondItem="lz7-YJ-HiD" secondAttribute="leadingMargin" id="4Kx-U3-Ijg"/>
-                            <constraint firstItem="Z4N-v1-UPG" firstAttribute="top" secondItem="WaF-19-RTi" secondAttribute="bottom" constant="8" id="9il-Ee-os3"/>
-                            <constraint firstAttribute="centerX" secondItem="h3v-Rf-xoR" secondAttribute="centerX" id="Cvv-b4-bTz"/>
-                            <constraint firstItem="0aw-7i-Hia" firstAttribute="leading" secondItem="lz7-YJ-HiD" secondAttribute="leading" constant="16" id="GMP-cJ-2VA"/>
-                            <constraint firstItem="h3v-Rf-xoR" firstAttribute="top" secondItem="Z4N-v1-UPG" secondAttribute="bottom" constant="8" id="MsW-bW-ScU"/>
-                            <constraint firstAttribute="trailing" secondItem="DqG-CF-Rrg" secondAttribute="trailing" constant="16" id="PCP-Hf-Uxj"/>
-                            <constraint firstItem="SDq-OV-2F3" firstAttribute="top" secondItem="aPC-ju-VkV" secondAttribute="bottom" constant="8" id="Sc9-ky-Pw6"/>
-                            <constraint firstItem="0BC-vR-ynj" firstAttribute="leading" secondItem="lz7-YJ-HiD" secondAttribute="leading" constant="16" id="V1z-qT-Woo"/>
-                            <constraint firstItem="aPC-ju-VkV" firstAttribute="top" secondItem="Z4N-v1-UPG" secondAttribute="bottom" constant="8" id="WAU-Qs-JRf"/>
-                            <constraint firstAttribute="trailing" secondItem="0BC-vR-ynj" secondAttribute="trailing" constant="16" id="Y1y-zc-AK9"/>
-                            <constraint firstItem="Ogn-nR-YPZ" firstAttribute="top" secondItem="Z4N-v1-UPG" secondAttribute="bottom" constant="8" id="Ykf-SZ-BgW"/>
-                            <constraint firstAttribute="trailing" secondItem="0aw-7i-Hia" secondAttribute="trailing" constant="16" id="bIk-qo-VD4"/>
-                            <constraint firstItem="0BC-vR-ynj" firstAttribute="top" secondItem="DqG-CF-Rrg" secondAttribute="bottom" constant="8" id="boA-mc-dZb"/>
-                            <constraint firstAttribute="trailing" secondItem="Ogn-nR-YPZ" secondAttribute="trailing" constant="16" id="e34-gm-hWQ"/>
+                            <constraint firstItem="0aw-7i-Hia" firstAttribute="leading" secondItem="lz7-YJ-HiD" secondAttribute="leading" id="GMP-cJ-2VA"/>
+                            <constraint firstAttribute="trailing" secondItem="0aw-7i-Hia" secondAttribute="trailing" id="bIk-qo-VD4"/>
                             <constraint firstItem="qf7-3b-4iH" firstAttribute="top" secondItem="0aw-7i-Hia" secondAttribute="bottom" constant="8" id="gJH-6e-LRu"/>
-                            <constraint firstItem="aPC-ju-VkV" firstAttribute="leading" secondItem="lz7-YJ-HiD" secondAttribute="leadingMargin" id="jpM-up-VQS"/>
-                            <constraint firstAttribute="trailing" secondItem="Z4N-v1-UPG" secondAttribute="trailing" constant="16" id="rgz-D1-YtC"/>
-                            <constraint firstItem="DqG-CF-Rrg" firstAttribute="top" secondItem="Ogn-nR-YPZ" secondAttribute="bottom" constant="8" id="sKf-1J-Grs"/>
-                            <constraint firstItem="0aw-7i-Hia" firstAttribute="top" secondItem="0BC-vR-ynj" secondAttribute="bottom" constant="8" id="scd-M6-SSn"/>
                             <constraint firstItem="WaF-19-RTi" firstAttribute="top" secondItem="jAW-fv-KYD" secondAttribute="bottom" id="wjt-JW-cfS"/>
                             <constraint firstItem="WaF-19-RTi" firstAttribute="leading" secondItem="lz7-YJ-HiD" secondAttribute="leading" id="zQW-iZ-qne"/>
+                            <constraint firstItem="0aw-7i-Hia" firstAttribute="top" secondItem="WaF-19-RTi" secondAttribute="bottom" constant="8" id="zhr-nF-plo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WwW-9s-AXh"/>
                     <connections>
-                        <outlet property="fatButton" destination="h3v-Rf-xoR" id="SRk-7w-iNU"/>
-                        <outlet property="muscleButton" destination="Ogn-nR-YPZ" id="B38-fK-DQX"/>
-                        <outlet property="proteinButton" destination="DqG-CF-Rrg" id="I6P-2s-uax"/>
+                        <outlet property="fatButton" destination="hRe-dp-hu6" id="0JT-M5-Wkn"/>
+                        <outlet property="muscleButton" destination="GMr-3r-SgC" id="xjx-6V-TaR"/>
+                        <outlet property="proteinButton" destination="bUi-Qa-hWd" id="TDd-d6-CIw"/>
                         <outlet property="tableView" destination="0aw-7i-Hia" id="ejI-Jg-7BF"/>
-                        <outlet property="waterButton" destination="SDq-OV-2F3" id="WNY-7n-cg1"/>
-                        <outlet property="weightButton" destination="aPC-ju-VkV" id="1T1-vz-dbK"/>
+                        <outlet property="titleDetailView" destination="aTk-qX-pqg" id="S7o-E4-Nde"/>
+                        <outlet property="waterButton" destination="Psb-lu-XNF" id="ceW-dV-PBR"/>
+                        <outlet property="weightButton" destination="9JQ-H9-CXl" id="tNO-xQ-wVw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tey-Ic-gQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1156,9 +1220,16 @@
         <image name="activity" width="32" height="32"/>
         <image name="buttonBg" width="19" height="19"/>
         <image name="evaluation" width="32" height="32"/>
+        <image name="fatIcon" width="28" height="20"/>
+        <image name="fatIconSelected" width="28" height="20"/>
         <image name="goal" width="32" height="32"/>
+        <image name="muscleIcon" width="26" height="28"/>
+        <image name="proteinIcon" width="26" height="26"/>
         <image name="scaleTip" width="233" height="241"/>
         <image name="setting" width="32" height="32"/>
         <image name="trend" width="32" height="27"/>
+        <image name="waterIcon" width="23" height="27"/>
+        <image name="weightIcon" width="28" height="29"/>
+        <image name="weightIconSelected" width="28" height="29"/>
     </resources>
 </document>

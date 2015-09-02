@@ -10,6 +10,8 @@ import UIKit
 
 class TrendDetailViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
