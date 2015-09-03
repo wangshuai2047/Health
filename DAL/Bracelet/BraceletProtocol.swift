@@ -9,5 +9,5 @@
 import Foundation
 
 protocol BraceletProtocol {
-    func connectBracelet() -> Bool
+    func syncData()
 }

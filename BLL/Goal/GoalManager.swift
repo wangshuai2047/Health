@@ -12,4 +12,8 @@ struct GoalManager {
     static func isConnectDevice() -> Bool {
         return true
     }
+    
+    static func syncDatas() {
+        DeviceManager.shareInstance().syncBraceletDatas()
+    }
 }

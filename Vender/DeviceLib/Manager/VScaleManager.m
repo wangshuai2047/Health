@@ -53,7 +53,7 @@ static VScaleManager *instance = nil;
         deviceManager.delegate = self;
         
         serviceUUID = [NSMutableArray array];
-        // cGetServiceUUID;
+//         cGetServiceUUID;
         
         NSLog(@"[VScaleManager]init scanning %@", deviceManager.historyList);
         
@@ -266,7 +266,9 @@ static VScaleManager *instance = nil;
 
 - (Boolean) didDiscovered:(VTDeviceManager *)dm device:(VTDeviceModel *)device{
     NSLog(@"didDiscovered");
-    
+    if ([device.UUID isEqualToString:@"4588E96E-AE96-1950-FB77-9D76F3284961"]) {
+        return YES;
+    }
     return NO;
 }
 

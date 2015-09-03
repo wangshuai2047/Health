@@ -23,6 +23,10 @@ class HealthTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
+        
+        
+        
+        
         let userId: UInt8 = 100
         var userData = UserData.shareInstance()
         userData.userId = userId
@@ -30,6 +34,12 @@ class HealthTests: XCTestCase {
         println(UserData.shareInstance().userId!)
         
         XCTAssert(true, "Pass")
+    }
+    
+    func test_timezone() {
+        var timeZone = NSTimeZone.systemTimeZone()
+        
+        println("\(timeZone.secondsFromGMT / 60 / 60)")
     }
     
     func testPerformanceExample() {

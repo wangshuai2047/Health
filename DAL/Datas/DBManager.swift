@@ -8,7 +8,13 @@
 
 import Foundation
 
-protocol DBManagerProtocol {
+protocol DBUserProtocol {
+    func queryAllUser() -> [[String: NSObject]]
+    func addUser(setDatas:(inout setDatas: UserDBData)-> UserDBData)
+    func deleteUser(userId: UInt8)
+}
+
+protocol DBManagerProtocol : DBUserProtocol {
     func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData)
     func deleteEvaluationData(dataId: String)
     func queryEvaluationData(dataId: String) -> EvaluationData?
@@ -43,6 +49,6 @@ class DBManager {
     }
     
     init() {
-        userId = "iloveyou"
+        userId = "\(UserData.shareInstance().userId!)"
     }
 }

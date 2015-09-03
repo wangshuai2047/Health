@@ -65,6 +65,63 @@ extension DBManager {
     
 }
 
+extension DBManager: DBUserProtocol {
+    func addUser(setDatas: (setDatas: inout UserDBData) -> UserDBData) {
+        let context = self.managedObjectContext!
+        var insertData = NSEntityDescription.insertNewObjectForEntityForName("UserDBData", inManagedObjectContext: context) as! UserDBData
+        
+        setDatas(setDatas: &insertData)
+        
+        if context.save(nil) {
+            NSLog("Insert Evaluation Data Success")
+        }
+        else
+        {
+            NSLog("Insert Evaluation Data Fail")
+        }
+    }
+    
+    func deleteUser(userId: UInt8) {
+        
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "userId == %@", userId)
+        
+        var error: NSError? = nil
+        let listData:[AnyObject]? = context.executeFetchRequest(request, error: &error)
+        for data in listData as! [UserDBData] {
+            context.deleteObject(data)
+            var savingError: NSError? = nil
+            if context.save(&savingError) {
+                println("删除成功")
+            }else{
+                println("删除失败")
+            }
+        }
+    }
+    
+    func queryAllUser() -> [[String : NSObject]] {
+        
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        
+        var error: NSError? = nil
+        let listData = context.executeFetchRequest(request, error: &error) as! [UserDBData]
+        
+        var datas: [[String: NSObject]] = []
+        for managedObject in listData {
+            datas += [userToDic(managedObject)]
+        }
+        return datas
+    }
+}
+
 extension DBManager: DBManagerProtocol {
     
     // MARK: - Core Data Saving support
@@ -298,6 +355,25 @@ dataId: String
 @NSManaged var boneWeight: NSNumber
 */
 extension DBManager {
+    
+    func userToDic(user: UserDBData) -> [String: NSObject] {
+        
+        /*
+        @NSManaged var age: NSNumber
+        @NSManaged var height: NSNumber
+        @NSManaged var name: String
+        @NSManaged var userId: NSNumber
+        @NSManaged var gender: NSNumber
+*/
+        return [
+            "age" : user.valueForKey("age") as! NSNumber,
+            "height" : user.valueForKey("height") as! NSNumber,
+            "name" : user.valueForKey("name") as! String,
+            "userId" : user.valueForKey("") as! NSNumber,
+            "gender" : user.valueForKey("gender") as! NSNumber,
+        ]
+    }
+    
     func convertModel(data: EvaluationData) -> [String: NSObject] {
         let dataId = data.valueForKey("dataId") as! String
         let isUpload = (data.valueForKey("isUpload") as! NSNumber)

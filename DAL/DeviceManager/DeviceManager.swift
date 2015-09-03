@@ -12,11 +12,11 @@ import CoreBluetooth
 class DeviceManager: NSObject {
     
     var scaleHelper: ScaleProtocol?
-    
+    var braceletManager: BraceletProtocol = BraceletManager()
     
 //    private var weightScaleOne: VScaleManager
 //    private var centralManager: CBCentralManager
-//    
+//
 //    private var scanMyBodyDeviceCu: ((VCStatus) -> Void)?
     
     class func shareInstance() -> DeviceManager {
@@ -46,14 +46,18 @@ class DeviceManager: NSObject {
     
     func scanDevices(complete: (error: NSError?) -> Void){
         
-        ScaleOld.shareInstance().scanDevice {[unowned self] (scale) -> Void in
-            self.scaleHelper = scale
-            complete(error: nil)
-        }
+//        ScaleOld.shareInstance().scanDevice {[unowned self] (scale) -> Void in
+//            self.scaleHelper = scale
+//            complete(error: nil)
+//        }
         
 //        weightScaleOne.scan()FFF0
 //        centralManager.scanForPeripheralsWithServices(nil, options: nil)
-//        centralManager.scanForPeripheralsWithServices([CBUUID(string: "f433bd80-75b8-11e2-97d9-0002a5d5c51b"), CBUUID(string: "FFF0"),CBUUID(string: "FFF1"),CBUUID(string: "FFF2")], options: nil)
+//        centralManager.scanForPeripheralsWithServices([CBUUID(string: "4588E96E-AE96-1950-FB77-9D76F3284961"), CBUUID(string: "FFF0"),CBUUID(string: "FFF1"),CBUUID(string: "FFF2")], options: nil)
+    }
+    
+    func syncBraceletDatas() {
+        braceletManager.syncData()
     }
     
 //    func connectDevice() {
@@ -73,7 +77,7 @@ class DeviceManager: NSObject {
 
 
 
-/*
+
 extension DeviceManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         println("CentralManager is initialized")
@@ -105,6 +109,7 @@ extension DeviceManager: CBCentralManagerDelegate {
     }
 }
 
+/*
 extension DeviceManager : VScaleManagerDelegate {
     
     // MARK: - Mybody Device Method
