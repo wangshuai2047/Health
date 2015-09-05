@@ -65,6 +65,7 @@ extension DBManager {
     
 }
 
+// MARK: - User Model操作
 extension DBManager: DBUserProtocol {
     func addUser(setDatas: (setDatas: inout UserDBData) -> UserDBData) {
         let context = self.managedObjectContext!
@@ -122,10 +123,8 @@ extension DBManager: DBUserProtocol {
     }
 }
 
+// MARK: - 测量数据
 extension DBManager: DBManagerProtocol {
-    
-    // MARK: - Core Data Saving support
-    
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
@@ -213,6 +212,13 @@ extension DBManager: DBManagerProtocol {
         return datas
     }
     
+    
+    
+    
+}
+
+// MARK: - 目标数据
+extension DBManager {
     func addGoalData(setDatas: (inout setDatas: GoalData) -> GoalData) {
         
         let context = self.managedObjectContext!
@@ -266,10 +272,11 @@ extension DBManager: DBManagerProtocol {
         
         return nil
     }
-    
+}
+
+// MARK: - Device Model 操作
+extension DBManager {
     var haveConnectedScale: Bool {
-        
-        return false
         
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
@@ -354,6 +361,7 @@ dataId: String
 @NSManaged var proteinWeight: NSNumber
 @NSManaged var boneWeight: NSNumber
 */
+// MARK: - 数据工厂
 extension DBManager {
     
     func userToDic(user: UserDBData) -> [String: NSObject] {

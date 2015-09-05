@@ -9,6 +9,8 @@
 import UIKit
 
 class ScaleOld: NSObject {
+    
+    var vscaleManager: VScaleManager?
     class func shareInstance() -> ScaleOld {
         struct Singleton {
             static var predicate: dispatch_once_t = 0
@@ -23,7 +25,6 @@ class ScaleOld: NSObject {
     
     override init() {
         super.init()
-        VScaleManager.sharedInstance().delegate = self
     }
     
     var delegate: ScaleDelegate?
@@ -38,12 +39,12 @@ class ScaleOld: NSObject {
 
 extension ScaleOld: ScaleProtocol {
     var isConnectDevice: Bool {
-        return VScaleManager.sharedInstance().curStatus == VCStatus.Connected
+        return vscaleManager!.curStatus == VCStatus.Connected
     }
     
     func scanDevice(complete: ((scale: ScaleProtocol) -> Void)) {
         isScaning = true
-        VScaleManager.sharedInstance().scanDevice {[unowned self] (error: NSError?) -> Void in
+        vscaleManager!.scanDevice {[unowned self] (error: NSError?) -> Void in
             if error == nil && self.isScaning {
                 self.delegate?.scanDevice(self)
                 complete(scale: self)
@@ -57,18 +58,36 @@ extension ScaleOld: ScaleProtocol {
     }
     
     func setScaleData(userId: UInt8, gender: Bool, age: UInt8, height: UInt8) {
-        VScaleManager.sharedInstance().setCalulateDataWithUserID(userId, gender: gender ? 0 : 1, age: age, height: height)
+        
+        if vscaleManager == nil {
+            vscaleManager = VScaleManager()
+            vscaleManager?.delegate = self
+        }
+        
+        vscaleManager!.setCalulateDataWithUserID(userId, gender: gender ? 0 : 1, age: age, height: height)
     }
     
     func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {
-        isScaling = true
-        VScaleManager.sharedInstance().scale {[unowned self] (result: VTFatScaleTestResult!, err: NSError!) -> Void in
-            if self.isScaling && err == nil {
-                // 转化计算数据
-                complete(result: self.transformResult(result), err: nil)
-            }
+        
+        if vscaleManager == nil {
+            vscaleManager = VScaleManager()
+            vscaleManager?.delegate = self
+        }
+        
+        scanDevice {[unowned self] (scale) -> Void in
             
-            self.isScaling = false
+            self.isScaling = true
+            self.vscaleManager!.scale {[unowned self] (result: VTFatScaleTestResult!, err: NSError!) -> Void in
+                if self.isScaling && err == nil {
+                    // 转化计算数据
+                    complete(result: self.transformResult(result), err: nil)
+                }
+                
+                DBManager.shareInstance().addDevice(self.vscaleManager!.deviceUUID, name: self.vscaleManager!.name, type: 0)
+                
+                self.vscaleManager = nil
+                self.isScaling = false
+            }
         }
     }
     
@@ -89,7 +108,7 @@ extension ScaleOld: ScaleProtocol {
         骨重 B=W-F-S
         */
         
-        let gender = VScaleManager.sharedInstance().gender == 0 ? true : false
+        let gender = UserData.shareInstance().gender!
         
         // 体脂率
         var fatPercentage = (1 - ((waterContent)/73.81) + (0.6 / weight)) * 100 - 1 // 男

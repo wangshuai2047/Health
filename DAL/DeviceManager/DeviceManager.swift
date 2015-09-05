@@ -11,13 +11,8 @@ import CoreBluetooth
 
 class DeviceManager: NSObject {
     
-    var scaleHelper: ScaleProtocol?
+    var scaleHelper: ScaleProtocol = ScaleOld()
     var braceletManager: BraceletProtocol = BraceletManager()
-    
-//    private var weightScaleOne: VScaleManager
-//    private var centralManager: CBCentralManager
-//
-//    private var scanMyBodyDeviceCu: ((VCStatus) -> Void)?
     
     class func shareInstance() -> DeviceManager {
         struct Singleton {
@@ -32,40 +27,22 @@ class DeviceManager: NSObject {
     }
     
     override init() {
-//        weightScaleOne = VScaleManager()
-//        centralManager = CBCentralManager()
-        
         super.init()
-//        weightScaleOne.delegate = self
-//        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     var isConnectDevice: Bool {
-        return scaleHelper != nil
-    }
-    
-    func scanDevices(complete: (error: NSError?) -> Void){
         
-//        ScaleOld.shareInstance().scanDevice {[unowned self] (scale) -> Void in
-//            self.scaleHelper = scale
-//            complete(error: nil)
-//        }
         
-//        weightScaleOne.scan()FFF0
-//        centralManager.scanForPeripheralsWithServices(nil, options: nil)
-//        centralManager.scanForPeripheralsWithServices([CBUUID(string: "4588E96E-AE96-1950-FB77-9D76F3284961"), CBUUID(string: "FFF0"),CBUUID(string: "FFF1"),CBUUID(string: "FFF2")], options: nil)
+        return false
+//        return scaleHelper != nil
     }
     
     func syncBraceletDatas() {
         braceletManager.syncData()
     }
     
-//    func connectDevice() {
-//        
-//    }
-    
     func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {
-        scaleHelper?.startScale(complete)
+        scaleHelper.startScale(complete)
     }
     
     func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult {
@@ -73,41 +50,36 @@ class DeviceManager: NSObject {
     }
 }
 
-
-
-
-
-
-extension DeviceManager: CBCentralManagerDelegate {
-    func centralManagerDidUpdateState(central: CBCentralManager!) {
-        println("CentralManager is initialized")
-        switch central.state {
-        case CBCentralManagerState.Unauthorized:
-            println("The app is not authorized to use Bluetooth low energy.")
-        case CBCentralManagerState.PoweredOff:
-            println("Bluetooth is currently powered off.")
-        case CBCentralManagerState.PoweredOn:
-            println("Bluetooth is currently powered on and available to use.")
-        default:
-            break
-            
-        }
-    }
-    
-    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-        
-        println("--------------------------------- %s",__FUNCTION__)
-        
-        println("CenCentalManagerDelegate didDiscoverPeripheral")
-        println("Discovered \(peripheral)")
-        println("Rssi: \(RSSI)")
-        println("advertisementData: \(advertisementData)")
-        
-        println("Stop scan the Ble Devices")
-//        centralManager.stopScan()
-        //        cbPeripheral = peripheral
-    }
-}
+//extension DeviceManager: CBCentralManagerDelegate {
+//    func centralManagerDidUpdateState(central: CBCentralManager!) {
+//        println("CentralManager is initialized")
+//        switch central.state {
+//        case CBCentralManagerState.Unauthorized:
+//            println("The app is not authorized to use Bluetooth low energy.")
+//        case CBCentralManagerState.PoweredOff:
+//            println("Bluetooth is currently powered off.")
+//        case CBCentralManagerState.PoweredOn:
+//            println("Bluetooth is currently powered on and available to use.")
+//        default:
+//            break
+//            
+//        }
+//    }
+//    
+//    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
+//        
+//        println("--------------------------------- %s",__FUNCTION__)
+//        
+//        println("CenCentalManagerDelegate didDiscoverPeripheral")
+//        println("Discovered \(peripheral)")
+//        println("Rssi: \(RSSI)")
+//        println("advertisementData: \(advertisementData)")
+//        
+//        println("Stop scan the Ble Devices")
+////        centralManager.stopScan()
+//        //        cbPeripheral = peripheral
+//    }
+//}
 
 /*
 extension DeviceManager : VScaleManagerDelegate {

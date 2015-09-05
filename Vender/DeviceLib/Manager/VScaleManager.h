@@ -24,6 +24,9 @@ typedef NS_ENUM(NSUInteger, VCStatus) {
 
 @interface VScaleManager : NSObject<VTDeviceManagerDelegate, VTDeviceDelegate, VTProfileScaleDelegate>
 
+@property (nonatomic, readonly) NSString *deviceUUID;
+@property (nonatomic, readonly) NSString *name;
+
 /*用于指示应用状态*/
 @property (nonatomic,assign)  VCStatus curStatus;
 /*测量数据*/

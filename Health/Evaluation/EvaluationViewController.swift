@@ -38,14 +38,17 @@ class EvaluationViewController: UIViewController {
         // Do any additional setup after loading the view.\
         self.navigationController?.navigationBarHidden = true
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
             showView(connectDeviceView)
         }
         else {
             showView(notConnectDeviceView)
-            EvaluationManager.shareInstance().scan({[unowned self] (error) -> Void in
-                self.showView(self.connectDeviceView)
-            })
         }
     }
 
@@ -82,16 +85,26 @@ class EvaluationViewController: UIViewController {
     }
     
     @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
-        EvaluationManager.shareInstance().scan { [unowned self] (error) -> Void in
+        EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
             if error == nil {
-                println("成功扫描到设备")
+                self.pushToDetailEvaluationViewController(info!)
                 self.showView(self.connectDeviceView)
-            }
-            else {
-                
-                UIAlertView(title: "扫描失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            } else {
+                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }
+        
+        
+//        EvaluationManager.shareInstance().scan { [unowned self] (error) -> Void in
+//            if error == nil {
+//                println("成功扫描到设备")
+//                self.showView(self.connectDeviceView)
+//            }
+//            else {
+//                
+//                UIAlertView(title: "扫描失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+//            }
+//        }
     }
     
     // MARK: - connectDeviceView Response Method

@@ -26,14 +26,14 @@ class EvaluationManager :NSObject {
     }
     
     var isConnectedMyBodyDevice: Bool {
-        return DeviceManager.shareInstance().isConnectDevice
+        return DBManager.shareInstance().haveConnectedScale
     }
     
     func scan(complete: (error: NSError?) -> Void) {
         
-        DeviceManager.shareInstance().scanDevices { (error) -> Void in
-            complete(error: error)
-        }
+//        DeviceManager.shareInstance().scanDevices { (error) -> Void in
+//            complete(error: error)
+//        }
     }
     
     func startScaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult {
@@ -43,7 +43,7 @@ class EvaluationManager :NSObject {
    // 开始测量秤
     func startScale(complete: (info: ScaleResult?, error: NSError?) -> Void) {
         
-        DeviceManager.shareInstance().scaleHelper?.setScaleData(UserData.shareInstance().userId!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
+        DeviceManager.shareInstance().scaleHelper.setScaleData(UserData.shareInstance().userId!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
         
         DeviceManager.shareInstance().startScale { (result, err) -> Void in
             

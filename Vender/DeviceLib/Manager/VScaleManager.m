@@ -63,6 +63,14 @@ static VScaleManager *instance = nil;
     return self;
 }
 
+- (NSString *)deviceUUID {
+    return deviceModel.UUID;
+}
+
+- (NSString *)name {
+    return deviceModel.name;
+}
+
 -(void)scan
 {
     [deviceManager scan:serviceUUID];
@@ -215,6 +223,8 @@ static VScaleManager *instance = nil;
                         [self gotoStatus:VCStatusCaculate];
                         [self.delegate updateUIDataWithFatScale:self.scaleResult];
                         
+                        
+                        [deviceModel disconnect];
                         if (_scaleComplete) {
                             _scaleComplete(result, nil);
                         }
@@ -279,6 +289,9 @@ static VScaleManager *instance = nil;
 
 - (void) didStatusUpdate:(CBCentralManagerState) status{
     NSLog(@"didStatusUpdate %ld",(long)status);
+    if (status == 5) {
+        [self scan];
+    }
 }
 
 - (void)didDisconnected:(VTDeviceManager *)dm device:(VTDeviceModel *)device{
@@ -338,7 +351,7 @@ static VScaleManager *instance = nil;
 }
 
 - (void) didDataPushed:(VTDeviceManager *)dm device:(VTDeviceModel *)device advertise:(VTAdvertise *)advertise{
-    NSLog(@"didDataPushed ManufactureId = %u type = %d data = %@", (unsigned int)advertise.manufactureId, advertise.type, advertise.data);
+    NSLog(@"didDataPushed ManufactureId = %u type = %d data = %@ deviceName = %@", (unsigned int)advertise.manufactureId, advertise.type, advertise.data, device.name);
     
     if (self.curStatus == VCStatusDisconnected){
         
@@ -370,7 +383,9 @@ static VScaleManager *instance = nil;
              */
 //            [_scanDeviceTimer invalidate];
             
+            [deviceManager stopScan];
             deviceModel = device;
+            
             [self gotoStatus:VCStatusDiscovered];
             
             AudioServicesPlaySystemSound(1002);

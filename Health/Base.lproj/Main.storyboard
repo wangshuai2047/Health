@@ -805,7 +805,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIg-Vs-fMh" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="584" height="66"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="66" id="isV-Ej-OKq"/>
                                                 </constraints>
@@ -825,7 +825,7 @@
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re0-D2-osY" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="143" width="584" height="37"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="r2J-Fk-xGv"/>
                                                 </constraints>
@@ -835,7 +835,7 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REp-yd-Pjc" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="8" width="584" height="118"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="118" id="oaU-2S-Pjr"/>
                                                         </constraints>
@@ -855,7 +855,7 @@
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyW-Zv-ysj" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="205" width="584" height="135"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="135" id="vRe-bn-EJd"/>
                                                         </constraints>
@@ -895,7 +895,7 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylx-fB-qyL" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="8" width="584" height="183"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="183" id="DdX-l1-O3G"/>
                                                         </constraints>

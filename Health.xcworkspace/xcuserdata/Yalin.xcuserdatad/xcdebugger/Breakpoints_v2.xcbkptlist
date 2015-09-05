@@ -259,13 +259,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DAL/Bracelet/BraceletBlueToothFormats.swift"
-            timestampString = "462988175.005819"
+            filePath = "DAL/DeviceManager/DeviceBluetoothManager.swift"
+            timestampString = "463020357.156769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "toData()"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "peripheral(_:didUpdateValueForCharacteristic:error:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
