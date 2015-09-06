@@ -16,6 +16,11 @@ class BraceletManager: NSObject {
     private var receiveData: NSMutableData = NSMutableData()
     private var currentFormate: BraceletBlueToothFormats?
     
+    private var timeoutTimer: NSTimer?
+    
+    private var syncDate: NSDate?
+    private var syncComplete: (([BraceletResult], NSError?) -> Void)?
+    
     let braceletUUID = "B8199D74-6460-C7D2-E7F3-63D97C435365"
     
     override init() {
@@ -24,16 +29,37 @@ class BraceletManager: NSObject {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
+    deinit {
+        timeoutTimer?.invalidate()
+    }
+    
     func connect(peripheral: CBPeripheral) {
         centralManager.delegate = self
         centralManager.connectPeripheral(self.peripheral, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true)])
     }
+    
+    func clearWork() {
+        self.centralManager.stopScan()
+        if peripheral != nil {
+            self.centralManager.cancelPeripheralConnection(self.peripheral!)
+        }
+        self.peripheral = nil
+        self.characteristic = nil
+        timeoutTimer?.invalidate()
+    }
+    
+    func scanTimeout() {
+        clearWork()
+        syncComplete?([], NSError(domain: "超时", code: 0, userInfo: [NSLocalizedDescriptionKey : "搜索设备超时"]))
+    }
 }
 
 extension BraceletManager: BraceletProtocol {
-    func syncData() {
+    func syncData(date: NSDate, syncComplete: (([BraceletResult], NSError?) -> Void)) {
+        syncDate = date
+        self.syncComplete = syncComplete
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
-//        centralManager.scanForPeripheralsWithServices([CBUUID(string: "4588E96E-AE96-1950-FB77-9D76F3284961"), CBUUID(string: "FFF0"),CBUUID(string: "FFF1"),CBUUID(string: "FFF2")], options: nil)
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("scanTimeout"), userInfo: nil, repeats: false)
     }
 }
 
@@ -47,6 +73,7 @@ extension BraceletManager: CBCentralManagerDelegate {
             println("Bluetooth is currently powered off.")
         case CBCentralManagerState.PoweredOn:
             println("Bluetooth is currently powered on and available to use.")
+            centralManager.scanForPeripheralsWithServices(nil, options: nil)
         default:
             break
             
@@ -64,13 +91,14 @@ extension BraceletManager: CBCentralManagerDelegate {
         
         println("Stop scan the Ble Devices")
         
-        if peripheral.name != nil && peripheral.name == "Fastfox-Lite" {
+        if peripheral.identifier == NSUUID(UUIDString: braceletUUID) {
             
             DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name, type: 1)
             
             self.peripheral = peripheral
             connect(self.peripheral!)
             centralManager.stopScan()
+            timeoutTimer?.invalidate()
         }
     }
     
@@ -83,6 +111,8 @@ extension BraceletManager: CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         NSLog("connect peripheral error: %@", error)
+        syncComplete?([], error)
+        clearWork()
     }
 }
 
@@ -100,6 +130,9 @@ extension BraceletManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
+            clearWork()
+            syncComplete?([], error)
+            
         }
     }
     
@@ -115,6 +148,8 @@ extension BraceletManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
+            clearWork()
+            syncComplete?([], error)
         }
     }
     
@@ -127,6 +162,8 @@ extension BraceletManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
+            clearWork()
+            syncComplete?([], error)
         }
     }
     
@@ -135,6 +172,8 @@ extension BraceletManager: CBPeripheralDelegate {
         if error != nil {
             NSLog("%@", error)
             // 调用失败代理
+            clearWork()
+            syncComplete?([], error)
         }
     }
 }
@@ -157,21 +196,37 @@ extension BraceletManager {
             if currentFormate!.packageHead.nCmdId == 10002 {
                 if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.requestTimeCmdId {
                     // 时间请求包
-                    var formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.responseTimeCmdId)
+                    var formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.responseTimeCmdId, time: NSDate())
                     self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic, type: CBCharacteristicWriteType.WithResponse)
                 }
                 else if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.sportCmdId {
                     // 收到运动数据 可以结束了?
                     println("\(currentFormate)")
                     
-                    self.centralManager.cancelPeripheralConnection(self.peripheral!)
-                    self.peripheral = nil
-                    self.characteristic = nil
+                    syncComplete?(dealSuccessData(), nil)
+                    
+                    clearWork()
                 }
                 else if currentFormate!.packageBody?.cmd_type == 13 {
                     
                 }
             }
         }
+    }
+    
+    func dealSuccessData() -> [BraceletResult] {
+        var list: [BraceletResult] = []
+        
+        if let bodyData = currentFormate?.packageBody as? BraceletSportReqPackageBody {
+            var startTime = bodyData.start_time
+            
+            for data in bodyData.info {
+                var result = BraceletResult(userId: UInt16(UserData.shareInstance().userId!), startTime: startTime, endTime: data.end_time, steps: data.steps, stepsType: data.stepsType)
+                list.append(result)
+                startTime = data.end_time
+            }
+        }
+        
+        return list
     }
 }

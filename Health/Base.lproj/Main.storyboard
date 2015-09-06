@@ -403,36 +403,36 @@
                                 <rect key="frame" x="0.0" y="162" width="600" height="389"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="59" borderStyle="roundedRect" placeholder="请填写您的体重(kg)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONa-W3-deo">
-                                        <rect key="frame" x="8" y="8" width="584" height="40"/>
+                                        <rect key="frame" x="8" y="8" width="584" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Z6k-cw-l4I"/>
+                                            <constraint firstAttribute="height" constant="33" id="Z6k-cw-l4I"/>
                                         </constraints>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="62.5" borderStyle="roundedRect" placeholder="请填写您的水分率(%)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J0V-ER-ayU">
-                                        <rect key="frame" x="8" y="65" width="584" height="40"/>
+                                        <rect key="frame" x="8" y="58" width="584" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="e3j-WE-6Go"/>
+                                            <constraint firstAttribute="height" constant="33" id="e3j-WE-6Go"/>
                                         </constraints>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4" borderStyle="roundedRect" placeholder="请填写您的内脏脂肪率(%)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="53Q-5I-P0a">
-                                        <rect key="frame" x="8" y="123" width="584" height="40"/>
+                                        <rect key="frame" x="8" y="109" width="584" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="6Cf-bd-mXb"/>
+                                            <constraint firstAttribute="height" constant="33" id="6Cf-bd-mXb"/>
                                         </constraints>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2K-Dr-0AZ">
-                                        <rect key="frame" x="8" y="177" width="584" height="42"/>
+                                        <rect key="frame" x="8" y="156" width="584" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="Q1S-V6-ce5"/>
+                                            <constraint firstAttribute="height" constant="33" id="Q1S-V6-ce5"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="确认提交" backgroundImage="buttonBg">
@@ -443,9 +443,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-o8-dpO">
-                                        <rect key="frame" x="8" y="277" width="579" height="66"/>
+                                        <rect key="frame" x="8" y="238" width="579" height="105"/>
                                         <string key="text">不知道您的身体数据？
- 
 应用将无法给出全面的改善建议</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -466,9 +465,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo3-QE-Gfv">
-                                        <rect key="frame" x="8" y="227" width="584" height="42"/>
+                                        <rect key="frame" x="8" y="197" width="584" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="w3l-I0-Qpy"/>
+                                            <constraint firstAttribute="height" constant="33" id="w3l-I0-Qpy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="取消" backgroundImage="buttonBg">
@@ -792,7 +791,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSB-Lp-6gx" customClass="UserSelectView" customModule="Health" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="90"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="UiF-0n-s5t"/>
                                 </constraints>
@@ -805,7 +804,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIg-Vs-fMh" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="584" height="66"/>
-                                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="66" id="isV-Ej-OKq"/>
                                                 </constraints>
@@ -825,69 +824,9 @@
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re0-D2-osY" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="143" width="584" height="37"/>
-                                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="r2J-Fk-xGv"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3Y-sx-Myx">
-                                                <rect key="frame" x="8" y="188" width="584" height="425"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REp-yd-Pjc" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="8" width="584" height="118"/>
-                                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="118" id="oaU-2S-Pjr"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPK-ZV-NkZ">
-                                                        <rect key="frame" x="74" y="145" width="436" height="42"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="42" id="b4K-hm-16E"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="查看运动详情" backgroundImage="buttonBg">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="showSportDetailPressed:" destination="Ogf-A7-MfS" eventType="touchUpInside" id="dTf-Da-Op6"/>
-                                                        </connections>
-                                                    </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyW-Zv-ysj" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="205" width="584" height="135"/>
-                                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="135" id="vRe-bn-EJd"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLE-43-KvJ">
-                                                        <rect key="frame" x="74" y="363" width="436" height="42"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="42" id="IVV-ta-kCJ"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="查看睡眠详情" backgroundImage="buttonBg">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="showSleepDetailPressed:" destination="Ogf-A7-MfS" eventType="touchUpInside" id="QOO-bq-o8V"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="hLE-43-KvJ" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" constant="74" id="1vi-e2-Im8"/>
-                                                    <constraint firstAttribute="trailing" secondItem="LPK-ZV-NkZ" secondAttribute="trailing" constant="74" id="45w-Sf-cJA"/>
-                                                    <constraint firstAttribute="trailing" secondItem="REp-yd-Pjc" secondAttribute="trailing" id="5PE-aV-wQt"/>
-                                                    <constraint firstItem="hLE-43-KvJ" firstAttribute="top" secondItem="HyW-Zv-ysj" secondAttribute="bottom" constant="23" id="E5S-g5-Iqc"/>
-                                                    <constraint firstAttribute="trailing" secondItem="HyW-Zv-ysj" secondAttribute="trailing" id="KYZ-t7-30G"/>
-                                                    <constraint firstItem="REp-yd-Pjc" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" id="OAh-s4-Iqc"/>
-                                                    <constraint firstItem="LPK-ZV-NkZ" firstAttribute="top" secondItem="REp-yd-Pjc" secondAttribute="bottom" constant="19" id="QPI-h0-XEx"/>
-                                                    <constraint firstItem="REp-yd-Pjc" firstAttribute="top" secondItem="q3Y-sx-Myx" secondAttribute="top" constant="8" id="a6I-FS-u4I"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hLE-43-KvJ" secondAttribute="trailing" constant="74" id="g8h-6W-0QN"/>
-                                                    <constraint firstItem="HyW-Zv-ysj" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" id="hTE-Tu-wJu"/>
-                                                    <constraint firstItem="HyW-Zv-ysj" firstAttribute="top" secondItem="LPK-ZV-NkZ" secondAttribute="bottom" constant="18" id="jut-SM-pNi"/>
-                                                    <constraint firstItem="LPK-ZV-NkZ" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" constant="74" id="vHp-uX-GtS"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GX-ay-OAB">
@@ -895,7 +834,7 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylx-fB-qyL" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="8" width="584" height="183"/>
-                                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="183" id="DdX-l1-O3G"/>
                                                         </constraints>
@@ -927,7 +866,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="3u3-L3-9cz" firstAttribute="leading" secondItem="1GX-ay-OAB" secondAttribute="leading" constant="74" id="BFG-nR-NgZ"/>
                                                     <constraint firstItem="32Q-wI-BKs" firstAttribute="top" secondItem="ylx-fB-qyL" secondAttribute="bottom" constant="23" id="DgY-6s-ZGr"/>
@@ -938,6 +877,66 @@
                                                     <constraint firstItem="ylx-fB-qyL" firstAttribute="top" secondItem="1GX-ay-OAB" secondAttribute="top" constant="8" id="cZi-aw-r4A"/>
                                                     <constraint firstItem="3u3-L3-9cz" firstAttribute="top" secondItem="32Q-wI-BKs" secondAttribute="bottom" constant="20" id="mOU-0M-H6e"/>
                                                     <constraint firstAttribute="trailing" secondItem="32Q-wI-BKs" secondAttribute="trailing" constant="74" id="yvp-NI-2vc"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3Y-sx-Myx">
+                                                <rect key="frame" x="8" y="188" width="584" height="425"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REp-yd-Pjc" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="8" width="584" height="118"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="118" id="oaU-2S-Pjr"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPK-ZV-NkZ">
+                                                        <rect key="frame" x="74" y="145" width="436" height="42"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="42" id="b4K-hm-16E"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <state key="normal" title="查看运动详情" backgroundImage="buttonBg">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="showSportDetailPressed:" destination="Ogf-A7-MfS" eventType="touchUpInside" id="dTf-Da-Op6"/>
+                                                        </connections>
+                                                    </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyW-Zv-ysj" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="205" width="584" height="135"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="135" id="vRe-bn-EJd"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLE-43-KvJ">
+                                                        <rect key="frame" x="74" y="363" width="436" height="42"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="42" id="IVV-ta-kCJ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <state key="normal" title="查看睡眠详情" backgroundImage="buttonBg">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="showSleepDetailPressed:" destination="Ogf-A7-MfS" eventType="touchUpInside" id="QOO-bq-o8V"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="hLE-43-KvJ" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" constant="74" id="1vi-e2-Im8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LPK-ZV-NkZ" secondAttribute="trailing" constant="74" id="45w-Sf-cJA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="REp-yd-Pjc" secondAttribute="trailing" id="5PE-aV-wQt"/>
+                                                    <constraint firstItem="hLE-43-KvJ" firstAttribute="top" secondItem="HyW-Zv-ysj" secondAttribute="bottom" constant="23" id="E5S-g5-Iqc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HyW-Zv-ysj" secondAttribute="trailing" id="KYZ-t7-30G"/>
+                                                    <constraint firstItem="REp-yd-Pjc" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" id="OAh-s4-Iqc"/>
+                                                    <constraint firstItem="LPK-ZV-NkZ" firstAttribute="top" secondItem="REp-yd-Pjc" secondAttribute="bottom" constant="19" id="QPI-h0-XEx"/>
+                                                    <constraint firstItem="REp-yd-Pjc" firstAttribute="top" secondItem="q3Y-sx-Myx" secondAttribute="top" constant="8" id="a6I-FS-u4I"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hLE-43-KvJ" secondAttribute="trailing" constant="74" id="g8h-6W-0QN"/>
+                                                    <constraint firstItem="HyW-Zv-ysj" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" id="hTE-Tu-wJu"/>
+                                                    <constraint firstItem="HyW-Zv-ysj" firstAttribute="top" secondItem="LPK-ZV-NkZ" secondAttribute="bottom" constant="18" id="jut-SM-pNi"/>
+                                                    <constraint firstItem="LPK-ZV-NkZ" firstAttribute="leading" secondItem="q3Y-sx-Myx" secondAttribute="leading" constant="74" id="vHp-uX-GtS"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

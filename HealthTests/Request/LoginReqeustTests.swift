@@ -33,4 +33,10 @@ class LoginReqeustTests: XCTestCase {
         }
     }
 
+    func test_request() {
+        var params: [String : String] = ["userId" : "xxxxxxxxxxxx",
+        "phone": "xxxxxxxxxxxxxxx"]
+        
+        println(Request.generateFormDataBodyStr(params))
+    }
 }

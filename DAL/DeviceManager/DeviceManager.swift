@@ -37,8 +37,8 @@ class DeviceManager: NSObject {
 //        return scaleHelper != nil
     }
     
-    func syncBraceletDatas() {
-        braceletManager.syncData()
+    func syncBraceletDatas(beginDate: NSDate, syncComplete: (([BraceletResult], NSError?) -> Void)) {
+        braceletManager.syncData(beginDate, syncComplete: syncComplete)
     }
     
     func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {

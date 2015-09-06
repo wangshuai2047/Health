@@ -24,6 +24,9 @@ class AttributedLabel: UIView {
         if font != nil {
             attributedString.addAttribute(String(kCTFontAttributeName), value: font!, range: range)
         }
+        else {
+            attributedString.addAttribute(String(kCTFontAttributeName), value: UIFont.systemFontOfSize(15), range: range)
+        }
         
         if color != nil {
             attributedString.addAttribute(String(kCTForegroundColorAttributeName), value: color!, range: range)
@@ -32,6 +35,10 @@ class AttributedLabel: UIView {
         self.setNeedsDisplay()
     }
     
+    func clear() {
+        attributedString.deleteCharactersInRange(NSRange(location: 0, length: attributedString.length))
+        self.setNeedsDisplay()
+    }
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

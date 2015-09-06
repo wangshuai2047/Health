@@ -261,7 +261,28 @@ extension DBManager {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
+        request.fetchLimit = 1
         request.predicate = NSPredicate(format: "dataId == %@", dataId)
+        
+        var error: NSError? = nil
+        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        
+        for data in listData as! [GoalData] {
+            return data
+        }
+        
+        return nil
+    }
+    
+    func queryLastGoalData() -> GoalData? {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.fetchLimit = 1
+        var endDateSort = NSSortDescriptor(key: "endTime", ascending: true)
+        request.sortDescriptors = [endDateSort]
         
         var error: NSError? = nil
         let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)

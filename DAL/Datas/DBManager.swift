@@ -23,6 +23,7 @@ protocol DBManagerProtocol : DBUserProtocol {
     func addGoalData(setDatas:(inout setDatas: GoalData)-> GoalData)
     func deleteGoalData(dataId: String)
     func queryGoalData(dataId: String) -> GoalData?
+    func queryLastGoalData() -> GoalData?
     
     func saveContext()
     

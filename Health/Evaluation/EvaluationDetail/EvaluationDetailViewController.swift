@@ -10,8 +10,6 @@ import UIKit
 
 class EvaluationDetailViewController: UIViewController {
     
-    let lightBlue = UIColor(red: 121/255.0, green: 199/255.0, blue: 235/255.0, alpha: 1)
-    let deepBlue: UIColor = UIColor(red: 26/255.0, green: 146/255.0, blue: 214/255.0, alpha: 1)
     var data: ScaleResult?
     
 //    @IBOutlet weak var backgroundScrollView: UIScrollView!

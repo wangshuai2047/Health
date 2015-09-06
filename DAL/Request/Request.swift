@@ -44,7 +44,7 @@ struct Request {
 // data wrapper
 extension Request {
     
-    private static func generateFormDataBodyStr(params : [String : String]?) -> (bodyStr : String, boundary : String)? {
+    static func generateFormDataBodyStr(params : [String : String]?) -> (bodyStr : String, boundary : String)? {
         
         let boundary = String(format: "%08X%08X", arc4random(),arc4random())
         // add form data

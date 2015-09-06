@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+let lightBlue = UIColor(red: 121/255.0, green: 199/255.0, blue: 235/255.0, alpha: 1)
+let deepBlue: UIColor = UIColor(red: 26/255.0, green: 146/255.0, blue: 214/255.0, alpha: 1)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -51,9 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navController = UINavigationController(rootViewController: guiController)
             self.window?.rootViewController = navController
         }
-        else if !LoginManager.isLogin {
+        else if !LoginManager.isLogin || LoginManager.isNeedCompleteInfo{
             navController = changeToLoginController()
-        } else {
+        }
+        else {
             navController = changeToMainController()
         }
         navController?.navigationBarHidden = true

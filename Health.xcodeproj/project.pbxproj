@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		259A24FEAB07D409A7DEDFE4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7B22FE9EDAA6939067EACF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E00C00E41B7EC222006A4343 /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00E31B7EC222006A4343 /* GoalData.swift */; };
-		E00C00E51B7EC222006A4343 /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00E31B7EC222006A4343 /* GoalData.swift */; };
 		E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */; };
 		E00C01651B7FAB99006A4343 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
 		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
+		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
+		E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */; };
 		E01C81591B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
 		E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
 		E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
@@ -29,6 +29,8 @@
 		E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979461B801E4900AAE085 /* DeviceManager.swift */; };
 		E029794D1B80292500AAE085 /* BluetoothProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029794C1B80292500AAE085 /* BluetoothProtocol.swift */; };
 		E029794E1B80292500AAE085 /* BluetoothProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029794C1B80292500AAE085 /* BluetoothProtocol.swift */; };
+		E038D1FD1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
+		E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68921B97D12000F4C505 /* BraceletManager.swift */; };
 		E03B68951B97D12000F4C505 /* BraceletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68921B97D12000F4C505 /* BraceletManager.swift */; };
 		E03B68961B97D12000F4C505 /* BraceletProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68931B97D12000F4C505 /* BraceletProtocol.swift */; };
@@ -126,6 +128,8 @@
 		E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */; };
 		E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */; };
 		E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */; };
+		E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
+		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B714B31B96FC7200FD4FA6 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */; };
 		E0B714B41B96FD0500FD4FA6 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
@@ -183,12 +187,13 @@
 		5F7B22FE9EDAA6939067EACF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961ED9F671AA0E4D212A73A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A5030CB749F74A7C0EA0A589 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E00C00E31B7EC222006A4343 /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E00C00EA1B7ECC6D006A4343 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSettingViewController.swift; path = Health/Goal/GoalSettingViewController.swift; sourceTree = SOURCE_ROOT; };
+		E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoalSettingViewController.xib; path = Health/Goal/GoalSettingViewController.xib; sourceTree = SOURCE_ROOT; };
 		E01C81581B8804AF00A1F7AC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		E021FCB01B8F5A8D00565FDB /* TrendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendDetailViewController.swift; sourceTree = "<group>"; };
 		E021FCB11B8F5A8D00565FDB /* TrendDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendDetailViewController.xib; sourceTree = "<group>"; };
@@ -197,6 +202,7 @@
 		E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
 		E02979461B801E4900AAE085 /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		E029794C1B80292500AAE085 /* BluetoothProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothProtocol.swift; sourceTree = "<group>"; };
+		E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGoalData.swift; sourceTree = "<group>"; };
 		E03B68921B97D12000F4C505 /* BraceletManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletManager.swift; path = DAL/Bracelet/BraceletManager.swift; sourceTree = SOURCE_ROOT; };
 		E03B68931B97D12000F4C505 /* BraceletProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletProtocol.swift; path = DAL/Bracelet/BraceletProtocol.swift; sourceTree = SOURCE_ROOT; };
 		E03B68981B97D15D00F4C505 /* BraceletResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletResult.swift; path = DAL/Bracelet/BraceletResult.swift; sourceTree = SOURCE_ROOT; };
@@ -297,6 +303,7 @@
 		E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SportDetailViewController.xib; sourceTree = "<group>"; };
 		E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepDetailViewController.swift; sourceTree = "<group>"; };
 		E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepDetailViewController.xib; sourceTree = "<group>"; };
+		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginReqeustTests.swift; path = HealthTests/Request/LoginReqeustTests.swift; sourceTree = SOURCE_ROOT; };
@@ -416,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				E00C00EA1B7ECC6D006A4343 /* UserData.swift */,
+				E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */,
 			);
 			path = UserData;
 			sourceTree = "<group>";
@@ -640,6 +648,8 @@
 			children = (
 				E0F9DB0A1B854B9100504454 /* GoalViewController.swift */,
 				E0F9DB0D1B854B9900504454 /* Detail */,
+				E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */,
+				E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */,
 			);
 			name = Goal;
 			path = BLL/Goal;
@@ -873,7 +883,7 @@
 			isa = PBXGroup;
 			children = (
 				E09EC8E01B7E3FCC00CC07E3 /* Health.xcdatamodeld */,
-				E00C00E31B7EC222006A4343 /* GoalData.swift */,
+				E0B29B061B9BD2D000F2F2CC /* GoalData.swift */,
 				E01C81581B8804AF00A1F7AC /* Device.swift */,
 				E05D565A1B92031000DF77B0 /* EvaluationData.swift */,
 				E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */,
@@ -1147,6 +1157,7 @@
 				E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */,
 				E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */,
 				E0F9DAFB1B85488300504454 /* GUIViewController.xib in Resources */,
+				E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */,
 				E060CD6E1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1235,6 +1246,7 @@
 				E02979471B801E4900AAE085 /* DeviceManager.swift in Sources */,
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
+				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
@@ -1246,8 +1258,10 @@
 				E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */,
 				E08B32A41B85A9CC0040ADE7 /* CompleteInfoViewController.swift in Sources */,
 				E08A24541B807BE4004269BB /* DBManager.swift in Sources */,
+				E038D1FD1B9ABFE80011A61E /* UserGoalData.swift in Sources */,
 				E08B32821B85A6C50040ADE7 /* GoalManager.swift in Sources */,
 				E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */,
+				E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */,
 				E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
@@ -1257,7 +1271,6 @@
 				E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
-				E00C00E41B7EC222006A4343 /* GoalData.swift in Sources */,
 				E03B68991B97D15D00F4C505 /* BraceletResult.swift in Sources */,
 				E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */,
 				E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */,
@@ -1282,6 +1295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */,
 				E0B714B41B96FD0500FD4FA6 /* UserDBData.swift in Sources */,
 				E03B68951B97D12000F4C505 /* BraceletManager.swift in Sources */,
 				E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */,
@@ -1291,6 +1305,7 @@
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
+				E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */,
 				E0FBED311B83539000A70598 /* VScaleManager.m in Sources */,
 				E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */,
 				E0C50B9D1B861DAC007A9393 /* UserReqeustTests.swift in Sources */,
@@ -1314,7 +1329,6 @@
 				E08B328F1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
 				E05D565C1B92031000DF77B0 /* EvaluationData.swift in Sources */,
 				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,
-				E00C00E51B7EC222006A4343 /* GoalData.swift in Sources */,
 				E08B328C1B85A7210040ADE7 /* TrendManager.swift in Sources */,
 				E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */,
 				E0C50B9B1B861D97007A9393 /* AdsReqeustTests.swift in Sources */,

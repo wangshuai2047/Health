@@ -2,7 +2,7 @@
 //  GoalData.swift
 //  Health
 //
-//  Created by Yalin on 15/8/15.
+//  Created by Yalin on 15/9/6.
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
@@ -12,17 +12,13 @@ import CoreData
 @objc(GoalData)
 class GoalData: NSManagedObject {
 
-    @NSManaged var awakeCount: NSNumber
-    @NSManaged var awakeTime: NSNumber
     @NSManaged var dataId: String
-    @NSManaged var deepSleep: NSNumber
-    @NSManaged var eyesCount: NSNumber
     @NSManaged var isUpload: NSNumber
-    @NSManaged var lightlySleep: NSNumber
-    @NSManaged var sleepTime: NSNumber
     @NSManaged var steps: NSNumber
-    @NSManaged var timescamp: NSDate
-    @NSManaged var userId: String
+    @NSManaged var startTime: NSDate
+    @NSManaged var userId: NSNumber
+    @NSManaged var endTime: NSDate
+    @NSManaged var stepsType: NSNumber
 
     convenience init(context: NSManagedObjectContext) {
         let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)!

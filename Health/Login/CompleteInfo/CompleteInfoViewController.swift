@@ -10,7 +10,13 @@ import UIKit
 
 class CompleteInfoViewController: UIViewController {
 
+    var canBack: Bool = false
+    
+    var heightConstraint: NSLayoutConstraint?
+    var widthConstraint: NSLayoutConstraint?
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet var scrollContentView: UIView!
+    
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var frontPageButton: UIButton!
     @IBOutlet weak var nextPageButton: UIButton!
@@ -29,6 +35,7 @@ class CompleteInfoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        initContentView()
         
         pageControl.numberOfPages = 5
         pageControl.currentPage = 0
@@ -41,29 +48,50 @@ class CompleteInfoViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        headAndNameDataView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height)
-        scrollView.addSubview(headAndNameDataView)
+        heightConstraint?.constant = scrollView.frame.size.height
+        widthConstraint?.constant = scrollView.frame.size.width * 5
         
-        genderDataView.frame = CGRectMake(scrollView.bounds.size.width, 0, scrollView.bounds.size.width, scrollView.bounds.size.height)
-        scrollView.addSubview(genderDataView)
-        
-        ageDataView.frame = CGRectMake(2 * scrollView.bounds.size.width, 0, scrollView.bounds.size.width, scrollView.bounds.size.height)
-        scrollView.addSubview(ageDataView)
-        
-        heightDataView.frame = CGRectMake(3 * scrollView.bounds.size.width, 0, scrollView.bounds.size.width, scrollView.bounds.size.height)
-        scrollView.addSubview(heightDataView)
-        
-        organizationDataView.frame = CGRectMake(4 * scrollView.bounds.size.width, 0, scrollView.bounds.size.width, scrollView.bounds.size.height)
-        scrollView.addSubview(organizationDataView)
-        
-        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width * 5, 0)
+        //为了兼容iOS7，http://stackoverflow.com/questions/15490140/auto-layout-error
+        //iOS8下无需这句话
+        self.view.layoutSubviews()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         
+    }
+    
+    func initContentView() {
+        scrollView.addSubview(scrollContentView)
+        
+        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollContentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        // top
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))
+        
+        // bottom
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
+        
+        // left
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 0))
+        
+        // right
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0))
+        
+        // height
+        heightConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.height)
+        scrollContentView.addConstraint(heightConstraint!)
+        
+        // width
+        widthConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.width * 5)
+        scrollContentView.addConstraint(widthConstraint!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,11 +118,17 @@ class CompleteInfoViewController: UIViewController {
         
         if pageControl.currentPage == 4 {
             
-            LoginManager.completeInfomation(headAndNameDataView.name!, gender: genderDataView.gender, age: ageDataView.age, height: UInt8(heightDataView.height), phone: organizationDataView.phone, organizationCode: organizationDataView.code, complete: { (error) -> Void in
+            LoginManager.completeInfomation(headAndNameDataView.name!, gender: genderDataView.gender, age: ageDataView.age, height: UInt8(heightDataView.height), phone: organizationDataView.phone, organizationCode: organizationDataView.code, complete: {[unowned self] (error) -> Void in
                 
                 if error == nil {
                     // 跳转到主页
-                    AppDelegate.applicationDelegate().changeToMainController()
+                    if self.canBack {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
+                    else {
+                        AppDelegate.applicationDelegate().changeToMainController()
+                    }
+                    
                 }
                 else {
                     UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
@@ -134,6 +168,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
                 var picker = UIImagePickerController()
                 picker.delegate = self
+                picker.allowsEditing = true
                 picker.sourceType = UIImagePickerControllerSourceType.Camera
                 self.navigationController?.presentViewController(picker, animated: true, completion: nil)
             }
@@ -146,6 +181,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
                 var picker = UIImagePickerController()
                 picker.delegate = self
+                picker.allowsEditing = true
                 picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
                 self.navigationController?.presentViewController(picker, animated: true, completion: nil)
             }

@@ -21,8 +21,9 @@ struct BraceletBlueToothFormats {
     
     var packageHead: BraceletPackageHead
     var packageBody: BraceletPackageBodyProtocol?
+    var responseTime: NSDate?
     
-    init(cmdId: UInt8) {
+    init(cmdId: UInt8, time: NSDate) {
         if cmdId == BraceletBlueToothFormats.responseTimeCmdId {
             
         }
@@ -30,7 +31,11 @@ struct BraceletBlueToothFormats {
         // 现在只有时间
         packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
         
-        packageBody = BraceletTimeResPackageBody()
+        packageBody = BraceletTimeResPackageBody(time: time)
+    }
+    
+    mutating func setSyncTime(date: NSDate) {
+        responseTime = date
     }
     
     // data是包括包头的NSData对象
@@ -68,7 +73,7 @@ struct BraceletBlueToothFormats {
             // APP发送给设备 反馈命令
             if cmd_type == BraceletBlueToothFormats.responseTimeCmdId {
                 // 时间反馈包
-                packageBody = BraceletTimeResPackageBody()
+                packageBody = BraceletTimeResPackageBody(time: responseTime!)
             }
             else if cmd_type == BraceletBlueToothFormats.sportCmdId {
                 // 运动反馈包
@@ -170,9 +175,13 @@ struct BraceletTimeResPackageBody: BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { return 0 }
     var cmd_type: UInt8 = BraceletBlueToothFormats.responseTimeCmdId
     
-    var time: NSDate = NSDate()
+    var time: NSDate
     var timezone: UInt8 {
         return UInt8(NSTimeZone.systemTimeZone().secondsFromGMT / 60 / 60)
+    }
+    
+    init(time: NSDate) {
+        self.time = time
     }
     
     func toData() -> NSData {

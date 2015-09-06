@@ -80,7 +80,29 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == list.count {
             LoginManager.logout()
             AppDelegate.applicationDelegate().changeToLoginController()
-        } else {
+        }
+        else if indexPath.row == 0 {
+            // 成员资料修改管理
+            var controller = CompleteInfoViewController()
+            controller.canBack = true
+            AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
+        }
+        else if indexPath.row == 1 {
+            // 社交账号绑定管理
+        }
+        else if indexPath.row == 2 {
+            // 健康设备绑定管理
+        }
+        else if indexPath.row == 3 {
+            // 健康中心绑定管理管理
+        }
+        else if indexPath.row == 0 {
+            // 检查软件更新
+        }
+        else if indexPath.row == 0 {
+            // 用户反馈管理
+        }
+        else {
             let (_, _, controller) = list[indexPath.row]
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
         }
