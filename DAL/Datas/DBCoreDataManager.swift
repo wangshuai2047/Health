@@ -455,6 +455,7 @@ extension DBManager {
         let muscleWeight = (data.valueForKey("muscleWeight") as! NSNumber)
         let proteinWeight = (data.valueForKey("proteinWeight") as! NSNumber)
         let boneWeight = (data.valueForKey("boneWeight") as! NSNumber)
+        let boneMuscleWeight = (data.valueForKey("boneMuscleWeight") as! NSNumber)
         
         return [
             "dataId" : dataId,
@@ -470,6 +471,7 @@ extension DBManager {
             "muscleWeight" : muscleWeight,
             "proteinWeight" : proteinWeight,
             "boneWeight" : boneWeight,
+            "boneMuscleWeight" : boneMuscleWeight,
             ]
     }
 }

@@ -6,6 +6,7 @@
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="EvaluationData" representedClassName="EvaluationData" syncable="YES">
+        <attribute name="boneMuscleWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="boneWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dataId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fatPercentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -40,7 +41,7 @@
     </entity>
     <elements>
         <element name="Device" positionX="261" positionY="279" width="128" height="90"/>
-        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="240"/>
+        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="255"/>
         <element name="GoalData" positionX="261" positionY="198" width="128" height="150"/>
         <element name="UserDBData" positionX="288" positionY="315" width="128" height="120"/>
     </elements>

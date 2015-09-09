@@ -65,6 +65,7 @@ class EvaluationManager :NSObject {
                     setDatas.muscleWeight = result!.muscleWeight
                     setDatas.proteinWeight = result!.proteinWeight
                     setDatas.boneWeight = result!.boneWeight
+                    setDatas.boneMuscleWeight = result!.boneMuscleWeight
                     
                     return setDatas;
                 })

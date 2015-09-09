@@ -136,8 +136,10 @@ extension ScaleOld: ScaleProtocol {
         let proteinWeight =  muscleWeight - waterWeight
         // 骨重
         let boneWeight = weight - fatWeight - muscleWeight
+        // 骨骼肌重
+        let boneMuscleWeight = muscleWeight * 0.7135
         
-        let result = ScaleResult(userId: userId, gender: gender, age: age, height: height, weight: weight, waterContent: waterContent, visceralFatContent: visceralFatContent, fatPercentage: fatPercentage, fatWeight: fatWeight, waterWeight: waterWeight, muscleWeight: muscleWeight, proteinWeight: proteinWeight, boneWeight: boneWeight)
+        let result = ScaleResult(userId: userId, gender: gender, age: age, height: height, weight: weight, waterContent: waterContent, visceralFatContent: visceralFatContent, fatPercentage: fatPercentage, fatWeight: fatWeight, waterWeight: waterWeight, muscleWeight: muscleWeight, proteinWeight: proteinWeight, boneWeight: boneWeight, boneMuscleWeight: boneMuscleWeight)
         
         return result
     }

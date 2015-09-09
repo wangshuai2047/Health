@@ -37,9 +37,11 @@ struct ScaleResult {
     var proteinWeight: Float
     // 骨重
     var boneWeight: Float
+    // 骨骼肌
+    var boneMuscleWeight: Float
     
     
-    init(userId: Int, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float) {
+    init(userId: Int, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float, boneMuscleWeight: Float) {
         dataId = NSUUID().UUIDString
         
         self.userId = userId
@@ -57,6 +59,7 @@ struct ScaleResult {
         self.muscleWeight = muscleWeight
         self.proteinWeight = proteinWeight
         self.boneWeight = boneWeight
+        self.boneMuscleWeight = boneMuscleWeight
     }
 }
 
@@ -75,6 +78,7 @@ extension ScaleResult {
         muscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
         proteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
         boneWeight = (info["boneWeight"] as! NSNumber).floatValue
+        boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
         gender = UserData.shareInstance().gender!
         age = UserData.shareInstance().age!
@@ -83,7 +87,6 @@ extension ScaleResult {
     
     init(evaluationdata: EvaluationData) {
         
-        let dd = evaluationdata.valueForKey("dataId") as! String
         dataId = evaluationdata.valueForKey("dataId") as! String
         userId = (evaluationdata.valueForKey("userId") as! NSNumber).integerValue
         weight = (evaluationdata.valueForKey("weight") as! NSNumber).floatValue
@@ -95,6 +98,7 @@ extension ScaleResult {
         muscleWeight = (evaluationdata.valueForKey("muscleWeight") as! NSNumber).floatValue
         proteinWeight = (evaluationdata.valueForKey("proteinWeight") as! NSNumber).floatValue
         boneWeight = (evaluationdata.valueForKey("boneWeight") as! NSNumber).floatValue
+        boneMuscleWeight = (evaluationdata.valueForKey("boneMuscleWeight") as! NSNumber).floatValue
         
         gender = UserData.shareInstance().gender!
         age = UserData.shareInstance().age!
@@ -367,6 +371,76 @@ extension ScaleResult {
 
 // MARK: - 等级判断
 extension ScaleResult {
+    
+    enum WeightStatus {
+        case Thin   // 瘦
+        case Normal // 正常
+        case LittleFat  // 轻度肥胖
+        case MiddleFat  // 中度肥胖
+        case HighFat   // 重度肥胖
+        case VeryFat    // 极度肥胖
+        
+        init(fatPercentage: Float, gender: Bool) {
+            if gender {
+                if fatPercentage < 16 {
+                    self = .Thin
+                }
+                else if fatPercentage < 20 {
+                    self = .Normal
+                }
+                else if fatPercentage < 24 {
+                    self = .LittleFat
+                }
+                else if fatPercentage < 28 {
+                    self = .MiddleFat
+                }
+                else if fatPercentage < 30 {
+                    self = .HighFat
+                }
+                else {
+                    self = .VeryFat
+                }
+            }
+            else {
+                if fatPercentage < 18 {
+                    self = .Thin
+                }
+                else if fatPercentage < 22 {
+                    self = .Normal
+                }
+                else if fatPercentage < 26 {
+                    self = .LittleFat
+                }
+                else if fatPercentage < 29 {
+                    self = .MiddleFat
+                }
+                else if fatPercentage < 35 {
+                    self = .HighFat
+                }
+                else {
+                    self = .VeryFat
+                }
+            }
+        }
+        
+        var description: String {
+            switch self {
+            case .Thin:
+                return "过瘦"
+            case .Normal:
+                return "正常"
+            case .LittleFat:
+                return "轻度肥胖"
+            case .MiddleFat:
+                return "中度肥胖"
+            case .HighFat:
+                return "重度肥胖"
+            case .VeryFat:
+                return "极度肥胖"
+            }
+        }
+    }
+    
     enum ValueStatus {
         case Low    // 偏低
         case Normal // 正常
@@ -381,6 +455,17 @@ extension ScaleResult {
             }
             else {
                 self = .Normal
+            }
+        }
+        
+        var statusColor: UIColor {
+            switch self {
+            case .Low:
+                return UIColor.brownColor()
+            case .Normal:
+                return UIColor.greenColor()
+            case .High:
+                return UIColor.redColor()
             }
         }
     }
@@ -412,6 +497,9 @@ extension ScaleResult {
     var weightStatus: ValueStatus {
         return ValueStatus(value: weight, low: weightRange.0, high: weightRange.1)
     }
+    var weightStatusDescription: String {
+        return WeightStatus(fatPercentage: fatPercentage, gender: gender).description
+    }
     
     var fatWeightRange: (Float, Float) {
         if gender {
@@ -432,17 +520,31 @@ extension ScaleResult {
         return ValueStatus(value: muscleWeight, low: muscleWeightRange.0, high: muscleWeightRange.1)
     }
     
-//    var boneMuscleLevel: Level {
-//        if gender {
-//            return Level(value: <#Float#>, low: <#Float#>, high: <#Float#>)
-//        }
-//    }
+    var boneMuscleLevel: ValueStatus {
+        if gender {
+            return ValueStatus(value: boneMuscleWeight, low: 0.75 * 0.9 * m_smm * 0.82, high: 0.75 * 1.1 * m_smm * 0.82)
+        }
+        else {
+            return ValueStatus(value: boneMuscleWeight, low: 0.75 * 0.9 * m_smm * 0.77, high: 0.75 * 1.1 * m_smm * 0.77)
+        }
+    }
     
     var visceralFatContentRange: (Float, Float) {
         return (10, 5.5)
     }
     var visceralFatContentStatus: ValueStatus {
-        return ValueStatus(value: visceralFatPercentage, low: visceralFatContentRange.0, high: visceralFatContentRange.1)
+        
+        /*内脏脂肪指数判定 0.5-5.5 		正常 5.5-10 		超标 10以上 		高*/
+        let status = ValueStatus(value: visceralFatPercentage, low: visceralFatContentRange.0, high: visceralFatContentRange.1)
+        if status == .Low {
+            return .Normal
+        }
+        else if status == .Normal {
+            return .Low
+        }
+        else {
+            return .High
+        }
     }
     
     var fatPercentageRange: (Float, Float) {
@@ -455,6 +557,13 @@ extension ScaleResult {
     }
     var fatPercentageStatus: ValueStatus {
         return ValueStatus(value: fatPercentage, low: fatPercentageRange.0, high: fatPercentageRange.1)
+    }
+    
+    var BMIRange: (Float, Float) {
+        return (18.5, 24)
+    }
+    var BMIStatus: ValueStatus {
+        return ValueStatus(value: bmi, low: BMIRange.0, high: BMIRange.1)
     }
 }
 

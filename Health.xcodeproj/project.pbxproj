@@ -51,6 +51,8 @@
 		E03B689A1B97D15D00F4C505 /* BraceletResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68981B97D15D00F4C505 /* BraceletResult.swift */; };
 		E03B689C1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */; };
 		E03B689D1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */; };
+		E04256CF1BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
+		E04256D01BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -58,8 +60,6 @@
 		E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E05B1A321B8E04B000B37F1C /* UserView.xib */; };
 		E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E05B1A351B8E077700B37F1C /* UserSelectView.xib */; };
 		E05D048E1B8BE7DC0090137C /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D048D1B8BE7DC0090137C /* CircleView.swift */; };
-		E05D565B1B92031000DF77B0 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D565A1B92031000DF77B0 /* EvaluationData.swift */; };
-		E05D565C1B92031000DF77B0 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D565A1B92031000DF77B0 /* EvaluationData.swift */; };
 		E060CD111B836F1C0002AEE7 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD101B836F1C0002AEE7 /* LoginRequest.swift */; };
 		E060CD121B836F1C0002AEE7 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD101B836F1C0002AEE7 /* LoginRequest.swift */; };
 		E060CD141B8377E50002AEE7 /* AdsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD131B8377E50002AEE7 /* AdsRequest.swift */; };
@@ -234,12 +234,12 @@
 		E03B68931B97D12000F4C505 /* BraceletProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletProtocol.swift; path = DAL/Bracelet/BraceletProtocol.swift; sourceTree = SOURCE_ROOT; };
 		E03B68981B97D15D00F4C505 /* BraceletResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletResult.swift; path = DAL/Bracelet/BraceletResult.swift; sourceTree = SOURCE_ROOT; };
 		E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletBlueToothFormats.swift; path = DAL/Bracelet/BraceletBlueToothFormats.swift; sourceTree = SOURCE_ROOT; };
+		E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
 		E05B1A351B8E077700B37F1C /* UserSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserSelectView.xib; path = Health/User/UserSelectView.xib; sourceTree = SOURCE_ROOT; };
 		E05D048D1B8BE7DC0090137C /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		E05D565A1B92031000DF77B0 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E060CD101B836F1C0002AEE7 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		E060CD131B8377E50002AEE7 /* AdsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsRequest.swift; sourceTree = "<group>"; };
 		E060CD4F1B84012D0002AEE7 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -925,8 +925,8 @@
 				E09EC8E01B7E3FCC00CC07E3 /* Health.xcdatamodeld */,
 				E0B29B061B9BD2D000F2F2CC /* GoalData.swift */,
 				E01C81581B8804AF00A1F7AC /* Device.swift */,
-				E05D565A1B92031000DF77B0 /* EvaluationData.swift */,
 				E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */,
+				E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1279,6 +1279,7 @@
 				E0F9DB081B854B8200504454 /* EvaluationViewController.swift in Sources */,
 				E0C50BA01B862381007A9393 /* UserManager.swift in Sources */,
 				E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */,
+				E04256CF1BA0786100AE3BB8 /* EvaluationData.swift in Sources */,
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
@@ -1332,7 +1333,6 @@
 				E09EC8E31B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */,
 				E00580851B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
-				E05D565B1B92031000DF77B0 /* EvaluationData.swift in Sources */,
 				E03B689C1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */,
 				E08B329A1B85A8C50040ADE7 /* CompleteHeightDataView.swift in Sources */,
 				E08B328B1B85A7210040ADE7 /* TrendManager.swift in Sources */,
@@ -1360,6 +1360,7 @@
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
+				E04256D01BA0786100AE3BB8 /* EvaluationData.swift in Sources */,
 				E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */,
 				E0FBED311B83539000A70598 /* VScaleManager.m in Sources */,
 				E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */,
@@ -1390,7 +1391,6 @@
 				E0C50BA11B862381007A9393 /* UserManager.swift in Sources */,
 				E08B328F1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
 				E00580831B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
-				E05D565C1B92031000DF77B0 /* EvaluationData.swift in Sources */,
 				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B328C1B85A7210040ADE7 /* TrendManager.swift in Sources */,
 				E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */,

@@ -29,12 +29,15 @@ class EvaluationDetailViewController: UIViewController {
     @IBOutlet weak var fatPercentageHighLabel: UILabel!
     @IBOutlet weak var fatPercentageDescriptionLabel: AttributedLabel!
     
+    @IBOutlet weak var fatWeightLabel: UILabel!     // 脂肪量
     @IBOutlet weak var musclePercentageLabel: UILabel! // 肌肉率
+    @IBOutlet weak var boneMuscleLabel: UILabel!        // 骨骼肌
     @IBOutlet weak var waterPercentageLabel: UILabel!
     @IBOutlet weak var proteinPercentageLabel: UILabel!
     @IBOutlet weak var boneWeightLabel: UILabel!
     @IBOutlet weak var visceralFatWeightLabel: UILabel!
     @IBOutlet weak var BMILabel: UILabel!
+    @IBOutlet weak var bodyAgeLabel: UILabel!
     
     convenience init() {
         self.init(nibName: "EvaluationDetailViewController", bundle: nil)
@@ -74,104 +77,6 @@ class EvaluationDetailViewController: UIViewController {
         fatPercentageLeanLabelRightConstraint.constant = rulerWidth / 3 / 2
         fatPercentageTooHighLabelLeftConstraint.constant = rulerWidth / 3 / 2
     }
-    
-    func refreshData() {
-        if data == nil {
-            return
-        }
-        
-        // 设置数据
-        
-        refreshScoreData()
-        refreshDescriptionData()
-        refreshWeightData()
-        refreshBMRData()
-        refreshFattyLiverData()
-        refreshFatData()
-        refreshMuscleData()
-        refreshWaterData()
-        refreshProteinData()
-        refreshBoneData()
-        refreshVisceralFatData()
-        refreshBMIData()
-    }
-    
-    func refreshScoreData() {
-        // 分数
-        let score = data!.score
-        scoreCicleView.update([(Double(score), deepBlue), (Double(100.0 - score), lightBlue)], animated: true)
-        
-        scoreLabel.text = "\(score)分"
-        scoreLabel.textColor = deepBlue
-        
-        physiqueImageView.image = UIImage(named: data!.physique.imageName)
-    }
-    
-    func refreshDescriptionData() {
-        
-        let font = UIFont.systemFontOfSize(15)
-        evaluationDescriptionLabel.append("您的体型为隐藏性肥胖。您的得分击败了", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("25%", font: font, color: deepBlue)
-        evaluationDescriptionLabel.append("的用户，还需继续努力，朝着", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("85", font: font, color: deepBlue)
-        evaluationDescriptionLabel.append("分迈进。本次10项检查中有", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("1", font: font, color: UIColor.redColor())
-        evaluationDescriptionLabel.append("项警告，", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("2", font: font, color: UIColor.orangeColor())
-        evaluationDescriptionLabel.append("项预警，", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("7", font: font, color: UIColor.greenColor())
-        evaluationDescriptionLabel.append("项健康。", font: font, color: UIColor.grayColor())
-    }
-    
-    func refreshWeightData() {
-        weightLabel.text = "\(data!.weight)"
-    }
-    
-    func refreshBMRData() {
-        BMRLabel.text = "\(data!.BMR)"
-    }
-    
-    func refreshFattyLiverData() {
-        fattyLiverLabel.text = "此秤不支持"
-    }
-    
-    func refreshFatData() {
-        fatPercentageLabel.text = "\(data!.fatPercentage)"
-        
-        fatPercentageHighLabel.text = "\(data!.fatPercentageRange.1)%"
-        fatPercentageLowLabel.text = "\(data!.fatPercentageRange.0)%"
-        
-        fatPercentageDescriptionLabel.append("标准体脂率为", font: nil, color: UIColor.grayColor())
-        fatPercentageDescriptionLabel.append("21.6%", font: nil, color: UIColor.greenColor())
-        fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
-        fatPercentageDescriptionLabel.append("1.33kg", font: nil, color: UIColor.greenColor())
-        fatPercentageDescriptionLabel.append("脂肪", font: nil, color: UIColor.grayColor())
-    }
-    
-    func refreshMuscleData() {
-        musclePercentageLabel.text = "\(data!.muscleWeight * 100 / data!.weight)"
-    }
-    
-    func refreshWaterData() {
-        waterPercentageLabel.text = "\(data!.waterPercentage)"
-    }
-    
-    func refreshProteinData() {
-        proteinPercentageLabel.text = "\(data!.proteinWeight * 100 / data!.weight)"
-    }
-    
-    func refreshBoneData() {
-        boneWeightLabel.text = "\(data!.boneWeight / data!.weight)"
-    }
-    
-    func refreshVisceralFatData() {
-        visceralFatWeightLabel.text = "\(data!.visceralFatPercentage)"
-    }
-    
-    func refreshBMIData() {
-        BMILabel.text = "\(data!.bmi)"
-    }
-
     /*
     // MARK: - Navigation
 
@@ -187,6 +92,170 @@ class EvaluationDetailViewController: UIViewController {
     }
 }
 
+// MARK: - 设置界面数据
+extension EvaluationDetailViewController {
+    
+    func refreshData() {
+        if data == nil {
+            return
+        }
+        
+        // 设置数据
+        
+        refreshScoreData()
+        refreshDescriptionData()
+        
+        refreshWeightData()
+        refreshBMRData()
+        refreshFattyLiverData()
+        refreshFatData()
+        
+        refreshFatWeightData()
+        refreshMuscleData()
+        refreshBoneMuscleData()
+        refreshWaterData()
+        refreshProteinData()
+        refreshBoneData()
+        refreshVisceralFatData()
+        refreshBMIData()
+        refreshBodyAgeData()
+    }
+    
+    func healthCount() -> (Int, Int, Int) {
+        var warningCount: Int = 0
+        var healthCount: Int = 0
+        var earlyWarningCount: Int = 0
+        
+        
+        var allStatus: [ScaleResult.ValueStatus] = [
+            data!.weightStatus,
+            data!.proteinWeightStatus,
+            data!.boneWeightStatus,
+            data!.waterWeightStatus,
+            data!.fatWeightStatus,
+            data!.muscleWeightStatus,
+            data!.boneMuscleLevel,
+            data!.visceralFatContentStatus,
+            data!.fatPercentageStatus,
+        ]
+        
+        for status in allStatus {
+            // 重量
+            if status == .Low {
+                earlyWarningCount++
+            }
+            else if status == .Normal {
+                healthCount++
+            }
+            else {
+                warningCount++
+            }
+        }
+        return (warningCount, earlyWarningCount, healthCount)
+    }
+    
+    func refreshScoreData() {
+        // 分数
+        let score = data!.score
+        scoreCicleView.update([(Double(score), deepBlue), (Double(100.0 - score), lightBlue)], animated: true)
+        
+        scoreLabel.text = "\(score)分"
+        scoreLabel.textColor = deepBlue
+        
+        physiqueImageView.image = UIImage(named: data!.physique.imageName)
+    }
+    
+    func refreshDescriptionData() {
+        let (warningCount,earlyWarningCount,hCount) = healthCount()
+        
+        
+        let font = UIFont.systemFontOfSize(15)
+        evaluationDescriptionLabel.append("您的体型为隐藏性肥胖。您的得分击败了", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("25%", font: font, color: deepBlue)
+        evaluationDescriptionLabel.append("的用户，还需继续努力，朝着", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("85", font: font, color: deepBlue)
+        evaluationDescriptionLabel.append("分迈进。本次9项检查中有", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("\(warningCount)", font: font, color: ScaleResult.ValueStatus.High.statusColor)
+        evaluationDescriptionLabel.append("项警告，", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("\(earlyWarningCount)", font: font, color: ScaleResult.ValueStatus.Low.statusColor)
+        evaluationDescriptionLabel.append("项预警，", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("\(hCount)", font: font, color: ScaleResult.ValueStatus.Normal.statusColor)
+        evaluationDescriptionLabel.append("项健康。", font: font, color: UIColor.grayColor())
+    }
+    
+    func refreshWeightData() {
+        weightLabel.text = "\(data!.weight)"
+        weightLabel.textColor = data!.weightStatus.statusColor
+    }
+    
+    func refreshBMRData() {
+        BMRLabel.text = "\(data!.BMR)"
+    }
+    
+    func refreshFattyLiverData() {
+        fattyLiverLabel.text = "此秤不支持"
+    }
+    
+    func refreshFatData() {
+        fatPercentageLabel.text = "\(data!.fatPercentage)"
+        fatPercentageLabel.textColor = data!.fatPercentageStatus.statusColor
+        
+        fatPercentageHighLabel.text = "\(data!.fatPercentageRange.1)%"
+        fatPercentageLowLabel.text = "\(data!.fatPercentageRange.0)%"
+        
+        fatPercentageDescriptionLabel.append("标准体脂率为", font: nil, color: UIColor.grayColor())
+        fatPercentageDescriptionLabel.append("21.6%", font: nil, color: UIColor.greenColor())
+        fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
+        fatPercentageDescriptionLabel.append("1.33kg", font: nil, color: UIColor.greenColor())
+        fatPercentageDescriptionLabel.append("脂肪", font: nil, color: UIColor.grayColor())
+    }
+    
+    func refreshFatWeightData() {
+        fatWeightLabel.text = "\(data!.fatWeight)"
+        fatWeightLabel.textColor = data!.fatWeightStatus.statusColor
+    }
+    
+    func refreshMuscleData() {
+        musclePercentageLabel.text = "\(data!.muscleWeight)"
+        musclePercentageLabel.textColor = data!.muscleWeightStatus.statusColor
+    }
+    
+    func refreshBoneMuscleData() {
+        boneMuscleLabel.text = "\(data!.boneMuscleWeight)"
+        boneMuscleLabel.textColor = data!.boneMuscleLevel.statusColor
+    }
+    
+    func refreshWaterData() {
+        waterPercentageLabel.text = "\(data!.waterWeight)"
+        waterPercentageLabel.textColor = data!.waterWeightStatus.statusColor
+    }
+    
+    func refreshProteinData() {
+        proteinPercentageLabel.text = "\(data!.proteinWeight)"
+        proteinPercentageLabel.textColor = data!.proteinWeightStatus.statusColor
+    }
+    
+    func refreshBoneData() {
+        boneWeightLabel.text = "\(data!.boneWeight)"
+        boneWeightLabel.textColor = data!.boneWeightStatus.statusColor
+    }
+    
+    func refreshVisceralFatData() {
+        visceralFatWeightLabel.text = "\(data!.visceralFatPercentage)"
+        visceralFatWeightLabel.textColor = data!.visceralFatContentStatus.statusColor
+    }
+    
+    func refreshBMIData() {
+        BMILabel.text = "\(data!.bmi)"
+        BMILabel.textColor = data!.BMIStatus.statusColor
+    }
+    
+    func refreshBodyAgeData() {
+        bodyAgeLabel.text = "\(Int(data!.bodyAge))"
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
