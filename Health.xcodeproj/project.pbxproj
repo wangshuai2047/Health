@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		259A24FEAB07D409A7DEDFE4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7B22FE9EDAA6939067EACF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */; };
+		E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */; };
+		E00580801B9DE78C00ABDF1A /* ScoreRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */; };
+		E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00580811B9DE88900ABDF1A /* EvaluationRequest.swift */; };
+		E00580831B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00580811B9DE88900ABDF1A /* EvaluationRequest.swift */; };
+		E00580851B9DE8A600ABDF1A /* GoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00580841B9DE8A600ABDF1A /* GoalRequest.swift */; };
+		E00580861B9DE8A600ABDF1A /* GoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00580841B9DE8A600ABDF1A /* GoalRequest.swift */; };
+		E00580881B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00580871B9DE8CA00ABDF1A /* ScoreRequest.swift */; };
+		E00580891B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00580871B9DE8CA00ABDF1A /* ScoreRequest.swift */; };
+		E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005808A1B9E55FE00ABDF1A /* Crypto.swift */; };
+		E005808C1B9E55FE00ABDF1A /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005808A1B9E55FE00ABDF1A /* Crypto.swift */; };
+		E005808E1B9E588700ABDF1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E005808D1B9E588700ABDF1A /* Security.framework */; };
 		E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */; };
@@ -128,8 +140,14 @@
 		E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */; };
 		E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */; };
 		E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */; };
+		E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */; };
+		E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B221B9E83500085E5B5 /* RequestTests.swift */; };
+		E0A45B251B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
+		E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
 		E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
+		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
+		E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
 		E0B714B31B96FC7200FD4FA6 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */; };
 		E0B714B41B96FD0500FD4FA6 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
@@ -171,6 +189,7 @@
 		E0FBED441B835C9100A70598 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED411B835C9100A70598 /* Request.swift */; };
 		E0FBED451B835C9100A70598 /* ResponseDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */; };
 		E0FBED461B835C9100A70598 /* ResponseDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */; };
+		E0FDBBC21B9D81D800AE1A7C /* ScaleResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDBBC11B9D81D800AE1A7C /* ScaleResultTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +206,14 @@
 		5F7B22FE9EDAA6939067EACF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961ED9F671AA0E4D212A73A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A5030CB749F74A7C0EA0A589 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationRequstTests.swift; path = HealthTests/Request/EvaluationRequstTests.swift; sourceTree = SOURCE_ROOT; };
+		E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalRequestTests.swift; path = HealthTests/Request/GoalRequestTests.swift; sourceTree = SOURCE_ROOT; };
+		E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreRequestTests.swift; path = HealthTests/Request/ScoreRequestTests.swift; sourceTree = SOURCE_ROOT; };
+		E00580811B9DE88900ABDF1A /* EvaluationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationRequest.swift; sourceTree = "<group>"; };
+		E00580841B9DE8A600ABDF1A /* GoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalRequest.swift; sourceTree = "<group>"; };
+		E00580871B9DE8CA00ABDF1A /* ScoreRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreRequest.swift; sourceTree = "<group>"; };
+		E005808A1B9E55FE00ABDF1A /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		E005808D1B9E588700ABDF1A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E00C00EA1B7ECC6D006A4343 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -303,7 +330,11 @@
 		E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SportDetailViewController.xib; sourceTree = "<group>"; };
 		E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepDetailViewController.swift; sourceTree = "<group>"; };
 		E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepDetailViewController.xib; sourceTree = "<group>"; };
+		E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
+		E0A45B221B9E83500085E5B5 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestTests.swift; path = HealthTests/Request/RequestTests.swift; sourceTree = SOURCE_ROOT; };
+		E0A45B241B9E8FC40085E5B5 /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
+		E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtend.swift; sourceTree = "<group>"; };
 		E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginReqeustTests.swift; path = HealthTests/Request/LoginReqeustTests.swift; sourceTree = SOURCE_ROOT; };
@@ -333,6 +364,7 @@
 		E0FBED391B835BEE00A70598 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Health/Login/LoginViewController.xib; sourceTree = SOURCE_ROOT; };
 		E0FBED411B835C9100A70598 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = "../../../../../../../workSpace/Project/好体知/Code/Health/DAL/Request/Request.swift"; sourceTree = "<group>"; };
 		E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseDataFilter.swift; path = "../../../../../../../workSpace/Project/好体知/Code/Health/DAL/Request/ResponseDataFilter.swift"; sourceTree = "<group>"; };
+		E0FDBBC11B9D81D800AE1A7C /* ScaleResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResultTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +372,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E005808E1B9E588700ABDF1A /* Security.framework in Frameworks */,
 				E08A246B1B808179004269BB /* libsqlite3.dylib in Frameworks */,
 				E060CD851B8401680002AEE7 /* libstdc++.dylib in Frameworks */,
 				E060CD8D1B8401890002AEE7 /* Accounts.framework in Frameworks */,
@@ -397,6 +430,7 @@
 		B3076E6D2DA86A662569F363 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E005808D1B9E588700ABDF1A /* Security.framework */,
 				E060CD8C1B8401890002AEE7 /* Accounts.framework */,
 				E060CD8A1B8401810002AEE7 /* Social.framework */,
 				E060CD881B8401790002AEE7 /* ImageIO.framework */,
@@ -570,7 +604,11 @@
 				E060CD101B836F1C0002AEE7 /* LoginRequest.swift */,
 				E060CD131B8377E50002AEE7 /* AdsRequest.swift */,
 				E0C50B911B861A04007A9393 /* UserRequest.swift */,
+				E00580811B9DE88900ABDF1A /* EvaluationRequest.swift */,
+				E00580841B9DE8A600ABDF1A /* GoalRequest.swift */,
+				E00580871B9DE8CA00ABDF1A /* ScoreRequest.swift */,
 				E0FBED411B835C9100A70598 /* Request.swift */,
+				E0A45B241B9E8FC40085E5B5 /* RequestType.swift */,
 				E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */,
 			);
 			path = Request;
@@ -827,6 +865,8 @@
 				E0C50B941B861D20007A9393 /* Request */,
 				E09EC8D21B7E3B5000CC07E3 /* HealthTests.swift */,
 				E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */,
+				E0FDBBC11B9D81D800AE1A7C /* ScaleResultTests.swift */,
+				E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */,
 				E09EC8D01B7E3B5000CC07E3 /* Supporting Files */,
 			);
 			path = HealthTests;
@@ -917,6 +957,10 @@
 				E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */,
 				E0C50B9A1B861D97007A9393 /* AdsReqeustTests.swift */,
 				E0C50B9C1B861DAC007A9393 /* UserReqeustTests.swift */,
+				E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */,
+				E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */,
+				E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */,
+				E0A45B221B9E83500085E5B5 /* RequestTests.swift */,
 			);
 			name = Request;
 			path = "../../../../../../workSpace/Project/好体知/Code/Health/HealthTests/Request";
@@ -958,6 +1002,8 @@
 				E0DD140E1B91795A0079F957 /* ConvertString.swift */,
 				E0F70D4F1B93362900341F1C /* ConvertFloat.swift */,
 				E05382D51B991C2F002FE2EB /* ConvertData.swift */,
+				E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */,
+				E005808A1B9E55FE00ABDF1A /* Crypto.swift */,
 			);
 			path = Extend;
 			sourceTree = "<group>";
@@ -1233,6 +1279,7 @@
 				E0F9DB081B854B8200504454 /* EvaluationViewController.swift in Sources */,
 				E0C50BA01B862381007A9393 /* UserManager.swift in Sources */,
 				E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */,
+				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
@@ -1241,12 +1288,15 @@
 				E060CD141B8377E50002AEE7 /* AdsRequest.swift in Sources */,
 				E021FCB21B8F5A8D00565FDB /* TrendDetailViewController.swift in Sources */,
 				E0B714B31B96FC7200FD4FA6 /* UserDBData.swift in Sources */,
+				E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */,
 				E0FBED3A1B835BEE00A70598 /* LoginViewController.swift in Sources */,
 				E0FBED301B83539000A70598 /* VScaleManager.m in Sources */,
 				E02979471B801E4900AAE085 /* DeviceManager.swift in Sources */,
+				E00580881B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
+				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
@@ -1265,6 +1315,7 @@
 				E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
+				E0A45B251B9E8FC40085E5B5 /* RequestType.swift in Sources */,
 				E05D048E1B8BE7DC0090137C /* CircleView.swift in Sources */,
 				E021FCB71B8F5B8E00565FDB /* EvaluationDetailViewController.swift in Sources */,
 				E0F9DAF91B85488300504454 /* GUIViewController.swift in Sources */,
@@ -1280,6 +1331,7 @@
 				E03B68961B97D12000F4C505 /* BraceletProtocol.swift in Sources */,
 				E09EC8E31B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */,
+				E00580851B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
 				E05D565B1B92031000DF77B0 /* EvaluationData.swift in Sources */,
 				E03B689C1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */,
 				E08B329A1B85A8C50040ADE7 /* CompleteHeightDataView.swift in Sources */,
@@ -1297,12 +1349,15 @@
 			files = (
 				E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */,
 				E0B714B41B96FD0500FD4FA6 /* UserDBData.swift in Sources */,
+				E00580891B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
 				E03B68951B97D12000F4C505 /* BraceletManager.swift in Sources */,
 				E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */,
 				E0DD14091B9130730079F957 /* ScaleProtocol.swift in Sources */,
+				E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */,
 				E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */,
 				E01C815C1B880C3D00A1F7AC /* DBManager.swift in Sources */,
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
+				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
 				E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */,
@@ -1313,20 +1368,28 @@
 				E0FBED341B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0FBED441B835C9100A70598 /* Request.swift in Sources */,
+				E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */,
+				E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */,
+				E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */,
 				E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E03B689D1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */,
 				E060CD121B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
+				E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */,
+				E00580861B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
 				E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */,
 				E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */,
 				E05B1A311B8E028900B37F1C /* Alert.swift in Sources */,
 				E09EC8D31B7E3B5000CC07E3 /* HealthTests.swift in Sources */,
 				E08B32831B85A6C50040ADE7 /* GoalManager.swift in Sources */,
 				E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */,
+				E005808C1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
+				E00580801B9DE78C00ABDF1A /* ScoreRequestTests.swift in Sources */,
 				E08B32891B85A7020040ADE7 /* SettingManager.swift in Sources */,
 				E03B68971B97D12000F4C505 /* BraceletProtocol.swift in Sources */,
 				E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */,
 				E0C50BA11B862381007A9393 /* UserManager.swift in Sources */,
 				E08B328F1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
+				E00580831B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E05D565C1B92031000DF77B0 /* EvaluationData.swift in Sources */,
 				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B328C1B85A7210040ADE7 /* TrendManager.swift in Sources */,
@@ -1335,6 +1398,7 @@
 				E09EC8E41B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0FBED461B835C9100A70598 /* ResponseDataFilter.swift in Sources */,
 				E03B689A1B97D15D00F4C505 /* BraceletResult.swift in Sources */,
+				E0FDBBC21B9D81D800AE1A7C /* ScaleResultTests.swift in Sources */,
 				E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

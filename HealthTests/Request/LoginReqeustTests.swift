@@ -32,11 +32,42 @@ class LoginReqeustTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
-    func test_request() {
-        var params: [String : String] = ["userId" : "xxxxxxxxxxxx",
-        "phone": "xxxxxxxxxxxxxxx"]
+    
+    func test_loginRequest_loginAndQueryCaptchas_isSucess() {
         
-        println(Request.generateFormDataBodyStr(params))
+        let expectation = expectationWithDescription("test_loginRequest_loginAndQueryCaptchas_isSucess")
+        
+        let phone = "18610729420"
+        
+        LoginRequest.queryCaptchas(phone, complete: { (captchas: String?, error: NSError?) -> Void in
+            
+            XCTAssertNotNil(error, "获取验证码错误: \(error!.description)")
+            
+            LoginRequest.login(phone, captchas: captchas!) { (userInfo, error: NSError?) -> Void in
+                expectation.fulfill()
+                
+                XCTAssertNotNil(error, "登录错误: \(error!.description)")
+            }
+        })
+        
+        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
+            XCTFail("请求超时")
+        })
     }
+    
+    func test_loginRequest_loginThirdPlatform_isSucess() {
+        let expectation = expectationWithDescription("test_loginRequest_loginThirdPlatform_isSucess")
+        
+        LoginRequest.loginThirdPlatform("亚霖", headURLStr: "http://www.baidu.com", openId: "13423456", type: ThirdPlatformType.QQ) { (userInfo, error: NSError?) -> Void in
+            expectation.fulfill()
+            
+             XCTAssertNotNil(error, "登录第三方平台错误: \(error!.description)")
+        }
+        
+        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
+            XCTFail("请求超时")
+        })
+    }
+    
+    
 }

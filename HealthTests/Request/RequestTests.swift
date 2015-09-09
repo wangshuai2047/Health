@@ -1,16 +1,16 @@
 //
-//  HealthTests.swift
-//  HealthTests
+//  RequestTests.swift
+//  Health
 //
-//  Created by Yalin on 15/8/14.
+//  Created by Yalin on 15/9/8.
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class HealthTests: XCTestCase {
-    
+class RequestTests: XCTestCase {
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -20,36 +20,21 @@ class HealthTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testExample() {
         // This is an example of a functional test case.
-        
-        
-        
-        
-        let userId: UInt8 = 100
-        var userData = UserData.shareInstance()
-        userData.userId = userId
-        
-        println(UserData.shareInstance().userId!)
-        
         XCTAssert(true, "Pass")
     }
-    
-    func test_timezone() {
-        var timeZone = NSTimeZone.systemTimeZone()
-        
-        println("\(timeZone.secondsFromGMT / 60 / 60)")
-        
-        GoalManager.querySevenDaysData()
-    }
-    
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    
+
+    func test_Request_generatePHPStyleBodyStr_isSuccess() {
+        let params = ["phone" : "18611111111", "captachas" : "SDFHI"]
+        println(Request.generatePHPStyleBodyStr("100002", params: params))
+    }
 }

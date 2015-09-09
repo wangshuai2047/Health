@@ -22,3 +22,5 @@
 //
 #import <SDWebImage/UIButton+WebCache.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+
+#import <CommonCrypto/CommonDigest.h>

@@ -20,3 +20,4 @@
 #import "WeiboSDK.h"
 
 //
+#import <CommonCrypto/CommonDigest.h>

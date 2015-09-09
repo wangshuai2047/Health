@@ -37,12 +37,11 @@ struct UserRequest {
     }
     
     // 完善个人资料
-    static func completeUserInfo(userId: UInt8, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, complete: ((error: NSError?) -> Void)) {
+    static func completeUserInfo(userId: Int, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, imageURL: NSURL?, complete: ((error: NSError?) -> Void)) {
         
         complete(error: nil)
         return
         
-        let urlStr = Request.requestURL("")
         var params = ["userId": "\(userId)", "gender": "\(gender)", "height": "\(height)", "age": "\(age)", "name": "\(name)"]
         
         if phone != nil {
@@ -53,8 +52,13 @@ struct UserRequest {
             params["organizationCode"] = organizationCode!
         }
         
-        Request.startWithRequest(urlStr, method: "POST", params: params) { (data, response, error) -> Void in
-            
+        if imageURL != nil {
+            if let base64String = NSData(contentsOfURL: imageURL!)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0)) {
+                params["head"] = base64String
+            }
+        }
+        
+        RequestType.CompleteUserInfo.startRequest(params, completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
                 complete(error: err)
@@ -63,15 +67,68 @@ struct UserRequest {
                 #endif
             }
             else {
-                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                
-                // warning
-                
                 complete(error: nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif
             }
-        }
+        })
+    }
+    
+    static func feedBack(userId: Int, feedback: String, complete: ((NSError?) -> Void)) {
+        RequestType.FeedBack.startRequest(["userId" : userId, "feedback" : feedback], completionHandler: { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                complete( nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
+    
+    static func createUser(name: String, height: Int, age: Int, gender: Int, complete: ((userId: Int?, NSError?) -> Void)) {
+        RequestType.CreateUser.startRequest(["name" : name, "height" : height, "age" : age, "gender" : gender], completionHandler: { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(userId: nil, err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(userId: jsonObj?.valueForKey("userId") as? Int, nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
+    
+    static func deleteUser(userId: Int, complete: ((NSError?) -> Void)) {
+        RequestType.DeleteUser.startRequest(["userId" : userId], completionHandler: { (data, response, error) -> Void in
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                complete( nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
     }
 }

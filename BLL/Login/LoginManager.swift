@@ -90,11 +90,9 @@ struct LoginManager {
     }
     
     // 获取登录广告
-    static func queryLoginAds(complete: ((ads: [LoginAdModel], error: NSError?) -> Void)?) {
-        AdsRequest.queryLoginAds { (ads, error) -> Void in
-            if complete != nil {
-                complete!(ads: ads, error: error)
-            }
+    static func queryLoginAds(complete: ((ad: RequestLoginAdModel?, error: NSError?) -> Void)?) {
+        AdsRequest.queryLaunchAds { (ad, error) -> Void in
+            complete?(ad: ad, error: error)
         }
     }
     
@@ -106,7 +104,7 @@ struct LoginManager {
             return
         }
         
-        UserRequest.completeUserInfo(UserData.shareInstance().userId!, gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode) { (error) -> Void in
+        UserRequest.completeUserInfo(Int(UserData.shareInstance().userId!), gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: nil) { (error) -> Void in
             
             if error == nil {
                 UserData.shareInstance().name = name

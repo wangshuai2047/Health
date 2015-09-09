@@ -21,8 +21,10 @@ struct GoalManager {
             startTime = NSDate().dateByAddingTimeInterval(-30 * 24 * 60 * 60)
         }
         else {
-            startTime = lastGoalData!.endTime
+            startTime = lastGoalData!["endTime"] as! NSDate
         }
+        
+        startTime = NSDate()
         
         DeviceManager.shareInstance().syncBraceletDatas(startTime, syncComplete: { (list: [BraceletResult], error: NSError?) -> Void in
             
@@ -65,8 +67,58 @@ struct GoalManager {
     }
     
     
-    static func querySevenDaysData() {
+    static func querySevenDaysData() -> [(UInt16,UInt16,UInt16)] {
         
+        var queryDatas: [(UInt16,UInt16,UInt16)] = []
+        
+        // 获取7天数据从今天开始
+        let now = NSDate()
+        var beginDate = now.zeroTime()
+        
+        for day in 0...6 {
+            
+            let endDate = beginDate.dateByAddingTimeInterval(-24 * 60 * 60)
+            let list = DBManager.shareInstance().queryGoalData(beginDate, endDate: endDate)
+            beginDate = endDate
+            
+            var walkStep: UInt16 = 0
+            var runStep: UInt16 = 0
+            var sleepTime: UInt16 = 0
+            
+            for data in list {
+                let result = BraceletResult(info: data)
+                
+                if result.stepsType == 10 // 走路 
+                {
+                    walkStep += result.steps
+                }
+                else if result.stepsType == 11 // 跑步
+                {
+                    runStep += result.steps
+                }
+                else if result.stepsType == 9 // 睡觉
+                {
+                    sleepTime += result.steps
+                }
+            }
+            
+            queryDatas += [(walkStep,runStep,sleepTime)]
+        }
+        
+        return queryDatas
     }
     
+}
+
+extension BraceletResult {
+    init(info: [String: NSObject]) {
+        
+        self.dataId = info["dataId"] as! String
+        self.userId = (info["userId"] as! NSNumber).unsignedShortValue
+        
+        self.startTime = info["startTime"] as! NSDate
+        self.endTime = info["endTime"] as! NSDate
+        self.steps = (info["steps"] as! NSNumber).unsignedShortValue
+        self.stepsType = (info["stepsType"] as! NSNumber).unsignedShortValue
+    }
 }

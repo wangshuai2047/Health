@@ -26,7 +26,7 @@ extension Request {
                     }
                     else {
                         // 请求失败
-                        if let msg = result?.valueForKey("msg") as? String {
+                        if let msg = result?.valueForKey("errormsg") as? String {
                             err = NSError(domain: "Server logic error", code: codeNumber, userInfo: [NSLocalizedDescriptionKey : msg])
                         }
                         else

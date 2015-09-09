@@ -175,7 +175,7 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func queryEvaluationData(dataId: String) -> EvaluationData? {
+    func queryEvaluationData(dataId: String) -> [String: NSObject]? {
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
         
@@ -187,7 +187,7 @@ extension DBManager: DBManagerProtocol {
         let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
         
         for data in listData as! [EvaluationData] {
-            return data
+            return convertModel(data)
         }
         
         return nil
@@ -254,7 +254,7 @@ extension DBManager {
         }
     }
     
-    func queryGoalData(dataId: String) -> GoalData? {
+    func queryGoalData(dataId: String) -> [String: NSObject]? {
         
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
@@ -268,30 +268,56 @@ extension DBManager {
         let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
         
         for data in listData as! [GoalData] {
-            return data
+            return goalDataToDic(data)
         }
         
         return nil
     }
     
-    func queryLastGoalData() -> GoalData? {
+    func queryLastGoalData() -> [String: NSObject]? {
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
         
         let request = NSFetchRequest()
         request.entity = entityDescription
         request.fetchLimit = 1
-        var endDateSort = NSSortDescriptor(key: "endTime", ascending: true)
+        var endDateSort = NSSortDescriptor(key: "endTime", ascending: false)
         request.sortDescriptors = [endDateSort]
         
         var error: NSError? = nil
         let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
         
         for data in listData as! [GoalData] {
-            return data
+            return goalDataToDic(data)
         }
         
         return nil
+    }
+    
+    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: NSObject]] {
+        
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "startTime >= %@ and endTime < %@", beginDate, endDate)
+        
+//        request.fetchLimit = 1
+//        var endDateSort = NSSortDescriptor(key: "endTime", ascending: true)
+//        request.sortDescriptors = [endDateSort]
+        
+        var error: NSError? = nil
+        let listData: [GoalData] = context.executeFetchRequest(request, error: &error) as! [GoalData]
+        
+        var results: [[String: NSObject]] = []
+        
+        var datas: [[String: NSObject]] = []
+        for managedObject in listData {
+            datas += [goalDataToDic(managedObject)]
+        }
+        
+        return datas
     }
 }
 
@@ -384,6 +410,18 @@ dataId: String
 */
 // MARK: - 数据工厂
 extension DBManager {
+    
+    func goalDataToDic(goalData: GoalData) -> [String: NSObject] {
+        return [
+            "stepsType" : goalData.valueForKey("stepsType") as! NSNumber,
+            "steps" : goalData.valueForKey("steps") as! NSNumber,
+            "dataId" : goalData.valueForKey("dataId") as! String,
+            "userId" : goalData.valueForKey("userId") as! NSNumber,
+            "isUpload" : goalData.valueForKey("isUpload") as! NSNumber,
+            "startTime" : goalData.valueForKey("startTime") as! NSDate,
+            "endTime" : goalData.valueForKey("endTime") as! NSDate,
+        ]
+    }
     
     func userToDic(user: UserDBData) -> [String: NSObject] {
         

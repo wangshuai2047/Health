@@ -15,6 +15,8 @@ struct Request {
         return urlString
     }
     
+    
+    
     static func startWithRequest(url : String, method : String?, params : [String : String]?, completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
         
         // create request
@@ -41,6 +43,59 @@ struct Request {
     }
 }
 
+// PHP Style
+extension Request {
+    
+    static func requestPHPURL() -> String {
+        return "http://123.56.131.212/web/"
+    }
+    
+    static func startWithRequest(requestType: RequestType, params: [String : AnyObject], completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
+        // create request
+        var request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestPHPURL())!)
+        request.HTTPMethod = "POST"
+        
+        request.HTTPBody = generatePHPStyleBodyStr(requestType.rawValue, params: params).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        
+        var task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData!, response:NSURLResponse!, error: NSError!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                completionHandler(data: data, response: response, error: self.errorFilter(error))
+            })
+        })
+        
+        task.resume()
+    }
+    
+    static func generatePHPStyleBodyStr(partnerCode: String, params: [String : AnyObject]) -> String {
+        var error: NSError? = nil
+        let bodyStr = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
+        if error != nil {
+            assert(true, error!.description)
+        }
+        
+        let key = "fjfjfjfjfjfjfjfjfjfjfjfjfjfjfjer"
+        let timeInterval = NSDate().timeIntervalSince1970
+        let md5Key = String(format: "%.f%@", arguments: [timeInterval, key]).md5Value
+        
+        let httpBodyInfo = [
+            "header" : [
+                "timescamp" : timeInterval,
+                "key" : md5Key,
+                "partnerCode" : partnerCode,
+                "encryption" : "md5"
+            ],
+            "body" : params
+        ]
+        
+        let httpBodyData = NSJSONSerialization.dataWithJSONObject(httpBodyInfo, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
+        if error != nil {
+            assert(true, error!.description)
+        }
+        
+        return String(NSString(data: httpBodyData!, encoding: NSUTF8StringEncoding)!)
+    }
+}
+
 // data wrapper
 extension Request {
     
@@ -61,6 +116,8 @@ extension Request {
         
         return (bodyStr, boundary)
     }
+    
+    
 }
 
 // error filter

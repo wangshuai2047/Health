@@ -34,8 +34,8 @@ class GoalViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if GoalManager.isConnectDevice() {
-            GoalManager.syncDatas({ (error: NSError?) -> Void in
-                
+            GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
+                self.refreshView()
             })
         }
         
@@ -51,6 +51,15 @@ class GoalViewController: UIViewController {
     }
     
     // MARK: - set View
+    func refreshView() {
+        
+        showView(GoalManager.isConnectDevice() ? connectDeviceView : noDeviceView)
+        setGoalDetail()
+        setSuggestCalorie()
+        setConnectDevice()
+        setNoDeviceView()
+    }
+    
     func setGoalDetail() {
         
         goalDetailLabel.clear()

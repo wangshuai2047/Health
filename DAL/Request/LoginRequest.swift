@@ -17,6 +17,11 @@ struct  LoginRequest {
         complete(["userId" : NSNumber(integer: 123)], nil)
         return;
         
+//        RequestType.Login.startRequest(<#params: [String : AnyObject]#>, completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
+        
+//        RequestType.Login.startRequest(["phone" : ], completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
+//        Request.startWithRequest(RequestType.Login, params: <#[String : AnyObject]#>, completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
+        
         let pushToken = "fefjewioafjaeofja"
         
         let loginUrlStr = Request.requestURL("login.ac")
@@ -39,29 +44,67 @@ struct  LoginRequest {
         }
     }
     
-    // 获取验证码
-    static func queryCaptchas(phone: String, complete: ((String?, NSError?) -> Void)?) {
-        let queryCaptchasUrl = Request.requestURL("queryCap");
-        Request.startWithRequest(queryCaptchasUrl, method: "POST", params: ["phone": phone]) { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+    static func login(phone: String, captchas: String, complete : ((userInfo: [String: AnyObject]? , NSError?) -> Void)) {
+        RequestType.Login.startRequest(["phone" : phone, "captchas" : captchas], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
-            if complete != nil {
-                if let err = result.error {
-                    complete!(nil, err)
-                    #if DEBUG
-                        println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
-                    #endif
-                }
-                else {
-                    let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                    complete!(jsonObj?["captchas"] as? String, nil)
-                    #if DEBUG
-                        println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
-                    #endif
-                }
+            if let err = result.error {
+                complete(userInfo: nil, err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
             }
-        }
+            else {
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(userInfo: jsonObj?.valueForKey("info") as? [String: AnyObject], nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
+    
+    // 获取验证码
+    static func queryCaptchas(phone: String, complete: ((String?, NSError?) -> Void)) {
         
+        RequestType.QueryCaptchas.startRequest(["phone" : phone], completionHandler: { (data, response, error) -> Void in
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(nil, err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(jsonObj?["authCode"] as? String, nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
+    
+    // 第三方登录
+    static func loginThirdPlatform(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((userInfo: [String: AnyObject]?, NSError?) -> Void)) {
+        
+        RequestType.LoginThirdPlatform.startRequest(["name": name, "headURL": headURLStr, "openId": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(userInfo: nil, err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(userInfo: jsonObj?.valueForKey("info") as? [String: AnyObject], nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
     }
 }
 

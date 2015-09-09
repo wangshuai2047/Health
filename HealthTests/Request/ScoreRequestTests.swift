@@ -1,15 +1,15 @@
 //
-//  AdsReqeustTests.swift
+//  ScoreRequestTests.swift
 //  Health
 //
-//  Created by Yalin on 15/8/20.
+//  Created by Yalin on 15/9/7.
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class AdsReqeustTests: XCTestCase {
+class ScoreRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -32,37 +32,30 @@ class AdsReqeustTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
     
-    func test_AdsRequest_launchAppAds_isSucess() {
-        let expectation = expectationWithDescription("test_AdsRequest_launchAppAds_isSucess")
+    func test_ScoreRequest_queryScore_isSucess() {
+        let expectation = expectationWithDescription("test_ScoreRequest_queryScore_isSucess")
         
-        AdsRequest.queryLaunchAds { (ad, error) -> Void in
-            
+        ScoreRequest.queryScore(1234, complete: { (score: Float?, error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_AdsRequest_launchAppAds_isSucess 错误: \(error!.description)")
-        }
+            XCTAssertNotNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error!.description)")
+        })
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
             XCTFail("请求超时")
         })
     }
-    
-    func test_AdsRequest_activityAds_isSucess() {
-        
+
+    func test_ScoreRequest_share_isSucess() {
         let expectation = expectationWithDescription("")
         
-        let userId = 1234
-        
-        AdsRequest.queryActivityAds(userId, complete: { (ads, error) -> Void in
+        ScoreRequest.share(1234, type: 1, platform: ThirdPlatformType.Weibo) { (error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_AdsRequest_activityAds_isSucess 错误: \(error!.description)")
-        })
+            XCTAssertNotNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error!.description)")
+        }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
             XCTFail("请求超时")
         })
-        
-        
     }
 }

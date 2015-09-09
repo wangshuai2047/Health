@@ -190,7 +190,7 @@ extension ScaleResult {
         var m_fGradeMM: Float = 0
         
         let pslm: Float = muscleWeight / m_smm
-        let pfm: Float = fatPercentage * 100
+        let pfm: Float = fatPercentage
         let ppm: Float = proteinWeight / weight * 100
         let pmm: Float = boneWeight / weight * 100
         
