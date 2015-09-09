@@ -32,8 +32,13 @@ class ScaleOld: NSObject {
     var isScaning: Bool = false
     var isScaling: Bool = false
     
+    var userId: Int?
+    var gender: Bool?
+    var height: UInt8?
+    var age: UInt8?
+    
     func transformResult(result: VTFatScaleTestResult) -> ScaleResult {
-        return ScaleOld.scaleInputData(result.weight, waterContent: result.waterContent, visceralFatContent: Float(result.visceralFatContent))
+        return ScaleOld.scaleInputData(result.weight, waterContent: result.waterContent, visceralFatContent: Float(result.visceralFatContent), gender: gender!, userId: userId!, age: age!, height: height!)
     }
 }
 
@@ -57,14 +62,19 @@ extension ScaleOld: ScaleProtocol {
         isScaning = false
     }
     
-    func setScaleData(userId: UInt8, gender: Bool, age: UInt8, height: UInt8) {
+    func setScaleData(userId: Int, gender: Bool, age: UInt8, height: UInt8) {
+        
+        self.userId = userId
+        self.gender = gender
+        self.age = age
+        self.height = height
         
         if vscaleManager == nil {
             vscaleManager = VScaleManager()
             vscaleManager?.delegate = self
         }
         
-        vscaleManager!.setCalulateDataWithUserID(userId, gender: gender ? 0 : 1, age: age, height: height)
+        vscaleManager!.setCalulateDataWithUserID(1, gender: gender ? 0 : 1, age: age, height: height)
     }
     
     func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {
@@ -91,7 +101,7 @@ extension ScaleOld: ScaleProtocol {
         }
     }
     
-    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult {
+    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResult {
         
         /*
         从四点极称中，我们只需要三项数据：水分率、内脏脂肪率和体重
@@ -127,7 +137,7 @@ extension ScaleOld: ScaleProtocol {
         // 骨重
         let boneWeight = weight - fatWeight - muscleWeight
         
-        let result = ScaleResult(userId: UserData.shareInstance().userId!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, weight: weight, waterContent: waterContent, visceralFatContent: visceralFatContent, fatPercentage: fatPercentage, fatWeight: fatWeight, waterWeight: waterWeight, muscleWeight: muscleWeight, proteinWeight: proteinWeight, boneWeight: boneWeight)
+        let result = ScaleResult(userId: userId, gender: gender, age: age, height: height, weight: weight, waterContent: waterContent, visceralFatContent: visceralFatContent, fatPercentage: fatPercentage, fatWeight: fatWeight, waterWeight: waterWeight, muscleWeight: muscleWeight, proteinWeight: proteinWeight, boneWeight: boneWeight)
         
         return result
     }

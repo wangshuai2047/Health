@@ -37,7 +37,7 @@ class EvaluationManager :NSObject {
     }
     
     func startScaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult {
-        return DeviceManager.shareInstance().scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent)
+        return DeviceManager.shareInstance().scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserData.shareInstance().gender!, userId: UserData.shareInstance().userId!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
     }
     
    // 开始测量秤
@@ -52,7 +52,7 @@ class EvaluationManager :NSObject {
                 DBManager.shareInstance().addEvaluationData({ (inout setDatas: EvaluationData) -> EvaluationData in
                     
                     setDatas.dataId = result!.dataId
-                    setDatas.userId = NSNumber(unsignedChar: result!.userId)
+                    setDatas.userId = NSNumber(integer: result!.userId)
                     setDatas.timeStamp = NSDate()
                     setDatas.isUpload = false
                     

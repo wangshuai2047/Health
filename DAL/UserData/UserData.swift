@@ -11,9 +11,9 @@ import Foundation
 // 储存类 必须是class
 class UserData {
 
-    var userId: UInt8? {
+    var userId: Int? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.userId") as? NSNumber)?.unsignedCharValue
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.userId") as? NSNumber)?.integerValue
         }
         set {
             if newValue == nil {

@@ -69,7 +69,7 @@ struct LoginManager {
             // deal userInfo
             if error == nil {
                 var userId: NSNumber = userInfo!["userId"] as! NSNumber
-                UserData.shareInstance().userId = userId.unsignedCharValue
+                UserData.shareInstance().userId = userId.integerValue
                 UserData.shareInstance().phone = phone
             }
             
@@ -126,7 +126,7 @@ struct LoginManager {
             return
         }
         
-        UserRequest.uploadHeadIcon(UserData.shareInstance().userId!, imageURL: imageURL, complete: complete)
+//        UserRequest.uploadHeadIcon(UserData.shareInstance().userId!, imageURL: imageURL, complete: complete)
     }
     
     // 登出

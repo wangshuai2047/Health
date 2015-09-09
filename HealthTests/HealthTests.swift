@@ -24,15 +24,6 @@ class HealthTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         
-        
-        
-        
-        let userId: UInt8 = 100
-        var userData = UserData.shareInstance()
-        userData.userId = userId
-        
-        println(UserData.shareInstance().userId!)
-        
         XCTAssert(true, "Pass")
     }
     

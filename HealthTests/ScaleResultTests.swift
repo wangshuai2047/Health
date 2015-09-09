@@ -14,11 +14,6 @@ class ScaleResultTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        UserData.shareInstance().height = 168
-        UserData.shareInstance().age = 25
-        UserData.shareInstance().gender = true
-        UserData.shareInstance().userId = 111
     }
     
     override func tearDown() {
@@ -40,7 +35,7 @@ class ScaleResultTests: XCTestCase {
 
     func test_scale_scaleResult_result() {
         
-        let result = ScaleOld.scaleInputData(58, waterContent: 62.5, visceralFatContent: 4)
+        let result = ScaleOld.scaleInputData(58, waterContent: 62.5, visceralFatContent: 4, gender: true, userId: 111, age: 25, height: 168)
         
         println("体脂率:\(result.fatPercentage)")
         println("脂肪重:\(result.fatWeight)")

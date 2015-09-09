@@ -22,9 +22,9 @@ protocol ScaleProtocol {
     func scanDevice(complete: ((scale: ScaleProtocol)-> Void))
     func scanCancel()
     
-    func setScaleData(userId: UInt8, gender: Bool, age: UInt8, height: UInt8)
+    func setScaleData(userId: Int, gender: Bool, age: UInt8, height: UInt8)
     
     func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void)
-    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult
+    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResult
     func stopScale()
 }

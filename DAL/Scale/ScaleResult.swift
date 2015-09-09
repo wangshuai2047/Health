@@ -12,7 +12,7 @@ struct ScaleResult {
     
     var dataId: String
     
-    var userId: UInt8
+    var userId: Int
     // true 男 false 女
     var gender: Bool
     var age: UInt8
@@ -39,7 +39,7 @@ struct ScaleResult {
     var boneWeight: Float
     
     
-    init(userId: UInt8, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float) {
+    init(userId: Int, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float) {
         dataId = NSUUID().UUIDString
         
         self.userId = userId
@@ -65,7 +65,7 @@ extension ScaleResult {
     init(info: [String: NSObject]) {
         
         dataId = info["dataId"] as! String
-        userId = (info["userId"] as! NSNumber).unsignedCharValue
+        userId = (info["userId"] as! NSNumber).integerValue
         weight = (info["weight"] as! NSNumber).floatValue
         waterPercentage = (info["waterPercentage"] as! NSNumber).floatValue
         visceralFatPercentage = (info["visceralFatPercentage"] as! NSNumber).floatValue
@@ -85,7 +85,7 @@ extension ScaleResult {
         
         let dd = evaluationdata.valueForKey("dataId") as! String
         dataId = evaluationdata.valueForKey("dataId") as! String
-        userId = (evaluationdata.valueForKey("userId") as! NSNumber).unsignedCharValue
+        userId = (evaluationdata.valueForKey("userId") as! NSNumber).integerValue
         weight = (evaluationdata.valueForKey("weight") as! NSNumber).floatValue
         waterPercentage = (evaluationdata.valueForKey("waterPercentage") as! NSNumber).floatValue
         visceralFatPercentage = (evaluationdata.valueForKey("visceralFatPercentage") as! NSNumber).floatValue
