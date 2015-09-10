@@ -82,7 +82,7 @@ class TrendViewController: UIViewController {
 extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

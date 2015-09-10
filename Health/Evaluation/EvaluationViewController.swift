@@ -85,9 +85,14 @@ class EvaluationViewController: UIViewController {
     }
     
     @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
+        
+        var detailController = EvaluationDetailViewController()
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        
         EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
             if error == nil {
-                self.pushToDetailEvaluationViewController(info!)
+                detailController.data = info
+//                self.pushToDetailEvaluationViewController(info!)
                 self.showView(self.connectDeviceView)
             } else {
                 Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
@@ -109,10 +114,14 @@ class EvaluationViewController: UIViewController {
     
     // MARK: - connectDeviceView Response Method
     @IBAction func startEvaluationPressed(sender: AnyObject) {
+        
+        var detailController = EvaluationDetailViewController()
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        
         EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
             
             if error == nil {
-                self.pushToDetailEvaluationViewController(result!)
+                detailController.data = result
                 self.showView(self.connectDeviceView)
             } else {
                 Alert.showErrorAlert("评测错误", message: error?.localizedDescription)

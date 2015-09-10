@@ -323,4 +323,12 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
             return 54
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            let model = viewModel.allDatas[indexPath.row];
+            data = model.scaleResult
+            refreshData()
+        }
+    }
 }
