@@ -53,6 +53,8 @@
 		E03B689D1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */; };
 		E04256CF1BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
 		E04256D01BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
+		E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
+		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -235,6 +237,7 @@
 		E03B68981B97D15D00F4C505 /* BraceletResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletResult.swift; path = DAL/Bracelet/BraceletResult.swift; sourceTree = SOURCE_ROOT; };
 		E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletBlueToothFormats.swift; path = DAL/Bracelet/BraceletBlueToothFormats.swift; sourceTree = SOURCE_ROOT; };
 		E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
+		E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewModel.swift; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
@@ -476,6 +479,7 @@
 			children = (
 				E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */,
 				E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */,
+				E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */,
 			);
 			name = EvaluationDetail;
 			path = Health/Evaluation/EvaluationDetail;
@@ -1322,6 +1326,7 @@
 				E0F9DAF91B85488300504454 /* GUIViewController.swift in Sources */,
 				E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */,
+				E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
 				E03B68991B97D15D00F4C505 /* BraceletResult.swift in Sources */,
 				E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */,
@@ -1390,6 +1395,7 @@
 				E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */,
 				E0C50BA11B862381007A9393 /* UserManager.swift in Sources */,
 				E08B328F1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
+				E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
 				E00580831B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B328C1B85A7210040ADE7 /* TrendManager.swift in Sources */,

@@ -74,4 +74,8 @@ class EvaluationManager :NSObject {
             complete(info: result, error: err)
         }
     }
+    
+    static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]] {
+        return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp)
+    }
 }

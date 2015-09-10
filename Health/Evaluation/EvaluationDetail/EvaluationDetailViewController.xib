@@ -31,6 +31,7 @@
                 <outlet property="proteinPercentageLabel" destination="o97-OZ-sk8" id="naY-d1-SNN"/>
                 <outlet property="scoreCicleView" destination="6i1-rA-hhz" id="nVs-oy-8Zi"/>
                 <outlet property="scoreLabel" destination="HRd-ht-ziW" id="mKl-GG-maG"/>
+                <outlet property="tableView" destination="rio-kj-ECS" id="0a0-7M-4Ze"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="visceralFatWeightLabel" destination="m4o-bm-vxu" id="JLl-Ya-Ane"/>
                 <outlet property="waterPercentageLabel" destination="pP6-iz-JVq" id="exx-GY-Smf"/>
@@ -42,7 +43,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rio-kj-ECS">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rio-kj-ECS">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
@@ -116,7 +117,7 @@
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0YL-AD-TWu">
                     <rect key="frame" x="215" y="104" width="170" height="208"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="208" id="44P-UT-ERu"/>
                         <constraint firstAttribute="width" constant="170" id="J1d-Aq-7Fz"/>
@@ -966,6 +967,8 @@
                     <exclude reference="3sx-Ls-gy5"/>
                     <exclude reference="JMb-RF-NuX"/>
                     <exclude reference="HGE-h9-U0B"/>
+                    <exclude reference="8pc-kv-3bF"/>
+                    <exclude reference="Lr7-Qq-kJ9"/>
                     <exclude reference="HDm-Ug-h1R"/>
                     <exclude reference="anr-b9-QvR"/>
                     <exclude reference="CuS-Vd-CFE"/>

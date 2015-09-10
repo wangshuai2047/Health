@@ -24,4 +24,10 @@ extension NSDate {
     func secondTimeInteval() -> Int {
         return Int(self.timeIntervalSince1970)
     }
+    
+    func currentZoneFormatDescription() -> String {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+        return dateFormatter.stringFromDate(self)
+    }
 }

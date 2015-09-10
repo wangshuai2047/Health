@@ -10,10 +10,16 @@ import UIKit
 
 class EvaluationDetailViewController: UIViewController {
     
-    var data: ScaleResult?
+    var data: ScaleResult? {
+        didSet {
+            refreshData()
+        }
+    }
+    var viewModel = EvaluationDetailViewModel()
     
 //    @IBOutlet weak var backgroundScrollView: UIScrollView!
     @IBOutlet var detailView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     // 显示数据
     @IBOutlet weak var scoreCicleView: CircleView!
@@ -96,9 +102,12 @@ class EvaluationDetailViewController: UIViewController {
 extension EvaluationDetailViewController {
     
     func refreshData() {
-        if data == nil {
+        if data == nil || tableView == nil {
             return
         }
+        
+        viewModel.reloadData()
+        tableView.reloadData()
         
         // 设置数据
         
@@ -258,31 +267,60 @@ extension EvaluationDetailViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        else if section == 1 {
+            return viewModel.allDatas.count
+        }
         return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellId = "EvaluationDetailTableViewCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
-        
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+        if indexPath.section == 0 {
+            let cellId = "EvaluationDetailTableViewCell"
             
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+            
+            if cell == nil {
+                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+                cell?.selectionStyle = UITableViewCellSelectionStyle.None
+                
+            }
+            
+            detailView.frame = CGRect(x:0, y: 0, width: tableView.frame.size.width, height: detailView.frame.size.height)
+            cell!.contentView.addSubview(detailView)
+            
+            return cell!
         }
-        
-        detailView.frame = CGRect(x:0, y: 0, width: tableView.frame.size.width, height: detailView.frame.size.height)
-        cell!.contentView.addSubview(detailView)
-        
-        return cell!
+        else {
+            let cellId = "EvaluationDetailTableViewDataCell"
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+            
+            if cell == nil {
+                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)
+            }
+            
+            let model: EvaluationDetailCellViewModel = viewModel.allDatas[indexPath.row]
+            cell?.textLabel?.text = "\(model.timeShowString)"
+            cell?.detailTextLabel?.text = "体重:\(model.scaleResult.weight)kg 体脂:\(model.scaleResult.fatPercentage)%"
+            
+            return cell!
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return detailView.frame.size.height
+        
+        if indexPath.section == 0 {
+            return detailView.frame.size.height
+        }
+        else {
+            return 54
+        }
     }
 }
