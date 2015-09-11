@@ -179,11 +179,11 @@ extension EvaluationDetailViewController {
         
         
         let font = UIFont.systemFontOfSize(15)
-        evaluationDescriptionLabel.append("您的体型为隐藏性肥胖。您的得分击败了", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("您的体型为", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("\(data!.physique.description)", font: font, color: deepBlue)
+        evaluationDescriptionLabel.append("。您的得分击败了", font: font, color: UIColor.grayColor())
         evaluationDescriptionLabel.append("25%", font: font, color: deepBlue)
-        evaluationDescriptionLabel.append("的用户，还需继续努力，朝着", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("85", font: font, color: deepBlue)
-        evaluationDescriptionLabel.append("分迈进。本次9项检查中有", font: font, color: UIColor.grayColor())
+        evaluationDescriptionLabel.append("的用户。本次9项检查中有", font: font, color: UIColor.grayColor())
         evaluationDescriptionLabel.append("\(warningCount)", font: font, color: ScaleResult.ValueStatus.High.statusColor)
         evaluationDescriptionLabel.append("项警告，", font: font, color: UIColor.grayColor())
         evaluationDescriptionLabel.append("\(earlyWarningCount)", font: font, color: ScaleResult.ValueStatus.Low.statusColor)
