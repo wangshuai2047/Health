@@ -571,12 +571,12 @@ extension ScaleResult {
 extension ScaleResult {
     
     // 体型
-    enum Physique {
-        case HiddenFat      // 隐性肥胖
+    enum Physique: Int {
+        case HiddenFat = 1      // 隐性肥胖
         case LotOfFat       // 脂肪过多
         case Fat            // 肥胖
         case LittleMuscle   // 肌肉不足
-        case Heath          // 健康
+        case Health          // 健康
         case LotOfMuscle    // 超重肌肉
         case Spare          // 消瘦
         case LittleFat      // 低脂肪
@@ -585,24 +585,28 @@ extension ScaleResult {
         var imageName: String {
             switch self {
             case .HiddenFat:
-                return ""
+                return "hiddenFat"
             case .LotOfFat:
-                return ""
+                return "lotOfFat"
             case .Fat:
-                return ""
+                return "fat"
             case .LittleMuscle:
-                return ""
-            case .Heath:
-                return ""
+                return "littleMuscle"
+            case .Health:
+                return "health"
             case .LotOfMuscle:
-                return ""
+                return "lotOfMuscle"
             case .Spare:
-                return ""
+                return "spare"
             case .LittleFat:
-                return ""
+                return "littleFat"
             case .Athlete:
-                return ""
+                return "athlete"
             }
+        }
+        
+        var selectImageName: String {
+            return "\(self.imageName)Selected"
         }
         
         var description: String {
@@ -615,7 +619,7 @@ extension ScaleResult {
                 return "肥胖型"
             case .LittleMuscle:
                 return "肌肉不足型"
-            case .Heath:
+            case .Health:
                 return "健康匀称型"
             case .LotOfMuscle:
                 return "超重肌肉型"
@@ -665,7 +669,7 @@ extension ScaleResult {
                     self = .LotOfMuscle
                 }
                 else {
-                    self = .Heath
+                    self = .Health
                 }
             }
         }

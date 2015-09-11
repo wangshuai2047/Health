@@ -106,6 +106,10 @@
 		E060CD941B8401DC0002AEE7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E060CD801B8401590002AEE7 /* libicucore.dylib */; };
 		E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */; };
 		E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */; };
+		E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
+		E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
+		E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
+		E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
 		E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
 		E08A24541B807BE4004269BB /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24521B807BE4004269BB /* DBManager.swift */; };
 		E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E08A24651B808154004269BB /* libvtble_scale.a */; };
@@ -278,6 +282,8 @@
 		E060CD8A1B8401810002AEE7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E060CD8C1B8401890002AEE7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSDKHelper.swift; sourceTree = "<group>"; };
+		E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationPhysiqueDetailViewController.swift; sourceTree = "<group>"; };
+		E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueDetailViewController.xib; sourceTree = "<group>"; };
 		E08A24511B807BE4004269BB /* DBCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCoreDataManager.swift; sourceTree = "<group>"; };
 		E08A24521B807BE4004269BB /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		E08A24651B808154004269BB /* libvtble_scale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libvtble_scale.a; sourceTree = "<group>"; };
@@ -484,6 +490,8 @@
 				E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */,
 				E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */,
 				E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */,
+				E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */,
+				E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */,
 			);
 			name = EvaluationDetail;
 			path = Health/Evaluation/EvaluationDetail;
@@ -1205,6 +1213,7 @@
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
 				E060CD7C1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
+				E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 				E0F9DAF51B85456600504454 /* LoginAdsViewController.xib in Resources */,
 				E060CD6A1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */,
@@ -1222,6 +1231,7 @@
 			files = (
 				E060CD751B84012D0002AEE7 /* ShareSDK.bundle in Resources */,
 				E060CD6B1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 				E060CD7D1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
 				E060CD6F1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
 			);
@@ -1304,6 +1314,7 @@
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
+				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
@@ -1366,6 +1377,7 @@
 				E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */,
 				E01C815C1B880C3D00A1F7AC /* DBManager.swift in Sources */,
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
+				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,

@@ -92,6 +92,11 @@ class EvaluationDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func physiqueButtonPressed(sender: AnyObject) {
+        var controller = EvaluationPhysiqueDetailViewController()
+        controller.physique = data?.physique
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -171,7 +176,7 @@ extension EvaluationDetailViewController {
         scoreLabel.text = "\(score)分"
         scoreLabel.textColor = deepBlue
         
-        physiqueImageView.image = UIImage(named: data!.physique.imageName)
+        physiqueImageView.image = UIImage(named: data!.physique.selectImageName)
     }
     
     func refreshDescriptionData() {
