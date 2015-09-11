@@ -108,12 +108,12 @@ class UserData {
         }
     }
     
-    var head: NSData? {
+    var headURL: String? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.head") as? NSData)
+            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.headURL") as? String)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.head")
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.headURL")
         }
     }
     
@@ -143,7 +143,7 @@ class UserData {
         self.age = nil
         self.phone = nil
         self.organizationCode = nil
-        self.head = nil
+        self.headURL = nil
     }
     
 }

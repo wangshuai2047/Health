@@ -23,5 +23,21 @@ struct UserManager {
         return Singleton.instance!
     }
     
-//    var users:
+    static var mainUser: UserModel {
+        return UserModel(userId: UserData.shareInstance().userId!, age:UserData.shareInstance().age!, gender: UserData.shareInstance().gender!, height: UserData.shareInstance().height!, name: UserData.shareInstance().name!, headURL: UserData.shareInstance().headURL)
+    }
+    
+    var currentUser: UserModel = UserManager.mainUser
+    
+    func changeUserToUserId(userId: Int) {
+        
+    }
+    
+    func addUser(name: String, gender: Bool, age: UInt8, height: UInt8) {
+        
+    }
+    
+    func deleteUser(userId: Int) {
+        
+    }
 }

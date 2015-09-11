@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalSettingViewController" customModule="Health" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="yUF-mC-CaW" id="bAq-9c-eOE"/>
                 <outlet property="fatGoalButton" destination="6Yn-YA-S13" id="xrb-jQ-JHr"/>
                 <outlet property="frontButton" destination="zYk-HO-iK2" id="RBl-Ut-5cS"/>
                 <outlet property="muscleGoalButton" destination="6wS-IF-4oc" id="pJf-F5-kJw"/>

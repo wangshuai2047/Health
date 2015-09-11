@@ -35,6 +35,7 @@
     <entity name="UserDBData" representedClassName="UserDBData" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="headURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -43,6 +44,6 @@
         <element name="Device" positionX="261" positionY="279" width="128" height="90"/>
         <element name="EvaluationData" positionX="261" positionY="189" width="128" height="255"/>
         <element name="GoalData" positionX="261" positionY="198" width="128" height="150"/>
-        <element name="UserDBData" positionX="288" positionY="315" width="128" height="120"/>
+        <element name="UserDBData" positionX="288" positionY="315" width="128" height="135"/>
     </elements>
 </model>

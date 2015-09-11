@@ -150,8 +150,6 @@
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
 		E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
-		E0B714B31B96FC7200FD4FA6 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */; };
-		E0B714B41B96FD0500FD4FA6 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */; };
@@ -160,6 +158,10 @@
 		E0C50BA01B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA11B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50BA31B862AA0007A9393 /* UserSelectView.swift */; };
+		E0CD63131BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
+		E0CD63141BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
+		E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
+		E0CD63171BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
 		E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14021B9130480079F957 /* ScaleOld.swift */; };
 		E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14021B9130480079F957 /* ScaleOld.swift */; };
 		E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14071B9130730079F957 /* ScaleProtocol.swift */; };
@@ -338,13 +340,14 @@
 		E0A45B241B9E8FC40085E5B5 /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtend.swift; sourceTree = "<group>"; };
-		E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginReqeustTests.swift; path = HealthTests/Request/LoginReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9A1B861D97007A9393 /* AdsReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdsReqeustTests.swift; path = HealthTests/Request/AdsReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9C1B861DAC007A9393 /* UserReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserReqeustTests.swift; path = HealthTests/Request/UserReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9F1B862381007A9393 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = BLL/User/UserManager.swift; sourceTree = SOURCE_ROOT; };
 		E0C50BA31B862AA0007A9393 /* UserSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSelectView.swift; path = Health/User/UserSelectView.swift; sourceTree = SOURCE_ROOT; };
+		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		E0CD63151BA2511F00477090 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
 		E0DD14021B9130480079F957 /* ScaleOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleOld.swift; sourceTree = "<group>"; };
 		E0DD14071B9130730079F957 /* ScaleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleProtocol.swift; sourceTree = "<group>"; };
 		E0DD140A1B913DE40079F957 /* ScaleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResult.swift; sourceTree = "<group>"; };
@@ -461,6 +464,7 @@
 			children = (
 				E00C00EA1B7ECC6D006A4343 /* UserData.swift */,
 				E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */,
+				E0CD63121BA2501A00477090 /* UserModel.swift */,
 			);
 			path = UserData;
 			sourceTree = "<group>";
@@ -929,8 +933,8 @@
 				E09EC8E01B7E3FCC00CC07E3 /* Health.xcdatamodeld */,
 				E0B29B061B9BD2D000F2F2CC /* GoalData.swift */,
 				E01C81581B8804AF00A1F7AC /* Device.swift */,
-				E0B714B21B96FC7200FD4FA6 /* UserDBData.swift */,
 				E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */,
+				E0CD63151BA2511F00477090 /* UserDBData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1292,7 +1296,6 @@
 				E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */,
 				E060CD141B8377E50002AEE7 /* AdsRequest.swift in Sources */,
 				E021FCB21B8F5A8D00565FDB /* TrendDetailViewController.swift in Sources */,
-				E0B714B31B96FC7200FD4FA6 /* UserDBData.swift in Sources */,
 				E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */,
 				E0FBED3A1B835BEE00A70598 /* LoginViewController.swift in Sources */,
 				E0FBED301B83539000A70598 /* VScaleManager.m in Sources */,
@@ -1320,10 +1323,12 @@
 				E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
+				E0CD63131BA2501A00477090 /* UserModel.swift in Sources */,
 				E0A45B251B9E8FC40085E5B5 /* RequestType.swift in Sources */,
 				E05D048E1B8BE7DC0090137C /* CircleView.swift in Sources */,
 				E021FCB71B8F5B8E00565FDB /* EvaluationDetailViewController.swift in Sources */,
 				E0F9DAF91B85488300504454 /* GUIViewController.swift in Sources */,
+				E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */,
 				E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */,
 				E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
@@ -1353,7 +1358,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */,
-				E0B714B41B96FD0500FD4FA6 /* UserDBData.swift in Sources */,
 				E00580891B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
 				E03B68951B97D12000F4C505 /* BraceletManager.swift in Sources */,
 				E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */,
@@ -1365,6 +1369,7 @@
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
+				E0CD63171BA2511F00477090 /* UserDBData.swift in Sources */,
 				E04256D01BA0786100AE3BB8 /* EvaluationData.swift in Sources */,
 				E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */,
 				E0FBED311B83539000A70598 /* VScaleManager.m in Sources */,
@@ -1395,6 +1400,7 @@
 				E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */,
 				E0C50BA11B862381007A9393 /* UserManager.swift in Sources */,
 				E08B328F1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
+				E0CD63141BA2501A00477090 /* UserModel.swift in Sources */,
 				E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
 				E00580831B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,

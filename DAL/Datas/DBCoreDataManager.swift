@@ -222,14 +222,29 @@ extension DBManager {
     func addGoalData(setDatas: (inout setDatas: GoalData) -> GoalData) {
         
         let context = self.managedObjectContext!
-        var insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
         
+        // 先搜索
+        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        
+        var insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
         setDatas(setDatas: &insertData)
         
-        if context.save(nil) {
-            NSLog("Insert GoalData Data Success")
-        } else {
-            NSLog("Insert GoalData Data Fail")
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "startTime == %@ AND endTime == %@", insertData.startTime, insertData.endTime)
+        
+        var error: NSError? = nil
+        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        
+        if error == nil && listData?.count > 0 {
+            NSLog("Insert Device Fail, exist the GoalData")
+        }
+        else {
+            if context.save(nil) {
+                NSLog("Insert GoalData Data Success")
+            } else {
+                NSLog("Insert GoalData Data Fail")
+            }
         }
     }
     

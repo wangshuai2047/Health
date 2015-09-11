@@ -2,7 +2,7 @@
 //  UserDBData.swift
 //  Health
 //
-//  Created by Yalin on 15/9/2.
+//  Created by Yalin on 15/9/11.
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
@@ -13,10 +13,11 @@ import CoreData
 class UserDBData: NSManagedObject {
 
     @NSManaged var age: NSNumber
-    @NSManaged var height: NSNumber
-    @NSManaged var userId: NSNumber
-    @NSManaged var name: String
     @NSManaged var gender: NSNumber
+    @NSManaged var height: NSNumber
+    @NSManaged var name: String
+    @NSManaged var userId: NSNumber
+    @NSManaged var headURL: String
 
     convenience init(context: NSManagedObjectContext) {
         let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)!

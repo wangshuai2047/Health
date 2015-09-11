@@ -27,7 +27,13 @@ class GoalViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBarHidden = true
         
+        if !GoalManager.isSetGoal {
+            var controller = GoalSettingViewController()
+            AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
+        }
+        
         showView(GoalManager.isConnectDevice() ? connectDeviceView : noDeviceView)
+        
     }
     
     override func viewWillAppear(animated: Bool) {

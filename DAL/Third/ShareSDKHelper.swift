@@ -8,19 +8,25 @@
 
 import UIKit
 
+/*
+1、	http://mob.com/#/index   分享账号为：2844062095@qq.com  密码：cstf158
+2、	新浪微博开发者账号为：2844062095@qq.com  密码：cstf158
+3、	微信开发者账号：huang_l@thtf.com.cn  密码：cstf158
+4、	腾讯开发者账号：2844062095  密码：cstf158
+*/
 struct ShareSDKHelper {
    
-    static let shareSDKAppKey = "9bb6bfaeadf0"
-    static let shareSDKAppSecret = "c99e9509dda33cb69bc70c70f3a8ebc7"
+    static let shareSDKAppKey = "a4fd2ee725e8"
+    static let shareSDKAppSecret = "96eaf1881e7e37847fcdc75bf4f833c2"
     
-    static let sinaWeiboAppKey = "3871619455"
-    static let sinaWeiboAppSecret = "Secret：b3cf51bc1a85e55787357e7c157c21d3"
+    static let sinaWeiboAppKey = "4153895349"
+    static let sinaWeiboAppSecret = "1ecfe5957e5d1450c4444fb75a1e1718"
     
-    static let weChatAppId = ""
-    static let weChatAppSecret = ""
+    static let weChatAppId = "wxac0b90fe1dda50a2"
+    static let weChatAppSecret = "c510ad4ded20907e5b11fa278b8da505"
     
-    static let QQAppId = ""
-    static let QQAppkey = ""
+    static let QQAppId = "1104855778"
+    static let QQAppkey = "mgysQido1HgLMDXP"
     
     static func initSDK() {
         ShareSDK.registerApp(shareSDKAppKey, activePlatforms: [SSDKPlatformType.TypeSinaWeibo.rawValue, SSDKPlatformType.TypeWechat.rawValue, SSDKPlatformType.TypeQQ.rawValue], onImport: { (platform: SSDKPlatformType) -> Void in

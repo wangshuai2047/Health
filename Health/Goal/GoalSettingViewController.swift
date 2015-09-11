@@ -10,6 +10,8 @@ import UIKit
 
 class GoalSettingViewController: UIViewController {
 
+    @IBOutlet weak var backButton: UIButton!
+    
     var heightConstraint: NSLayoutConstraint?
     var widthConstraint: NSLayoutConstraint?
     @IBOutlet weak var scrollView: UIScrollView!
@@ -38,6 +40,8 @@ class GoalSettingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        backButton.hidden = !GoalManager.isSetGoal
+        
         initContentView()
         
         frontButton.hidden = true
