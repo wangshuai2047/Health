@@ -1012,7 +1012,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yb9-qo-yhx" customClass="UserSelectView" customModule="Health" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="90"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="hR2-dG-gEu"/>
                                 </constraints>
@@ -1065,7 +1065,7 @@
                                     <constraint firstAttribute="height" constant="21" id="A9U-AJ-G5h"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvj-qE-c5G">
@@ -1080,52 +1080,85 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCU-FT-jT3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCU-FT-jT3">
                                 <rect key="frame" x="20" y="421" width="134" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="98" id="IeR-mL-MyY"/>
                                     <constraint firstAttribute="height" constant="96" id="cH0-m7-goZ"/>
                                 </constraints>
-                                <state key="normal" title="不倦行者">
+                                <state key="normal" image="walkGeek">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="walkGeekSelect"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="IeR-mL-MyY"/>
                                     </mask>
                                 </variation>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-aa-2Vu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-aa-2Vu">
                                 <rect key="frame" x="162" y="421" width="134" height="96"/>
-                                <state key="normal" title="安睡大人">
+                                <state key="normal" image="SleepGeek">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="SleepGeekSelect"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATq-7f-rtt">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATq-7f-rtt">
                                 <rect key="frame" x="304" y="421" width="134" height="96"/>
-                                <state key="normal" title="评测专家">
+                                <state key="normal" image="evaluationGeek">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="evaluationGeekSelected"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7D-ki-Ekh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7D-ki-Ekh">
                                 <rect key="frame" x="446" y="421" width="134" height="96"/>
-                                <state key="normal" title="分享狂人">
+                                <state key="normal" image="shareGeek">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="shareGeekSelected"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不倦行者" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHE-Ow-QIL">
+                                <rect key="frame" x="53" y="512" width="68" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安睡达人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTe-v4-cYp">
+                                <rect key="frame" x="195" y="512" width="68" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评测专家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kho-i3-hj3">
+                                <rect key="frame" x="337.5" y="512.5" width="68" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享狂人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGs-sD-PM0">
+                                <rect key="frame" x="479" y="512" width="68" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ATq-7f-rtt" firstAttribute="leading" secondItem="pLL-aa-2Vu" secondAttribute="trailing" constant="8" id="0Ia-1k-1DL"/>
                             <constraint firstItem="i4l-ef-DUU" firstAttribute="leading" secondItem="mwX-Lz-7ck" secondAttribute="leading" constant="16" id="17F-oH-3oa"/>
                             <constraint firstItem="KCU-FT-jT3" firstAttribute="leading" secondItem="mwX-Lz-7ck" secondAttribute="leading" constant="20" id="2dd-oY-cw4"/>
+                            <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="iTe-v4-cYp" secondAttribute="bottom" constant="18" id="2ga-9W-lIY"/>
                             <constraint firstItem="pLL-aa-2Vu" firstAttribute="width" secondItem="KCU-FT-jT3" secondAttribute="width" id="31T-DO-UJn"/>
                             <constraint firstItem="kVC-SJ-6na" firstAttribute="leading" secondItem="mwX-Lz-7ck" secondAttribute="leading" constant="16" id="4qh-Cu-yPt"/>
                             <constraint firstAttribute="trailing" secondItem="rvj-qE-c5G" secondAttribute="trailing" constant="16" id="8Sb-tQ-PNB"/>
                             <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="ATq-7f-rtt" secondAttribute="bottom" constant="34" id="Cgj-f6-hYi"/>
+                            <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="hGs-sD-PM0" secondAttribute="bottom" constant="18" id="Eaf-3Z-HaR"/>
                             <constraint firstItem="pLL-aa-2Vu" firstAttribute="width" secondItem="ATq-7f-rtt" secondAttribute="width" id="Efo-6U-qIn"/>
+                            <constraint firstItem="hGs-sD-PM0" firstAttribute="centerX" secondItem="y7D-ki-Ekh" secondAttribute="centerX" id="FzX-Sm-euB"/>
+                            <constraint firstItem="iTe-v4-cYp" firstAttribute="centerX" secondItem="pLL-aa-2Vu" secondAttribute="centerX" id="GcY-Ky-Kdm"/>
                             <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="pLL-aa-2Vu" secondAttribute="bottom" constant="34" id="KZj-iL-q0w"/>
                             <constraint firstItem="UEs-mg-Toq" firstAttribute="leading" secondItem="UbV-Cq-FMk" secondAttribute="trailing" constant="8" id="Kwx-FF-vxr"/>
+                            <constraint firstItem="eHE-Ow-QIL" firstAttribute="centerX" secondItem="KCU-FT-jT3" secondAttribute="centerX" id="TCT-45-ubo"/>
                             <constraint firstItem="Yb9-qo-yhx" firstAttribute="top" secondItem="ZLi-Y7-RJb" secondAttribute="bottom" id="TDO-tf-urC"/>
                             <constraint firstItem="pLL-aa-2Vu" firstAttribute="height" secondItem="KCU-FT-jT3" secondAttribute="height" id="TMa-Nf-fEb"/>
                             <constraint firstItem="pLL-aa-2Vu" firstAttribute="leading" secondItem="KCU-FT-jT3" secondAttribute="trailing" constant="8" id="WAM-MK-Y1r"/>
@@ -1140,13 +1173,16 @@
                             <constraint firstAttribute="trailing" secondItem="y7D-ki-Ekh" secondAttribute="trailing" constant="20" id="gcj-8Y-ptV"/>
                             <constraint firstItem="i4l-ef-DUU" firstAttribute="top" secondItem="6qm-xJ-s0W" secondAttribute="bottom" constant="8" id="goZ-BG-2UC"/>
                             <constraint firstItem="UbV-Cq-FMk" firstAttribute="top" secondItem="6qm-xJ-s0W" secondAttribute="bottom" constant="8" id="hhg-ZV-1k1"/>
+                            <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="kho-i3-hj3" secondAttribute="bottom" constant="18" id="ija-7q-5PQ"/>
                             <constraint firstItem="Yb9-qo-yhx" firstAttribute="leading" secondItem="mwX-Lz-7ck" secondAttribute="leading" id="lTf-cN-BfR"/>
                             <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="KCU-FT-jT3" secondAttribute="bottom" constant="34" id="mt0-sD-Sb8"/>
                             <constraint firstItem="pLL-aa-2Vu" firstAttribute="height" secondItem="y7D-ki-Ekh" secondAttribute="height" id="nCZ-uM-g45"/>
                             <constraint firstItem="6qm-xJ-s0W" firstAttribute="bottom" secondItem="kVC-SJ-6na" secondAttribute="bottom" id="nH9-4k-0XT"/>
                             <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="y7D-ki-Ekh" secondAttribute="bottom" constant="34" id="nW5-ey-d96"/>
                             <constraint firstItem="6qm-xJ-s0W" firstAttribute="leading" secondItem="kVC-SJ-6na" secondAttribute="leading" id="o8u-wN-wYs"/>
+                            <constraint firstItem="sYk-HA-ERR" firstAttribute="top" secondItem="eHE-Ow-QIL" secondAttribute="bottom" constant="18" id="oUf-YD-c9t"/>
                             <constraint firstItem="y7D-ki-Ekh" firstAttribute="leading" secondItem="ATq-7f-rtt" secondAttribute="trailing" constant="8" id="rzu-Rg-Clb"/>
+                            <constraint firstItem="kho-i3-hj3" firstAttribute="centerX" secondItem="ATq-7f-rtt" secondAttribute="centerX" id="wTY-Ej-y10"/>
                             <constraint firstAttribute="trailing" secondItem="Yb9-qo-yhx" secondAttribute="trailing" id="xSl-0J-oQk"/>
                         </constraints>
                     </view>
@@ -1216,9 +1252,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SleepGeek" width="49" height="70"/>
+        <image name="SleepGeekSelect" width="49" height="70"/>
         <image name="activity" width="32" height="32"/>
         <image name="buttonBg" width="19" height="19"/>
         <image name="evaluation" width="32" height="32"/>
+        <image name="evaluationGeek" width="49" height="70"/>
+        <image name="evaluationGeekSelected" width="49" height="70"/>
         <image name="fatIcon" width="28" height="20"/>
         <image name="fatIconSelected" width="28" height="20"/>
         <image name="goal" width="32" height="32"/>
@@ -1226,7 +1266,11 @@
         <image name="proteinIcon" width="26" height="26"/>
         <image name="scaleTip" width="233" height="241"/>
         <image name="setting" width="32" height="32"/>
+        <image name="shareGeek" width="49" height="70"/>
+        <image name="shareGeekSelected" width="49" height="70"/>
         <image name="trend" width="32" height="27"/>
+        <image name="walkGeek" width="48" height="70"/>
+        <image name="walkGeekSelect" width="48" height="70"/>
         <image name="waterIcon" width="23" height="27"/>
         <image name="weightIcon" width="28" height="29"/>
         <image name="weightIconSelected" width="28" height="29"/>
