@@ -12,12 +12,12 @@ class SettingViewController: UIViewController {
 
     // 数据格式为  (ImageName, Title, 进入的Controller)
     var list: [(String, String, UIViewController)] = [
-        ("weightIcon", "成员资料修改管理", UIViewController()),
-        ("weightIcon", "社交账号绑定管理", UIViewController()),
-        ("weightIcon", "健康设备管理", UIViewController()),
-        ("weightIcon", "健康中心绑定", UIViewController()),
-        ("weightIcon", "检查软件更新", UIViewController()),
-        ("weightIcon", "用户建议反馈", UIViewController()),
+        ("membersManager", "成员资料修改管理", UIViewController()),
+        ("socialBind", "社交账号绑定管理", UIViewController()),
+        ("deviceManager", "健康设备管理", UIViewController()),
+        ("HealthCenterBind", "健康中心绑定", UIViewController()),
+        ("checkUpdate", "检查软件更新", UIViewController()),
+        ("feedback", "用户建议反馈", UIViewController()),
     ]
     
     override func viewDidLoad() {
@@ -96,10 +96,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         else if indexPath.row == 3 {
             // 健康中心绑定管理管理
         }
-        else if indexPath.row == 0 {
+        else if indexPath.row == 4 {
             // 检查软件更新
         }
-        else if indexPath.row == 0 {
+        else if indexPath.row == 5 {
             // 用户反馈管理
         }
         else {
