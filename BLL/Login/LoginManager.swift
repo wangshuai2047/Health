@@ -63,14 +63,50 @@ struct LoginManager {
     }
     
     // 通过手机号 和 验证码登录
-    static func login(phone: String, captchas: String, complete: ((NSError?) -> Void)?) {
+    static func login(phone: String?, captchas: String?, complete: ((NSError?) -> Void)?) {
         
-        LoginRequest.login(phone, password: captchas) { (userInfo: [String: AnyObject]?, error: NSError?) -> Void in
+        if phone == nil || captchas == nil || captchas == "" || phone == ""{
+            complete?(NSError(domain: "登录", code: 0, userInfo: [NSLocalizedDescriptionKey:"手机号或验证码不能为空"]))
+            return
+        }
+        
+        LoginRequest.login(phone!, captchas: captchas!) { (userInfo: [String: AnyObject]?, error: NSError?) -> Void in
             // deal userInfo
             if error == nil {
-                if let userId: NSNumber = userInfo!["userId"] as? NSNumber {
-                    UserData.shareInstance().userId = userId.integerValue
+                if let userId = userInfo!["userId"] as? String {
+                    print("userId\(userId)")
+                    UserData.shareInstance().userId = NSString(string: userId).integerValue
                     UserData.shareInstance().phone = phone
+                }
+                
+                if let age = userInfo!["age"] as? NSNumber {
+                    print("age\(age)")
+                    UserData.shareInstance().age = age.unsignedCharValue
+                }
+                
+                if let gender = userInfo!["gender"] as? NSNumber {
+                    print("gender\(gender)")
+                    UserData.shareInstance().gender = gender.boolValue
+                }
+                
+                if let head = userInfo!["head"] as? String {
+                    print("head\(head)")
+                    UserData.shareInstance().headURL = head
+                }
+                
+                if let height = userInfo!["height"] as? NSNumber {
+                    print("height\(height)")
+                    UserData.shareInstance().age = height.unsignedCharValue
+                }
+                
+                if let name = userInfo!["name"] as? String {
+                    print("name\(name)")
+                    UserData.shareInstance().name = name
+                }
+                
+                if let organizationCode = userInfo!["organizationCode"] as? String {
+                    print("organizationCode\(organizationCode)")
+                    UserData.shareInstance().organizationCode = organizationCode
                 }
             }
             
@@ -81,8 +117,14 @@ struct LoginManager {
     }
     
     // 获取验证码
-    static func queryCaptchas(phone: String, complete: ((NSError?) -> Void)?) {
-        LoginRequest.queryCaptchas(phone, complete: { (error: NSError?) -> Void in
+    static func queryCaptchas(phone: String?, complete: ((NSError?) -> Void)?) {
+        
+        if phone == nil || phone == "" {
+            complete?(NSError(domain: "获取验证码", code: 0, userInfo: [NSLocalizedDescriptionKey:"手机号不能为空"]))
+            return
+        }
+        
+        LoginRequest.queryCaptchas(phone!, complete: { (error: NSError?) -> Void in
             complete?(error)
         })
     }
