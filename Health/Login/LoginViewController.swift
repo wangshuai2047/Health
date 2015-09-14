@@ -63,24 +63,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - response method
     @IBAction func loginButtonPressed(sender: UIButton?) {
         
-        LoginManager.login(self.usernameTextField.text, captchas: self.passwordTextField.text) { (error: NSError?) -> Void in
-            if error == nil {
-                // 判断是否需要完善信息
-                if LoginManager.isNeedCompleteInfo {
-                    var completeInfoController = CompleteInfoViewController()
-                    self.navigationController?.pushViewController(completeInfoController, animated: true)
-                }
-                else {
-                    if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        if self.usernameTextField.text == nil || self.passwordTextField.text == nil {
+            UIAlertView(title: "登录失败", message: "手机号或验证码不能为空", delegate: nil, cancelButtonTitle: "确定").show()
+        }
+        else {
+            LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) { (error: NSError?) -> Void in
+                if error == nil {
+                    // 判断是否需要完善信息
+                    if LoginManager.isNeedCompleteInfo {
+                        let completeInfoController = CompleteInfoViewController()
+                        self.navigationController?.pushViewController(completeInfoController, animated: true)
+                    }
+                    else {
+                        if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                            appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
+                        }
                     }
                 }
-            }
-            else
-            {
-                UIAlertView(title: "登录失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+                else
+                {
+                    UIAlertView(title: "登录失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+                }
             }
         }
+        
+        
         backgroundPressed(sender)
     }
     

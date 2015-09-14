@@ -41,9 +41,9 @@ class GoalRequestTests: XCTestCase {
             XCTAssertNil(error, "test_goalRequest_queryDatas_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_goalRequest_uploadDatas_isSucess() {
@@ -72,9 +72,9 @@ class GoalRequestTests: XCTestCase {
             XCTAssertNil(error, "test_goalRequest_uploadDatas_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_goalRequest_deleteData_isSucess() {
@@ -85,9 +85,9 @@ class GoalRequestTests: XCTestCase {
             XCTAssertNil(error, "test_goalRequest_deleteData_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_goalRequest_deleteDatas_isSucess() {
@@ -111,9 +111,9 @@ class GoalRequestTests: XCTestCase {
             XCTAssertNil(error, "test_goalRequest_deleteDatas_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
         
         
     }

@@ -35,6 +35,6 @@ class RequestTests: XCTestCase {
 
     func test_Request_generatePHPStyleBodyStr_isSuccess() {
         let params = ["phone" : "18611111111", "captachas" : "SDFHI"]
-        println(Request.generatePHPStyleBodyStr("100002", params: params))
+        print(Request.generatePHPStyleBodyStr("100002", params: params))
     }
 }

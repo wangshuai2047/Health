@@ -56,7 +56,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellId = "SettingTableViewCellId"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
         
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
@@ -83,7 +83,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else if indexPath.row == 0 {
             // 成员资料修改管理
-            var controller = CompleteInfoViewController()
+            let controller = CompleteInfoViewController()
             controller.canBack = true
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
         }

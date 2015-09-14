@@ -30,11 +30,14 @@ extension DBManager {
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.userId!).sqlite")
-        println("db Path: \(url)")
+        print("db Path: \(url)")
         
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        do {
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -73,11 +76,10 @@ extension DBManager: DBUserProtocol {
         
         setDatas(setDatas: &insertData)
         
-        if context.save(nil) {
+        do {
+            try context.save()
             NSLog("Insert Evaluation Data Success")
-        }
-        else
-        {
+        } catch _ {
             NSLog("Insert Evaluation Data Fail")
         }
     }
@@ -92,14 +94,22 @@ extension DBManager: DBUserProtocol {
         request.predicate = NSPredicate(format: "userId == %@", userId)
         
         var error: NSError? = nil
-        let listData:[AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         for data in listData as! [UserDBData] {
             context.deleteObject(data)
             var savingError: NSError? = nil
-            if context.save(&savingError) {
-                println("删除成功")
-            }else{
-                println("删除失败")
+            do {
+                try context.save()
+                print("删除成功")
+            } catch var error as NSError {
+                savingError = error
+                print("删除失败")
             }
         }
     }
@@ -113,7 +123,7 @@ extension DBManager: DBUserProtocol {
         request.entity = entityDescription
         
         var error: NSError? = nil
-        let listData = context.executeFetchRequest(request, error: &error) as! [UserDBData]
+        let listData = (try! context.executeFetchRequest(request)) as! [UserDBData]
         
         var datas: [[String: NSObject]] = []
         for managedObject in listData {
@@ -128,11 +138,16 @@ extension DBManager: DBManagerProtocol {
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
-                abort()
+            if moc.hasChanges {
+                do {
+                    try moc.save()
+                } catch var error1 as NSError {
+                    error = error1
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    NSLog("Unresolved error \(error), \(error!.userInfo)")
+                    abort()
+                }
             }
         }
     }
@@ -145,11 +160,10 @@ extension DBManager: DBManagerProtocol {
         insertData.dataId = NSUUID().UUIDString
         setDatas(setDatas: &insertData)
         
-        if context.save(nil) {
+        do {
+            try context.save()
             NSLog("Insert Evaluation Data Success")
-        }
-        else
-        {
+        } catch _ {
             NSLog("Insert Evaluation Data Fail")
         }
     }
@@ -163,14 +177,22 @@ extension DBManager: DBManagerProtocol {
         request.predicate = NSPredicate(format: "dataId == %@", dataId)
         
         var error: NSError? = nil
-        let listData:[AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         for data in listData as! [EvaluationData] {
             context.deleteObject(data)
             var savingError: NSError? = nil
-            if context.save(&savingError) {
-                println("删除成功")
-            }else{
-                println("删除失败")
+            do {
+                try context.save()
+                print("删除成功")
+            } catch var error as NSError {
+                savingError = error
+                print("删除失败")
             }
         }
     }
@@ -184,7 +206,13 @@ extension DBManager: DBManagerProtocol {
         request.predicate = NSPredicate(format: "dataId == %@", dataId)
         
         var error: NSError? = nil
-        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         
         for data in listData as! [EvaluationData] {
             return convertModel(data)
@@ -203,7 +231,7 @@ extension DBManager: DBManagerProtocol {
         request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@", beginTimescamp, endTimescamp)
         
         var error: NSError? = nil
-        let listData = context.executeFetchRequest(request, error: &error) as! [EvaluationData]
+        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
         
         var datas: [[String: NSObject]] = []
         for managedObject in listData {
@@ -234,15 +262,22 @@ extension DBManager {
         request.predicate = NSPredicate(format: "startTime == %@ AND endTime == %@", insertData.startTime, insertData.endTime)
         
         var error: NSError? = nil
-        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         
         if error == nil && listData?.count > 0 {
             NSLog("Insert Device Fail, exist the GoalData")
         }
         else {
-            if context.save(nil) {
+            do {
+                try context.save()
                 NSLog("Insert GoalData Data Success")
-            } else {
+            } catch _ {
                 NSLog("Insert GoalData Data Fail")
             }
         }
@@ -257,14 +292,22 @@ extension DBManager {
         request.predicate = NSPredicate(format: "dataId == %@", dataId)
         
         var error: NSError? = nil
-        let listData:[AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         for data in listData as! [EvaluationData] {
             context.deleteObject(data)
             var savingError: NSError? = nil
-            if context.save(&savingError) {
-                println("删除成功")
-            }else{
-                println("删除失败")
+            do {
+                try context.save()
+                print("删除成功")
+            } catch var error as NSError {
+                savingError = error
+                print("删除失败")
             }
         }
     }
@@ -280,7 +323,13 @@ extension DBManager {
         request.predicate = NSPredicate(format: "dataId == %@", dataId)
         
         var error: NSError? = nil
-        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         
         for data in listData as! [GoalData] {
             return goalDataToDic(data)
@@ -300,7 +349,13 @@ extension DBManager {
         request.sortDescriptors = [endDateSort]
         
         var error: NSError? = nil
-        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         
         for data in listData as! [GoalData] {
             return goalDataToDic(data)
@@ -323,7 +378,7 @@ extension DBManager {
 //        request.sortDescriptors = [endDateSort]
         
         var error: NSError? = nil
-        let listData: [GoalData] = context.executeFetchRequest(request, error: &error) as! [GoalData]
+        let listData: [GoalData] = (try! context.executeFetchRequest(request)) as! [GoalData]
         
         var results: [[String: NSObject]] = []
         
@@ -347,7 +402,13 @@ extension DBManager {
         request.predicate = NSPredicate(format: "type == 0")
         
         var error: NSError? = nil
-        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         
         if error == nil && listData?.count > 0 {
             return true
@@ -366,7 +427,13 @@ extension DBManager {
         request.predicate = NSPredicate(format: "type == 1")
         
         var error: NSError? = nil
-        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         
         if error == nil && listData?.count > 0 {
             return true
@@ -387,7 +454,13 @@ extension DBManager {
         request.predicate = NSPredicate(format: "uuid == %@", uuid)
         
         var error: NSError? = nil
-        let listData: [AnyObject]? = context.executeFetchRequest(request, error: &error)
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch var error1 as NSError {
+            error = error1
+            listData = nil
+        }
         
         if error == nil && listData?.count > 0 {
             NSLog("Insert Device Fail, exist the UUID")
@@ -399,9 +472,10 @@ extension DBManager {
             insertData.name = name
             insertData.type = NSNumber(short: type)
             
-            if context.save(nil) {
+            do {
+                try context.save()
                 NSLog("Insert Device Data Success")
-            } else {
+            } catch _ {
                 NSLog("Insert Device Data Fail")
             }
         }

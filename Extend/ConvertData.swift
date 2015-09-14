@@ -24,7 +24,7 @@ extension NSData {
         buffer = UnsafePointer<UInt16>(outBuffer).memory
     }
     
-    func getBytes<T>(inout #buffer: T, range: NSRange) {
+    func getBytes<T>(inout buffer buffer: T, range: NSRange) {
         let count = range.length
         // create array of appropriate length:
         var bytes = [UInt8](count: count, repeatedValue: 0)

@@ -46,16 +46,16 @@ class AttributedLabel: UIView {
         // Drawing code
         setting()
         
-        var ctx = UIGraphicsGetCurrentContext()
+        let ctx = UIGraphicsGetCurrentContext()
         CGContextConcatCTM(ctx, CGAffineTransformScale(CGAffineTransformMakeTranslation(0, rect.size.height), 1.0, -1.0))
         
-        var framesetter = CTFramesetterCreateWithAttributedString(attributedString)
-        var path = CGPathCreateMutable()
+        let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
+        let path = CGPathCreateMutable()
         CGPathAddRect(path, nil, rect)
         
-        var frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, nil)
+        let frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, nil)
         
-        CTFrameDraw(frame, ctx)
+        CTFrameDraw(frame, ctx!)
     }
     
     func setting() {
@@ -63,18 +63,18 @@ class AttributedLabel: UIView {
         
         // line break
         var lineBreak: CTLineBreakMode = .ByCharWrapping
-        var lineBreakModel: CTParagraphStyleSetting = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineBreakMode, valueSize: sizeof(CTLineBreakMode), value: &lineBreak)
+        let lineBreakModel: CTParagraphStyleSetting = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineBreakMode, valueSize: sizeof(CTLineBreakMode), value: &lineBreak)
         
         // 行间距
         var spacing: CGFloat = 4.0
-        var lineSpacing = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineSpacingAdjustment, valueSize: sizeof(CGFloat), value: &spacing)
+        let lineSpacing = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineSpacingAdjustment, valueSize: sizeof(CGFloat), value: &spacing)
         
         // 居中
-        var alignmentValue = CTRubyAlignment.Center
-        var alignment = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.Alignment, valueSize: sizeof(CTRubyAlignment), value: &alignmentValue)
+//        var alignmentValue = CTRubyAlignment.Center
+//        var alignment = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.Alignment, valueSize: sizeof(CTRubyAlignment), value: &alignmentValue)
         
         
-        attributedString.addAttribute(String(kCTParagraphStyleAttributeName), value: CTParagraphStyleCreate([lineBreakModel, lineSpacing, alignment], 3), range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(String(kCTParagraphStyleAttributeName), value: CTParagraphStyleCreate([lineBreakModel, lineSpacing], 2), range: NSRange(location: 0, length: attributedString.length))
         
     }
 

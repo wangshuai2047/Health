@@ -38,7 +38,7 @@ class UserSelectView: UIView {
     
     
     // MARK: - 初始化
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         
         showHeadView = NSBundle.mainBundle().loadNibNamed("UserView", owner: nil, options: nil)[0] as! UIView
         
@@ -54,7 +54,7 @@ class UserSelectView: UIView {
         showHeadView.frame = self.bounds
         self.addSubview(showHeadView)
         
-        let (headButton, nameLabel, changeButton) = getShowViewControl()
+        let (headButton, _, changeButton) = getShowViewControl()
         headButton.addTarget(self, action: Selector("headButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         changeButton.addTarget(self, action: Selector("changePeoplePressed"), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -126,7 +126,7 @@ class UserSelectView: UIView {
         headView.addSubview(nameLabel)
         
         // 点击button
-        var button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        var button = UIButton(type: UIButtonType.Custom)
         button.frame = headView.bounds
         button.addTarget(self, action: Selector("selectHeadViewClick:"), forControlEvents: UIControlEvents.TouchUpInside)
         button.tag = tag

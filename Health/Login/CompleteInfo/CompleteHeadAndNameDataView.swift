@@ -21,7 +21,7 @@ class CompleteHeadAndNameDataView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
-        var layer = headIconButton.layer
+        let layer = headIconButton.layer
         layer.masksToBounds = true
         layer.cornerRadius = headIconButton.frame.size.height / 2.0
         layer.borderWidth = 0.1
