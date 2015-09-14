@@ -13,33 +13,42 @@ extension Request {
     static func dataFilter(data: NSData!) -> (jsonObj : AnyObject? , error : NSError?) {
         
         var err : NSError?
-        let result : NSDictionary? = NSJSONSerialization.JSONObjectWithData(data,  options: NSJSONReadingOptions(0), error: &err) as? NSDictionary
         
-        let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-        let message: AnyObject? = result?.valueForKey("errormsg")
-        println("responseJson", jsonStr)
-        println("responseStr: \(result) \(message)")
-        
-        if let jsonObj = result {
+        do {
+            let result : NSDictionary? = try NSJSONSerialization.JSONObjectWithData(data,  options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
             
-            if let code = result?.valueForKey("code") as? Int {
-                if code == 10000 {
-                    // 请求成功
-                    return (result, nil)
-                }
-                else {
-                    // 请求失败
-                    if let msg = result?.valueForKey("errormsg") as? String {
-                        err = NSError(domain: "Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : msg])
+            let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let message: AnyObject? = result?.valueForKey("errormsg")
+            print("responseJson", jsonStr)
+            print("responseStr: \(result) \(message)")
+            
+            if let jsonObj = result {
+                
+                if let code = jsonObj.valueForKey("code") as? Int {
+                    if code == 10000 {
+                        // 请求成功
+                        return (result, nil)
                     }
-                    else
-                    {
-                        err = NSError(domain: "Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : "Server not return the detail error message"])
+                    else {
+                        // 请求失败
+                        if let msg = jsonObj.valueForKey("errormsg") as? String {
+                            err = NSError(domain: "Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : msg])
+                        }
+                        else
+                        {
+                            err = NSError(domain: "Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : "Server not return the detail error message"])
+                        }
                     }
                 }
             }
+            return (nil, err)
+        } catch let error1 as NSError {
+            return (nil, error1)
         }
-        return (nil, err)
+        
+        
+        
+        
     }
     
     // 处理返回数据

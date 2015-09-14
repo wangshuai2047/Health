@@ -52,9 +52,9 @@ class UserReqeustTests: XCTestCase {
             XCTAssertNil(error, "test_UserRequest_CompleteInfo_isSuccess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
         
         
     }
@@ -77,9 +77,9 @@ class UserReqeustTests: XCTestCase {
             })
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_UserRequest_feedback_isSucess() {
@@ -90,9 +90,9 @@ class UserReqeustTests: XCTestCase {
             XCTAssertNil(error, "test_UserRequest_feedback_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
         
     }
 }

@@ -70,8 +70,8 @@ class CompleteInfoViewController: UIViewController {
     func initContentView() {
         scrollView.addSubview(scrollContentView)
         
-        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        scrollContentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollContentView.translatesAutoresizingMaskIntoConstraints = false
         
         // top
         scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))

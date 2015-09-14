@@ -68,9 +68,10 @@ struct LoginManager {
         LoginRequest.login(phone, password: captchas) { (userInfo: [String: AnyObject]?, error: NSError?) -> Void in
             // deal userInfo
             if error == nil {
-                var userId: NSNumber = userInfo!["userId"] as! NSNumber
-                UserData.shareInstance().userId = userId.integerValue
-                UserData.shareInstance().phone = phone
+                if let userId: NSNumber = userInfo!["userId"] as? NSNumber {
+                    UserData.shareInstance().userId = userId.integerValue
+                    UserData.shareInstance().phone = phone
+                }
             }
             
             if complete != nil {

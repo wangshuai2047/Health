@@ -44,9 +44,9 @@ class LoginReqeustTests: XCTestCase {
             XCTAssertNil(error, "获取验证码错误: \(error?.description)")
         })
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_loginRequest_login_isSuccess() {
@@ -60,9 +60,9 @@ class LoginReqeustTests: XCTestCase {
             XCTAssertNil(error, "登录错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_loginRequest_loginThirdPlatform_isSucess() {
@@ -74,9 +74,9 @@ class LoginReqeustTests: XCTestCase {
              XCTAssertNil(error, "登录第三方平台错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     

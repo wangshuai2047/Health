@@ -75,7 +75,7 @@ struct GoalManager {
         let now = NSDate()
         var beginDate = now.zeroTime()
         
-        for day in 0...6 {
+        for _ in 0...6 {
             
             let endDate = beginDate.dateByAddingTimeInterval(-24 * 60 * 60)
             let list = DBManager.shareInstance().queryGoalData(beginDate, endDate: endDate)

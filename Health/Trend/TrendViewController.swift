@@ -92,7 +92,7 @@ extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellId = "TrendTableViewDataCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
         
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)

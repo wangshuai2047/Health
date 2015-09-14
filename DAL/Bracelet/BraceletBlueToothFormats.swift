@@ -138,7 +138,7 @@ struct BraceletBlueToothFormats {
         bytes[6] = UInt8(((packageHead.nSeq >> 8)&0xff))
         bytes[7] = UInt8(((packageHead.nSeq >> 0)&0xff))
         
-        var data = NSMutableData(bytes: bytes, length: 8)
+        let data = NSMutableData(bytes: bytes, length: 8)
         data.appendData(packageBody!.toData())
         
         return data
@@ -200,7 +200,7 @@ struct BraceletTimeResPackageBody: BraceletPackageBodyProtocol {
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        var timescamp: Int = Int(time.timeIntervalSince1970)
+        let timescamp: Int = Int(time.timeIntervalSince1970)
         bytes[2] = UInt8(((timescamp >> 24) & 0xff))
         bytes[3] = UInt8(((timescamp >> 16) & 0xff))
         bytes[4] = UInt8(((timescamp >> 8) & 0xff))
@@ -239,7 +239,7 @@ struct BraceletSportReqPackageBody: BraceletPackageBodyProtocol {
         start_time = NSDate(timeIntervalSince1970: NSTimeInterval(startTimeScamp))
         
         info = []
-        for n in 0...step_count-1 {
+        for _ in 0...step_count-1 {
             var endTime: UInt32 = 0
             var steps: UInt16 = 0
             var stepsType: UInt16 = 0

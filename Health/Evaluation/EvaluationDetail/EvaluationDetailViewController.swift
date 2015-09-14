@@ -93,7 +93,7 @@ class EvaluationDetailViewController: UIViewController {
     }
     */
     @IBAction func physiqueButtonPressed(sender: AnyObject) {
-        var controller = EvaluationPhysiqueDetailViewController()
+        let controller = EvaluationPhysiqueDetailViewController()
         controller.physique = data?.physique
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -141,7 +141,7 @@ extension EvaluationDetailViewController {
         var earlyWarningCount: Int = 0
         
         
-        var allStatus: [ScaleResult.ValueStatus] = [
+        let allStatus: [ScaleResult.ValueStatus] = [
             data!.weightStatus,
             data!.proteinWeightStatus,
             data!.boneWeightStatus,
@@ -290,7 +290,7 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         if indexPath.section == 0 {
             let cellId = "EvaluationDetailTableViewCell"
             
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
             
             if cell == nil {
                 cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
@@ -305,7 +305,7 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         }
         else {
             let cellId = "EvaluationDetailTableViewDataCell"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
             
             if cell == nil {
                 cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)

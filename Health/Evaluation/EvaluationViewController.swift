@@ -86,7 +86,7 @@ class EvaluationViewController: UIViewController {
     
     @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
         
-        var detailController = EvaluationDetailViewController()
+        let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
@@ -103,7 +103,7 @@ class EvaluationViewController: UIViewController {
     // MARK: - connectDeviceView Response Method
     @IBAction func startEvaluationPressed(sender: AnyObject) {
         
-        var detailController = EvaluationDetailViewController()
+        let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
@@ -121,7 +121,7 @@ class EvaluationViewController: UIViewController {
     
     @IBAction func manualInputDataCommitPressed(sender: AnyObject) {
         
-        self.pushToDetailEvaluationViewController(EvaluationManager.shareInstance().startScaleInputData(self.weightInputDataTextField.text.floatValue, waterContent: self.waterContentInputDataTextField.text.floatValue, visceralFatContent: self.visceralFatContentInputDataTextField.text.floatValue))
+        self.pushToDetailEvaluationViewController(EvaluationManager.shareInstance().startScaleInputData(self.weightInputDataTextField.text!.floatValue, waterContent: self.waterContentInputDataTextField.text!.floatValue, visceralFatContent: self.visceralFatContentInputDataTextField.text!.floatValue))
         showMainView()
     }
     
@@ -151,7 +151,7 @@ class EvaluationViewController: UIViewController {
     }
     
     func pushToDetailEvaluationViewController(data: ScaleResult) {
-        var detailController = EvaluationDetailViewController()
+        let detailController = EvaluationDetailViewController()
         detailController.data = data
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
     }

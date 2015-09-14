@@ -43,9 +43,9 @@ class AdsReqeustTests: XCTestCase {
             XCTAssertNil(error, "test_AdsRequest_launchAppAds_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_AdsRequest_activityAds_isSucess() {
@@ -59,9 +59,9 @@ class AdsReqeustTests: XCTestCase {
             XCTAssertNil(error, "test_AdsRequest_activityAds_isSucess 错误: \(error?.description)")
         })
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
         
         
     }

@@ -13,7 +13,7 @@ struct UserRequest {
     // 上传头像
     static func uploadHeadIcon(userId: UInt8, imageURL: NSURL, complete: ((error: NSError?) -> Void)) {
         let urlStr = Request.requestURL("")
-        var params = ["userId": "\(userId)"]
+        let params = ["userId": "\(userId)"]
         
         Request.startWithRequest(urlStr, method: "POST", params: params) { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
@@ -54,7 +54,7 @@ struct UserRequest {
         
         if imageURL != nil {
             let data = NSData(contentsOfFile: imageURL!)
-            if let base64String = data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0)) {
+            if let base64String = data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0)) {
                 params["head"] = base64String
             }
         }
