@@ -80,12 +80,9 @@ struct LoginManager {
     }
     
     // 获取验证码
-    static func queryCaptchas(phone: String, complete: ((String?, NSError?) -> Void)?) {
-        LoginRequest.queryCaptchas(phone, complete: { (captchas: String?, error: NSError?) -> Void in
-            
-            if complete != nil {
-                complete!(captchas,error)
-            }
+    static func queryCaptchas(phone: String, complete: ((NSError?) -> Void)?) {
+        LoginRequest.queryCaptchas(phone, complete: { (error: NSError?) -> Void in
+            complete?(error)
         })
     }
     

@@ -17,6 +17,7 @@ class BraceletManager: NSObject {
     private var currentFormate: BraceletBlueToothFormats?
     
     private var timeoutTimer: NSTimer?
+    private var results: [BraceletResult] = []
     
     private var syncDate: NSDate?
     private var syncComplete: (([BraceletResult], NSError?) -> Void)?
@@ -57,6 +58,7 @@ class BraceletManager: NSObject {
 extension BraceletManager: BraceletProtocol {
     func syncData(date: NSDate, syncComplete: (([BraceletResult], NSError?) -> Void)) {
         syncDate = date
+        results.removeAll(keepCapacity: true)
         self.syncComplete = syncComplete
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
         timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("scanTimeout"), userInfo: nil, repeats: false)
@@ -203,9 +205,14 @@ extension BraceletManager {
                     // 收到运动数据 可以结束了?
                     println("\(currentFormate)")
                     
-                    syncComplete?(dealSuccessData(), nil)
+                    results += dealSuccessData()
                     
-                    clearWork()
+                    // 发送运动反馈包
+                    var formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.sportCmdId, time: NSDate())
+                    
+//                    syncComplete?(dealSuccessData(), nil)
+//                    
+//                    clearWork()
                 }
                 else if currentFormate!.packageBody?.cmd_type == 13 {
                     

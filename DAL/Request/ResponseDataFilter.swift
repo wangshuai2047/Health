@@ -15,24 +15,26 @@ extension Request {
         var err : NSError?
         let result : NSDictionary? = NSJSONSerialization.JSONObjectWithData(data,  options: NSJSONReadingOptions(0), error: &err) as? NSDictionary
         
+        let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+        let message: AnyObject? = result?.valueForKey("errormsg")
+        println("responseJson", jsonStr)
+        println("responseStr: \(result) \(message)")
+        
         if let jsonObj = result {
             
-            if let code = result?.valueForKey("code") as? String {
-                
-                if let codeNumber = code.toInt() {
-                    if codeNumber == 0 {
-                        // 请求成功
-                        return (result, nil)
+            if let code = result?.valueForKey("code") as? Int {
+                if code == 10000 {
+                    // 请求成功
+                    return (result, nil)
+                }
+                else {
+                    // 请求失败
+                    if let msg = result?.valueForKey("errormsg") as? String {
+                        err = NSError(domain: "Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : msg])
                     }
-                    else {
-                        // 请求失败
-                        if let msg = result?.valueForKey("errormsg") as? String {
-                            err = NSError(domain: "Server logic error", code: codeNumber, userInfo: [NSLocalizedDescriptionKey : msg])
-                        }
-                        else
-                        {
-                            err = NSError(domain: "Server logic error", code: codeNumber, userInfo: [NSLocalizedDescriptionKey : "Server not return the detail error message"])
-                        }
+                    else
+                    {
+                        err = NSError(domain: "Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : "Server not return the detail error message"])
                     }
                 }
             }

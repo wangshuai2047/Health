@@ -12,7 +12,7 @@ struct EvaluationRequest {
     
     // 获取评测数据
     static func queryEvaluationDatas(userId: Int, startDate: NSDate, endDate: NSDate, complete : ((datas: [[String: AnyObject]]? , NSError?) -> Void)) {
-        RequestType.QueryEvaluationDatas.startRequest(["userId": userId, "startTimescamp" : startDate.secondTimeInteval(), "endTimescamp" : endDate.secondTimeInteval()], completionHandler: { (data, response, error) -> Void in
+        RequestType.QueryEvaluationDatas.startRequest(["userId": userId, "startTimestamp" : startDate.secondTimeInteval(), "endTimestamp" : endDate.secondTimeInteval()], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
@@ -34,9 +34,9 @@ struct EvaluationRequest {
     // 上传评测数据
     static func uploadEvaluationDatas(datas: [[String: AnyObject]]? , complete: ((info: [[String: AnyObject]]?, NSError?) -> Void)) {
         
-        let jsonStr = NSString(data: NSJSONSerialization.dataWithJSONObject(datas!, options: NSJSONWritingOptions.PrettyPrinted, error: nil)!, encoding: NSUTF8StringEncoding)
+//        let jsonStr = NSString(data: NSJSONSerialization.dataWithJSONObject(datas!, options: NSJSONWritingOptions.PrettyPrinted, error: nil)!, encoding: NSUTF8StringEncoding)
         
-        RequestType.UploadEvaluationDatas.startRequest(["datas": jsonStr!], completionHandler: { (data, response, error) -> Void in
+        RequestType.UploadEvaluationDatas.startRequest(["datas": datas!], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
                 complete(info: nil, err)

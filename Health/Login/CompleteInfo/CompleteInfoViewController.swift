@@ -169,6 +169,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
                 var picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
+                picker.videoQuality = UIImagePickerControllerQualityType.TypeLow
                 picker.sourceType = UIImagePickerControllerSourceType.Camera
                 self.navigationController?.presentViewController(picker, animated: true, completion: nil)
             }
@@ -182,6 +183,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
                 var picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
+                picker.videoQuality = UIImagePickerControllerQualityType.TypeLow
                 picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
                 self.navigationController?.presentViewController(picker, animated: true, completion: nil)
             }

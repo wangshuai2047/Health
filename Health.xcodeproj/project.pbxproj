@@ -55,6 +55,8 @@
 		E04256D01BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
 		E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
+		E044718D1BA52F1F006EF2FD /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = E044718C1BA52F1F006EF2FD /* 11111.png */; };
+		E044718E1BA52F1F006EF2FD /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = E044718C1BA52F1F006EF2FD /* 11111.png */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -244,6 +246,7 @@
 		E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletBlueToothFormats.swift; path = DAL/Bracelet/BraceletBlueToothFormats.swift; sourceTree = SOURCE_ROOT; };
 		E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewModel.swift; sourceTree = "<group>"; };
+		E044718C1BA52F1F006EF2FD /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 11111.png; path = ../../../../../Desktop/11111.png; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
@@ -823,6 +826,7 @@
 		E09EC8A91B7E3B5000CC07E3 = {
 			isa = PBXGroup;
 			children = (
+				E044718C1BA52F1F006EF2FD /* 11111.png */,
 				E09EC8DC1B7E3FCC00CC07E3 /* BLL */,
 				E09EC8DE1B7E3FCC00CC07E3 /* DAL */,
 				E0DD140D1B9179330079F957 /* Extend */,
@@ -1208,6 +1212,7 @@
 				E09EC8C71B7E3B5000CC07E3 /* LaunchScreen.xib in Resources */,
 				E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */,
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
+				E044718D1BA52F1F006EF2FD /* 11111.png in Resources */,
 				E060CD741B84012D0002AEE7 /* ShareSDK.bundle in Resources */,
 				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
@@ -1232,6 +1237,7 @@
 				E060CD751B84012D0002AEE7 /* ShareSDK.bundle in Resources */,
 				E060CD6B1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
+				E044718E1BA52F1F006EF2FD /* 11111.png in Resources */,
 				E060CD7D1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
 				E060CD6F1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
 			);

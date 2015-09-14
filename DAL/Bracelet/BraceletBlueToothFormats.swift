@@ -25,13 +25,22 @@ struct BraceletBlueToothFormats {
     
     init(cmdId: UInt8, time: NSDate) {
         if cmdId == BraceletBlueToothFormats.responseTimeCmdId {
+            // 现在只有时间
+            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
             
+            packageBody = BraceletTimeResPackageBody(time: time)
+        }
+        else if cmdId == BraceletBlueToothFormats.sportCmdId {
+            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
+            packageBody = BraceletSportResPackageBody()
+        }
+        else {
+            // 现在只有时间
+            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
+            
+            packageBody = BraceletTimeResPackageBody(time: time)
         }
         
-        // 现在只有时间
-        packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
-        
-        packageBody = BraceletTimeResPackageBody(time: time)
     }
     
     mutating func setSyncTime(date: NSDate) {

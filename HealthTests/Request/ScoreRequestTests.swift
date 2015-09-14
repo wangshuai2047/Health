@@ -38,11 +38,11 @@ class ScoreRequestTests: XCTestCase {
         
         ScoreRequest.queryScore(1234, complete: { (score: Float?, error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error?.description)")
         })
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
     }
 
@@ -51,11 +51,11 @@ class ScoreRequestTests: XCTestCase {
         
         ScoreRequest.share(1234, type: 1, platform: ThirdPlatformType.Weibo) { (error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error?.description)")
         }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
     }
 }

@@ -37,12 +37,12 @@ struct UserRequest {
     }
     
     // 完善个人资料
-    static func completeUserInfo(userId: Int, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, imageURL: NSURL?, complete: ((error: NSError?) -> Void)) {
+    static func completeUserInfo(userId: Int, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, imageURL: String?, complete: ((error: NSError?) -> Void)) {
         
-        complete(error: nil)
-        return
+//        complete(error: nil)
+//        return
         
-        var params = ["userId": "\(userId)", "gender": "\(gender)", "height": "\(height)", "age": "\(age)", "name": "\(name)"]
+        var params = ["userId": NSNumber(integer: userId), "gender": NSNumber(integer: gender ? 1 : 2), "height": NSNumber(unsignedChar: height), "age": NSNumber(unsignedChar: age), "name": name]
         
         if phone != nil {
             params["phone"] = phone!
@@ -53,7 +53,8 @@ struct UserRequest {
         }
         
         if imageURL != nil {
-            if let base64String = NSData(contentsOfURL: imageURL!)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0)) {
+            let data = NSData(contentsOfFile: imageURL!)
+            if let base64String = data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0)) {
                 params["head"] = base64String
             }
         }
@@ -94,8 +95,8 @@ struct UserRequest {
         })
     }
     
-    static func createUser(name: String, height: Int, age: Int, gender: Int, complete: ((userId: Int?, NSError?) -> Void)) {
-        RequestType.CreateUser.startRequest(["name" : name, "height" : height, "age" : age, "gender" : gender], completionHandler: { (data, response, error) -> Void in
+    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool, complete: ((userId: Int?, NSError?) -> Void)) {
+        RequestType.CreateUser.startRequest(["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
@@ -114,8 +115,8 @@ struct UserRequest {
         })
     }
     
-    static func deleteUser(userId: Int, complete: ((NSError?) -> Void)) {
-        RequestType.DeleteUser.startRequest(["userId" : userId], completionHandler: { (data, response, error) -> Void in
+    static func deleteUser(pid: Int, userId: Int, complete: ((NSError?) -> Void)) {
+        RequestType.DeleteUser.startRequest(["userId" : userId, "pid": pid], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
                 complete(err)

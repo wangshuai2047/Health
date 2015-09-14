@@ -98,18 +98,6 @@ class EvaluationViewController: UIViewController {
                 Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }
-        
-        
-//        EvaluationManager.shareInstance().scan { [unowned self] (error) -> Void in
-//            if error == nil {
-//                println("成功扫描到设备")
-//                self.showView(self.connectDeviceView)
-//            }
-//            else {
-//                
-//                UIAlertView(title: "扫描失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
-//            }
-//        }
     }
     
     // MARK: - connectDeviceView Response Method

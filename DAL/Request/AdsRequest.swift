@@ -28,7 +28,7 @@ struct AdsRequest {
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(ad: RequestLoginAdModel(imageURL: jsonObj!.valueForKey("imageurl") as! String, linkURL: jsonObj!.valueForKey("targeturl") as! String), error: nil)
+                complete(ad: RequestLoginAdModel(imageURL: jsonObj!.valueForKey("imageURL") as! String, linkURL: jsonObj!.valueForKey("targetURL") as! String), error: nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

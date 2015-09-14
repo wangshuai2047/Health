@@ -36,13 +36,13 @@ class GoalRequestTests: XCTestCase {
     func test_goalRequest_queryDatas_isSucess() {
         let expectation = expectationWithDescription("test_goalRequest_queryDatas_isSucess")
         
-        GoalRequest.queryGoalDatas(1234, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate()) { (datas, error: NSError?) -> Void in
+        GoalRequest.queryGoalDatas(10, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate()) { (datas, error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_goalRequest_queryDatas_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_goalRequest_queryDatas_isSucess 错误: \(error?.description)")
         }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
     }
     
@@ -52,33 +52,41 @@ class GoalRequestTests: XCTestCase {
         var datas: [[String : AnyObject]] = []
         
         datas.append([
-            "userId" : 1234,
+            "userId" : 10,
             "steps" : 5,
             "stepsType" : 10,
             "startTime" : NSDate(timeIntervalSinceNow: -30).secondTimeInteval(),
             "endTime" : NSDate().secondTimeInteval()
             ])
         
+        datas.append([
+            "userId" : 10,
+            "steps" : 5,
+            "stepsType" : 9,
+            "startTime" : NSDate(timeIntervalSinceNow: -90).secondTimeInteval(),
+            "endTime" : NSDate(timeIntervalSinceNow: -60).secondTimeInteval()
+            ])
+        
         GoalRequest.uploadGoalDatas(datas) { (info, error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_goalRequest_uploadDatas_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_goalRequest_uploadDatas_isSucess 错误: \(error?.description)")
         }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
     }
     
     func test_goalRequest_deleteData_isSucess() {
         let expectation = expectationWithDescription("test_goalRequest_deleteData_isSucess")
         
-        GoalRequest.deleteGoalData("12345", userId: 1234) { (error: NSError?) -> Void in
+        GoalRequest.deleteGoalData("1", userId: 10) { (error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_goalRequest_deleteData_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_goalRequest_deleteData_isSucess 错误: \(error?.description)")
         }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
     }
     
@@ -89,17 +97,22 @@ class GoalRequestTests: XCTestCase {
         var datas: [[String : AnyObject]] = []
         
         datas.append([
-            "userId" : 1234,
-            "dataId" : "123"
+            "userId" : 10,
+            "dataId" : "3"
+            ])
+        
+        datas.append([
+            "userId" : 10,
+            "dataId" : "2"
             ])
         
         GoalRequest.deleteGoalDatas(datas) { (error: NSError?) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_goalRequest_deleteDatas_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_goalRequest_deleteDatas_isSucess 错误: \(error?.description)")
         }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
         
         

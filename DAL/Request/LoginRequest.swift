@@ -65,19 +65,19 @@ struct  LoginRequest {
     }
     
     // 获取验证码
-    static func queryCaptchas(phone: String, complete: ((String?, NSError?) -> Void)) {
+    static func queryCaptchas(phone: String, complete: ((NSError?) -> Void)) {
         
         RequestType.QueryCaptchas.startRequest(["phone" : phone], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(nil, err)
+                complete(err)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(jsonObj?["authCode"] as? String, nil)
+                complete( nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif
@@ -88,7 +88,7 @@ struct  LoginRequest {
     // 第三方登录
     static func loginThirdPlatform(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((userInfo: [String: AnyObject]?, NSError?) -> Void)) {
         
-        RequestType.LoginThirdPlatform.startRequest(["name": name, "headURL": headURLStr, "openId": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+        RequestType.LoginThirdPlatform.startRequest(["name": name, "headurl": headURLStr, "openid": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {

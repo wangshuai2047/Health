@@ -47,7 +47,7 @@ struct Request {
 extension Request {
     
     static func requestPHPURL() -> String {
-        return "http://123.56.131.212/web/"
+        return "http://123.56.131.212/api/index.php"
     }
     
     static func startWithRequest(requestType: RequestType, params: [String : AnyObject], completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
@@ -73,19 +73,22 @@ extension Request {
             assert(true, error!.description)
         }
         
-        let key = "fjfjfjfjfjfjfjfjfjfjfjfjfjfjfjer"
+        let key = "04c67a23b87bc349cfdf8fa59e980723"
         let timeInterval = NSDate().timeIntervalSince1970
-        let md5Key = String(format: "%.f%@", arguments: [timeInterval, key]).md5Value
+        let md5Key = String(format: "%i%@", arguments: [Int(timeInterval), key]).md5Value
         
         let httpBodyInfo = [
             "header" : [
-                "timescamp" : timeInterval,
+                "timestamp" : Int(timeInterval),
                 "key" : md5Key,
                 "partnerCode" : partnerCode,
                 "encryption" : "md5"
             ],
             "body" : params
         ]
+        
+        println("request HTTPBody \(httpBodyInfo)")
+        
         
         let httpBodyData = NSJSONSerialization.dataWithJSONObject(httpBodyInfo, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
         if error != nil {

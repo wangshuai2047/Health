@@ -13,19 +13,19 @@ enum RequestType: String {
     case QueryCaptchas = "100010"
     case LoginThirdPlatform = "100003"
     
-    case CreateUser = "100004"
-    case DeleteUser = "1000061"
+    case CreateUser = "100009"
+    case DeleteUser = "100016"
     case CompleteUserInfo = "100005"
     
-    case QueryEvaluationDatas = "1000071"
+    case QueryEvaluationDatas = "100023"
     case UploadEvaluationDatas = "100013"
     case DeleteEvaluationData = "100014"
     case DeleteEvaluationDatas = "100015"
     
-    case QueryGoalDatas = "10001011"
-    case UploadGoalDatas = "1000111"
-    case DeleteGoalData = "1000112"
-    case DeleteGoalDatas = "10001123"
+    case QueryGoalDatas = "100020"
+    case UploadGoalDatas = "100019"
+    case DeleteGoalData = "100021"
+    case DeleteGoalDatas = "100024"
     
     case QueryScore = "1000131"
     case Share = "1000141"

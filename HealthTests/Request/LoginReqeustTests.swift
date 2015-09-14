@@ -33,25 +33,35 @@ class LoginReqeustTests: XCTestCase {
         }
     }
     
-    func test_loginRequest_loginAndQueryCaptchas_isSucess() {
+    func test_loginRequest_queryCaptchas_isSucess() {
         
-        let expectation = expectationWithDescription("test_loginRequest_loginAndQueryCaptchas_isSucess")
+        let expectation = expectationWithDescription("test_loginRequest_queryCaptchas_isSucess")
         
         let phone = "18610729420"
         
-        LoginRequest.queryCaptchas(phone, complete: { (captchas: String?, error: NSError?) -> Void in
-            
-            XCTAssertNotNil(error, "获取验证码错误: \(error!.description)")
-            
-            LoginRequest.login(phone, captchas: captchas!) { (userInfo, error: NSError?) -> Void in
-                expectation.fulfill()
-                
-                XCTAssertNotNil(error, "登录错误: \(error!.description)")
-            }
+        LoginRequest.queryCaptchas(phone, complete: { (error: NSError?) -> Void in
+            expectation.fulfill()
+            XCTAssertNil(error, "获取验证码错误: \(error?.description)")
         })
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
+        })
+    }
+    
+    func test_loginRequest_login_isSuccess() {
+        let expectation = expectationWithDescription("test_loginRequest_login_isSuccess")
+        
+        let phone = "18610729420"
+        let captchas = "068343"
+        LoginRequest.login(phone, captchas: captchas) { (userInfo, error: NSError?) -> Void in
+            expectation.fulfill()
+            
+            XCTAssertNil(error, "登录错误: \(error?.description)")
+        }
+        
+        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
+//            XCTFail("请求超时")
         })
     }
     
@@ -61,11 +71,11 @@ class LoginReqeustTests: XCTestCase {
         LoginRequest.loginThirdPlatform("亚霖", headURLStr: "http://www.baidu.com", openId: "13423456", type: ThirdPlatformType.QQ) { (userInfo, error: NSError?) -> Void in
             expectation.fulfill()
             
-             XCTAssertNotNil(error, "登录第三方平台错误: \(error!.description)")
+             XCTAssertNil(error, "登录第三方平台错误: \(error?.description)")
         }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
     }
     

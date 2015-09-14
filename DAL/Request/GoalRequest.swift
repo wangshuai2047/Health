@@ -11,7 +11,7 @@ import Foundation
 struct GoalRequest {
     // 获取评测数据
     static func queryGoalDatas(userId: Int, startDate: NSDate, endDate: NSDate, complete : ((datas: [[String: AnyObject]]? , NSError?) -> Void)) {
-        RequestType.QueryGoalDatas.startRequest(["userId": userId, "startTimescamp" : startDate.secondTimeInteval(), "endTimescamp" : endDate.secondTimeInteval()], completionHandler: { (data, response, error) -> Void in
+        RequestType.QueryGoalDatas.startRequest(["userId": userId, "startTimestamp" : startDate.secondTimeInteval(), "endTimestamp" : endDate.secondTimeInteval()], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
@@ -33,9 +33,9 @@ struct GoalRequest {
     // 上传评测数据
     static func uploadGoalDatas(datas: [[String: AnyObject]]? , complete: ((info: [[String: AnyObject]]?, NSError?) -> Void)) {
         
-        let jsonStr = NSString(data: NSJSONSerialization.dataWithJSONObject(datas!, options: NSJSONWritingOptions.PrettyPrinted, error: nil)!, encoding: NSUTF8StringEncoding)
+//        let jsonStr = NSString(data: NSJSONSerialization.dataWithJSONObject(datas!, options: NSJSONWritingOptions.PrettyPrinted, error: nil)!, encoding: NSUTF8StringEncoding)
         
-        RequestType.UploadGoalDatas.startRequest(["datas": jsonStr!], completionHandler: { (data, response, error) -> Void in
+        RequestType.UploadGoalDatas.startRequest(["datas": datas!], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
                 complete(info: nil, err)

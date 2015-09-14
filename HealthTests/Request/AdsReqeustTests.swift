@@ -40,27 +40,27 @@ class AdsReqeustTests: XCTestCase {
         AdsRequest.queryLaunchAds { (ad, error) -> Void in
             
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_AdsRequest_launchAppAds_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_AdsRequest_launchAppAds_isSucess 错误: \(error?.description)")
         }
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
     }
     
     func test_AdsRequest_activityAds_isSucess() {
         
-        let expectation = expectationWithDescription("")
+        let expectation = expectationWithDescription("test_AdsRequest_activityAds_isSucess")
         
-        let userId = 1234
+        let userId = 10
         
         AdsRequest.queryActivityAds(userId, complete: { (ads, error) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(error, "test_AdsRequest_activityAds_isSucess 错误: \(error!.description)")
+            XCTAssertNil(error, "test_AdsRequest_activityAds_isSucess 错误: \(error?.description)")
         })
         
         waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-            XCTFail("请求超时")
+//            XCTFail("请求超时")
         })
         
         
