@@ -590,7 +590,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaF-19-RTi" customClass="UserSelectView" customModule="Health" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="90"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="aHh-IU-kEC"/>
                                 </constraints>
@@ -626,7 +626,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" image="weightIconSelected">
-                                                <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="0.14117647707462311" green="0.67058825492858887" blue="0.90980398654937744" alpha="1" colorSpace="deviceRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="Tu8-23-09A"/>
@@ -645,7 +645,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" image="fatIconSelected">
-                                                <color key="titleColor" red="0.18556992259999999" green="1" blue="0.05936444095" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="0.68627452850341797" green="0.80000007152557373" blue="0.36078432202339172" alpha="1" colorSpace="deviceRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="kSv-xg-gb9"/>
@@ -663,8 +663,8 @@
                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected">
-                                                <color key="titleColor" red="1" green="0.048461469370000003" blue="0.043985218659999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="selected" image="waterIconSelected">
+                                                <color key="titleColor" red="0.140625" green="0.3203125" blue="0.859375" alpha="0.50196081399917603" colorSpace="deviceRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="FmB-GW-5W8"/>
@@ -682,16 +682,16 @@
                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected">
-                                                <color key="titleColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="selected" image="proteinIconSelected">
+                                                <color key="titleColor" red="0.93725496530532837" green="0.88235300779342651" blue="0.21568629145622253" alpha="1" colorSpace="deviceRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="NkY-DR-Tf7"/>
                                             </connections>
                                         </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujp-Zc-k0D">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujp-Zc-k0D" customClass="DoubleYAxisLineChart" customModule="Health">
                                             <rect key="frame" x="0.0" y="171" width="600" height="158"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="158" id="Tv8-M0-bP7"/>
                                             </constraints>
@@ -709,8 +709,8 @@
                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected">
-                                                <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="selected" image="muscleIconSelected">
+                                                <color key="titleColor" red="0.89803928136825562" green="0.60000002384185791" blue="0.17254902422428131" alpha="1" colorSpace="deviceRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="5nT-od-0XP"/>
@@ -764,6 +764,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="WwW-9s-AXh"/>
                     <connections>
+                        <outlet property="chartView" destination="Ujp-Zc-k0D" id="egk-0x-drc"/>
                         <outlet property="fatButton" destination="hRe-dp-hu6" id="0JT-M5-Wkn"/>
                         <outlet property="muscleButton" destination="GMr-3r-SgC" id="xjx-6V-TaR"/>
                         <outlet property="proteinButton" destination="bUi-Qa-hWd" id="TDd-d6-CIw"/>
@@ -796,7 +797,7 @@
                                     <constraint firstAttribute="height" constant="90" id="UiF-0n-s5t"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HU-Tg-dky">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1HU-Tg-dky">
                                 <rect key="frame" x="0.0" y="154" width="600" height="397"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bM2-ao-TzZ">
@@ -1080,7 +1081,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCU-FT-jT3">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCU-FT-jT3">
                                 <rect key="frame" x="20" y="421" width="134" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="98" id="IeR-mL-MyY"/>
@@ -1096,46 +1097,46 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-aa-2Vu">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-aa-2Vu">
                                 <rect key="frame" x="162" y="421" width="134" height="96"/>
                                 <state key="normal" image="SleepGeek">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="SleepGeekSelect"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATq-7f-rtt">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATq-7f-rtt">
                                 <rect key="frame" x="304" y="421" width="134" height="96"/>
                                 <state key="normal" image="evaluationGeek">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="evaluationGeekSelected"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7D-ki-Ekh">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7D-ki-Ekh">
                                 <rect key="frame" x="446" y="421" width="134" height="96"/>
                                 <state key="normal" image="shareGeek">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="shareGeekSelected"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不倦行者" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHE-Ow-QIL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="不倦行者" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHE-Ow-QIL">
                                 <rect key="frame" x="53" y="512" width="68" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安睡达人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTe-v4-cYp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="安睡达人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTe-v4-cYp">
                                 <rect key="frame" x="195" y="512" width="68" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评测专家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kho-i3-hj3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="评测专家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kho-i3-hj3">
                                 <rect key="frame" x="337.5" y="512.5" width="68" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享狂人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGs-sD-PM0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="分享狂人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGs-sD-PM0">
                                 <rect key="frame" x="479" y="512" width="68" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1261,7 +1262,9 @@
         <image name="fatIconSelected" width="28" height="20"/>
         <image name="goal" width="32" height="32"/>
         <image name="muscleIcon" width="26" height="28"/>
+        <image name="muscleIconSelected" width="25" height="27"/>
         <image name="proteinIcon" width="26" height="26"/>
+        <image name="proteinIconSelected" width="26" height="26"/>
         <image name="scaleTip" width="233" height="241"/>
         <image name="setting" width="32" height="32"/>
         <image name="shareGeek" width="49" height="70"/>
@@ -1270,6 +1273,7 @@
         <image name="walkGeek" width="48" height="70"/>
         <image name="walkGeekSelect" width="48" height="70"/>
         <image name="waterIcon" width="23" height="27"/>
+        <image name="waterIconSelected" width="23" height="27"/>
         <image name="weightIcon" width="28" height="29"/>
         <image name="weightIconSelected" width="28" height="29"/>
     </resources>

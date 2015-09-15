@@ -39,6 +39,7 @@ class DoubleYLineChartCell: UICollectionViewCell {
         timeLabel.text = ""
         
         drawTotalHeight = barView.frame.origin.y + barView.frame.size.height
+        print("barView.frame: \(barView.frame)")
         barViewTopConstraint.constant = drawTotalHeight!
         linePointTopConstraint.constant = drawTotalHeight!
         linePoint.alpha = 0
@@ -50,36 +51,33 @@ class DoubleYLineChartCell: UICollectionViewCell {
     }
     
     func setLeftValues(minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {
-        
         leftValues = (minValue, value, maxValue, XAxisString, color)
-        
-        
     }
     
     func setRightValues(minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {
         rightValues = (minValue, value, maxValue, XAxisString, color)
-        
-        
-        
     }
     
     func drawLeftValues() {
         
         if let (_, value, _, XAxisString, color): (Double?, Double?, Double?, String, UIColor?) = leftValues {
-            if value != nil && leftYValueRange != nil {
+            if value != nil && leftYValueRange != nil && !(leftYValueRange!.0 == 0 && leftYValueRange!.1 == 0) {
                 
                 barViewTopConstraint.constant =  topHeight(value!, minAndMax: leftYValueRange!)
                 barView.backgroundColor = color
                 timeLabel.text = XAxisString
             }
+            else {
+                barViewTopConstraint.constant =  drawTotalHeight!
+                barView.backgroundColor = color
+                timeLabel.text = XAxisString
+            }
         }
-        
-        
     }
     
     func drawRightValues() {
         if let (minValue, value, maxValue, _, color): (Double?, Double?, Double?, String, UIColor?) = rightValues {
-            if value != nil && rightYValueRange != nil {
+            if value != nil && rightYValueRange != nil && !(rightYValueRange!.0 == 0 && rightYValueRange!.1 == 0) {
                 linePoint.alpha = 1
                 linePointTopConstraint.constant = topHeight(value!, minAndMax: rightYValueRange!) - linePoint.frame.size.height/2
                 
@@ -92,21 +90,24 @@ class DoubleYLineChartCell: UICollectionViewCell {
                 
                 if minValue != nil {
                     firstPoint = CGPoint(x: 0, y: topHeight((value! - minValue!)/2 + minValue!, minAndMax: rightYValueRange!))
-                    secondPoint = CGPoint(x: self.frame.size.width/2, y: topHeight(value!, minAndMax: rightYValueRange!))
                 }
                 
                 if maxValue != nil {
-                    
-                    if firstPoint == nil {
-                        firstPoint = CGPoint(x: self.frame.size.width/2, y:topHeight(value!, minAndMax: rightYValueRange!))
-                    }
-                    
                     secondPoint = CGPoint(x: self.frame.size.width, y:topHeight((maxValue! - value!)/2 + value!, minAndMax: rightYValueRange!))
                 }
                 lineDrawView.firstPoint = firstPoint
+                lineDrawView.middlePoint = CGPoint(x: self.frame.size.width/2, y:topHeight(value!, minAndMax: rightYValueRange!))
                 lineDrawView.secondPoint = secondPoint
                 lineDrawView.height = drawTotalHeight
                 lineDrawView.color = color
+                lineDrawView.setNeedsDisplay()
+            }
+            else {
+                lineDrawView.firstPoint = CGPoint(x: 0, y: 0)
+                lineDrawView.middlePoint = CGPoint(x: 0, y: 0)
+                lineDrawView.secondPoint = CGPoint(x: 0, y: 0)
+                lineDrawView.height = 0
+                lineDrawView.color = UIColor.clearColor()
                 lineDrawView.setNeedsDisplay()
             }
         }
@@ -124,12 +125,15 @@ class DoubleYLineChartCell: UICollectionViewCell {
         drawRightValues()
     }
     
-    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+    }
 }
 
 class LineView: UIView {
     
     var firstPoint: CGPoint?
+    var middlePoint: CGPoint?
     var secondPoint: CGPoint?
     var height: CGFloat?
     var color: UIColor?
@@ -137,14 +141,17 @@ class LineView: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        if middlePoint == nil || height == nil || color == nil {
+            return
+        }
         
-        if firstPoint != nil && secondPoint != nil && height != nil && color != nil {
-            let context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()
+        if firstPoint != nil {
             
             // 画线
             CGContextSetStrokeColorWithColor(context, color!.CGColor)
             CGContextSetLineWidth(context, 1)
-            CGContextAddLines(context, [firstPoint!, secondPoint!], 2)
+            CGContextAddLines(context, [firstPoint!, middlePoint!], 2)
             CGContextDrawPath(context, CGPathDrawingMode.Stroke)
             
             // 画多边形
@@ -156,14 +163,35 @@ class LineView: UIView {
             color!.getRed(&red, green: &green, blue: &blue, alpha: nil)
             CGContextSetFillColor(context, [red, green, blue, 0.5])
             CGContextMoveToPoint(context, firstPoint!.x, firstPoint!.y)
-            CGContextAddLineToPoint(context, secondPoint!.x, secondPoint!.y)
-            CGContextAddLineToPoint(context, secondPoint!.x, height!)
+            CGContextAddLineToPoint(context, middlePoint!.x, middlePoint!.y)
+            CGContextAddLineToPoint(context, middlePoint!.x, height!)
             CGContextAddLineToPoint(context, firstPoint!.x, height!)
             CGContextClosePath(context)
             CGContextDrawPath(context, CGPathDrawingMode.FillStroke); //根据坐标绘制路径
         }
         
-        
+        if secondPoint != nil {
+            // 画线
+            CGContextSetStrokeColorWithColor(context, color!.CGColor)
+            CGContextSetLineWidth(context, 1)
+            CGContextAddLines(context, [middlePoint!, secondPoint!], 2)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            
+            // 画多边形
+            CGContextSetStrokeColorWithColor(context, UIColor.clearColor().CGColor)
+            CGContextSetLineWidth(context, 0)
+            var red: CGFloat = 0
+            var green: CGFloat = 0
+            var blue: CGFloat = 0
+            color!.getRed(&red, green: &green, blue: &blue, alpha: nil)
+            CGContextSetFillColor(context, [red, green, blue, 0.5])
+            CGContextMoveToPoint(context, middlePoint!.x, middlePoint!.y)
+            CGContextAddLineToPoint(context, secondPoint!.x, secondPoint!.y)
+            CGContextAddLineToPoint(context, secondPoint!.x, height!)
+            CGContextAddLineToPoint(context, middlePoint!.x, height!)
+            CGContextClosePath(context)
+            CGContextDrawPath(context, CGPathDrawingMode.FillStroke); //根据坐标绘制路径
+        }
     }
 }
 

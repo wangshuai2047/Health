@@ -73,9 +73,9 @@ struct LoginManager {
         LoginRequest.login(phone!, captchas: captchas!) { (userInfo: [String: AnyObject]?, error: NSError?) -> Void in
             // deal userInfo
             if error == nil {
-                if let userId = userInfo!["userId"] as? String {
+                if let userId = userInfo!["userId"] as? NSNumber {
                     print("userId\(userId)")
-                    UserData.shareInstance().userId = NSString(string: userId).integerValue
+                    UserData.shareInstance().userId = userId.integerValue
                     UserData.shareInstance().phone = phone
                 }
                 
@@ -86,7 +86,7 @@ struct LoginManager {
                 
                 if let gender = userInfo!["gender"] as? NSNumber {
                     print("gender\(gender)")
-                    UserData.shareInstance().gender = gender.boolValue
+                    UserData.shareInstance().gender = gender.integerValue == 1 ? true : false
                 }
                 
                 if let head = userInfo!["head"] as? String {
@@ -96,7 +96,7 @@ struct LoginManager {
                 
                 if let height = userInfo!["height"] as? NSNumber {
                     print("height\(height)")
-                    UserData.shareInstance().age = height.unsignedCharValue
+                    UserData.shareInstance().height = height.unsignedCharValue
                 }
                 
                 if let name = userInfo!["name"] as? String {
@@ -109,10 +109,7 @@ struct LoginManager {
                     UserData.shareInstance().organizationCode = organizationCode
                 }
             }
-            
-            if complete != nil {
-                complete!(error)
-            }
+            complete?(error)
         }
     }
     

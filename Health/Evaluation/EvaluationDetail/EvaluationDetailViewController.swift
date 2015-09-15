@@ -57,7 +57,12 @@ class EvaluationDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        refreshData()
+        if data == nil {
+            refreshAllData()
+        }
+        else {
+            refreshData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,6 +110,17 @@ class EvaluationDetailViewController: UIViewController {
 
 // MARK: - 设置界面数据
 extension EvaluationDetailViewController {
+    
+    func refreshAllData() {
+        if tableView == nil {
+            return
+        }
+        
+        viewModel.reloadData()
+        tableView.reloadData()
+        
+        self.data = viewModel.allDatas.first?.scaleResult
+    }
     
     func refreshData() {
         if data == nil || tableView == nil {

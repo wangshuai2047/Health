@@ -41,9 +41,17 @@ class DoubleYAxisLineChart: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor.clearColor()
         collectionView.collectionViewLayout = collectionLayout
-        self.addSubview(collectionView)
         
         registerCell()
+    }
+    
+    func reloadDatas() {
+        // 清除视图
+        for view in self.subviews {
+            view.removeFromSuperview()
+        }
+        
+        self.setNeedsDisplay()
     }
     
 //    override init(frame: CGRect) {
@@ -69,10 +77,16 @@ class DoubleYAxisLineChart: UIView {
         collectionView.frame = CGRect(x: YLabelWidth, y: 0, width: self.bounds.size.width - (2 * YLabelWidth), height: self.bounds.size.height)
         collectionView.dataSource = self
         collectionView.delegate = self
+        self.addSubview(collectionView)
         
         drawLeftYLabels()
         drawRightYLabels()
         collectionView.reloadData()
+        
+//        let count = dataSource!.numberOfDatas(self)
+//        if count > 8 {
+//            collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: dataSource!.numberOfDatas(self) - 1, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.Right, animated: false)
+//        }
     }
     
     func clearYLabels() {
@@ -97,6 +111,7 @@ class DoubleYAxisLineChart: UIView {
                 let YLabel = UILabel(frame: frame)
                 YLabel.text = String(format: "%.1f", arguments: [values[i]])
                 YLabel.font = UIFont.systemFontOfSize(12)
+                YLabel.textAlignment = NSTextAlignment.Center
                 if leftLabelColor != nil {
                     YLabel.textColor = leftLabelColor!
                 }
@@ -120,6 +135,7 @@ class DoubleYAxisLineChart: UIView {
                 let YLabel = UILabel(frame: frame)
                 YLabel.text = String(format: "%.1f", arguments: [values[i]])
                 YLabel.font = UIFont.systemFontOfSize(12)
+                YLabel.textAlignment = NSTextAlignment.Center
                 if rightLabelColor != nil {
                     YLabel.textColor = rightLabelColor!
                 }

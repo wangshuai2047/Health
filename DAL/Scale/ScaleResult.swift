@@ -104,6 +104,27 @@ extension ScaleResult {
         age = UserData.shareInstance().age!
         height = UserData.shareInstance().height!
     }
+    
+    func uploadInfo(timestamp: Int) -> [String: AnyObject] {
+        
+        let uploadInfo : [String: AnyObject] = [
+            
+            "userId" : self.userId,
+            "boneWeight" : self.boneWeight,
+            "boneMuscleWeight" : self.boneMuscleWeight,
+            "fatPercentage" : self.fatPercentage,
+            "fatWeight" : self.fatWeight,
+            "muscleWeight" : self.muscleWeight,
+            "proteinWeight" : self.proteinWeight,
+            "visceralFatPercentage" : self.visceralFatPercentage,
+            "waterPercentage" : self.waterPercentage,
+            "waterWeight" : self.waterWeight,
+            "weight" : self.weight,
+            "timestamp" : timestamp
+            ]
+        
+        return uploadInfo
+    }
 }
 
 // MARK: - 计算属性

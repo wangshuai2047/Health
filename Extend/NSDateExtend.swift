@@ -30,4 +30,10 @@ extension NSDate {
         dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
         return dateFormatter.stringFromDate(self)
     }
+    
+    func YYdd() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM.dd"
+        return dateFormatter.stringFromDate(self)
+    }
 }
