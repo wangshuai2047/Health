@@ -227,6 +227,7 @@ extension EvaluationDetailViewController {
     }
     
     func refreshFatData() {
+        initFatDetailView()
         fatPercentageLabel.text = "\(data!.fatPercentage)"
         fatPercentageLabel.textColor = data!.fatPercentageStatus.statusColor
         
