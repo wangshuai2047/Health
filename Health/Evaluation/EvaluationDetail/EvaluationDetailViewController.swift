@@ -107,6 +107,14 @@ class EvaluationDetailViewController: UIViewController {
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    @IBAction func deleteButtonPressed(sender: AnyObject) {
+        if data != nil {
+            EvaluationManager.shareInstance().deleteEvaluationData(data!)
+            refreshAllData()
+        }
+    }
+    
 }
 
 // MARK: - 设置界面数据
