@@ -16,6 +16,7 @@ class EvaluationDetailViewController: UIViewController {
         }
     }
     var viewModel = EvaluationDetailViewModel()
+    var isRefreshAllData: Bool = false
     
 //    @IBOutlet weak var backgroundScrollView: UIScrollView!
     @IBOutlet var detailView: UIView!
@@ -57,7 +58,7 @@ class EvaluationDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if data == nil {
+        if isRefreshAllData {
             refreshAllData()
         }
         else {

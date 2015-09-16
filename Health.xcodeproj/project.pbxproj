@@ -55,8 +55,6 @@
 		E04256D01BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
 		E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
-		E044718D1BA52F1F006EF2FD /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = E044718C1BA52F1F006EF2FD /* 11111.png */; };
-		E044718E1BA52F1F006EF2FD /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = E044718C1BA52F1F006EF2FD /* 11111.png */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -166,8 +164,6 @@
 		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; settings = {ASSET_TAGS = (); }; };
 		E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; settings = {ASSET_TAGS = (); }; };
-		E0C5885B1BA71A99000955FC /* 10_1442242649.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E0C5885A1BA71A99000955FC /* 10_1442242649.jpg */; settings = {ASSET_TAGS = (); }; };
-		E0C5885C1BA71A99000955FC /* 10_1442242649.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E0C5885A1BA71A99000955FC /* 10_1442242649.jpg */; settings = {ASSET_TAGS = (); }; };
 		E0CD63131BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63141BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
@@ -250,7 +246,6 @@
 		E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletBlueToothFormats.swift; path = DAL/Bracelet/BraceletBlueToothFormats.swift; sourceTree = SOURCE_ROOT; };
 		E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewModel.swift; sourceTree = "<group>"; };
-		E044718C1BA52F1F006EF2FD /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 11111.png; path = ../../../../../Desktop/11111.png; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
@@ -362,7 +357,6 @@
 		E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYAxisLineChart.swift; sourceTree = "<group>"; };
 		E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYLineChartCell.swift; sourceTree = "<group>"; };
 		E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleYLineChartCell.xib; sourceTree = "<group>"; };
-		E0C5885A1BA71A99000955FC /* 10_1442242649.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 10_1442242649.jpg; path = ../../../../../Desktop/10_1442242649.jpg; sourceTree = "<group>"; };
 		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E0CD63151BA2511F00477090 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
 		E0DD14021B9130480079F957 /* ScaleOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleOld.swift; sourceTree = "<group>"; };
@@ -833,8 +827,6 @@
 		E09EC8A91B7E3B5000CC07E3 = {
 			isa = PBXGroup;
 			children = (
-				E0C5885A1BA71A99000955FC /* 10_1442242649.jpg */,
-				E044718C1BA52F1F006EF2FD /* 11111.png */,
 				E09EC8DC1B7E3FCC00CC07E3 /* BLL */,
 				E09EC8DE1B7E3FCC00CC07E3 /* DAL */,
 				E0DD140D1B9179330079F957 /* Extend */,
@@ -1242,7 +1234,6 @@
 				E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */,
 				E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */,
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
-				E044718D1BA52F1F006EF2FD /* 11111.png in Resources */,
 				E060CD741B84012D0002AEE7 /* ShareSDK.bundle in Resources */,
 				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
@@ -1254,7 +1245,6 @@
 				E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */,
 				E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */,
 				E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */,
-				E0C5885B1BA71A99000955FC /* 10_1442242649.jpg in Resources */,
 				E0F9DAFB1B85488300504454 /* GUIViewController.xib in Resources */,
 				E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */,
 				E060CD6E1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
@@ -1267,9 +1257,7 @@
 			files = (
 				E060CD751B84012D0002AEE7 /* ShareSDK.bundle in Resources */,
 				E060CD6B1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
-				E0C5885C1BA71A99000955FC /* 10_1442242649.jpg in Resources */,
 				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
-				E044718E1BA52F1F006EF2FD /* 11111.png in Resources */,
 				E060CD7D1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
 				E060CD6F1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
 			);

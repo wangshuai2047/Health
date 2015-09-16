@@ -196,6 +196,6 @@ extension TrendViewController: DoubleYAxisLineChartDataSource {
     }
     
     func numberOfDatas(chart: DoubleYAxisLineChart) -> Int {
-        return viewModel.allDatas.count
+        return viewModel.weightDatas.count
     }
 }

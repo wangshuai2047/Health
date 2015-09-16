@@ -167,6 +167,7 @@ extension EvaluationViewController: UserSelectViewDelegate {
     func headButtonPressed(userId: Int) {
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        detailController.isRefreshAllData = true
     }
     
     // 点击访客
