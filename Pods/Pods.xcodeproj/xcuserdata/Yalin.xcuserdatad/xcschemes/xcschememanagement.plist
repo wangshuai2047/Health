@@ -2,19 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
-	<dict>
-		<key>Pods-SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>5F3F9AB0480D67790CDC4A24</key>
@@ -22,21 +9,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
-		<key>5F3F9AB0480D67790CDC4A24</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>6181F056E06921708759C7F2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DA165E18F2DF3EB756D7F842</key>
-=======
-		<key>6181F056E06921708759C7F2</key>
->>>>>>> hiddenFunc
 		<dict>
 			<key>primary</key>
 			<true/>

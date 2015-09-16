@@ -115,6 +115,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
         }
         
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -17,11 +17,6 @@ struct  LoginRequest {
         complete(["userId" : NSNumber(integer: 123)], nil)
         return;
         
-//        RequestType.Login.startRequest(<#params: [String : AnyObject]#>, completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
-        
-//        RequestType.Login.startRequest(["phone" : ], completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
-//        Request.startWithRequest(RequestType.Login, params: <#[String : AnyObject]#>, completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
-        
         let pushToken = "fefjewioafjaeofja"
         
         let loginUrlStr = Request.requestURL("login.ac")

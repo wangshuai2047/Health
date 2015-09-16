@@ -20,13 +20,14 @@ class TrendViewController: UIViewController {
     @IBOutlet weak var proteinButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var chartView: DoubleYAxisLineChart!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBarHidden = true
-        
+        chartView.dataSource = self
 //        let datas = viewModel.eightDaysDatas()
     }
 
@@ -40,6 +41,7 @@ class TrendViewController: UIViewController {
         
         viewModel.eightDaysDatas()
         tableView.reloadData()
+        chartView.reloadDatas()
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,12 +62,67 @@ class TrendViewController: UIViewController {
         
         if button.selected {
             button.selected = false
+            refreshSelectedData()
         }
         else {
             if selectCount() < 2 {
                 button.selected = true
+                refreshSelectedData()
             }
         }
+    }
+    
+    func refreshSelectedData() {
+        var count = 0
+        
+        viewModel.selectedTag = (nil, nil)
+        
+        if weightButton.selected {
+            viewModel.selectedTag = (weightButton.tag, nil)
+            count++
+        }
+        
+        if fatButton.selected {
+            if count == 1 {
+                viewModel.selectedTag = (viewModel.selectedTag.0, fatButton.tag)
+            }
+            else if count == 0 {
+                viewModel.selectedTag = (fatButton.tag, nil)
+                count++
+            }
+        }
+        
+        if muscleButton.selected {
+            if count == 1 {
+                viewModel.selectedTag = (viewModel.selectedTag.0, muscleButton.tag)
+            }
+            else if count == 0 {
+                viewModel.selectedTag = (muscleButton.tag, nil)
+                count++
+            }
+        }
+        
+        if waterButton.selected {
+            if count == 1 {
+                viewModel.selectedTag = (viewModel.selectedTag.0, waterButton.tag)
+            }
+            else if count == 0 {
+                viewModel.selectedTag = (waterButton.tag, nil)
+                count++
+            }
+        }
+        
+        if proteinButton.selected {
+            if count == 1 {
+                viewModel.selectedTag = (viewModel.selectedTag.0, proteinButton.tag)
+            }
+            else if count == 0 {
+                viewModel.selectedTag = (proteinButton.tag, nil)
+                count++
+            }
+        }
+        
+        self.chartView.reloadDatas()
     }
     
     func selectCount() -> Int {
@@ -112,8 +169,33 @@ extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let model: TrendCellViewModel = viewModel.allDatas[indexPath.row]
         
-        var detailController = EvaluationDetailViewController()
+        let detailController = EvaluationDetailViewController()
         detailController.data = model.scaleResult
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+    }
+}
+
+extension TrendViewController: DoubleYAxisLineChartDataSource {
+    
+    func chart(chart: DoubleYAxisLineChart, colorOfChart isLeftYAxis: Bool) -> UIColor {
+        
+        return viewModel.chartColor(isLeftYAxis)
+    }
+    
+    func chart(chart: DoubleYAxisLineChart, minAndMaxLabelDatasOfYAxis isLeftYAxis: Bool) -> (minValue: Double, maxValue: Double)? {
+        
+        if isLeftYAxis {
+            return viewModel.rangeOfSelectTag(viewModel.selectedTag.0)
+        }
+        return viewModel.rangeOfSelectTag(viewModel.selectedTag.1)
+    }
+    
+    func chart(chart: DoubleYAxisLineChart, valueOfIndex: Int) -> (Double?, Double?, String) {
+        
+        return viewModel.value(valueOfIndex)
+    }
+    
+    func numberOfDatas(chart: DoubleYAxisLineChart) -> Int {
+        return viewModel.allDatas.count
     }
 }

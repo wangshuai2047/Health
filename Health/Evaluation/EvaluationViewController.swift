@@ -38,7 +38,7 @@ class EvaluationViewController: UIViewController {
         // Do any additional setup after loading the view.\
         self.navigationController?.navigationBarHidden = true
         
-        
+        userSelectView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,7 +77,8 @@ class EvaluationViewController: UIViewController {
     }
     // MARK: - notConnectDeviceView Response Method
     @IBAction func buyDevicePressed(sender: AnyObject) {
-        
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://item.jd.com/1295110.html")!)
+        EvaluationManager.shareInstance().addTestDatas()
     }
 
     @IBAction func enterMyBodyDataPressed(sender: AnyObject) {
@@ -157,6 +158,29 @@ class EvaluationViewController: UIViewController {
     }
     
     func refreshEvaluationResultView(info: [String : AnyObject]) {
+        
+    }
+}
+
+extension EvaluationViewController: UserSelectViewDelegate {
+    // 点击人物头像
+    func headButtonPressed(userId: Int) {
+        let detailController = EvaluationDetailViewController()
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+    }
+    
+    // 点击访客
+    func visitorClicked() {
+        
+    }
+    
+    // 添加家庭成员
+    func addFamily() {
+        
+    }
+    
+    // 用户改变
+    func userChangeToUserId(userId: Int) {
         
     }
 }

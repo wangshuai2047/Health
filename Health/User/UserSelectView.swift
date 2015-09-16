@@ -67,7 +67,7 @@ class UserSelectView: UIView {
         // Drawing code
         scrollView.frame = self.bounds
         // add user
-        setUsers([(UserData.shareInstance().userId!, "", UserData.shareInstance().name!)])
+        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)])
     }
 
     // MARK: - 选择视图
@@ -83,8 +83,8 @@ class UserSelectView: UIView {
         var startCenter = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
         let padding: CGFloat = 112
         for var i = 0; i < self.users.count; i++ {
-            let (userId, headURLStr, name) = self.users[i]
-            var view = createSelectedHeadView((headURLStr, name, i))
+            let (_, headURLStr, name) = self.users[i]
+            let view = createSelectedHeadView((headURLStr, name, i))
             view.center = startCenter
             scrollView.addSubview(view)
             startCenter = CGPoint(x: startCenter.x + padding, y: startCenter.y)
@@ -108,25 +108,25 @@ class UserSelectView: UIView {
     }
     
     func createSelectedHeadView(info: (String, String, Int)) -> UIView {
-        var headView = UIView(frame: CGRectMake(0, 0, 80, self.frame.size.height))
+        let headView = UIView(frame: CGRectMake(0, 0, 80, self.frame.size.height))
         
         let (headURLStr, name, tag) = info
         
         // 头像
-        var headImageView = UIImageView(frame: CGRectMake(15, 8, 50, 50))
+        let headImageView = UIImageView(frame: CGRectMake(15, 8, 50, 50))
         headImageView.sd_setImageWithURL(NSURL(string: headURLStr), placeholderImage: UIImage(named: "defaultHead"))
         headView.addSubview(headImageView)
         headImageView.tag = headImageViewTag
         
         // 名字
-        var nameLabel = UILabel(frame: CGRectMake(0, 66, 81, 21))
+        let nameLabel = UILabel(frame: CGRectMake(0, 66, 81, 21))
         nameLabel.text = name
         nameLabel.textAlignment = NSTextAlignment.Center
         nameLabel.tag = nameLabelTag
         headView.addSubview(nameLabel)
         
         // 点击button
-        var button = UIButton(type: UIButtonType.Custom)
+        let button = UIButton(type: UIButtonType.Custom)
         button.frame = headView.bounds
         button.addTarget(self, action: Selector("selectHeadViewClick:"), forControlEvents: UIControlEvents.TouchUpInside)
         button.tag = tag
@@ -163,26 +163,25 @@ class UserSelectView: UIView {
     // MARK: - ShowView Method
     func headButtonPressed(button: UIButton) {
         
-        let (userId, _, _) = self.users[button.tag]
+        // 直接用主账户操作
+        delegate?.headButtonPressed(UserManager.mainUser.userId)
         
-        
-        delegate?.headButtonPressed(userId)
+//        let (userId, _, _) = self.users[button.tag]
+//        delegate?.headButtonPressed(userId)
     }
     
     func changePeoplePressed(button: UIButton) {
         
         // 功能暂不开放
-        return
-        
-        self.showHeadView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
-        self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
-        self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+//        self.showHeadView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
+//        self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
+//        self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
     
     func getShowViewControl() -> (UIButton, UILabel, UIButton) {
-        var headButton = showHeadView.viewWithTag(headImageViewTag) as! UIButton
-        var nameLabel = showHeadView.viewWithTag(nameLabelTag) as! UILabel
-        var changeButton = showHeadView.viewWithTag(1003) as! UIButton
+        let headButton = showHeadView.viewWithTag(headImageViewTag) as! UIButton
+        let nameLabel = showHeadView.viewWithTag(nameLabelTag) as! UILabel
+        let changeButton = showHeadView.viewWithTag(1003) as! UIButton
         
         return (headButton, nameLabel, changeButton)
     }

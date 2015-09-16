@@ -63,31 +63,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - response method
     @IBAction func loginButtonPressed(sender: UIButton?) {
         
-        if self.usernameTextField.text == nil || self.passwordTextField.text == nil {
-            UIAlertView(title: "登录失败", message: "手机号或验证码不能为空", delegate: nil, cancelButtonTitle: "确定").show()
-        }
-        else {
-            LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) { (error: NSError?) -> Void in
-                if error == nil {
-                    // 判断是否需要完善信息
-                    if LoginManager.isNeedCompleteInfo {
-                        let completeInfoController = CompleteInfoViewController()
-                        self.navigationController?.pushViewController(completeInfoController, animated: true)
-                    }
-                    else {
-                        if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                            appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
-                        }
-                    }
+        LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) { (error: NSError?) -> Void in
+            if error == nil {
+                // 判断是否需要完善信息
+                if LoginManager.isNeedCompleteInfo {
+                    let completeInfoController = CompleteInfoViewController()
+                    self.navigationController?.pushViewController(completeInfoController, animated: true)
                 }
-                else
-                {
-                    UIAlertView(title: "登录失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+                else {
+                    if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
+                    }
                 }
             }
+            else
+            {
+                UIAlertView(title: error?.domain, message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            }
         }
-        
-        
         backgroundPressed(sender)
     }
     
@@ -110,10 +103,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         reQueryCaptchasButton.enabled = false
         requeryCaptchasTimerCount = 0
         reQueryCaptchas = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("requeryCaptchasTimer"), userInfo: nil, repeats: true)
-        // (timeInterval: 1, target: self, selector: Selector("requeryCaptchasTimer"), userInfo: nil, repeats: true)
+        
+        LoginManager.queryCaptchas(self.usernameTextField.text) {[unowned self] (error: NSError?) -> Void in
+            if error != nil {
+                 UIAlertView(title: error?.domain, message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+                self.reQueryCaptchasButton.enabled = true
+                self.reQueryCaptchas?.invalidate()
+                self.reQueryCaptchasButton.setTitle("发送验证码", forState: UIControlState.Normal)
+            }
+           
+        }
     }
     
     @IBAction func mobileChanged(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "tel://400-880-1089")!)
     }
     
     // MARK: - KeyboardNotification
