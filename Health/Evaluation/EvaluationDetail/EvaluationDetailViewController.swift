@@ -58,12 +58,20 @@ class EvaluationDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
         if isRefreshAllData {
             refreshAllData()
         }
         else {
             refreshData()
         }
+        
+        self.view.setNeedsDisplay()
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,15 +87,21 @@ class EvaluationDetailViewController: UIViewController {
     @IBOutlet weak var fatPercentageLeanLabelRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var fatPercentageTooHighLabelLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var fatPercentageRulerImageView: UIImageView!
+    @IBOutlet weak var fatPercentageRulerMarkImageView: UIImageView!
     
     func initFatDetailView() {
         let rulerWidth = fatPercentageRulerImageView.frame.size.width
         
-        fatPercentageLowLabelConstraint.constant = rulerWidth / 3 - 18
-        fatPercentageHighLabelLeftConstraint.constant = rulerWidth / 3 - 18
+        fatPercentageLowLabelConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
+        fatPercentageHighLabelLeftConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
         
         fatPercentageLeanLabelRightConstraint.constant = rulerWidth / 3 / 2
         fatPercentageTooHighLabelLeftConstraint.constant = rulerWidth / 3 / 2
+        
+        let minValue = data!.fatPercentageRange.0 - data!.fatPercentageRange.1 + data!.fatPercentageRange.0
+        let maxValue = data!.fatPercentageRange.1 + data!.fatPercentageRange.1 - data!.fatPercentageRange.0
+        let value = data!.fatPercentage - minValue
+        fatPercentageMarkImageViewLeftConstraint.constant = rulerWidth * CGFloat(value / (maxValue - minValue)) - fatPercentageRulerMarkImageView.frame.size.width/2
     }
     /*
     // MARK: - Navigation
@@ -209,6 +223,7 @@ extension EvaluationDetailViewController {
         
         
         let font = UIFont.systemFontOfSize(15)
+        evaluationDescriptionLabel.clear()
         evaluationDescriptionLabel.append("您的体型为", font: font, color: UIColor.grayColor())
         evaluationDescriptionLabel.append("\(data!.physique.description)", font: font, color: deepBlue)
         evaluationDescriptionLabel.append("。您的得分击败了", font: font, color: UIColor.grayColor())
@@ -243,10 +258,23 @@ extension EvaluationDetailViewController {
         fatPercentageHighLabel.text = "\(data!.fatPercentageRange.1)%"
         fatPercentageLowLabel.text = "\(data!.fatPercentageRange.0)%"
         
+        fatPercentageDescriptionLabel.clear()
         fatPercentageDescriptionLabel.append("标准体脂率为", font: nil, color: UIColor.grayColor())
-        fatPercentageDescriptionLabel.append("21.6%", font: nil, color: UIColor.greenColor())
-        fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
-        fatPercentageDescriptionLabel.append("1.33kg", font: nil, color: UIColor.greenColor())
+        fatPercentageDescriptionLabel.append("\(data!.standardFatPercentage)%", font: nil, color: UIColor.greenColor())
+        
+        if data!.standardFatPercentage > data!.fatPercentage {
+            // 增肥
+            fatPercentageDescriptionLabel.append("还需增加", font: nil, color: UIColor.grayColor())
+            
+            fatPercentageDescriptionLabel.append("\(data!.weight * (data!.standardFatPercentage - data!.fatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
+        }
+        else {
+            // 减肥
+            fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
+            fatPercentageDescriptionLabel.append("\(data!.weight * (data!.fatPercentage - data!.standardFatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
+            
+        }
+        
         fatPercentageDescriptionLabel.append("脂肪", font: nil, color: UIColor.grayColor())
     }
     

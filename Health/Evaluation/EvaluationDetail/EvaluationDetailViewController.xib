@@ -23,6 +23,7 @@
                 <outlet property="fatPercentageLowLabelConstraint" destination="RFk-42-03m" id="0rr-hg-bxy"/>
                 <outlet property="fatPercentageMarkImageViewLeftConstraint" destination="xEs-AM-uaH" id="Xez-qw-gWL"/>
                 <outlet property="fatPercentageRulerImageView" destination="O6R-G8-fDn" id="c1U-Gf-cI4"/>
+                <outlet property="fatPercentageRulerMarkImageView" destination="IgK-Yg-u04" id="FKY-Lu-93a"/>
                 <outlet property="fatPercentageTooHighLabelLeftConstraint" destination="sFc-VI-qlZ" id="TUT-Dp-nko"/>
                 <outlet property="fatWeightLabel" destination="hEI-W2-nnk" id="uFb-ke-7a8"/>
                 <outlet property="fattyLiverLabel" destination="UgD-On-0Mf" id="lfj-Vy-eu4"/>
@@ -288,7 +289,7 @@
                                 <constraint firstAttribute="height" constant="24" id="WlC-aq-n12"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏瘦" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBw-sR-RX5">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏瘦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBw-sR-RX5">
                             <rect key="frame" x="152" y="51" width="35" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="X7o-7d-AnL"/>
@@ -298,7 +299,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正常" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLm-kG-0h6">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正常" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLm-kG-0h6">
                             <rect key="frame" x="266" y="51" width="35" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="kyz-Xr-XFK"/>
@@ -308,7 +309,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏高" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qh3-fx-oS2">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏高" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qh3-fx-oS2">
                             <rect key="frame" x="382" y="51" width="35" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="C61-9M-HPX"/>
@@ -318,7 +319,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏瘦" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAf-ju-taU">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏瘦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAf-ju-taU">
                             <rect key="frame" x="79" y="8" width="30" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="8tt-FV-zch"/>
@@ -333,7 +334,7 @@
                                 </mask>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏瘦" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-Cf-Who">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏瘦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-Cf-Who">
                             <rect key="frame" x="209" y="8" width="30" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="35" id="8vB-WE-Faq"/>
@@ -990,9 +991,9 @@
                     <exclude reference="CuS-Vd-CFE"/>
                     <exclude reference="J2M-FG-pRD"/>
                     <exclude reference="uot-wS-FbS"/>
-                    <exclude reference="OUP-rn-3HI"/>
                     <exclude reference="9zg-Wl-Msi"/>
                     <exclude reference="oxM-nd-hQG"/>
+                    <exclude reference="OUP-rn-3HI"/>
                     <exclude reference="gbF-7c-0zC"/>
                     <exclude reference="aJM-J8-YXL"/>
                     <exclude reference="wob-oS-Ya3"/>

@@ -39,7 +39,7 @@ class DoubleYLineChartCell: UICollectionViewCell {
         timeLabel.text = ""
         
         drawTotalHeight = barView.frame.origin.y + barView.frame.size.height
-        print("barView.frame: \(barView.frame)")
+//        print("barView.frame: \(barView.frame)")
         barViewTopConstraint.constant = drawTotalHeight!
         linePointTopConstraint.constant = drawTotalHeight!
         linePoint.alpha = 0
