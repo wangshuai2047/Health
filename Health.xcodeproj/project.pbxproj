@@ -135,6 +135,8 @@
 		E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
 		E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09EC8E91B7E406B00CC07E3 /* CoreData.framework */; };
+		E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; settings = {ASSET_TAGS = (); }; };
+		E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		E09EC8B81B7E3B5000CC07E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */; };
 		E09EC8C21B7E3B5000CC07E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E09EC8C01B7E3B5000CC07E3 /* Main.storyboard */; };
 		E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E09EC8C31B7E3B5000CC07E3 /* Images.xcassets */; };
@@ -333,6 +335,7 @@
 		E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteOrganizationDataView.swift; sourceTree = "<group>"; };
 		E08B32A21B85A9CC0040ADE7 /* CompleteInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteInfoViewController.swift; sourceTree = "<group>"; };
 		E08B32A31B85A9CC0040ADE7 /* CompleteInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompleteInfoViewController.xib; sourceTree = "<group>"; };
+		E09588971BA99E0100033179 /* GoalViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalViewModel.swift; path = Health/Goal/GoalViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E09EC8B21B7E3B5000CC07E3 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E09EC8B61B7E3B5000CC07E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -714,6 +717,7 @@
 				E0F9DB0D1B854B9900504454 /* Detail */,
 				E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */,
 				E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */,
+				E09588971BA99E0100033179 /* GoalViewModel.swift */,
 			);
 			name = Goal;
 			path = BLL/Goal;
@@ -1344,6 +1348,7 @@
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
+				E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */,
 				E05B1A301B8E028900B37F1C /* Alert.swift in Sources */,
 				E060CD111B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
@@ -1404,6 +1409,7 @@
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
 				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
+				E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
 				E0CD63171BA2511F00477090 /* UserDBData.swift in Sources */,

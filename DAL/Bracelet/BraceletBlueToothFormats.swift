@@ -24,6 +24,8 @@ struct BraceletBlueToothFormats {
     var responseTime: NSDate?
     
     init(cmdId: UInt8, time: NSDate) {
+        
+        // 现在只有时间
         if cmdId == BraceletBlueToothFormats.responseTimeCmdId {
             // 现在只有时间
             packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
@@ -31,7 +33,7 @@ struct BraceletBlueToothFormats {
             packageBody = BraceletTimeResPackageBody(time: time)
         }
         else if cmdId == BraceletBlueToothFormats.sportCmdId {
-            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
+            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(12), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
             packageBody = BraceletSportResPackageBody()
         }
         else {
@@ -273,7 +275,7 @@ struct BraceletSportResPackageBody: BraceletPackageBodyProtocol {
     
     func toData() -> NSData {
         
-        var bytes = [UInt8](count: 2, repeatedValue: 0)
+        var bytes = [UInt8](count: 4, repeatedValue: 0)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type

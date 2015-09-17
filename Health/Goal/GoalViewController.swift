@@ -10,6 +10,8 @@ import UIKit
 
 class GoalViewController: UIViewController {
 
+    var viewModel = GoalViewModel()
+    
     @IBOutlet weak var goalDetailLabel: AttributedLabel!
     @IBOutlet weak var suggestCalorieLabel: AttributedLabel!
     
