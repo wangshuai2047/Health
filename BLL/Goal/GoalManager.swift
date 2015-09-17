@@ -13,6 +13,18 @@ struct GoalManager {
         return DBManager.shareInstance().haveConnectedBracelet
     }
     
+    static func lastEvaluationData() -> ScaleResult? {
+        if let info = DBManager.shareInstance().queryLastEvaluationData(UserData.shareInstance().userId!) {
+            return ScaleResult(info: info)
+        }
+        
+        return nil
+    }
+    
+    static func currentGoalInfo() {
+    
+    }
+    
     static func syncDatas(complete: ((NSError?) -> Void)) {
         
         var startTime: NSDate

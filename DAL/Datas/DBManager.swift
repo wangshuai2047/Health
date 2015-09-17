@@ -16,11 +16,12 @@ protocol DBUserProtocol {
 
 protocol DBEvaluationProtocol {
     func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData)
-    func deleteEvaluationData(dataId: String)
-    func queryEvaluationData(dataId: String) -> [String: NSObject]?
-    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]]
-    func queryNoUploadEvaluationDatas() -> [[String: NSObject]]
+    func deleteEvaluationData(dataId: String, userId: Int)
+    func queryEvaluationData(dataId: String, userId: Int) -> [String: AnyObject]?
+    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int) -> [[String: AnyObject]]
+    func queryNoUploadEvaluationDatas() -> [[String: AnyObject]]
     func updateUploadEvaluationDatas(newDataIdInfos: [[String: AnyObject]])
+    func queryLastEvaluationData(userId: Int) -> [String: AnyObject]?
 }
 
 protocol DBGoalProtocol {

@@ -65,7 +65,7 @@ struct ScaleResult {
 
 extension ScaleResult {
     
-    init(info: [String: NSObject]) {
+    init(info: [String: AnyObject]) {
         
         dataId = info["dataId"] as! String
         userId = (info["userId"] as! NSNumber).integerValue

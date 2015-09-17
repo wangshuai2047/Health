@@ -164,13 +164,13 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func deleteEvaluationData(dataId: String) {
+    func deleteEvaluationData(dataId: String, userId: Int) {
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %@", dataId)
+        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %@", dataId, userId)
         
         let listData:[AnyObject]?
         do {
@@ -190,13 +190,13 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func queryEvaluationData(dataId: String) -> [String: NSObject]? {
+    func queryEvaluationData(dataId: String, userId: Int) -> [String: AnyObject]? {
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %@", dataId)
+        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %@", dataId, userId)
         
         let listData: [AnyObject]?
         do {
@@ -213,27 +213,27 @@ extension DBManager: DBManagerProtocol {
         return nil
     }
     
-    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]] {
+    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int) -> [[String: AnyObject]] {
         
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@", beginTimescamp, endTimescamp)
+        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp, endTimescamp, userId)
         let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         request.sortDescriptors = [endDateSort]
         
         let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
         
-        var datas: [[String: NSObject]] = []
+        var datas: [[String: AnyObject]] = []
         for managedObject in listData {
             datas += [convertModel(managedObject)]
         }
         return datas
     }
     
-    func queryNoUploadEvaluationDatas() -> [[String: NSObject]] {
+    func queryNoUploadEvaluationDatas() -> [[String: AnyObject]] {
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
         
@@ -243,7 +243,7 @@ extension DBManager: DBManagerProtocol {
         
         let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
         
-        var datas: [[String: NSObject]] = []
+        var datas: [[String: AnyObject]] = []
         for managedObject in listData {
             datas += [convertModel(managedObject)]
         }
@@ -275,6 +275,26 @@ extension DBManager: DBManagerProtocol {
             print(error1)
         }
         
+    }
+    
+    func queryLastEvaluationData(userId: Int) -> [String : AnyObject]? {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "userId == %@", NSNumber(bool: false))
+        let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
+        request.sortDescriptors = [endDateSort]
+        request.fetchLimit = 1
+        
+        if let listData = (try? context.executeFetchRequest(request)) as? [EvaluationData] {
+            if listData.count > 0 {
+                return convertModel(listData.first!)
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -560,7 +580,7 @@ extension DBManager {
         ]
     }
     
-    func convertModel(data: EvaluationData) -> [String: NSObject] {
+    func convertModel(data: EvaluationData) -> [String: AnyObject] {
         let dataId = data.valueForKey("dataId") as! String
         let isUpload = (data.valueForKey("isUpload") as! NSNumber)
         let timeStamp = (data.valueForKey("timeStamp") as! NSDate)

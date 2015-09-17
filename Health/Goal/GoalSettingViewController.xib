@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalSettingViewController" customModule="Health" customModuleProvider="target">
@@ -105,7 +105,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="333"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您的目标" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiL-Ll-UZ4">
-                            <rect key="frame" x="100.5" y="8" width="119" height="21"/>
+                            <rect key="frame" x="100" y="8" width="119" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="IMD-Ur-vFe"/>
                             </constraints>
@@ -169,14 +169,14 @@
                     <rect key="frame" x="320" y="0.0" width="320" height="333"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTW-ts-Baw" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
-                            <rect key="frame" x="8" y="8" width="304" height="126"/>
+                            <rect key="frame" x="8" y="8" width="304" height="98"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="126" id="C3f-E3-thQ"/>
+                                <constraint firstAttribute="height" constant="98" id="C3f-E3-thQ"/>
                             </constraints>
                         </view>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLo-i8-9eB">
-                            <rect key="frame" x="0.0" y="143" width="320" height="180"/>
+                            <rect key="frame" x="0.0" y="114" width="320" height="211"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="cW5-jA-701"/>
                                 <outlet property="delegate" destination="-1" id="7Od-YH-kQx"/>
@@ -205,7 +205,7 @@
                             </constraints>
                         </view>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMF-sl-GbS">
-                            <rect key="frame" x="0.0" y="143" width="320" height="180"/>
+                            <rect key="frame" x="0.0" y="142" width="320" height="183"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="Lbg-Up-cqH"/>
                                 <outlet property="delegate" destination="-1" id="xxQ-GS-uaa"/>

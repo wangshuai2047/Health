@@ -33,7 +33,7 @@ struct EvaluationDetailCellViewModel {
     var scaleResult: ScaleResult
     var timeShowString: String
     
-    init(info: [String: NSObject]) {
+    init(info: [String: AnyObject]) {
         scaleResult = ScaleResult(info: info)
         timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
     }

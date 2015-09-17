@@ -43,6 +43,7 @@ struct UserGoalData {
         }
     }
     
+    // 目标数量
     static var number: Int? {
         get {
             return (NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.number") as? NSNumber)?.integerValue
@@ -57,6 +58,7 @@ struct UserGoalData {
         }
     }
     
+    // 目标天数
     static var days: Int? {
         get {
             return (NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.days") as? NSNumber)?.integerValue
@@ -70,4 +72,6 @@ struct UserGoalData {
             }
         }
     }
+    
+    
 }
