@@ -141,7 +141,7 @@ struct LoginManager {
             return
         }
         
-        UserRequest.completeUserInfo(Int(UserData.shareInstance().userId!), gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: nil) { (error) -> Void in
+        UserRequest.completeUserInfo(Int(UserData.shareInstance().userId!), gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: nil) { (imageURLStr, error) -> Void in
             
             if error == nil {
                 UserData.shareInstance().name = name
@@ -151,6 +151,8 @@ struct LoginManager {
                 
                 UserData.shareInstance().phone = phone
                 UserData.shareInstance().organizationCode = organizationCode
+                
+                UserData.shareInstance().headURL = imageURLStr
             }
             
             complete(error: error)

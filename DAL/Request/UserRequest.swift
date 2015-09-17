@@ -37,7 +37,7 @@ struct UserRequest {
     }
     
     // 完善个人资料
-    static func completeUserInfo(userId: Int, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, imageURL: String?, complete: ((error: NSError?) -> Void)) {
+    static func completeUserInfo(userId: Int, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, imageURL: String?, complete: ((imageURL: String?, error: NSError?) -> Void)) {
         
 //        complete(error: nil)
 //        return
@@ -56,7 +56,6 @@ struct UserRequest {
             let image = UIImage(contentsOfFile: imageURL!)
             let data = UIImageJPEGRepresentation(image!, 1)
             
-//            let data = NSData(contentsOfFile: imageURL!)
             let options: NSDataBase64EncodingOptions = [
                 .Encoding76CharacterLineLength,
                 .EncodingEndLineWithLineFeed
@@ -69,13 +68,14 @@ struct UserRequest {
         RequestType.CompleteUserInfo.startRequest(params, completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(error: err)
+                complete(imageURL: nil, error: err)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
-                complete(error: nil)
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(imageURL: jsonObj?["headURL"] as? String, error: nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif
