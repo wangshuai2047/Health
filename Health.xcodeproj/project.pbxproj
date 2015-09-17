@@ -57,6 +57,7 @@
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
+		E054C20B1BA9BC7C00923E89 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = E054C20A1BA9BC7C00923E89 /* 11111.png */; settings = {ASSET_TAGS = (); }; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
 		E05B1A311B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
 		E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E05B1A321B8E04B000B37F1C /* UserView.xib */; };
@@ -247,6 +248,7 @@
 		E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewModel.swift; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
+		E054C20A1BA9BC7C00923E89 /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 11111.png; path = ../../../../../Desktop/11111.png; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
 		E05B1A351B8E077700B37F1C /* UserSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserSelectView.xib; path = Health/User/UserSelectView.xib; sourceTree = SOURCE_ROOT; };
@@ -827,6 +829,7 @@
 		E09EC8A91B7E3B5000CC07E3 = {
 			isa = PBXGroup;
 			children = (
+				E054C20A1BA9BC7C00923E89 /* 11111.png */,
 				E09EC8DC1B7E3FCC00CC07E3 /* BLL */,
 				E09EC8DE1B7E3FCC00CC07E3 /* DAL */,
 				E0DD140D1B9179330079F957 /* Extend */,
@@ -1244,6 +1247,7 @@
 				E060CD6A1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */,
 				E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */,
+				E054C20B1BA9BC7C00923E89 /* 11111.png in Resources */,
 				E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */,
 				E0F9DAFB1B85488300504454 /* GUIViewController.xib in Resources */,
 				E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */,

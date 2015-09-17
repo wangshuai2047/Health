@@ -104,7 +104,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         requeryCaptchasTimerCount = 0
         reQueryCaptchas = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("requeryCaptchasTimer"), userInfo: nil, repeats: true)
         
-        LoginManager.queryCaptchas(self.usernameTextField.text) {[unowned self] (error: NSError?) -> Void in
+        LoginManager.queryCaptchas(self.usernameTextField.text) {[unowned self] (authCode:String?, error: NSError?) -> Void in
             if error != nil {
                  UIAlertView(title: error?.domain, message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
                 self.reQueryCaptchasButton.enabled = true

@@ -53,8 +53,15 @@ struct UserRequest {
         }
         
         if imageURL != nil {
-            let data = NSData(contentsOfFile: imageURL!)
-            if let base64String = data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed) {
+            let image = UIImage(contentsOfFile: imageURL!)
+            let data = UIImageJPEGRepresentation(image!, 1)
+            
+//            let data = NSData(contentsOfFile: imageURL!)
+            let options: NSDataBase64EncodingOptions = [
+                .Encoding76CharacterLineLength,
+                .EncodingEndLineWithLineFeed
+            ]
+            if let base64String = data?.base64EncodedStringWithOptions(options) {
                 params["head"] = base64String
             }
         }
