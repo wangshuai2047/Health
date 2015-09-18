@@ -24,6 +24,7 @@ class BraceletManager: NSObject {
     
     private var syncDate: NSDate?
     private var syncComplete: (([BraceletResult], NSError?) -> Void)?
+    private var braceletUUID: String?
     
     private var AdvDataManufacturerData: NSData {
         // a8 01 01 01 08 f4 06 a5 00 be 3f
@@ -77,8 +78,9 @@ class BraceletManager: NSObject {
 }
 
 extension BraceletManager: BraceletProtocol {
-    func syncData(date: NSDate, syncComplete: (([BraceletResult], NSError?) -> Void)) {
+    func syncData(date: NSDate, deviceUUID: String?, syncComplete: (([BraceletResult], NSError?) -> Void)) {
         syncDate = date
+        braceletUUID = deviceUUID
         results.removeAll(keepCapacity: true)
         self.syncComplete = syncComplete
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
@@ -116,13 +118,16 @@ extension BraceletManager: CBCentralManagerDelegate {
         let kCBAdvDataIsConnectable = advertisementData["kCBAdvDataIsConnectable"] as? NSNumber
         if kCBAdvDataManufacturerData == AdvDataManufacturerData && kCBAdvDataIsConnectable == 1 {
             
-            DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name!, type: 1)
+            if braceletUUID == nil || (braceletUUID != nil && braceletUUID == peripheral.identifier.UUIDString) {
+                DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name!, type: 1)
+                
+                self.peripheral = peripheral
+                connect(self.peripheral!)
+                centralManager.stopScan()
+                timeoutTimer?.invalidate()
+                print("Stop scan the Ble Devices")
+            }
             
-            self.peripheral = peripheral
-            connect(self.peripheral!)
-            centralManager.stopScan()
-            timeoutTimer?.invalidate()
-            print("Stop scan the Ble Devices")
         }
     }
     
@@ -222,8 +227,10 @@ extension BraceletManager {
             
             if currentFormate!.packageHead.nCmdId == 10002 {
                 
-                results.removeAll()
+                
                 if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.requestTimeCmdId {
+                    
+                    results.removeAll()
                     // 时间请求包
                     let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.responseTimeCmdId, time: NSDate())
                     self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
@@ -263,6 +270,7 @@ extension BraceletManager {
                     
                     syncComplete?(results, nil)
                     clearWork()
+                    results.removeAll()
                 }
             }
         }

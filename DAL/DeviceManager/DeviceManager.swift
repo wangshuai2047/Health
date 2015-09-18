@@ -31,7 +31,12 @@ class DeviceManager: NSObject {
     }
     
     func syncBraceletDatas(beginDate: NSDate, syncComplete: (([BraceletResult], NSError?) -> Void)) {
-        braceletManager.syncData(beginDate, syncComplete: syncComplete)
+        var uuid: String? = nil
+        if let (id, _) = DBManager.shareInstance().braceletInfo() {
+            uuid = id
+        }
+        
+        braceletManager.syncData(beginDate, deviceUUID: uuid, syncComplete: syncComplete)
     }
     
     func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {

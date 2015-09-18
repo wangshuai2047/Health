@@ -22,7 +22,7 @@ struct GoalManager {
     }
     
     static func currentGoalInfo() {
-    
+        var goalDescription = UserGoalData.type.description()
     }
     
     static func syncDatas(complete: ((NSError?) -> Void)) {
@@ -76,6 +76,7 @@ struct GoalManager {
         UserGoalData.type = type
         UserGoalData.number = number
         UserGoalData.days = days
+        UserGoalData.setDate = NSDate()
     }
     
     
@@ -84,13 +85,13 @@ struct GoalManager {
         var queryDatas: [(UInt16,UInt16,UInt16)] = []
         
         // 获取7天数据从今天开始
-        let now = NSDate()
+        let now = NSDate(timeIntervalSinceNow: 24 * 60 * 60)
         var beginDate = now.zeroTime()
         
         for _ in 0...6 {
             
             let endDate = beginDate.dateByAddingTimeInterval(-24 * 60 * 60)
-            let list = DBManager.shareInstance().queryGoalData(beginDate, endDate: endDate)
+            let list = DBManager.shareInstance().queryGoalData(endDate, endDate: beginDate)
             beginDate = endDate
             
             var walkStep: UInt16 = 0

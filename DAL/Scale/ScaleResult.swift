@@ -201,6 +201,51 @@ extension ScaleResult {
     var muscleControl: Float {
         return muscleWeight < m_smm ? m_smm - muscleWeight : 0
     }
+    
+    // 标准体脂率
+    var standardFatPercentage: Float {
+        return gender ? 15 : 25
+    }
+    
+    // 每日需消耗卡路里
+    var dayNeedCalorie: Float {
+        if gender {
+            // 男
+            if weight <= 60 {
+                return 2030
+            }
+            else if weight <= 70 {
+                return 2030
+            }
+            else if weight <= 80 {
+                return 2370
+            }
+            else if weight <= 90 {
+                return 2710
+            }
+            else {
+                return 3050
+            }
+        }
+        else {
+            // 女
+            if weight <= 50 {
+                return 1520
+            }
+            else if weight <= 55 {
+                return 1520
+            }
+            else if weight <= 60 {
+                return 1680
+            }
+            else if weight <= 65 {
+                return 1830
+            }
+            else {
+                return 1980
+            }
+        }
+    }
 }
 
 // MARK: - 评分计算

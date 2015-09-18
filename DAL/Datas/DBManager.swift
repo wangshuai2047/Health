@@ -35,6 +35,7 @@ protocol DBGoalProtocol {
 protocol DBDeviceProtocol {
     var haveConnectedScale: Bool { get }
     var haveConnectedBracelet: Bool { get }
+    func braceletInfo() -> (uuid: String, name: String)?
     func addDevice(uuid: String, name: String, type: Int16)
 }
 

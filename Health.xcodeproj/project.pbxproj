@@ -153,6 +153,7 @@
 		E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
 		E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */; settings = {ASSET_TAGS = (); }; };
 		E0AF85B41BAABE81005BB95E /* GoalShowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		E0AF85B71BAAF4B8005BB95E /* GoalManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */; settings = {ASSET_TAGS = (); }; };
 		E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
@@ -352,6 +353,7 @@
 		E0A45B221B9E83500085E5B5 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestTests.swift; path = HealthTests/Request/RequestTests.swift; sourceTree = SOURCE_ROOT; };
 		E0A45B241B9E8FC40085E5B5 /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalShowInfo.swift; sourceTree = "<group>"; };
+		E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalManagerTests.swift; path = HealthTests/BLL/GoalManagerTests.swift; sourceTree = SOURCE_ROOT; };
 		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtend.swift; sourceTree = "<group>"; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
@@ -890,6 +892,7 @@
 		E09EC8CF1B7E3B5000CC07E3 /* HealthTests */ = {
 			isa = PBXGroup;
 			children = (
+				E0AF85B51BAAF490005BB95E /* BLL */,
 				E0C50B941B861D20007A9393 /* Request */,
 				E09EC8D21B7E3B5000CC07E3 /* HealthTests.swift */,
 				E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */,
@@ -978,6 +981,15 @@
 			);
 			name = Framework;
 			path = Health.xcodeproj;
+			sourceTree = "<group>";
+		};
+		E0AF85B51BAAF490005BB95E /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+				E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */,
+			);
+			name = BLL;
+			path = "../../../../../../workSpace/Project/好体知/Code/Health/HealthTests/BLL";
 			sourceTree = "<group>";
 		};
 		E0C50B941B861D20007A9393 /* Request */ = {
@@ -1449,6 +1461,7 @@
 				E03B689A1B97D15D00F4C505 /* BraceletResult.swift in Sources */,
 				E0FDBBC21B9D81D800AE1A7C /* ScaleResultTests.swift in Sources */,
 				E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */,
+				E0AF85B71BAAF4B8005BB95E /* GoalManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
