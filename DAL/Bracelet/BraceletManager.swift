@@ -28,6 +28,7 @@ class BraceletManager: NSObject {
     
     private var AdvDataManufacturerData: NSData {
         // a8 01 01 01 08 f4 06 a5 00 be 3f
+        // a8 01 01 01 08 f4 06 a5 00 be 3f 01 0108f406 a500be3f
         var buffer: [UInt8] = []
         buffer.append(0xa8)
         buffer.append(0x01)
@@ -114,9 +115,11 @@ extension BraceletManager: CBCentralManagerDelegate {
         print("Rssi: \(RSSI)")
         print("advertisementData: \(advertisementData)")
         
+//        kCBAdvDataManufacturerData.con
         let kCBAdvDataManufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? NSData
         let kCBAdvDataIsConnectable = advertisementData["kCBAdvDataIsConnectable"] as? NSNumber
-        if kCBAdvDataManufacturerData == AdvDataManufacturerData && kCBAdvDataIsConnectable == 1 {
+        
+        if kCBAdvDataManufacturerData!.rangeOfData(AdvDataManufacturerData, options: NSDataSearchOptions.Backwards, range: NSRange(location: 0, length: kCBAdvDataManufacturerData!.length)).location != NSNotFound && kCBAdvDataIsConnectable == 1 {
             
             if braceletUUID == nil || (braceletUUID != nil && braceletUUID == peripheral.identifier.UUIDString) {
                 DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name!, type: 1)
