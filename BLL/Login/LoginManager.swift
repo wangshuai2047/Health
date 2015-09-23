@@ -114,15 +114,15 @@ struct LoginManager {
     }
     
     // 获取验证码
-    static func queryCaptchas(phone: String?, complete: ((NSError?) -> Void)?) {
+    static func queryCaptchas(phone: String?, complete: ((String?, NSError?) -> Void)?) {
         
         if phone == nil || phone == "" {
-            complete?(NSError(domain: "获取验证码", code: 0, userInfo: [NSLocalizedDescriptionKey:"手机号不能为空"]))
+            complete?("", NSError(domain: "获取验证码", code: 0, userInfo: [NSLocalizedDescriptionKey:"手机号不能为空"]))
             return
         }
         
-        LoginRequest.queryCaptchas(phone!, complete: { (error: NSError?) -> Void in
-            complete?(error)
+        LoginRequest.queryCaptchas(phone!, complete: { (authCode: String?, error: NSError?) -> Void in
+            complete?(authCode,error)
         })
     }
     
@@ -141,7 +141,7 @@ struct LoginManager {
             return
         }
         
-        UserRequest.completeUserInfo(Int(UserData.shareInstance().userId!), gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: nil) { (error) -> Void in
+        UserRequest.completeUserInfo(Int(UserData.shareInstance().userId!), gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: nil) { (imageURLStr, error) -> Void in
             
             if error == nil {
                 UserData.shareInstance().name = name
@@ -151,6 +151,8 @@ struct LoginManager {
                 
                 UserData.shareInstance().phone = phone
                 UserData.shareInstance().organizationCode = organizationCode
+                
+                UserData.shareInstance().headURL = imageURLStr
             }
             
             complete(error: error)

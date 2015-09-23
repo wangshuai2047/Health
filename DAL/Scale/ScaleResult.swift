@@ -201,6 +201,11 @@ extension ScaleResult {
     var muscleControl: Float {
         return muscleWeight < m_smm ? m_smm - muscleWeight : 0
     }
+    
+    // 标准体脂率
+    var standardFatPercentage: Float {
+        return gender ? 15 : 25
+    }
 }
 
 // MARK: - 评分计算

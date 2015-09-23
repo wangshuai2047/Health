@@ -39,7 +39,7 @@ class LoginReqeustTests: XCTestCase {
         
         let phone = "18610729420"
         
-        LoginRequest.queryCaptchas(phone, complete: { (error: NSError?) -> Void in
+        LoginRequest.queryCaptchas(phone, complete: { (authCode: String?, error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "获取验证码错误: \(error?.description)")
         })
