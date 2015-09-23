@@ -47,7 +47,7 @@ class UserReqeustTests: XCTestCase {
         let imagePath = NSBundle.mainBundle().pathForResource("11111", ofType: "png")
         let imageURL: String? = imagePath
         
-        UserRequest.completeUserInfo(userId, gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: imageURL) { (error) -> Void in
+        UserRequest.completeUserInfo(userId, gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: imageURL) { (headURL, error) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_UserRequest_CompleteInfo_isSuccess 错误: \(error?.description)")
         }
