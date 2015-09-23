@@ -174,7 +174,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
         if buttonIndex == 1 {
             // 拍照
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-                var picker = UIImagePickerController()
+                let picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
                 picker.videoQuality = UIImagePickerControllerQualityType.TypeLow
@@ -188,7 +188,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
         else if buttonIndex == 2 {
             // 照片库
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-                var picker = UIImagePickerController()
+                let picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
                 picker.videoQuality = UIImagePickerControllerQualityType.TypeLow

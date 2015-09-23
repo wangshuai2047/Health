@@ -30,7 +30,7 @@ extension DBManager {
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.userId!).sqlite")
-        print("db Path: \(url)")
+//        print("db Path: \(url)")
         
         var error: NSError? = nil
         let failureReason = "There was an error creating or loading the application's saved data."
@@ -283,7 +283,7 @@ extension DBManager: DBManagerProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "userId == %@", NSNumber(bool: false))
+        request.predicate = NSPredicate(format: "userId == %@", NSNumber(integer:userId))
         let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         request.sortDescriptors = [endDateSort]
         request.fetchLimit = 1

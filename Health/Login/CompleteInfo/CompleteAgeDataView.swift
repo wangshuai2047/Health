@@ -38,7 +38,7 @@ extension CompleteAgeDataView: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     // MARK: - UIPickerViewDelegate
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(row)"
     }
 }

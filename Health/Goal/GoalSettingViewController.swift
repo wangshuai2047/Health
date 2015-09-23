@@ -177,20 +177,28 @@ class GoalSettingViewController: UIViewController {
         // 设置数值
         setNumberAttLabel.attributedString.deleteCharactersInRange(NSRange(location: 0, length: setNumberAttLabel.attributedString.length))
         setNumberAttLabel.append("系统根据您的身体数据分析\n建议您将\(goalString)目标设置为: ", font: nil, color: deepBlue)
-        setNumberAttLabel.append("49", font: nil, color: lightBlue)
+        setNumberAttLabel.append("\(goalNumber())", font: nil, color: lightBlue)
         setNumberAttLabel.append("\(unit)\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
         
         // 设置天数
         setDaysAttLabel.attributedString.deleteCharactersInRange(NSRange(location: 0, length: setDaysAttLabel.attributedString.length))
         setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康减重到", font: nil, color: deepBlue)
-        setDaysAttLabel.append("49", font: nil, color: lightBlue)
+        setDaysAttLabel.append("\(self.setNumberGoalPicker.selectedRowInComponent(0))", font: nil, color: lightBlue)
         setDaysAttLabel.append("公斤\n建议您采取", font: nil, color: deepBlue)
-        setDaysAttLabel.append("56", font: nil, color: lightBlue)
+        setDaysAttLabel.append("\(calculeDays())", font: nil, color: lightBlue)
         setDaysAttLabel.append("天的周期\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
         
         // 刷新界面
         setNumberGoalPicker.reloadAllComponents()
         setDaysGoalPicker.reloadAllComponents()
+    }
+    
+    func goalNumber() -> Int {
+        return 49
+    }
+    
+    func calculeDays() -> Int {
+        return 56
     }
 }
 
@@ -256,5 +264,9 @@ extension GoalSettingViewController: UIPickerViewDataSource, UIPickerViewDelegat
         }
         
         return ""
+    }
+    
+    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 50
     }
 }
