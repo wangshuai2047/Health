@@ -17,12 +17,34 @@ class BraceletManager: NSObject {
     private var currentFormate: BraceletBlueToothFormats?
     
     private var timeoutTimer: NSTimer?
-    private var results: [BraceletResult] = []
+    private var results: [BraceletResult] = []  // 同步运动数据
+    var device_model: Int = 0 // 设备类型
+    var firm_ver: UInt16 = 0 // 固件版本号
+    var percent: UInt8 = 0  // 电池电量
     
     private var syncDate: NSDate?
     private var syncComplete: (([BraceletResult], NSError?) -> Void)?
+    private var braceletUUID: String?
     
-    let braceletUUID = "B8199D74-6460-C7D2-E7F3-63D97C435365"
+    private var AdvDataManufacturerData: NSData {
+        // a8 01 01 01 08 f4 06 a5 00 be 3f
+        // a8 01 01 01 08 f4 06 a5 00 be 3f 01 0108f406 a500be3f
+        var buffer: [UInt8] = []
+        buffer.append(0xa8)
+        buffer.append(0x01)
+        buffer.append(0x01)
+        buffer.append(0x01)
+        buffer.append(0x08)
+        buffer.append(0xf4)
+        buffer.append(0x06)
+        buffer.append(0xa5)
+        buffer.append(0x00)
+        buffer.append(0xbe)
+        buffer.append(0x3f)
+        
+        let data = NSData(bytes: buffer, length: buffer.count)
+        return data
+    }
     
     override init() {
         centralManager = CBCentralManager()
@@ -47,6 +69,7 @@ class BraceletManager: NSObject {
         self.peripheral = nil
         self.characteristic = nil
         timeoutTimer?.invalidate()
+        receiveData.setData(NSData())
     }
     
     func scanTimeout() {
@@ -56,12 +79,13 @@ class BraceletManager: NSObject {
 }
 
 extension BraceletManager: BraceletProtocol {
-    func syncData(date: NSDate, syncComplete: (([BraceletResult], NSError?) -> Void)) {
+    func syncData(date: NSDate, deviceUUID: String?, syncComplete: (([BraceletResult], NSError?) -> Void)) {
         syncDate = date
+        braceletUUID = deviceUUID
         results.removeAll(keepCapacity: true)
         self.syncComplete = syncComplete
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("scanTimeout"), userInfo: nil, repeats: false)
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("scanTimeout"), userInfo: nil, repeats: false)
     }
 }
 
@@ -91,16 +115,22 @@ extension BraceletManager: CBCentralManagerDelegate {
         print("Rssi: \(RSSI)")
         print("advertisementData: \(advertisementData)")
         
-        print("Stop scan the Ble Devices")
+//        kCBAdvDataManufacturerData.con
+        let kCBAdvDataManufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? NSData
+        let kCBAdvDataIsConnectable = advertisementData["kCBAdvDataIsConnectable"] as? NSNumber
         
-        if peripheral.identifier == NSUUID(UUIDString: braceletUUID) {
+        if kCBAdvDataManufacturerData!.rangeOfData(AdvDataManufacturerData, options: NSDataSearchOptions.Backwards, range: NSRange(location: 0, length: kCBAdvDataManufacturerData!.length)).location != NSNotFound && kCBAdvDataIsConnectable == 1 {
             
-            DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name!, type: 1)
+            if braceletUUID == nil || (braceletUUID != nil && braceletUUID == peripheral.identifier.UUIDString) {
+                DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name!, type: 1)
+                
+                self.peripheral = peripheral
+                connect(self.peripheral!)
+                centralManager.stopScan()
+                timeoutTimer?.invalidate()
+                print("Stop scan the Ble Devices")
+            }
             
-            self.peripheral = peripheral
-            connect(self.peripheral!)
-            centralManager.stopScan()
-            timeoutTimer?.invalidate()
         }
     }
     
@@ -125,7 +155,7 @@ extension BraceletManager: CBPeripheralDelegate {
             
             for service: CBService in self.peripheral!.services! {
                 if service.UUID == CBUUID(string: "FFF0") {
-                    peripheral.discoverCharacteristics(nil, forService: service)
+                    self.peripheral!.discoverCharacteristics(nil, forService: service)
                     break
                 }
             }
@@ -150,6 +180,7 @@ extension BraceletManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
+            NSLog("didDiscoverCharacteristicsForService error %@", error!)
             clearWork()
             syncComplete?([], error)
         }
@@ -165,6 +196,7 @@ extension BraceletManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
+            NSLog("didUpdateValueForCharacteristic error %@", error!)
             clearWork()
             syncComplete?([], error)
         }
@@ -173,7 +205,7 @@ extension BraceletManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         if error != nil {
-            NSLog("%@", error!)
+            NSLog("didWriteValueForCharacteristic %@", error!)
             // 调用失败代理
             clearWork()
             syncComplete?([], error)
@@ -197,26 +229,51 @@ extension BraceletManager {
             receiveData.setData(NSData())
             
             if currentFormate!.packageHead.nCmdId == 10002 {
+                
+                
                 if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.requestTimeCmdId {
+                    
+                    results.removeAll()
                     // 时间请求包
                     let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.responseTimeCmdId, time: NSDate())
                     self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
+                    receiveData.setData(NSData())
                 }
                 else if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.sportCmdId {
-                    // 收到运动数据 可以结束了?
+                    // 收到运动数据
                     print("\(currentFormate)")
                     
                     results += dealSuccessData()
                     
                     // 发送运动反馈包
-                    var formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.sportCmdId, time: NSDate())
+                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.sportCmdId, time: NSDate())
+                    self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
                     
-//                    syncComplete?(dealSuccessData(), nil)
-//                    
-//                    clearWork()
+                    receiveData.setData(NSData())
+                    
                 }
-                else if currentFormate!.packageBody?.cmd_type == 13 {
+                else if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.generalCmdId {
+                    //收到设备信息
+                    if let bodyPackage = currentFormate?.packageBody as? BraceletDeviceVersionReqPackageBody {
+                        firm_ver = bodyPackage.firm_ver
+                        device_model = bodyPackage.device_model
+                    }
                     
+                    // 发送通用反馈包
+                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.generalCmdId, time: NSDate())
+                    self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
+                    
+                    receiveData.setData(NSData())
+                }
+                else if currentFormate?.packageBody?.cmd_type == BraceletBlueToothFormats.batteryCmdId {
+                    // 收到电量数据 可以结束了
+                    if let p = (currentFormate?.packageBody as? BraceletBatteryReqPackageBody)?.percent {
+                        percent = p
+                    }
+                    
+                    syncComplete?(results, nil)
+                    clearWork()
+                    results.removeAll()
                 }
             }
         }

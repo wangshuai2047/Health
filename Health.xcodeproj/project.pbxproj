@@ -133,6 +133,10 @@
 		E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
 		E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09EC8E91B7E406B00CC07E3 /* CoreData.framework */; };
+		E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; settings = {ASSET_TAGS = (); }; };
+		E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; settings = {ASSET_TAGS = (); }; };
+		E09AAC531BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		E09AAC541BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E09AAC521BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E09EC8B81B7E3B5000CC07E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */; };
 		E09EC8C21B7E3B5000CC07E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E09EC8C01B7E3B5000CC07E3 /* Main.storyboard */; };
 		E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E09EC8C31B7E3B5000CC07E3 /* Images.xcassets */; };
@@ -149,6 +153,9 @@
 		E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B221B9E83500085E5B5 /* RequestTests.swift */; };
 		E0A45B251B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
 		E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
+		E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		E0AF85B41BAABE81005BB95E /* GoalShowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		E0AF85B71BAAF4B8005BB95E /* GoalManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */; settings = {ASSET_TAGS = (); }; };
 		E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
@@ -328,6 +335,9 @@
 		E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteOrganizationDataView.swift; sourceTree = "<group>"; };
 		E08B32A21B85A9CC0040ADE7 /* CompleteInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteInfoViewController.swift; sourceTree = "<group>"; };
 		E08B32A31B85A9CC0040ADE7 /* CompleteInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompleteInfoViewController.xib; sourceTree = "<group>"; };
+		E09588971BA99E0100033179 /* GoalViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalViewModel.swift; path = Health/Goal/GoalViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailTableViewCell.swift; sourceTree = "<group>"; };
+		E09AAC521BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalDetailTableViewCell.xib; sourceTree = "<group>"; };
 		E09EC8B21B7E3B5000CC07E3 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E09EC8B61B7E3B5000CC07E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -346,6 +356,8 @@
 		E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
 		E0A45B221B9E83500085E5B5 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestTests.swift; path = HealthTests/Request/RequestTests.swift; sourceTree = SOURCE_ROOT; };
 		E0A45B241B9E8FC40085E5B5 /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalShowInfo.swift; sourceTree = "<group>"; };
+		E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalManagerTests.swift; path = HealthTests/BLL/GoalManagerTests.swift; sourceTree = SOURCE_ROOT; };
 		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtend.swift; sourceTree = "<group>"; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
@@ -662,6 +674,7 @@
 			isa = PBXGroup;
 			children = (
 				E08B32811B85A6C50040ADE7 /* GoalManager.swift */,
+				E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
@@ -708,6 +721,7 @@
 				E0F9DB0D1B854B9900504454 /* Detail */,
 				E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */,
 				E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */,
+				E09588971BA99E0100033179 /* GoalViewModel.swift */,
 			);
 			name = Goal;
 			path = BLL/Goal;
@@ -882,6 +896,7 @@
 		E09EC8CF1B7E3B5000CC07E3 /* HealthTests */ = {
 			isa = PBXGroup;
 			children = (
+				E0AF85B51BAAF490005BB95E /* BLL */,
 				E0C50B941B861D20007A9393 /* Request */,
 				E09EC8D21B7E3B5000CC07E3 /* HealthTests.swift */,
 				E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */,
@@ -972,6 +987,15 @@
 			path = Health.xcodeproj;
 			sourceTree = "<group>";
 		};
+		E0AF85B51BAAF490005BB95E /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+				E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */,
+			);
+			name = BLL;
+			path = "../../../../../../workSpace/Project/好体知/Code/Health/HealthTests/BLL";
+			sourceTree = "<group>";
+		};
 		E0C50B941B861D20007A9393 /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -1055,6 +1079,8 @@
 				E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */,
 				E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */,
 				E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */,
+				E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */,
+				E09AAC521BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib */,
 			);
 			name = Detail;
 			path = Health/Goal/Detail;
@@ -1236,6 +1262,7 @@
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
 				E060CD741B84012D0002AEE7 /* ShareSDK.bundle in Resources */,
 				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
+				E09AAC541BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
 				E060CD7C1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
@@ -1326,12 +1353,14 @@
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
+				E09AAC531BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift in Sources */,
 				E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */,
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
+				E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */,
 				E05B1A301B8E028900B37F1C /* Alert.swift in Sources */,
 				E060CD111B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
@@ -1344,6 +1373,7 @@
 				E08B32821B85A6C50040ADE7 /* GoalManager.swift in Sources */,
 				E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */,
 				E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */,
+				E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
 				E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
@@ -1392,6 +1422,7 @@
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
 				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
+				E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
 				E0CD63171BA2511F00477090 /* UserDBData.swift in Sources */,
@@ -1431,12 +1462,14 @@
 				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B328C1B85A7210040ADE7 /* TrendManager.swift in Sources */,
 				E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */,
+				E0AF85B41BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
 				E0C50B9B1B861D97007A9393 /* AdsReqeustTests.swift in Sources */,
 				E09EC8E41B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0FBED461B835C9100A70598 /* ResponseDataFilter.swift in Sources */,
 				E03B689A1B97D15D00F4C505 /* BraceletResult.swift in Sources */,
 				E0FDBBC21B9D81D800AE1A7C /* ScaleResultTests.swift in Sources */,
 				E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */,
+				E0AF85B71BAAF4B8005BB95E /* GoalManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1563,6 +1596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1582,8 +1616,9 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -1598,6 +1633,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1617,8 +1653,9 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};

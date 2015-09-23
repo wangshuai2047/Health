@@ -43,8 +43,8 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
         
         physiqueButtonAndViews.removeAll(keepCapacity: true)
         for i in 1...9 {
-            var button = self.view.viewWithTag(i) as? UIButton
-            var view = self.view.viewWithTag(i + 10)
+            let button = self.view.viewWithTag(i) as? UIButton
+            let view = self.view.viewWithTag(i + 10)
             
             if physique?.rawValue == i {
                 button?.selected = true

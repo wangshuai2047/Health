@@ -36,4 +36,7 @@ extension NSDate {
         dateFormatter.dateFormat = "MM.dd"
         return dateFormatter.stringFromDate(self)
     }
+    
+    // 获取小时数
+    
 }

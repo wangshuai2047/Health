@@ -8,9 +8,20 @@
 
 import UIKit
 
+private let cellId = "GoalDetailTableViewCell"
+
 class SportDetailViewController: UIViewController {
 
     @IBOutlet weak var cicleView: CircleView!
+    
+    @IBOutlet weak var todayWalkLabel: UILabel!
+    @IBOutlet weak var walkPercenageLabel: UILabel!
+    @IBOutlet weak var goalStepLabel: UILabel!
+    @IBOutlet weak var restDescriptionLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    var sevenDaysData = GoalManager.querySevenDaysData()
     
     convenience init() {
         self.init(nibName: "SportDetailViewController", bundle: nil)
@@ -20,7 +31,20 @@ class SportDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        cicleView.update([(25, UIColor.orangeColor()), (25, UIColor.blueColor()), (25, UIColor.yellowColor()), (25, UIColor.grayColor())], animated: true)
+        let (walk, _, _,_) = sevenDaysData.last!
+        let goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
+        cicleView.update([(Double(walk), deepBlue), (Double(goalWalk! - Int(walk)) , lightBlue)], animated: true)
+        
+        todayWalkLabel.text = "\(walk)"
+        walkPercenageLabel.text = String(format: "%.f%", arguments: [Int(walk) / goalWalk!])
+        goalStepLabel.text = "\(goalWalk!)"
+        restDescriptionLabel.text = "还需步行\(goalWalk! - Int(walk))步"
+        
+        tableView.reloadData()
+        
+        
+        let cellNib = UINib(nibName: cellId, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
     }
     //
 
@@ -42,5 +66,28 @@ class SportDetailViewController: UIViewController {
 
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+extension SportDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sevenDaysData.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! GoalDetailTableViewCell
+        
+        let colors = [lightBlue, lightBlue, lightBlue, deepBlue, deepBlue]
+        let (walk, _, _,_) = sevenDaysData[indexPath.row]
+        let goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
+        
+        cell.setColors(colors, step: Int(walk), goalStep: goalWalk!)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 30
     }
 }

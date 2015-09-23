@@ -112,8 +112,8 @@ class EvaluationManager :NSObject {
         }
     }
     
-    static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]] {
-        return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp)
+    static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: AnyObject]] {
+        return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserData.shareInstance().userId!)
     }
     
     func updateEvaluationData() {

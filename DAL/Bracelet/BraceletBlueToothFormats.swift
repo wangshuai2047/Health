@@ -24,6 +24,8 @@ struct BraceletBlueToothFormats {
     var responseTime: NSDate?
     
     init(cmdId: UInt8, time: NSDate) {
+        
+        // 现在只有时间
         if cmdId == BraceletBlueToothFormats.responseTimeCmdId {
             // 现在只有时间
             packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
@@ -31,8 +33,13 @@ struct BraceletBlueToothFormats {
             packageBody = BraceletTimeResPackageBody(time: time)
         }
         else if cmdId == BraceletBlueToothFormats.sportCmdId {
-            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(15), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
+            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(12), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
             packageBody = BraceletSportResPackageBody()
+        }
+        else if cmdId == BraceletBlueToothFormats.generalCmdId {
+            
+            packageHead = BraceletPackageHead(bMagicNumber: UInt8(0xFE), bVer: UInt8(1), nLength: UInt16(12), nCmdId: BraceletBlueToothFormats.appToDeviceCmdId, nSeq: UInt16(65))
+            packageBody = BraceletGeneralResPackageBody()
         }
         else {
             // 现在只有时间
@@ -71,11 +78,11 @@ struct BraceletBlueToothFormats {
             }
             else if cmd_type == BraceletBlueToothFormats.generalCmdId {
                 // 设备版本包
-                packageBody = BraceletDeviceVersionReqPackageBody()
+                packageBody = BraceletDeviceVersionReqPackageBody(frontIndex: index, data: data)
             }
             else if cmd_type == BraceletBlueToothFormats.batteryCmdId {
                 // 设备电量包
-                packageBody = BraceletBatteryReqPackageBody(cmd_type: 2, percent: 10)
+                packageBody = BraceletBatteryReqPackageBody(frontIndex: index, data: data)
             }
         }
         else if packageHead.nCmdId == BraceletBlueToothFormats.appToDeviceCmdId {
@@ -273,12 +280,12 @@ struct BraceletSportResPackageBody: BraceletPackageBodyProtocol {
     
     func toData() -> NSData {
         
-        var bytes = [UInt8](count: 2, repeatedValue: 0)
+        var bytes = [UInt8](count: 4, repeatedValue: 0)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 2)
+        return NSData(bytes: bytes, length: 4)
     }
 }
 
@@ -286,6 +293,17 @@ struct BraceletSportResPackageBody: BraceletPackageBodyProtocol {
 struct BraceletDeviceVersionReqPackageBody: BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { return 0 }
     var cmd_type: UInt8 = BraceletBlueToothFormats.generalCmdId
+    var firm_ver: UInt16 = 0    // 固件版本号
+    var device_model: Int = 0   // 设备类型
+    
+    init(frontIndex: Int, data: NSData) {
+        
+        var index: Int = frontIndex
+        data.getBytes(buffer:&firm_ver, range: NSRange(location: index, length: 2))
+        index+=2
+        
+        data.getBytes(buffer: &device_model, range: NSRange(location: index, length: 3))
+    }
     
     func toData() -> NSData {
         
@@ -305,12 +323,12 @@ struct BraceletGeneralResPackageBody: BraceletPackageBodyProtocol {
     
     func toData() -> NSData {
         
-        var bytes = [UInt8](count: 2, repeatedValue: 0)
+        var bytes = [UInt8](count: 4, repeatedValue: 0)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 2)
+        return NSData(bytes: bytes, length: 4)
     }
 }
 
@@ -319,7 +337,21 @@ struct BraceletBatteryReqPackageBody: BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { return 0 }
     var cmd_type: UInt8 = BraceletBlueToothFormats.batteryCmdId
     
-    var percent: UInt8
+    var percent: UInt8 = 0
+    var Unused: UInt8 = 0
+    var battery_voltage: UInt16 = 0
+    
+    init(frontIndex: Int, data: NSData) {
+        
+        var index: Int = frontIndex
+        data.getBytes(buffer:&percent, range: NSRange(location: index, length: 1))
+        index+=1
+        
+        data.getBytes(buffer: &Unused, range: NSRange(location: index, length: 1))
+        index+=1
+        
+        data.getBytes(buffer: &battery_voltage, range: NSRange(location: index, length: 2))
+    }
     
     func toData() -> NSData {
         

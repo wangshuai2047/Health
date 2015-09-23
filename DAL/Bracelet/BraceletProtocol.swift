@@ -9,5 +9,5 @@
 import Foundation
 
 protocol BraceletProtocol {
-    func syncData(beginDate: NSDate, syncComplete: (([BraceletResult], NSError?) -> Void))
+    func syncData(beginDate: NSDate, deviceUUID: String?, syncComplete: (([BraceletResult], NSError?) -> Void))
 }
