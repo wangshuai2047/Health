@@ -119,6 +119,10 @@ extension BraceletManager: CBCentralManagerDelegate {
         let kCBAdvDataManufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? NSData
         let kCBAdvDataIsConnectable = advertisementData["kCBAdvDataIsConnectable"] as? NSNumber
         
+        if kCBAdvDataManufacturerData == nil || kCBAdvDataIsConnectable == nil {
+            return
+        }
+        
         if kCBAdvDataManufacturerData!.rangeOfData(AdvDataManufacturerData, options: NSDataSearchOptions.Backwards, range: NSRange(location: 0, length: kCBAdvDataManufacturerData!.length)).location != NSNotFound && kCBAdvDataIsConnectable == 1 {
             
             if braceletUUID == nil || (braceletUUID != nil && braceletUUID == peripheral.identifier.UUIDString) {

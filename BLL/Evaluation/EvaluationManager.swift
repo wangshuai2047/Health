@@ -136,6 +136,6 @@ class EvaluationManager :NSObject {
     }
     
     func deleteEvaluationData(result: ScaleResult) {
-        DBManager.shareInstance().deleteEvaluationData(result.dataId)
+        DBManager.shareInstance().deleteEvaluationData(result.dataId,userId: result.userId)
     }
 }
