@@ -15,6 +15,7 @@ class GoalDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var process3Label: UILabel!
     @IBOutlet weak var process4Label: UILabel!
     @IBOutlet weak var process5Label: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var processLabelConstraint: NSLayoutConstraint!
     
@@ -30,7 +31,7 @@ class GoalDetailTableViewCell: UITableViewCell {
     }
     
     // colors 必须有5个 3个是目标之前的 3个是目标之后的
-    func setColors(colors: [UIColor], step: Int, goalStep: Int) {
+    func setColors(colors: [UIColor], step: Int, goalStep: Int, day: Int, unit: String) {
         if colors.count < 5 {
             process1Label.backgroundColor = UIColor.clearColor()
             process2Label.backgroundColor = UIColor.clearColor()
@@ -39,6 +40,8 @@ class GoalDetailTableViewCell: UITableViewCell {
             process5Label.backgroundColor = UIColor.clearColor()
             
             processLabelConstraint.constant = self.bounds.size.width
+            titleLabel.text = "颜色数量错误"
+            
         }
         else {
             process1Label.backgroundColor = colors[0]
@@ -47,7 +50,11 @@ class GoalDetailTableViewCell: UITableViewCell {
             process4Label.backgroundColor = colors[3]
             process5Label.backgroundColor = colors[4]
             
-            processLabelConstraint.constant = self.bounds.size.width * CGFloat(goalStep - step) / CGFloat(goalStep)
+            let fullStep = goalStep * 3 / 2
+            let constant = self.bounds.size.width * CGFloat(fullStep - step) / CGFloat(fullStep)
+            
+            processLabelConstraint.constant = constant < 0 ? 0 : constant
+            titleLabel.text = String(format: "%d天前 %d %@", arguments: [day, step, unit])
         }
     }
 }

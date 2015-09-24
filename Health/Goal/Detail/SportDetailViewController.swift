@@ -31,14 +31,22 @@ class SportDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let (walk, _, _,_) = sevenDaysData.last!
+        let (walk, _, _,_) = sevenDaysData.first!
         let goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
-        cicleView.update([(Double(walk), deepBlue), (Double(goalWalk! - Int(walk)) , lightBlue)], animated: true)
+        let needWalk = goalWalk! - Int(walk) < 0 ? 0 : goalWalk! - Int(walk)
+        cicleView.update([(Double(walk), deepBlue), (Double(needWalk) , lightBlue)], animated: true)
         
         todayWalkLabel.text = "\(walk)"
-        walkPercenageLabel.text = String(format: "%.f%", arguments: [Int(walk) / goalWalk!])
+        let percenage = Int(walk) / goalWalk! * 100 > 100 ? 100 : Int(walk) / goalWalk! * 100
+        walkPercenageLabel.text = String(format: "%.f%", arguments: [percenage])
         goalStepLabel.text = "\(goalWalk!)"
-        restDescriptionLabel.text = "还需步行\(goalWalk! - Int(walk))步"
+        
+        if needWalk == 0 {
+            restDescriptionLabel.text = "今天已到达目标"
+        }
+        else {
+            restDescriptionLabel.text = "还需步行\(goalWalk! - Int(walk))步"
+        }
         
         tableView.reloadData()
         
@@ -82,7 +90,7 @@ extension SportDetailViewController: UITableViewDataSource, UITableViewDelegate 
         let (walk, _, _,_) = sevenDaysData[indexPath.row]
         let goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
         
-        cell.setColors(colors, step: Int(walk), goalStep: goalWalk!)
+        cell.setColors(colors, step: Int(walk), goalStep: goalWalk!, day: indexPath.row + 1, unit: "步")
         
         return cell
     }

@@ -102,8 +102,6 @@ struct GoalManager {
             
             var walkStep: UInt16 = 0
             var runStep: UInt16 = 0
-//            var sleepTime: UInt16 = 0
-//            var deepSleepTime: UInt16 = 0
             var results: [BraceletResult] = []
             
             // 计算走步时间

@@ -21,41 +21,50 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6s-oL-QR1">
-                    <rect key="frame" x="8" y="8" width="46" height="46"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6s-oL-QR1">
+                    <rect key="frame" x="8" y="8" width="46" height="65"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="46" id="AMn-FT-lFl"/>
+                        <constraint firstAttribute="height" constant="65" id="AMn-FT-lFl"/>
                         <constraint firstAttribute="width" constant="46" id="HlE-rl-CV9"/>
                     </constraints>
-                    <state key="normal" title="返回">
+                    <inset key="titleEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="-43"/>
+                    <inset key="imageEdgeInsets" minX="12" minY="-15" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="返回" image="back">
+                        <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="6nN-Y6-cGL"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xZ-qs-Tun">
-                    <rect key="frame" x="137" y="8" width="46" height="46"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xZ-qs-Tun">
+                    <rect key="frame" x="137" y="8" width="46" height="65"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="46" id="jmn-Z4-QJz"/>
+                        <constraint firstAttribute="height" constant="65" id="jmn-Z4-QJz"/>
                         <constraint firstAttribute="width" constant="46" id="uXj-g8-ums"/>
                     </constraints>
-                    <state key="normal" title="同步">
+                    <inset key="titleEdgeInsets" minX="-23" minY="0.0" maxX="0.0" maxY="-43"/>
+                    <inset key="imageEdgeInsets" minX="11" minY="-15" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="同步" image="delete">
+                        <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5F-xe-h6h">
-                    <rect key="frame" x="266" y="8" width="46" height="46"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5F-xe-h6h">
+                    <rect key="frame" x="266" y="8" width="46" height="65"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="Zla-0y-Ujj"/>
-                        <constraint firstAttribute="height" constant="46" id="pCQ-bS-2Pu"/>
+                        <constraint firstAttribute="height" constant="65" id="pCQ-bS-2Pu"/>
                     </constraints>
-                    <state key="normal" title="分享">
+                    <inset key="titleEdgeInsets" minX="-23" minY="0.0" maxX="0.0" maxY="-43"/>
+                    <inset key="imageEdgeInsets" minX="11" minY="-15" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="分享" image="share">
+                        <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTV-42-Z0m" customClass="CircleView" customModule="Health" customModuleProvider="target">
-                    <rect key="frame" x="79" y="69" width="163" height="163"/>
+                    <rect key="frame" x="79" y="88" width="163" height="163"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="163" id="mn1-pJ-Obs"/>
@@ -63,7 +72,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天已睡眠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wit-p2-6UZ">
-                    <rect key="frame" x="130" y="106" width="60" height="21"/>
+                    <rect key="frame" x="130" y="125" width="60" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="mTO-Uv-OhM"/>
                     </constraints>
@@ -72,7 +81,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小时" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cff-gv-OPi">
-                    <rect key="frame" x="146" y="174" width="28" height="21"/>
+                    <rect key="frame" x="146" y="193" width="28" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="ior-5Y-fdH"/>
                     </constraints>
@@ -81,7 +90,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sac-rA-BIQ">
-                    <rect key="frame" x="113" y="135" width="95" height="31"/>
+                    <rect key="frame" x="113" y="154" width="95" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="Zah-oN-cKt"/>
                     </constraints>
@@ -90,7 +99,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天的睡眠时长已达到目标" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKa-UQ-Idt">
-                    <rect key="frame" x="8" y="247" width="304" height="15"/>
+                    <rect key="frame" x="8" y="266" width="304" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="Wzu-MG-XAm"/>
                     </constraints>
@@ -99,7 +108,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="................................................................................................................" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gL-48-F9D">
-                    <rect key="frame" x="8" y="270" width="304" height="12"/>
+                    <rect key="frame" x="8" y="289" width="304" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="V5e-1R-KCq"/>
                     </constraints>
@@ -108,7 +117,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="过去7天:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTQ-cd-f2a">
-                    <rect key="frame" x="29" y="290" width="46.5" height="21"/>
+                    <rect key="frame" x="29" y="309" width="46.5" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="wpd-iS-xJT"/>
                     </constraints>
@@ -117,7 +126,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小时" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhw-Gn-PvO">
-                    <rect key="frame" x="278" y="290" width="24" height="21"/>
+                    <rect key="frame" x="278" y="309" width="24" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="XjC-37-X1d"/>
                     </constraints>
@@ -126,7 +135,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F10-hM-kj0">
-                    <rect key="frame" x="262" y="290" width="8" height="21"/>
+                    <rect key="frame" x="262" y="309" width="8" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="jKP-fS-OuE"/>
                     </constraints>
@@ -135,7 +144,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目标" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDm-he-1ge">
-                    <rect key="frame" x="230" y="290" width="24" height="21"/>
+                    <rect key="frame" x="230" y="309" width="24" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="1cm-Dk-Nx0"/>
                     </constraints>
@@ -144,15 +153,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tUo-5e-5M6">
-                    <rect key="frame" x="32" y="319" width="257" height="153"/>
+                    <rect key="frame" x="32" y="338" width="257" height="134"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="W2k-UE-px3"/>
                         <outlet property="delegate" destination="-1" id="bOP-gm-xGS"/>
                     </connections>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浅层睡眠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsz-rR-vbW">
-                    <rect key="frame" x="17.5" y="81.5" width="44" height="13.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浅层睡眠" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsz-rR-vbW">
+                    <rect key="frame" x="17" y="100" width="44" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -169,8 +178,8 @@
                     <color key="textColor" red="1" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深度睡眠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66B-FI-U69">
-                    <rect key="frame" x="253.5" y="206.5" width="44" height="13.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深度睡眠" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66B-FI-U69">
+                    <rect key="frame" x="253" y="225" width="44" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -222,4 +231,9 @@
             <point key="canvasLocation" x="316" y="505"/>
         </view>
     </objects>
+    <resources>
+        <image name="back" width="15" height="26"/>
+        <image name="delete" width="32" height="27"/>
+        <image name="share" width="26" height="26"/>
+    </resources>
 </document>

@@ -34,19 +34,19 @@ class SleepDetailViewController: UIViewController {
         let nibCell = UINib(nibName: "GoalDetailTableViewCell", bundle: nil)
         tableView.registerNib(nibCell, forCellReuseIdentifier: cellId)
         
-        let (_, _, lightSleep, deepSleep) = sevenDaysData.last!
-        lightSleepLabel.text = String(format: "浅层睡眠\n%.1f小时", arguments: [lightSleep/60])
-        deepSleepLabel.text = String(format: "深度睡眠\n%.1f小时", arguments: [deepSleep/60])
+        let (_, _, lightSleep, deepSleep) = sevenDaysData.first!
+        lightSleepLabel.text = String(format: "浅层睡眠\n%d小时", arguments: [lightSleep/60])
+        deepSleepLabel.text = String(format: "深度睡眠\n%d小时", arguments: [deepSleep/60])
         cicleView.update([(Double(deepSleep/60), deepSleepColor), (Double(lightSleep/60) , lightSleepColor)], animated: true)
         
         let totalSleep = (lightSleep + deepSleep)/60
-        sleepCountLabel.text = String(format: "%.1f", arguments: [totalSleep])
+        sleepCountLabel.text = String(format: "%d", arguments: [totalSleep])
         
         if totalSleep > 8 {
             sleepDescriptionLabel.text = "今天的睡眠时长已达到目标"
         }
         else {
-            sleepDescriptionLabel.text =  String(format: "今天还需睡眠%.1f小时", arguments: [8 - totalSleep])
+            sleepDescriptionLabel.text =  String(format: "今天还需睡眠%d小时", arguments: [8 - totalSleep])
         }
         
         tableView.reloadData()
@@ -88,7 +88,7 @@ extension SleepDetailViewController: UITableViewDataSource, UITableViewDelegate 
         let colors = [lightSleepColor, lightSleepColor, lightSleepColor, deepSleepColor, deepSleepColor]
         let (_, _, lightSleep, deepSleep) = sevenDaysData[indexPath.row]
         
-        cell.setColors(colors, step: Int(lightSleep + deepSleep), goalStep: 8 * 60)
+        cell.setColors(colors, step: Int((lightSleep + deepSleep)/60), goalStep: 8, day: indexPath.row + 1, unit: "小时")
         
         return cell
     }
