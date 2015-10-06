@@ -12,7 +12,7 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
     
     var physique: ScaleResult.Physique?
     
-    var physiqueButtonAndViews: [(UIButton, UIView)] = []
+    let selectedColor = UIColor(red: 0, green: 64/255.0, blue: 128/255.0, alpha: 1)
     
     convenience init() {
         self.init(nibName: "EvaluationPhysiqueDetailViewController", bundle: nil)
@@ -32,15 +32,23 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        collectionViews()
+        if physique != nil {
+            let (titleLabel, button, _) = labelAndButtonAndIntroduceView(self.view.viewWithTag(physique!.rawValue + 10)!)
+            titleLabel.textColor = selectedColor
+            button.selected = true
+        }
         
         //为了兼容iOS7，http://stackoverflow.com/questions/15490140/auto-layout-error
         //iOS8下无需这句话
         self.view.layoutSubviews()
     }
     
-    func collectionViews() {
+    func labelAndButtonAndIntroduceView(view: UIView) -> (UILabel, UIButton, UIView) {
+        let titleLabel = view.viewWithTag(1) as! UILabel
+        let button = view.viewWithTag(2) as! UIButton
+        let introduceView = view.viewWithTag(3)
         
+<<<<<<< HEAD
         physiqueButtonAndViews.removeAll(keepCapacity: true)
         for i in 1...9 {
             let button = self.view.viewWithTag(i) as? UIButton
@@ -55,19 +63,26 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
                 physiqueButtonAndViews.append(datas)
             }
         }
+=======
+        return (titleLabel, button, introduceView!)
+>>>>>>> test
     }
     
-    
     @IBAction func physiqueButtonPressed(sender: UIButton) {
-        for (button, view) in physiqueButtonAndViews {
-            if button.tag == sender.tag {
-                view.hidden = !view.hidden
-            }
-            else {
-                view.hidden = true
+        
+        if let view = sender.superview {
+            for i in 11...19 {
+                let currtentview = self.view.viewWithTag(i)!
+                let (_, _, introduceView) = labelAndButtonAndIntroduceView(currtentview)
+                
+                if i == view.tag {
+                    introduceView.hidden = !introduceView.hidden
+                }
+                else {
+                    introduceView.hidden = true
+                }
             }
         }
-        
     }
     
     @IBAction func backButtonPressed(sender: AnyObject) {

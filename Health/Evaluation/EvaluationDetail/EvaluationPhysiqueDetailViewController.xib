@@ -6,10 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EvaluationPhysiqueDetailViewController" customModule="Health" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view" destination="DKx-Lh-jL2" id="FRw-rl-N0z"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+<<<<<<< HEAD
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -494,28 +495,34 @@
             </constraints>
             <point key="canvasLocation" x="-79" y="308"/>
         </view>
+=======
+>>>>>>> test
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="DKx-Lh-jL2">
             <rect key="frame" x="0.0" y="0.0" width="639" height="831"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kda-ty-77E">
+                <view tag="17" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kda-ty-77E">
                     <rect key="frame" x="0.0" y="574" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-L2-KkX">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消瘦型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-L2-KkX">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="vGm-fQ-jhQ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oi2-MF-gp2">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oi2-MF-gp2">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="spare"/>
+                            <state key="selected" image="spareSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="LAf-5f-0aY"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6T-cd-wAT">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6T-cd-wAT">
+                            <rect key="frame" x="72.5" y="48.5" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-i4-79J">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -555,24 +562,28 @@
                         <constraint firstAttribute="trailing" secondItem="Oi2-MF-gp2" secondAttribute="trailing" id="yHv-rW-lm7"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EGn-B1-t53">
+                <view tag="18" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EGn-B1-t53">
                     <rect key="frame" x="213" y="574" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RG-rg-fSS">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="低脂肪型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RG-rg-fSS">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="t00-6h-fJw"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-hj-myt">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-hj-myt">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="littleFat"/>
+                            <state key="selected" image="littleFatSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="tSp-wn-Xim"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vno-rt-Q7f">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vno-rt-Q7f">
+                            <rect key="frame" x="72" y="48.5" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="9tS-JM-SlJ">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -612,24 +623,28 @@
                         <constraint firstItem="jzT-hj-myt" firstAttribute="top" secondItem="EGn-B1-t53" secondAttribute="top" id="nUJ-8X-GAf"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cI2-gY-RnP">
+                <view tag="19" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cI2-gY-RnP">
                     <rect key="frame" x="426" y="574" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5M-cG-Kv2">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运动员型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5M-cG-Kv2">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="Tdk-hF-Qcn"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyg-TZ-1DT">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyg-TZ-1DT">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="athlete"/>
+                            <state key="selected" image="athleteSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="beK-sK-H5h"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWo-V0-1Ub">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWo-V0-1Ub">
+                            <rect key="frame" x="72" y="48.5" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="Sd2-hR-dYZ">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -669,24 +684,28 @@
                         <constraint firstItem="hWo-V0-1Ub" firstAttribute="centerY" secondItem="Hyg-TZ-1DT" secondAttribute="centerY" id="ytf-XQ-7Ps"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHK-KL-oYo">
+                <view tag="14" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHK-KL-oYo">
                     <rect key="frame" x="0.0" y="317" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKV-bo-SJE">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="肌肉不足型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKV-bo-SJE">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="Qjw-5w-vBT"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-6v-sRD">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-6v-sRD">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="littleMuscle"/>
+                            <state key="selected" image="littleMuscleSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="huf-5j-Agi"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2U-9a-kJ4">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2U-9a-kJ4">
+                            <rect key="frame" x="72.5" y="48" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-oy-ECv">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -726,24 +745,28 @@
                         <constraint firstItem="UKV-bo-SJE" firstAttribute="top" secondItem="bRa-6v-sRD" secondAttribute="bottom" constant="8" id="yUA-Rg-wxI"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulB-Z3-lDO">
+                <view tag="15" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulB-Z3-lDO">
                     <rect key="frame" x="213" y="317" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iD-KN-CSg">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="健康匀称型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iD-KN-CSg">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="RZI-wr-7US"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBw-yH-IZE">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBw-yH-IZE">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="health"/>
+                            <state key="selected" image="healthSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="IDg-OQ-mtB"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyy-aM-aHv">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyy-aM-aHv">
+                            <rect key="frame" x="72.5" y="48" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="hDO-RH-CNx">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -783,24 +806,28 @@
                         <constraint firstItem="fyy-aM-aHv" firstAttribute="centerY" secondItem="OBw-yH-IZE" secondAttribute="centerY" id="yyq-oI-ZUj"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opa-hb-4g9">
+                <view tag="16" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opa-hb-4g9">
                     <rect key="frame" x="426" y="317" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdn-mH-TwG">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超重型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdn-mH-TwG">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="n2F-gq-xfi"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x8-w9-rKw">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x8-w9-rKw">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="lotOfMuscle"/>
+                            <state key="selected" image="lotOfMuscleSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="0Nk-ji-ZiY"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mk9-Y7-foB">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mk9-Y7-foB">
+                            <rect key="frame" x="72" y="48.5" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-eR-Rff">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -840,24 +867,28 @@
                         <constraint firstItem="2x8-w9-rKw" firstAttribute="top" secondItem="opa-hb-4g9" secondAttribute="top" id="bsC-WD-Wn5"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcU-n3-5WE">
+                <view tag="13" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcU-n3-5WE">
                     <rect key="frame" x="426" y="60" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iW-pr-aIF">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="肥胖型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iW-pr-aIF">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="8Q6-QP-IXr"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37b-zw-nzr">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37b-zw-nzr">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="fat"/>
+                            <state key="selected" image="fatSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="3sw-Wb-GgL"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOO-Ha-IhA">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOO-Ha-IhA">
+                            <rect key="frame" x="72.5" y="48" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-kQ-6WL">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -897,23 +928,27 @@
                         <constraint firstAttribute="trailing" secondItem="37b-zw-nzr" secondAttribute="trailing" id="lEl-Gi-d5k"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ml-px-fbL">
+                <view tag="12" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ml-px-fbL">
                     <rect key="frame" x="213" y="60" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agi-gT-g05">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="脂肪过多型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agi-gT-g05">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="pQ0-Bg-hNX"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73T-oO-x6d">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73T-oO-x6d">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="lotOfFat"/>
+                            <state key="selected" image="lotOfFatSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="XoG-95-Zvo"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puF-lF-p6L">
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puF-lF-p6L">
                             <rect key="frame" x="72" y="48" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="AdX-Cv-yo0">
@@ -954,24 +989,28 @@
                         <constraint firstItem="73T-oO-x6d" firstAttribute="leading" secondItem="7Ml-px-fbL" secondAttribute="leading" id="ozi-ww-XIh"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enx-xg-XTz">
+                <view tag="11" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enx-xg-XTz">
                     <rect key="frame" x="0.0" y="60" width="213" height="257"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-Nr-ujn">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="隐性肥胖型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-Nr-ujn">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="DNa-3y-1tn"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yj-Pp-cNl">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yj-Pp-cNl">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="hiddenFat"/>
+                            <state key="selected" image="hiddenFatSelected"/>
+                            <connections>
+                                <action selector="physiqueButtonPressed:" destination="-1" eventType="touchUpInside" id="hMU-Lr-9jV"/>
+                            </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Yd-e0-N8X">
-                            <rect key="frame" x="72" y="48" width="68" height="119"/>
+                        <view hidden="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Yd-e0-N8X">
+                            <rect key="frame" x="72.5" y="48" width="68" height="119"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="vx8-0Y-mNC">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
@@ -1085,67 +1124,7 @@
                 <constraint firstItem="kda-ty-77E" firstAttribute="top" secondItem="KHK-KL-oYo" secondAttribute="bottom" id="zKN-sl-Lxj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="524.5" y="662.5"/>
-        </view>
-        <view contentMode="scaleToFill" id="plK-PV-4SN">
-            <rect key="frame" x="0.0" y="0.0" width="213" height="257"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FzE-U3-j9U">
-                    <rect key="frame" x="0.0" y="223" width="213" height="34"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="34" id="KRk-Qk-cQc"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylp-UD-sfF">
-                    <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
-                    <state key="normal" title="Button"/>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGy-B7-JB4">
-                    <rect key="frame" x="72" y="48" width="68" height="119"/>
-                    <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="Wdi-cr-kay">
-                            <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPy-1p-iOj">
-                            <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="Wdi-cr-kay" firstAttribute="top" secondItem="QGy-B7-JB4" secondAttribute="top" id="8w7-JW-dou"/>
-                        <constraint firstAttribute="bottom" secondItem="WPy-1p-iOj" secondAttribute="bottom" id="NB1-Nu-B0u"/>
-                        <constraint firstAttribute="trailing" secondItem="Wdi-cr-kay" secondAttribute="trailing" id="NnG-yg-Pvg"/>
-                        <constraint firstItem="WPy-1p-iOj" firstAttribute="leading" secondItem="QGy-B7-JB4" secondAttribute="leading" id="NwI-0g-apR"/>
-                        <constraint firstAttribute="width" constant="68" id="RxM-pd-mFb"/>
-                        <constraint firstItem="Wdi-cr-kay" firstAttribute="leading" secondItem="QGy-B7-JB4" secondAttribute="leading" id="mF5-Uq-RVj"/>
-                        <constraint firstAttribute="trailing" secondItem="WPy-1p-iOj" secondAttribute="trailing" id="msp-V3-Irh"/>
-                        <constraint firstItem="WPy-1p-iOj" firstAttribute="top" secondItem="QGy-B7-JB4" secondAttribute="top" id="nHb-3I-nlb"/>
-                        <constraint firstAttribute="bottom" secondItem="Wdi-cr-kay" secondAttribute="bottom" id="pac-He-eWM"/>
-                        <constraint firstAttribute="height" constant="119" id="zDi-ag-4kS"/>
-                    </constraints>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="QGy-B7-JB4" firstAttribute="centerX" secondItem="Ylp-UD-sfF" secondAttribute="centerX" id="7UK-41-25K"/>
-                <constraint firstAttribute="trailing" secondItem="FzE-U3-j9U" secondAttribute="trailing" id="Aox-ii-uAj"/>
-                <constraint firstItem="Ylp-UD-sfF" firstAttribute="leading" secondItem="plK-PV-4SN" secondAttribute="leading" id="C9P-n1-YDJ"/>
-                <constraint firstAttribute="bottom" secondItem="FzE-U3-j9U" secondAttribute="bottom" id="FCw-rj-dFE"/>
-                <constraint firstAttribute="trailing" secondItem="Ylp-UD-sfF" secondAttribute="trailing" id="ZDG-Tz-0LI"/>
-                <constraint firstItem="FzE-U3-j9U" firstAttribute="leading" secondItem="plK-PV-4SN" secondAttribute="leading" id="g5c-gD-c6Q"/>
-                <constraint firstItem="FzE-U3-j9U" firstAttribute="top" secondItem="Ylp-UD-sfF" secondAttribute="bottom" constant="8" id="lmI-pX-IV4"/>
-                <constraint firstItem="QGy-B7-JB4" firstAttribute="centerY" secondItem="Ylp-UD-sfF" secondAttribute="centerY" id="njv-EO-LIz"/>
-                <constraint firstItem="Ylp-UD-sfF" firstAttribute="top" secondItem="plK-PV-4SN" secondAttribute="top" id="wnp-yf-Vox"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="421.5" y="443.5"/>
+            <point key="canvasLocation" x="480.5" y="525.5"/>
         </view>
     </objects>
     <resources>
@@ -1157,6 +1136,7 @@
         <image name="health" width="43" height="120"/>
         <image name="healthSelected" width="43" height="120"/>
         <image name="hiddenFat" width="42" height="119"/>
+        <image name="hiddenFatSelected" width="42" height="119"/>
         <image name="introduceBg" width="68" height="119"/>
         <image name="littleFat" width="43" height="120"/>
         <image name="littleFatSelected" width="42" height="119"/>
