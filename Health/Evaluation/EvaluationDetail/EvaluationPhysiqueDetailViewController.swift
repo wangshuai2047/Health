@@ -48,24 +48,7 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
         let button = view.viewWithTag(2) as! UIButton
         let introduceView = view.viewWithTag(3)
         
-<<<<<<< HEAD
-        physiqueButtonAndViews.removeAll(keepCapacity: true)
-        for i in 1...9 {
-            let button = self.view.viewWithTag(i) as? UIButton
-            let view = self.view.viewWithTag(i + 10)
-            
-            if physique?.rawValue == i {
-                button?.selected = true
-            }
-            
-            if button != nil && view != nil {
-                let datas = (button!, view!)
-                physiqueButtonAndViews.append(datas)
-            }
-        }
-=======
         return (titleLabel, button, introduceView!)
->>>>>>> test
     }
     
     @IBAction func physiqueButtonPressed(sender: UIButton) {
