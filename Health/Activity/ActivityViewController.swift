@@ -37,9 +37,15 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
                     let ad = ads![i]
                     let button = UIButton(type: UIButtonType.Custom)
                     if let imageURL = NSURL(string: ad.imageURL) {
-                        if let imageData = NSData(contentsOfURL: imageURL) {
-                            button.setBackgroundImage(UIImage(data: imageData), forState: UIControlState.Normal)
-                        }
+                        
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                            if let imageData = NSData(contentsOfURL: imageURL) {
+                                let image = UIImage(data: imageData)
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    button.setBackgroundImage(image, forState: UIControlState.Normal)
+                                })
+                            }
+                        })
                     }
                     button.addTarget(self, action: Selector("adPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
                     button.tag = i

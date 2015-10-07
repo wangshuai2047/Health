@@ -26,6 +26,18 @@ struct SettingManager {
         DBManager.shareInstance().removeDeviceBind(type)
     }
     
+    static func sendFeedBack(feedback: String?, complete: (error: NSError?) -> Void) {
+        
+        if feedback == nil || feedback == "" {
+            complete(error: NSError(domain: "用户反馈错误", code: 1, userInfo: [NSLocalizedDescriptionKey : "反馈内容不能为空"]))
+            return
+        }
+        
+        UserRequest.feedBack(UserData.shareInstance().userId!, feedback: feedback!) { (error: NSError?) -> Void in
+            complete(error: error)
+        }
+    }
+    
     /*
         每搜索到一个设备会回调一次,返回所有搜索到的设备信息
         {

@@ -29,6 +29,14 @@
 		E015BB4E1BC5160500225C32 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB4B1BC5160500225C32 /* ShareData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		E015BB4F1BC5160500225C32 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB4C1BC5160500225C32 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
 		E015BB501BC5160500225C32 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB4C1BC5160500225C32 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB521BC52B3900225C32 /* FeedBackViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB551BC52B3900225C32 /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB521BC52B3900225C32 /* FeedBackViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB561BC52B3900225C32 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB531BC52B3900225C32 /* FeedBackViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E015BB571BC52B3900225C32 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB531BC52B3900225C32 /* FeedBackViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB591BC5520700225C32 /* FeedbackCell.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB5C1BC5520700225C32 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB591BC5520700225C32 /* FeedbackCell.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
 		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
 		E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */; };
@@ -251,6 +259,10 @@
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E015BB4B1BC5160500225C32 /* ShareData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShareData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E015BB4C1BC5160500225C32 /* ShareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
+		E015BB521BC52B3900225C32 /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
+		E015BB531BC52B3900225C32 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
+		E015BB591BC5520700225C32 /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
+		E015BB5A1BC5520700225C32 /* FeedbackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSettingViewController.swift; path = Health/Goal/GoalSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoalSettingViewController.xib; path = Health/Goal/GoalSettingViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -505,6 +517,18 @@
 			path = UserData;
 			sourceTree = "<group>";
 		};
+		E015BB511BC52B1F00225C32 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				E015BB521BC52B3900225C32 /* FeedBackViewController.swift */,
+				E015BB531BC52B3900225C32 /* FeedBackViewController.xib */,
+				E015BB591BC5520700225C32 /* FeedbackCell.swift */,
+				E015BB5A1BC5520700225C32 /* FeedbackCell.xib */,
+			);
+			name = Feedback;
+			path = Health/Setting/Feedback;
+			sourceTree = SOURCE_ROOT;
+		};
 		E015ED991B9516D300D66A6B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,6 +781,7 @@
 		E08A24611B807C16004269BB /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				E015BB511BC52B1F00225C32 /* Feedback */,
 				E0F9DB111B854BBA00504454 /* DeviceBind */,
 				E0F9DB121B854BBA00504454 /* Infomation */,
 				E0F9DB131B854BBA00504454 /* ThirdAppBind */,
@@ -1278,6 +1303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */,
 				E0FBED3C1B835BEE00A70598 /* LoginViewController.xib in Resources */,
 				E09EC8C21B7E3B5000CC07E3 /* Main.storyboard in Resources */,
 				E09EC8C71B7E3B5000CC07E3 /* LaunchScreen.xib in Resources */,
@@ -1299,6 +1325,7 @@
 				E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */,
 				E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */,
 				E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */,
+				E015BB561BC52B3900225C32 /* FeedBackViewController.xib in Resources */,
 				E0418EFC1BC3554800B2788D /* DeviceBindCell.xib in Resources */,
 				E0F9DAFB1B85488300504454 /* GUIViewController.xib in Resources */,
 				E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */,
@@ -1314,9 +1341,11 @@
 				E0418EF71BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
 				E060CD6B1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
+				E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */,
 				E0418EEB1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
 				E060CD7D1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
 				E060CD6F1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
+				E015BB571BC52B3900225C32 /* FeedBackViewController.xib in Resources */,
 				E0418EF11BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
 				E0418EFD1BC3554800B2788D /* DeviceBindCell.xib in Resources */,
 			);
@@ -1372,6 +1401,7 @@
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
+				E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
 				E08B32971B85A8B00040ADE7 /* CompleteGenderDataView.swift in Sources */,
 				E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */,
@@ -1391,6 +1421,7 @@
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
+				E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */,
 				E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
@@ -1456,6 +1487,7 @@
 				E0DD14091B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */,
 				E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */,
+				E015BB551BC52B3900225C32 /* FeedBackViewController.swift in Sources */,
 				E01C815C1B880C3D00A1F7AC /* DBManager.swift in Sources */,
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
 				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
@@ -1470,6 +1502,7 @@
 				E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */,
 				E0C50B9D1B861DAC007A9393 /* UserReqeustTests.swift in Sources */,
 				E0FBED341B835BA900A70598 /* LoginManager.swift in Sources */,
+				E015BB5C1BC5520700225C32 /* FeedbackCell.swift in Sources */,
 				E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0FBED441B835C9100A70598 /* Request.swift in Sources */,
 				E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */,

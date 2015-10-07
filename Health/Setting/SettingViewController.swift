@@ -15,9 +15,9 @@ class SettingViewController: UIViewController {
         ("membersManager", "成员资料修改管理", UIViewController()),
         ("socialBind", "社交账号绑定管理", ThirdPlatformBindController()),
         ("deviceManager", "健康设备管理", DeviceBindViewController()),
+        ("feedback", "用户建议反馈", FeedBackViewController()),
 //        ("HealthCenterBind", "健康中心绑定", UIViewController()),
 //        ("checkUpdate", "检查软件更新", UIViewController()),
-//        ("feedback", "用户建议反馈", UIViewController()),
     ]
 //    var list: [(String, String, UIViewController)] = [
 //        ("membersManager", "成员资料修改管理", UIViewController()),
