@@ -126,7 +126,7 @@ extension BraceletManager: CBCentralManagerDelegate {
         if kCBAdvDataManufacturerData!.rangeOfData(AdvDataManufacturerData, options: NSDataSearchOptions.Backwards, range: NSRange(location: 0, length: kCBAdvDataManufacturerData!.length)).location != NSNotFound && kCBAdvDataIsConnectable == 1 {
             
             if braceletUUID == nil || (braceletUUID != nil && braceletUUID == peripheral.identifier.UUIDString) {
-                DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name!, type: 1)
+                DBManager.shareInstance().addDevice(peripheral.identifier.UUIDString, name: peripheral.name!, type: DeviceType.Bracelet)
                 
                 self.peripheral = peripheral
                 connect(self.peripheral!)

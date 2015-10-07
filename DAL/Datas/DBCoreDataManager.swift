@@ -450,6 +450,61 @@ extension DBManager {
 
 // MARK: - Device Model 操作
 extension DBManager {
+    
+    func haveConnectedWithType(type: DeviceType) -> Bool {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "type == %d", type.rawValue)
+        
+        var error: NSError? = nil
+        let listData: [AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch let error1 as NSError {
+            error = error1
+            listData = nil
+        }
+        
+        if error == nil && listData?.count > 0 {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func removeDeviceBind(type: DeviceType) {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "type == %d", type.rawValue)
+        
+        var error: NSError? = nil
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch let error1 as NSError {
+            error = error1
+            listData = nil
+            print(error)
+        }
+        for data in listData as! [EvaluationData] {
+            context.deleteObject(data)
+            var savingError: NSError? = nil
+            do {
+                try context.save()
+                print("删除成功")
+            } catch let error as NSError {
+                savingError = error
+                print("删除失败: \(savingError)")
+            }
+        }
+    }
+    
     var haveConnectedScale: Bool {
         
         let context = self.managedObjectContext!
@@ -500,7 +555,7 @@ extension DBManager {
         }
     }
     
-    func addDevice(uuid: String, name: String, type: Int16) {
+    func addDevice(uuid: String, name: String, type: DeviceType) {
         
         let context = self.managedObjectContext!
         
@@ -527,7 +582,7 @@ extension DBManager {
             
             insertData.uuid = uuid
             insertData.name = name
-            insertData.type = NSNumber(short: type)
+            insertData.type = NSNumber(short: type.rawValue)
             
             do {
                 try context.save()

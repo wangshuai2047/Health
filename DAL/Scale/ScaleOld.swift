@@ -93,7 +93,7 @@ extension ScaleOld: ScaleProtocol {
                     complete(result: self.transformResult(result), err: nil)
                 }
                 
-                DBManager.shareInstance().addDevice(self.vscaleManager!.deviceUUID, name: self.vscaleManager!.name, type: 0)
+                DBManager.shareInstance().addDevice(self.vscaleManager!.deviceUUID, name: self.vscaleManager!.name, type: DeviceType.MyBody)
                 
                 self.vscaleManager = nil
                 self.isScaling = false

@@ -33,10 +33,12 @@ protocol DBGoalProtocol {
 }
 
 protocol DBDeviceProtocol {
+    
+    func haveConnectedWithType(type: DeviceType) -> Bool
     var haveConnectedScale: Bool { get }
     var haveConnectedBracelet: Bool { get }
     func braceletInfo() -> (uuid: String, name: String)?
-    func addDevice(uuid: String, name: String, type: Int16)
+    func addDevice(uuid: String, name: String, type: DeviceType)
 }
 
 protocol DBManagerProtocol : DBUserProtocol, DBEvaluationProtocol, DBGoalProtocol, DBDeviceProtocol {

@@ -26,19 +26,20 @@ class DeviceBindViewController: UIViewController {
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
         
         // Mybodymini
-        deviceBindListInfo.append(["headIcon" : "wechatLogin", "title" : "Mybodymini", "execute" : {() in
+        deviceBindListInfo.append(["headIcon" : "wechatLogin", "title" : "Mybodymini", "execute" : {(isBind: Bool) in
+            
             }])
         
         // Mybody
-        deviceBindListInfo.append(["headIcon" : "qqLogin", "title" : "Mybody", "execute" : {() in
+        deviceBindListInfo.append(["headIcon" : "qqLogin", "title" : "Mybody", "execute" : {(isBind: Bool) in
             }])
         
         // MybodyPlus
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "MybodyPlus", "execute" : {() in
+        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "MybodyPlus", "execute" : {(isBind: Bool) in
             }])
         
         // 好知体手环
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "好知体手环", "execute" : {() in
+        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "好知体手环", "execute" : {(isBind: Bool) in
             }])
         
     }
@@ -61,8 +62,8 @@ class DeviceBindViewController: UIViewController {
 
     func bindButtonPressed(button: UIButton) {
         let info = deviceBindListInfo[button.tag]
-        let execute = info["execute"] as! () -> Void
-        execute()
+        let execute = info["execute"] as! (Bool) -> Void
+        execute(button.selected)
     }
     
     @IBAction func backButtonPressed(sender: AnyObject) {
@@ -84,6 +85,9 @@ extension DeviceBindViewController : UITableViewDataSource, UITableViewDelegate 
         cell.bindButton.tag = indexPath.row
         cell.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         cell.bindButton.addTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        cell
+        
         return cell
     }
     
