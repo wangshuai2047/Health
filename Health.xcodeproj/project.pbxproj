@@ -39,8 +39,6 @@
 		E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */; };
 		E02979471B801E4900AAE085 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979461B801E4900AAE085 /* DeviceManager.swift */; };
 		E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979461B801E4900AAE085 /* DeviceManager.swift */; };
-		E029794D1B80292500AAE085 /* BluetoothProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029794C1B80292500AAE085 /* BluetoothProtocol.swift */; };
-		E029794E1B80292500AAE085 /* BluetoothProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029794C1B80292500AAE085 /* BluetoothProtocol.swift */; };
 		E038D1FD1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68921B97D12000F4C505 /* BraceletManager.swift */; };
@@ -181,6 +179,8 @@
 		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; settings = {ASSET_TAGS = (); }; };
 		E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; settings = {ASSET_TAGS = (); }; };
+		E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; settings = {ASSET_TAGS = (); }; };
 		E0CD63131BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63141BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
@@ -255,7 +255,6 @@
 		E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationDetailViewController.xib; sourceTree = "<group>"; };
 		E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
 		E02979461B801E4900AAE085 /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		E029794C1B80292500AAE085 /* BluetoothProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothProtocol.swift; sourceTree = "<group>"; };
 		E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGoalData.swift; sourceTree = "<group>"; };
 		E03B68921B97D12000F4C505 /* BraceletManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletManager.swift; path = DAL/Bracelet/BraceletManager.swift; sourceTree = SOURCE_ROOT; };
 		E03B68931B97D12000F4C505 /* BraceletProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletProtocol.swift; path = DAL/Bracelet/BraceletProtocol.swift; sourceTree = SOURCE_ROOT; };
@@ -385,6 +384,7 @@
 		E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYAxisLineChart.swift; sourceTree = "<group>"; };
 		E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYLineChartCell.swift; sourceTree = "<group>"; };
 		E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleYLineChartCell.xib; sourceTree = "<group>"; };
+		E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E0CD63151BA2511F00477090 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
 		E0DD14021B9130480079F957 /* ScaleOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleOld.swift; sourceTree = "<group>"; };
@@ -525,7 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				E02979461B801E4900AAE085 /* DeviceManager.swift */,
-				E029794C1B80292500AAE085 /* BluetoothProtocol.swift */,
+				E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */,
 			);
 			path = DeviceManager;
 			sourceTree = "<group>";
@@ -1354,7 +1354,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E029794D1B80292500AAE085 /* BluetoothProtocol.swift in Sources */,
 				E09EC8B81B7E3B5000CC07E3 /* AppDelegate.swift in Sources */,
 				E0F9DB081B854B8200504454 /* EvaluationViewController.swift in Sources */,
 				E0418EEE1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
@@ -1383,6 +1382,7 @@
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
+				E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
 				E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */,
@@ -1459,7 +1459,6 @@
 				E0FBED311B83539000A70598 /* VScaleManager.m in Sources */,
 				E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */,
 				E0C50B9D1B861DAC007A9393 /* UserReqeustTests.swift in Sources */,
-				E029794E1B80292500AAE085 /* BluetoothProtocol.swift in Sources */,
 				E0FBED341B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0FBED441B835C9100A70598 /* Request.swift in Sources */,
@@ -1473,6 +1472,7 @@
 				E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */,
 				E00580861B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
 				E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */,
+				E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */,
 				E05B1A311B8E028900B37F1C /* Alert.swift in Sources */,
 				E09EC8D31B7E3B5000CC07E3 /* HealthTests.swift in Sources */,
