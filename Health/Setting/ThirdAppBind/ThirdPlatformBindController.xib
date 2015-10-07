@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ThirdPlatformBindController" customModule="Health" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="IDr-rC-0nD" id="lso-ac-Vcj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OC4-KT-hD7">
+                    <rect key="frame" x="17" y="8" width="46" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="3C3-PQ-eWD"/>
+                        <constraint firstAttribute="width" constant="46" id="nhG-HS-cRS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <inset key="titleEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="-43"/>
+                    <inset key="imageEdgeInsets" minX="12" minY="-15" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="返回" image="back">
+                        <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="8Lg-uw-WI4"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="社交账号绑定管理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8u-wb-Kt1">
+                    <rect key="frame" x="232" y="79" width="136" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.1411764771" green="0.67058825489999996" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IDr-rC-0nD">
+                    <rect key="frame" x="0.0" y="107.5" width="600" height="492.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="FmN-ma-eyP"/>
+                        <outlet property="delegate" destination="-1" id="wuT-7s-4nE"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="IDr-rC-0nD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5fe-fk-Vdo"/>
+                <constraint firstItem="e8u-wb-Kt1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="8wx-Fb-8yq"/>
+                <constraint firstItem="OC4-KT-hD7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="17" id="92W-1g-kMp"/>
+                <constraint firstAttribute="trailing" secondItem="IDr-rC-0nD" secondAttribute="trailing" id="bsa-St-eNF"/>
+                <constraint firstItem="IDr-rC-0nD" firstAttribute="top" secondItem="e8u-wb-Kt1" secondAttribute="bottom" constant="8" id="h56-4c-kbc"/>
+                <constraint firstAttribute="bottom" secondItem="IDr-rC-0nD" secondAttribute="bottom" id="jps-hR-TxC"/>
+                <constraint firstItem="e8u-wb-Kt1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qlu-Mw-cWo"/>
+                <constraint firstItem="OC4-KT-hD7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="x99-9Y-K7e"/>
+            </constraints>
+            <point key="canvasLocation" x="170" y="398"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back" width="15" height="26"/>
+    </resources>
+</document>
