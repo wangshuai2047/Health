@@ -27,9 +27,11 @@ protocol DBEvaluationProtocol {
 protocol DBGoalProtocol {
     func addGoalData(setDatas:(inout setDatas: GoalData)-> GoalData)
     func deleteGoalData(dataId: String)
-    func queryGoalData(dataId: String) -> [String: NSObject]?
-    func queryLastGoalData() -> [String: NSObject]?
-    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: NSObject]]
+    func queryGoalData(dataId: String) -> [String: AnyObject]?
+    func queryLastGoalData() -> [String: AnyObject]?
+    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]]
+    func queryNoUploadGoalDatas() -> [[String: AnyObject]]
+    func updateUploadGoalDatas(newDataIdInfos: [[String: AnyObject]])
 }
 
 protocol DBDeviceProtocol {

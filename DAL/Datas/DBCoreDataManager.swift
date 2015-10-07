@@ -314,34 +314,6 @@ extension DBManager {
         } catch _ {
             NSLog("Insert GoalData Data Fail")
         }
-        
-        //////////////------------------------------------------------------
-//        let context = self.managedObjectContext!
-//        
-//        // 先搜索
-//        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
-//        
-//        var insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
-//        setDatas(setDatas: &insertData)
-//        
-//        let request = NSFetchRequest()
-//        request.entity = entityDescription
-//        request.predicate = NSPredicate(format: "startTime == %@ AND endTime == %@", insertData.startTime, insertData.endTime)
-//        
-//        let listData: [AnyObject]?
-//        listData = try? context.executeFetchRequest(request)
-//        
-//        if listData?.count > 0 {
-//            NSLog("Insert Device Fail, exist the GoalData")
-//        }
-//        else {
-//            do {
-//                try context.save()
-//                NSLog("Insert GoalData Data Success")
-//            } catch _ {
-//                NSLog("Insert GoalData Data Fail")
-//            }
-//        }
     }
     
     func deleteGoalData(dataId: String) {
@@ -374,7 +346,7 @@ extension DBManager {
         }
     }
     
-    func queryGoalData(dataId: String) -> [String: NSObject]? {
+    func queryGoalData(dataId: String) -> [String: AnyObject]? {
         
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
@@ -401,7 +373,7 @@ extension DBManager {
         return nil
     }
     
-    func queryLastGoalData() -> [String: NSObject]? {
+    func queryLastGoalData() -> [String: AnyObject]? {
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
         
@@ -428,7 +400,7 @@ extension DBManager {
         return nil
     }
     
-    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: NSObject]] {
+    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]] {
         
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
@@ -439,12 +411,54 @@ extension DBManager {
         
         let listData: [NSManagedObject] = (try! context.executeFetchRequest(request)) as! [NSManagedObject]
         
-        var datas: [[String: NSObject]] = []
+        var datas: [[String: AnyObject]] = []
         for managedObject in listData {
             datas += [goalDataToDic(managedObject)]
         }
         
         return datas
+    }
+    
+    func queryNoUploadGoalDatas() -> [[String: AnyObject]] {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
+        
+        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        
+        var datas: [[String: AnyObject]] = []
+        for managedObject in listData {
+            datas += [goalDataToDic(managedObject)]
+        }
+        return datas
+    }
+    
+    func updateUploadGoalDatas(newDataIdInfos: [[String: AnyObject]]) {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
+        
+        let listData = (try! context.executeFetchRequest(request)) as! [GoalData]
+        
+        for i in 0...listData.count - 1 {
+            
+            let managedObject = listData[i]
+            let info = newDataIdInfos[i]
+            managedObject.dataId = info["dataId"] as! String
+            managedObject.isUpload = NSNumber(bool: true)
+        }
+        
+        do {
+            try context.save()
+        }catch let error1 as NSError {
+            print(error1)
+        }
     }
 }
 
@@ -676,7 +690,7 @@ extension DBManager {
         ]
     }
     
-    func goalDataToDic(goalData: NSManagedObject) -> [String: NSObject] {
+    func goalDataToDic(goalData: NSManagedObject) -> [String: AnyObject] {
         return [
             "stepsType" : goalData.valueForKey("stepsType") as! NSNumber,
             "steps" : goalData.valueForKey("steps") as! NSNumber,

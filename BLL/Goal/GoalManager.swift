@@ -45,7 +45,18 @@ struct GoalManager {
         DeviceManager.shareInstance().syncBraceletDatas(startTime, syncComplete: { (list: [BraceletResult], error: NSError?) -> Void in
             
             if error == nil {
+                
+                var datas: [[String: AnyObject]] = []
                 for result in list {
+                    
+                    datas.append([
+                        "userId" : Int(result.userId),
+                        "steps" : Int(result.steps),
+                        "stepsType" : Int(result.stepsType.rawValue),
+                        "startTime" : result.startTime.secondTimeInteval(),
+                        "endTime" : result.endTime.secondTimeInteval()
+                        ])
+                    
                     // 插入数据库
                     DBManager.shareInstance().addGoalData({ (inout setDatas: GoalData) -> GoalData in
                         
@@ -62,11 +73,36 @@ struct GoalManager {
                     })
                 }
                 
+                updateGoalData()
+                
                 refreshSevenDaysData()
             }
             
             complete(error)
         })
+    }
+    
+    private static func updateGoalData() {
+        // 获取所有没上传的数据
+        let datas = DBManager.shareInstance().queryNoUploadGoalDatas()
+        
+        var uploadDatas: [[String : AnyObject]] = []
+        for info in datas {
+            uploadDatas.append([
+                "userId" : (info["userId"] as! NSNumber).integerValue,
+                "steps" : (info["steps"] as! NSNumber).integerValue,
+                "stepsType" : (info["stepsType"] as! NSNumber).integerValue,
+                "startTime" : (info["startTime"] as! NSDate).secondTimeInteval(),
+                "endTime" : (info["endTime"] as! NSDate).secondTimeInteval()
+                ])
+        }
+        
+        // 上传
+        GoalRequest.uploadGoalDatas(uploadDatas) { (info, error: NSError?) -> Void in
+            if error == nil {
+                DBManager.shareInstance().updateUploadGoalDatas(info!)
+            }
+        }
     }
     
     static var isSetGoal: Bool {
@@ -154,7 +190,7 @@ struct GoalManager {
 }
 
 extension BraceletResult {
-    init(info: [String: NSObject]) {
+    init(info: [String: AnyObject]) {
         
         self.dataId = info["dataId"] as! String
         self.userId = (info["userId"] as! NSNumber).unsignedShortValue
