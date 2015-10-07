@@ -25,6 +25,10 @@
 		E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */; };
 		E00C01651B7FAB99006A4343 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
+		E015BB4D1BC5160500225C32 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB4B1BC5160500225C32 /* ShareData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB4E1BC5160500225C32 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB4B1BC5160500225C32 /* ShareData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB4F1BC5160500225C32 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB4C1BC5160500225C32 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
+		E015BB501BC5160500225C32 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB4C1BC5160500225C32 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
 		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
 		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
 		E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */; };
@@ -245,6 +249,8 @@
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		E015BB4B1BC5160500225C32 /* ShareData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShareData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E015BB4C1BC5160500225C32 /* ShareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
 		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSettingViewController.swift; path = Health/Goal/GoalSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoalSettingViewController.xib; path = Health/Goal/GoalSettingViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -970,6 +976,8 @@
 				E01C81581B8804AF00A1F7AC /* Device.swift */,
 				E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */,
 				E0CD63151BA2511F00477090 /* UserDBData.swift */,
+				E015BB4B1BC5160500225C32 /* ShareData+CoreDataProperties.swift */,
+				E015BB4C1BC5160500225C32 /* ShareData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1377,6 +1385,7 @@
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
+				E015BB4F1BC5160500225C32 /* ShareData.swift in Sources */,
 				E09AAC531BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift in Sources */,
 				E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */,
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
@@ -1389,6 +1398,7 @@
 				E05B1A301B8E028900B37F1C /* Alert.swift in Sources */,
 				E0418EF41BC3552C00B2788D /* DeviceBindViewController.swift in Sources */,
 				E060CD111B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
+				E015BB4D1BC5160500225C32 /* ShareData+CoreDataProperties.swift in Sources */,
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
 				E08B32941B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift in Sources */,
 				E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */,
@@ -1464,6 +1474,7 @@
 				E0FBED441B835C9100A70598 /* Request.swift in Sources */,
 				E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */,
 				E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */,
+				E015BB4E1BC5160500225C32 /* ShareData+CoreDataProperties.swift in Sources */,
 				E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */,
 				E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E03B689D1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */,
@@ -1471,6 +1482,7 @@
 				E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */,
 				E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */,
 				E00580861B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
+				E015BB501BC5160500225C32 /* ShareData.swift in Sources */,
 				E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */,
 				E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */,
