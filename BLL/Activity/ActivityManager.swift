@@ -9,5 +9,7 @@
 import Foundation
 
 struct ActivityManager {
-    
+    static func queryActiveAds(complete: ((ads: [RequestLoginAdModel]?, error: NSError?) -> Void)) {
+        AdsRequest.queryActivityAds(UserData.shareInstance().userId!, complete: complete)
+    }
 }
