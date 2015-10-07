@@ -612,6 +612,45 @@ extension DBManager {
     }
 }
 
+// MARK: - 分享数据
+extension DBManager {
+    func addShareData(type: Int) {
+        
+        let context = self.managedObjectContext!
+        let insertData = NSEntityDescription.insertNewObjectForEntityForName("ShareData", inManagedObjectContext: context) as! ShareData
+        
+        insertData.type = NSNumber(integer: type)
+        insertData.date = NSDate()
+        
+        do {
+            try context.save()
+            NSLog("Insert Share Data Success")
+        } catch _ {
+            NSLog("Insert Share Data Fail")
+        }
+    }
+    
+    func queryShareDatas(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]] {
+        
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("ShareData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "date >= %@ and date < %@", beginDate, endDate)
+        
+        let listData: [NSManagedObject] = (try! context.executeFetchRequest(request)) as! [NSManagedObject]
+        
+        var datas: [[String: AnyObject]] = []
+        for managedObject in listData {
+            datas += [shareDataToDic(managedObject)]
+        }
+        
+        return datas
+        
+    }
+}
+
 /*
 dataId: String
 @NSManaged var isUpload: NSNumber
@@ -629,6 +668,13 @@ dataId: String
 */
 // MARK: - 数据工厂
 extension DBManager {
+    
+    func shareDataToDic(shareData: NSManagedObject) -> [String : AnyObject] {
+        return [
+            "type" : shareData.valueForKey("type") as! NSNumber,
+            "date" : shareData.valueForKey("date") as! NSDate,
+        ]
+    }
     
     func goalDataToDic(goalData: NSManagedObject) -> [String: NSObject] {
         return [

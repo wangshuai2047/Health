@@ -69,7 +69,21 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        ActivityManager.queryScoreAds {[unowned self] (score: Float?, error: NSError?) -> Void in
+            if error == nil {
+                self.scoreLabel.text = "\(score!)"
+            }
+            else {
+                self.scoreLabel.text = "0"
+            }
+        }
         
+        let (walker, sleeper, evaluationer, sharer) = ActivityManager.queryActivityDatas()
+        
+        superWalkerButton.selected = walker
+        superSleeperButton.selected = sleeper
+        superEvaluationerButton.selected = evaluationer
+        superSharerButton.selected = sharer
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,8 +106,6 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
     func adsScrollTimer() {
         var nextOffset = adsScrollView.contentOffset.x + adsScrollView.frame.size.width
         
-        print("\(nextOffset)")
-        print("\(adsScrollView.frame.size.width * CGFloat(adsPageControl.numberOfPages))")
         if nextOffset >= adsScrollView.frame.size.width * CGFloat(adsPageControl.numberOfPages) {
             nextOffset = 0
         }
@@ -112,6 +124,7 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
     */
 
     @IBAction func scoreRuleButtonPressed(sender: AnyObject) {
+        
     }
     
     

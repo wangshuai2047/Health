@@ -33,7 +33,7 @@ protocol DBGoalProtocol {
 }
 
 protocol DBDeviceProtocol {
-    
+    func removeDeviceBind(type: DeviceType)
     func haveConnectedWithType(type: DeviceType) -> Bool
     var haveConnectedScale: Bool { get }
     var haveConnectedBracelet: Bool { get }
@@ -41,7 +41,12 @@ protocol DBDeviceProtocol {
     func addDevice(uuid: String, name: String, type: DeviceType)
 }
 
-protocol DBManagerProtocol : DBUserProtocol, DBEvaluationProtocol, DBGoalProtocol, DBDeviceProtocol {
+protocol DBShareProtocol {
+    func addShareData(type: Int)
+    func queryShareDatas(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]]
+}
+
+protocol DBManagerProtocol : DBUserProtocol, DBEvaluationProtocol, DBGoalProtocol, DBDeviceProtocol, DBShareProtocol {
     func saveContext()
 }
 
