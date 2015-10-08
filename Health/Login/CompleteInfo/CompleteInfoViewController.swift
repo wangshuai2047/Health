@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol CompleteInfoDelegate {
+    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?)
+}
+
 class CompleteInfoViewController: UIViewController {
 
+    var delegate: CompleteInfoDelegate?
+    
     var canBack: Bool = false
+    private let tempHeadPath = NSHomeDirectory() + "/Document/headImage.jpg"
     
     @IBOutlet weak var backButton: UIButton!
     
@@ -126,24 +133,8 @@ class CompleteInfoViewController: UIViewController {
         
         if pageControl.currentPage == 4 {
             
-            LoginManager.completeInfomation(headAndNameDataView.name!, gender: genderDataView.gender, age: ageDataView.age, height: UInt8(heightDataView.height), phone: organizationDataView.phone, organizationCode: organizationDataView.code, complete: {[unowned self] (error) -> Void in
-                
-                if error == nil {
-                    // 跳转到主页
-                    if self.canBack {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    }
-                    else {
-                        AppDelegate.applicationDelegate().changeToMainController()
-                    }
-                    
-                }
-                else {
-                    UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
-                }
-            })
-            
-            
+            let user = UserModel(userId: 0, age: ageDataView.age, gender: genderDataView.gender, height: UInt8(heightDataView.height), name: headAndNameDataView.name!, headURL:tempHeadPath)
+            delegate?.completeInfo(self, user: user, phone: organizationDataView.phone, organizationCode: organizationDataView.code)
         }
         else {
             scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x + scrollView.bounds.size.width, 0), animated: true)
@@ -164,6 +155,7 @@ class CompleteInfoViewController: UIViewController {
 
 extension CompleteInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        UIImageJPEGRepresentation(image, 0.2)?.writeToFile(tempHeadPath, atomically: true)
         self.headAndNameDataView.headIconButton.setImage(image, forState: UIControlState.Normal)
         picker.dismissViewControllerAnimated(true, completion: nil)
     }

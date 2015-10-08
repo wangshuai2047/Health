@@ -33,7 +33,7 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
             
             self.activityAds = ads
             if error == nil {
-                for i in 0...ads!.count-1 {
+                for var i = 0; i < ads!.count; i++ {
                     let ad = ads![i]
                     let button = UIButton(type: UIButtonType.Custom)
                     if let imageURL = NSURL(string: ad.imageURL) {
@@ -57,6 +57,7 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
                 self.adsPageControl.numberOfPages = ads!.count
                 self.adsPageControl.currentPage = 0
                 self.adsScrollView.contentOffset = CGPoint(x: 0, y: 0)
+                self.adsScrollView.contentSize = CGSizeMake(self.adsScrollView.frame.size.width * CGFloat(ads!.count), self.adsScrollView.frame.size.height)
                 
                 if ads!.count > 1 {
                     NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("adsScrollTimer"), userInfo: nil, repeats: true)
@@ -66,6 +67,9 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
                 // 获取失败
             }
         }
+        
+        userSelectView.setChangeButton(true)
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
     }
     
     override func viewDidLayoutSubviews() {

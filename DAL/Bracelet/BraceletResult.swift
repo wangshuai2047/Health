@@ -32,6 +32,13 @@ struct BraceletResult {
         self.startTime = startTime
         self.endTime = endTime
         self.steps = steps
-        self.stepsType = StepsType(rawValue: stepsType)!
+        
+        if stepsType != 10 && stepsType != 11 && stepsType != 9 {
+           self.stepsType = .Sleep
+        }
+        else {
+            self.stepsType = StepsType(rawValue: stepsType)!
+        }
+        
     }
 }

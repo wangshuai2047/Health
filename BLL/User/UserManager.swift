@@ -8,10 +8,10 @@
 
 import UIKit
 
-struct UserManager {
+class UserManager {
     
     // 单例
-    static func shareInstance() -> UserManager {
+    class func shareInstance() -> UserManager {
         struct Singleton {
             static var predicate: dispatch_once_t = 0
             static var instance: UserManager? = nil
@@ -29,12 +29,54 @@ struct UserManager {
     
     var currentUser: UserModel = UserManager.mainUser
     
-    func changeUserToUserId(userId: Int) {
+    // (userId: Int, headURLStr: String, name: String)
+    func queryAllUsers() -> [(Int, String, String)] {
         
+        let userList = DBManager.shareInstance().queryAllUser()
+        var list: [(Int, String,String)] = []
+        for var i = 0; i < userList.count; i++ {
+            let userInfo = userList[i]
+            list.append(((userInfo["userId"] as! NSNumber).integerValue, userInfo["headURL"] as! String, userInfo["name"] as! String))
+        }
+        
+        // 把自己添加上
+        list.insert((UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name), atIndex: 0)
+        
+        return list
     }
     
-    func addUser(name: String, gender: Bool, age: UInt8, height: UInt8) {
-        
+    func changeUserToUserId(userId: Int) {
+        if userId == UserData.shareInstance().userId! {
+            currentUser = UserManager.mainUser
+        }
+        else {
+            if let info = DBManager.shareInstance().queryUser(userId) {
+                currentUser = UserModel(info: info)
+            }
+            
+        }
+    }
+    
+    func addUser(name: String, gender: Bool, age: UInt8, height: UInt8, complete: ((userModel: UserModel?, NSError?) -> Void)) {
+        UserRequest.createUser(UserData.shareInstance().userId!, name: name, height: Int(height), age: Int(age), gender: gender) { (userId: Int?, error: NSError?) -> Void in
+            
+            var userModel: UserModel? = nil
+            if error == nil {
+                userModel = UserModel(userId: userId!, age: age, gender: gender, height: height, name: name, headURL: nil)
+                // { (inout setDatas: EvaluationData) -> EvaluationData in
+                DBManager.shareInstance().addUser({ (inout setDatas: UserDBData) -> UserDBData in
+                    setDatas.userId = NSNumber(integer: userModel!.userId)
+                    setDatas.age = NSNumber(unsignedChar: age)
+                    setDatas.height = NSNumber(unsignedChar: height)
+                    setDatas.gender = NSNumber(bool: gender)
+                    setDatas.name = name
+                    
+                    return setDatas
+                })
+            }
+            
+            complete(userModel: userModel, error)
+        }
     }
     
     func deleteUser(userId: Int) {

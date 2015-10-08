@@ -93,6 +93,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             // 成员资料修改管理
             let controller = CompleteInfoViewController()
             controller.canBack = true
+            controller.delegate = self
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
         }
 //        else if indexPath.row == 1 {
@@ -120,5 +121,22 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
+    }
+}
+
+extension SettingViewController: CompleteInfoDelegate {
+    
+    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+        
+        LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { [unowned self] (error) -> Void in
+            
+            if error == nil {
+                // 跳转到主页
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            }
+        })
     }
 }

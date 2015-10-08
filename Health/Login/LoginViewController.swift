@@ -68,6 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // 判断是否需要完善信息
                 if LoginManager.isNeedCompleteInfo {
                     let completeInfoController = CompleteInfoViewController()
+                    completeInfoController.delegate = self
                     self.navigationController?.pushViewController(completeInfoController, animated: true)
                 }
                 else {
@@ -169,7 +170,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Requery Captchas Timer
     func requeryCaptchasTimer() {
         
-        let maxRequeryCount: Int8 = 10
+        let maxRequeryCount: Int8 = 60
         requeryCaptchasTimerCount++
         reQueryCaptchasButton.setTitle("\(maxRequeryCount - requeryCaptchasTimerCount)秒后 重新发送验证码", forState: UIControlState.Normal)
         
@@ -178,5 +179,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             reQueryCaptchas?.invalidate()
             reQueryCaptchasButton.setTitle("发送验证码", forState: UIControlState.Normal)
         }
+    }
+}
+
+extension LoginViewController: CompleteInfoDelegate {
+    
+    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+        
+        LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { (error) -> Void in
+            
+            if error == nil {
+                // 跳转到主页
+                AppDelegate.applicationDelegate().changeToMainController()
+            }
+            else {
+                UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            }
+        })
     }
 }

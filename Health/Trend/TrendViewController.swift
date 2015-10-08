@@ -12,6 +12,7 @@ class TrendViewController: UIViewController {
     
     var viewModel = TrendViewModel()
 
+    @IBOutlet weak var userSelectView: UserSelectView!
     @IBOutlet weak var titleDetailView: UIView!
     @IBOutlet weak var weightButton: UIButton!
     @IBOutlet weak var fatButton: UIButton!
@@ -29,6 +30,9 @@ class TrendViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
         chartView.dataSource = self
 //        let datas = viewModel.eightDaysDatas()
+        userSelectView.delegate = self
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
+        self.automaticallyAdjustsScrollViewInsets = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -197,5 +201,32 @@ extension TrendViewController: DoubleYAxisLineChartDataSource {
     
     func numberOfDatas(chart: DoubleYAxisLineChart) -> Int {
         return viewModel.weightDatas.count
+    }
+}
+
+extension TrendViewController: UserSelectViewDelegate {
+    // 点击人物头像
+    func headButtonPressed(userId: Int) {
+
+    }
+    
+    // 点击访客
+    func visitorClicked() {
+        
+    }
+    
+    // 添加家庭成员
+    func addFamily() {
+    }
+    
+    // 用户改变
+    func userChangeToUserId(userId: Int) {
+        UserManager.shareInstance().changeUserToUserId(userId)
+        userSelectView.setShowViewUserId(userId)
+        
+        // 刷新界面
+        viewModel.eightDaysDatas()
+        tableView.reloadData()
+        chartView.reloadDatas()
     }
 }

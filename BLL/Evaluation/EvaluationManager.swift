@@ -37,7 +37,7 @@ class EvaluationManager :NSObject {
     }
     
     func startScaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult {
-        return DeviceManager.shareInstance().scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserData.shareInstance().gender!, userId: UserData.shareInstance().userId!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
+        return DeviceManager.shareInstance().scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserManager.shareInstance().currentUser.gender, userId: UserManager.shareInstance().currentUser.userId, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)
     }
     
     func addTestDatas() {
@@ -78,7 +78,8 @@ class EvaluationManager :NSObject {
    // 开始测量秤
     func startScale(complete: (info: ScaleResult?, error: NSError?) -> Void) {
         
-        DeviceManager.shareInstance().scaleHelper.setScaleData(UserData.shareInstance().userId!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
+        
+        DeviceManager.shareInstance().scaleHelper.setScaleData(UserManager.shareInstance().currentUser.userId, gender: UserManager.shareInstance().currentUser.gender, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)
         
         DeviceManager.shareInstance().startScale { (result, err) -> Void in
             
@@ -106,6 +107,20 @@ class EvaluationManager :NSObject {
                 })
                 
                 self.updateEvaluationData()
+            }
+            
+            complete(info: result, error: err)
+        }
+    }
+    
+    // 访客测量
+    func visitorStartScale(user: UserModel, complete: (info: ScaleResult?, error: NSError?) -> Void) {
+        DeviceManager.shareInstance().scaleHelper.setScaleData(1, gender: user.gender, age: user.age, height: user.height)
+        
+        DeviceManager.shareInstance().startScale { (var result, err) -> Void in
+            
+            if err == nil {
+                result!.userId = user.userId
             }
             
             complete(info: result, error: err)

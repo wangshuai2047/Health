@@ -9,9 +9,10 @@
 import Foundation
 
 protocol DBUserProtocol {
-    func queryAllUser() -> [[String: NSObject]]
+    func queryAllUser() -> [[String: AnyObject]]
     func addUser(setDatas:(inout setDatas: UserDBData)-> UserDBData)
     func deleteUser(userId: UInt8)
+    func queryUser(userId: Int) -> [String: AnyObject]?
 }
 
 protocol DBEvaluationProtocol {

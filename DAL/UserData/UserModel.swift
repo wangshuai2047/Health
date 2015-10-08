@@ -15,4 +15,25 @@ struct UserModel {
     var height: UInt8
     var name: String
     var headURL: String?
+    
+    init(info: [String : AnyObject]) {
+        userId = (info["userId"] as! NSNumber).integerValue
+        age = (info["age"] as! NSNumber).unsignedCharValue
+        gender = (info["gender"] as! NSNumber).boolValue
+        height = (info["height"] as! NSNumber).unsignedCharValue
+        name = info["name"] as! String
+        
+        if let url = info["headURL"] as? String {
+            headURL = url
+        }
+    }
+    
+    init(userId: Int, age: UInt8, gender: Bool, height: UInt8, name: String, headURL: String?) {
+        self.userId = userId
+        self.age = age
+        self.gender = gender
+        self.height = height
+        self.name = name
+        self.headURL = headURL
+    }
 }

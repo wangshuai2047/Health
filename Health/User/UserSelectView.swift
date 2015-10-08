@@ -67,38 +67,65 @@ class UserSelectView: UIView {
         // Drawing code
         scrollView.frame = self.bounds
         // add user
-        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)], isNeedExt: false)
+//        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)], isNeedExt: false)
+        
+        if needSetUsers != nil && needExt != nil {
+            self.users = needSetUsers!
+            if needExt! {
+                self.users += [(-1, "", "访客"), (-2, "", "新增")]
+            }
+            
+            for view in userViews {
+                view.removeFromSuperview()
+            }
+            userViews.removeAll(keepCapacity: false)
+            
+            var startCenter = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
+            let padding: CGFloat = 112
+            for var i = 0; i < self.users.count; i++ {
+                let (_, headURLStr, name) = self.users[i]
+                let view = createSelectedHeadView((headURLStr, name, i))
+                view.center = startCenter
+                scrollView.addSubview(view)
+                startCenter = CGPoint(x: startCenter.x + padding, y: startCenter.y)
+                
+                if i == 0 {
+                    setShowView((headURLStr, name))
+                }
+            }
+            
+            scrollView.contentSize = CGSize(width: startCenter.x + 48 - 112, height: 0)
+            scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        }
     }
 
+    private var needSetUsers: [(Int, String, String)]?
+    private var needExt: Bool?
     // MARK: - 选择视图
     // 数据格式 (userId, headURLStr, name)
     func setUsers(users: [(Int, String, String)], isNeedExt: Bool) {
-        self.users = users
-        if isNeedExt {
-            self.users += [(-1, "", "访客"), (-2, "", "新增")]
-        }
+        needSetUsers = users
+        needExt = isNeedExt
+    }
+    
+    // 设置切换按钮的隐藏与显示
+    func setChangeButton(hidden: Bool) {
+        let (headButton, _, changeButton) = getShowViewControl()
+        changeButton.hidden = hidden
         
-        for view in userViews {
-            view.removeFromSuperview()
-        }
-        userViews.removeAll(keepCapacity: false)
+        headButton.userInteractionEnabled = !hidden
+    }
+    
+    func setShowViewUserId(userId: Int) {
         
-        var startCenter = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
-        let padding: CGFloat = 112
         for var i = 0; i < self.users.count; i++ {
-            let (_, headURLStr, name) = self.users[i]
-            let view = createSelectedHeadView((headURLStr, name, i))
-            view.center = startCenter
-            scrollView.addSubview(view)
-            startCenter = CGPoint(x: startCenter.x + padding, y: startCenter.y)
-            
-            if i == 0 {
+            let (currentUserId, headURLStr, name) = self.users[i]
+            if userId == currentUserId {
                 setShowView((headURLStr, name))
+                currentShowIndex = i
+                break
             }
         }
-        
-        scrollView.contentSize = CGSize(width: startCenter.x + 48 - 112, height: 0)
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
     
     func setShowView(info: (String, String)) {
@@ -155,11 +182,13 @@ class UserSelectView: UIView {
             headButton.sd_setImageWithURL(NSURL(string: headURLStr), forState: UIControlState.Normal, placeholderImage: UIImage(named: "defaultHead"))
             nameLabel.text = name
             
-            self.scrollView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
-            self.showHeadView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
-            
             delegate?.userChangeToUserId(userId)
+            
+            currentShowIndex = button.tag
         }
+        
+        self.scrollView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
+        self.showHeadView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
     }
     
     // MARK: - ShowView Method
@@ -168,7 +197,7 @@ class UserSelectView: UIView {
         // 直接用主账户操作
 //        delegate?.headButtonPressed(UserManager.mainUser.userId)
         
-        let (userId, _, _) = self.users[button.tag]
+        let (userId, _, _) = self.users[currentShowIndex]
         delegate?.headButtonPressed(userId)
     }
     
@@ -183,7 +212,7 @@ class UserSelectView: UIView {
     func getShowViewControl() -> (UIButton, UILabel, UIButton) {
         let headButton = showHeadView.viewWithTag(headImageViewTag) as! UIButton
         let nameLabel = showHeadView.viewWithTag(nameLabelTag) as! UILabel
-        let changeButton = showHeadView.viewWithTag(1003) as! UIButton
+        let changeButton = showHeadView.viewWithTag(changePeopleButtonTag) as! UIButton
         
         return (headButton, nameLabel, changeButton)
     }
