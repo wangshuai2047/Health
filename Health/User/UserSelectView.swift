@@ -116,6 +116,18 @@ class UserSelectView: UIView {
         headButton.userInteractionEnabled = !hidden
     }
     
+    func setShowViewUserId(userId: Int) {
+        
+        for var i = 0; i < self.users.count; i++ {
+            let (currentUserId, headURLStr, name) = self.users[i]
+            if userId == currentUserId {
+                setShowView((headURLStr, name))
+                currentShowIndex = i
+                break
+            }
+        }
+    }
+    
     func setShowView(info: (String, String)) {
         // 设置showView
         let (headURLStr, name) = info

@@ -70,6 +70,7 @@ extension DBManager {
 
 // MARK: - User Model操作
 extension DBManager: DBUserProtocol {
+    
     func addUser(setDatas: (setDatas: inout UserDBData) -> UserDBData) {
         let context = self.managedObjectContext!
         var insertData = NSEntityDescription.insertNewObjectForEntityForName("UserDBData", inManagedObjectContext: context) as! UserDBData
@@ -112,7 +113,7 @@ extension DBManager: DBUserProtocol {
         }
     }
     
-    func queryAllUser() -> [[String : NSObject]] {
+    func queryAllUser() -> [[String : AnyObject]] {
         
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
@@ -120,7 +121,7 @@ extension DBManager: DBUserProtocol {
         let request = NSFetchRequest()
         request.entity = entityDescription
         
-        var datas: [[String: NSObject]] = []
+        var datas: [[String: AnyObject]] = []
         if let listData = (try? context.executeFetchRequest(request)) as? [UserDBData] {
             for managedObject in listData {
                 datas += [userToDic(managedObject)]
@@ -128,6 +129,24 @@ extension DBManager: DBUserProtocol {
         }
         
         return datas
+    }
+    
+    func queryUser(userId: Int) -> [String: AnyObject]? {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "userId == %d", userId)
+        request.fetchLimit = 1
+        
+        if let listData = (try? context.executeFetchRequest(request)) as? [UserDBData] {
+            for managedObject in listData {
+                return userToDic(managedObject)
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -702,7 +721,7 @@ extension DBManager {
         ]
     }
     
-    func userToDic(user: UserDBData) -> [String: NSObject] {
+    func userToDic(user: UserDBData) -> [String: AnyObject] {
         
         /*
         @NSManaged var age: NSNumber
@@ -711,14 +730,21 @@ extension DBManager {
         @NSManaged var userId: NSNumber
         @NSManaged var gender: NSNumber
 */
-        return [
+        var info: [String: NSObject] = [
             "age" : user.valueForKey("age") as! NSNumber,
             "height" : user.valueForKey("height") as! NSNumber,
             "name" : user.valueForKey("name") as! String,
-            "headURL" : user.valueForKey("headURL") as! String,
-            "userId" : user.valueForKey("") as! NSNumber,
+            "userId" : user.valueForKey("userId") as! NSNumber,
             "gender" : user.valueForKey("gender") as! NSNumber,
         ]
+        if let headURL = user.valueForKey("headURL") as? String {
+            info["headURL"] = headURL
+        }
+        else {
+            info["headURL"] = ""
+        }
+        
+        return info
     }
     
     func convertModel(data: EvaluationData) -> [String: AnyObject] {

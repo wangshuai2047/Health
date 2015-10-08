@@ -183,11 +183,32 @@ extension EvaluationViewController: UserSelectViewDelegate {
     
     // 添加家庭成员
     func addFamily() {
-        
+        let completeInfoController = CompleteInfoViewController()
+        completeInfoController.delegate = self
+        completeInfoController.canBack = true
+        AppDelegate.rootNavgationViewController().pushViewController(completeInfoController, animated: true)
     }
     
     // 用户改变
     func userChangeToUserId(userId: Int) {
-        
+        UserManager.shareInstance().changeUserToUserId(userId)
+        userSelectView.setShowViewUserId(userId)
+    }
+}
+
+extension EvaluationViewController: CompleteInfoDelegate {
+    // 添加家庭成员
+    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+        UserManager.shareInstance().addUser(user.name, gender: user.gender, age: user.age, height: user.height) { [unowned self] (userModel, error: NSError?) -> Void in
+            if error == nil {
+                self.userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
+                self.userSelectView.setNeedsDisplay()
+                
+                controller.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                Alert.showErrorAlert("添加家庭成员失败", message: error?.localizedDescription)
+            }
+        }
     }
 }
