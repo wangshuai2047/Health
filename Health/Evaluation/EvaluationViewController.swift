@@ -40,6 +40,11 @@ class EvaluationViewController: UIViewController {
         
         userSelectView.delegate = self
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
+        self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
     override func viewWillAppear(animated: Bool) {

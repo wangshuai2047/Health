@@ -44,6 +44,9 @@ struct UserManager {
             list.append(((userInfo["userId"] as! NSNumber).integerValue, userInfo["headURL"] as! String, userInfo["name"] as! String))
         }
         
+        // 把自己添加上
+        list.insert((UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name), atIndex: 0)
+        
         return list
     }
     

@@ -36,6 +36,7 @@ class GoalViewController: UIViewController {
         }
         
         showView(GoalManager.isConnectDevice() ? connectDeviceView : noDeviceView)
+        userSelectView.setChangeButton(true)
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
     }
     

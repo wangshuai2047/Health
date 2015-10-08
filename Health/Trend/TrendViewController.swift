@@ -30,6 +30,8 @@ class TrendViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
         chartView.dataSource = self
 //        let datas = viewModel.eightDaysDatas()
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
+        self.automaticallyAdjustsScrollViewInsets = false
     }
 
     override func didReceiveMemoryWarning() {

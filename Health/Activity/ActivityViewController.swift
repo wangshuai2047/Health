@@ -57,6 +57,7 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
                 self.adsPageControl.numberOfPages = ads!.count
                 self.adsPageControl.currentPage = 0
                 self.adsScrollView.contentOffset = CGPoint(x: 0, y: 0)
+                self.adsScrollView.contentSize = CGSizeMake(self.adsScrollView.frame.size.width * CGFloat(ads!.count), self.adsScrollView.frame.size.height)
                 
                 if ads!.count > 1 {
                     NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("adsScrollTimer"), userInfo: nil, repeats: true)
@@ -68,6 +69,7 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
         }
         
         userSelectView.setChangeButton(true)
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
     }
     
     override func viewDidLayoutSubviews() {
