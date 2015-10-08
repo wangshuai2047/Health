@@ -10,7 +10,7 @@ import UIKit
 
 struct EvaluationDetailViewModel {
     
-     var allDatas: [EvaluationDetailCellViewModel] = []
+    var allDatas: [EvaluationDetailCellViewModel] = []
     
     init() {
         reloadData()

@@ -178,7 +178,18 @@ extension EvaluationViewController: UserSelectViewDelegate {
     
     // 点击访客
     func visitorClicked() {
-        
+        let controller = VisitorAddViewController()
+        controller.delegate = self
+        if #available(iOS 8.0, *) {
+            controller.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        } else {
+            // Fallback on earlier versions
+            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        }
+        // UIModalPresentationFormSheet
+        AppDelegate.rootNavgationViewController().presentViewController(controller, animated: true) { () -> Void in
+            controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        }
     }
     
     // 添加家庭成员
@@ -208,6 +219,25 @@ extension EvaluationViewController: CompleteInfoDelegate {
             }
             else {
                 Alert.showErrorAlert("添加家庭成员失败", message: error?.localizedDescription)
+            }
+        }
+    }
+}
+
+// 访客界面代理
+extension EvaluationViewController: VisitorAddDelegate {
+    func completeInfo(controller: VisitorAddViewController, user: UserModel) {
+        
+        let detailController = EvaluationDetailViewController()
+        detailController.isVisitor = true
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        
+        EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info, error) -> Void in
+            if error == nil {
+                detailController.data = info
+                self.showView(self.connectDeviceView)
+            } else {
+                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }
     }

@@ -17,6 +17,7 @@ class EvaluationDetailViewController: UIViewController {
     }
     var viewModel = EvaluationDetailViewModel()
     var isRefreshAllData: Bool = false
+    var isVisitor: Bool = false
     
 //    @IBOutlet weak var backgroundScrollView: UIScrollView!
     @IBOutlet var detailView: UIView!
@@ -326,6 +327,11 @@ extension EvaluationDetailViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        // 如果是访客 没有历史记录
+        if isVisitor {
+            return 1
+        }
         return 2
     }
     

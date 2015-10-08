@@ -113,6 +113,20 @@ class EvaluationManager :NSObject {
         }
     }
     
+    // 访客测量
+    func visitorStartScale(user: UserModel, complete: (info: ScaleResult?, error: NSError?) -> Void) {
+        DeviceManager.shareInstance().scaleHelper.setScaleData(1, gender: user.gender, age: user.age, height: user.height)
+        
+        DeviceManager.shareInstance().startScale { (var result, err) -> Void in
+            
+            if err == nil {
+                result!.userId = user.userId
+            }
+            
+            complete(info: result, error: err)
+        }
+    }
+    
     static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: AnyObject]] {
         return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserData.shareInstance().userId!)
     }
