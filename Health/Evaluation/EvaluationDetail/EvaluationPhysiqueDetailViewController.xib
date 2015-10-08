@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -19,6 +19,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消瘦型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-L2-KkX">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="vGm-fQ-jhQ"/>
                             </constraints>
@@ -28,6 +29,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oi2-MF-gp2">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="spare"/>
                             <state key="selected" image="spareSelected"/>
                             <connections>
@@ -39,14 +41,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-i4-79J">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2no-TM-kPE">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重和体脂肪都偏低，应增加营养和热量摄入。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2no-TM-kPE">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="0Gw-ma-SQB"/>
@@ -62,6 +67,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="o2q-L2-KkX" firstAttribute="leading" secondItem="kda-ty-77E" secondAttribute="leading" id="ANc-jO-qu8"/>
@@ -80,6 +86,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="低脂肪型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RG-rg-fSS">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="t00-6h-fJw"/>
                             </constraints>
@@ -89,6 +96,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-hj-myt">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="littleFat"/>
                             <state key="selected" image="littleFatSelected"/>
                             <connections>
@@ -100,14 +108,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="9tS-JM-SlJ">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXH-ra-0tq">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重适中，但脂肪含量较低，可适当补充脂肪摄入。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXH-ra-0tq">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="sXH-ra-0tq" firstAttribute="top" secondItem="vno-rt-Q7f" secondAttribute="top" id="0ws-4a-amb"/>
@@ -123,6 +134,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="vno-rt-Q7f" firstAttribute="centerX" secondItem="jzT-hj-myt" secondAttribute="centerX" id="DdG-Co-sWf"/>
@@ -141,6 +153,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运动员型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5M-cG-Kv2">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="Tdk-hF-Qcn"/>
                             </constraints>
@@ -150,6 +163,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyg-TZ-1DT">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="athlete"/>
                             <state key="selected" image="athleteSelected"/>
                             <connections>
@@ -161,14 +175,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="Sd2-hR-dYZ">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMY-5h-Ueh">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重高于正常范围，但体脂肪略低，应为长期有氧运动的结果，可以保持。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMY-5h-Ueh">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Sd2-hR-dYZ" secondAttribute="trailing" id="2aS-Zg-cvX"/>
@@ -184,6 +201,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Z5M-cG-Kv2" secondAttribute="bottom" id="A3D-0C-dQI"/>
@@ -202,6 +220,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="肌肉不足型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKV-bo-SJE">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="Qjw-5w-vBT"/>
                             </constraints>
@@ -211,6 +230,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-6v-sRD">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="littleMuscle"/>
                             <state key="selected" image="littleMuscleSelected"/>
                             <connections>
@@ -222,14 +242,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-oy-ECv">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-sa-Y0e">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重适中，但肌肉比例较低，应注意锻炼。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-sa-Y0e">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="KW9-sa-Y0e" firstAttribute="top" secondItem="p2U-9a-kJ4" secondAttribute="top" id="0dU-px-Hlm"/>
@@ -245,6 +268,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="bRa-6v-sRD" firstAttribute="leading" secondItem="KHK-KL-oYo" secondAttribute="leading" id="5PV-CB-DV6"/>
@@ -263,6 +287,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="健康匀称型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iD-KN-CSg">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="RZI-wr-7US"/>
                             </constraints>
@@ -272,6 +297,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBw-yH-IZE">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="health"/>
                             <state key="selected" image="healthSelected"/>
                             <connections>
@@ -283,14 +309,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="hDO-RH-CNx">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfM-FP-1cJ">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的体型适中，不胖不瘦，成分合理，请保持。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfM-FP-1cJ">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="hDO-RH-CNx" firstAttribute="top" secondItem="fyy-aM-aHv" secondAttribute="top" id="3Di-9a-N9H"/>
@@ -306,6 +335,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="6iD-KN-CSg" secondAttribute="trailing" id="8gg-Uy-j9g"/>
@@ -324,6 +354,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超重型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdn-mH-TwG">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="n2F-gq-xfi"/>
                             </constraints>
@@ -333,6 +364,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x8-w9-rKw">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="lotOfMuscle"/>
                             <state key="selected" image="lotOfMuscleSelected"/>
                             <connections>
@@ -344,14 +376,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-eR-Rff">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l4-yZ-c45">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重高于正常范围，但体脂肪不高，属于肌肉发达，可以保持。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l4-yZ-c45">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="t1J-eR-Rff" secondAttribute="bottom" id="CiC-mK-iOx"/>
@@ -367,6 +402,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Mk9-Y7-foB" firstAttribute="centerX" secondItem="2x8-w9-rKw" secondAttribute="centerX" id="2tm-rM-Xv2"/>
@@ -385,6 +421,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="肥胖型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iW-pr-aIF">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="8Q6-QP-IXr"/>
                             </constraints>
@@ -394,6 +431,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37b-zw-nzr">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="fat"/>
                             <state key="selected" image="fatSelected"/>
                             <connections>
@@ -405,14 +443,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-kQ-6WL">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r01-e1-iJF">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体型偏胖，体内脂肪含量高，存在健康风险，需注意改善。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r01-e1-iJF">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="rDk-kQ-6WL" secondAttribute="trailing" id="1hn-Lq-pse"/>
@@ -428,6 +469,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="6iW-pr-aIF" firstAttribute="leading" secondItem="gcU-n3-5WE" secondAttribute="leading" id="2MH-TP-mJo"/>
@@ -446,6 +488,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="脂肪过多型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agi-gT-g05">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="pQ0-Bg-hNX"/>
                             </constraints>
@@ -455,6 +498,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73T-oO-x6d">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="lotOfFat"/>
                             <state key="selected" image="lotOfFatSelected"/>
                             <connections>
@@ -466,14 +510,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="AdX-Cv-yo0">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vsx-9R-JqV">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重不高，但脂肪含量较高，对健康不利，应适当减脂。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vsx-9R-JqV">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Vsx-9R-JqV" firstAttribute="top" secondItem="puF-lF-p6L" secondAttribute="top" id="BKS-4L-fCR"/>
@@ -489,6 +536,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="puF-lF-p6L" firstAttribute="centerX" secondItem="73T-oO-x6d" secondAttribute="centerX" id="54F-B0-VY8"/>
@@ -507,6 +555,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="隐性肥胖型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-Nr-ujn">
                             <rect key="frame" x="0.0" y="223" width="213" height="34"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="DNa-3y-1tn"/>
                             </constraints>
@@ -516,6 +565,7 @@
                         </label>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yj-Pp-cNl">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="215"/>
+                            <animations/>
                             <state key="normal" image="hiddenFat"/>
                             <state key="selected" image="hiddenFatSelected"/>
                             <connections>
@@ -527,14 +577,17 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="vx8-0Y-mNC">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虽然体重和体脂率正常，但肌肉总量较低，需要加强体育锻炼" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNf-3Y-Id6">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重较轻，而体内脂肪含量相对较高，有心脑血管疾病风险，需要注意减脂。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNf-3Y-Id6">
                                     <rect key="frame" x="0.0" y="0.0" width="68" height="119"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="CNf-3Y-Id6" firstAttribute="leading" secondItem="7Yd-e0-N8X" secondAttribute="leading" id="BUI-Ya-oqB"/>
@@ -550,6 +603,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="7Yj-Pp-cNl" secondAttribute="trailing" id="61j-Rm-CJ7"/>
@@ -565,6 +619,7 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击查看体型介绍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hva-Re-IK8">
                     <rect key="frame" x="252" y="17" width="136" height="32"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="JjT-Yo-ZeC"/>
                     </constraints>
@@ -574,6 +629,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzF-fR-TiZ">
                     <rect key="frame" x="0.0" y="1" width="46" height="65"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="WWS-GP-Nyn"/>
                         <constraint firstAttribute="height" constant="65" id="e1B-Oc-llj"/>
@@ -589,6 +645,7 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="7Ml-px-fbL" firstAttribute="top" secondItem="DKx-Lh-jL2" secondAttribute="top" constant="60" id="1BN-SW-mpo"/>
