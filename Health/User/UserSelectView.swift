@@ -24,9 +24,9 @@ protocol UserSelectViewDelegate {
 
 class UserSelectView: UIView {
     
-    
     private let headImageViewTag = 1001
     private let nameLabelTag = 1002
+    private let changePeopleButtonTag = 1003
     private var userViews: [UIView] = []
     private var scrollView: UIScrollView = UIScrollView()
     private var showHeadView: UIView
@@ -56,7 +56,7 @@ class UserSelectView: UIView {
         
         let (headButton, _, changeButton) = getShowViewControl()
         headButton.addTarget(self, action: Selector("headButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
-        changeButton.addTarget(self, action: Selector("changePeoplePressed"), forControlEvents: UIControlEvents.TouchUpInside)
+        changeButton.addTarget(self, action: Selector("changePeoplePressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         
     }
@@ -67,14 +67,17 @@ class UserSelectView: UIView {
         // Drawing code
         scrollView.frame = self.bounds
         // add user
-        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)])
+        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)], isNeedExt: false)
     }
 
     // MARK: - 选择视图
     // 数据格式 (userId, headURLStr, name)
-    func setUsers(users: [(Int, String, String)]) {
+    func setUsers(users: [(Int, String, String)], isNeedExt: Bool) {
         self.users = users
-        self.users += [(1, "", "访客"), (0, "", "新增")]
+        if isNeedExt {
+            self.users += [(-1, "", "访客"), (-2, "", "新增")]
+        }
+        
         for view in userViews {
             view.removeFromSuperview()
         }
@@ -136,17 +139,16 @@ class UserSelectView: UIView {
     }
     
     func selectHeadViewClick(button: UIButton) {
-        
-        if button.tag == self.users.count - 1 {
+        let (userId, headURLStr, name) = self.users[button.tag]
+        if userId == -2 {
             // 新增
             delegate?.addFamily()
         }
-        else if button.tag == self.users.count - 2 {
+        else if userId == -1 {
             // 访客
             delegate?.visitorClicked()
         }
         else {
-            let (userId, headURLStr, name) = self.users[button.tag]
             
             let (headButton, nameLabel, _) = getShowViewControl()
             
@@ -164,18 +166,18 @@ class UserSelectView: UIView {
     func headButtonPressed(button: UIButton) {
         
         // 直接用主账户操作
-        delegate?.headButtonPressed(UserManager.mainUser.userId)
+//        delegate?.headButtonPressed(UserManager.mainUser.userId)
         
-//        let (userId, _, _) = self.users[button.tag]
-//        delegate?.headButtonPressed(userId)
+        let (userId, _, _) = self.users[button.tag]
+        delegate?.headButtonPressed(userId)
     }
     
     func changePeoplePressed(button: UIButton) {
         
         // 功能暂不开放
-//        self.showHeadView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
-//        self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
-//        self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        self.showHeadView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
+        self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
+        self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
     
     func getShowViewControl() -> (UIButton, UILabel, UIButton) {
