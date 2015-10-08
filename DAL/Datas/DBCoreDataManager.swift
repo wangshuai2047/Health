@@ -261,7 +261,7 @@ extension DBManager: DBManagerProtocol {
         
         let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
         
-        for i in 0...listData.count - 1 {
+        for var i = 0; i < listData.count; i++ {
             
             let managedObject = listData[i]
             let info = newDataIdInfos[i]
@@ -446,7 +446,7 @@ extension DBManager {
         
         let listData = (try! context.executeFetchRequest(request)) as! [GoalData]
         
-        for i in 0...listData.count - 1 {
+        for var i = 0; i < listData.count; i++ {
             
             let managedObject = listData[i]
             let info = newDataIdInfos[i]
@@ -715,6 +715,7 @@ extension DBManager {
             "age" : user.valueForKey("age") as! NSNumber,
             "height" : user.valueForKey("height") as! NSNumber,
             "name" : user.valueForKey("name") as! String,
+            "headURL" : user.valueForKey("headURL") as! String,
             "userId" : user.valueForKey("") as! NSNumber,
             "gender" : user.valueForKey("gender") as! NSNumber,
         ]

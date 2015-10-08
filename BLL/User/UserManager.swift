@@ -29,6 +29,24 @@ struct UserManager {
     
     var currentUser: UserModel = UserManager.mainUser
     
+    // (userId: Int, headURLStr: String, name: String)
+    func queryAllUsers() -> [(Int, String, String)] {
+//        "age" : user.valueForKey("age") as! NSNumber,
+//        "height" : user.valueForKey("height") as! NSNumber,
+//        "name" : user.valueForKey("name") as! String,
+//        "userId" : user.valueForKey("") as! NSNumber,
+//        "gender" : user.valueForKey("gender") as! NSNumber,
+        
+        let userList = DBManager.shareInstance().queryAllUser()
+        var list: [(Int, String,String)] = []
+        for var i = 0; i < userList.count; i++ {
+            let userInfo = userList[i]
+            list.append(((userInfo["userId"] as! NSNumber).integerValue, userInfo["headURL"] as! String, userInfo["name"] as! String))
+        }
+        
+        return list
+    }
+    
     func changeUserToUserId(userId: Int) {
         
     }

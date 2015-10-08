@@ -67,7 +67,7 @@ class UserSelectView: UIView {
         // Drawing code
         scrollView.frame = self.bounds
         // add user
-        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)], isNeedExt: false)
+//        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)], isNeedExt: false)
     }
 
     // MARK: - 选择视图
@@ -99,6 +99,12 @@ class UserSelectView: UIView {
         
         scrollView.contentSize = CGSize(width: startCenter.x + 48 - 112, height: 0)
         scrollView.contentOffset = CGPoint(x: 0, y: 0)
+    }
+    
+    // 设置切换按钮的隐藏与显示
+    func setChangeButton(hidden: Bool) {
+        let (_, _, changeButton) = getShowViewControl()
+        changeButton.hidden = hidden
     }
     
     func setShowView(info: (String, String)) {
@@ -183,7 +189,7 @@ class UserSelectView: UIView {
     func getShowViewControl() -> (UIButton, UILabel, UIButton) {
         let headButton = showHeadView.viewWithTag(headImageViewTag) as! UIButton
         let nameLabel = showHeadView.viewWithTag(nameLabelTag) as! UILabel
-        let changeButton = showHeadView.viewWithTag(1003) as! UIButton
+        let changeButton = showHeadView.viewWithTag(changePeopleButtonTag) as! UIButton
         
         return (headButton, nameLabel, changeButton)
     }

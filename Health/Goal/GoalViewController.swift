@@ -12,6 +12,7 @@ class GoalViewController: UIViewController {
 
     var viewModel = GoalViewModel()
     
+    @IBOutlet weak var userSelectView: UserSelectView!
     @IBOutlet weak var goalDetailLabel: AttributedLabel!
     @IBOutlet weak var suggestCalorieLabel: AttributedLabel!
     
@@ -35,7 +36,7 @@ class GoalViewController: UIViewController {
         }
         
         showView(GoalManager.isConnectDevice() ? connectDeviceView : noDeviceView)
-        
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
     }
     
     override func viewWillAppear(animated: Bool) {

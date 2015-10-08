@@ -12,6 +12,7 @@ class TrendViewController: UIViewController {
     
     var viewModel = TrendViewModel()
 
+    @IBOutlet weak var userSelectView: UserSelectView!
     @IBOutlet weak var titleDetailView: UIView!
     @IBOutlet weak var weightButton: UIButton!
     @IBOutlet weak var fatButton: UIButton!

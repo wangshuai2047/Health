@@ -39,6 +39,7 @@ class EvaluationViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
         
         userSelectView.delegate = self
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
     }
     
     override func viewWillAppear(animated: Bool) {

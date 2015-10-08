@@ -818,6 +818,7 @@
                         <outlet property="proteinButton" destination="bUi-Qa-hWd" id="TDd-d6-CIw"/>
                         <outlet property="tableView" destination="0aw-7i-Hia" id="ejI-Jg-7BF"/>
                         <outlet property="titleDetailView" destination="aTk-qX-pqg" id="S7o-E4-Nde"/>
+                        <outlet property="userSelectView" destination="WaF-19-RTi" id="mHA-PN-VqQ"/>
                         <outlet property="waterButton" destination="Psb-lu-XNF" id="ceW-dV-PBR"/>
                         <outlet property="weightButton" destination="9JQ-H9-CXl" id="tNO-xQ-wVw"/>
                     </connections>
@@ -1057,6 +1058,7 @@
                         <outlet property="sleepDetailLabel" destination="HyW-Zv-ysj" id="25E-gt-FH0"/>
                         <outlet property="sportDetailLabel" destination="REp-yd-Pjc" id="SfM-40-DaW"/>
                         <outlet property="suggestCalorieLabel" destination="re0-D2-osY" id="Iqx-fA-msW"/>
+                        <outlet property="userSelectView" destination="vSB-Lp-6gx" id="tvE-ao-5Vv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ReV-x1-5wP" userLabel="First Responder" sceneMemberID="firstResponder"/>

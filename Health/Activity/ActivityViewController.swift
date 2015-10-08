@@ -33,7 +33,7 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
             
             self.activityAds = ads
             if error == nil {
-                for i in 0...ads!.count-1 {
+                for var i = 0; i < ads!.count; i++ {
                     let ad = ads![i]
                     let button = UIButton(type: UIButtonType.Custom)
                     if let imageURL = NSURL(string: ad.imageURL) {
@@ -66,6 +66,8 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
                 // 获取失败
             }
         }
+        
+        userSelectView.setChangeButton(true)
     }
     
     override func viewDidLayoutSubviews() {
