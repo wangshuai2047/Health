@@ -45,7 +45,10 @@ class GoalViewController: UIViewController {
         
         if GoalManager.isConnectDevice() {
             GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
-                self.refreshView()
+                if self.respondsToSelector(Selector("refreshView")) {
+                    self.refreshView()
+                }
+                
             })
         }
         

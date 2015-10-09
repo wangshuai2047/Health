@@ -93,8 +93,8 @@ struct  LoginRequest {
                 #endif
             }
             else {
-                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(userInfo: jsonObj?.valueForKey("info") as? [String: AnyObject], nil)
+                let jsonObj: [String: AnyObject]? = result.jsonObj as? [String: AnyObject]
+                complete(userInfo: jsonObj, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

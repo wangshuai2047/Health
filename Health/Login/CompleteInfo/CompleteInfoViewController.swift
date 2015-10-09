@@ -17,7 +17,7 @@ class CompleteInfoViewController: UIViewController {
     var delegate: CompleteInfoDelegate?
     
     var canBack: Bool = false
-    private let tempHeadPath = NSHomeDirectory() + "/Document/headImage.jpg"
+    private let tempHeadPath = NSHomeDirectory() + "/Documents/headImage.jpg"
     
     @IBOutlet weak var backButton: UIButton!
     
@@ -155,7 +155,8 @@ class CompleteInfoViewController: UIViewController {
 
 extension CompleteInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        UIImageJPEGRepresentation(image, 0.2)?.writeToFile(tempHeadPath, atomically: true)
+        UIImageJPEGRepresentation(image, 0.2)?.writeToFile(tempHeadPath, atomically: false)
+        
         self.headAndNameDataView.headIconButton.setImage(image, forState: UIControlState.Normal)
         picker.dismissViewControllerAnimated(true, completion: nil)
     }

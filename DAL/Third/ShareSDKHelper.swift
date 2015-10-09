@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum ShareType {
+    case QQ
+    case WeiBo
+    case WeiChat
+}
+
 /*
 1、	http://mob.com/#/index   分享账号为：2844062095@qq.com  密码：cstf158
 2、	新浪微博开发者账号为：2844062095@qq.com  密码：cstf158
@@ -60,19 +66,64 @@ struct ShareSDKHelper {
     
     static func loginWithWeiBo(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeSinaWeibo, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
-            complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: error)
+            var err: NSError? = nil
+            if response == SSDKResponseState.Cancel {
+                err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
+                complete(uid: nil, name: nil, headIcon: nil, error: err)
+            }
+            else if response == SSDKResponseState.Fail {
+                complete(uid: nil, name: nil, headIcon: nil, error: error)
+            }
+            else if response == SSDKResponseState.Success {
+                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+            }
         })
     }
     
     static func loginWithWeChat(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeWechat, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
-            complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: error)
+            var err: NSError? = nil
+            if response == SSDKResponseState.Cancel {
+                err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
+                complete(uid: nil, name: nil, headIcon: nil, error: err)
+            }
+            else if response == SSDKResponseState.Fail {
+                complete(uid: nil, name: nil, headIcon: nil, error: error)
+            }
+            else if response == SSDKResponseState.Success {
+                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+            }
+            
         })
     }
     
     static func loginWithQQ(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeQQ, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
-            complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: error)
+            var err: NSError? = nil
+            if response == SSDKResponseState.Cancel {
+                err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
+                complete(uid: nil, name: nil, headIcon: nil, error: err)
+            }
+            else if response == SSDKResponseState.Fail {
+                complete(uid: nil, name: nil, headIcon: nil, error: error)
+            }
+            else if response == SSDKResponseState.Success {
+                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+            }
         })
+    }
+    
+    static func isExistShareType(type: ShareType) -> Bool {
+        if type == .QQ {
+            return ShareSDK.isSupportAuth(.TypeQQ)
+        }
+        else if type == .WeiBo {
+            return ShareSDK.isSupportAuth(.TypeSinaWeibo)
+        }
+        else if type == .WeiChat {
+            return ShareSDK.isSupportAuth(.TypeWechat)
+        }
+        
+        return false
     }
 }

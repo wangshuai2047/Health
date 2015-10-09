@@ -6,6 +6,7 @@
 #import "VScaleManager.h"
 
 #import <ShareSDK/ShareSDK.h>
+#import <ShareSDK/ShareSDK+Base.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
