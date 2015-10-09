@@ -207,6 +207,12 @@ struct LoginManager {
             
         }
         
+        if let userId = userInfo["userid"] as? NSNumber {
+            print("userId\(userId)")
+            UserData.shareInstance().userId = userId.integerValue
+            
+        }
+        
         if let userId = userInfo["userId"] as? NSNumber {
             print("userId\(userId)")
             UserData.shareInstance().userId = userId.integerValue

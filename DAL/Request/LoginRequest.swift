@@ -94,7 +94,7 @@ struct  LoginRequest {
             }
             else {
                 let jsonObj: [String: AnyObject]? = result.jsonObj as? [String: AnyObject]
-                complete(userInfo: jsonObj, nil)
+                complete(userInfo: jsonObj?["info"] as? [String: AnyObject], nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

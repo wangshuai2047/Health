@@ -27,12 +27,13 @@ struct ShareSDKHelper {
     
     static let sinaWeiboAppKey = "4153895349"
     static let sinaWeiboAppSecret = "1ecfe5957e5d1450c4444fb75a1e1718"
+    static let sinaWeiboAppRedirectURI = "https://api.weibo.com/oauth2/default.html"
     
     static let weChatAppId = "wxac0b90fe1dda50a2"
     static let weChatAppSecret = "c510ad4ded20907e5b11fa278b8da505"
     
-    static let QQAppId = "1104855778"
-    static let QQAppkey = "mgysQido1HgLMDXP"
+    static let QQAppId = "1104780739"
+    static let QQAppkey = "rB5SFbkLlVuevi54"
     
     static func initSDK() {
         ShareSDK.registerApp(shareSDKAppKey, activePlatforms: [SSDKPlatformType.TypeSinaWeibo.rawValue, SSDKPlatformType.TypeWechat.rawValue, SSDKPlatformType.TypeQQ.rawValue], onImport: { (platform: SSDKPlatformType) -> Void in
@@ -53,7 +54,7 @@ struct ShareSDKHelper {
                 switch platform {
                 case .TypeSinaWeibo:
                     // 设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                    appInfo.SSDKSetupSinaWeiboByAppKey(self.sinaWeiboAppKey, appSecret: self.sinaWeiboAppSecret, redirectUri: "http://www.sharesdk.cn", authType: SSDKAuthTypeBoth)
+                    appInfo.SSDKSetupSinaWeiboByAppKey(self.sinaWeiboAppKey, appSecret: self.sinaWeiboAppSecret, redirectUri: sinaWeiboAppRedirectURI, authType: SSDKAuthTypeSSO)
                 case .TypeWechat:
                     appInfo.SSDKSetupWeChatByAppId(self.weChatAppId, appSecret: self.weChatAppSecret)
                 case .TypeQQ:
@@ -64,6 +65,7 @@ struct ShareSDKHelper {
         }
     }
     
+    // MARK: - 登录
     static func loginWithWeiBo(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeSinaWeibo, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
             var err: NSError? = nil
@@ -108,7 +110,7 @@ struct ShareSDKHelper {
                 complete(uid: nil, name: nil, headIcon: nil, error: error)
             }
             else if response == SSDKResponseState.Success {
-                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+                complete(uid: user.uid, name: user.nickname == nil ? "" : user.nickname, headIcon: user.icon == nil ? "" : user.icon, error: nil)
             }
         })
     }
@@ -125,5 +127,17 @@ struct ShareSDKHelper {
         }
         
         return false
+    }
+    
+    // MARK: - 分享
+    static func shareEvaluationImage(shareType: ShareType, image: UIImage) {
+//        ShareSDK.
+        let shareInfo: NSMutableDictionary = NSMutableDictionary()
+        
+        if shareType == ShareType.WeiChat {
+//            shareInfo.SSDKSetupWeChatParamsByText("test text", title: "test title", url: NSURL(string: "http://www.baidu.com"), thumbImage: UIImage(named: "appIcon"), image: image, musicFileURL: <#T##NSURL!#>, extInfo: <#T##String!#>, fileData: <#T##AnyObject!#>, emoticonData: <#T##AnyObject!#>, type: <#T##SSDKContentType#>, forPlatformSubType: <#T##SSDKPlatformType#>)
+        }
+        
+//        ShareSDK.share(<#T##platformType: SSDKPlatformType##SSDKPlatformType#>, parameters: <#T##NSMutableDictionary!#>, onStateChanged: <#T##SSDKShareStateChangedHandler!##SSDKShareStateChangedHandler!##(SSDKResponseState, [NSObject : AnyObject]!, SSDKContentEntity!, NSError!) -> Void#>)
     }
 }
