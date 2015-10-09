@@ -66,6 +66,45 @@ struct ShareSDKHelper {
         }
     }
     
+    private static func shareTypeToSSDKPlatformType(type: ShareType) -> SSDKPlatformType {
+        if type == ShareType.QQFriend {
+            return SSDKPlatformType.TypeQQ
+        }
+        else if type == ShareType.WeiBo {
+            return .TypeSinaWeibo
+        }
+        else if type == ShareType.WeChatSession || type == ShareType.WeChatTimeline {
+            return SSDKPlatformType.TypeWechat
+        }
+        
+        return SSDKPlatformType.SSDKPlatformTypeUnknown
+    }
+    
+    // MARK: - 绑定
+    static func isBind(shareType: ShareType) -> Bool {
+        return ShareSDK.hasAuthorized(shareTypeToSSDKPlatformType(shareType))
+    }
+    
+    static func bind(shareType: ShareType, complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
+        ShareSDK.getUserInfo(shareTypeToSSDKPlatformType(shareType)) { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
+            var err: NSError? = nil
+            if response == SSDKResponseState.Cancel {
+                err = NSError(domain: "绑定失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消绑定"])
+                complete(uid: nil, name: nil, headIcon: nil, error: err)
+            }
+            else if response == SSDKResponseState.Fail {
+                complete(uid: nil, name: nil, headIcon: nil, error: error)
+            }
+            else if response == SSDKResponseState.Success {
+                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+            }
+        }
+    }
+    
+    static func cancelBind(type: ShareType) {
+        ShareSDK.cancelAuthorize(shareTypeToSSDKPlatformType(type))
+    }
+    
     // MARK: - 登录
     static func loginWithWeiBo(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeSinaWeibo, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
@@ -117,17 +156,8 @@ struct ShareSDKHelper {
     }
     
     static func isExistShareType(type: ShareType) -> Bool {
-        if type == ShareType.QQFriend {
-            return ShareSDK.isSupportAuth(SSDKPlatformType.TypeQQ)
-        }
-        else if type == ShareType.WeiBo {
-            return ShareSDK.isSupportAuth(.TypeSinaWeibo)
-        }
-        else if type == ShareType.WeChatSession || type == ShareType.WeChatTimeline {
-            return ShareSDK.isSupportAuth(SSDKPlatformType.TypeWechat)
-        }
         
-        return false
+        return ShareSDK.isSupportAuth(shareTypeToSSDKPlatformType(type))
     }
     
     // MARK: - 分享

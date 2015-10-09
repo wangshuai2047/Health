@@ -28,6 +28,7 @@ class ThirdPlatformBindController: UIViewController {
         
         // 微信朋友圈
         thirdPlatformBindListInfo.append(["headIcon" : "wechatLogin", "title" : "微信朋友圈", "execute" : {() in
+            
             }])
         
         // 腾讯
