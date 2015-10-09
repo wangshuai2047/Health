@@ -446,7 +446,7 @@ extension DBManager {
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
         
-        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        let listData = (try! context.executeFetchRequest(request)) as! [GoalData]
         
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
@@ -469,7 +469,7 @@ extension DBManager {
             
             let managedObject = listData[i]
             let info = newDataIdInfos[i]
-            managedObject.dataId = info["dataId"] as! String
+            managedObject.dataId =  String(format: "%@", info["dataid"] as! NSNumber)
             managedObject.isUpload = NSNumber(bool: true)
         }
         

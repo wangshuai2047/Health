@@ -42,6 +42,8 @@
 		E01917FC1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; settings = {ASSET_TAGS = (); }; };
+		E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; settings = {ASSET_TAGS = (); }; };
 		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
 		E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */; };
 		E01C81591B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
@@ -276,6 +278,7 @@
 		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E01917F91BC80FA4002819CB /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		E01917FA1BC80FA4002819CB /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_ConvertToImage.swift; sourceTree = "<group>"; };
 		E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSettingViewController.swift; path = Health/Goal/GoalSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoalSettingViewController.xib; path = Health/Goal/GoalSettingViewController.xib; sourceTree = SOURCE_ROOT; };
 		E01C81581B8804AF00A1F7AC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -1139,6 +1142,7 @@
 				E05382D51B991C2F002FE2EB /* ConvertData.swift */,
 				E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */,
 				E005808A1B9E55FE00ABDF1A /* Crypto.swift */,
+				E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */,
 			);
 			path = Extend;
 			sourceTree = "<group>";
@@ -1456,6 +1460,7 @@
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */,
+				E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
 				E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
@@ -1557,6 +1562,7 @@
 				E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */,
 				E05B1A311B8E028900B37F1C /* Alert.swift in Sources */,
+				E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
 				E09EC8D31B7E3B5000CC07E3 /* HealthTests.swift in Sources */,
 				E0418EEF1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
 				E08B32831B85A6C50040ADE7 /* GoalManager.swift in Sources */,

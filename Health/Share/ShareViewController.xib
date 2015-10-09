@@ -21,52 +21,64 @@
                             <rect key="frame" x="0.0" y="0.0" width="240" height="299"/>
                             <animations/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="访客信息填写" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0O-Io-Aqy">
-                            <rect key="frame" x="24" y="24" width="108" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请选择分享方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0O-Io-Aqy">
+                            <rect key="frame" x="24" y="24" width="127" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择访客性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFX-Xs-MRR">
-                            <rect key="frame" x="34" y="53" width="92" height="16"/>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-aC-zDl">
+                            <rect key="frame" x="33" y="74" width="58" height="58"/>
                             <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="wechatLogin"/>
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="-1" eventType="touchUpInside" id="ORo-En-N01"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlF-ZP-q6Q">
+                            <rect key="frame" x="143" y="74" width="58" height="58"/>
+                            <animations/>
+                            <state key="normal" image="wechatLogin"/>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-rn-SYt">
+                            <rect key="frame" x="33" y="177" width="58" height="58"/>
+                            <animations/>
+                            <state key="normal" image="qqLogin"/>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHz-Hv-Nvx">
+                            <rect key="frame" x="143" y="177" width="58" height="58"/>
+                            <animations/>
+                            <state key="normal" image="weiboLogin"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微信好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSg-pI-gZO">
+                            <rect key="frame" x="31" y="140" width="62" height="18"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AD-Wo-pgU">
-                            <rect key="frame" x="152" y="74" width="55" height="94"/>
-                            <animations/>
-                            <state key="normal" image="femaleButton"/>
-                            <state key="selected" image="femaleButtonSelected"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qv-YQ-hJd">
-                            <rect key="frame" x="24" y="252" width="193" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QQ好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nw0-L9-bg5">
+                            <rect key="frame" x="27" y="243" width="70" height="18"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="确认" backgroundImage="buttonBg">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="175" borderStyle="roundedRect" placeholder="请输入访客身高/厘米" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gS-rd-dfa">
-                            <rect key="frame" x="24" y="214" width="193" height="30"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新浪微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erC-TH-ac8">
+                            <rect key="frame" x="140" y="242" width="65" height="18"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="25" borderStyle="roundedRect" placeholder="请输入访客年龄/岁" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ia9-14-Kvj">
-                            <rect key="frame" x="24" y="176" width="193" height="30"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微信朋友圈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8U-Ts-eZb">
+                            <rect key="frame" x="134" y="141" width="76" height="18"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKf-1v-xo2">
-                            <rect key="frame" x="34" y="74" width="55" height="94"/>
-                            <animations/>
-                            <state key="normal" image="maleButton"/>
-                            <state key="selected" image="maleButtonSelected"/>
-                        </button>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,6 +95,9 @@
                         <constraint firstAttribute="height" constant="34" id="1bi-Ek-KzC"/>
                     </constraints>
                     <state key="normal" image="closeButton"/>
+                    <connections>
+                        <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="Iqi-qO-Za9"/>
+                    </connections>
                 </button>
             </subviews>
             <animations/>
@@ -97,12 +112,10 @@
         </view>
     </objects>
     <resources>
-        <image name="buttonBg" width="19" height="19"/>
         <image name="closeButton" width="17" height="17"/>
-        <image name="femaleButton" width="99" height="260"/>
-        <image name="femaleButtonSelected" width="99" height="260"/>
-        <image name="maleButton" width="99" height="260"/>
-        <image name="maleButtonSelected" width="99" height="260"/>
+        <image name="qqLogin" width="58" height="58"/>
         <image name="visitorBg" width="254" height="239"/>
+        <image name="wechatLogin" width="58" height="58"/>
+        <image name="weiboLogin" width="58" height="58"/>
     </resources>
 </document>

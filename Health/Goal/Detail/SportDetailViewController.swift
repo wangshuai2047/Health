@@ -77,6 +77,19 @@ class SportDetailViewController: UIViewController {
     }
     
     @IBAction func shareButtonPressed(sender: AnyObject) {
+        ShareViewController.showShareViewController(self.view.convertToImage(), delegate: self, rootController: self)
+    }
+}
+
+// MARK: - 分享
+extension SportDetailViewController: ShareViewControllerDelegate {
+    func shareFinished(shareType: ShareType, error: NSError?) {
+        if error == nil {
+            Alert.showErrorAlert("分享成功", message: nil)
+        }
+        else {
+            Alert.showErrorAlert("分享失败", message: error?.localizedDescription)
+        }
     }
 }
 
