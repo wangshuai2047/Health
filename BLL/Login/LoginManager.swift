@@ -73,41 +73,7 @@ struct LoginManager {
         LoginRequest.login(phone!, captchas: captchas!) { (userInfo: [String: AnyObject]?, error: NSError?) -> Void in
             // deal userInfo
             if error == nil {
-                if let userId = userInfo!["userId"] as? NSNumber {
-                    print("userId\(userId)")
-                    UserData.shareInstance().userId = userId.integerValue
-                    UserData.shareInstance().phone = phone
-                }
-                
-                if let age = userInfo!["age"] as? NSNumber {
-                    print("age\(age)")
-                    UserData.shareInstance().age = age.unsignedCharValue
-                }
-                
-                if let gender = userInfo!["gender"] as? NSNumber {
-                    print("gender\(gender)")
-                    UserData.shareInstance().gender = gender.integerValue == 1 ? true : false
-                }
-                
-                if let head = userInfo!["head"] as? String {
-                    print("head\(head)")
-                    UserData.shareInstance().headURL = head
-                }
-                
-                if let height = userInfo!["height"] as? NSNumber {
-                    print("height\(height)")
-                    UserData.shareInstance().height = height.unsignedCharValue
-                }
-                
-                if let name = userInfo!["name"] as? String {
-                    print("name\(name)")
-                    UserData.shareInstance().name = name
-                }
-                
-                if let organizationCode = userInfo!["organizationCode"] as? String {
-                    print("organizationCode\(organizationCode)")
-                    UserData.shareInstance().organizationCode = organizationCode
-                }
+                parseUserInfo(userInfo!)
             }
             complete?(error)
         }
@@ -179,38 +145,113 @@ struct LoginManager {
         ShareSDKHelper.initSDK()
     }
     
+    static func isExistShareApp(shareType: ShareType) -> Bool {
+        return ShareSDKHelper.isExistShareType(shareType)
+    }
+    
     // 通过QQ登录
-    static func loginWithQQ(complete: ((NSError?) -> Void)?) {
+    static func loginWithQQ(complete: ((NSError?) -> Void)) {
         ShareSDKHelper.loginWithQQ { (uid, name, headIcon, error) -> Void in
             // deal userInfo
-            
-
-            if complete != nil {
-                complete!(error)
+            if error == nil {
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.WeChat, complete: complete)
+            }
+            else {
+                complete(error)
             }
         }
     }
     
     // 通过WeChat登录
-    static func loginWithWeChat(complete: ((NSError?) -> Void)?) {
+    static func loginWithWeChat(complete: ((NSError?) -> Void)) {
         ShareSDKHelper.loginWithWeChat { (uid, name, headIcon, error) -> Void in
             // deal userInfo
-            
-            if complete != nil {
-                complete!(error)
+            if error == nil {
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.WeChat, complete: complete)
+            }
+            else {
+                complete(error)
             }
         }
     }
     
     // 通过WeiBo登录
-    static func loginWithWeiBo(complete: ((NSError?) -> Void)?) {
+    static func loginWithWeiBo(complete: ((NSError?) -> Void)) {
         ShareSDKHelper.loginWithWeiBo { (uid, name, headIcon, error) -> Void in
             // deal userInfo
-            
-
-            if complete != nil {
-                complete!(error)
+            if error == nil {
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.WeChat, complete: complete)
             }
+            else {
+                complete(error)
+            }
+        }
+    }
+    
+    static func loginThirdParty(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((NSError?) -> Void) ) {
+        LoginRequest.loginThirdPlatform(name, headURLStr: headURLStr, openId: openId, type: type) { (userInfo, error: NSError?) -> Void in
+            
+            if error == nil {
+                parseUserInfo(userInfo!)
+            }
+            complete(error)
+            
+        }
+    }
+    
+    static func parseUserInfo(userInfo: [String: AnyObject]) {
+        
+        if let userId = userInfo["userid"] as? String {
+            print("userId\(userId)")
+            UserData.shareInstance().userId = NSString(string: userId).integerValue
+            
+        }
+        
+        if let userId = userInfo["userid"] as? NSNumber {
+            print("userId\(userId)")
+            UserData.shareInstance().userId = userId.integerValue
+            
+        }
+        
+        if let userId = userInfo["userId"] as? NSNumber {
+            print("userId\(userId)")
+            UserData.shareInstance().userId = userId.integerValue
+            
+        }
+        
+        if let phone = userInfo["mobile"] as? String {
+            print("mobile\(phone)")
+            UserData.shareInstance().phone = phone
+        }
+        
+        if let age = userInfo["age"] as? NSNumber {
+            print("age\(age)")
+            UserData.shareInstance().age = age.unsignedCharValue
+        }
+        
+        if let gender = userInfo["gender"] as? NSNumber {
+            print("gender\(gender)")
+            UserData.shareInstance().gender = gender.integerValue == 1 ? true : false
+        }
+        
+        if let head = userInfo["head"] as? String {
+            print("head\(head)")
+            UserData.shareInstance().headURL = head
+        }
+        
+        if let height = userInfo["height"] as? NSNumber {
+            print("height\(height)")
+            UserData.shareInstance().height = height.unsignedCharValue
+        }
+        
+        if let name = userInfo["name"] as? String {
+            print("name\(name)")
+            UserData.shareInstance().name = name
+        }
+        
+        if let organizationCode = userInfo["organizationCode"] as? String {
+            print("organizationCode\(organizationCode)")
+            UserData.shareInstance().organizationCode = organizationCode
         }
     }
 }

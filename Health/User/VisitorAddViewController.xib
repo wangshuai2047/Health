@@ -42,8 +42,8 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qL5-WP-qVP">
                             <rect key="frame" x="152" y="74" width="55" height="94"/>
                             <animations/>
-                            <state key="normal" image="femaleButton"/>
-                            <state key="selected" image="femaleButtonSelected"/>
+                            <state key="normal" image="visitorFemale"/>
+                            <state key="selected" image="visitorFemaleSelected"/>
                             <connections>
                                 <action selector="sexButtonPressed:" destination="-1" eventType="touchUpInside" id="tAx-ap-lxn"/>
                             </connections>
@@ -74,8 +74,8 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bf-qA-sIR">
                             <rect key="frame" x="34" y="74" width="55" height="94"/>
                             <animations/>
-                            <state key="normal" image="maleButton"/>
-                            <state key="selected" image="maleButtonSelected"/>
+                            <state key="normal" image="visitorMale"/>
+                            <state key="selected" image="visitorMaleSelected"/>
                             <connections>
                                 <action selector="sexButtonPressed:" destination="-1" eventType="touchUpInside" id="7yo-3H-8Vj"/>
                             </connections>
@@ -125,10 +125,10 @@
     <resources>
         <image name="buttonBg" width="19" height="19"/>
         <image name="closeButton" width="17" height="17"/>
-        <image name="femaleButton" width="99" height="260"/>
-        <image name="femaleButtonSelected" width="99" height="260"/>
-        <image name="maleButton" width="99" height="260"/>
-        <image name="maleButtonSelected" width="99" height="260"/>
         <image name="visitorBg" width="254" height="239"/>
+        <image name="visitorFemale" width="51" height="66"/>
+        <image name="visitorFemaleSelected" width="51" height="66"/>
+        <image name="visitorMale" width="149" height="66"/>
+        <image name="visitorMaleSelected" width="51" height="66"/>
     </resources>
 </document>

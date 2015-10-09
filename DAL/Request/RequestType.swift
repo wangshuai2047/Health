@@ -43,7 +43,7 @@ enum RequestType: String {
 
 
 enum ThirdPlatformType: String {
-    case WeiChat = "1"
+    case WeChat = "1"
     case Weibo = "2"
     case QQ = "3"
 }

@@ -29,6 +29,16 @@ struct GoalManager {
         return nil
     }
     
+    static func share(shareType: ShareType, image: UIImage, complete: (NSError?) -> Void) {
+        ShareSDKHelper.shareImage(shareType, image: image, isEvaluation: false) { (error: NSError?) -> Void in
+            if error == nil {
+                DBManager.shareInstance().addShareData(shareType.rawValue)
+            }
+            
+            complete(error)
+        }
+    }
+    
     static func syncDatas(complete: ((NSError?) -> Void)) {
         
         var startTime: NSDate

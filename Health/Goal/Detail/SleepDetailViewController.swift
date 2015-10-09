@@ -71,6 +71,22 @@ class SleepDetailViewController: UIViewController {
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        ShareViewController.showShareViewController(self.view.convertToImage(), delegate: self, rootController: self)
+    }
+}
+
+// MARK: - 分享
+extension SleepDetailViewController: ShareViewControllerDelegate {
+    func shareFinished(shareType: ShareType, error: NSError?) {
+        if error == nil {
+            Alert.showErrorAlert("分享成功", message: nil)
+        }
+        else {
+            Alert.showErrorAlert("分享失败", message: error?.localizedDescription)
+        }
+    }
 }
 
 extension SleepDetailViewController: UITableViewDataSource, UITableViewDelegate {

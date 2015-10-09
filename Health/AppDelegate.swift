@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        ShareSDKHelper.initSDK()
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
             // [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         

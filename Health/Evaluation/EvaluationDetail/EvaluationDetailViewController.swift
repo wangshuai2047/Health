@@ -130,6 +130,21 @@ class EvaluationDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        ShareViewController.showShareViewController(detailView.convertToImage(), delegate: self, rootController: self)
+    }
+    
+}
+// MARK: - 分享
+extension EvaluationDetailViewController: ShareViewControllerDelegate {
+    func shareFinished(shareType: ShareType, error: NSError?) {
+        if error == nil {
+            Alert.showErrorAlert("分享成功", message: nil)
+        }
+        else {
+            Alert.showErrorAlert("分享失败", message: error?.localizedDescription)
+        }
+    }
 }
 
 // MARK: - 设置界面数据

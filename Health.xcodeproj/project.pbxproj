@@ -38,6 +38,12 @@
 		E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
+		E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E01917FC1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; settings = {ASSET_TAGS = (); }; };
+		E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; settings = {ASSET_TAGS = (); }; };
 		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
 		E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */; };
 		E01C81591B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
@@ -180,6 +186,8 @@
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
 		E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
+		E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
+		E0BC150B1BC740E5008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */; };
@@ -268,6 +276,9 @@
 		E015BB591BC5520700225C32 /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		E015BB5A1BC5520700225C32 /* FeedbackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E01917F91BC80FA4002819CB /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		E01917FA1BC80FA4002819CB /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_ConvertToImage.swift; sourceTree = "<group>"; };
 		E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSettingViewController.swift; path = Health/Goal/GoalSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoalSettingViewController.xib; path = Health/Goal/GoalSettingViewController.xib; sourceTree = SOURCE_ROOT; };
 		E01C81581B8804AF00A1F7AC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -397,6 +408,7 @@
 		E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalManagerTests.swift; path = HealthTests/BLL/GoalManagerTests.swift; sourceTree = SOURCE_ROOT; };
 		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtend.swift; sourceTree = "<group>"; };
+		E0BC15091BC740AC008520AB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginReqeustTests.swift; path = HealthTests/Request/LoginReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9A1B861D97007A9393 /* AdsReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdsReqeustTests.swift; path = HealthTests/Request/AdsReqeustTests.swift; sourceTree = SOURCE_ROOT; };
@@ -441,6 +453,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */,
 				E0418EDE1BC2BAC500B2788D /* Foundation.framework in Frameworks */,
 				E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */,
 				E005808E1B9E588700ABDF1A /* Security.framework in Frameworks */,
@@ -468,6 +481,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0BC150B1BC740E5008520AB /* AdSupport.framework in Frameworks */,
 				E060CD921B8401D20002AEE7 /* JavaScriptCore.framework in Frameworks */,
 				E060CD911B8401CA0002AEE7 /* ImageIO.framework in Frameworks */,
 				E060CD901B8401C50002AEE7 /* Social.framework in Frameworks */,
@@ -492,6 +506,7 @@
 		B3076E6D2DA86A662569F363 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E0BC15091BC740AC008520AB /* AdSupport.framework */,
 				E0418EDD1BC2BAC500B2788D /* Foundation.framework */,
 				E0418EDB1BC2BABC00B2788D /* UIKit.framework */,
 				E005808D1B9E588700ABDF1A /* Security.framework */,
@@ -542,6 +557,15 @@
 			);
 			name = ViewModel;
 			path = "../../../../../../../workSpace/Project/好体知/Code/Health/Health/Trend/ViewModel";
+			sourceTree = "<group>";
+		};
+		E01917F81BC80F8F002819CB /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				E01917F91BC80FA4002819CB /* ShareViewController.swift */,
+				E01917FA1BC80FA4002819CB /* ShareViewController.xib */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		E021FCB41B8F5B7900565FDB /* EvaluationDetail */ = {
@@ -912,6 +936,7 @@
 			isa = PBXGroup;
 			children = (
 				E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */,
+				E01917F81BC80F8F002819CB /* Share */,
 				E05D048C1B8BE7840090137C /* Compents */,
 				E0C50BA21B862A7F007A9393 /* User */,
 				E0F9DB191B85541400504454 /* Extend */,
@@ -1117,6 +1142,7 @@
 				E05382D51B991C2F002FE2EB /* ConvertData.swift */,
 				E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */,
 				E005808A1B9E55FE00ABDF1A /* Crypto.swift */,
+				E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */,
 			);
 			path = Extend;
 			sourceTree = "<group>";
@@ -1324,6 +1350,7 @@
 				E0418EF61BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
 				E0418EEA1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
+				E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */,
 				E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
 				E060CD7C1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
@@ -1352,6 +1379,7 @@
 				E060CD6B1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 				E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */,
+				E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */,
 				E0418EEB1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
 				E060CD7D1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
 				E060CD6F1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
@@ -1432,6 +1460,7 @@
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */,
+				E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
 				E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
@@ -1443,6 +1472,7 @@
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
 				E08B32941B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift in Sources */,
 				E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */,
+				E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */,
 				E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */,
 				E08B32A41B85A9CC0040ADE7 /* CompleteInfoViewController.swift in Sources */,
 				E08A24541B807BE4004269BB /* DBManager.swift in Sources */,
@@ -1503,6 +1533,7 @@
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
 				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
+				E01917FC1BC80FA4002819CB /* ShareViewController.swift in Sources */,
 				E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
@@ -1531,6 +1562,7 @@
 				E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */,
 				E05B1A311B8E028900B37F1C /* Alert.swift in Sources */,
+				E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
 				E09EC8D31B7E3B5000CC07E3 /* HealthTests.swift in Sources */,
 				E0418EEF1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
 				E08B32831B85A6C50040ADE7 /* GoalManager.swift in Sources */,

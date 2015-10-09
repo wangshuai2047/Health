@@ -16,6 +16,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logoUpConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var weiChatLoginButton: UIButton!
+    @IBOutlet weak var QQLoginButton: UIButton!
+    @IBOutlet weak var weiBoLoginButton: UIButton!
+    
     
     @IBOutlet weak var reQueryCaptchasButton: UIButton!
     var reQueryCaptchas: NSTimer?
@@ -48,6 +52,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let keyboardHideSelector: Selector = "keyboardHide"
         NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardShowSelector, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardHideSelector, name: UIKeyboardWillHideNotification, object: nil)
+        
+        
+        // 根据是否安装第三方应用显示图标
+//        sina
+        QQLoginButton.hidden = !LoginManager.isExistShareApp(ShareType.QQFriend)
+        weiChatLoginButton.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
+        weiBoLoginButton.hidden = !LoginManager.isExistShareApp(ShareType.WeiBo)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,26 +72,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - response method
+    func dealLoginFinished(error: NSError?) {
+        if error == nil {
+            // 判断是否需要完善信息
+            if LoginManager.isNeedCompleteInfo {
+                let completeInfoController = CompleteInfoViewController()
+                completeInfoController.delegate = self
+                self.navigationController?.pushViewController(completeInfoController, animated: true)
+            }
+            else {
+                if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                    appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
+                }
+            }
+        }
+        else
+        {
+            UIAlertView(title: error?.domain, message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+        }
+    }
+    
     @IBAction func loginButtonPressed(sender: UIButton?) {
         
-        LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) { (error: NSError?) -> Void in
-            if error == nil {
-                // 判断是否需要完善信息
-                if LoginManager.isNeedCompleteInfo {
-                    let completeInfoController = CompleteInfoViewController()
-                    completeInfoController.delegate = self
-                    self.navigationController?.pushViewController(completeInfoController, animated: true)
-                }
-                else {
-                    if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
-                    }
-                }
-            }
-            else
-            {
-                UIAlertView(title: error?.domain, message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
-            }
+        LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) {[unowned self] (error: NSError?) -> Void in
+            self.dealLoginFinished(error)
         }
         backgroundPressed(sender)
     }
@@ -92,12 +107,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginWithWeChat(sender: AnyObject) {
+        LoginManager.loginWithWeChat { [unowned self] (error: NSError?) -> Void in
+            self.dealLoginFinished(error)
+        }
     }
     
     @IBAction func loginWithQQ(sender: AnyObject) {
+        LoginManager.loginWithQQ { [unowned self] (error: NSError?) -> Void in
+            self.dealLoginFinished(error)
+        }
     }
     
     @IBAction func loginWithWeiBo(sender: AnyObject) {
+        LoginManager.loginWithWeiBo { [unowned self] (error: NSError?) -> Void in
+            self.dealLoginFinished(error)
+        }
     }
     
     @IBAction func reQueryCaptchas(sender: AnyObject) {

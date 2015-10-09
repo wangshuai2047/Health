@@ -45,10 +45,6 @@ extension Request {
         } catch let error1 as NSError {
             return (nil, error1)
         }
-        
-        
-        
-        
     }
     
     // 处理返回数据
