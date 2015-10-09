@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -23,6 +23,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IU5-DC-aNa">
                     <rect key="frame" x="17" y="8" width="46" height="65"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="Eek-YA-ggq"/>
                         <constraint firstAttribute="width" constant="46" id="bbY-dy-mEO"/>
@@ -40,6 +41,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtL-Y4-bYe">
                     <rect key="frame" x="137" y="8" width="46" height="65"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="Exx-wh-DhJ"/>
                         <constraint firstAttribute="height" constant="65" id="beY-BU-JWh"/>
@@ -53,6 +55,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAx-1r-jRT">
                     <rect key="frame" x="266" y="8" width="46" height="65"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="Rfb-aa-oDP"/>
                         <constraint firstAttribute="width" constant="46" id="nqC-XY-T4w"/>
@@ -63,9 +66,13 @@
                         <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="shareButtonPressed:" destination="-1" eventType="touchUpInside" id="hej-E3-9ua"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sf0-es-CIR" customClass="CircleView" customModule="Health" customModuleProvider="target">
                     <rect key="frame" x="79" y="88" width="163" height="163"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="163" id="3QX-pg-VVP"/>
@@ -74,6 +81,7 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天已经行走" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOZ-zr-KfP">
                     <rect key="frame" x="124" y="125" width="72" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="fOh-NI-VGa"/>
                     </constraints>
@@ -83,6 +91,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="步" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0l9-d1-hsE">
                     <rect key="frame" x="153" y="193" width="14" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="1Yl-sG-qM8"/>
                     </constraints>
@@ -92,6 +101,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEb-7I-CF1">
                     <rect key="frame" x="113" y="154" width="95" height="31"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="Ctz-iF-OET"/>
                     </constraints>
@@ -101,6 +111,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="68%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqN-XE-EyS">
                     <rect key="frame" x="29" y="186" width="42" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="BwI-SU-8em"/>
                         <constraint firstAttribute="width" constant="42" id="h6u-4V-mRx"/>
@@ -111,6 +122,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还需步行1630步，约17分钟" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxV-VI-S9K">
                     <rect key="frame" x="8" y="266" width="304" height="15"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="jJu-a9-2o1"/>
                     </constraints>
@@ -120,6 +132,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="................................................................................................................" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KE2-VA-dia">
                     <rect key="frame" x="8" y="289" width="304" height="12"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="gpV-HV-1Sf"/>
                     </constraints>
@@ -129,6 +142,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="过去7天:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnW-rg-U62">
                     <rect key="frame" x="29" y="309" width="46.5" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="znt-En-qiu"/>
                     </constraints>
@@ -138,6 +152,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="步" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szz-y7-ZLS">
                     <rect key="frame" x="290" y="309" width="12" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="QJy-Bd-bjm"/>
                     </constraints>
@@ -147,6 +162,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtM-1q-pme">
                     <rect key="frame" x="246" y="309" width="36" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="jvE-bH-u1M"/>
                     </constraints>
@@ -156,6 +172,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目标" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gak-Nl-7fX">
                     <rect key="frame" x="214" y="309" width="24" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="NBI-9a-y5K"/>
                     </constraints>
@@ -165,6 +182,7 @@
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5Ls-VJ-EA8">
                     <rect key="frame" x="32" y="338" width="257" height="134"/>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="2Th-vf-J0j"/>
@@ -172,6 +190,7 @@
                     </connections>
                 </tableView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5Ls-VJ-EA8" secondAttribute="trailing" constant="31" id="0jf-9a-Lb7"/>

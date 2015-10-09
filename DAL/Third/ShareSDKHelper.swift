@@ -8,10 +8,11 @@
 
 import UIKit
 
-enum ShareType {
-    case QQ
-    case WeiBo
-    case WeiChat
+enum ShareType: Int {
+    case WeChatSession = 1  // 微信好友
+    case WeiBo  // 新浪微博
+    case QQFriend   // qq 好友
+    case WeChatTimeline // 微信朋友圈
 }
 
 /*
@@ -116,28 +117,79 @@ struct ShareSDKHelper {
     }
     
     static func isExistShareType(type: ShareType) -> Bool {
-        if type == .QQ {
-            return ShareSDK.isSupportAuth(.TypeQQ)
+        if type == ShareType.QQFriend {
+            return ShareSDK.isSupportAuth(SSDKPlatformType.TypeQQ)
         }
-        else if type == .WeiBo {
+        else if type == ShareType.WeiBo {
             return ShareSDK.isSupportAuth(.TypeSinaWeibo)
         }
-        else if type == .WeiChat {
-            return ShareSDK.isSupportAuth(.TypeWechat)
+        else if type == ShareType.WeChatSession || type == ShareType.WeChatTimeline {
+            return ShareSDK.isSupportAuth(SSDKPlatformType.TypeWechat)
         }
         
         return false
     }
     
     // MARK: - 分享
-    static func shareEvaluationImage(shareType: ShareType, image: UIImage) {
+    static func shareImage(shareType: ShareType, image: UIImage, isEvaluation: Bool, complete: (NSError?) -> Void) {
 //        ShareSDK.
-        let shareInfo: NSMutableDictionary = NSMutableDictionary()
+        var shareInfo: NSMutableDictionary?
+        var platformType: SSDKPlatformType?
         
-        if shareType == ShareType.WeiChat {
-//            shareInfo.SSDKSetupWeChatParamsByText("test text", title: "test title", url: NSURL(string: "http://www.baidu.com"), thumbImage: UIImage(named: "appIcon"), image: image, musicFileURL: <#T##NSURL!#>, extInfo: <#T##String!#>, fileData: <#T##AnyObject!#>, emoticonData: <#T##AnyObject!#>, type: <#T##SSDKContentType#>, forPlatformSubType: <#T##SSDKPlatformType#>)
+        if shareType == ShareType.WeChatSession {
+            shareInfo = weChatShareData(image, isEvaluation: isEvaluation, forPlatformSubType: SSDKPlatformType.SubTypeWechatSession)
+            platformType = SSDKPlatformType.SubTypeWechatSession
+        }
+        else if shareType == ShareType.WeChatTimeline {
+            shareInfo = weChatShareData(image, isEvaluation: isEvaluation, forPlatformSubType: SSDKPlatformType.SubTypeWechatTimeline)
+            platformType = SSDKPlatformType.SubTypeWechatTimeline
+        }
+        else if shareType == ShareType.QQFriend {
+            shareInfo = QQShareData(image, isEvaluation: isEvaluation)
+            platformType = SSDKPlatformType.SubTypeQQFriend
+        }
+        else {
+            shareInfo = sinaShareData(image, isEvaluation: isEvaluation)
+            platformType = SSDKPlatformType.TypeSinaWeibo
         }
         
-//        ShareSDK.share(<#T##platformType: SSDKPlatformType##SSDKPlatformType#>, parameters: <#T##NSMutableDictionary!#>, onStateChanged: <#T##SSDKShareStateChangedHandler!##SSDKShareStateChangedHandler!##(SSDKResponseState, [NSObject : AnyObject]!, SSDKContentEntity!, NSError!) -> Void#>)
+        ShareSDK.share(platformType!, parameters: shareInfo!) { (status: SSDKResponseState, info: [NSObject : AnyObject]!, entity: SSDKContentEntity!, error: NSError!) -> Void in
+            
+            var err: NSError? = nil
+            if status == SSDKResponseState.Cancel {
+                err = NSError(domain: "分享失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消分享"])
+                complete(err)
+            }
+            else if status == SSDKResponseState.Fail {
+                complete(error)
+            }
+            else if status == SSDKResponseState.Success {
+                complete(nil)
+            }
+        }
+    }
+    
+    private static func sinaShareData(image: UIImage, isEvaluation: Bool) -> NSMutableDictionary {
+        let shareInfo = NSMutableDictionary()
+        
+        shareInfo.SSDKSetupSinaWeiboShareParamsByText("text 好体知SinaWeiBo分享测试", title: "title 好体知SinaWeiBo分享测试", image: image, url: nil, latitude: 0, longitude: 0, objectID: nil, type: SSDKContentType.Image)
+        
+        return shareInfo
+    }
+    
+    private static func weChatShareData(image: UIImage, isEvaluation: Bool, forPlatformSubType: SSDKPlatformType) -> NSMutableDictionary {
+        let shareInfo = NSMutableDictionary()
+        
+        shareInfo.SSDKSetupWeChatParamsByText(nil, title: "title 好体知微信分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, musicFileURL: nil, extInfo: nil, fileData: nil, emoticonData: nil, type: SSDKContentType.Image, forPlatformSubType: forPlatformSubType)
+        
+        return shareInfo
+    }
+    
+    private static func QQShareData(image: UIImage, isEvaluation: Bool) -> NSMutableDictionary {
+        let shareInfo = NSMutableDictionary()
+        
+        shareInfo.SSDKSetupQQParamsByText("text 好体知QQ分享测试", title: "title 好体知QQ分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, type: SSDKContentType.Image, forPlatformSubType: SSDKPlatformType.TypeQQ)
+        
+        return shareInfo
     }
 }

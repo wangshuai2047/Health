@@ -75,6 +75,9 @@ class SportDetailViewController: UIViewController {
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+    }
 }
 
 extension SportDetailViewController: UITableViewDataSource, UITableViewDelegate {

@@ -56,8 +56,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // 根据是否安装第三方应用显示图标
 //        sina
-        QQLoginButton.hidden = !LoginManager.isExistShareApp(.QQ)
-        weiChatLoginButton.hidden = !LoginManager.isExistShareApp( ShareType.WeiChat)
+        QQLoginButton.hidden = !LoginManager.isExistShareApp(ShareType.QQFriend)
+        weiChatLoginButton.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
         weiBoLoginButton.hidden = !LoginManager.isExistShareApp(ShareType.WeiBo)
     }
     

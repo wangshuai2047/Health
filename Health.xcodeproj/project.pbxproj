@@ -38,6 +38,10 @@
 		E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
+		E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E01917FC1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
 		E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */; };
 		E01C81591B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
@@ -270,6 +274,8 @@
 		E015BB591BC5520700225C32 /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		E015BB5A1BC5520700225C32 /* FeedbackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E01917F91BC80FA4002819CB /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		E01917FA1BC80FA4002819CB /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
 		E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSettingViewController.swift; path = Health/Goal/GoalSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoalSettingViewController.xib; path = Health/Goal/GoalSettingViewController.xib; sourceTree = SOURCE_ROOT; };
 		E01C81581B8804AF00A1F7AC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -548,6 +554,15 @@
 			);
 			name = ViewModel;
 			path = "../../../../../../../workSpace/Project/好体知/Code/Health/Health/Trend/ViewModel";
+			sourceTree = "<group>";
+		};
+		E01917F81BC80F8F002819CB /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				E01917F91BC80FA4002819CB /* ShareViewController.swift */,
+				E01917FA1BC80FA4002819CB /* ShareViewController.xib */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		E021FCB41B8F5B7900565FDB /* EvaluationDetail */ = {
@@ -918,6 +933,7 @@
 			isa = PBXGroup;
 			children = (
 				E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */,
+				E01917F81BC80F8F002819CB /* Share */,
 				E05D048C1B8BE7840090137C /* Compents */,
 				E0C50BA21B862A7F007A9393 /* User */,
 				E0F9DB191B85541400504454 /* Extend */,
@@ -1330,6 +1346,7 @@
 				E0418EF61BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
 				E0418EEA1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
+				E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */,
 				E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
 				E060CD7C1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
@@ -1358,6 +1375,7 @@
 				E060CD6B1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 				E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */,
+				E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */,
 				E0418EEB1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
 				E060CD7D1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
 				E060CD6F1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
@@ -1449,6 +1467,7 @@
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
 				E08B32941B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift in Sources */,
 				E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */,
+				E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */,
 				E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */,
 				E08B32A41B85A9CC0040ADE7 /* CompleteInfoViewController.swift in Sources */,
 				E08A24541B807BE4004269BB /* DBManager.swift in Sources */,
@@ -1509,6 +1528,7 @@
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
 				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
+				E01917FC1BC80FA4002819CB /* ShareViewController.swift in Sources */,
 				E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */,
 				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,

@@ -130,6 +130,9 @@ class EvaluationDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+    }
+    
 }
 
 // MARK: - 设置界面数据
