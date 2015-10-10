@@ -27,26 +27,52 @@ class ThirdPlatformBindController: UIViewController {
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
         
         // 微信朋友圈
-        thirdPlatformBindListInfo.append(["headIcon" : "wechatLogin", "title" : "微信朋友圈", "execute" : {() in
-            
+        thirdPlatformBindListInfo.append(["headIcon" : "wechatLogin", "title" : "微信朋友圈",
+            "execute" : { [unowned self] () in
+                self.thirdPartBindChange(ShareType.WeChatSession)
+            },
+            "isBind": {() -> Bool in
+                return ShareSDKHelper.isBind(ShareType.WeChatSession)
             }])
         
         // 腾讯
-        thirdPlatformBindListInfo.append(["headIcon" : "qqLogin", "title" : "腾讯", "execute" : {() in
+        thirdPlatformBindListInfo.append(["headIcon" : "qqLogin", "title" : "腾讯",
+            "execute" : {[unowned self] () in
+                self.thirdPartBindChange(ShareType.QQFriend)
+            },
+            "isBind": {() -> Bool in
+                return ShareSDKHelper.isBind(ShareType.QQFriend)
             }])
         
         // 微博
-        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "微博", "execute" : {() in
+        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "微博",
+            "execute" : { [unowned self] () in
+                self.thirdPartBindChange(ShareType.WeiBo)
+            },
+            "isBind": {() -> Bool in
+                return ShareSDKHelper.isBind(ShareType.WeiBo)
             }])
         
         // 集团账户
-        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "集团账户", "execute" : {() in
+        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "集团账户",
+            "execute" : { [unowned self] () in
+                BindOrganzationViewController.showBindOrganzationViewController(self, rootController: self)
+            },
+            "isBind": {() -> Bool in
+                return UserData.shareInstance().organizationCode != nil
             }])
         
         // 手机号
-        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "手机号", "execute" : {() in
+        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "手机号",
+            "execute" : { [unowned self] () in
+                BindPhoneViewController.showBindPhoneViewController(self, rootController: self)
+            },
+            "isBind": {() -> Bool in
+                return UserData.shareInstance().phone != nil
             }])
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,6 +99,34 @@ class ThirdPlatformBindController: UIViewController {
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    // MARK: - 业务执行
+    func thirdPartBindChange(type: ShareType) {
+        if ShareSDKHelper.isBind(type) {
+            ShareSDKHelper.cancelBind(type)
+            self.tableView.reloadData()
+        }
+        else {
+            ShareSDKHelper.bind(type, complete: { (uid, name, headIcon, error: NSError?) -> Void in
+                
+                if error == nil {
+                    self.tableView.reloadData()
+                }
+                else {
+                    Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
+                }
+                
+            })
+        }
+    }
+}
+
+extension ThirdPlatformBindController: BindOrganzationViewControllerDelegate, BindPhoneViewControllerDelegate {
+    func bindFinished(codeOrCode: String?, error: NSError?) {
+        if error == nil {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 extension ThirdPlatformBindController : UITableViewDataSource, UITableViewDelegate {
@@ -89,6 +143,10 @@ extension ThirdPlatformBindController : UITableViewDataSource, UITableViewDelega
         cell.bindButton.tag = indexPath.row
         cell.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         cell.bindButton.addTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        let isBind = info["isBind"] as! () -> Bool
+        cell.bindButton.selected = isBind()
+        
         return cell
     }
     

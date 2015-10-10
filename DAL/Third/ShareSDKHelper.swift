@@ -77,7 +77,7 @@ struct ShareSDKHelper {
             return SSDKPlatformType.TypeWechat
         }
         
-        return SSDKPlatformType.SSDKPlatformTypeUnknown
+        return SSDKPlatformType.TypeQQ
     }
     
     // MARK: - 绑定

@@ -117,32 +117,9 @@ class UserData {
         }
     }
     
-    var isBindQQ: Bool? {
-        get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.headURL") as? String)
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.headURL")
-        }
-    }
-    
-    var isBindWeChat: Bool? {
-        get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.headURL") as? String)
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.headURL")
-        }
-    }
-    
-    var isBindWeiBo: Bool? {
-        get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.isBindWeiBo.openId") as? String)
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.isBindWeiBo.openId")
-        }
-    }
+    var isBindQQ: Bool?
+    var isBindWeChat: Bool?
+    var isBindWeiBo: Bool?
     
     static func shareInstance() -> UserData {
         struct YYSingle {

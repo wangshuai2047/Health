@@ -213,6 +213,12 @@
 		E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140A1B913DE40079F957 /* ScaleResult.swift */; };
 		E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
 		E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
+		E0E5DE901BC88A78001BCCD1 /* BindOrganzationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E0E5DE911BC88A78001BCCD1 /* BindOrganzationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E0E5DE951BC88A89001BCCD1 /* BindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E0E5DE961BC89115001BCCD1 /* BindOrganzationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */; };
+		E0E5DE971BC89115001BCCD1 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */; };
 		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F7A6B11BC6C36900AF6B8B /* VisitorAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -425,6 +431,10 @@
 		E0DD14071B9130730079F957 /* ScaleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleProtocol.swift; sourceTree = "<group>"; };
 		E0DD140A1B913DE40079F957 /* ScaleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResult.swift; sourceTree = "<group>"; };
 		E0DD140E1B91795A0079F957 /* ConvertString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertString.swift; sourceTree = "<group>"; };
+		E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindOrganzationViewController.swift; sourceTree = "<group>"; };
+		E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindOrganzationViewController.xib; sourceTree = "<group>"; };
+		E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindPhoneViewController.swift; sourceTree = "<group>"; };
+		E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindPhoneViewController.xib; sourceTree = "<group>"; };
 		E0F70D4F1B93362900341F1C /* ConvertFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertFloat.swift; sourceTree = "<group>"; };
 		E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VisitorAddViewController.swift; path = Health/User/VisitorAddViewController.swift; sourceTree = SOURCE_ROOT; };
 		E0F7A6B01BC6C36900AF6B8B /* VisitorAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VisitorAddViewController.xib; path = Health/User/VisitorAddViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -1188,6 +1198,10 @@
 				E0418EE71BC34B2600B2788D /* ThirdPlatformBindController.xib */,
 				E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */,
 				E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */,
+				E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */,
+				E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */,
+				E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */,
+				E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */,
 			);
 			name = ThirdAppBind;
 			path = Health/Setting/ThirdAppBind;
@@ -1354,6 +1368,7 @@
 				E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
 				E060CD7C1B84012D0002AEE7 /* ShareSDKUI.bundle in Resources */,
+				E0E5DE951BC88A89001BCCD1 /* BindPhoneViewController.xib in Resources */,
 				E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 				E0F9DAF51B85456600504454 /* LoginAdsViewController.xib in Resources */,
 				E060CD6A1B84012D0002AEE7 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -1365,6 +1380,7 @@
 				E0418EFC1BC3554800B2788D /* DeviceBindCell.xib in Resources */,
 				E0F9DAFB1B85488300504454 /* GUIViewController.xib in Resources */,
 				E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */,
+				E0E5DE911BC88A78001BCCD1 /* BindOrganzationViewController.xib in Resources */,
 				E060CD6E1B84012D0002AEE7 /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1482,6 +1498,7 @@
 				E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */,
 				E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */,
 				E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
+				E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */,
 				E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
@@ -1495,6 +1512,7 @@
 				E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */,
 				E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
+				E0E5DE901BC88A78001BCCD1 /* BindOrganzationViewController.swift in Sources */,
 				E03B68991B97D15D00F4C505 /* BraceletResult.swift in Sources */,
 				E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */,
 				E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */,
@@ -1521,6 +1539,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E5DE961BC89115001BCCD1 /* BindOrganzationViewController.swift in Sources */,
+				E0E5DE971BC89115001BCCD1 /* BindPhoneViewController.swift in Sources */,
 				E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */,
 				E00580891B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
 				E03B68951B97D12000F4C505 /* BraceletManager.swift in Sources */,
