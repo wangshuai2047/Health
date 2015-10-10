@@ -102,21 +102,43 @@ class ThirdPlatformBindController: UIViewController {
     
     // MARK: - 业务执行
     func thirdPartBindChange(type: ShareType) {
+        
         if ShareSDKHelper.isBind(type) {
             ShareSDKHelper.cancelBind(type)
             self.tableView.reloadData()
         }
         else {
-            ShareSDKHelper.bind(type, complete: { (uid, name, headIcon, error: NSError?) -> Void in
-                
-                if error == nil {
-                    self.tableView.reloadData()
-                }
-                else {
-                    Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
-                }
-                
-            })
+            
+            if type == ShareType.QQFriend {
+                LoginManager.loginWithQQ({ [unowned self] (error: NSError?) -> Void in
+                    if error == nil {
+                        self.tableView.reloadData()
+                    }
+                    else {
+                        Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
+                    }
+                })
+            }
+            else if type == ShareType.WeiBo {
+                LoginManager.loginWithWeiBo({ [unowned self] (error: NSError?) -> Void in
+                    if error == nil {
+                        self.tableView.reloadData()
+                    }
+                    else {
+                        Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
+                    }
+                })
+            }
+            else {
+                LoginManager.loginWithWeChat({ [unowned self] (error: NSError?) -> Void in
+                    if error == nil {
+                        self.tableView.reloadData()
+                    }
+                    else {
+                        Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
+                    }
+                })
+            }
         }
     }
 }

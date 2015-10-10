@@ -154,7 +154,7 @@ struct LoginManager {
         ShareSDKHelper.loginWithQQ { (uid, name, headIcon, error) -> Void in
             // deal userInfo
             if error == nil {
-                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.WeChat, complete: complete)
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.QQ, complete: complete)
             }
             else {
                 complete(error)
@@ -180,7 +180,7 @@ struct LoginManager {
         ShareSDKHelper.loginWithWeiBo { (uid, name, headIcon, error) -> Void in
             // deal userInfo
             if error == nil {
-                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.WeChat, complete: complete)
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.Weibo, complete: complete)
             }
             else {
                 complete(error)
@@ -193,6 +193,20 @@ struct LoginManager {
             
             if error == nil {
                 parseUserInfo(userInfo!)
+            }
+            else {
+                
+                var shareType: ShareType?
+                if type == .WeChat {
+                    shareType = ShareType.WeChatSession
+                }
+                else if type == .Weibo {
+                    shareType = ShareType.WeiBo
+                }
+                else if type == .QQ {
+                    shareType = ShareType.QQFriend
+                }
+                ShareSDKHelper.cancelBind(shareType!)
             }
             complete(error)
             
