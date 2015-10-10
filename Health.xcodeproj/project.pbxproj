@@ -170,6 +170,8 @@
 		E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140A1B913DE40079F957 /* ScaleResult.swift */; };
 		E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
 		E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
+		E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
+		E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F9DAEF1B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
@@ -355,6 +357,8 @@
 		E0DD14071B9130730079F957 /* ScaleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleProtocol.swift; sourceTree = "<group>"; };
 		E0DD140A1B913DE40079F957 /* ScaleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResult.swift; sourceTree = "<group>"; };
 		E0DD140E1B91795A0079F957 /* ConvertString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertString.swift; sourceTree = "<group>"; };
+		E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
+		E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShareData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E0F70D4F1B93362900341F1C /* ConvertFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertFloat.swift; sourceTree = "<group>"; };
 		E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationManager.swift; sourceTree = "<group>"; };
 		E0F9DAF11B85456600504454 /* LoginAdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAdsViewController.swift; sourceTree = "<group>"; };
@@ -926,6 +930,8 @@
 		E09EC8DF1B7E3FCC00CC07E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */,
+				E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */,
 				E09EC8E01B7E3FCC00CC07E3 /* Health.xcdatamodeld */,
 				E0B29B061B9BD2D000F2F2CC /* GoalData.swift */,
 				E01C81581B8804AF00A1F7AC /* Device.swift */,
@@ -1310,6 +1316,8 @@
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
+				E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */,
+				E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */,
 				E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */,
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
@@ -1577,6 +1585,7 @@
 					"-lsqlite3",
 					"-licucore",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
@@ -1623,6 +1632,7 @@
 					"-lsqlite3",
 					"-licucore",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";

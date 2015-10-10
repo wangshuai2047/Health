@@ -78,7 +78,7 @@ class EvaluationViewController: UIViewController {
     // MARK: - notConnectDeviceView Response Method
     @IBAction func buyDevicePressed(sender: AnyObject) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://item.jd.com/1295110.html")!)
-        EvaluationManager.shareInstance().addTestDatas()
+//        EvaluationManager.shareInstance().addTestDatas()
     }
 
     @IBAction func enterMyBodyDataPressed(sender: AnyObject) {
