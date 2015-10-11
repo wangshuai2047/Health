@@ -96,6 +96,10 @@ struct TrendViewModel {
     
     func value(index: Int) -> (Double?, Double?, String) {
         
+        if index >= dateStrings.count || index < 0 {
+            return (0,0,"")
+        }
+        
         var firstValue: Double?
         var secondValue: Double?
         let dateStr: String = dateStrings[index]
