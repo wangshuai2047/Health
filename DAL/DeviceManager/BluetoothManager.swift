@@ -71,16 +71,17 @@ enum DeviceType: Int16 {
 }
 
 class BluetoothManager: NSObject {
+    
     private var centralManager: CBCentralManager
-    private var peripheral: CBPeripheral?
-    private var characteristic: CBCharacteristic?
     private var timeoutTimer: NSTimer?
     
     private var isScan: Bool = true
-    private var scanClosure: (([(DeviceType, name: String, UUID: String, peripheral: CBPeripheral)]) -> Void)?
+    private var scanClosure: (([DeviceManagerProtocol]) -> Void)?
     
-    private var scanDevice: [(DeviceType, name: String, UUID: String, peripheral: CBPeripheral)] = []
+    private var scanDevice: [DeviceManagerProtocol] = []
     private var scanDeviceType: [DeviceType]?
+    
+    private var currentDevice: DeviceManagerProtocol?
     
     override init() {
         centralManager = CBCentralManager()
@@ -88,7 +89,7 @@ class BluetoothManager: NSObject {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    func scanDevice(scanTypes: [DeviceType]? ,complete: ([(DeviceType, name: String, UUID: String, peripheral: CBPeripheral)]) -> Void) {
+    func scanDevice(scanTypes: [DeviceType]? ,complete: ([DeviceManagerProtocol]) -> Void) {
         isScan = true
         scanDevice.removeAll()
         scanClosure = complete
@@ -98,20 +99,44 @@ class BluetoothManager: NSObject {
     }
     
     func connect(peripheral: CBPeripheral) {
-        centralManager.delegate = self
-        centralManager.connectPeripheral(self.peripheral!, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true)])
+//        centralManager.delegate = self
+//        centralManager.connectPeripheral(self.peripheral!, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true)])
+    }
+    
+    func fire(uuid: String, info: [String : AnyObject], complete: (ResultProtocol?, NSError?) -> Void) {
+        
+        if currentDevice != nil && currentDevice?.uuid == uuid {
+            currentDevice?.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
+                    self.currentDevice = nil
+                    complete(result, error)
+                })
+        }
+        else {
+            scanDevice(nil, complete: { [unowned self] (results: [DeviceManagerProtocol]) -> Void in
+                for device in results {
+                    if device.uuid == uuid {
+                        self.currentDevice = device
+                        self.currentDevice?.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
+                            self.currentDevice = nil
+                            complete(result, error)
+                        })
+                    }
+                }
+            })
+        }
     }
     
     func clearWork() {
         self.centralManager.stopScan()
-        if peripheral != nil {
-            self.centralManager.cancelPeripheralConnection(self.peripheral!)
+        if currentDevice?.peripheral != nil {
+            self.centralManager.cancelPeripheralConnection(currentDevice!.peripheral!)
         }
-        self.peripheral = nil
-        self.characteristic = nil
+        currentDevice?.peripheral = nil
+        currentDevice?.characteristic = nil
         timeoutTimer?.invalidate()
         scanClosure = nil
         scanDeviceType = nil
+        currentDevice = nil
     }
     
     func scanTimeout() {

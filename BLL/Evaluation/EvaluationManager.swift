@@ -36,7 +36,7 @@ class EvaluationManager :NSObject {
 //        }
     }
     
-    func startScaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResult {
+    func startScaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResultProtocol {
         return DeviceManager.shareInstance().scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserManager.shareInstance().currentUser.gender, userId: UserManager.shareInstance().currentUser.userId, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)
     }
     
@@ -76,7 +76,7 @@ class EvaluationManager :NSObject {
     }
     
    // 开始测量秤
-    func startScale(complete: (info: ScaleResult?, error: NSError?) -> Void) {
+    func startScale(complete: (info: ScaleResultProtocol?, error: NSError?) -> Void) {
         
         
         DeviceManager.shareInstance().scaleHelper.setScaleData(UserManager.shareInstance().currentUser.userId, gender: UserManager.shareInstance().currentUser.gender, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)
@@ -114,7 +114,7 @@ class EvaluationManager :NSObject {
     }
     
     // 访客测量
-    func visitorStartScale(user: UserModel, complete: (info: ScaleResult?, error: NSError?) -> Void) {
+    func visitorStartScale(user: UserModel, complete: (info: ScaleResultProtocol?, error: NSError?) -> Void) {
         DeviceManager.shareInstance().scaleHelper.setScaleData(1, gender: user.gender, age: user.age, height: user.height)
         
         DeviceManager.shareInstance().startScale { (var result, err) -> Void in
@@ -137,7 +137,7 @@ class EvaluationManager :NSObject {
         
         var uploadDatas: [[String : AnyObject]] = []
         for info in datas {
-            let result = ScaleResult(info: info)
+            let result = MyBodyResult(info: info)
             uploadDatas.append(result.uploadInfo((info["timeStamp"] as! NSDate).secondTimeInteval()))
         }
         
@@ -150,7 +150,7 @@ class EvaluationManager :NSObject {
         }
     }
     
-    func deleteEvaluationData(result: ScaleResult) {
+    func deleteEvaluationData(result: ScaleResultProtocol) {
         DBManager.shareInstance().deleteEvaluationData(result.dataId,userId: result.userId)
     }
     

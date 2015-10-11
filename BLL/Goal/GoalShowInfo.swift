@@ -20,7 +20,7 @@ struct GoalShowInfo {
     
     var sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]
     
-    init(scaleResult: ScaleResult, sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]) {
+    init(scaleResult: ScaleResultProtocol, sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]) {
         // 需改变的体脂率
         addFatPercentage = scaleResult.standardFatPercentage - scaleResult.fatPercentage
         

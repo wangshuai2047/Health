@@ -13,9 +13,9 @@ struct GoalManager {
         return DBManager.shareInstance().haveConnectedBracelet
     }
     
-    static func lastEvaluationData() -> ScaleResult? {
+    static func lastEvaluationData() -> ScaleResultProtocol? {
         if let info = DBManager.shareInstance().queryLastEvaluationData(UserData.shareInstance().userId!) {
-            return ScaleResult(info: info)
+            return MyBodyResult(info: info)
         }
         
         return nil
@@ -71,7 +71,7 @@ struct GoalManager {
                     DBManager.shareInstance().addGoalData({ (inout setDatas: GoalData) -> GoalData in
                         
                         setDatas.dataId = result.dataId
-                        setDatas.userId = NSNumber(unsignedShort: result.userId)
+                        setDatas.userId = NSNumber(integer: result.userId)
                         setDatas.isUpload = false
                         
                         setDatas.startTime = result.startTime
@@ -203,7 +203,7 @@ extension BraceletResult {
     init(info: [String: AnyObject]) {
         
         self.dataId = info["dataId"] as! String
-        self.userId = (info["userId"] as! NSNumber).unsignedShortValue
+        self.userId = (info["userId"] as! NSNumber).integerValue
         
         self.startTime = info["startTime"] as! NSDate
         self.endTime = info["endTime"] as! NSDate
@@ -241,7 +241,7 @@ extension GoalManager {
             
             // 还没有开始解析数据
             if !sleepStarted {
-                if data.stepsType != BraceletResult.StepsType.Sleep {continue}
+                if data.stepsType != StepsType.Sleep {continue}
                 if data.endTime.timeIntervalSinceDate(data.startTime) < 20 * 60 {continue} // 小于20分钟
                 if data.steps == 0 {continue}
                 if NSTimeInterval(data.steps) * 9 * 60 / (data.endTime.timeIntervalSinceDate(data.startTime)) >= 2 {continue}

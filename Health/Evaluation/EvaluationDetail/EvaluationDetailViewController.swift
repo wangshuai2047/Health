@@ -10,7 +10,7 @@ import UIKit
 
 class EvaluationDetailViewController: UIViewController {
     
-    var data: ScaleResult? {
+    var data: ScaleResultProtocol? {
         didSet {
             refreshData()
         }
@@ -196,7 +196,7 @@ extension EvaluationDetailViewController {
         var earlyWarningCount: Int = 0
         
         
-        let allStatus: [ScaleResult.ValueStatus] = [
+        let allStatus: [ValueStatus] = [
             data!.weightStatus,
             data!.proteinWeightStatus,
             data!.boneWeightStatus,
@@ -245,11 +245,11 @@ extension EvaluationDetailViewController {
         evaluationDescriptionLabel.append("。您的得分击败了", font: font, color: UIColor.grayColor())
         evaluationDescriptionLabel.append("25%", font: font, color: deepBlue)
         evaluationDescriptionLabel.append("的用户。本次9项检查中有", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("\(warningCount)", font: font, color: ScaleResult.ValueStatus.High.statusColor)
+        evaluationDescriptionLabel.append("\(warningCount)", font: font, color: ValueStatus.High.statusColor)
         evaluationDescriptionLabel.append("项警告，", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("\(earlyWarningCount)", font: font, color: ScaleResult.ValueStatus.Low.statusColor)
+        evaluationDescriptionLabel.append("\(earlyWarningCount)", font: font, color: ValueStatus.Low.statusColor)
         evaluationDescriptionLabel.append("项预警，", font: font, color: UIColor.grayColor())
-        evaluationDescriptionLabel.append("\(hCount)", font: font, color: ScaleResult.ValueStatus.Normal.statusColor)
+        evaluationDescriptionLabel.append("\(hCount)", font: font, color: ValueStatus.Normal.statusColor)
         evaluationDescriptionLabel.append("项健康。", font: font, color: UIColor.grayColor())
     }
     

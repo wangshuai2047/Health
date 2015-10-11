@@ -23,8 +23,9 @@ class BraceletManager: NSObject {
     var percent: UInt8 = 0  // 电池电量
     
     private var syncDate: NSDate?
-    private var syncComplete: (([BraceletResult], NSError?) -> Void)?
     private var braceletUUID: String?
+    private var syncComplete: (([BraceletResult], NSError?) -> Void)?
+    
     
     private var AdvDataManufacturerData: NSData {
         // a8 01 01 01 08 f4 06 a5 00 be 3f
@@ -290,7 +291,7 @@ extension BraceletManager {
             var startTime = bodyData.start_time
             
             for data in bodyData.info {
-                let result = BraceletResult(userId: UInt16(UserData.shareInstance().userId!), startTime: startTime, endTime: data.end_time, steps: data.steps, stepsType: data.stepsType)
+                let result = BraceletResult(userId: UserData.shareInstance().userId!, startTime: startTime, endTime: data.end_time, steps: data.steps, stepsType: data.stepsType)
                 list.append(result)
                 startTime = data.end_time
             }

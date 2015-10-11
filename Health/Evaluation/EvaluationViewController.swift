@@ -157,7 +157,7 @@ class EvaluationViewController: UIViewController {
         view.hidden = false
     }
     
-    func pushToDetailEvaluationViewController(data: ScaleResult) {
+    func pushToDetailEvaluationViewController(data: ScaleResultProtocol) {
         let detailController = EvaluationDetailViewController()
         detailController.data = data
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)

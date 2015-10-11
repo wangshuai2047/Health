@@ -37,7 +37,7 @@ class ScaleOld: NSObject {
     var height: UInt8?
     var age: UInt8?
     
-    func transformResult(result: VTFatScaleTestResult) -> ScaleResult {
+    func transformResult(result: VTFatScaleTestResult) -> ScaleResultProtocol {
         return ScaleOld.scaleInputData(result.weight, waterContent: result.waterContent, visceralFatContent: Float(result.visceralFatContent), gender: gender!, userId: userId!, age: age!, height: height!)
     }
 }
@@ -77,7 +77,7 @@ extension ScaleOld: ScaleProtocol {
         vscaleManager!.setCalulateDataWithUserID(1, gender: gender ? 0 : 1, age: age, height: height)
     }
     
-    func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {
+    func startScale(complete: (result: ScaleResultProtocol?, err: NSError?) -> Void) {
         
         if vscaleManager == nil {
             vscaleManager = VScaleManager()
@@ -101,7 +101,7 @@ extension ScaleOld: ScaleProtocol {
         }
     }
     
-    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResult {
+    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResultProtocol {
         
         /*
         从四点极称中，我们只需要三项数据：水分率、内脏脂肪率和体重
@@ -139,7 +139,7 @@ extension ScaleOld: ScaleProtocol {
         // 骨骼肌重
         let boneMuscleWeight = muscleWeight * 0.7135
         
-        let result = ScaleResult(userId: userId, gender: gender, age: age, height: height, weight: weight, waterContent: waterContent, visceralFatContent: visceralFatContent, fatPercentage: fatPercentage, fatWeight: fatWeight, waterWeight: waterWeight, muscleWeight: muscleWeight, proteinWeight: proteinWeight, boneWeight: boneWeight, boneMuscleWeight: boneMuscleWeight)
+        let result = MyBodyResult(userId: userId, gender: gender, age: age, height: height, weight: weight, waterContent: waterContent, visceralFatContent: visceralFatContent, fatPercentage: fatPercentage, fatWeight: fatWeight, waterWeight: waterWeight, muscleWeight: muscleWeight, proteinWeight: proteinWeight, boneWeight: boneWeight, boneMuscleWeight: boneMuscleWeight)
         
         return result
     }

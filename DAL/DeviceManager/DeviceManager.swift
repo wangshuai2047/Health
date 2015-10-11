@@ -39,11 +39,11 @@ class DeviceManager: NSObject {
         braceletManager.syncData(beginDate, deviceUUID: uuid, syncComplete: syncComplete)
     }
     
-    func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void) {
+    func startScale(complete: (result: ScaleResultProtocol?, err: NSError?) -> Void) {
         scaleHelper.startScale(complete)
     }
     
-    func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResult {
+    func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResultProtocol {
         return ScaleOld.scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: gender, userId: userId, age: age, height: height)
     }
 }
