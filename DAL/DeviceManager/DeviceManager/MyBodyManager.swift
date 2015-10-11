@@ -11,9 +11,13 @@ import UIKit
 class MyBodyManager: NSObject, DeviceManagerProtocol {
     var name: String
     var uuid: String
+    var RSSI = NSNumber(integer: 0)
     var peripheral: CBPeripheral?
     var characteristic: CBCharacteristic?
     var type: DeviceType = DeviceType.MyBody
+    
+    var serviceUUID: String { return "" }
+    var characteristicUUID: [String] { return [] }
     
     func fire(info: [String : AnyObject], complete: (ResultProtocol?, NSError?) -> Void) {
         

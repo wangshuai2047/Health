@@ -11,9 +11,12 @@ import Foundation
 protocol DeviceManagerProtocol: CBCentralManagerDelegate, CBPeripheralDelegate {
     var name: String { get set }
     var uuid: String { get set }
+    var RSSI: NSNumber { get set }
     var peripheral: CBPeripheral? { get set }
     var characteristic: CBCharacteristic? { get set }
     var type: DeviceType { get set }
+    var serviceUUID: String { get }
+    var characteristicUUID: [String] { get }
     
     func fire(info: [String : AnyObject], complete: (ResultProtocol?, NSError?) -> Void)
 }

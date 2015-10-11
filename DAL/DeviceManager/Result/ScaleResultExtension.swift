@@ -32,6 +32,11 @@ extension ScaleResultProtocol {
     }
 }
 
+// 无设备时的计算
+extension ScaleResultProtocol {
+    
+}
+
 // MARK: - 计算属性
 extension ScaleResultProtocol {
     // 基础代谢

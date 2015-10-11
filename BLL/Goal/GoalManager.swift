@@ -13,6 +13,13 @@ struct GoalManager {
         return DBManager.shareInstance().haveConnectedBracelet
     }
     
+    static var braceletUUID: String? {
+        if let info = DBManager.shareInstance().braceletInfo() {
+            return info.uuid
+        }
+        return nil
+    }
+    
     static func lastEvaluationData() -> ScaleResultProtocol? {
         if let info = DBManager.shareInstance().queryLastEvaluationData(UserData.shareInstance().userId!) {
             return MyBodyResult(info: info)
@@ -34,62 +41,56 @@ struct GoalManager {
             if error == nil {
                 DBManager.shareInstance().addShareData(shareType.rawValue)
             }
-            
             complete(error)
         }
     }
     
     static func syncDatas(complete: ((NSError?) -> Void)) {
         
-        var startTime: NSDate
-        var lastGoalData = DBManager.shareInstance().queryLastGoalData()
-        if lastGoalData == nil {
-            startTime = NSDate().dateByAddingTimeInterval(-30 * 24 * 60 * 60)
-        }
-        else {
-            startTime = lastGoalData!["endTime"] as! NSDate
-        }
-        
-        startTime = NSDate()
-        
-        DeviceManager.shareInstance().syncBraceletDatas(startTime, syncComplete: { (list: [BraceletResult], error: NSError?) -> Void in
-            
-            if error == nil {
-                
-                var datas: [[String: AnyObject]] = []
-                for result in list {
-                    
-                    datas.append([
-                        "userId" : Int(result.userId),
-                        "steps" : Int(result.steps),
-                        "stepsType" : Int(result.stepsType.rawValue),
-                        "startTime" : result.startTime.secondTimeInteval(),
-                        "endTime" : result.endTime.secondTimeInteval()
-                        ])
-                    
-                    // 插入数据库
-                    DBManager.shareInstance().addGoalData({ (inout setDatas: GoalData) -> GoalData in
+        if let uuid = braceletUUID {
+            BluetoothManager.shareInstance.fire(uuid, info: [:], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+                if error == nil {
+                    if let braceletResult = result as? BraceletResult {
                         
-                        setDatas.dataId = result.dataId
-                        setDatas.userId = NSNumber(integer: result.userId)
-                        setDatas.isUpload = false
+                        var datas: [[String: AnyObject]] = []
+                        for result in braceletResult.results {
+                            
+                            datas.append([
+                                "userId" : Int(result.userId),
+                                "steps" : Int(result.steps),
+                                "stepsType" : Int(result.stepsType.rawValue),
+                                "startTime" : result.startTime.secondTimeInteval(),
+                                "endTime" : result.endTime.secondTimeInteval()
+                                ])
+                            
+                            // 插入数据库
+                            DBManager.shareInstance().addGoalData({ (inout setDatas: GoalData) -> GoalData in
+                                
+                                setDatas.dataId = result.dataId
+                                setDatas.userId = NSNumber(integer: result.userId)
+                                setDatas.isUpload = false
+                                
+                                setDatas.startTime = result.startTime
+                                setDatas.endTime = result.endTime
+                                setDatas.steps = NSNumber(unsignedShort: result.steps)
+                                setDatas.stepsType = NSNumber(unsignedShort: result.stepsType.rawValue)
+                                
+                                return setDatas;
+                            })
+                        }
                         
-                        setDatas.startTime = result.startTime
-                        setDatas.endTime = result.endTime
-                        setDatas.steps = NSNumber(unsignedShort: result.steps)
-                        setDatas.stepsType = NSNumber(unsignedShort: result.stepsType.rawValue)
+                        updateGoalData()
                         
-                        return setDatas;
-                    })
+                        refreshSevenDaysData()
+                    }
                 }
                 
-                updateGoalData()
-                
-                refreshSevenDaysData()
-            }
-            
-            complete(error)
-        })
+                complete(error)
+            })
+        }
+        else {
+            complete(NSError(domain: "同步失败", code: 1001, userInfo: [NSLocalizedDescriptionKey : "未绑定设备"]))
+        }
     }
     
     private static func updateGoalData() {
@@ -148,11 +149,11 @@ struct GoalManager {
             
             var walkStep: UInt16 = 0
             var runStep: UInt16 = 0
-            var results: [BraceletResult] = []
+            var results: [BraceletData] = []
             
             // 计算走步时间
             for data in list {
-                let result = BraceletResult(info: data)
+                let result = BraceletData(info: data)
                 results.append(result)
                 
                 if result.stepsType == .Walk // 走路
@@ -199,7 +200,7 @@ struct GoalManager {
     }
 }
 
-extension BraceletResult {
+extension BraceletData {
     init(info: [String: AnyObject]) {
         
         self.dataId = info["dataId"] as! String
@@ -215,7 +216,7 @@ extension BraceletResult {
 extension GoalManager {
     
     // 返回(浅睡眠分钟数, 深睡眠分钟数)
-    static func parseOneDaySleepDatas(datas: [BraceletResult]) -> (UInt16, UInt16) {
+    static func parseOneDaySleepDatas(datas: [BraceletData]) -> (UInt16, UInt16) {
         
         var sleepStarted = false
         var sleepStartTime: NSTimeInterval = 0

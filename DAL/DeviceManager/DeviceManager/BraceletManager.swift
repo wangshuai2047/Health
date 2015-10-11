@@ -8,12 +8,16 @@
 
 import UIKit
 
-class BraceletManager1: NSObject, DeviceManagerProtocol {
+class BraceletManager: NSObject, DeviceManagerProtocol {
     var name: String
     var uuid: String
+    var RSSI = NSNumber(integer: 0)
     var peripheral: CBPeripheral?
     var characteristic: CBCharacteristic?
     var type: DeviceType = DeviceType.Bracelet
+    
+    var serviceUUID: String { return "FFF0" }
+    var characteristicUUID: [String] { return ["FFF2"] }
     
     private var currentFormate: BraceletBlueToothFormats?
     private var result: BraceletResult?  // 同步运动数据
@@ -116,7 +120,7 @@ class BraceletManager1: NSObject, DeviceManagerProtocol {
     }
 }
 
-extension BraceletManager1: CBCentralManagerDelegate {
+extension BraceletManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager) {
     }
     
@@ -133,7 +137,7 @@ extension BraceletManager1: CBCentralManagerDelegate {
 }
 
 // 外设手环服务
-extension BraceletManager1: CBPeripheralDelegate {
+extension BraceletManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         if error == nil && self.peripheral!.services != nil {
             
@@ -154,13 +158,6 @@ extension BraceletManager1: CBPeripheralDelegate {
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
         if error == nil && service.characteristics != nil {
-            for characteristic in service.characteristics! {
-                if characteristic.UUID == CBUUID(string: "FFF1") || characteristic.UUID == CBUUID(string: "FFF2") {
-                    
-                    self.characteristic = characteristic
-                    self.peripheral?.setNotifyValue(true, forCharacteristic: characteristic)
-                }
-            }
         }
         else {
             // 调用失败代理

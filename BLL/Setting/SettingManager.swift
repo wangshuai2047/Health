@@ -56,4 +56,12 @@ struct SettingManager {
             
         }
     }
+    
+    static func bindDevice(device: DeviceManagerProtocol) {
+        DBManager.shareInstance().addDevice(device.uuid, name: device.name, type: device.type)
+    }
+    
+    static func unBindDevice(type: DeviceType) {
+        DBManager.shareInstance().removeDeviceBind(type)
+    }
 }

@@ -544,7 +544,7 @@ extension DBManager {
         let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "type == 0")
+        request.predicate = NSPredicate(format: "type == %d OR type == %d OR type == %d", DeviceType.MyBody.rawValue, DeviceType.MyBodyMini.rawValue, DeviceType.MyBodyPlus.rawValue)
         
         var error: NSError? = nil
         let listData: [AnyObject]?
@@ -632,6 +632,24 @@ extension DBManager {
         let request = NSFetchRequest()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "type == 1")
+        request.fetchLimit = 1
+        
+        if let listData = try? context.executeFetchRequest(request) as? [Device] {
+            if listData!.count > 0 {
+                let model = listData!.first
+                return (model!.valueForKey("uuid") as! String, model?.valueForKey("name") as! String)
+            }
+        }
+        
+        return nil
+    }
+    
+    func myBodyInfo() -> (uuid: String, name: String)? {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "type == %d OR type == %d OR type == %d", DeviceType.MyBody.rawValue, DeviceType.MyBodyMini.rawValue, DeviceType.MyBodyPlus.rawValue)
         request.fetchLimit = 1
         
         if let listData = try? context.executeFetchRequest(request) as? [Device] {
