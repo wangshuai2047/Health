@@ -242,15 +242,16 @@ extension BluetoothManager: CBCentralManagerDelegate {
 //        syncComplete?([], error)
         currentDevice?.centralManager?(central, didFailToConnectPeripheral: peripheral, error: error)
     }
+    
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("didDisconnectPeripheral error: \(error)")
+    }
 }
 
 // 外设手环服务
 extension BluetoothManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         if error == nil && currentDevice?.peripheral?.services != nil {
-            
-            print("currentDevice!.peripheral!.services! ------- \(currentDevice!.peripheral!)")
-            print("peripheral.services ----- \(peripheral)")
             for service: CBService in currentDevice!.peripheral!.services! {
                 
                 if service.UUID == CBUUID(string: currentDevice!.serviceUUID) {
@@ -265,30 +266,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        
-        if error == nil && service.characteristics != nil {
-            for characteristic in service.characteristics! {
-                
-                if CBUUID(string: "BCA1") == characteristic.UUID {
-//                    self.readCharacteristic = characteristic
-                    peripheral.setNotifyValue(false, forCharacteristic: characteristic)
-                }
-                else if CBUUID(string: "BCA2") == characteristic.UUID {
-//                    peripheral.setNotifyValue(true, forCharacteristic: characteristic)
-//                    self.writeCharacteristic = characteristic
-//                    if let userModel = fireInfo?["userModel"] as? UserModel {
-//                        //                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
-                                                currentDevice?.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toSetUserData(MybodyMiniAndPlusBlueToothFormats.CMD.setUserData), forCharacteristic: characteristic, type: CBCharacteristicWriteType.WithResponse)
-//
-//                        print("write char: \(self.writeCharacteristic)")
-//                        
-//                    }
-                }
-            }
-        }
-        
-        
-//        currentDevice?.peripheral?(peripheral, didDiscoverCharacteristicsForService: service, error: error)
+        currentDevice?.peripheral?(peripheral, didDiscoverCharacteristicsForService: service, error: error)
     }
     
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {

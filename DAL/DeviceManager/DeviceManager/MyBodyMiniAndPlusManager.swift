@@ -19,6 +19,8 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
     var serviceUUID: String { return "BCA0" }
     var characteristicUUID: [String] { return ["BCA1", "BCA2"] }
     
+    var count: Int = 0
+    
     
     var readCharacteristic: CBCharacteristic?
     var writeCharacteristic: CBCharacteristic?
@@ -60,16 +62,17 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
                 
                 if CBUUID(string: "BCA1") == characteristic.UUID {
                     self.readCharacteristic = characteristic
-                    self.peripheral?.setNotifyValue(true, forCharacteristic: characteristic)
+                    
+//                    self.peripheral?.setNotifyValue(true, forCharacteristic: characteristic)
                 }
                 else if CBUUID(string: "BCA2") == characteristic.UUID {
                     self.writeCharacteristic = characteristic
                     if let userModel = fireInfo?["userModel"] as? UserModel {
 //                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
-//                        self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toSetUserData(MybodyMiniAndPlusBlueToothFormats.CMD.setUserData), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                        self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toSetUserData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                         
+                        count = 0
                         print("write char: \(self.writeCharacteristic)")
-                        
                     }
                 }
             }
@@ -87,6 +90,21 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
         if error == nil && characteristic.value != nil {
             print("接收到数据: \(characteristic.value)")
             reveiveData(characteristic.value!)
+            
+            self.peripheral!.setNotifyValue(false, forCharacteristic: self.readCharacteristic!)
+            
+            dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
+                if self.count == 0 {
+                    // 发送81
+                    self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                    self.count++
+                }
+                else if self.count == 1 {
+                    self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                    self.count++
+                }
+            })
+            
         }
         else {
             // 调用失败代理
@@ -103,8 +121,9 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             fireComplete?(nil, error)
         }
         else {
-            self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
-//            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
+            dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
+                self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
+                })
             print("write char: \(self.readCharacteristic)")
         }
     }

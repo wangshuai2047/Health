@@ -51,7 +51,7 @@ struct MybodyMiniAndPlusBlueToothFormats {
 //        self.cmd
 //    }
     
-    static func toSetUserData(cmd: CMD) -> NSData {
+    static func toSetUserData() -> NSData {
         
         var bytes = [UInt8](count: Int(11), repeatedValue: 0)
         
@@ -78,9 +78,71 @@ struct MybodyMiniAndPlusBlueToothFormats {
         return data
     }
     
-//    static func toReceiveWeightData() -> NSData {
-//        
-//    }
-//    
-//    static func
+    static func toReceiveWeightData() -> NSData {
+        var bytes = [UInt8](count: Int(8), repeatedValue: 0)
+        
+        bytes[0] = 0xbc
+        bytes[1] = 0x01
+        
+        bytes[2] = 0x82
+        
+        bytes[3] = 0x00
+        
+        // 0xD4 C6 C8 D4
+        bytes[4] = 0xd4
+        bytes[5] = 0xc6
+        bytes[6] = 0xc8
+        bytes[7] = 0xd4
+        
+        let data = NSMutableData(bytes: bytes, length: 8)
+        
+        return data
+    }
+    
+    static func toReceiveBodyData() -> NSData {
+        var bytes = [UInt8](count: Int(8), repeatedValue: 0)
+        
+        bytes[0] = 0xbc
+        bytes[1] = 0x01
+        
+        bytes[2] = 0x83
+        
+        bytes[3] = 0x00
+        
+        // 0xD4 C6 C8 D4
+        bytes[4] = 0xd4
+        bytes[5] = 0xc6
+        bytes[6] = 0xc8
+        bytes[7] = 0xd4
+        
+        let data = NSMutableData(bytes: bytes, length: 8)
+        
+        return data
+    }
+    
+    static func toSetDeviceNameData() -> NSData {
+        var bytes = [UInt8](count: Int(11), repeatedValue: 0)
+        
+        bytes[0] = 0xbc
+        bytes[1] = 0x01
+        
+        bytes[2] = 0x81
+        
+        bytes[3] = 0x03
+        // 性别(0x30 表示女性,0x31 表示男性) + 年龄 + 身高
+        bytes[4] = 0x30
+        
+        bytes[5] = 0x19
+        bytes[6] = 0xa8
+        
+        // 0xD4 C6 C8 D4
+        bytes[7] = 0xd4
+        bytes[8] = 0xc6
+        bytes[9] = 0xc8
+        bytes[10] = 0xd4
+        
+        let data = NSMutableData(bytes: bytes, length: 11)
+        
+        return data
+    }
 }
