@@ -113,7 +113,7 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
         return list
     }
     
-    func fire(info: [String : AnyObject], complete: (ResultProtocol?, NSError?) -> Void) {
+    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
         fireComplete = complete
         receiveDatas.setData(NSData())
         result = BraceletResult()

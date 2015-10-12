@@ -18,5 +18,5 @@ protocol DeviceManagerProtocol: CBCentralManagerDelegate, CBPeripheralDelegate {
     var serviceUUID: String { get }
     var characteristicUUID: [String] { get }
     
-    func fire(info: [String : AnyObject], complete: (ResultProtocol?, NSError?) -> Void)
+    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void)
 }

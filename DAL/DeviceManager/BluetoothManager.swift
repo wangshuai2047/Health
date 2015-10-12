@@ -108,7 +108,7 @@ class BluetoothManager: NSObject {
         centralManager.connectPeripheral(currentDevice!.peripheral!, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true)])
     }
     
-    func fire(uuid: String, info: [String : AnyObject], complete: (ResultProtocol?, NSError?) -> Void) {
+    func fire(uuid: String, info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
         
         if currentDevice != nil && currentDevice?.uuid == uuid {
             self.isScan = false
@@ -191,7 +191,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
         
         // 判断是否是 老秤
         if scanTypes!.contains(DeviceType.MyBody) {
-            if peripheral.name == "MyBody" {
+            if peripheral.name == "VScale" {
                 return MyBodyManager(name: peripheral.name!, uuid: peripheral.identifier.UUIDString, peripheral: peripheral, characteristic: nil)
             }
         }

@@ -19,7 +19,7 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
     var serviceUUID: String { return "" }
     var characteristicUUID: [String] { return [] }
     
-    func fire(info: [String : AnyObject], complete: (ResultProtocol?, NSError?) -> Void) {
+    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
         
     }
     

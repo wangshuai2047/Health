@@ -77,7 +77,6 @@ class EvaluationManager :NSObject {
                 return setDatas;
             })
         }
-        
     }
     
    // 开始测量秤
