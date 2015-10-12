@@ -123,6 +123,7 @@ class BluetoothManager: NSObject {
             scanDevice(nil, complete: { [unowned self] (results: [DeviceManagerProtocol]) -> Void in
                 for device in results {
                     if device.uuid == uuid {
+                        self.centralManager.stopScan()
                         self.currentDevice = device
                         self.isScan = false
                         self.connect(self.currentDevice!.peripheral!)
@@ -218,21 +219,13 @@ extension BluetoothManager: CBCentralManagerDelegate {
         if let device = isScanMyDevice(scanDeviceType, peripheral: peripheral, advertisementData: advertisementData) {
             
             device.RSSI = RSSI
-            if isScan {
-                scanDevice.setObject(device, forKey: device.uuid)
-                
-                var devices: [DeviceManagerProtocol] = []
-                for value in scanDevice.allValues {
-                    devices.append(value as! DeviceManagerProtocol)
-                }
-                scanClosure?(devices)
+            scanDevice.setObject(device, forKey: device.uuid)
+            
+            var devices: [DeviceManagerProtocol] = []
+            for value in scanDevice.allValues {
+                devices.append(value as! DeviceManagerProtocol)
             }
-            else {
-                
-                currentDevice = device
-                connect(currentDevice!.peripheral!)
-                centralManager.stopScan()
-            }
+            scanClosure?(devices)
         }
     }
     
@@ -255,7 +248,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
 extension BluetoothManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         if error == nil && currentDevice?.peripheral?.services != nil {
+            
+            print("currentDevice!.peripheral!.services! ------- \(currentDevice!.peripheral!)")
+            print("peripheral.services ----- \(peripheral)")
             for service: CBService in currentDevice!.peripheral!.services! {
+                
                 if service.UUID == CBUUID(string: currentDevice!.serviceUUID) {
                     currentDevice?.peripheral!.discoverCharacteristics(nil, forService: service)
                     break
@@ -269,24 +266,29 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
         
-        NSLog("search service UUID %@", service.characteristics!)
         if error == nil && service.characteristics != nil {
             for characteristic in service.characteristics! {
                 
-                for uuid in currentDevice!.characteristicUUID {
-                    if CBUUID(string: uuid) == characteristic.UUID {
-                        currentDevice!.characteristic = characteristic
-                        currentDevice!.peripheral?.setNotifyValue(true, forCharacteristic: characteristic)
-                        return
-                    }
+                if CBUUID(string: "BCA1") == characteristic.UUID {
+//                    self.readCharacteristic = characteristic
+                    peripheral.setNotifyValue(false, forCharacteristic: characteristic)
+                }
+                else if CBUUID(string: "BCA2") == characteristic.UUID {
+//                    peripheral.setNotifyValue(true, forCharacteristic: characteristic)
+//                    self.writeCharacteristic = characteristic
+//                    if let userModel = fireInfo?["userModel"] as? UserModel {
+//                        //                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
+                                                currentDevice?.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toSetUserData(MybodyMiniAndPlusBlueToothFormats.CMD.setUserData), forCharacteristic: characteristic, type: CBCharacteristicWriteType.WithResponse)
+//
+//                        print("write char: \(self.writeCharacteristic)")
+//                        
+//                    }
                 }
             }
         }
-        else {
-            // 调用失败代理
-            NSLog("didDiscoverCharacteristicsForService error %@", error!)
-            currentDevice?.peripheral?(peripheral, didDiscoverCharacteristicsForService: service, error: error)
-        }
+        
+        
+//        currentDevice?.peripheral?(peripheral, didDiscoverCharacteristicsForService: service, error: error)
     }
     
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
@@ -295,5 +297,9 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         currentDevice?.peripheral?(peripheral, didWriteValueForCharacteristic: characteristic, error: error)
+    }
+    
+    func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        currentDevice?.peripheral?(peripheral, didUpdateNotificationStateForCharacteristic: characteristic, error: error)
     }
 }

@@ -85,7 +85,7 @@ class EvaluationManager :NSObject {
         if let uuid = myBodyUUID {
             
             // setScaleData(userId: Int, gender: Bool, age: UInt8, height: UInt8)
-            let userModel = UserManager.shareInstance().currentUser as! AnyObject
+            let userModel = UserManager.shareInstance().currentUser
             
             BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : userModel], complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
                 if error == nil {
