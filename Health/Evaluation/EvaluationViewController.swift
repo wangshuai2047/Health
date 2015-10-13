@@ -39,6 +39,9 @@ class EvaluationViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
         
         userSelectView.delegate = self
+        
+        UIApplication.sharedApplication().applicationSupportsShakeToEdit = true
+        self.becomeFirstResponder()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -158,6 +161,14 @@ class EvaluationViewController: UIViewController {
     }
     
     func refreshEvaluationResultView(info: [String : AnyObject]) {
+        
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        
+        if motion == UIEventSubtype.MotionShake {
+            startEvaluationPressed(event!)
+        }
         
     }
 }
