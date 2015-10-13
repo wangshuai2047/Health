@@ -91,19 +91,17 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             print("接收到数据: \(characteristic.value)")
             reveiveData(characteristic.value!)
             
-            self.peripheral!.setNotifyValue(false, forCharacteristic: self.readCharacteristic!)
+//            self.peripheral!.setNotifyValue(false, forCharacteristic: self.readCharacteristic!)
             
-            dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
-                if self.count == 0 {
-                    // 发送81
-                    self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-                    self.count++
-                }
-                else if self.count == 1 {
-                    self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-                    self.count++
-                }
-            })
+            if self.count == 0 {
+                // 发送81
+                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                self.count++
+            }
+            else if self.count == 1 {
+                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                self.count++
+            }
             
         }
         else {
@@ -121,9 +119,14 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             fireComplete?(nil, error)
         }
         else {
+            //
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 1), { [unowned self] () -> Void in
+//                self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
+//            })
+            
             dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
                 self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
-                })
+            })
             print("write char: \(self.readCharacteristic)")
         }
     }

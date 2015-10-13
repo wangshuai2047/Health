@@ -36,12 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DAL/DeviceManager/DeviceManager/MyBodyMiniAndPlusManager.swift"
-            timestampString = "466330201.073245"
+            timestampString = "466331941.521915"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "peripheral(_:didDiscoverCharacteristicsForService:error:)"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "peripheral(_:didWriteValueForCharacteristic:error:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
