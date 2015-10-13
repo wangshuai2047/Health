@@ -28,7 +28,7 @@ class GoalViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
         
         if !GoalManager.isSetGoal {
-            var controller = GoalSettingViewController()
+            let controller = GoalSettingViewController()
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
         }
         
@@ -146,7 +146,7 @@ class GoalViewController: UIViewController {
     
     // MARK: - Button Response
     @IBAction func setGoalPressed(sender: AnyObject) {
-        var controller = GoalSettingViewController()
+        let controller = GoalSettingViewController()
         AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
     }
 

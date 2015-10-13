@@ -28,13 +28,13 @@ CG_INLINE NSString* MD5FromString(NSString *sourceString)
 extension String {
     var md5Value: String {
         
-        println("md5 String: \(self)")
+        print("md5 String: \(self)")
         let original_str = NSString(string: self).dataUsingEncoding(NSUTF8StringEncoding)!.bytes
         
         var result: [CUnsignedChar] = [CUnsignedChar](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
         CC_MD5(original_str, CC_LONG(self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!.length), &result)
         
-        var hash = NSMutableString()
+        let hash = NSMutableString()
         for index in 0...15 {
             hash.appendFormat("%02x", result[index])
         }

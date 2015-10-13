@@ -16,6 +16,7 @@ class EvaluationDetailViewController: UIViewController {
         }
     }
     var viewModel = EvaluationDetailViewModel()
+    var isRefreshAllData: Bool = false
     
 //    @IBOutlet weak var backgroundScrollView: UIScrollView!
     @IBOutlet var detailView: UIView!
@@ -57,7 +58,20 @@ class EvaluationDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        refreshData()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if isRefreshAllData {
+            refreshAllData()
+        }
+        else {
+            refreshData()
+        }
+        
+        self.view.setNeedsDisplay()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,15 +87,21 @@ class EvaluationDetailViewController: UIViewController {
     @IBOutlet weak var fatPercentageLeanLabelRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var fatPercentageTooHighLabelLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var fatPercentageRulerImageView: UIImageView!
+    @IBOutlet weak var fatPercentageRulerMarkImageView: UIImageView!
     
     func initFatDetailView() {
         let rulerWidth = fatPercentageRulerImageView.frame.size.width
         
-        fatPercentageLowLabelConstraint.constant = rulerWidth / 3 - 18
-        fatPercentageHighLabelLeftConstraint.constant = rulerWidth / 3 - 18
+        fatPercentageLowLabelConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
+        fatPercentageHighLabelLeftConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
         
         fatPercentageLeanLabelRightConstraint.constant = rulerWidth / 3 / 2
         fatPercentageTooHighLabelLeftConstraint.constant = rulerWidth / 3 / 2
+        
+        let minValue = data!.fatPercentageRange.0 - data!.fatPercentageRange.1 + data!.fatPercentageRange.0
+        let maxValue = data!.fatPercentageRange.1 + data!.fatPercentageRange.1 - data!.fatPercentageRange.0
+        let value = data!.fatPercentage - minValue
+        fatPercentageMarkImageViewLeftConstraint.constant = rulerWidth * CGFloat(value / (maxValue - minValue)) - fatPercentageRulerMarkImageView.frame.size.width/2
     }
     /*
     // MARK: - Navigation
@@ -93,7 +113,7 @@ class EvaluationDetailViewController: UIViewController {
     }
     */
     @IBAction func physiqueButtonPressed(sender: AnyObject) {
-        var controller = EvaluationPhysiqueDetailViewController()
+        let controller = EvaluationPhysiqueDetailViewController()
         controller.physique = data?.physique
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -101,10 +121,29 @@ class EvaluationDetailViewController: UIViewController {
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    @IBAction func deleteButtonPressed(sender: AnyObject) {
+        if data != nil {
+            EvaluationManager.shareInstance().deleteEvaluationData(data!)
+            refreshAllData()
+        }
+    }
+    
 }
 
 // MARK: - 设置界面数据
 extension EvaluationDetailViewController {
+    
+    func refreshAllData() {
+        if tableView == nil {
+            return
+        }
+        
+        viewModel.reloadData()
+        tableView.reloadData()
+        
+        self.data = viewModel.allDatas.first?.scaleResult
+    }
     
     func refreshData() {
         if data == nil || tableView == nil {
@@ -141,7 +180,7 @@ extension EvaluationDetailViewController {
         var earlyWarningCount: Int = 0
         
         
-        var allStatus: [ScaleResult.ValueStatus] = [
+        let allStatus: [ScaleResult.ValueStatus] = [
             data!.weightStatus,
             data!.proteinWeightStatus,
             data!.boneWeightStatus,
@@ -184,6 +223,7 @@ extension EvaluationDetailViewController {
         
         
         let font = UIFont.systemFontOfSize(15)
+        evaluationDescriptionLabel.clear()
         evaluationDescriptionLabel.append("您的体型为", font: font, color: UIColor.grayColor())
         evaluationDescriptionLabel.append("\(data!.physique.description)", font: font, color: deepBlue)
         evaluationDescriptionLabel.append("。您的得分击败了", font: font, color: UIColor.grayColor())
@@ -211,16 +251,30 @@ extension EvaluationDetailViewController {
     }
     
     func refreshFatData() {
+        initFatDetailView()
         fatPercentageLabel.text = "\(data!.fatPercentage)"
         fatPercentageLabel.textColor = data!.fatPercentageStatus.statusColor
         
         fatPercentageHighLabel.text = "\(data!.fatPercentageRange.1)%"
         fatPercentageLowLabel.text = "\(data!.fatPercentageRange.0)%"
         
+        fatPercentageDescriptionLabel.clear()
         fatPercentageDescriptionLabel.append("标准体脂率为", font: nil, color: UIColor.grayColor())
-        fatPercentageDescriptionLabel.append("21.6%", font: nil, color: UIColor.greenColor())
-        fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
-        fatPercentageDescriptionLabel.append("1.33kg", font: nil, color: UIColor.greenColor())
+        fatPercentageDescriptionLabel.append("\(data!.standardFatPercentage)%", font: nil, color: UIColor.greenColor())
+        
+        if data!.standardFatPercentage > data!.fatPercentage {
+            // 增肥
+            fatPercentageDescriptionLabel.append("还需增加", font: nil, color: UIColor.grayColor())
+            
+            fatPercentageDescriptionLabel.append("\(data!.weight * (data!.standardFatPercentage - data!.fatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
+        }
+        else {
+            // 减肥
+            fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
+            fatPercentageDescriptionLabel.append("\(data!.weight * (data!.fatPercentage - data!.standardFatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
+            
+        }
+        
         fatPercentageDescriptionLabel.append("脂肪", font: nil, color: UIColor.grayColor())
     }
     
@@ -290,7 +344,7 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         if indexPath.section == 0 {
             let cellId = "EvaluationDetailTableViewCell"
             
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
             
             if cell == nil {
                 cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
@@ -305,7 +359,7 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         }
         else {
             let cellId = "EvaluationDetailTableViewDataCell"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? UITableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
             
             if cell == nil {
                 cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)

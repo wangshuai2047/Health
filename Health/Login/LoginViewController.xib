@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Health" customModuleProvider="target">
@@ -27,7 +28,7 @@
                         <action selector="backgroundPressed:" destination="-1" eventType="touchUpInside" id="3oH-it-uB8"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用社交账号快速登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-SG-zwU">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用社交账号快速登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-SG-zwU">
                     <rect key="frame" x="198" y="26" width="205" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="205" id="Gu7-4D-vwn"/>
@@ -37,7 +38,7 @@
                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhU-4m-Abq">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhU-4m-Abq">
                     <rect key="frame" x="176" y="78" width="77" height="76"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="77" id="53e-d0-xau"/>
@@ -54,7 +55,7 @@
                         <action selector="loginWithWeChat:" destination="-1" eventType="touchUpInside" id="LI4-Ka-4a3"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-wK-7ZX">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-wK-7ZX">
                     <rect key="frame" x="261" y="78" width="77" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="lrT-jv-lrA"/>
@@ -71,7 +72,7 @@
                         <action selector="loginWithQQ:" destination="-1" eventType="touchUpInside" id="KjV-jl-BCJ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBp-Ns-ZPu">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBp-Ns-ZPu">
                     <rect key="frame" x="346" y="78" width="77" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="5aY-as-Llc"/>
@@ -95,7 +96,7 @@
                         <constraint firstAttribute="height" constant="30" id="eCD-fJ-nVt"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="go"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="rIB-GK-4vq"/>
                     </connections>
@@ -107,7 +108,7 @@
                         <constraint firstAttribute="width" constant="247" id="MAW-Xa-dKa"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="aCg-tl-euF"/>
                     </connections>

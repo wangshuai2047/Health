@@ -45,12 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 进入广告界面
         var navController: UINavigationController?
         if LoginManager.isShowAds {
-            var adsController = LoginAdsViewController()
+            let adsController = LoginAdsViewController()
             navController = UINavigationController(rootViewController: adsController)
             self.window?.rootViewController = navController
         }
         else if LoginManager.showedGUI {
-            var guiController = GUIViewController()
+            let guiController = GUIViewController()
             navController = UINavigationController(rootViewController: guiController)
             self.window?.rootViewController = navController
         }

@@ -68,8 +68,8 @@ class GoalSettingViewController: UIViewController {
     func initContentView() {
         scrollView.addSubview(scrollContentView)
         
-        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        scrollContentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollContentView.translatesAutoresizingMaskIntoConstraints = false
         
         // top
         scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: -20))
@@ -236,7 +236,7 @@ extension GoalSettingViewController: UIPickerViewDataSource, UIPickerViewDelegat
         return 0
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == setNumberGoalPicker {
             if component == 0 {

@@ -40,6 +40,41 @@ class EvaluationManager :NSObject {
         return DeviceManager.shareInstance().scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserData.shareInstance().gender!, userId: UserData.shareInstance().userId!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
     }
     
+    func addTestDatas() {
+        
+        
+        for var i = 0; i >= 0; i-- {
+            let weight = 50 + random() % 10
+            let waterPercentage = 55 + random() % 11
+            let visceralFatContent = 1 + random() % 10
+            
+            let result = startScaleInputData(Float(weight), waterContent: Float(waterPercentage), visceralFatContent: Float(visceralFatContent))
+            
+            // 存数据库
+            DBManager.shareInstance().addEvaluationData({ (inout setDatas: EvaluationData) -> EvaluationData in
+                
+                setDatas.dataId = result.dataId
+                setDatas.userId = NSNumber(integer: result.userId)
+                setDatas.timeStamp = NSDate(timeIntervalSinceNow: NSTimeInterval(-24 * 60 * 60 * i))
+                setDatas.isUpload = true
+                
+                setDatas.weight = result.weight
+                setDatas.waterPercentage = result.waterPercentage
+                setDatas.visceralFatPercentage = result.visceralFatPercentage
+                setDatas.fatPercentage = result.fatPercentage
+                setDatas.fatWeight = result.fatWeight
+                setDatas.waterWeight = result.waterWeight
+                setDatas.muscleWeight = result.muscleWeight
+                setDatas.proteinWeight = result.proteinWeight
+                setDatas.boneWeight = result.boneWeight
+                setDatas.boneMuscleWeight = result.boneMuscleWeight
+                
+                return setDatas;
+            })
+        }
+        
+    }
+    
    // 开始测量秤
     func startScale(complete: (info: ScaleResult?, error: NSError?) -> Void) {
         
@@ -69,6 +104,8 @@ class EvaluationManager :NSObject {
                     
                     return setDatas;
                 })
+                
+                self.updateEvaluationData()
             }
             
             complete(info: result, error: err)
@@ -77,5 +114,28 @@ class EvaluationManager :NSObject {
     
     static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]] {
         return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp)
+    }
+    
+    func updateEvaluationData() {
+        // 获取所有没上传的数据
+        let datas = DBManager.shareInstance().queryNoUploadEvaluationDatas()
+        
+        var uploadDatas: [[String : AnyObject]] = []
+        for info in datas {
+            let result = ScaleResult(info: info)
+            uploadDatas.append(result.uploadInfo((info["timeStamp"] as! NSDate).secondTimeInteval()))
+        }
+        
+        // 上传
+        EvaluationRequest.uploadEvaluationDatas(uploadDatas) { (info, error: NSError?) -> Void in
+            if error == nil {
+                // 更新数据
+                DBManager.shareInstance().updateUploadEvaluationDatas(info!)
+            }
+        }
+    }
+    
+    func deleteEvaluationData(result: ScaleResult) {
+        DBManager.shareInstance().deleteEvaluationData(result.dataId)
     }
 }

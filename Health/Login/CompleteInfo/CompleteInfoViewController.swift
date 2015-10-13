@@ -12,6 +12,8 @@ class CompleteInfoViewController: UIViewController {
 
     var canBack: Bool = false
     
+    @IBOutlet weak var backButton: UIButton!
+    
     var heightConstraint: NSLayoutConstraint?
     var widthConstraint: NSLayoutConstraint?
     @IBOutlet weak var scrollView: UIScrollView!
@@ -44,6 +46,8 @@ class CompleteInfoViewController: UIViewController {
         
         // 头像方法
         headAndNameDataView.headIconButton.addTarget(self, action: Selector("headIconButtonPressed"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        backButton.hidden = !canBack
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -70,8 +74,8 @@ class CompleteInfoViewController: UIViewController {
     func initContentView() {
         scrollView.addSubview(scrollContentView)
         
-        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        scrollContentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollContentView.translatesAutoresizingMaskIntoConstraints = false
         
         // top
         scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))
@@ -104,6 +108,10 @@ class CompleteInfoViewController: UIViewController {
         // 选取照片 上传
         UIActionSheet(title: "选取照片", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "照片库").showInView(self.view)
     }
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     @IBAction func backgroundPressed(sender: AnyObject) {
         headAndNameDataView.nickNameTextField.resignFirstResponder()
         organizationDataView.phoneTextField.resignFirstResponder()

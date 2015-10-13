@@ -39,30 +39,30 @@ class LoginReqeustTests: XCTestCase {
         
         let phone = "18610729420"
         
-        LoginRequest.queryCaptchas(phone, complete: { (error: NSError?) -> Void in
+        LoginRequest.queryCaptchas(phone, complete: { (authCode: String?, error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "获取验证码错误: \(error?.description)")
         })
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_loginRequest_login_isSuccess() {
         let expectation = expectationWithDescription("test_loginRequest_login_isSuccess")
         
         let phone = "18610729420"
-        let captchas = "068343"
+        let captchas = "872728"
         LoginRequest.login(phone, captchas: captchas) { (userInfo, error: NSError?) -> Void in
             expectation.fulfill()
             
             XCTAssertNil(error, "登录错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     func test_loginRequest_loginThirdPlatform_isSucess() {
@@ -74,9 +74,9 @@ class LoginReqeustTests: XCTestCase {
              XCTAssertNil(error, "登录第三方平台错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15, handler: { (error: NSError!) -> Void in
-//            XCTFail("请求超时")
-        })
+        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+            
+        }
     }
     
     

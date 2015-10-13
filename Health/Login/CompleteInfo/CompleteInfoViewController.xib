@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompleteInfoViewController" customModule="Health" customModuleProvider="target">
             <connections>
                 <outlet property="ageDataView" destination="UiR-sO-W9y" id="GI2-Nv-cnV"/>
+                <outlet property="backButton" destination="xbt-CS-qO9" id="6Lk-CQ-oYx"/>
                 <outlet property="frontPageButton" destination="958-AN-VMp" id="hF7-6X-uMa"/>
                 <outlet property="genderDataView" destination="bnx-3e-emL" id="JyK-cE-Cff"/>
                 <outlet property="headAndNameDataView" destination="6SX-gw-izA" id="oer-ws-Pkh"/>
@@ -66,10 +67,27 @@
                         <action selector="frontPageButtonPressed:" destination="-1" eventType="touchUpInside" id="0IM-xV-hsG"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbt-CS-qO9">
+                    <rect key="frame" x="0.0" y="8" width="46" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="2W4-zE-PYd"/>
+                        <constraint firstAttribute="height" constant="65" id="Eyq-mQ-PXj"/>
+                    </constraints>
+                    <inset key="titleEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="-43"/>
+                    <inset key="imageEdgeInsets" minX="12" minY="-15" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="返回" image="back">
+                        <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="zqw-wA-faG"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="958-AN-VMp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="0wT-3z-BPn"/>
+                <constraint firstItem="xbt-CS-qO9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="5VH-Yc-QdE"/>
                 <constraint firstItem="q4l-A3-WHg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="EGU-Bp-jqC"/>
                 <constraint firstAttribute="trailing" secondItem="HwG-CS-7xw" secondAttribute="trailing" constant="8" id="FO4-rA-emg"/>
                 <constraint firstAttribute="trailing" secondItem="VSV-xP-bdT" secondAttribute="trailing" constant="25" id="NDe-Ne-0vD"/>
@@ -80,6 +98,7 @@
                 <constraint firstAttribute="trailing" secondItem="q4l-A3-WHg" secondAttribute="trailing" constant="8" id="i6c-nu-VGv"/>
                 <constraint firstItem="958-AN-VMp" firstAttribute="width" secondItem="VSV-xP-bdT" secondAttribute="width" id="lBC-hZ-OcQ"/>
                 <constraint firstItem="VSV-xP-bdT" firstAttribute="leading" secondItem="958-AN-VMp" secondAttribute="trailing" constant="8" id="mrW-65-e2k"/>
+                <constraint firstItem="xbt-CS-qO9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pw1-0w-Ehk"/>
                 <constraint firstItem="HwG-CS-7xw" firstAttribute="top" secondItem="q4l-A3-WHg" secondAttribute="bottom" constant="8" id="veH-yo-bWy"/>
                 <constraint firstItem="HwG-CS-7xw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="xeC-KI-hLE"/>
             </constraints>
@@ -156,7 +175,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ulq-86-WWO">
-                            <rect key="frame" x="40" y="74" width="95" height="276"/>
+                            <rect key="frame" x="40" y="74" width="95" height="260"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="276" id="CvN-S5-ALP"/>
                                 <constraint firstAttribute="width" constant="95" id="i8j-Dm-s08"/>
@@ -165,12 +184,17 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" backgroundImage="maleButtonSelected"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="CvN-S5-ALP"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <action selector="genderButtonPressed:" destination="bnx-3e-emL" eventType="touchUpInside" id="t13-gU-tdK"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTL-1W-GTW">
-                            <rect key="frame" x="144" y="74" width="95" height="276"/>
+                            <rect key="frame" x="144" y="74" width="95" height="260"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="276" id="dyG-0g-qqd"/>
                                 <constraint firstAttribute="width" constant="95" id="vbf-mt-uDQ"/>
@@ -179,6 +203,11 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" backgroundImage="femaleButtonSelected"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="dyG-0g-qqd"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <action selector="genderButtonPressed:" destination="bnx-3e-emL" eventType="touchUpInside" id="PGn-fE-yvq"/>
                             </connections>
@@ -214,7 +243,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZc-fa-B7a">
-                            <rect key="frame" x="24" y="138.5" width="240.5" height="216"/>
+                            <rect key="frame" x="24" y="67" width="240.5" height="359"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="222" id="8a3-LU-Ru0"/>
                             </constraints>
@@ -255,7 +284,7 @@
                             <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPk-rN-r5U">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPk-rN-r5U">
                             <rect key="frame" x="94" y="109" width="101" height="306"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="Ruler" translatesAutoresizingMaskIntoConstraints="NO" id="Soc-sD-IAI">
@@ -332,7 +361,7 @@
                             </constraints>
                             <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入识别码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nlf-eE-z8F">
                             <rect key="frame" x="8" y="134" width="272.5" height="30"/>
@@ -395,11 +424,12 @@
                 <constraint firstItem="UiR-sO-W9y" firstAttribute="width" secondItem="6SX-gw-izA" secondAttribute="width" id="zVW-Xx-Wjj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="1528" y="730"/>
+            <point key="canvasLocation" x="1536" y="483"/>
         </view>
     </objects>
     <resources>
         <image name="Ruler" width="85" height="608"/>
+        <image name="back" width="15" height="26"/>
         <image name="buttonBg" width="19" height="19"/>
         <image name="defaultHead" width="175" height="175"/>
         <image name="femaleButton" width="99" height="260"/>

@@ -151,7 +151,7 @@ extension ScaleOld: ScaleProtocol {
 
 extension ScaleOld: VScaleManagerDelegate {
     func updateDeviceStatus(status: VCStatus) {
-        print("updateDeviceStatus \(status.rawValue)")
+        print("updateDeviceStatus \(status.rawValue)", terminator: "")
     }
     
     func updateUIDataWithFatScale(result: VTFatScaleTestResult!) {

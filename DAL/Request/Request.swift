@@ -20,7 +20,7 @@ struct Request {
     static func startWithRequest(url : String, method : String?, params : [String : String]?, completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
         
         // create request
-        var request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
+        let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         if let m = method {
             request.HTTPMethod = m
@@ -33,7 +33,7 @@ struct Request {
             request.setValue("multipart/form-data; boundary=Boundary+\(bodyStrAndBoundary.boundary)", forHTTPHeaderField: "Content-Type")
         }
         
-        var task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData!, response:NSURLResponse!, error: NSError!) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 completionHandler(data: data, response: response, error: self.errorFilter(error))
             })
@@ -52,12 +52,12 @@ extension Request {
     
     static func startWithRequest(requestType: RequestType, params: [String : AnyObject], completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
         // create request
-        var request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestPHPURL())!)
+        let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestPHPURL())!)
         request.HTTPMethod = "POST"
         
         request.HTTPBody = generatePHPStyleBodyStr(requestType.rawValue, params: params).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
-        var task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData!, response:NSURLResponse!, error: NSError!) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 completionHandler(data: data, response: response, error: self.errorFilter(error))
             })
@@ -68,10 +68,16 @@ extension Request {
     
     static func generatePHPStyleBodyStr(partnerCode: String, params: [String : AnyObject]) -> String {
         var error: NSError? = nil
-        let bodyStr = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
-        if error != nil {
-            assert(true, error!.description)
-        }
+//        var bodyStr: NSData?
+//        do {
+//            bodyStr = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.PrettyPrinted)
+//        } catch let error1 as NSError {
+//            error = error1
+//            bodyStr = nil
+//        }
+//        if error != nil {
+//            assert(true, error!.description)
+//        }
         
         let key = "04c67a23b87bc349cfdf8fa59e980723"
         let timeInterval = NSDate().timeIntervalSince1970
@@ -87,10 +93,16 @@ extension Request {
             "body" : params
         ]
         
-        println("request HTTPBody \(httpBodyInfo)")
+        print("request HTTPBody \(httpBodyInfo)")
         
         
-        let httpBodyData = NSJSONSerialization.dataWithJSONObject(httpBodyInfo, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
+        var httpBodyData: NSData?
+        do {
+            httpBodyData = try NSJSONSerialization.dataWithJSONObject(httpBodyInfo, options: NSJSONWritingOptions.PrettyPrinted)
+        } catch let error1 as NSError {
+            error = error1
+            httpBodyData = nil
+        }
         if error != nil {
             assert(true, error!.description)
         }

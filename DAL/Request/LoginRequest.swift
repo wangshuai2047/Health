@@ -17,11 +17,6 @@ struct  LoginRequest {
         complete(["userId" : NSNumber(integer: 123)], nil)
         return;
         
-//        RequestType.Login.startRequest(<#params: [String : AnyObject]#>, completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
-        
-//        RequestType.Login.startRequest(["phone" : ], completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
-//        Request.startWithRequest(RequestType.Login, params: <#[String : AnyObject]#>, completionHandler: <#(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void##(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void#>)
-        
         let pushToken = "fefjewioafjaeofja"
         
         let loginUrlStr = Request.requestURL("login.ac")
@@ -65,19 +60,19 @@ struct  LoginRequest {
     }
     
     // 获取验证码
-    static func queryCaptchas(phone: String, complete: ((NSError?) -> Void)) {
+    static func queryCaptchas(phone: String, complete: ((String?, NSError?) -> Void)) {
         
         RequestType.QueryCaptchas.startRequest(["phone" : phone], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(err)
+                complete("", err)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete( nil)
+                complete(jsonObj?["authCode"] as? String, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

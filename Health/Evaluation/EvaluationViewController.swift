@@ -38,7 +38,10 @@ class EvaluationViewController: UIViewController {
         // Do any additional setup after loading the view.\
         self.navigationController?.navigationBarHidden = true
         
+        userSelectView.delegate = self
         
+        UIApplication.sharedApplication().applicationSupportsShakeToEdit = true
+        self.becomeFirstResponder()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,7 +80,8 @@ class EvaluationViewController: UIViewController {
     }
     // MARK: - notConnectDeviceView Response Method
     @IBAction func buyDevicePressed(sender: AnyObject) {
-        
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://item.jd.com/1295110.html")!)
+//        EvaluationManager.shareInstance().addTestDatas()
     }
 
     @IBAction func enterMyBodyDataPressed(sender: AnyObject) {
@@ -86,7 +90,7 @@ class EvaluationViewController: UIViewController {
     
     @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
         
-        var detailController = EvaluationDetailViewController()
+        let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
@@ -103,7 +107,7 @@ class EvaluationViewController: UIViewController {
     // MARK: - connectDeviceView Response Method
     @IBAction func startEvaluationPressed(sender: AnyObject) {
         
-        var detailController = EvaluationDetailViewController()
+        let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
@@ -121,7 +125,7 @@ class EvaluationViewController: UIViewController {
     
     @IBAction func manualInputDataCommitPressed(sender: AnyObject) {
         
-        self.pushToDetailEvaluationViewController(EvaluationManager.shareInstance().startScaleInputData(self.weightInputDataTextField.text.floatValue, waterContent: self.waterContentInputDataTextField.text.floatValue, visceralFatContent: self.visceralFatContentInputDataTextField.text.floatValue))
+        self.pushToDetailEvaluationViewController(EvaluationManager.shareInstance().startScaleInputData(self.weightInputDataTextField.text!.floatValue, waterContent: self.waterContentInputDataTextField.text!.floatValue, visceralFatContent: self.visceralFatContentInputDataTextField.text!.floatValue))
         showMainView()
     }
     
@@ -151,12 +155,44 @@ class EvaluationViewController: UIViewController {
     }
     
     func pushToDetailEvaluationViewController(data: ScaleResult) {
-        var detailController = EvaluationDetailViewController()
+        let detailController = EvaluationDetailViewController()
         detailController.data = data
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
     }
     
     func refreshEvaluationResultView(info: [String : AnyObject]) {
+        
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        
+        if motion == UIEventSubtype.MotionShake {
+            startEvaluationPressed(event!)
+        }
+        
+    }
+}
+
+extension EvaluationViewController: UserSelectViewDelegate {
+    // 点击人物头像
+    func headButtonPressed(userId: Int) {
+        let detailController = EvaluationDetailViewController()
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        detailController.isRefreshAllData = true
+    }
+    
+    // 点击访客
+    func visitorClicked() {
+        
+    }
+    
+    // 添加家庭成员
+    func addFamily() {
+        
+    }
+    
+    // 用户改变
+    func userChangeToUserId(userId: Int) {
         
     }
 }

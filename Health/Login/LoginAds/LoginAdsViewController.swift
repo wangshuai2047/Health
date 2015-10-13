@@ -35,11 +35,11 @@ class LoginAdsViewController: UIViewController {
         
         if LoginManager.showedGUI {
             
-            var loginController = LoginViewController()
+            let loginController = LoginViewController()
             self.navigationController?.pushViewController(loginController, animated: true)
         }
         else {
-            var guiController = GUIViewController()
+            let guiController = GUIViewController()
             self.navigationController?.pushViewController(guiController, animated: true)
         }
     }

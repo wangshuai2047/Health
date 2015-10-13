@@ -12,7 +12,7 @@ extension NSDate {
     // 获取零点时间
     func zeroTime() -> NSDate {
         
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         let nowDateString = dateFormatter.stringFromDate(self)
@@ -26,8 +26,14 @@ extension NSDate {
     }
     
     func currentZoneFormatDescription() -> String {
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+        return dateFormatter.stringFromDate(self)
+    }
+    
+    func YYdd() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM.dd"
         return dateFormatter.stringFromDate(self)
     }
 }
