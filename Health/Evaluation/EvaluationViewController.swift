@@ -41,10 +41,15 @@ class EvaluationViewController: UIViewController {
         userSelectView.delegate = self
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        UIApplication.sharedApplication().applicationSupportsShakeToEdit = true
+        self.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -84,7 +89,7 @@ class EvaluationViewController: UIViewController {
     // MARK: - notConnectDeviceView Response Method
     @IBAction func buyDevicePressed(sender: AnyObject) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://item.jd.com/1295110.html")!)
-        EvaluationManager.shareInstance().addTestDatas()
+//        EvaluationManager.shareInstance().addTestDatas()
     }
 
     @IBAction func enterMyBodyDataPressed(sender: AnyObject) {
@@ -164,6 +169,14 @@ class EvaluationViewController: UIViewController {
     }
     
     func refreshEvaluationResultView(info: [String : AnyObject]) {
+        
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        
+        if motion == UIEventSubtype.MotionShake {
+            startEvaluationPressed(event!)
+        }
         
     }
 }

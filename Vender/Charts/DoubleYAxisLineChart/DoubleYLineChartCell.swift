@@ -114,6 +114,11 @@ class DoubleYLineChartCell: UICollectionViewCell {
     }
     
     func topHeight(value: Double, minAndMax:(Double, Double)) -> CGFloat {
+        
+        if minAndMax.0 == minAndMax.1 {
+            return drawTotalHeight! - CGFloat(value)
+        }
+        
         return drawTotalHeight! -  CGFloat((value - minAndMax.0) / (minAndMax.1 - minAndMax.0)) * drawTotalHeight! * 5 / 6
     }
     
