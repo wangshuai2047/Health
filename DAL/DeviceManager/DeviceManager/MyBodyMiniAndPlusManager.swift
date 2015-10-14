@@ -36,6 +36,7 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
         }
         else {
             print("MyBodyMiniAndPlusManager fire error: info参数不对 没有userModel字段")
+            fireComplete?(nil, NSError(domain: "MyBodyMiniAndPlusManager fire error", code: 0, userInfo: [NSLocalizedDescriptionKey:"fire info参数不对 没有userModel字段"]))
         }
     }
     

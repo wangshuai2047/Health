@@ -19,11 +19,22 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
     var serviceUUID: String { return "" }
     var characteristicUUID: [String] { return [] }
     
-    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
-        
-    }
-    
+    var fireInfo: [String : Any]?
     var fireComplete: ((ResultProtocol?, NSError?) -> Void)?
+    
+    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
+        self.fireComplete = complete
+        self.fireInfo = info
+        
+        if let userModel = fireInfo?["userModel"] as? UserModel {
+            VScaleManager.sharedInstance().setCalulateDataWithUserID(110, gender: userModel.gender ? 0 : 1, age: userModel.age, height: userModel.height)
+            self.result = MyBodyMiniAndPlusResult(dataId: NSUUID().UUIDString, userId: userModel.userId, gender: userModel.gender, age: userModel.age, height: userModel.height)
+        }
+        else {
+            print("MyBodyManager fire error: info参数不对 没有userModel字段")
+            fireComplete?(nil, NSError(domain: "MyBodyManager fire error", code: 0, userInfo: [NSLocalizedDescriptionKey:"fire info参数不对 没有userModel字段"]))
+        }
+    }
     
     init(name setName: String, uuid setUUID: String, peripheral setPeripheral: CBPeripheral?, characteristic setCharacteristic: CBCharacteristic?) {
         name = setName

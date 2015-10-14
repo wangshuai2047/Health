@@ -11,7 +11,7 @@ import UIKit
 struct UserModel {
     var userId: Int
     var age: UInt8
-    var gender: Bool
+    var gender: Bool  // true为男  false为女
     var height: UInt8
     var name: String
     var headURL: String?
