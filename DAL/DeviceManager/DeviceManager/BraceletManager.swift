@@ -141,12 +141,6 @@ extension BraceletManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         if error == nil && self.peripheral!.services != nil {
             
-            for service: CBService in self.peripheral!.services! {
-                if service.UUID == CBUUID(string: "FFF0") {
-                    self.peripheral!.discoverCharacteristics(nil, forService: service)
-                    break
-                }
-            }
         }
         else {
             // 调用失败代理
@@ -158,6 +152,14 @@ extension BraceletManager: CBPeripheralDelegate {
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
         if error == nil && service.characteristics != nil {
+            for char in service.characteristics! {
+                print("\(char)")
+                if char.UUID == CBUUID(string: "FFF1") || char.UUID == CBUUID(string: "FFF2") {
+                    self.characteristic = char
+                    self.peripheral!.setNotifyValue(true, forCharacteristic: self.characteristic!)
+//                    break
+                }
+            }
         }
         else {
             // 调用失败代理

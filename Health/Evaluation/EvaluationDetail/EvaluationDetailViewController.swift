@@ -330,7 +330,7 @@ extension EvaluationDetailViewController {
     }
     
     func refreshBMIData() {
-        BMILabel.text = "\(data!.bmi)"
+        BMILabel.text = "\(data!.BMI)"
         BMILabel.textColor = data!.BMIStatus.statusColor
     }
     

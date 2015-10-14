@@ -104,9 +104,9 @@ extension DeviceScanViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let device = scanResult[indexPath.row]
-        
-        delegate?.didSelected(self, device: device)
         BluetoothManager.shareInstance.stopScanDevice()
+        delegate?.didSelected(self, device: device)
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -63,13 +63,14 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
                 if CBUUID(string: "BCA1") == characteristic.UUID {
                     self.readCharacteristic = characteristic
                     
-//                    self.peripheral?.setNotifyValue(true, forCharacteristic: characteristic)
+                    self.peripheral?.setNotifyValue(true, forCharacteristic: characteristic)
                 }
                 else if CBUUID(string: "BCA2") == characteristic.UUID {
                     self.writeCharacteristic = characteristic
                     if let userModel = fireInfo?["userModel"] as? UserModel {
-//                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
-                        self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toSetUserData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
+                        
+                        self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                         
                         count = 0
                         print("write char: \(self.writeCharacteristic)")
@@ -95,11 +96,11 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             
             if self.count == 0 {
                 // 发送81
-                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                 self.count++
             }
             else if self.count == 1 {
-                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats.toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                 self.count++
             }
             

@@ -248,12 +248,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
 }
 
-// 外设手环服务
+// 外设服务
 extension BluetoothManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         if error == nil && currentDevice?.peripheral?.services != nil {
             for service: CBService in currentDevice!.peripheral!.services! {
-                
                 if service.UUID == CBUUID(string: currentDevice!.serviceUUID) {
                     currentDevice?.peripheral!.discoverCharacteristics(nil, forService: service)
                     break

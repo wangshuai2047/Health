@@ -245,6 +245,7 @@
 		E0E5DE971BC89115001BCCD1 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */; };
 		E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
 		E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		E0E735CD1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */; settings = {ASSET_TAGS = (); }; };
 		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F7A6B11BC6C36900AF6B8B /* VisitorAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -474,6 +475,7 @@
 		E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindPhoneViewController.xib; sourceTree = "<group>"; };
 		E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
 		E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShareData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBodyMiniAndPlusResult.swift; sourceTree = "<group>"; };
 		E0F70D4F1B93362900341F1C /* ConvertFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertFloat.swift; sourceTree = "<group>"; };
 		E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VisitorAddViewController.swift; path = Health/User/VisitorAddViewController.swift; sourceTree = SOURCE_ROOT; };
 		E0F7A6B01BC6C36900AF6B8B /* VisitorAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VisitorAddViewController.xib; path = Health/User/VisitorAddViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -648,6 +650,7 @@
 				E0255E6A1BC9556300CEE5D4 /* ScaleResultExtension.swift */,
 				E0255E7A1BC9562A00CEE5D4 /* BraceletResult.swift */,
 				E0255E7D1BC9573E00CEE5D4 /* MyBodyResult.swift */,
+				E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */,
 				E0255E6B1BC9556300CEE5D4 /* ValueStatus.swift */,
 				E0255E6C1BC9556300CEE5D4 /* WeightStatus.swift */,
 				E0255E771BC955BB00CEE5D4 /* StepsType.swift */,
@@ -1597,6 +1600,7 @@
 				E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E0255E711BC9556300CEE5D4 /* ScaleResultExtension.swift in Sources */,
 				E0255E8B1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */,
+				E0E735CD1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift in Sources */,
 				E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
 				E0E5DE901BC88A78001BCCD1 /* BindOrganzationViewController.swift in Sources */,
