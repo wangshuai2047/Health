@@ -22,9 +22,6 @@ struct LoginManager {
     
     static var showedGUI: Bool{
         get {
-        
-        return false
-        
             let isShowGUI = NSUserDefaults.standardUserDefaults().valueForKey("showedGUI") as? String
             if isShowGUI != nil && isShowGUI == "yes" {
                 return true

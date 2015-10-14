@@ -31,6 +31,7 @@ class SleepDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         let nibCell = UINib(nibName: "GoalDetailTableViewCell", bundle: nil)
         tableView.registerNib(nibCell, forCellReuseIdentifier: cellId)
         
