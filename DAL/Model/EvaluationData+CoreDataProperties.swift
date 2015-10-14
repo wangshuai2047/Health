@@ -14,6 +14,7 @@ import CoreData
 
 extension EvaluationData {
 
+    @NSManaged var deviceType: NSNumber?
     @NSManaged var bmi: NSNumber?
     @NSManaged var bmiMax: NSNumber?
     @NSManaged var bmiMin: NSNumber?
