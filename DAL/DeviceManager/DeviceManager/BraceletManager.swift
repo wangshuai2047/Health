@@ -145,8 +145,6 @@ extension BraceletManager: CBPeripheralDelegate {
         else {
             // 调用失败代理
             fireComplete?(nil, error)
-//            clearWork()
-            
         }
     }
     
