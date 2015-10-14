@@ -45,7 +45,7 @@ class ScaleResultTests: XCTestCase {
         print("骨重:\(result.boneWeight)")
         print("骨骼肌重:\(result.fatWeight)")
         print("基础代谢重:\(result.BMR)")
-        print("体质指数:\(result.bmi)")
+        print("体质指数:\(result.BMI)")
         print("标准体重:\(result.SW)")
         print("去脂体重:\(result.LBM)")
         print("脂肪控制:\(result.fatControl)")

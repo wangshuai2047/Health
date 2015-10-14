@@ -90,6 +90,7 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     var fatControl: Float
     
     // 体重控制(有符号)
+    var weightControl: Float
     
     // 标准体重
     var SW: Float
@@ -134,4 +135,5 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     
     // 健康得分
     var score: Float
+    
 }

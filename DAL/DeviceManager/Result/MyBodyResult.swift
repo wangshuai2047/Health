@@ -40,57 +40,6 @@ struct MyBodyResult: ScaleResultProtocol {
     // 骨骼肌
     var boneMuscleWeight: Float
     
-    
-    
-    
-    
-    
-    
-    
-//    // 健康评分
-//    var score: Float
-//    
-//    // 计算身体年龄
-//    var bodyAge: Float
-//    
-//    
-//    var waterWeightRange: (Float, Float)
-//    var proteinWeightRange: (Float, Float)
-//    var boneWeightRange: (Float, Float)
-//    var weightRange: (Float, Float)
-//    var fatWeightRange: (Float, Float)
-//    var muscleWeightRange: (Float, Float)
-//    var visceralFatContentRange: (Float, Float)
-//    var fatPercentageRange: (Float, Float)
-//    var BMIRange: (Float, Float)
-//    
-//    // 基础代谢
-//    var BMR: Float
-//    
-//    // 体质指数
-//    var BMI: Float
-//    
-//    // 标准体重 = S
-//    var SW: Float
-//    
-//    // 去脂体重
-//    var LBM: Float
-//    
-//    // 脂肪控制量
-//    var fatControl: Float
-//    
-//    // 标准肌肉
-//    var m_smm: Float
-//    
-//    // 肌肉控制量
-//    var muscleControl: Float
-//    
-//    // 标准体脂率
-//    var standardFatPercentage: Float
-    
-    
-    
-    
     init(userId: Int, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float, boneMuscleWeight: Float) {
         dataId = NSUUID().UUIDString
         
@@ -158,6 +107,7 @@ struct MyBodyResult: ScaleResultProtocol {
 
 // MARK: - 计算属性
 extension MyBodyResult {
+    
     // 基础代谢
     var BMR: Float {
         get {
@@ -175,7 +125,12 @@ extension MyBodyResult {
     
     // 体质指数
     var BMI: Float {
-        return weight / (Float(height)/100) / (Float(height)/100)
+        get {
+            return weight / (Float(height)/100) / (Float(height)/100)
+        }
+        set {
+            
+        }
     }
     
     // 标准体重 = S
@@ -193,15 +148,7 @@ extension MyBodyResult {
         }
     }
     
-    // 去脂体重
-    var LBM: Float {
-        get {
-            return (SW + 0.5684) / (1 - 0.0537)
-        }
-        set {
-            
-        }
-    }
+    
     
     // 脂肪控制量
     var fatControl: Float {
@@ -261,15 +208,7 @@ extension MyBodyResult {
         }
     }
     
-    // 标准体脂率
-    var standardFatPercentage: Float {
-        get {
-            return gender ? 15 : 25
-        }
-        set {
-            
-        }
-    }
+    
 }
 
 // MARK: - 等级判断
@@ -302,15 +241,6 @@ extension MyBodyResult {
         }
     }
     
-    var weightRange: (Float, Float) {
-        get {
-            return (0.9 * SW, 1.1 * SW)
-        }
-        set {
-            
-        }
-    }
-    
     var fatWeightRange: (Float, Float) {
         get {
             if gender {
@@ -328,16 +258,6 @@ extension MyBodyResult {
     var muscleWeightRange: (Float, Float) {
         get {
             return (0.9 * m_smm, 1.1 * m_smm)
-        }
-        set {
-            
-        }
-    }
-    
-    
-    var visceralFatContentRange: (Float, Float) {
-        get {
-            return (10, 5.5)
         }
         set {
             

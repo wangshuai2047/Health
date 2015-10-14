@@ -40,6 +40,46 @@ extension ScaleResultProtocol {
 // MARK: - 计算属性
 extension ScaleResultProtocol {
     
+    // 体重范围
+    var weightRange: (Float, Float) {
+        get {
+            return (0.9 * SW, 1.1 * SW)
+        }
+        set {
+            
+        }
+    }
+    
+    // 内脏脂肪范围
+    var visceralFatContentRange: (Float, Float) {
+        get {
+            return (10, 5.5)
+        }
+        set {
+            
+        }
+    }
+    
+    // 去脂体重
+    var LBM: Float {
+        get {
+            return (SW + 0.5684) / (1 - 0.0537)
+        }
+        set {
+            
+        }
+    }
+    
+    // 标准体脂率
+    var standardFatPercentage: Float {
+        get {
+            return gender ? 15 : 25
+        }
+        set {
+            
+        }
+    }
+    
     // 每日需消耗卡路里
     var dayNeedCalorie: Float {
         if gender {
