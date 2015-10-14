@@ -118,8 +118,6 @@
 		E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF81BC3554800B2788D /* DeviceBindCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E0418EFC1BC3554800B2788D /* DeviceBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF91BC3554800B2788D /* DeviceBindCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E0418EFD1BC3554800B2788D /* DeviceBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF91BC3554800B2788D /* DeviceBindCell.xib */; settings = {ASSET_TAGS = (); }; };
-		E04256CF1BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
-		E04256D01BA0786100AE3BB8 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */; };
 		E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
@@ -358,7 +356,6 @@
 		E0418EF31BC3552C00B2788D /* DeviceBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceBindViewController.xib; sourceTree = "<group>"; };
 		E0418EF81BC3554800B2788D /* DeviceBindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceBindCell.swift; sourceTree = "<group>"; };
 		E0418EF91BC3554800B2788D /* DeviceBindCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceBindCell.xib; sourceTree = "<group>"; };
-		E04256CE1BA0786100AE3BB8 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewModel.swift; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -1498,8 +1495,6 @@
 				E0F9DB081B854B8200504454 /* EvaluationViewController.swift in Sources */,
 				E0418EEE1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
 				E0C50BA01B862381007A9393 /* UserManager.swift in Sources */,
-				E04256CF1BA0786100AE3BB8 /* EvaluationData.swift in Sources */,
-				E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */,
 				E0039BD21BCE8D980014ED50 /* EvaluationData.swift in Sources */,
 				E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */,
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
@@ -1840,7 +1835,7 @@
 					"-lsqlite3",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
@@ -1889,7 +1884,7 @@
 					"-lsqlite3",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
