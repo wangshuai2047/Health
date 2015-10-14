@@ -12,7 +12,7 @@ protocol ScaleDelegate {
     func scanDevice(scale: ScaleProtocol)
     
     // 测量到结果回调
-    func scaleResult(result: ScaleResult)
+    func scaleResult(result: ScaleResultProtocol)
 }
 
 protocol ScaleProtocol {
@@ -24,7 +24,7 @@ protocol ScaleProtocol {
     
     func setScaleData(userId: Int, gender: Bool, age: UInt8, height: UInt8)
     
-    func startScale(complete: (result: ScaleResult?, err: NSError?) -> Void)
-    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResult
+    func startScale(complete: (result: ScaleResultProtocol?, err: NSError?) -> Void)
+    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResultProtocol
     func stopScale()
 }

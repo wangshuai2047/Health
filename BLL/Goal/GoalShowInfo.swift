@@ -14,13 +14,12 @@ struct GoalShowInfo {
     var dayCalorieGoal: Float // 每天需摄入的卡路里
     var dayWalkGoal: Int        // 每日走多少路
     
-    
     var sevenDaysWalkAverageValue: Int  // 过去七天平均步行多少
     var sevenDaysSleepAverageValue: Int // 过去七天平均睡眠多少
     
     var sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]
     
-    init(scaleResult: ScaleResult, sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]) {
+    init(scaleResult: ScaleResultProtocol, sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]) {
         // 需改变的体脂率
         addFatPercentage = scaleResult.standardFatPercentage - scaleResult.fatPercentage
         
@@ -28,7 +27,6 @@ struct GoalShowInfo {
         dayCalorieGoal = dayCalorie + scaleResult.dayNeedCalorie
         
         dayWalkGoal = Int(dayCalorie / 500)
-        
         
         var walkSteps: Int = 0
         var walkSleeps: Int = 0

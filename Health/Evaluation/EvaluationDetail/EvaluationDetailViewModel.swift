@@ -30,11 +30,11 @@ struct EvaluationDetailViewModel {
 }
 
 struct EvaluationDetailCellViewModel {
-    var scaleResult: ScaleResult
+    var scaleResult: ScaleResultProtocol
     var timeShowString: String
     
     init(info: [String: AnyObject]) {
-        scaleResult = ScaleResult(info: info)
+        scaleResult = MyBodyResult(info: info)
         timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
     }
 }

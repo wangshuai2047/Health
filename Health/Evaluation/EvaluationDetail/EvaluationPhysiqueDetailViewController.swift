@@ -10,7 +10,7 @@ import UIKit
 
 class EvaluationPhysiqueDetailViewController: UIViewController {
     
-    var physique: ScaleResult.Physique?
+    var physique: Physique?
     
     let selectedColor = UIColor(red: 0, green: 64/255.0, blue: 128/255.0, alpha: 1)
     

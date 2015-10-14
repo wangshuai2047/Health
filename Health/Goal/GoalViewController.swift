@@ -207,11 +207,25 @@ class GoalViewController: UIViewController {
     }
     
     @IBAction func buyDevicePressed(sender: AnyObject) {
+        
     }
     
     @IBAction func bindDevicePressed(sender: AnyObject) {
-        GoalManager.syncDatas ({ (error: NSError?) -> Void in
-            
+        
+        DeviceScanViewController.showDeviceScanViewController([DeviceType.Bracelet], delegate: self, rootController: AppDelegate.rootNavgationViewController())
+    }
+}
+
+extension GoalViewController: DeviceScanViewControllerProtocol {
+    func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol) {
+        
+        // 绑定
+        SettingManager.bindDevice(device)
+        
+        GoalManager.syncDatas ({ [unowned self] (error: NSError?) -> Void in
+            if self.respondsToSelector(Selector("refreshView")) {
+                self.refreshView()
+            }
         })
     }
 }

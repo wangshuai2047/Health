@@ -97,19 +97,7 @@ class EvaluationViewController: UIViewController {
     }
     
     @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
-        
-        let detailController = EvaluationDetailViewController()
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
-        
-        EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
-            if error == nil {
-                detailController.data = info
-//                self.pushToDetailEvaluationViewController(info!)
-                self.showView(self.connectDeviceView)
-            } else {
-                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
-            }
-        }
+        DeviceScanViewController.showDeviceScanViewController([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus], delegate: self, rootController: AppDelegate.rootNavgationViewController())
     }
     
     // MARK: - connectDeviceView Response Method
@@ -162,7 +150,7 @@ class EvaluationViewController: UIViewController {
         view.hidden = false
     }
     
-    func pushToDetailEvaluationViewController(data: ScaleResult) {
+    func pushToDetailEvaluationViewController(data: ScaleResultProtocol) {
         let detailController = EvaluationDetailViewController()
         detailController.data = data
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
@@ -178,6 +166,27 @@ class EvaluationViewController: UIViewController {
             startEvaluationPressed(event!)
         }
         
+    }
+}
+
+extension EvaluationViewController: DeviceScanViewControllerProtocol {
+    func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol) {
+        
+        // 绑定
+        SettingManager.bindDevice(device)
+        
+        let detailController = EvaluationDetailViewController()
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        
+        EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
+            if error == nil {
+                detailController.data = info
+                //                self.pushToDetailEvaluationViewController(info!)
+                self.showView(self.connectDeviceView)
+            } else {
+                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+            }
+        }
     }
 }
 

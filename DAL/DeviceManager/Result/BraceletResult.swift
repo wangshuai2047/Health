@@ -8,16 +8,9 @@
 
 import Foundation
 
-struct BraceletResult {
+struct BraceletData {
     
-    enum StepsType: UInt16 {
-        case Walk = 10
-        case Run = 11
-        case Sleep = 9
-    }
-    
-//    var deviceModel: 
-    var userId: UInt16
+    var userId: Int
     var dataId: String
     
     var startTime: NSDate
@@ -25,7 +18,7 @@ struct BraceletResult {
     var steps: UInt16        // 运动数量
     var stepsType: StepsType    // 运动类型  走路 10, 跑步 11, 睡觉 9
     
-    init(userId: UInt16, startTime: NSDate, endTime: NSDate, steps: UInt16, stepsType: UInt16) {
+    init(userId: Int, startTime: NSDate, endTime: NSDate, steps: UInt16, stepsType: UInt16) {
         dataId = NSUUID().UUIDString
         
         self.userId = userId
@@ -34,11 +27,23 @@ struct BraceletResult {
         self.steps = steps
         
         if stepsType != 10 && stepsType != 11 && stepsType != 9 {
-           self.stepsType = .Sleep
+            self.stepsType = .Sleep
         }
         else {
             self.stepsType = StepsType(rawValue: stepsType)!
         }
         
     }
+}
+
+struct BraceletResult: BraceletResultProtocol {
+    
+    var userId: Int = 0
+    var dataId: String = ""
+    
+    var results: [BraceletData] = []
+    
+    var device_model: Int = 0 // 设备类型
+    var firm_ver: UInt16 = 0 // 固件版本号
+    var percent: UInt8 = 0  // 电池电量
 }

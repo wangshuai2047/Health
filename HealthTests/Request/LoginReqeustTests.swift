@@ -53,7 +53,7 @@ class LoginReqeustTests: XCTestCase {
         let expectation = expectationWithDescription("test_loginRequest_login_isSuccess")
         
         let phone = "18610729420"
-        let captchas = "701295"
+        let captchas = "872728"
         LoginRequest.login(phone, captchas: captchas) { (userInfo, error: NSError?) -> Void in
             expectation.fulfill()
             
