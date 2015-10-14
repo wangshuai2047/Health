@@ -16,6 +16,7 @@ protocol DBUserProtocol {
 }
 
 protocol DBEvaluationProtocol {
+    func addEvaluationData(result: ScaleResultProtocol)
     func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData)
     func deleteEvaluationData(dataId: String, userId: Int)
     func queryEvaluationData(dataId: String, userId: Int) -> [String: AnyObject]?

@@ -40,6 +40,78 @@ struct MyBodyResult: ScaleResultProtocol {
     // 骨骼肌
     var boneMuscleWeight: Float
     
+    // ----------------------
+    // 脂肪肝 nil代表不支持
+    var hepaticAdiposeInfiltration: Bool? = nil
+    
+    // 瘦体重
+    var fatFreeBodyWeight: Float = 0
+    // 瘦体重正常范围下限 + 瘦体重正常范围上限
+    var fatFreeBodyWeightRange: (Float, Float) = (0,0)
+    
+    // 腰臀比(两位小数)
+    var WHR: Float = 0
+    // 腰臀比正常范围下限 + 腰臀比正常范围上限
+    var WHRRange: (Float, Float) = (0,0)
+    
+    // 骨骼肌正常范围下限 + 骨骼肌正常范围上限
+    var boneMuscleRange: (Float, Float) = (0,0)
+    
+    // 体重控制(有符号)
+    var weightControl: Float = 0
+    
+    // 标准体重正常范围下限 + 标准体重正常范围上限
+    var SWRange: (Float, Float) = (0,0)
+    
+    // 目标体重
+    var goalWeight: Float = 0
+    
+    // 右上肢脂肪
+    var rightUpperExtremityFat: Float = 0
+    
+    // 右上肢肌肉
+    var rightUpperExtremityMuscle: Float = 0
+    
+    // 右上肢骨质
+    var rightUpperExtremityBone: Float = 0
+    
+    // 左上肢脂肪
+    var leftUpperExtremityFat: Float = 0
+    
+    // 左上肢肌肉
+    var leftUpperExtremityMuscle: Float = 0
+    
+    // 左上肢骨质
+    var leftUpperExtremityBone: Float = 0
+    
+    // 躯干肢脂肪
+    var trunkLimbFat: Float = 0
+    
+    // 躯干肢肌肉
+    var trunkLimbMuscle: Float = 0
+    
+    // 躯干肢骨质
+    var trunkLimbBone: Float = 0
+    
+    // 右下肢脂肪
+    var rightLowerExtremityFat: Float = 0
+    
+    // 右下肢肌肉
+    var rightLowerExtremityMuscle: Float = 0
+    
+    // 右下肢骨质
+    var rightLowerExtremityBone: Float = 0
+    
+    // 左下肢脂肪
+    var leftLowerExtremityFat: Float = 0
+    
+    // 左下肢肌肉
+    var leftLowerExtremityMuscle: Float = 0
+    
+    // 左下肢骨质
+    var leftLowerExtremityBone: Float = 0
+    
+    
     init(userId: Int, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float, boneMuscleWeight: Float) {
         dataId = NSUUID().UUIDString
         
@@ -569,25 +641,71 @@ extension MyBodyResult {
         gender = UserData.shareInstance().gender!
         age = UserData.shareInstance().age!
         height = UserData.shareInstance().height!
-    }
-    
-    init(evaluationdata: EvaluationData) {
         
-        dataId = evaluationdata.valueForKey("dataId") as! String
-        userId = (evaluationdata.valueForKey("userId") as! NSNumber).integerValue
-        weight = (evaluationdata.valueForKey("weight") as! NSNumber).floatValue
-        waterPercentage = (evaluationdata.valueForKey("waterPercentage") as! NSNumber).floatValue
-        visceralFatPercentage = (evaluationdata.valueForKey("visceralFatPercentage") as! NSNumber).floatValue
-        fatPercentage = (evaluationdata.valueForKey("fatPercentage") as! NSNumber).floatValue
-        fatWeight = (evaluationdata.valueForKey("fatWeight") as! NSNumber).floatValue
-        waterWeight = (evaluationdata.valueForKey("waterWeight") as! NSNumber).floatValue
-        muscleWeight = (evaluationdata.valueForKey("muscleWeight") as! NSNumber).floatValue
-        proteinWeight = (evaluationdata.valueForKey("proteinWeight") as! NSNumber).floatValue
-        boneWeight = (evaluationdata.valueForKey("boneWeight") as! NSNumber).floatValue
-        boneMuscleWeight = (evaluationdata.valueForKey("boneMuscleWeight") as! NSNumber).floatValue
+        // 脂肪肝  1为有  2为没有  0为不支持
+        let HAI = (info["hepaticAdiposeInfiltration"] as! NSNumber).shortValue
+        if HAI == 1 {
+            hepaticAdiposeInfiltration = true
+        }
+        else if HAI == 2 {
+            hepaticAdiposeInfiltration = false
+        }
         
-        gender = UserData.shareInstance().gender!
-        age = UserData.shareInstance().age!
-        height = UserData.shareInstance().height!
+        fatFreeBodyWeight = (info["fatFreeBodyWeight"] as! NSNumber).floatValue
+        fatFreeBodyWeightRange.0 = (info["fatFreeBodyWeightMin"] as! NSNumber).floatValue
+        fatFreeBodyWeightRange.1 = (info["fatFreeBodyWeightMax"] as! NSNumber).floatValue
+        muscleWeightRange.0 = (info["muscleWeightMin"] as! NSNumber).floatValue
+        muscleWeightRange.1 = (info["muscleWeightMax"] as! NSNumber).floatValue
+        
+        proteinWeightRange.0 = (info["proteinWeightMin"] as! NSNumber).floatValue
+        proteinWeightRange.1 = (info["proteinWeightMax"] as! NSNumber).floatValue
+        boneWeightRange.0 = (info["boneWeightMin"] as! NSNumber).floatValue
+        boneWeightRange.1 = (info["boneWeightMax"] as! NSNumber).floatValue
+        
+        waterWeightRange.0 = (info["waterWeightMin"] as! NSNumber).floatValue
+        waterWeightRange.1 = (info["waterWeightMax"] as! NSNumber).floatValue
+        fatWeightRange.0 = (info["fatWeightMin"] as! NSNumber).floatValue
+        fatWeightRange.1 = (info["fatWeightMax"] as! NSNumber).floatValue
+        fatPercentageRange.0 = (info["fatPercentageMin"] as! NSNumber).floatValue
+        fatPercentageRange.1 = (info["fatPercentageMax"] as! NSNumber).floatValue
+        
+        WHR = (info["whr"] as! NSNumber).floatValue
+        WHRRange.0 = (info["whrMin"] as! NSNumber).floatValue
+        WHRRange.1 = (info["whrMax"] as! NSNumber).floatValue
+        BMI = (info["bmi"] as! NSNumber).floatValue
+        BMIRange.0 = (info["bmiMin"] as! NSNumber).floatValue
+        BMIRange.1 = (info["bmiMax"] as! NSNumber).floatValue
+        
+        BMR = (info["bmr"] as! NSNumber).floatValue
+        bodyAge = (info["bodyAge"] as! NSNumber).floatValue
+        boneMuscleRange.0 = (info["boneMuscleWeightMin"] as! NSNumber).floatValue
+        boneMuscleRange.1 = (info["boneMuscleWeightMax"] as! NSNumber).floatValue
+        
+        muscleControl = (info["muscleControl"] as! NSNumber).floatValue
+        fatControl = (info["fatControl"] as! NSNumber).floatValue
+        weightControl = (info["weightControl"] as! NSNumber).floatValue
+        SW = (info["sw"] as! NSNumber).floatValue
+        SWRange.0 = (info["swMin"] as! NSNumber).floatValue
+        SWRange.1 = (info["swMax"] as! NSNumber).floatValue
+        
+        goalWeight = (info["goalWeight"] as! NSNumber).floatValue
+        m_smm = (info["m_smm"] as! NSNumber).floatValue
+        rightUpperExtremityFat = (info["rightUpperExtremityFat"] as! NSNumber).floatValue
+        rightUpperExtremityMuscle = (info["rightUpperExtremityMuscle"] as! NSNumber).floatValue
+        rightUpperExtremityBone = (info["rightUpperExtremityBone"] as! NSNumber).floatValue
+        leftUpperExtremityFat = (info["leftUpperExtremityFat"] as! NSNumber).floatValue
+        leftUpperExtremityMuscle = (info["leftUpperExtremityMuscle"] as! NSNumber).floatValue
+        leftUpperExtremityBone = (info["leftUpperExtremityBone"] as! NSNumber).floatValue
+        trunkLimbFat = (info["trunkLimbFat"] as! NSNumber).floatValue
+        
+        trunkLimbMuscle = (info["trunkLimbMuscle"] as! NSNumber).floatValue
+        trunkLimbBone = (info["trunkLimbBone"] as! NSNumber).floatValue
+        rightLowerExtremityFat = (info["rightLowerExtremityFat"] as! NSNumber).floatValue
+        rightLowerExtremityMuscle = (info["rightLowerExtremityMuscle"] as! NSNumber).floatValue
+        rightLowerExtremityBone = (info["rightLowerExtremityBone"] as! NSNumber).floatValue
+        leftLowerExtremityFat = (info["leftLowerExtremityFat"] as! NSNumber).floatValue
+        leftLowerExtremityMuscle = (info["leftLowerExtremityMuscle"] as! NSNumber).floatValue
+        leftLowerExtremityBone = (info["leftLowerExtremityBone"] as! NSNumber).floatValue
+        score = (info["score"] as! NSNumber).floatValue
     }
 }

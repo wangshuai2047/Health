@@ -167,6 +167,91 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
+    func addEvaluationData(result: ScaleResultProtocol) {
+        let context = self.managedObjectContext!
+        let insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
+        
+        insertData.dataId = result.dataId
+        insertData.userId = result.userId
+        insertData.timeStamp = NSDate()
+        insertData.isUpload = false
+        
+        insertData.boneMuscleWeight = result.boneMuscleWeight
+        insertData.boneWeight = result.boneWeight
+        insertData.fatPercentage = result.fatPercentage
+        insertData.fatWeight = result.fatWeight
+        insertData.muscleWeight = result.muscleWeight
+        insertData.proteinWeight = result.proteinWeight
+        insertData.visceralFatPercentage = result.visceralFatPercentage
+        insertData.waterPercentage = result.waterPercentage
+        insertData.waterWeight = result.waterWeight
+        insertData.weight = result.weight
+        // 脂肪肝
+        if let hepaticAdiposeInfiltration = result.hepaticAdiposeInfiltration {
+            insertData.hepaticAdiposeInfiltration = hepaticAdiposeInfiltration ? 1 : 2  // 1为有  2为没有
+        }
+        else {
+            insertData.hepaticAdiposeInfiltration = 0 // 0为不支持
+        }
+        insertData.fatFreeBodyWeight = result.fatFreeBodyWeight
+        insertData.fatFreeBodyWeightMin = result.fatFreeBodyWeightRange.0
+        insertData.fatFreeBodyWeightMax = result.fatFreeBodyWeightRange.1
+        insertData.muscleWeightMin = result.muscleWeightRange.0
+        insertData.muscleWeightMax = result.muscleWeightRange.1
+        insertData.proteinWeightMin = result.proteinWeightRange.0
+        insertData.proteinWeightMax = result.proteinWeightRange.1
+        insertData.boneWeightMin = result.boneWeightRange.0
+        insertData.boneWeightMax = result.boneWeightRange.1
+        insertData.waterWeightMin = result.waterWeightRange.0
+        insertData.waterWeightMax = result.waterWeightRange.1
+        insertData.fatWeightMin = result.fatWeightRange.0
+        insertData.fatWeightMax = result.fatWeightRange.1
+        insertData.fatPercentageMin = result.fatPercentageRange.0
+        insertData.fatPercentageMax = result.fatPercentageRange.1
+        insertData.whr = result.WHR
+        insertData.whrMin = result.WHRRange.0
+        insertData.whrMax = result.WHRRange.1
+        insertData.bmi = result.BMI
+        insertData.bmiMin = result.BMIRange.0
+        insertData.bmiMax = result.BMIRange.1
+        insertData.bmr = result.BMR
+        insertData.bodyAge = result.bodyAge
+        insertData.boneMuscleWeightMin = result.boneMuscleRange.0
+        insertData.boneMuscleWeightMax = result.boneMuscleRange.1
+        insertData.muscleControl = result.muscleControl
+        insertData.fatControl = result.fatControl
+        insertData.weightControl = result.weightControl
+        insertData.sw = result.SW
+        insertData.swMin = result.SWRange.0
+        insertData.swMax = result.SWRange.1
+        insertData.goalWeight = result.goalWeight
+        insertData.m_smm = result.m_smm
+        insertData.rightUpperExtremityFat = result.rightUpperExtremityFat
+        insertData.rightUpperExtremityMuscle = result.rightUpperExtremityMuscle
+        insertData.rightUpperExtremityBone = result.rightUpperExtremityBone
+        insertData.leftUpperExtremityFat = result.leftUpperExtremityFat
+        insertData.leftUpperExtremityMuscle = result.leftUpperExtremityMuscle
+        insertData.leftUpperExtremityBone = result.leftUpperExtremityBone
+        insertData.trunkLimbFat = result.trunkLimbFat
+        insertData.trunkLimbMuscle = result.trunkLimbMuscle
+        insertData.trunkLimbBone = result.trunkLimbBone
+        insertData.rightLowerExtremityFat = result.rightLowerExtremityFat
+        insertData.rightLowerExtremityMuscle = result.rightLowerExtremityMuscle
+        insertData.rightLowerExtremityBone = result.rightLowerExtremityBone
+        insertData.leftLowerExtremityFat = result.leftLowerExtremityFat
+        insertData.leftLowerExtremityMuscle = result.leftLowerExtremityMuscle
+        insertData.leftLowerExtremityBone = result.leftLowerExtremityBone
+        insertData.score = result.score
+        
+        do {
+            try context.save()
+            NSLog("Insert Evaluation Data Success")
+        } catch _ {
+            NSLog("Insert Evaluation Data Fail")
+        }
+        
+    }
+    
     func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData) {
         
         let context = self.managedObjectContext!
@@ -781,21 +866,83 @@ extension DBManager {
         let boneWeight = (data.valueForKey("boneWeight") as! NSNumber)
         let boneMuscleWeight = (data.valueForKey("boneMuscleWeight") as! NSNumber)
         
-        return [
-            "dataId" : dataId,
-            "isUpload" : isUpload,
-            "timeStamp" : timeStamp,
-            "userId" : userId,
-            "weight" : weight,
-            "waterPercentage" : waterPercentage,
-            "visceralFatPercentage" : visceralFatPercentage,
-            "fatPercentage" : fatPercentage,
-            "fatWeight" : fatWeight,
-            "waterWeight" : waterWeight,
-            "muscleWeight" : muscleWeight,
-            "proteinWeight" : proteinWeight,
-            "boneWeight" : boneWeight,
-            "boneMuscleWeight" : boneMuscleWeight,
-            ]
+        
+        var info: [String : AnyObject] = [:]
+        
+        info["dataId"] = dataId
+        info["userId"] = userId
+        info["timeStamp"] = timeStamp
+        info["isUpload"] = isUpload
+        
+        info["boneMuscleWeight"] = boneMuscleWeight
+        info["boneWeight"] = boneWeight
+        info["fatPercentage"] = fatPercentage
+        info["fatWeight"] = fatWeight
+        info["muscleWeight"] = muscleWeight
+        info["proteinWeight"] = proteinWeight
+        info["visceralFatPercentage"] = visceralFatPercentage
+        info["waterPercentage"] = waterPercentage
+        info["waterWeight"] = waterWeight
+        info["weight"] = weight
+        
+        // 脂肪肝  1为有  2为没有  0为不支持
+        let hepaticAdiposeInfiltration = data.valueForKey("hepaticAdiposeInfiltration") as! NSNumber
+        if hepaticAdiposeInfiltration.integerValue == 1 {
+            info["hepaticAdiposeInfiltration"] = NSNumber(bool: true)
+        } else if hepaticAdiposeInfiltration.integerValue == 2 {
+            info["hepaticAdiposeInfiltration"] = NSNumber(bool: false)
+        }
+        
+        info["fatFreeBodyWeight"] = data.valueForKey("fatFreeBodyWeight") as! NSNumber
+        info["fatFreeBodyWeightMin"] = data.valueForKey("fatFreeBodyWeightMin") as! NSNumber
+        info["fatFreeBodyWeightMax"] = data.valueForKey("fatFreeBodyWeightMax") as! NSNumber
+        info["muscleWeightMin"] = data.valueForKey("muscleWeightMin") as! NSNumber
+        info["muscleWeightMax"] = data.valueForKey("muscleWeightMax") as! NSNumber
+        info["proteinWeightMin"] = data.valueForKey("proteinWeightMin") as! NSNumber
+        info["proteinWeightMax"] = data.valueForKey("proteinWeightMax") as! NSNumber
+        info["boneWeightMin"] = data.valueForKey("boneWeightMin") as! NSNumber
+        info["boneWeightMax"] = data.valueForKey("boneWeightMax") as! NSNumber
+        info["waterWeightMin"] = data.valueForKey("waterWeightMin") as! NSNumber
+        info["waterWeightMax"] = data.valueForKey("waterWeightMax") as! NSNumber
+        info["fatWeightMin"] = data.valueForKey("fatWeightMin") as! NSNumber
+        info["fatWeightMax"] = data.valueForKey("fatWeightMax") as! NSNumber
+        info["fatPercentageMin"] = data.valueForKey("fatPercentageMin") as! NSNumber
+        info["fatPercentageMax"] = data.valueForKey("fatPercentageMax") as! NSNumber
+        info["whr"] = data.valueForKey("whr") as! NSNumber
+        info["whrMin"] = data.valueForKey("whrMin") as! NSNumber
+        info["whrMax"] = data.valueForKey("whrMax") as! NSNumber
+        info["bmi"] = data.valueForKey("bmi") as! NSNumber
+        info["bmiMin"] = data.valueForKey("bmiMin") as! NSNumber
+        info["bmiMax"] = data.valueForKey("bmiMax") as! NSNumber
+        info["bmr"] = data.valueForKey("bmr") as! NSNumber
+        info["bodyAge"] = data.valueForKey("bodyAge") as! NSNumber
+        info["boneMuscleWeightMin"] = data.valueForKey("boneMuscleWeightMin") as! NSNumber
+        info["boneMuscleWeightMax"] = data.valueForKey("boneMuscleWeightMax") as! NSNumber
+        info["muscleControl"] = data.valueForKey("muscleControl") as! NSNumber
+        info["fatControl"] = data.valueForKey("fatControl") as! NSNumber
+        info["weightControl"] = data.valueForKey("weightControl") as! NSNumber
+        info["sw"] = data.valueForKey("sw") as! NSNumber
+        info["swMin"] = data.valueForKey("swMin") as! NSNumber
+        info["swMax"] = data.valueForKey("swMax") as! NSNumber
+        info["goalWeight"] = data.valueForKey("goalWeight") as! NSNumber
+        info["m_smm"] = data.valueForKey("m_smm") as! NSNumber
+        info["rightUpperExtremityFat"] = data.valueForKey("rightUpperExtremityFat") as! NSNumber
+        info["rightUpperExtremityMuscle"] = data.valueForKey("rightUpperExtremityMuscle") as! NSNumber
+        info["rightUpperExtremityBone"] = data.valueForKey("rightUpperExtremityBone") as! NSNumber
+        info["leftUpperExtremityFat"] = data.valueForKey("leftUpperExtremityFat") as! NSNumber
+        info["leftUpperExtremityMuscle"] = data.valueForKey("leftUpperExtremityMuscle") as! NSNumber
+        info["leftUpperExtremityBone"] = data.valueForKey("leftUpperExtremityBone") as! NSNumber
+        info["trunkLimbFat"] = data.valueForKey("trunkLimbFat") as! NSNumber
+        info["trunkLimbMuscle"] = data.valueForKey("trunkLimbMuscle") as! NSNumber
+        info["trunkLimbBone"] = data.valueForKey("trunkLimbBone") as! NSNumber
+        info["rightLowerExtremityFat"] = data.valueForKey("rightLowerExtremityFat") as! NSNumber
+        info["rightLowerExtremityMuscle"] = data.valueForKey("rightLowerExtremityMuscle") as! NSNumber
+        info["rightLowerExtremityBone"] = data.valueForKey("rightLowerExtremityBone") as! NSNumber
+        info["leftLowerExtremityFat"] = data.valueForKey("leftLowerExtremityFat") as! NSNumber
+        info["leftLowerExtremityMuscle"] = data.valueForKey("leftLowerExtremityMuscle") as! NSNumber
+        info["leftLowerExtremityBone"] = data.valueForKey("leftLowerExtremityBone") as! NSNumber
+        info["score"] = data.valueForKey("score") as! NSNumber
+        
+        return info
     }
 }

@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3511E9FDDF87881CB0D0657C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331D48E4B2E73489E6443B /* libPods.a */; };
-		E0039BD01BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BCE1BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		E0039BD11BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BCE1BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		E0039BD21BCE8D980014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BCF1BCE8D980014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
-		E0039BD31BCE8D980014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BCF1BCE8D980014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
+		E0039BD61BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
+		E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
 		E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */; };
 		E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */; };
 		E00580801B9DE78C00ABDF1A /* ScoreRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */; };
@@ -144,7 +144,6 @@
 		E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
 		E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
 		E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
-		E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
 		E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
 		E08A24541B807BE4004269BB /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24521B807BE4004269BB /* DBManager.swift */; };
 		E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E08A24651B808154004269BB /* libvtble_scale.a */; };
@@ -274,8 +273,8 @@
 		961ED9F671AA0E4D212A73A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A1331D48E4B2E73489E6443B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5030CB749F74A7C0EA0A589 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E0039BCE1BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EvaluationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E0039BCF1BCE8D980014ED50 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
+		E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EvaluationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationRequstTests.swift; path = HealthTests/Request/EvaluationRequstTests.swift; sourceTree = SOURCE_ROOT; };
 		E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalRequestTests.swift; path = HealthTests/Request/GoalRequestTests.swift; sourceTree = SOURCE_ROOT; };
 		E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreRequestTests.swift; path = HealthTests/Request/ScoreRequestTests.swift; sourceTree = SOURCE_ROOT; };
@@ -1088,8 +1087,8 @@
 				E0B29B061B9BD2D000F2F2CC /* GoalData.swift */,
 				E01C81581B8804AF00A1F7AC /* Device.swift */,
 				E0CD63151BA2511F00477090 /* UserDBData.swift */,
-				E0039BCE1BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift */,
-				E0039BCF1BCE8D980014ED50 /* EvaluationData.swift */,
+				E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */,
+				E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1438,7 +1437,6 @@
 			files = (
 				E0F7A6B41BC6C36900AF6B8B /* VisitorAddViewController.xib in Resources */,
 				E0418EF71BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
-				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 				E007CC1F1BCAA2D200365FA8 /* DeviceScanViewController.xib in Resources */,
 				E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */,
 				E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */,
@@ -1447,7 +1445,6 @@
 				E007CC251BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */,
 				E0418EF11BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
 				E0418EFD1BC3554800B2788D /* DeviceBindCell.xib in Resources */,
-				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,7 +1492,7 @@
 				E0F9DB081B854B8200504454 /* EvaluationViewController.swift in Sources */,
 				E0418EEE1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
 				E0C50BA01B862381007A9393 /* UserManager.swift in Sources */,
-				E0039BD21BCE8D980014ED50 /* EvaluationData.swift in Sources */,
+				E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */,
 				E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */,
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
@@ -1567,7 +1564,7 @@
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
 				E0E5DE901BC88A78001BCCD1 /* BindOrganzationViewController.swift in Sources */,
 				E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */,
-				E0039BD01BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
+				E0039BD61BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
 				E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */,
 				E0255E6D1BC9556300CEE5D4 /* Physique.swift in Sources */,
 				E08B329D1B85A91E0040ADE7 /* CompleteAgeDataView.swift in Sources */,
@@ -1633,13 +1630,13 @@
 				E0FBED441B835C9100A70598 /* Request.swift in Sources */,
 				E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */,
 				E0255E721BC9556300CEE5D4 /* ScaleResultExtension.swift in Sources */,
-				E0039BD11BCE8D980014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
+				E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
 				E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */,
 				E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */,
 				E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */,
 				E060CD121B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
 				E0255E701BC9556300CEE5D4 /* ResultProtocol.swift in Sources */,
-				E0039BD31BCE8D980014ED50 /* EvaluationData.swift in Sources */,
+				E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */,
 				E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */,
 				E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */,
 				E00580861B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
