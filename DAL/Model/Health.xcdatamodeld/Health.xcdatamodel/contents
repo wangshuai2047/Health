@@ -29,7 +29,7 @@
         <attribute name="fatWeightMax" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fatWeightMin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="goalWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="hepaticAdiposeInfiltration" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hepaticAdiposeInfiltration" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="isUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="leftLowerExtremityBone" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="leftLowerExtremityFat" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
