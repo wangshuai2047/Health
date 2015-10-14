@@ -14,8 +14,8 @@ struct  LoginRequest {
     static func login(username: String, password: String, complete : (([String: AnyObject]? , NSError?) -> Void)) {
         
         // 假数据
-        complete(["userId" : NSNumber(integer: 123)], nil)
-        return;
+//        complete(["userId" : NSNumber(integer: 123)], nil)
+//        return;
         
         let pushToken = "fefjewioafjaeofja"
         
