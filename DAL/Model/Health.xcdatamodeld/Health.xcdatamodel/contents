@@ -18,6 +18,7 @@
         <attribute name="boneWeightMax" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="boneWeightMin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dataId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deviceType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="fatControl" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fatFreeBodyWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fatFreeBodyWeightMax" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -96,7 +97,7 @@
     </entity>
     <elements>
         <element name="Device" positionX="261" positionY="279" width="128" height="90"/>
-        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="1005"/>
+        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="1020"/>
         <element name="GoalData" positionX="261" positionY="198" width="128" height="150"/>
         <element name="ShareData" positionX="279" positionY="297" width="128" height="75"/>
         <element name="UserDBData" positionX="288" positionY="315" width="128" height="135"/>
