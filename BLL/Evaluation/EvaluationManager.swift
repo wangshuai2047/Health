@@ -44,7 +44,7 @@ class EvaluationManager :NSObject {
     
     func startScaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResultProtocol {
         
-        return MyBodyResult.scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserManager.shareInstance().currentUser.gender, userId: UserManager.shareInstance().currentUser.userId, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)
+        return MyBodyManager.scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserManager.shareInstance().currentUser.gender, userId: UserManager.shareInstance().currentUser.userId, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)
     }
     
     func addTestDatas() {
