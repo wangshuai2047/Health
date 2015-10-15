@@ -638,74 +638,17 @@ extension MyBodyResult {
         boneWeight = (info["boneWeight"] as! NSNumber).floatValue
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
-        gender = UserData.shareInstance().gender!
-        age = UserData.shareInstance().age!
-        height = UserData.shareInstance().height!
-        
-        // 脂肪肝  1为有  2为没有  0为不支持
-        let HAI = (info["hepaticAdiposeInfiltration"] as! NSNumber).shortValue
-        if HAI == 1 {
-            hepaticAdiposeInfiltration = true
+        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+            gender = (userInfo["gender"] as! NSNumber).boolValue
+            age = (userInfo["age"] as! NSNumber).unsignedCharValue
+            height = (userInfo["height"] as! NSNumber).unsignedCharValue
         }
-        else if HAI == 2 {
-            hepaticAdiposeInfiltration = false
+        else {
+            gender = UserManager.shareInstance().currentUser.gender
+            age = UserManager.shareInstance().currentUser.age
+            height = UserManager.shareInstance().currentUser.height
         }
         
-        fatFreeBodyWeight = (info["fatFreeBodyWeight"] as! NSNumber).floatValue
-        fatFreeBodyWeightRange.0 = (info["fatFreeBodyWeightMin"] as! NSNumber).floatValue
-        fatFreeBodyWeightRange.1 = (info["fatFreeBodyWeightMax"] as! NSNumber).floatValue
-        muscleWeightRange.0 = (info["muscleWeightMin"] as! NSNumber).floatValue
-        muscleWeightRange.1 = (info["muscleWeightMax"] as! NSNumber).floatValue
         
-        proteinWeightRange.0 = (info["proteinWeightMin"] as! NSNumber).floatValue
-        proteinWeightRange.1 = (info["proteinWeightMax"] as! NSNumber).floatValue
-        boneWeightRange.0 = (info["boneWeightMin"] as! NSNumber).floatValue
-        boneWeightRange.1 = (info["boneWeightMax"] as! NSNumber).floatValue
-        
-        waterWeightRange.0 = (info["waterWeightMin"] as! NSNumber).floatValue
-        waterWeightRange.1 = (info["waterWeightMax"] as! NSNumber).floatValue
-        fatWeightRange.0 = (info["fatWeightMin"] as! NSNumber).floatValue
-        fatWeightRange.1 = (info["fatWeightMax"] as! NSNumber).floatValue
-        fatPercentageRange.0 = (info["fatPercentageMin"] as! NSNumber).floatValue
-        fatPercentageRange.1 = (info["fatPercentageMax"] as! NSNumber).floatValue
-        
-        WHR = (info["whr"] as! NSNumber).floatValue
-        WHRRange.0 = (info["whrMin"] as! NSNumber).floatValue
-        WHRRange.1 = (info["whrMax"] as! NSNumber).floatValue
-        BMI = (info["bmi"] as! NSNumber).floatValue
-        BMIRange.0 = (info["bmiMin"] as! NSNumber).floatValue
-        BMIRange.1 = (info["bmiMax"] as! NSNumber).floatValue
-        
-        BMR = (info["bmr"] as! NSNumber).floatValue
-        bodyAge = (info["bodyAge"] as! NSNumber).floatValue
-        boneMuscleRange.0 = (info["boneMuscleWeightMin"] as! NSNumber).floatValue
-        boneMuscleRange.1 = (info["boneMuscleWeightMax"] as! NSNumber).floatValue
-        
-        muscleControl = (info["muscleControl"] as! NSNumber).floatValue
-        fatControl = (info["fatControl"] as! NSNumber).floatValue
-        weightControl = (info["weightControl"] as! NSNumber).floatValue
-        SW = (info["sw"] as! NSNumber).floatValue
-        SWRange.0 = (info["swMin"] as! NSNumber).floatValue
-        SWRange.1 = (info["swMax"] as! NSNumber).floatValue
-        
-        goalWeight = (info["goalWeight"] as! NSNumber).floatValue
-        m_smm = (info["m_smm"] as! NSNumber).floatValue
-        rightUpperExtremityFat = (info["rightUpperExtremityFat"] as! NSNumber).floatValue
-        rightUpperExtremityMuscle = (info["rightUpperExtremityMuscle"] as! NSNumber).floatValue
-        rightUpperExtremityBone = (info["rightUpperExtremityBone"] as! NSNumber).floatValue
-        leftUpperExtremityFat = (info["leftUpperExtremityFat"] as! NSNumber).floatValue
-        leftUpperExtremityMuscle = (info["leftUpperExtremityMuscle"] as! NSNumber).floatValue
-        leftUpperExtremityBone = (info["leftUpperExtremityBone"] as! NSNumber).floatValue
-        trunkLimbFat = (info["trunkLimbFat"] as! NSNumber).floatValue
-        
-        trunkLimbMuscle = (info["trunkLimbMuscle"] as! NSNumber).floatValue
-        trunkLimbBone = (info["trunkLimbBone"] as! NSNumber).floatValue
-        rightLowerExtremityFat = (info["rightLowerExtremityFat"] as! NSNumber).floatValue
-        rightLowerExtremityMuscle = (info["rightLowerExtremityMuscle"] as! NSNumber).floatValue
-        rightLowerExtremityBone = (info["rightLowerExtremityBone"] as! NSNumber).floatValue
-        leftLowerExtremityFat = (info["leftLowerExtremityFat"] as! NSNumber).floatValue
-        leftLowerExtremityMuscle = (info["leftLowerExtremityMuscle"] as! NSNumber).floatValue
-        leftLowerExtremityBone = (info["leftLowerExtremityBone"] as! NSNumber).floatValue
-        score = (info["score"] as! NSNumber).floatValue
     }
 }

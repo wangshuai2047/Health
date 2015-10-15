@@ -55,27 +55,7 @@ class EvaluationManager :NSObject {
             
             let result = startScaleInputData(Float(weight), waterContent: Float(waterPercentage), visceralFatContent: Float(visceralFatContent))
             
-            // 存数据库
-            DBManager.shareInstance().addEvaluationData({ (inout setDatas: EvaluationData) -> EvaluationData in
-                
-                setDatas.dataId = result.dataId
-                setDatas.userId = NSNumber(integer: result.userId)
-                setDatas.timeStamp = NSDate(timeIntervalSinceNow: NSTimeInterval(-24 * 60 * 60 * i))
-                setDatas.isUpload = true
-                
-                setDatas.weight = result.weight
-                setDatas.waterPercentage = result.waterPercentage
-                setDatas.visceralFatPercentage = result.visceralFatPercentage
-                setDatas.fatPercentage = result.fatPercentage
-                setDatas.fatWeight = result.fatWeight
-                setDatas.waterWeight = result.waterWeight
-                setDatas.muscleWeight = result.muscleWeight
-                setDatas.proteinWeight = result.proteinWeight
-                setDatas.boneWeight = result.boneWeight
-                setDatas.boneMuscleWeight = result.boneMuscleWeight
-                
-                return setDatas;
-            })
+            DBManager.shareInstance().addEvaluationData(result)
         }
     }
     
@@ -89,29 +69,10 @@ class EvaluationManager :NSObject {
             
             BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : userModel], complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
                 if error == nil {
-                    if let braceletResult = result as? MyBodyResult {
+                    if let braceletResult = result as? ScaleResultProtocol {
                         
                         // 存数据库
-                        DBManager.shareInstance().addEvaluationData({ (inout setDatas: EvaluationData) -> EvaluationData in
-                            
-                            setDatas.dataId = braceletResult.dataId
-                            setDatas.userId = NSNumber(integer: braceletResult.userId)
-                            setDatas.timeStamp = NSDate()
-                            setDatas.isUpload = false
-                            
-                            setDatas.weight = braceletResult.weight
-                            setDatas.waterPercentage = braceletResult.waterPercentage
-                            setDatas.visceralFatPercentage = braceletResult.visceralFatPercentage
-                            setDatas.fatPercentage = braceletResult.fatPercentage
-                            setDatas.fatWeight = braceletResult.fatWeight
-                            setDatas.waterWeight = braceletResult.waterWeight
-                            setDatas.muscleWeight = braceletResult.muscleWeight
-                            setDatas.proteinWeight = braceletResult.proteinWeight
-                            setDatas.boneWeight = braceletResult.boneWeight
-                            setDatas.boneMuscleWeight = braceletResult.boneMuscleWeight
-                            
-                            return setDatas;
-                        })
+                        DBManager.shareInstance().addEvaluationData(braceletResult)
                         
                         self.updateEvaluationData()
                     }

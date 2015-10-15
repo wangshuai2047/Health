@@ -171,6 +171,13 @@ extension DBManager: DBManagerProtocol {
         let context = self.managedObjectContext!
         let insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
         
+        if let _ = result as? MyBodyResult {
+            insertData.deviceType = 0
+        }
+        if let _ = result as? MyBodyMiniAndPlusResult {
+            insertData.deviceType = 1
+        }
+        
         insertData.dataId = result.dataId
         insertData.userId = result.userId
         insertData.timeStamp = NSDate()
@@ -369,7 +376,7 @@ extension DBManager: DBManagerProtocol {
             
             let managedObject = listData[i]
             let info = newDataIdInfos[i]
-            managedObject.dataId = info["dataId"] as! String
+            managedObject.dataId = info["dataId"] as? String
             managedObject.isUpload = NSNumber(bool: true)
         }
         
@@ -869,6 +876,8 @@ extension DBManager {
         
         var info: [String : AnyObject] = [:]
         
+        info["deviceType"] = (data.valueForKey("deviceType") as! NSNumber)
+        
         info["dataId"] = dataId
         info["userId"] = userId
         info["timeStamp"] = timeStamp
@@ -886,12 +895,14 @@ extension DBManager {
         info["weight"] = weight
         
         // 脂肪肝  1为有  2为没有  0为不支持
-        let hepaticAdiposeInfiltration = data.valueForKey("hepaticAdiposeInfiltration") as! NSNumber
-        if hepaticAdiposeInfiltration.integerValue == 1 {
-            info["hepaticAdiposeInfiltration"] = NSNumber(bool: true)
-        } else if hepaticAdiposeInfiltration.integerValue == 2 {
-            info["hepaticAdiposeInfiltration"] = NSNumber(bool: false)
+        if let hepaticAdiposeInfiltration = data.valueForKey("hepaticAdiposeInfiltration") as? NSNumber {
+            if hepaticAdiposeInfiltration.integerValue == 1 {
+                info["hepaticAdiposeInfiltration"] = NSNumber(bool: true)
+            } else if hepaticAdiposeInfiltration.integerValue == 2 {
+                info["hepaticAdiposeInfiltration"] = NSNumber(bool: false)
+            }
         }
+        
         
         info["fatFreeBodyWeight"] = data.valueForKey("fatFreeBodyWeight") as! NSNumber
         info["fatFreeBodyWeightMin"] = data.valueForKey("fatFreeBodyWeightMin") as! NSNumber

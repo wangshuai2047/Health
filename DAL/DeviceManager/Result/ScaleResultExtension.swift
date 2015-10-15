@@ -32,9 +32,21 @@ extension ScaleResultProtocol {
     }
 }
 
-// 无设备时的计算
+// 创建结果
 extension ScaleResultProtocol {
-    
+    static func create(info: [String : AnyObject]) -> ScaleResultProtocol {
+        let deviceType = (info["deviceType"] as! NSNumber).integerValue
+        
+        if deviceType == 0 {
+            return MyBodyResult(info: info)
+        }
+        else if deviceType == 1 {
+            return MyBodyMiniAndPlusResult(info: info)
+        }
+        else {
+            return MyBodyResult(info: info)
+        }
+    }
 }
 
 // MARK: - 计算属性
