@@ -47,6 +47,8 @@ class GoalSettingViewController: UIViewController {
         frontButton.hidden = true
         
         setGoalButtonPressed(weightGoalButton)
+        
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,7 +74,7 @@ class GoalSettingViewController: UIViewController {
         scrollContentView.translatesAutoresizingMaskIntoConstraints = false
         
         // top
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: -20))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))
         
         // bottom
         scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
@@ -178,7 +180,7 @@ class GoalSettingViewController: UIViewController {
         setNumberAttLabel.attributedString.deleteCharactersInRange(NSRange(location: 0, length: setNumberAttLabel.attributedString.length))
         setNumberAttLabel.append("系统根据您的身体数据分析\n建议您将\(goalString)目标设置为: ", font: nil, color: deepBlue)
         setNumberAttLabel.append("\(goalNumber())", font: nil, color: lightBlue)
-        setNumberAttLabel.append("\(unit)\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
+        setNumberAttLabel.append("\(unit!)\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
         
         // 设置天数
         setDaysAttLabel.attributedString.deleteCharactersInRange(NSRange(location: 0, length: setDaysAttLabel.attributedString.length))
