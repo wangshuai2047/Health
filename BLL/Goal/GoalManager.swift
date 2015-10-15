@@ -132,23 +132,23 @@ struct GoalManager {
         UserGoalData.setDate = NSDate()
     }
     
-    private static var sevenDaysData: [(UInt16,UInt16,UInt16,UInt16)] = []
+    private static var sevenDaysData: [(Int,Int,Int,Int)] = []
     
     static func refreshSevenDaysData() {
-        var queryDatas: [(UInt16,UInt16,UInt16,UInt16)] = []
+        var queryDatas: [(Int,Int,Int,Int)] = []
         
         // 获取7天数据从今天开始
         let now = NSDate(timeIntervalSinceNow: 24 * 60 * 60)
         var beginDate = now.zeroTime()
         
-        for _ in 0...6 {
+        for _ in 0...7 {
             
             let endDate = beginDate.dateByAddingTimeInterval(-24 * 60 * 60)
             let list = DBManager.shareInstance().queryGoalData(endDate, endDate: beginDate)
             beginDate = endDate
             
-            var walkStep: UInt16 = 0
-            var runStep: UInt16 = 0
+            var walkStep: Int = 0
+            var runStep: Int = 0
             var results: [BraceletData] = []
             
             // 计算走步时间
@@ -158,11 +158,11 @@ struct GoalManager {
                 
                 if result.stepsType == .Walk // 走路
                 {
-                    walkStep += result.steps
+                    walkStep += Int(result.steps)
                 }
                 else if result.stepsType == .Run // 跑步
                 {
-                    runStep += result.steps
+                    runStep += Int(result.steps)
                 }
             }
             
@@ -174,7 +174,8 @@ struct GoalManager {
         GoalManager.sevenDaysData = queryDatas;
     }
     
-    static func querySevenDaysData() -> [(UInt16,UInt16,UInt16,UInt16)] {
+    // walkStep,runStep,sleepTime,deepSleepTime
+    static func querySevenDaysData() -> [(Int,Int,Int,Int)] {
         
         if GoalManager.sevenDaysData.count == 0 {
             refreshSevenDaysData()
@@ -216,7 +217,7 @@ extension BraceletData {
 extension GoalManager {
     
     // 返回(浅睡眠分钟数, 深睡眠分钟数)
-    static func parseOneDaySleepDatas(datas: [BraceletData]) -> (UInt16, UInt16) {
+    static func parseOneDaySleepDatas(datas: [BraceletData]) -> (Int, Int) {
         
         var sleepStarted = false
         var sleepStartTime: NSTimeInterval = 0
@@ -283,7 +284,7 @@ extension GoalManager {
                         
                         
                         print("浅睡眠: \(liteSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
-                        return (UInt16(liteSleepMinutes), UInt16(deepSleepMinutes))
+                        return (Int(liteSleepMinutes), Int(deepSleepMinutes))
                         
 //                        sleepStarted = false
 //                        sleepStartTime = 0
@@ -322,7 +323,7 @@ extension GoalManager {
             // 浅睡眠
             let liteSleepMinutes = (sleepEndTime - sleepStartTime + 60 - 0.001) / 60
             print("浅睡眠: \(liteSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
-            return (UInt16(liteSleepMinutes), UInt16(deepSleepMinutes))
+            return (Int(liteSleepMinutes), Int(deepSleepMinutes))
         }
         
         return (0, 0)

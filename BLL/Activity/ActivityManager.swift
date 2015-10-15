@@ -23,22 +23,26 @@ struct ActivityManager {
         
         var result = (true, true, true, true)
         
+        //[(walkStep,runStep,sleepTime,deepSleepTime)]
+        let datas = GoalManager.querySevenDaysData()
+        
         var endDate = NSDate(timeIntervalSinceNow: 24 * 60 * 60).zeroTime()
-        for _ in 0...6 {
+        for index in 1...7 {
             let beginDate = endDate.dateByAddingTimeInterval(-24 * 60 * 60)
+            
+            let (walkStep,_,sleepTime,deepSleepTime) = datas[index]
             
             // 是否是不倦行者
             if result.0 {
-                let list = DBManager.shareInstance().queryGoalData(beginDate, endDate: endDate)
-                if list.count == 0 {
+                
+                if walkStep < 10000 {
                     result.0 = false
                 }
             }
             
             // 是否是安睡达人
             if result.1 {
-                let list = DBManager.shareInstance().queryGoalData(beginDate, endDate: endDate)
-                if list.count == 0 {
+                if sleepTime + deepSleepTime < 8 * 60 {
                     result.1 = false
                 }
             }

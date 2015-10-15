@@ -17,9 +17,9 @@ struct GoalShowInfo {
     var sevenDaysWalkAverageValue: Int  // 过去七天平均步行多少
     var sevenDaysSleepAverageValue: Int // 过去七天平均睡眠多少
     
-    var sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]
+    var sevenDaysDatas: [(Int, Int, Int, Int)]
     
-    init(scaleResult: ScaleResultProtocol, sevenDaysDatas: [(UInt16, UInt16, UInt16, UInt16)]) {
+    init(scaleResult: ScaleResultProtocol, sevenDaysDatas: [(Int, Int, Int, Int)]) {
         // 需改变的体脂率
         addFatPercentage = scaleResult.standardFatPercentage - scaleResult.fatPercentage
         

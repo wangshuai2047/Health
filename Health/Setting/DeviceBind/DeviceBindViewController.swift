@@ -26,20 +26,23 @@ class DeviceBindViewController: UIViewController {
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
         
         // Mybodymini
-        deviceBindListInfo.append(["headIcon" : "wechatLogin", "title" : "Mybodymini", "execute" : {(isBind: Bool) in
-            
+        deviceBindListInfo.append(["headIcon" : "wechatLogin", "title" : "Mybodymini", "execute" : { [unowned self] (isBind: Bool) in
+                self.bindDevice([DeviceType.MyBodyMini], isBind: isBind)
             }])
         
         // Mybody
-        deviceBindListInfo.append(["headIcon" : "qqLogin", "title" : "Mybody", "execute" : {(isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "qqLogin", "title" : "Mybody", "execute" : { [unowned self] (isBind: Bool) in
+                self.bindDevice([DeviceType.MyBody], isBind: isBind)
             }])
         
         // MybodyPlus
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "MybodyPlus", "execute" : {(isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "MybodyPlus", "execute" : { [unowned self] (isBind: Bool) in
+                self.bindDevice([DeviceType.MyBodyPlus], isBind: isBind)
             }])
         
         // 好知体手环
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "好知体手环", "execute" : {(isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "好知体手环", "execute" : { [unowned self] (isBind: Bool) in
+                self.bindDevice([DeviceType.Bracelet], isBind: isBind)
             }])
         
     }
@@ -60,6 +63,15 @@ class DeviceBindViewController: UIViewController {
     }
     */
 
+    func bindDevice(types: [DeviceType], isBind: Bool) {
+        if isBind {
+            DeviceScanViewController.showDeviceScanViewController(types, delegate: self, rootController: self)
+        }
+        else {
+            SettingManager.unBindDevice(types)
+        }
+    }
+    
     func bindButtonPressed(button: UIButton) {
         let info = deviceBindListInfo[button.tag]
         let execute = info["execute"] as! (Bool) -> Void
@@ -86,12 +98,19 @@ extension DeviceBindViewController : UITableViewDataSource, UITableViewDelegate 
         cell.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         cell.bindButton.addTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
-        cell
+//        cell.bindButton.selected
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 116
+    }
+}
+
+extension DeviceBindViewController: DeviceScanViewControllerProtocol {
+    func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol) {
+        // 绑定
+        SettingManager.bindDevice(device)
     }
 }
