@@ -263,7 +263,18 @@ extension EvaluationDetailViewController {
     }
     
     func refreshFattyLiverData() {
-        fattyLiverLabel.text = "此秤不支持"
+        if let hepaticAdiposeInfiltration =  data?.hepaticAdiposeInfiltration {
+            if hepaticAdiposeInfiltration {
+                fattyLiverLabel.text = "有脂肪肝"
+            }
+            else {
+                fattyLiverLabel.text = "没脂肪肝"
+            }
+        }
+        else {
+            fattyLiverLabel.text = "此秤不支持"
+        }
+        
     }
     
     func refreshFatData() {
