@@ -19,6 +19,8 @@
         <attribute name="boneWeightMin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dataId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="edemaFactor" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="externalMoisture" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fatControl" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fatFreeBodyWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fatFreeBodyWeightMax" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -31,6 +33,7 @@
         <attribute name="fatWeightMin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="goalWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="hepaticAdiposeInfiltration" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="internalMoisture" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="isUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="leftLowerExtremityBone" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="leftLowerExtremityFat" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -43,6 +46,7 @@
         <attribute name="muscleWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="muscleWeightMax" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="muscleWeightMin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="obesity" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="proteinWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="proteinWeightMax" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="proteinWeightMin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -97,7 +101,7 @@
     </entity>
     <elements>
         <element name="Device" positionX="261" positionY="279" width="128" height="90"/>
-        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="1020"/>
+        <element name="EvaluationData" positionX="261" positionY="189" width="128" height="1080"/>
         <element name="GoalData" positionX="261" positionY="198" width="128" height="150"/>
         <element name="ShareData" positionX="279" positionY="297" width="128" height="75"/>
         <element name="UserDBData" positionX="288" positionY="315" width="128" height="135"/>

@@ -79,5 +79,8 @@ extension EvaluationData {
     @NSManaged var whr: NSNumber?
     @NSManaged var whrMax: NSNumber?
     @NSManaged var whrMin: NSNumber?
-
+    @NSManaged var externalMoisture: NSNumber?
+    @NSManaged var internalMoisture: NSNumber?
+    @NSManaged var edemaFactor: NSNumber?
+    @NSManaged var obesity: NSNumber?
 }
