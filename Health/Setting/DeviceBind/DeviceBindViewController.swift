@@ -26,22 +26,22 @@ class DeviceBindViewController: UIViewController {
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
         
         // Mybodymini
-        deviceBindListInfo.append(["headIcon" : "wechatLogin", "title" : "Mybodymini", "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "wechatLogin", "title" : "Mybodymini", "type" : DeviceType.MyBodyMini, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.MyBodyMini], isBind: isBind)
             }])
         
         // Mybody
-        deviceBindListInfo.append(["headIcon" : "qqLogin", "title" : "Mybody", "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "qqLogin", "title" : "Mybody", "type" : DeviceType.MyBody, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.MyBody], isBind: isBind)
             }])
         
         // MybodyPlus
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "MybodyPlus", "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "MybodyPlus", "type" : DeviceType.MyBodyPlus, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.MyBodyPlus], isBind: isBind)
             }])
         
         // 好知体手环
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "好知体手环", "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "好知体手环", "type" : DeviceType.Bracelet, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.Bracelet], isBind: isBind)
             }])
         
@@ -69,13 +69,14 @@ class DeviceBindViewController: UIViewController {
         }
         else {
             SettingManager.unBindDevice(types)
+            self.tableView.reloadData()
         }
     }
     
     func bindButtonPressed(button: UIButton) {
         let info = deviceBindListInfo[button.tag]
         let execute = info["execute"] as! (Bool) -> Void
-        execute(button.selected)
+        execute(!button.selected)
     }
     
     @IBAction func backButtonPressed(sender: AnyObject) {
@@ -98,7 +99,7 @@ extension DeviceBindViewController : UITableViewDataSource, UITableViewDelegate 
         cell.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         cell.bindButton.addTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
-//        cell.bindButton.selected
+        cell.bindButton.selected = SettingManager.isBindDevice([info["type"] as! DeviceType])
         
         return cell
     }
@@ -112,5 +113,7 @@ extension DeviceBindViewController: DeviceScanViewControllerProtocol {
     func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol) {
         // 绑定
         SettingManager.bindDevice(device)
+        
+        self.tableView.reloadData()
     }
 }

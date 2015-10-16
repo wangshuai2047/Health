@@ -57,6 +57,17 @@ struct SettingManager {
         }
     }
     
+    static func isBindDevice(types: [DeviceType]) -> Bool {
+        for type in types {
+            let have = DBManager.shareInstance().haveConnectedWithType(type)
+            if have {
+                return have
+            }
+        }
+        
+        return false
+    }
+    
     static func bindDevice(device: DeviceManagerProtocol) {
         DBManager.shareInstance().addDevice(device.uuid, name: device.name, type: device.type)
     }
