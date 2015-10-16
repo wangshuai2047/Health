@@ -129,6 +129,7 @@
                             <state key="normal" title="减重" backgroundImage="buttonBg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="selected" title="已选减重" backgroundImage="buttonBg"/>
                             <connections>
                                 <action selector="setGoalButtonPressed:" destination="-1" eventType="touchUpInside" id="b7V-rY-Tsm"/>
                             </connections>
@@ -143,6 +144,7 @@
                             <state key="normal" title="减脂" backgroundImage="buttonBg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="selected" title="已选减脂" backgroundImage="buttonBg"/>
                             <connections>
                                 <action selector="setGoalButtonPressed:" destination="-1" eventType="touchUpInside" id="isf-oz-fH6"/>
                             </connections>
@@ -157,6 +159,7 @@
                             <state key="normal" title="增肌" backgroundImage="buttonBg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="selected" title="已选增肌" backgroundImage="buttonBg"/>
                             <connections>
                                 <action selector="setGoalButtonPressed:" destination="-1" eventType="touchUpInside" id="BVc-Fc-cCT"/>
                             </connections>
