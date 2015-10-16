@@ -111,6 +111,18 @@ struct MyBodyResult: ScaleResultProtocol {
     // 左下肢骨质
     var leftLowerExtremityBone: Float = 0
     
+    // 外水
+    var externalMoisture: Float = 0
+    
+    // 内水
+    var internalMoisture: Float = 0
+    
+    // 水肿系数
+    var edemaFactor: Float = 0
+    
+    // 肥胖度
+    var obesity: Float = 0
+    
     
     init(userId: Int, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float, boneMuscleWeight: Float) {
         dataId = NSUUID().UUIDString

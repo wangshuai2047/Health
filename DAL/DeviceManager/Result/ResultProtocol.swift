@@ -158,6 +158,18 @@ protocol ScaleResultProtocol: ResultProtocol {
     // 左下肢骨质
     var leftLowerExtremityBone: Float { get set }
     
+    // 外水
+    var externalMoisture: Float { get set }
+    
+    // 内水
+    var internalMoisture: Float { get set }
+    
+    // 水肿系数
+    var edemaFactor: Float { get set }
+    
+    // 肥胖度
+    var obesity: Float { get set }
+    
     // 健康得分
     var score: Float { get set }
 }

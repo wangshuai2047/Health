@@ -248,6 +248,10 @@ extension DBManager: DBManagerProtocol {
         insertData.leftLowerExtremityFat = result.leftLowerExtremityFat
         insertData.leftLowerExtremityMuscle = result.leftLowerExtremityMuscle
         insertData.leftLowerExtremityBone = result.leftLowerExtremityBone
+        insertData.externalMoisture = result.externalMoisture
+        insertData.internalMoisture = result.internalMoisture
+        insertData.edemaFactor = result.edemaFactor
+        insertData.obesity = result.obesity
         insertData.score = result.score
         
         do {
@@ -952,6 +956,11 @@ extension DBManager {
         info["leftLowerExtremityFat"] = data.valueForKey("leftLowerExtremityFat") as! NSNumber
         info["leftLowerExtremityMuscle"] = data.valueForKey("leftLowerExtremityMuscle") as! NSNumber
         info["leftLowerExtremityBone"] = data.valueForKey("leftLowerExtremityBone") as! NSNumber
+        
+        info["externalMoisture"] = data.valueForKey("externalMoisture") as! NSNumber
+        info["internalMoisture"] = data.valueForKey("internalMoisture") as! NSNumber
+        info["edemaFactor"] = data.valueForKey("edemaFactor") as! NSNumber
+        info["obesity"] = data.valueForKey("obesity") as! NSNumber
         info["score"] = data.valueForKey("score") as! NSNumber
         
         return info

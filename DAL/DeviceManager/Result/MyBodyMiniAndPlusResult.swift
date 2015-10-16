@@ -150,6 +150,18 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     // 左下肢骨质
     var leftLowerExtremityBone: Float = 0
     
+    // 外水
+    var externalMoisture: Float = 0
+    
+    // 内水
+    var internalMoisture: Float = 0
+    
+    // 水肿系数
+    var edemaFactor: Float = 0
+    
+    // 肥胖度
+    var obesity: Float = 0
+    
     // 健康得分
     var score: Float = 0
     
@@ -295,6 +307,18 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
         // 左下肢骨质
         leftLowerExtremityBone = datas[index++]
         
+        // 外水
+        externalMoisture = datas[index++]
+        
+        // 内水
+        internalMoisture = datas[index++]
+        
+        // 水肿系数
+        edemaFactor = datas[index++]
+        
+        // 肥胖度
+        obesity = datas[index++]
+        
         // 健康得分
         score = datas[index++]
     }
@@ -392,6 +416,10 @@ extension MyBodyMiniAndPlusResult {
         leftLowerExtremityFat = (info["leftLowerExtremityFat"] as! NSNumber).floatValue
         leftLowerExtremityMuscle = (info["leftLowerExtremityMuscle"] as! NSNumber).floatValue
         leftLowerExtremityBone = (info["leftLowerExtremityBone"] as! NSNumber).floatValue
+        externalMoisture = (info["externalMoisture"] as! NSNumber).floatValue
+        internalMoisture = (info["internalMoisture"] as! NSNumber).floatValue
+        edemaFactor = (info["edemaFactor"] as! NSNumber).floatValue
+        obesity = (info["obesity"] as! NSNumber).floatValue
         score = (info["score"] as! NSNumber).floatValue
     }
 }
