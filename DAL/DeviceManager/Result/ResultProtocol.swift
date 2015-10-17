@@ -172,6 +172,7 @@ protocol ScaleResultProtocol: ResultProtocol {
     
     // 健康得分
     var score: Float { get set }
+    
 }
 
 protocol BraceletResultProtocol: ResultProtocol {

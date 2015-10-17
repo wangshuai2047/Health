@@ -196,6 +196,10 @@
 		E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */; };
 		E08B32A41B85A9CC0040ADE7 /* CompleteInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32A21B85A9CC0040ADE7 /* CompleteInfoViewController.swift */; };
 		E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E08B32A31B85A9CC0040ADE7 /* CompleteInfoViewController.xib */; };
+		E094E01D1BD283060017079B /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E01C1BD283060017079B /* HealthManager.swift */; settings = {ASSET_TAGS = (); }; };
+		E094E01E1BD283060017079B /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E01C1BD283060017079B /* HealthManager.swift */; settings = {ASSET_TAGS = (); }; };
+		E094E0211BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		E094E0221BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
 		E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09EC8E91B7E406B00CC07E3 /* CoreData.framework */; };
@@ -452,6 +456,8 @@
 		E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteOrganizationDataView.swift; sourceTree = "<group>"; };
 		E08B32A21B85A9CC0040ADE7 /* CompleteInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteInfoViewController.swift; sourceTree = "<group>"; };
 		E08B32A31B85A9CC0040ADE7 /* CompleteInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompleteInfoViewController.xib; sourceTree = "<group>"; };
+		E094E01C1BD283060017079B /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		E094E0201BD294E30017079B /* HealthDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataHelper.swift; sourceTree = "<group>"; };
 		E09588971BA99E0100033179 /* GoalViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalViewModel.swift; path = Health/Goal/GoalViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailTableViewCell.swift; sourceTree = "<group>"; };
 		E09AAC521BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -1012,6 +1018,22 @@
 			path = VScale;
 			sourceTree = "<group>";
 		};
+		E094E01B1BD282EF0017079B /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				E094E01C1BD283060017079B /* HealthManager.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		E094E01F1BD294CB0017079B /* HealthDataHealper */ = {
+			isa = PBXGroup;
+			children = (
+				E094E0201BD294E30017079B /* HealthDataHelper.swift */,
+			);
+			path = HealthDataHealper;
+			sourceTree = "<group>";
+		};
 		E09528891B82A43E00F7B8D0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1127,7 @@
 		E09EC8DC1B7E3FCC00CC07E3 /* BLL */ = {
 			isa = PBXGroup;
 			children = (
+				E094E01B1BD282EF0017079B /* Health */,
 				E0C50B9E1B862371007A9393 /* User */,
 				E08A24581B807C09004269BB /* Activity */,
 				E08A24591B807C09004269BB /* Evaluation */,
@@ -1127,6 +1150,7 @@
 		E09EC8DE1B7E3FCC00CC07E3 /* DAL */ = {
 			isa = PBXGroup;
 			children = (
+				E094E01F1BD294CB0017079B /* HealthDataHealper */,
 				E08A24551B807BFA004269BB /* HealthKitAndQQHealth */,
 				E08A24561B807BFA004269BB /* Request */,
 				E08A24571B807BFA004269BB /* Third */,
@@ -1592,10 +1616,12 @@
 				E0FBED3A1B835BEE00A70598 /* LoginViewController.swift in Sources */,
 				E0FBED301B83539000A70598 /* VScaleManager.m in Sources */,
 				E00580881B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
+				E094E0211BD294E30017079B /* HealthDataHelper.swift in Sources */,
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
 				E09AAC531BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift in Sources */,
+				E094E01D1BD283060017079B /* HealthManager.swift in Sources */,
 				E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */,
 				E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */,
 				E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */,
@@ -1697,6 +1723,7 @@
 				E0039BF21BCF28370014ED50 /* TrendViewModel.swift in Sources */,
 				E0039BF31BCF28370014ED50 /* TrendDetailViewController.swift in Sources */,
 				E0039BDD1BCF281A0014ED50 /* GUIViewController.swift in Sources */,
+				E094E01E1BD283060017079B /* HealthManager.swift in Sources */,
 				E0039BDB1BCF28130014ED50 /* LoginViewController.swift in Sources */,
 				E0039BDC1BCF28130014ED50 /* LoginAdsViewController.swift in Sources */,
 				E0039BDA1BCF27FE0014ED50 /* AppDelegate.swift in Sources */,
@@ -1756,6 +1783,7 @@
 				E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E05B1A311B8E028900B37F1C /* Alert.swift in Sources */,
 				E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
+				E094E0221BD294E30017079B /* HealthDataHelper.swift in Sources */,
 				E0255E891BC9680300CEE5D4 /* MyBodyManager.swift in Sources */,
 				E09EC8D31B7E3B5000CC07E3 /* HealthTests.swift in Sources */,
 				E0418EEF1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
