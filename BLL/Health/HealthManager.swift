@@ -67,7 +67,7 @@ class HealthManager: NSObject {
         }
         
         let list = DBManager.shareInstance().queryGoalData(startDate, endDate: NSDate())
-        let (walkStep , _, sleepTime, deepSleepTime) = HealthDataHelper.parseOneDaySportDatas(list)
+        let (walkStep , _, sleepTime, deepSleepTime, sleepStartDate, sleepEndDate) = HealthDataHelper.parseOneDaySportDatas(list)
         if list.count > 0 {
             let info = list[0]
             startDate = info["startTime"] as! NSDate
@@ -79,7 +79,7 @@ class HealthManager: NSObject {
             HealthDataManager.shareInstance().saveWalkData(startDate, endDate: endDate, steps: Double(walkStep))
             
             // 睡眠数据
-            HealthDataManager.shareInstance().saveSleepData(startDate, endDate: endDate, steps: Double(sleepTime + deepSleepTime) / 60)
+            HealthDataManager.shareInstance().saveSleepData(sleepStartDate, endDate: sleepEndDate, steps: Double(sleepTime + deepSleepTime) / 60)
         }
         
     }

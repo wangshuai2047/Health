@@ -147,7 +147,7 @@ struct GoalManager {
             let list = DBManager.shareInstance().queryGoalData(endDate, endDate: beginDate)
             beginDate = endDate
             
-            let (walkStep , runStep, sleepTime, deepSleepTime) = HealthDataHelper.parseOneDaySportDatas(list)
+            let (walkStep , runStep, sleepTime, deepSleepTime, _, _) = HealthDataHelper.parseOneDaySportDatas(list)
             queryDatas += [(walkStep,runStep,sleepTime,deepSleepTime)]
         }
         

@@ -90,8 +90,6 @@ class HealthKitManager: NSObject {
         if #available(iOS 8.0, *) {
             authorizeHealthKit({ (success, error) -> Void in
                 if error == nil {
-//                    let metadata = [
-//                        HKMetadataKeyDigitalSignature: NSNumber(double: steps)]
                     
                     let categoryType =
                     HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!

@@ -11,7 +11,7 @@ import UIKit
 class HealthDataHelper: NSObject {
     
     // 返回(走路,跑步,浅睡眠分钟数, 深睡眠分钟数)
-    static func parseOneDaySportDatas(datas: [[String: AnyObject]]) -> (Int, Int, Int, Int) {
+    static func parseOneDaySportDatas(datas: [[String: AnyObject]]) -> (Int, Int, Int, Int, NSDate, NSDate) {
         
         var walkStep: Int = 0
         var runStep: Int = 0
@@ -32,13 +32,13 @@ class HealthDataHelper: NSObject {
             }
         }
         
-        let (sleepTime, deepSleepTime) = parseOneDaySleepDatas(results)
+        let (sleepTime, deepSleepTime, sleepStartDate, sleepEndDate) = parseOneDaySleepDatas(results)
         
-        return (walkStep, runStep, sleepTime, deepSleepTime)
+        return (walkStep, runStep, sleepTime, deepSleepTime, sleepStartDate, sleepEndDate)
     }
     
-    // 返回(浅睡眠分钟数, 深睡眠分钟数)
-    private static func parseOneDaySleepDatas(datas: [BraceletData]) -> (Int, Int) {
+    // 返回(浅睡眠分钟数, 深睡眠分钟数, 睡眠开始时间, 睡眠结束时间)
+    private static func parseOneDaySleepDatas(datas: [BraceletData]) -> (Int, Int, NSDate, NSDate) {
         
         var sleepStarted = false
         var sleepStartTime: NSTimeInterval = 0
@@ -105,7 +105,7 @@ class HealthDataHelper: NSObject {
                         
                         
                         print("浅睡眠: \(liteSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
-                        return (Int(liteSleepMinutes), Int(deepSleepMinutes))
+                        return (Int(liteSleepMinutes), Int(deepSleepMinutes), NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
                         
                         //                        sleepStarted = false
                         //                        sleepStartTime = 0
@@ -144,9 +144,9 @@ class HealthDataHelper: NSObject {
             // 浅睡眠
             let liteSleepMinutes = (sleepEndTime - sleepStartTime + 60 - 0.001) / 60
             print("浅睡眠: \(liteSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
-            return (Int(liteSleepMinutes), Int(deepSleepMinutes))
+            return (Int(liteSleepMinutes), Int(deepSleepMinutes), NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
         }
         
-        return (0, 0)
+        return (0, 0, NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
     }
 }
