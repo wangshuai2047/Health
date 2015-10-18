@@ -15,24 +15,27 @@ class CompleteHeightDataView: UIView, UIScrollViewDelegate {
     
     var height: Double = 200
     
+    private let maxHeight: Double = 200.0
+    
+    private var unit: Double {
+        let minHeight = 20.0
+        let maxScroll = 596.0
+        
+        let unitN = (maxHeight - minHeight) / maxScroll
+        return unitN
+    }
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
         scrollView.contentSize = CGSizeMake(101, 608 + 214);
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: (maxHeight - height) / unit)
     }
     
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        let maxHeight = 200.0
-        let minHeight = 20.0
-        
-        let maxScroll = 596.0
-        
-        let unit = (maxHeight - minHeight) / maxScroll
-        
         height = maxHeight - (unit * Double(scrollView.contentOffset.y))
         
         heightLabel.text = "\(Int(height))"

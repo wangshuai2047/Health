@@ -196,11 +196,21 @@ class GoalSettingViewController: UIViewController {
     }
     
     func goalNumber() -> Int {
+        
+        
+        if goalType == .Fat {
+            
+        }
+        else if goalType == .Weight {
+            
+        }
+        
+        
         return 49
     }
     
     func calculeDays() -> Int {
-        return 56
+        return 30
     }
 }
 
@@ -269,6 +279,6 @@ extension GoalSettingViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     
     func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 50
+        return 80
     }
 }

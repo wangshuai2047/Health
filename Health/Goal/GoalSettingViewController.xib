@@ -149,7 +149,7 @@
                                 <action selector="setGoalButtonPressed:" destination="-1" eventType="touchUpInside" id="isf-oz-fH6"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wS-IF-4oc">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wS-IF-4oc">
                             <rect key="frame" x="78" y="227" width="163" height="87"/>
                             <animations/>
                             <constraints>

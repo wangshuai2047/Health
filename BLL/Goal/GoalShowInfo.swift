@@ -23,7 +23,7 @@ struct GoalShowInfo {
         // 需改变的体脂率
         addFatPercentage = scaleResult.standardFatPercentage - scaleResult.fatPercentage
         
-        let dayCalorie = scaleResult.weight * addFatPercentage * 100 * 15
+        let dayCalorie = scaleResult.weight * addFatPercentage * 15
         dayCalorieGoal = dayCalorie + scaleResult.dayNeedCalorie
         
         dayWalkGoal = Int(dayCalorie / 500)

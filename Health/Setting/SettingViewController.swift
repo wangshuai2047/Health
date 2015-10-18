@@ -92,6 +92,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         else if indexPath.row == 0 {
             // 成员资料修改管理
             let controller = CompleteInfoViewController()
+            controller.userModel = UserManager.mainUser
             controller.canBack = true
             controller.delegate = self
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)

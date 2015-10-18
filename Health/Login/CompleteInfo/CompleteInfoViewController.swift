@@ -17,6 +17,10 @@ class CompleteInfoViewController: UIViewController {
     var delegate: CompleteInfoDelegate?
     
     var canBack: Bool = false
+    var userModel: UserModel?
+    var phone: String?
+    var organizationCode: String?
+    
     private let tempHeadPath = NSHomeDirectory() + "/Documents/headImage.jpg"
     
     @IBOutlet weak var backButton: UIButton!
@@ -55,6 +59,8 @@ class CompleteInfoViewController: UIViewController {
         headAndNameDataView.headIconButton.addTarget(self, action: Selector("headIconButtonPressed"), forControlEvents: UIControlEvents.TouchUpInside)
         
         backButton.hidden = !canBack
+        
+        initIfExistUserModel()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -103,6 +109,32 @@ class CompleteInfoViewController: UIViewController {
         // width
         widthConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.width * 5)
         scrollContentView.addConstraint(widthConstraint!)
+    }
+    
+    func initIfExistUserModel() {
+        if let user = userModel {
+            self.headAndNameDataView.nickNameTextField.text = user.name
+            if let headUrlStr =  user.headURL {
+                if let headURL = NSURL(string: headUrlStr) {
+                    self.headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
+                }
+            }
+            
+            genderDataView.womanButton.selected = !user.gender
+            genderDataView.menButton.selected = user.gender
+            
+            ageDataView.selectedRow = Int(user.age)
+            
+            heightDataView.height = Double(user.height)
+            
+            if let phone = self.phone {
+                organizationDataView.phoneTextField.text = phone
+            }
+            
+            if let code = self.organizationCode {
+                organizationDataView.codeTextField.text = code
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

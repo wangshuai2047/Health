@@ -88,12 +88,12 @@ class GoalViewController: UIViewController {
                 
                 if showInfo.addFatPercentage > 0 {
                     goalDetailLabel.append("天,还需增加", font: nil, color: deepBlue)
-                    goalDetailLabel.append(" \(abs(showInfo.addFatPercentage) * 100)% ", font: nil, color: lightBlue)
+                    goalDetailLabel.append(" \(abs(showInfo.addFatPercentage))% ", font: nil, color: lightBlue)
                     goalDetailLabel.append("体脂率", font: nil, color: deepBlue)
                 }
                 else {
                     goalDetailLabel.append("天,还需降低", font: nil, color: deepBlue)
-                    goalDetailLabel.append(" \(abs(showInfo.addFatPercentage) * 100)% ", font: nil, color: lightBlue)
+                    goalDetailLabel.append(" \(abs(showInfo.addFatPercentage))% ", font: nil, color: lightBlue)
                     goalDetailLabel.append("体脂率", font: nil, color: deepBlue)
                 }
             }
@@ -156,7 +156,6 @@ class GoalViewController: UIViewController {
             {
                 sleepDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
             }
-            
         }
     }
     

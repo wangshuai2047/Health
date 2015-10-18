@@ -12,28 +12,17 @@
 		E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
 		E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
-		E0039BDA1BCF27FE0014ED50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */; };
-		E0039BDB1BCF28130014ED50 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED381B835BEE00A70598 /* LoginViewController.swift */; };
-		E0039BDC1BCF28130014ED50 /* LoginAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAF11B85456600504454 /* LoginAdsViewController.swift */; };
-		E0039BDD1BCF281A0014ED50 /* GUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAF71B85488300504454 /* GUIViewController.swift */; };
 		E0039BDE1BCF28370014ED50 /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
 		E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
 		E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */; };
 		E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D048D1B8BE7DC0090137C /* CircleView.swift */; };
-		E0039BE51BCF28370014ED50 /* EvaluationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */; };
-		E0039BE71BCF28370014ED50 /* SportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0B1221B8B53C200E9BF69 /* SportDetailViewController.swift */; };
-		E0039BE81BCF28370014ED50 /* SleepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */; };
 		E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */; };
-		E0039BEA1BCF28370014ED50 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
-		E0039BEB1BCF28370014ED50 /* CompleteInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32A21B85A9CC0040ADE7 /* CompleteInfoViewController.swift */; };
 		E0039BEC1BCF28370014ED50 /* CompleteHeadAndNameDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32931B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift */; };
 		E0039BED1BCF28370014ED50 /* CompleteGenderDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32961B85A8B00040ADE7 /* CompleteGenderDataView.swift */; };
 		E0039BEE1BCF28370014ED50 /* CompleteHeightDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32991B85A8C50040ADE7 /* CompleteHeightDataView.swift */; };
 		E0039BEF1BCF28370014ED50 /* CompleteAgeDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B329C1B85A91E0040ADE7 /* CompleteAgeDataView.swift */; };
 		E0039BF01BCF28370014ED50 /* CompleteOrganizationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */; };
-		E0039BF11BCF28370014ED50 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DB0E1B854BAF00504454 /* SettingViewController.swift */; };
 		E0039BF21BCF28370014ED50 /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
-		E0039BF31BCF28370014ED50 /* TrendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FCB01B8F5A8D00565FDB /* TrendDetailViewController.swift */; };
 		E0039C3E1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */; settings = {ASSET_TAGS = (); }; };
 		E0039C3F1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */; settings = {ASSET_TAGS = (); }; };
 		E0039C401BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C241BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle */; settings = {ASSET_TAGS = (); }; };
@@ -71,9 +60,7 @@
 		E005808C1B9E55FE00ABDF1A /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005808A1B9E55FE00ABDF1A /* Crypto.swift */; };
 		E005808E1B9E588700ABDF1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E005808D1B9E588700ABDF1A /* Security.framework */; };
 		E007CC1C1BCAA2D200365FA8 /* DeviceScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC1A1BCAA2D200365FA8 /* DeviceScanViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E007CC1D1BCAA2D200365FA8 /* DeviceScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC1A1BCAA2D200365FA8 /* DeviceScanViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E007CC1E1BCAA2D200365FA8 /* DeviceScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC1B1BCAA2D200365FA8 /* DeviceScanViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		E007CC1F1BCAA2D200365FA8 /* DeviceScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC1B1BCAA2D200365FA8 /* DeviceScanViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E007CC231BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E007CC241BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -83,18 +70,14 @@
 		E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */; };
 		E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
 		E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB521BC52B3900225C32 /* FeedBackViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E015BB551BC52B3900225C32 /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB521BC52B3900225C32 /* FeedBackViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E015BB561BC52B3900225C32 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB531BC52B3900225C32 /* FeedBackViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		E015BB571BC52B3900225C32 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB531BC52B3900225C32 /* FeedBackViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB591BC5520700225C32 /* FeedbackCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E015BB5C1BC5520700225C32 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB591BC5520700225C32 /* FeedbackCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
 		E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E01917FC1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; settings = {ASSET_TAGS = (); }; };
 		E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; settings = {ASSET_TAGS = (); }; };
 		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
@@ -137,17 +120,13 @@
 		E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0418EDB1BC2BABC00B2788D /* UIKit.framework */; };
 		E0418EDE1BC2BAC500B2788D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0418EDD1BC2BAC500B2788D /* Foundation.framework */; };
 		E0418EE81BC34B2600B2788D /* ThirdPlatformBindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EE61BC34B2600B2788D /* ThirdPlatformBindController.swift */; settings = {ASSET_TAGS = (); }; };
-		E0418EE91BC34B2600B2788D /* ThirdPlatformBindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EE61BC34B2600B2788D /* ThirdPlatformBindController.swift */; settings = {ASSET_TAGS = (); }; };
 		E0418EEA1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EE71BC34B2600B2788D /* ThirdPlatformBindController.xib */; settings = {ASSET_TAGS = (); }; };
-		E0418EEB1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EE71BC34B2600B2788D /* ThirdPlatformBindController.xib */; settings = {ASSET_TAGS = (); }; };
 		E0418EEE1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E0418EEF1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E0418EF11BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E0418EF41BC3552C00B2788D /* DeviceBindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF21BC3552C00B2788D /* DeviceBindViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E0418EF51BC3552C00B2788D /* DeviceBindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF21BC3552C00B2788D /* DeviceBindViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E0418EF61BC3552C00B2788D /* DeviceBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF31BC3552C00B2788D /* DeviceBindViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		E0418EF71BC3552C00B2788D /* DeviceBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF31BC3552C00B2788D /* DeviceBindViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E0418EFA1BC3554800B2788D /* DeviceBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF81BC3554800B2788D /* DeviceBindCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF81BC3554800B2788D /* DeviceBindCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E0418EFC1BC3554800B2788D /* DeviceBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF91BC3554800B2788D /* DeviceBindCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -176,7 +155,6 @@
 		E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */; };
 		E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */; };
 		E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
-		E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
 		E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
 		E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
 		E08A24541B807BE4004269BB /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24521B807BE4004269BB /* DBManager.swift */; };
@@ -257,8 +235,6 @@
 		E0E5DE911BC88A78001BCCD1 /* BindOrganzationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E0E5DE951BC88A89001BCCD1 /* BindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		E0E5DE961BC89115001BCCD1 /* BindOrganzationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */; };
-		E0E5DE971BC89115001BCCD1 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */; };
 		E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
 		E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		E0E735CD1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */; settings = {ASSET_TAGS = (); }; };
@@ -277,9 +253,7 @@
 		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F7A6B11BC6C36900AF6B8B /* VisitorAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E0F7A6B21BC6C36900AF6B8B /* VisitorAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E0F7A6B31BC6C36900AF6B8B /* VisitorAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0F7A6B01BC6C36900AF6B8B /* VisitorAddViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		E0F7A6B41BC6C36900AF6B8B /* VisitorAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0F7A6B01BC6C36900AF6B8B /* VisitorAddViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E0F9DAEF1B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
 		E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
 		E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAF11B85456600504454 /* LoginAdsViewController.swift */; };
@@ -1538,14 +1512,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0F7A6B41BC6C36900AF6B8B /* VisitorAddViewController.xib in Resources */,
-				E0418EF71BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
 				E0039C531BCF28C10014ED50 /* ShareSDKUI.bundle in Resources */,
-				E007CC1F1BCAA2D200365FA8 /* DeviceScanViewController.xib in Resources */,
 				E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */,
-				E01917FE1BC80FA4002819CB /* ShareViewController.xib in Resources */,
-				E0418EEB1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
-				E015BB571BC52B3900225C32 /* FeedBackViewController.xib in Resources */,
 				E0039C411BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E007CC251BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */,
 				E0418EF11BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
@@ -1708,45 +1676,29 @@
 				E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */,
 				E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */,
 				E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */,
-				E0039BE51BCF28370014ED50 /* EvaluationDetailViewController.swift in Sources */,
-				E0039BE71BCF28370014ED50 /* SportDetailViewController.swift in Sources */,
-				E0039BE81BCF28370014ED50 /* SleepDetailViewController.swift in Sources */,
 				E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */,
-				E0039BEA1BCF28370014ED50 /* GoalSettingViewController.swift in Sources */,
-				E0039BEB1BCF28370014ED50 /* CompleteInfoViewController.swift in Sources */,
 				E0039BEC1BCF28370014ED50 /* CompleteHeadAndNameDataView.swift in Sources */,
 				E0039BED1BCF28370014ED50 /* CompleteGenderDataView.swift in Sources */,
 				E0039BEE1BCF28370014ED50 /* CompleteHeightDataView.swift in Sources */,
 				E0039BEF1BCF28370014ED50 /* CompleteAgeDataView.swift in Sources */,
 				E0039BF01BCF28370014ED50 /* CompleteOrganizationDataView.swift in Sources */,
-				E0039BF11BCF28370014ED50 /* SettingViewController.swift in Sources */,
 				E0039BF21BCF28370014ED50 /* TrendViewModel.swift in Sources */,
-				E0039BF31BCF28370014ED50 /* TrendDetailViewController.swift in Sources */,
-				E0039BDD1BCF281A0014ED50 /* GUIViewController.swift in Sources */,
 				E094E01E1BD283060017079B /* HealthManager.swift in Sources */,
-				E0039BDB1BCF28130014ED50 /* LoginViewController.swift in Sources */,
-				E0039BDC1BCF28130014ED50 /* LoginAdsViewController.swift in Sources */,
-				E0039BDA1BCF27FE0014ED50 /* AppDelegate.swift in Sources */,
 				E0EDBDF51BCE5B8E00137FB0 /* BraceletBlueToothFormats.swift in Sources */,
 				E0EDBDF61BCE5B8E00137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */,
 				E0EDBDEF1BCE5B3A00137FB0 /* MyBodyMiniAndPlusResult.swift in Sources */,
 				E0D403FE1BCAC51D001F8A15 /* ShareData.swift in Sources */,
 				E0D403FF1BCAC51D001F8A15 /* ShareData+CoreDataProperties.swift in Sources */,
 				E0255E7F1BC9573E00CEE5D4 /* MyBodyResult.swift in Sources */,
-				E0E5DE961BC89115001BCCD1 /* BindOrganzationViewController.swift in Sources */,
-				E0E5DE971BC89115001BCCD1 /* BindPhoneViewController.swift in Sources */,
 				E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */,
 				E007CC231BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
 				E00580891B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
 				E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */,
 				E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */,
 				E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */,
-				E015BB551BC52B3900225C32 /* FeedBackViewController.swift in Sources */,
 				E01C815C1B880C3D00A1F7AC /* DBManager.swift in Sources */,
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
-				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
-				E01917FC1BC80FA4002819CB /* ShareViewController.swift in Sources */,
 				E0255E741BC9556300CEE5D4 /* ValueStatus.swift in Sources */,
 				E0255E7C1BC9562A00CEE5D4 /* BraceletResult.swift in Sources */,
 				E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */,
@@ -1778,7 +1730,6 @@
 				E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */,
 				E00580861B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
 				E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */,
-				E007CC1D1BCAA2D200365FA8 /* DeviceScanViewController.swift in Sources */,
 				E0255E761BC9556300CEE5D4 /* WeightStatus.swift in Sources */,
 				E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E05B1A311B8E028900B37F1C /* Alert.swift in Sources */,
@@ -1805,13 +1756,10 @@
 				E0AF85B41BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
 				E0C50B9B1B861D97007A9393 /* AdsReqeustTests.swift in Sources */,
 				E09EC8E41B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
-				E0418EF51BC3552C00B2788D /* DeviceBindViewController.swift in Sources */,
 				E0FBED461B835C9100A70598 /* ResponseDataFilter.swift in Sources */,
 				E0FDBBC21B9D81D800AE1A7C /* ScaleResultTests.swift in Sources */,
 				E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */,
-				E0F7A6B21BC6C36900AF6B8B /* VisitorAddViewController.swift in Sources */,
 				E0AF85B71BAAF4B8005BB95E /* GoalManagerTests.swift in Sources */,
-				E0418EE91BC34B2600B2788D /* ThirdPlatformBindController.swift in Sources */,
 				E0255E831BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

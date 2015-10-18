@@ -11,12 +11,13 @@ import UIKit
 class CompleteAgeDataView: UIView {
 
     @IBOutlet weak var agePicker: UIPickerView!
+    var selectedRow: Int = 25
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
-        agePicker.selectRow(25, inComponent: 0, animated: true)
+        agePicker.selectRow(selectedRow, inComponent: 0, animated: true)
     }
 
 
