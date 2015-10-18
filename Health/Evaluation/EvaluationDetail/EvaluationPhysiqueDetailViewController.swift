@@ -13,6 +13,7 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
     var physique: Physique?
     
     let selectedColor = UIColor(red: 0, green: 64/255.0, blue: 128/255.0, alpha: 1)
+    let selectedFemailColor = UIColor(red: 215/255.0, green: 148/255.0, blue: 239/255.0, alpha: 1)
     
     convenience init() {
         self.init(nibName: "EvaluationPhysiqueDetailViewController", bundle: nil)
@@ -22,6 +23,7 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        refreshView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +36,7 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
         
         if physique != nil {
             let (titleLabel, button, _) = labelAndButtonAndIntroduceView(self.view.viewWithTag(physique!.rawValue + 10)!)
-            titleLabel.textColor = selectedColor
+            titleLabel.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
             button.selected = true
         }
         
@@ -49,6 +51,19 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
         let introduceView = view.viewWithTag(3)
         
         return (titleLabel, button, introduceView!)
+    }
+    
+    func refreshView() {
+        for i in 11...19 {
+            let currtentview = self.view.viewWithTag(i)!
+            let (titleLabel, button, _) = labelAndButtonAndIntroduceView(currtentview)
+            
+            let physique = Physique(rawValue: i - 10)
+            
+            titleLabel.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
+            button.setImage(UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender)), forState: UIControlState.Normal)
+            button.setImage(UIImage(named: physique!.selectedImageName(UserManager.shareInstance().currentUser.gender)), forState: UIControlState.Selected)
+        }
     }
     
     @IBAction func physiqueButtonPressed(sender: UIButton) {

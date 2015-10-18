@@ -231,7 +231,7 @@ extension EvaluationDetailViewController {
         scoreLabel.text = "\(score)分"
         scoreLabel.textColor = deepBlue
         
-        physiqueImageView.image = UIImage(named: data!.physique.selectImageName)
+        physiqueImageView.image = UIImage(named: data!.physique.selectedImageName(data!.gender))
     }
     
     func refreshDescriptionData() {
