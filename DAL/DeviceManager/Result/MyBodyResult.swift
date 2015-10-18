@@ -650,17 +650,15 @@ extension MyBodyResult {
         boneWeight = (info["boneWeight"] as! NSNumber).floatValue
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
-//        if let userInfo = DBManager.shareInstance().queryUser(userId) {
-//            gender = (userInfo["gender"] as! NSNumber).boolValue
-//            age = (userInfo["age"] as! NSNumber).unsignedCharValue
-//            height = (userInfo["height"] as! NSNumber).unsignedCharValue
-//        }
-//        else {
+        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+            gender = (userInfo["gender"] as! NSNumber).boolValue
+            age = (userInfo["age"] as! NSNumber).unsignedCharValue
+            height = (userInfo["height"] as! NSNumber).unsignedCharValue
+        }
+        else {
             gender = UserManager.shareInstance().currentUser.gender
             age = UserManager.shareInstance().currentUser.age
             height = UserManager.shareInstance().currentUser.height
-//        }
-        
-        
+        }
     }
 }
