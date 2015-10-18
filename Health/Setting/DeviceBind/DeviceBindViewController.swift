@@ -26,22 +26,22 @@ class DeviceBindViewController: UIViewController {
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
         
         // Mybodymini
-        deviceBindListInfo.append(["headIcon" : "wechatLogin", "title" : "Mybodymini", "type" : DeviceType.MyBodyMini, "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "blue_circle_bg", "title" : "Mybodymini", "type" : DeviceType.MyBodyMini, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.MyBodyMini], isBind: isBind)
             }])
         
         // Mybody
-        deviceBindListInfo.append(["headIcon" : "qqLogin", "title" : "Mybody", "type" : DeviceType.MyBody, "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "blue_circle_bg", "title" : "Mybody", "type" : DeviceType.MyBody, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.MyBody], isBind: isBind)
             }])
         
         // MybodyPlus
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "MybodyPlus", "type" : DeviceType.MyBodyPlus, "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "blue_circle_bg", "title" : "MybodyPlus", "type" : DeviceType.MyBodyPlus, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.MyBodyPlus], isBind: isBind)
             }])
         
         // 好知体手环
-        deviceBindListInfo.append(["headIcon" : "weiboLogin", "title" : "好知体手环", "type" : DeviceType.Bracelet, "execute" : { [unowned self] (isBind: Bool) in
+        deviceBindListInfo.append(["headIcon" : "green_circle_bg", "title" : "好知体手环", "type" : DeviceType.Bracelet, "execute" : { [unowned self] (isBind: Bool) in
                 self.bindDevice([DeviceType.Bracelet], isBind: isBind)
             }])
         

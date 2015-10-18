@@ -129,7 +129,7 @@ class HealthDataHelper: NSObject {
                     }
                     else if data.endTime.timeIntervalSinceDate(data.startTime) > 20 * 60 && NSTimeInterval(data.steps * 25 * 60) / data.endTime.timeIntervalSinceDate(data.startTime) <= 2 {
                         wakeupDataCnt = 0
-                        deepSleepMinutes += Int(sleepEndTime - sleepStartTime)
+                        deepSleepMinutes += Int(sleepEndTime - sleepStartTime) / 60
                     }
                     else {
                         wakeupDataCnt = 0

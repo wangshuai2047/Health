@@ -54,7 +54,7 @@ class ThirdPlatformBindController: UIViewController {
             }])
         
         // 集团账户
-        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "集团账户",
+        thirdPlatformBindListInfo.append(["headIcon" : "orgazation", "title" : "集团账户",
             "execute" : { [unowned self] () in
                 BindOrganzationViewController.showBindOrganzationViewController(self, rootController: self)
             },
@@ -63,7 +63,7 @@ class ThirdPlatformBindController: UIViewController {
             }])
         
         // 手机号
-        thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "手机号",
+        thirdPlatformBindListInfo.append(["headIcon" : "phone", "title" : "手机号",
             "execute" : { [unowned self] () in
                 BindPhoneViewController.showBindPhoneViewController(self, rootController: self)
             },
