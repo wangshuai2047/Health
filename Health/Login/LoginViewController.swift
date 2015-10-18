@@ -83,6 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             else {
                 if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
                     appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
+                    SettingManager.addLocalNotification()
                 }
             }
         }
@@ -214,6 +215,7 @@ extension LoginViewController: CompleteInfoDelegate {
             
             if error == nil {
                 // 跳转到主页
+                SettingManager.addLocalNotification()
                 AppDelegate.applicationDelegate().changeToMainController()
             }
             else {

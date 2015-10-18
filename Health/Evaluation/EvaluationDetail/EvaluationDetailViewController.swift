@@ -159,6 +159,7 @@ extension EvaluationDetailViewController {
         tableView.reloadData()
         
         self.data = viewModel.allDatas.first?.scaleResult
+        refreshData()
     }
     
     func refreshData() {

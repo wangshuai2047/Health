@@ -418,45 +418,51 @@ extension DBManager {
     func addGoalData(setDatas: (inout setDatas: GoalData) -> GoalData) {
         
         let context = self.managedObjectContext!
-        var insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
         
-        insertData.dataId = NSUUID().UUIDString
-        setDatas(setDatas: &insertData)
-        
-        do {
-            try context.save()
-            NSLog("Insert GoalData Data Success")
-        } catch _ {
-            NSLog("Insert GoalData Data Fail")
+        context.performBlock { () -> Void in
+            var insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
+            
+            insertData.dataId = NSUUID().UUIDString
+            setDatas(setDatas: &insertData)
+            
+            do {
+                try context.save()
+                //            NSLog("Insert GoalData Data Success")
+            } catch _ {
+                //            NSLog("Insert GoalData Data Fail")
+            }
         }
     }
     
     func deleteGoalData(dataId: String) {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
         
-        let request = NSFetchRequest()
-        request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %@", dataId)
-        
-        var error: NSError? = nil
-        let listData:[AnyObject]?
-        do {
-            listData = try context.executeFetchRequest(request)
-        } catch let error1 as NSError {
-            error = error1
-            listData = nil
-            print(error)
-        }
-        for data in listData as! [EvaluationData] {
-            context.deleteObject(data)
-            var savingError: NSError? = nil
+        context.performBlock { () -> Void in
+            let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+            
+            let request = NSFetchRequest()
+            request.entity = entityDescription
+            request.predicate = NSPredicate(format: "dataId == %@", dataId)
+            
+            var error: NSError? = nil
+            let listData:[AnyObject]?
             do {
-                try context.save()
-                print("删除成功")
-            } catch let error as NSError {
-                savingError = error
-                print("删除失败: \(savingError)")
+                listData = try context.executeFetchRequest(request)
+            } catch let error1 as NSError {
+                error = error1
+                listData = nil
+                print(error)
+            }
+            for data in listData as! [EvaluationData] {
+                context.deleteObject(data)
+                var savingError: NSError? = nil
+                do {
+                    try context.save()
+                    print("删除成功")
+                } catch let error as NSError {
+                    savingError = error
+                    print("删除失败: \(savingError)")
+                }
             }
         }
     }
@@ -464,6 +470,7 @@ extension DBManager {
     func queryGoalData(dataId: String) -> [String: AnyObject]? {
         
         let context = self.managedObjectContext!
+        
         let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
         
         let request = NSFetchRequest()
@@ -561,7 +568,7 @@ extension DBManager {
         
         let listData = (try! context.executeFetchRequest(request)) as! [GoalData]
         
-        for var i = 0; i < listData.count; i++ {
+        for var i = 0; i < listData.count && i < newDataIdInfos.count; i++ {
             
             let managedObject = listData[i]
             let info = newDataIdInfos[i]

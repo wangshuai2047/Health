@@ -77,4 +77,18 @@ struct SettingManager {
             DBManager.shareInstance().removeDeviceBind(type)
         }
     }
+    
+    static func addLocalNotification() {
+        let notification = UILocalNotification()
+        
+        notification.fireDate = NSDate().zeroTime().dateByAddingTimeInterval(20 * 60 * 60)
+        notification.repeatInterval = NSCalendarUnit.Day
+        notification.alertBody = "今天身体测试时间到！"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    static func removeLocalNotification() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+    }
 }

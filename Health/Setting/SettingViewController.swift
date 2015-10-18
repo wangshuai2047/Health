@@ -86,6 +86,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == list.count {
+            SettingManager.removeLocalNotification()
             LoginManager.logout()
             AppDelegate.applicationDelegate().changeToLoginController()
         }
