@@ -329,7 +329,7 @@ struct ShareSDKHelper {
             if error != nil {
                 do {
                     let result : NSDictionary? = try NSJSONSerialization.JSONObjectWithData(data!,  options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
-                    
+                    print("syncQQHealthData  \(result)")
                     if let jsonObj = result {
                         
                         if let code = jsonObj.valueForKey("ret") as? Int {

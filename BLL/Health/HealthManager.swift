@@ -38,11 +38,8 @@ class HealthManager: NSObject {
         
         // 获取未同步的时间
         var startDate = NSDate(timeIntervalSinceNow: -24 * 60 * 60)
-        if let lastSyncDate = syncBraceletDate {
+        if let lastSyncDate = syncScaleDate {
             startDate = lastSyncDate
-        }
-        else {
-            syncBraceletDate = startDate
         }
         
         let result: ScaleResultProtocol?
@@ -53,14 +50,17 @@ class HealthManager: NSObject {
             
             // 体重
             HealthDataManager.shareInstance().saveWeightData(result!.weight, fatPercentage: result!.fatPercentage, bmi: result!.BMI, date: timeStamp)
+            
+            syncScaleDate = startDate
         }
         
         
-        if let lastSyncDate = syncScaleDate {
+        if let lastSyncDate = syncBraceletDate {
             startDate = lastSyncDate
         }
         else {
             startDate = NSDate(timeIntervalSinceNow: -24 * 60 * 60)
+            
         }
         
         let list = DBManager.shareInstance().queryGoalData(startDate, endDate: NSDate())
@@ -71,6 +71,7 @@ class HealthManager: NSObject {
             
             let lastInfo = list.last
             let endDate = lastInfo!["endTime"] as! NSDate
+            syncBraceletDate = endDate
             
             // 步行数据
             HealthDataManager.shareInstance().saveWalkData(startDate, endDate: endDate, steps: Double(walkStep))
