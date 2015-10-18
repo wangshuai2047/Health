@@ -25,48 +25,75 @@ class HealthDataManager: NSObject {
     
     // 步行数据
     func saveWalkData(startDate: NSDate, endDate: NSDate, steps: Double) {
-        HealthKitManager.shareInstance().saveWalkData(startDate, endDate: endDate, steps: steps) { (error: NSError?) -> Void in
+        AppleHealthKitManager.shareInstance().saveWalkData(startDate, endDate: endDate, steps: steps) { (error: NSError?) -> Void in
             if error != nil {
-                NSLog("%@", error!);
+                NSLog("Apple Health Kit saveWalkData error: %@", error!);
             }
             else {
-                NSLog("saveWalkData success");
+                NSLog("Apple Health Kit saveWalkData success");
+            }
+        }
+        
+        QQHealthManager.shareInstance().saveWalkData(startDate, endDate: endDate, steps: steps) { (error: NSError?) -> Void in
+            if error != nil {
+                NSLog("QQ Health saveWalkData error: %@", error!);
+            }
+            else {
+                NSLog("QQ Health saveWalkData success");
             }
         }
     }
     
     // 睡眠数据
-    func saveSleepData(startDate: NSDate, endDate: NSDate, steps: Double) {
-        HealthKitManager.shareInstance().saveSleepData(startDate, endDate: endDate, steps: steps) { (error: NSError?) -> Void in
+    func saveSleepData(startDate: NSDate, endDate: NSDate, sleepTime: Int, deepSleepTime: Int) {
+        AppleHealthKitManager.shareInstance().saveSleepData(startDate, endDate: endDate) { (error: NSError?) -> Void in
             if error != nil {
-                NSLog("%@", error!);
+                NSLog("Apple Health Kit saveSleepData error: %@", error!);
             }
             else {
-                NSLog("saveSleepData success");
+                NSLog("Apple Health Kit saveSleepData success");
+            }
+        }
+        
+        QQHealthManager.shareInstance().saveSleepData(startDate, endDate: endDate, sleepTime: sleepTime, deepSleepTime: deepSleepTime) { (error: NSError?) -> Void in
+            if error != nil {
+                NSLog("QQ Health saveSleepData error: %@", error!);
+            }
+            else {
+                NSLog("QQ Health saveSleepData success");
             }
         }
     }
     
     // 体重
-    func saveWeightData(weight: Float, date:NSDate) {
-        HealthKitManager.shareInstance().saveWeightData(weight, date: date) { (error: NSError?) -> Void in
+    func saveWeightData(weight: Float, fatPercentage: Float, bmi: Float, date: NSDate) {
+        
+        // 健康中心
+        AppleHealthKitManager.shareInstance().saveWeightData(weight, date: date) { (error: NSError?) -> Void in
             if error != nil {
-                NSLog("%@", error!);
+                NSLog("Apple Health Kit saveWeightData error: %@", error!);
             }
             else {
-                NSLog("saveWeightData success");
+                NSLog("Apple Health Kit saveWeightData success");
             }
         }
-    }
-    
-    // BMI
-    func saveBMIData(bmi: Float, date:NSDate) {
-        HealthKitManager.shareInstance().saveBMIData(bmi, date: date) { (error: NSError?) -> Void in
+        
+        AppleHealthKitManager.shareInstance().saveBMIData(bmi, date: date) { (error: NSError?) -> Void in
             if error != nil {
-                NSLog("%@", error!);
+                NSLog("Apple Health Kit saveBMIData error: %@", error!);
             }
             else {
-                NSLog("saveBMIData success");
+                NSLog("Apple Health Kit saveBMIData success");
+            }
+        }
+        
+        // qq健康中心
+        QQHealthManager.shareInstance().saveWeightData(weight, fatPercentage: fatPercentage, bmi: bmi, date: date) { (error: NSError?) -> Void in
+            if error != nil {
+                NSLog("QQ Health saveWeightData error: %@", error!);
+            }
+            else {
+                NSLog("QQ Health saveWeightData success");
             }
         }
     }
@@ -79,12 +106,12 @@ class HealthDataManager: NSObject {
     
     
     func isHealthDataAvailable() -> Bool {
-        return HealthKitManager.shareInstance().isHealthDataAvailable()
+        return AppleHealthKitManager.shareInstance().isHealthDataAvailable()
         
 //        return false
     }
     
     func requestDataShare(completion: (NSError?) -> Void) {
-        HealthKitManager.shareInstance().requestDataShare(completion)
+        AppleHealthKitManager.shareInstance().requestDataShare(completion)
     }
 }

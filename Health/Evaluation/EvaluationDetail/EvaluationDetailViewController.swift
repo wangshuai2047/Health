@@ -12,7 +12,7 @@ class EvaluationDetailViewController: UIViewController {
     
     var data: ScaleResultProtocol? {
         didSet {
-            refreshData()
+//            refreshData()
         }
     }
     var viewModel = EvaluationDetailViewModel()

@@ -52,10 +52,7 @@ class HealthManager: NSObject {
             let timeStamp = evaluationData["timeStamp"] as! NSDate;
             
             // 体重
-            HealthDataManager.shareInstance().saveWeightData(result!.weight, date: timeStamp)
-            
-            // BMI
-            HealthDataManager.shareInstance().saveBMIData(result!.BMI, date: timeStamp)
+            HealthDataManager.shareInstance().saveWeightData(result!.weight, fatPercentage: result!.fatPercentage, bmi: result!.BMI, date: timeStamp)
         }
         
         
@@ -79,7 +76,7 @@ class HealthManager: NSObject {
             HealthDataManager.shareInstance().saveWalkData(startDate, endDate: endDate, steps: Double(walkStep))
             
             // 睡眠数据
-            HealthDataManager.shareInstance().saveSleepData(sleepStartDate, endDate: sleepEndDate, steps: Double(sleepTime + deepSleepTime) / 60)
+            HealthDataManager.shareInstance().saveSleepData(sleepStartDate, endDate: sleepEndDate , sleepTime: sleepTime, deepSleepTime: deepSleepTime)
         }
         
     }

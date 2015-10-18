@@ -12,16 +12,16 @@ import HealthKit
 @available(iOS 8.0, *)
 var healthKitStore = HKHealthStore()
 
-class HealthKitManager: NSObject {
+class AppleHealthKitManager: NSObject {
     
-    class func shareInstance() -> HealthKitManager {
+    class func shareInstance() -> AppleHealthKitManager {
         struct YYSingle {
             static var predicate: dispatch_once_t = 0
-            static var instance: HealthKitManager? = nil
+            static var instance: AppleHealthKitManager? = nil
         }
         
         dispatch_once(&YYSingle.predicate, { () -> Void in
-            YYSingle.instance = HealthKitManager()
+            YYSingle.instance = AppleHealthKitManager()
         })
         
         return YYSingle.instance!
@@ -86,7 +86,7 @@ class HealthKitManager: NSObject {
     }
     
     // 睡眠数据
-    func saveSleepData(startDate: NSDate, endDate: NSDate, steps: Double, completion: ((NSError?) -> Void)) {
+    func saveSleepData(startDate: NSDate, endDate: NSDate, completion: ((NSError?) -> Void)) {
         if #available(iOS 8.0, *) {
             authorizeHealthKit({ (success, error) -> Void in
                 if error == nil {

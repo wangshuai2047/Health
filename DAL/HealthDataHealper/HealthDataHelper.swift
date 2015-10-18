@@ -10,7 +10,7 @@ import UIKit
 
 class HealthDataHelper: NSObject {
     
-    // 返回(走路,跑步,浅睡眠分钟数, 深睡眠分钟数)
+    // 返回(走路,跑步,浅睡眠分钟数, 深睡眠分钟数, 睡眠开始时间, 睡眠结束时间)
     static func parseOneDaySportDatas(datas: [[String: AnyObject]]) -> (Int, Int, Int, Int, NSDate, NSDate) {
         
         var walkStep: Int = 0
@@ -91,7 +91,7 @@ class HealthDataHelper: NSObject {
                     if ((hour < 23 && hour >= sleep_start_hour) || (hour < 2)) {
                         sleepStarted = false
                         sleepStartTime = 0
-                        sleepStartTime = 0
+                        sleepEndTime = 0
                         deepSleepMinutes = 0
                         walkMinutes = 0
                         todayDone = false
@@ -129,7 +129,7 @@ class HealthDataHelper: NSObject {
                     }
                     else if data.endTime.timeIntervalSinceDate(data.startTime) > 20 * 60 && NSTimeInterval(data.steps * 25 * 60) / data.endTime.timeIntervalSinceDate(data.startTime) <= 2 {
                         wakeupDataCnt = 0
-                        //                        deepSleepMinutes +=
+                        deepSleepMinutes += Int(sleepEndTime - sleepStartTime)
                     }
                     else {
                         wakeupDataCnt = 0

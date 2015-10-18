@@ -97,6 +97,7 @@ class BluetoothManager: NSObject {
         scanClosure = complete
         scanDeviceType = scanTypes
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
+        centralManager.delegate = self;
     }
     
     func stopScanDevice() {
@@ -104,8 +105,14 @@ class BluetoothManager: NSObject {
     }
     
     func connect(peripheral: CBPeripheral) {
-        centralManager.delegate = self
-        centralManager.connectPeripheral(currentDevice!.peripheral!, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true)])
+        
+        if currentDevice?.type == DeviceType.MyBody {
+            self.clearWork()
+        }
+        else {
+            centralManager.delegate = self
+            centralManager.connectPeripheral(currentDevice!.peripheral!, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true)])
+        }
     }
     
     func fire(uuid: String, info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
@@ -126,8 +133,10 @@ class BluetoothManager: NSObject {
                         self.centralManager.stopScan()
                         self.currentDevice = device
                         self.isScan = false
+                        
+                        let currentDevice = self.currentDevice!
                         self.connect(self.currentDevice!.peripheral!)
-                        self.currentDevice?.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
+                        currentDevice.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
                             self.currentDevice = nil
                             complete(result, error)
                             self.clearWork()
@@ -143,6 +152,8 @@ class BluetoothManager: NSObject {
         if currentDevice?.peripheral != nil {
             self.centralManager.cancelPeripheralConnection(currentDevice!.peripheral!)
         }
+        self.centralManager.delegate = nil
+        currentDevice?.peripheral?.delegate = nil
         currentDevice?.peripheral = nil
         currentDevice?.characteristic = nil
         timeoutTimer?.invalidate()

@@ -110,6 +110,7 @@ class EvaluationViewController: UIViewController {
             
             if error == nil {
                 detailController.data = result
+                detailController.refreshData()
                 self.showView(self.connectDeviceView)
             } else {
                 Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
@@ -181,6 +182,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
             if error == nil {
                 detailController.data = info
+                detailController.refreshData()
                 //                self.pushToDetailEvaluationViewController(info!)
                 self.showView(self.connectDeviceView)
             } else {

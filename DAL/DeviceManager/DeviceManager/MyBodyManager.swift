@@ -31,7 +31,14 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
             VScaleManager.sharedInstance().scanDevice({ [unowned self] (error: NSError!) -> Void in
                 if error == nil {
                     VScaleManager.sharedInstance().scale({ (result: VTFatScaleTestResult!, error: NSError!) -> Void in
-                        
+                        // 生成 resultProtocol 对象
+                        if error == nil {
+                            let scaleResult = MyBodyManager.scaleInputData(result.weight, waterContent: result.waterContent, visceralFatContent: Float(result.visceralFatContent), gender: userModel.gender, userId: userModel.userId, age: userModel.age, height: userModel.height)
+                            self.fireComplete?(scaleResult, error)
+                        }
+                        else {
+                            self.fireComplete?(nil, error)
+                        }
                     })
                 }
                 else {

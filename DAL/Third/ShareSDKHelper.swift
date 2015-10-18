@@ -139,6 +139,15 @@ struct ShareSDKHelper {
         })
     }
     
+    static var qqInfo: [String : AnyObject]? {
+        get {
+            return NSUserDefaults.standardUserDefaults().objectForKey("QQHealthInfo") as? [String : AnyObject]
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "QQHealthInfo")
+        }
+    }
+    
     static func loginWithQQ(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeQQ, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
             var err: NSError? = nil
@@ -150,6 +159,7 @@ struct ShareSDKHelper {
                 complete(uid: nil, name: nil, headIcon: nil, error: error)
             }
             else if response == SSDKResponseState.Success {
+                qqInfo = ["qqUserOpenId" : user.uid, "qqToken" : user.credential.token]
                 complete(uid: user.uid, name: user.nickname == nil ? "" : user.nickname, headIcon: user.icon == nil ? "" : user.icon, error: nil)
             }
         })
@@ -221,5 +231,135 @@ struct ShareSDKHelper {
         shareInfo.SSDKSetupQQParamsByText("text 好体知QQ分享测试", title: "title 好体知QQ分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, type: SSDKContentType.Image, forPlatformSubType: SSDKPlatformType.TypeQQ)
         
         return shareInfo
+    }
+    
+    // 记步数据同步 distance单位米 duration单位秒 calories单位千卡
+    static func syncStepsDatas(date: NSDate, distance: Int, steps: Int, duration: Int, calories: Int, complete: (NSError?) -> Void) {
+        syncQQHealthData("report_steps", params: [
+            "time" : date.timeIntervalSince1970,
+            "distance" : distance,
+            "steps" : steps,
+            "duration" : duration,
+            "calories" : calories
+            ], complete: complete)
+    }
+    
+    // 体重体质数据同步
+    static func syncBodyDatas(date: NSDate, weight: Float, fat_per: Float, bmi: Float, complete: (NSError?) -> Void) {
+        syncQQHealthData("report_weight", params: [
+            "time" : date.timeIntervalSince1970,
+            "weight" : weight,
+            "fat_per" : fat_per,
+            "bmi" : bmi
+            ], complete: complete)
+    }
+    
+    // 睡眠数据同步
+/*
+    end_time        Int     -        睡眠结束的时间戳(从 1970-01-01 00:00:00 秒数)
+    ￼start_time      Int     -        睡眠开始的时间戳(从 1970-01-01 00:00:00 秒数)
+    total_time      Int     分钟      今日睡眠总时间
+    light_sleep     Int     分钟      今日浅睡眠总时间
+    deep_sleep      Int     分钟      今日深睡眠总时间
+    awake_time      Int     分钟      今日睡眠期间醒来状态的总时间
+    detail          String  -        睡眠阶段详情数据,格式[起始时间点,睡眠状态] (1-睡醒,2-浅睡眠,3-深睡眠), 当深睡, 浅睡,清醒,有状态改变时记录,例如 [1405585306,2],[1405591306,3],[1405631306,2]
+*/
+    static func syncSleepDatas(start_time: NSDate, end_time: NSDate, total_time: Int, light_sleep: Int, deep_sleep: Int, awake_time: Int, detail: String, complete: (NSError?) -> Void) {
+        syncQQHealthData("report_sleep", params: [
+            "start_time" : start_time.timeIntervalSince1970,
+            "end_time" : end_time.timeIntervalSince1970,
+            "total_time" : total_time,
+            "light_sleep" : light_sleep,
+            "deep_sleep" : deep_sleep,
+            "awake_time" : awake_time,
+            "detail" : detail
+            ], complete: complete)
+    }
+    
+    // 健康中心请求数据
+    private static func syncQQHealthData(interfaceName: String, params: [String : AnyObject], complete: (NSError?) -> Void) {
+        var urlStr = "https://openmobile.qq.com/v3/health/\(interfaceName)?"
+        
+        // 配置参数
+        var paramsArr: [String] = []
+        for key in params.keys {
+            paramsArr.append("\(key)=\(params[key])")
+        }
+        
+        
+        // 内置参数
+        // access_token
+        if let access_token = qqInfo?["qqToken"] as? String {
+            paramsArr.append("access_token=\(access_token)")
+        }
+        else {
+            // 错误
+            complete(NSError(domain: "ShareSDKHelper Error", code: -1, userInfo: [NSLocalizedDescriptionKey : "access_token 参数没有 未登录"]))
+            return
+        }
+        
+        // oauth_consumer_key
+        paramsArr.append("oauth_consumer_key=\(QQAppId)")
+        
+        // openid
+        if let openid = qqInfo?["qqUserOpenId"] as? String {
+            paramsArr.append("openid=\(openid)")
+        }
+        else {
+            // 错误
+            complete(NSError(domain: "ShareSDKHelper Error", code: -1, userInfo: [NSLocalizedDescriptionKey : "openid 参数没有 未登录"]))
+            return
+        }
+        
+        // pf=qzone
+        paramsArr.append("pf=qzone")
+        
+        // 合成URL
+        urlStr += paramsArr.joinWithSeparator("&")
+        
+        // URL编码
+        
+        // 发送请求
+        let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: urlStr)!)
+        request.HTTPMethod = "POST"
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in
+            
+            var err = error
+            if error != nil {
+                do {
+                    let result : NSDictionary? = try NSJSONSerialization.JSONObjectWithData(data!,  options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+                    
+                    if let jsonObj = result {
+                        
+                        if let code = jsonObj.valueForKey("ret") as? Int {
+                            if code >= 0 {
+                                // 请求成功
+                                err = nil
+                            }
+                            else {
+                                // 请求失败
+                                if let msg = jsonObj.valueForKey("msg") as? String {
+                                    err = NSError(domain: "QQHealth error", code: code, userInfo: [NSLocalizedDescriptionKey : msg])
+                                }
+                                else
+                                {
+                                    err = NSError(domain: "QQHealth Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : "QQHealth Server not return the detail error message"])
+                                }
+                            }
+                        }
+                    }
+                } catch let error1 as NSError {
+                    err = error1
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                complete(err)
+            })
+        })
+        
+        task.resume()
+        
     }
 }
