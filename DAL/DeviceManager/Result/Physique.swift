@@ -10,17 +10,31 @@ import Foundation
 
 // 体型
 enum Physique: Int {
-    case HiddenFat = 1      // 隐性肥胖
-    case LotOfFat       // 脂肪过多
-    case Fat            // 肥胖
-    case LittleMuscle   // 肌肉不足
-    case Health          // 健康
-    case LotOfMuscle    // 超重肌肉
-    case Spare          // 消瘦
-    case LittleFat      // 低脂肪
-    case Athlete        // 运动员
+    case HiddenFat = 1      // 隐性肥胖  hiddenFatFemaleSelected
+    case LotOfFat       // 脂肪过多 lotOfFatFemaleSelected
+    case Fat            // 肥胖   fatFemaleSelected
+    case LittleMuscle   // 肌肉不足 littleMuscleFemaleSelected
+    case Health          // 健康  healthFemaleSelected
+    case LotOfMuscle    // 超重肌肉 lotOfMuscleFemaleSelected
+    case Spare          // 消瘦   spareFemaleSelected
+    case LittleFat      // 低脂肪  littleFatFemaleSelected
+    case Athlete        // 运动员  athleteFemaleSelected
     
-    var imageName: String {
+    // gender true为男  false为女
+    func imageName(gender: Bool) -> String {
+        if gender {
+            return self.imageName
+        }
+        else {
+            return self.imageName + "Female"
+        }
+    }
+    
+    func selectedImageName(gender: Bool) -> String {
+        return imageName(gender) + "Selected"
+    }
+    
+    private var imageName: String {
         switch self {
         case .HiddenFat:
             return "hiddenFat"
@@ -41,10 +55,6 @@ enum Physique: Int {
         case .Athlete:
             return "athlete"
         }
-    }
-    
-    var selectImageName: String {
-        return "\(self.imageName)Selected"
     }
     
     var description: String {
