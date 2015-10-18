@@ -59,7 +59,7 @@ class EvaluationDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -232,7 +232,9 @@ extension EvaluationDetailViewController {
         scoreLabel.text = "\(score)分"
         scoreLabel.textColor = deepBlue
         
+         print(physiqueImageView)
         physiqueImageView.image = UIImage(named: data!.physique.selectedImageName(data!.gender))
+        print(physiqueImageView)
     }
     
     func refreshDescriptionData() {

@@ -27,7 +27,7 @@ extension ScaleResultProtocol {
     
     func uploadInfo(timestamp: Int) -> [String: AnyObject] {
         
-        let uploadInfo : [String: AnyObject] = [
+        var uploadInfo : [String: AnyObject] = [
             
             "userId" : userId,
             "boneWeight" : boneWeight,
@@ -40,8 +40,69 @@ extension ScaleResultProtocol {
             "waterPercentage" : waterPercentage,
             "waterWeight" : waterWeight,
             "weight" : weight,
-            "timestamp" : timestamp
+            "timeStamp" : timestamp
         ]
+        
+        uploadInfo["bmi"] = BMI
+        uploadInfo["bmiMax"] = BMIRange.1
+        uploadInfo["bmiMin"] = BMIRange.0
+        uploadInfo["bmr"] = BMR
+        uploadInfo["bodyAge"] = bodyAge
+        uploadInfo["boneMuscleWeightMax"] = boneMuscleRange.1
+        uploadInfo["boneMuscleWeightMin"] = boneMuscleRange.0
+        uploadInfo["boneWeightMax"] = boneWeightRange.1
+        uploadInfo["boneWeightMin"] = boneWeightRange.0
+        uploadInfo["fatControl"] = fatControl
+        uploadInfo["fatFreeBodyWeight"] = fatFreeBodyWeight
+        uploadInfo["fatFreeBodyWeightMax"] = fatFreeBodyWeightRange.1
+        uploadInfo["fatFreeBodyWeightMin"] = fatFreeBodyWeightRange.0
+        uploadInfo["fatPercentageMax"] = fatPercentageRange.1
+        uploadInfo["fatPercentageMin"] = fatPercentageRange.0
+        uploadInfo["fatWeightMax"] = fatWeightRange.1
+        uploadInfo["fatWeightMin"] = fatWeightRange.0
+        uploadInfo["goalWeight"] = goalWeight
+        if hepaticAdiposeInfiltration == nil {
+            uploadInfo["hepaticAdiposeInfiltration"] = 0
+        }
+        else {
+            uploadInfo["hepaticAdiposeInfiltration"] = hepaticAdiposeInfiltration! ? 1 : 0
+        }
+        uploadInfo["leftLowerExtremityBone"] = leftLowerExtremityBone
+        uploadInfo["leftLowerExtremityFat"] = leftLowerExtremityFat
+        uploadInfo["leftLowerExtremityMuscle"] = leftLowerExtremityMuscle
+        uploadInfo["leftUpperExtremityBone"] = leftUpperExtremityBone
+        uploadInfo["leftUpperExtremityFat"] = leftUpperExtremityFat
+        uploadInfo["leftUpperExtremityMuscle"] = leftUpperExtremityMuscle
+        uploadInfo["muscleControl"] = muscleControl
+        uploadInfo["m_smm"] = m_smm
+        uploadInfo["muscleWeightMax"] = muscleWeightRange.1
+        uploadInfo["muscleWeightMin"] = muscleWeightRange.0
+        uploadInfo["proteinWeightMax"] = proteinWeightRange.1
+        uploadInfo["proteinWeightMin"] = proteinWeightRange.0
+        uploadInfo["rightLowerExtremityBone"] = rightLowerExtremityBone
+        uploadInfo["rightLowerExtremityFat"] = rightLowerExtremityFat
+        uploadInfo["rightLowerExtremityMuscle"] = rightLowerExtremityMuscle
+        uploadInfo["rightUpperExtremityBone"] = rightUpperExtremityBone
+        uploadInfo["rightUpperExtremityFat"] = rightUpperExtremityFat
+        uploadInfo["rightUpperExtremityMuscle"] = rightUpperExtremityMuscle
+        uploadInfo["score"] = score
+        
+        uploadInfo["sw"] = SW
+        uploadInfo["swMax"] = SWRange.1
+        uploadInfo["swMin"] = SWRange.0
+        uploadInfo["trunkLimbBone"] = trunkLimbBone
+        uploadInfo["trunkLimbFat"] = trunkLimbFat
+        uploadInfo["trunkLimbMuscle"] = trunkLimbMuscle
+        uploadInfo["waterWeightMax"] = waterWeightRange.1
+        uploadInfo["waterWeightMin"] = waterWeightRange.0
+        uploadInfo["weightControl"] = weightControl
+        uploadInfo["whr"] = WHR
+        uploadInfo["whrMax"] = WHRRange.1
+        uploadInfo["whrMin"] = WHRRange.0
+        uploadInfo["externalMoisture"] = externalMoisture
+        uploadInfo["internalMoisture"] = internalMoisture
+        uploadInfo["edemaFactor"] = edemaFactor
+        uploadInfo["obesity"] = obesity
         
         return uploadInfo
     }

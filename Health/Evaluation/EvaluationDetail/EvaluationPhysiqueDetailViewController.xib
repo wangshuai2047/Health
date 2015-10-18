@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
@@ -1222,24 +1223,24 @@
     </objects>
     <resources>
         <image name="athlete" width="43" height="120"/>
-        <image name="athleteSelected" width="43" height="120"/>
+        <image name="athleteSelected" width="103" height="289"/>
         <image name="back" width="15" height="26"/>
         <image name="fat" width="48" height="119"/>
-        <image name="fatSelected" width="47" height="119"/>
+        <image name="fatSelected" width="116" height="288"/>
         <image name="health" width="43" height="120"/>
-        <image name="healthSelected" width="43" height="120"/>
+        <image name="healthSelected" width="104" height="290"/>
         <image name="hiddenFat" width="42" height="119"/>
-        <image name="hiddenFatSelected" width="42" height="119"/>
+        <image name="hiddenFatSelected" width="101" height="288"/>
         <image name="introduceBg" width="68" height="119"/>
         <image name="littleFat" width="43" height="120"/>
-        <image name="littleFatSelected" width="42" height="119"/>
+        <image name="littleFatSelected" width="101" height="287"/>
         <image name="littleMuscle" width="38" height="119"/>
-        <image name="littleMuscleSelected" width="38" height="119"/>
+        <image name="littleMuscleSelected" width="92" height="288"/>
         <image name="lotOfFat" width="47" height="119"/>
-        <image name="lotOfFatSelected" width="48" height="119"/>
+        <image name="lotOfFatSelected" width="116" height="288"/>
         <image name="lotOfMuscle" width="43" height="120"/>
-        <image name="lotOfMuscleSelected" width="43" height="120"/>
+        <image name="lotOfMuscleSelected" width="104" height="290"/>
         <image name="spare" width="38" height="118"/>
-        <image name="spareSelected" width="38" height="118"/>
+        <image name="spareSelected" width="90" height="286"/>
     </resources>
 </document>
