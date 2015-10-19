@@ -11,6 +11,10 @@ import UIKit
 struct RequestLoginAdModel {
     let imageURL: String
     let linkURL: String
+    
+    var serverImageURL: String {
+        return Request.requestPHPPathURL() + imageURL
+    }
 }
 
 struct AdsRequest {

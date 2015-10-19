@@ -57,6 +57,10 @@ class AppleHealthKitManager: NSObject {
         
         if #available(iOS 8.0, *) {
             
+            if endDate.timeIntervalSinceDate(startDate) < 0 {
+                completion(NSError(domain: "HealthKitManager", code: 1, userInfo: [NSLocalizedDescriptionKey : "开始时间比结束时间晚"]))
+                return
+            }
             
             authorizeHealthKit({ (success, error) -> Void in
                 if error == nil {

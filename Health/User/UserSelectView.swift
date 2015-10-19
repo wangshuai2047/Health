@@ -58,7 +58,9 @@ class UserSelectView: UIView {
         headButton.addTarget(self, action: Selector("headButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         changeButton.addTarget(self, action: Selector("changePeoplePressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
-        
+        // 讲头像设置为圆角
+        headButton.layer.cornerRadius = headButton.frame.size.width/2
+        headButton.layer.masksToBounds = true
     }
     
     // Only override drawRect: if you perform custom drawing.
@@ -147,6 +149,9 @@ class UserSelectView: UIView {
         headImageView.sd_setImageWithURL(NSURL(string: headURLStr), placeholderImage: UIImage(named: "defaultHead"))
         headView.addSubview(headImageView)
         headImageView.tag = headImageViewTag
+        // 讲头像设置为圆角
+        headImageView.layer.cornerRadius = headImageView.frame.size.width/2
+        headImageView.layer.masksToBounds = true
         
         // 名字
         let nameLabel = UILabel(frame: CGRectMake(0, 66, 81, 21))
