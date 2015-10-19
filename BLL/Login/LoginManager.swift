@@ -107,6 +107,11 @@ struct LoginManager {
         
         UserRequest.completeUserInfo(Int(UserData.shareInstance().userId!), gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: headURL) { (imageURLStr, error) -> Void in
             
+            if headURL != nil {
+                _ = try? NSFileManager.defaultManager().removeItemAtPath(headURL!)
+            }
+            
+            
             if error == nil {
                 UserData.shareInstance().name = name
                 UserData.shareInstance().gender = gender
@@ -340,6 +345,14 @@ struct LoginManager {
         if let organizationCode = userInfo["organizationCode"] as? String {
             print("organizationCode\(organizationCode)")
             UserData.shareInstance().organizationCode = organizationCode
+        }
+        
+        if let childs = userInfo["child"] as? [[String : AnyObject]] {
+            DBManager.shareInstance().deleteAllUser()
+            for info in childs {
+                let userModel = UserModel(info: info)
+                DBManager.shareInstance().addOrUpdateUser(userModel)
+            }
         }
     }
 }

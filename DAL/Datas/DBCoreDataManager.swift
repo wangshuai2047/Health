@@ -85,6 +85,57 @@ extension DBManager: DBUserProtocol {
         }
     }
     
+    func addOrUpdateUser(userModel: UserModel) {
+        
+        if let _ = queryUser(userModel.userId) {
+            // 更新
+            let context = self.managedObjectContext!
+            let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+            
+            let request = NSFetchRequest()
+            request.entity = entityDescription
+            request.predicate = NSPredicate(format: "userId == %@", userModel.userId)
+            
+            let listData = (try! context.executeFetchRequest(request)) as! [UserDBData]
+            
+            for var i = 0; i < listData.count; i++ {
+                
+                let managedObject = listData[i]
+                managedObject.name = userModel.name
+                if let headURL = userModel.headURL {
+                    managedObject.headURL = headURL
+                }
+            }
+            
+            do {
+                try context.save()
+            }catch let error1 as NSError {
+                print(error1)
+            }
+        }
+        else {
+            // 插入一个新的
+            let context = self.managedObjectContext!
+            let insertData = NSEntityDescription.insertNewObjectForEntityForName("UserDBData", inManagedObjectContext: context) as! UserDBData
+            
+            insertData.userId = NSNumber(integer: userModel.userId)
+            insertData.age = NSNumber(unsignedChar: userModel.age)
+            insertData.height = NSNumber(unsignedChar: userModel.height)
+            insertData.gender = NSNumber(bool: userModel.gender)
+            insertData.name = userModel.name
+            if let headURL = userModel.headURL {
+                insertData.headURL = headURL
+            }
+            
+            do {
+                try context.save()
+                NSLog("Insert Evaluation Data Success")
+            } catch _ {
+                NSLog("Insert Evaluation Data Fail")
+            }
+        }
+    }
+    
     func deleteUser(userId: Int) {
         
         let context = self.managedObjectContext!
@@ -147,6 +198,32 @@ extension DBManager: DBUserProtocol {
         }
         
         return nil
+    }
+    
+    func deleteAllUser() {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch let error1 as NSError {
+            print(error1)
+            listData = nil
+        }
+        for data in listData as! [UserDBData] {
+            context.deleteObject(data)
+            do {
+                try context.save()
+                print("删除成功")
+            } catch let error as NSError {
+                print(error)
+                print("删除失败")
+            }
+        }
     }
 }
 

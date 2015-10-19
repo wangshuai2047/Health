@@ -82,6 +82,10 @@ class UserSelectView: UIView {
             }
             userViews.removeAll(keepCapacity: false)
             
+            for view in scrollView.subviews {
+                view.removeFromSuperview()
+            }
+            
             var startCenter = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
             let padding: CGFloat = 112
             for var i = 0; i < self.users.count; i++ {

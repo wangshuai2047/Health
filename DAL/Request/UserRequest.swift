@@ -102,7 +102,7 @@ struct UserRequest {
         })
     }
     
-    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool,imageURL: String?, complete: ((userId: Int?, NSError?) -> Void)) {
+    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool,imageURL: String?, complete: ((userId: Int?, headURL: String?, NSError?) -> Void)) {
         
         var params = ["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)]
         
@@ -123,14 +123,14 @@ struct UserRequest {
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(userId: nil, err)
+                complete(userId: nil, headURL: nil, err)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(userId: jsonObj?.valueForKey("userId") as? Int, nil)
+                complete(userId: jsonObj?.valueForKey("userId") as? Int, headURL: jsonObj?.valueForKey("headURL") as? String, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

@@ -64,10 +64,15 @@ class UserManager {
     
     func addUser(name: String, gender: Bool, age: UInt8, height: UInt8, imageURL: String?, complete: ((userModel: UserModel?, NSError?) -> Void)) {
         
-        UserRequest.createUser(UserData.shareInstance().userId!, name: name, height: Int(height), age: Int(age), gender: gender, imageURL: imageURL) { (userId, error: NSError?) -> Void in
+        UserRequest.createUser(UserData.shareInstance().userId!, name: name, height: Int(height), age: Int(age), gender: gender, imageURL: imageURL) { (userId, headURL, error: NSError?) -> Void in
             var userModel: UserModel? = nil
             if error == nil {
-                userModel = UserModel(userId: userId!, age: age, gender: gender, height: height, name: name, headURL: nil)
+                
+                if imageURL != nil {
+                    _ = try? NSFileManager.defaultManager().removeItemAtPath(imageURL!)
+                }
+                
+                userModel = UserModel(userId: userId!, age: age, gender: gender, height: height, name: name, headURL: headURL)
                 // { (inout setDatas: EvaluationData) -> EvaluationData in
                 DBManager.shareInstance().addUser({ (inout setDatas: UserDBData) -> UserDBData in
                     setDatas.userId = NSNumber(integer: userModel!.userId)
@@ -75,6 +80,9 @@ class UserManager {
                     setDatas.height = NSNumber(unsignedChar: height)
                     setDatas.gender = NSNumber(bool: gender)
                     setDatas.name = name
+                    if headURL != nil {
+                        setDatas.headURL = headURL!
+                    }
                     
                     return setDatas
                 })
