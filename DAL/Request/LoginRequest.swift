@@ -101,6 +101,28 @@ struct  LoginRequest {
             }
         })
     }
+    
+    // 第三方绑定 字段：userId 用户id  绑定类型 type:1 微信  2：微博  3：qq登录  openid：第三方的id
+    static func bindThirdPlatform(name: String, openId: String, type: ThirdPlatformType, complete: ((userInfo: [String: AnyObject]?, NSError?) -> Void)) {
+        
+        RequestType.LoginThirdPlatform.startRequest(["name": name, "openid": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(userInfo: nil, err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                let jsonObj: [String: AnyObject]? = result.jsonObj as? [String: AnyObject]
+                complete(userInfo: jsonObj?["info"] as? [String: AnyObject], nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
 }
 
 

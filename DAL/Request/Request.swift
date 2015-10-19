@@ -46,6 +46,10 @@ struct Request {
 // PHP Style
 extension Request {
     
+    static func requestPHPPathURL() -> String {
+        return "http://123.56.131.212/api/"
+    }
+    
     static func requestPHPURL() -> String {
         return "http://123.56.131.212/api/index.php"
     }

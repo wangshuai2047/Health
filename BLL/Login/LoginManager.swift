@@ -22,13 +22,14 @@ struct LoginManager {
     
     static var showedGUI: Bool{
         get {
-            let isShowGUI = NSUserDefaults.standardUserDefaults().valueForKey("showedGUI") as? String
-            if isShowGUI != nil && isShowGUI == "yes" {
-                return true
-            }
-            else {
-                return false
-            }
+        return false
+//            let isShowGUI = NSUserDefaults.standardUserDefaults().valueForKey("showedGUI") as? String
+//            if isShowGUI != nil && isShowGUI == "yes" {
+//                return true
+//            }
+//            else {
+//                return false
+//            }
         }
         set {
             if newValue {

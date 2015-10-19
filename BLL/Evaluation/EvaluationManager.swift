@@ -127,11 +127,33 @@ class EvaluationManager :NSObject {
     
     func share(shareType: ShareType, image: UIImage, complete: (NSError?) -> Void) {
         ShareSDKHelper.shareImage(shareType, image: image, isEvaluation: false) { (error: NSError?) -> Void in
+            
             if error == nil {
-                DBManager.shareInstance().addShareData(shareType.rawValue)
+                let platformType: ThirdPlatformType
+                if shareType == ShareType.QQFriend {
+                    platformType = ThirdPlatformType.QQ
+                }
+                else if shareType == ShareType.WeiBo {
+                    platformType = ThirdPlatformType.Weibo
+                }
+                else {
+                    platformType = ThirdPlatformType.WeChat
+                }
+                
+                ScoreRequest.share(UserData.shareInstance().userId!, type: 1, platform: platformType, complete: { (error: NSError?) -> Void in
+                    
+                    if error == nil {
+                        DBManager.shareInstance().addShareData(shareType.rawValue)
+                    }
+                    
+                    complete(error)
+                })
+                
+            }
+            else {
+                complete(error)
             }
             
-            complete(error)
         }
     }
 }

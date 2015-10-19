@@ -21,7 +21,7 @@ struct ScoreRequest {
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(jsonObj?.valueForKey("score") as? Float, nil)
+                complete((jsonObj?.valueForKey("score") as? NSString)?.floatValue, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

@@ -75,6 +75,8 @@ struct UserRequest {
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                let headURLString = jsonObj?["headURL"] as? NSString
+                Request.requestPHPURL()
                 complete(imageURL: jsonObj?["headURL"] as? String, error: nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")

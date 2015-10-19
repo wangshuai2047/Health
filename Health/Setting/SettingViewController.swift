@@ -130,11 +130,11 @@ extension SettingViewController: CompleteInfoDelegate {
     
     func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
         
-        LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { [unowned self] (error) -> Void in
+        LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { (error) -> Void in
             
             if error == nil {
                 // 跳转到主页
-                self.navigationController?.popViewControllerAnimated(true)
+                controller.navigationController?.popViewControllerAnimated(true)
             }
             else {
                 UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()

@@ -83,3 +83,12 @@ class UserManager {
         
     }
 }
+
+extension UserModel {
+    var serverHeadURLStr: String {
+        if self.headURL == nil {
+            return ""
+        }
+        return Request.requestPHPPathURL() + self.headURL!
+    }
+}

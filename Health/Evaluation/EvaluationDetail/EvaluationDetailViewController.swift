@@ -196,7 +196,6 @@ extension EvaluationDetailViewController {
         var healthCount: Int = 0
         var earlyWarningCount: Int = 0
         
-        
         let allStatus: [ValueStatus] = [
             data!.weightStatus,
             data!.proteinWeightStatus,
@@ -232,9 +231,7 @@ extension EvaluationDetailViewController {
         scoreLabel.text = "\(score)分"
         scoreLabel.textColor = deepBlue
         
-         print(physiqueImageView)
         physiqueImageView.image = UIImage(named: data!.physique.selectedImageName(data!.gender))
-        print(physiqueImageView)
     }
     
     func refreshDescriptionData() {
