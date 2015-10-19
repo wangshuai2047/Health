@@ -14,8 +14,15 @@ struct ActivityManager {
     }
     
     // 获取积分
-    static func queryScoreAds(complete: ((score: Float?, error: NSError?)) -> Void) {
-        ScoreRequest.queryScore(UserData.shareInstance().userId!, complete: complete)
+    static func queryScoreAds(complete: (score: Float?, error: NSError?) -> Void) {
+        ScoreRequest.queryScore(UserManager.mainUser.userId) { (allscore, monthscore, rank, monthrank, error: NSError?) -> Void in
+            if error == nil { // extra argument in call
+                complete(score: Float(allscore!), error: nil)
+            }
+            else {
+                complete(score: nil, error: nil)
+            }
+        }
     }
     
     

@@ -113,7 +113,7 @@ class EvaluationManager :NSObject {
         }
         
         // 上传
-        EvaluationRequest.uploadEvaluationDatas(uploadDatas) { (info, error: NSError?) -> Void in
+        EvaluationRequest.uploadEvaluationDatas(UserManager.mainUser.userId, datas: uploadDatas) { (info, error: NSError?) -> Void in
             if error == nil {
                 // 更新数据
                 DBManager.shareInstance().updateUploadEvaluationDatas(info!)
