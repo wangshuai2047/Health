@@ -68,7 +68,7 @@ class UserReqeustTests: XCTestCase {
         let age = 25
         let gender: Bool = false
         
-        UserRequest.createUser(pid, name: name, height: height, age: age, gender: gender) { (userId, error: NSError?) -> Void in
+        UserRequest.createUser(pid, name: name, height: height, age: age, gender: gender, imageURL:nil) { (userId, error: NSError?) -> Void in
             XCTAssertNil(error, "test_UserRequest_createUser_isSucess 错误: \(error?.description)")
             
             UserRequest.deleteUser(pid, userId: userId!, complete: { (error: NSError?) -> Void in

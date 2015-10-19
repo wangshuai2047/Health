@@ -75,8 +75,6 @@ struct UserRequest {
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                let headURLString = jsonObj?["headURL"] as? NSString
-                Request.requestPHPURL()
                 complete(imageURL: jsonObj?["headURL"] as? String, error: nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
@@ -104,8 +102,24 @@ struct UserRequest {
         })
     }
     
-    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool, complete: ((userId: Int?, NSError?) -> Void)) {
-        RequestType.CreateUser.startRequest(["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)], completionHandler: { (data, response, error) -> Void in
+    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool,imageURL: String?, complete: ((userId: Int?, NSError?) -> Void)) {
+        
+        var params = ["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)]
+        
+        if imageURL != nil {
+            let image = UIImage(contentsOfFile: imageURL!)
+            let data = UIImageJPEGRepresentation(image!, 1)
+            
+            let options: NSDataBase64EncodingOptions = [
+                .Encoding76CharacterLineLength,
+                .EncodingEndLineWithLineFeed
+            ]
+            if let base64String = data?.base64EncodedStringWithOptions(options) {
+                params["head"] = base64String
+            }
+        }
+        
+        RequestType.CreateUser.startRequest(params, completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {

@@ -39,7 +39,6 @@ class EvaluationViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
         
         userSelectView.delegate = self
-        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
         self.automaticallyAdjustsScrollViewInsets = false
         
         UIApplication.sharedApplication().applicationSupportsShakeToEdit = true
@@ -54,6 +53,7 @@ class EvaluationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
         
         if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
             showView(connectDeviceView)
@@ -234,7 +234,7 @@ extension EvaluationViewController: UserSelectViewDelegate {
 extension EvaluationViewController: CompleteInfoDelegate {
     // 添加家庭成员
     func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
-        UserManager.shareInstance().addUser(user.name, gender: user.gender, age: user.age, height: user.height) { [unowned self] (userModel, error: NSError?) -> Void in
+        UserManager.shareInstance().addUser(user.name, gender: user.gender, age: user.age, height: user.height, imageURL: user.headURL) { [unowned self] (userModel, error: NSError?) -> Void in
             if error == nil {
                 self.userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
                 self.userSelectView.setNeedsDisplay()

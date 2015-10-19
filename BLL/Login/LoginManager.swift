@@ -147,6 +147,7 @@ struct LoginManager {
         return ShareSDKHelper.isExistShareType(shareType)
     }
     
+    // MARK: - 第三方方法
     // 通过QQ登录
     static func loginWithQQ(complete: ((NSError?) -> Void)) {
         ShareSDKHelper.loginWithQQ { (uid, name, headIcon, error) -> Void in
@@ -209,6 +210,81 @@ struct LoginManager {
             complete(error)
             
         }
+    }
+    
+    static func bindThirdParty(type: ThirdPlatformType, complete: (NSError?) -> Void) {
+        
+        func serverBind(openId: String?, type: ThirdPlatformType) {
+            LoginRequest.bindThirdPlatform(UserData.shareInstance().userId!, openId: openId!, type: type) { (error: NSError?) -> Void in
+                if error == nil {
+                    complete(nil)
+                }
+                else {
+                    complete(error)
+                }
+            }
+        }
+        
+        if type == ThirdPlatformType.QQ {
+            ShareSDKHelper.loginWithQQ({ (uid, name, headIcon, error) -> Void in
+                if error == nil {
+                    serverBind(uid, type: type)
+                }
+                else {
+                    complete(error)
+                }
+            })
+        }
+        else if type == ThirdPlatformType.Weibo {
+            ShareSDKHelper.loginWithWeiBo({ (uid, name, headIcon, error) -> Void in
+                if error == nil {
+                    serverBind(uid, type: type)
+                }
+                else {
+                    complete(error)
+                }
+            })
+        }
+        else {
+            ShareSDKHelper.loginWithWeChat({ (uid, name, headIcon, error) -> Void in
+                if error == nil {
+                    serverBind(uid, type: type)
+                }
+                else {
+                    complete(error)
+                }
+            })
+        }
+        
+        
+    }
+    
+    static func cancelBindThirdParty(type: ThirdPlatformType) {
+        var shareType: ShareType?
+        if type == .WeChat {
+            shareType = ShareType.WeChatSession
+        }
+        else if type == .Weibo {
+            shareType = ShareType.WeiBo
+        }
+        else if type == .QQ {
+            shareType = ShareType.QQFriend
+        }
+        ShareSDKHelper.cancelBind(shareType!)
+    }
+    
+    static func isBindThirdParty(type: ThirdPlatformType) -> Bool {
+        var shareType: ShareType?
+        if type == .WeChat {
+            shareType = ShareType.WeChatSession
+        }
+        else if type == .Weibo {
+            shareType = ShareType.WeiBo
+        }
+        else if type == .QQ {
+            shareType = ShareType.QQFriend
+        }
+        return ShareSDKHelper.isBind(shareType!)
     }
     
     static func parseUserInfo(userInfo: [String: AnyObject]) {

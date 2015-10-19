@@ -31,7 +31,6 @@ class TrendViewController: UIViewController {
         chartView.dataSource = self
 //        let datas = viewModel.eightDaysDatas()
         userSelectView.delegate = self
-        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
         self.automaticallyAdjustsScrollViewInsets = false
     }
 
@@ -42,6 +41,8 @@ class TrendViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
         
         viewModel.eightDaysDatas()
         tableView.reloadData()

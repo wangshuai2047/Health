@@ -231,6 +231,10 @@
 		E0D403FF1BCAC51D001F8A15 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; };
 		E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
 		E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
+		E0E079531BD520A9008B8BE3 /* FamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E079511BD520A9008B8BE3 /* FamilyMembersViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E0E079541BD520A9008B8BE3 /* FamilyMembersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E079521BD520A9008B8BE3 /* FamilyMembersViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E0E079571BD521CF008B8BE3 /* FamilyMembersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E079551BD521CF008B8BE3 /* FamilyMembersCell.swift */; settings = {ASSET_TAGS = (); }; };
+		E0E079581BD521CF008B8BE3 /* FamilyMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E079561BD521CF008B8BE3 /* FamilyMembersCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E0E5DE901BC88A78001BCCD1 /* BindOrganzationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E0E5DE911BC88A78001BCCD1 /* BindOrganzationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -471,6 +475,10 @@
 		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E0CD63151BA2511F00477090 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
 		E0DD140E1B91795A0079F957 /* ConvertString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertString.swift; sourceTree = "<group>"; };
+		E0E079511BD520A9008B8BE3 /* FamilyMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMembersViewController.swift; sourceTree = "<group>"; };
+		E0E079521BD520A9008B8BE3 /* FamilyMembersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FamilyMembersViewController.xib; sourceTree = "<group>"; };
+		E0E079551BD521CF008B8BE3 /* FamilyMembersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMembersCell.swift; sourceTree = "<group>"; };
+		E0E079561BD521CF008B8BE3 /* FamilyMembersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FamilyMembersCell.xib; sourceTree = "<group>"; };
 		E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindOrganzationViewController.swift; sourceTree = "<group>"; };
 		E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindOrganzationViewController.xib; sourceTree = "<group>"; };
 		E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindPhoneViewController.swift; sourceTree = "<group>"; };
@@ -905,6 +913,7 @@
 		E08A24611B807C16004269BB /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				E0E079501BD52086008B8BE3 /* family */,
 				E015BB511BC52B1F00225C32 /* Feedback */,
 				E0F9DB111B854BBA00504454 /* DeviceBind */,
 				E0F9DB121B854BBA00504454 /* Infomation */,
@@ -1250,6 +1259,18 @@
 			path = Extend;
 			sourceTree = "<group>";
 		};
+		E0E079501BD52086008B8BE3 /* family */ = {
+			isa = PBXGroup;
+			children = (
+				E0E079511BD520A9008B8BE3 /* FamilyMembersViewController.swift */,
+				E0E079521BD520A9008B8BE3 /* FamilyMembersViewController.xib */,
+				E0E079551BD521CF008B8BE3 /* FamilyMembersCell.swift */,
+				E0E079561BD521CF008B8BE3 /* FamilyMembersCell.xib */,
+			);
+			name = family;
+			path = Health/Setting/family;
+			sourceTree = SOURCE_ROOT;
+		};
 		E0EDBDF01BCE5B4700137FB0 /* BlueToothDataFormats */ = {
 			isa = PBXGroup;
 			children = (
@@ -1482,11 +1503,13 @@
 				E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */,
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
 				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
+				E0E079541BD520A9008B8BE3 /* FamilyMembersViewController.xib in Resources */,
 				E09AAC541BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib in Resources */,
 				E0418EF61BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
 				E0039C4A1BCF28C10014ED50 /* ShareSDK.bundle in Resources */,
 				E0418EEA1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
+				E0E079581BD521CF008B8BE3 /* FamilyMembersCell.xib in Resources */,
 				E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */,
 				E007CC241BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */,
 				E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
@@ -1570,8 +1593,10 @@
 				E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */,
 				E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */,
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
+				E0E079571BD521CF008B8BE3 /* FamilyMembersCell.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
 				E0F048401BD070C700C63540 /* AppleHealthKitManager.swift in Sources */,
+				E0E079531BD520A9008B8BE3 /* FamilyMembersViewController.swift in Sources */,
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
 				E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
 				E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */,

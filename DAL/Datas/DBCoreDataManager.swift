@@ -85,7 +85,7 @@ extension DBManager: DBUserProtocol {
         }
     }
     
-    func deleteUser(userId: UInt8) {
+    func deleteUser(userId: Int) {
         
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)

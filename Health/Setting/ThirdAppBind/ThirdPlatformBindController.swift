@@ -32,7 +32,7 @@ class ThirdPlatformBindController: UIViewController {
                 self.thirdPartBindChange(ShareType.WeChatSession)
             },
             "isBind": {() -> Bool in
-                return ShareSDKHelper.isBind(ShareType.WeChatSession)
+                return LoginManager.isBindThirdParty(ThirdPlatformType.WeChat)
             }])
         
         // 腾讯
@@ -41,7 +41,7 @@ class ThirdPlatformBindController: UIViewController {
                 self.thirdPartBindChange(ShareType.QQFriend)
             },
             "isBind": {() -> Bool in
-                return ShareSDKHelper.isBind(ShareType.QQFriend)
+                return LoginManager.isBindThirdParty(ThirdPlatformType.QQ)
             }])
         
         // 微博
@@ -50,7 +50,7 @@ class ThirdPlatformBindController: UIViewController {
                 self.thirdPartBindChange(ShareType.WeiBo)
             },
             "isBind": {() -> Bool in
-                return ShareSDKHelper.isBind(ShareType.WeiBo)
+                return LoginManager.isBindThirdParty(ThirdPlatformType.Weibo)
             }])
         
         // 集团账户
@@ -109,36 +109,25 @@ class ThirdPlatformBindController: UIViewController {
         }
         else {
             
+            let pType: ThirdPlatformType
             if type == ShareType.QQFriend {
-                LoginManager.loginWithQQ({ [unowned self] (error: NSError?) -> Void in
-                    if error == nil {
-                        self.tableView.reloadData()
-                    }
-                    else {
-                        Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
-                    }
-                })
+                pType = ThirdPlatformType.QQ
             }
             else if type == ShareType.WeiBo {
-                LoginManager.loginWithWeiBo({ [unowned self] (error: NSError?) -> Void in
-                    if error == nil {
-                        self.tableView.reloadData()
-                    }
-                    else {
-                        Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
-                    }
-                })
+                pType = ThirdPlatformType.Weibo
             }
             else {
-                LoginManager.loginWithWeChat({ [unowned self] (error: NSError?) -> Void in
-                    if error == nil {
-                        self.tableView.reloadData()
-                    }
-                    else {
-                        Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
-                    }
-                })
+                pType = ThirdPlatformType.WeChat
             }
+            
+            LoginManager.bindThirdParty(pType, complete: { (error: NSError?) -> Void in
+                if error == nil {
+                    self.tableView.reloadData()
+                }
+                else {
+                    Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
+                }
+            })
         }
     }
 }

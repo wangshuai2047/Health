@@ -62,9 +62,9 @@ class UserManager {
         }
     }
     
-    func addUser(name: String, gender: Bool, age: UInt8, height: UInt8, complete: ((userModel: UserModel?, NSError?) -> Void)) {
-        UserRequest.createUser(UserData.shareInstance().userId!, name: name, height: Int(height), age: Int(age), gender: gender) { (userId: Int?, error: NSError?) -> Void in
-            
+    func addUser(name: String, gender: Bool, age: UInt8, height: UInt8, imageURL: String?, complete: ((userModel: UserModel?, NSError?) -> Void)) {
+        
+        UserRequest.createUser(UserData.shareInstance().userId!, name: name, height: Int(height), age: Int(age), gender: gender, imageURL: imageURL) { (userId, error: NSError?) -> Void in
             var userModel: UserModel? = nil
             if error == nil {
                 userModel = UserModel(userId: userId!, age: age, gender: gender, height: height, name: name, headURL: nil)
@@ -79,13 +79,20 @@ class UserManager {
                     return setDatas
                 })
             }
-            
             complete(userModel: userModel, error)
         }
     }
     
-    func deleteUser(userId: Int) {
-        
+    func deleteUser(userId: Int, complete: (NSError?) -> Void) {
+        UserRequest.deleteUser(UserData.shareInstance().userId!, userId: userId) { [unowned self] (error: NSError?) -> Void in
+            if error == nil {
+                DBManager.shareInstance().deleteUser(userId)
+                if self.currentUser.userId == userId {
+                    self.changeUserToUserId(UserManager.mainUser.userId)
+                }
+            }
+            complete(error)
+        }
     }
 }
 
