@@ -137,9 +137,10 @@ class BluetoothManager: NSObject {
                         let currentDevice = self.currentDevice!
                         self.connect(self.currentDevice!.peripheral!)
                         currentDevice.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
-                            self.currentDevice = nil
+                            
                             complete(result, error)
                             self.clearWork()
+                            self.currentDevice = nil
                         })
                     }
                 }

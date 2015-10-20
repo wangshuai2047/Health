@@ -353,13 +353,16 @@ extension MyBodyMiniAndPlusResult {
         }
         
         // 脂肪肝  1为有  2为没有  0为不支持
-        let HAI = (info["hepaticAdiposeInfiltration"] as! NSNumber).shortValue
-        if HAI == 1 {
-            hepaticAdiposeInfiltration = true
+        if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {
+            
+            if HAI.shortValue == 1 {
+                hepaticAdiposeInfiltration = true
+            }
+            else if HAI.shortValue == 2 {
+                hepaticAdiposeInfiltration = false
+            }
         }
-        else if HAI == 2 {
-            hepaticAdiposeInfiltration = false
-        }
+        
         
         fatFreeBodyWeight = (info["fatFreeBodyWeight"] as! NSNumber).floatValue
         fatFreeBodyWeightRange.0 = (info["fatFreeBodyWeightMin"] as! NSNumber).floatValue

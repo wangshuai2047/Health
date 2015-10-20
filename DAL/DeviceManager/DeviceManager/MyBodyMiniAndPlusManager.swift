@@ -57,6 +57,8 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
             self.result?.hepaticAdiposeInfiltration = format.resultCode == 0x30 ? false : true
             
             self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+            
+//            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
         }
         else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
             self.result?.setDatas(format.datas)
@@ -85,13 +87,13 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
 //                    self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
 //                    self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
                     
-                    dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
-                        
-                        if self.readCharacteristic?.properties == CBCharacteristicProperties.Notify {
-                            self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
-                        }
-                        
-                    })
+//                    dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
+//                        
+//                        if self.readCharacteristic?.properties == CBCharacteristicProperties.Notify {
+//                            self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
+//                        }
+//                        
+//                    })
                 }
                 else if CBUUID(string: "BCA2") == characteristic.UUID {
                     self.writeCharacteristic = characteristic
@@ -99,7 +101,7 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
 //                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
                         
 //                        dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
-//                            self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                            self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                         
                             
 //                        })
@@ -139,6 +141,7 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
         }
         else {
             print("read char: \(self.readCharacteristic)")
+            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
 //            fireComplete?(nil, error)
 //            dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
 //                self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)

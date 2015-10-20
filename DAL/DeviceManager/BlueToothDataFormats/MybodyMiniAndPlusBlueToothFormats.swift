@@ -47,11 +47,15 @@ struct MybodyMiniAndPlusBlueToothFormats {
         
         var index: Int = 1
         // type
-        data.getBytes(buffer: &type, range: NSRange(location: index, length: 1))
+        var tt: UInt8 = 0
+        data.getBytes(buffer: &tt, range: NSRange(location: index, length: 1))
+        type = DeviceType(rawValue: tt)!
         index++
         
         // cmd
-        data.getBytes(buffer: &cmd, range: NSRange(location: index, length: 1))
+        var cc: UInt8 = 0
+        data.getBytes(buffer: &cc, range: NSRange(location: index, length: 1))
+        cmd = CMD(rawValue: cc)!
         index++
         
         // resultCode
@@ -64,7 +68,7 @@ struct MybodyMiniAndPlusBlueToothFormats {
             // copy bytes into array
             data.getBytes(&bytes, range: NSRange(location: index, length: 4))
             
-            if bytes[0] == 0xD4 {
+            if bytes[0] == 0xD4 && bytes[1] == 0xC6 && bytes[2] == 0xC8 && bytes[3] == 0xD4 {
                 // 包尾结束
                 break
             }
@@ -74,7 +78,9 @@ struct MybodyMiniAndPlusBlueToothFormats {
             let tenNumber: Float = Float(bytes[2])
             let decimalNumber: Float = Float(bytes[3]) / 100
             
-            datas.append(symbol + thousandNumber + tenNumber + decimalNumber)
+            datas.append(symbol * (thousandNumber + tenNumber + decimalNumber))
+            
+            index += 4
         }
     }
     
@@ -97,15 +103,24 @@ struct MybodyMiniAndPlusBlueToothFormats {
         
         let data = NSMutableData(data: headPackageData())
         data.appendData(NSData(bytes: [0x00], length: 1))
-        data.appendData(packageEnd)
-        
+        data.appendData(NSData(bytes: [0xD4], length: 1))
+        data.appendData(NSData(bytes: [0xC6], length: 1))
+        data.appendData(NSData(bytes: [0xC8], length: 1))
+        data.appendData(NSData(bytes: [0xD4], length: 1))
+//        data.appendData(packageEnd)
+//        print(packageEnd)
+//        , , ,
         return data
     }
     
     func toReceiveBodyData() -> NSData {
         let data = NSMutableData(data: headPackageData())
         data.appendData(NSData(bytes: [0x00], length: 1))
-        data.appendData(packageEnd)
+        data.appendData(NSData(bytes: [0xD4], length: 1))
+        data.appendData(NSData(bytes: [0xC6], length: 1))
+        data.appendData(NSData(bytes: [0xC8], length: 1))
+        data.appendData(NSData(bytes: [0xD4], length: 1))
+//        data.appendData(packageEnd)
         
         return data
     }
