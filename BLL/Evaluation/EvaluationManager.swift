@@ -108,7 +108,7 @@ class EvaluationManager :NSObject {
         
         var uploadDatas: [[String : AnyObject]] = []
         for info in datas {
-            let result = MyBodyResult(info: info)
+            let result = ScaleResultProtocolCreate(info)
             uploadDatas.append(result.uploadInfo((info["timeStamp"] as! NSDate).secondTimeInteval()))
         }
         
