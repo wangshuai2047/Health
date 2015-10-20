@@ -115,7 +115,7 @@ class CompleteInfoViewController: UIViewController {
         if let user = userModel {
             self.headAndNameDataView.nickNameTextField.text = user.name
             if let headUrlStr =  user.headURL {
-                if let headURL = NSURL(string: headUrlStr) {
+                if let headURL = NSURL(string: UserManager.shareInstance().userHeadURL(headUrlStr)) {
                     self.headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
                 }
             }

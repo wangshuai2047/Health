@@ -88,7 +88,7 @@ class EvaluationManager :NSObject {
     // 访客测量
     func visitorStartScale(user: UserModel, complete: (info: ScaleResultProtocol?, error: NSError?) -> Void) {
         if let uuid = myBodyUUID {
-            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : user as! AnyObject], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
                 
                     complete(info: result as? ScaleResultProtocol, error: error)
                 })

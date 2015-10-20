@@ -82,17 +82,27 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
                 
                 if CBUUID(string: "BCA1") == characteristic.UUID {
                     self.readCharacteristic = characteristic
+//                    self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
+//                    self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
                     
-                    self.peripheral?.setNotifyValue(true, forCharacteristic: characteristic)
+                    dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
+                        
+                        if self.readCharacteristic?.properties == CBCharacteristicProperties.Notify {
+                            self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
+                        }
+                        
+                    })
                 }
                 else if CBUUID(string: "BCA2") == characteristic.UUID {
                     self.writeCharacteristic = characteristic
                     if let userModel = fireInfo?["userModel"] as? UserModel {
-                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
+//                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
                         
-                        dispatch_after(dispatch_time_t(0.1), dispatch_get_main_queue(), { [unowned self] () -> Void in
-                            self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-                        })
+//                        dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
+//                            self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                        
+                            
+//                        })
                         print("write char: \(self.writeCharacteristic)")
                     }
                 }
@@ -128,12 +138,16 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             fireComplete?(nil, error)
         }
         else {
-            print("write char: \(self.readCharacteristic)")
-            fireComplete?(nil, error)
+            print("read char: \(self.readCharacteristic)")
+//            fireComplete?(nil, error)
+//            dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
+//                self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
+//                })
+            
         }
     }
     
     func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        print("\(error)")
+        print("didUpdateNotificationStateForCharacteristic \(error)")
     }
 }

@@ -705,7 +705,7 @@ extension DBManager {
             listData = nil
             print(error)
         }
-        for data in listData as! [EvaluationData] {
+        for data in listData as! [Device] {
             context.deleteObject(data)
             var savingError: NSError? = nil
             do {

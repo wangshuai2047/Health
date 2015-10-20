@@ -1411,6 +1411,7 @@
 				E09EC8AF1B7E3B5000CC07E3 /* Frameworks */,
 				E09EC8B01B7E3B5000CC07E3 /* Resources */,
 				2241F97EB4DAE1A938D48145 /* Copy Pods Resources */,
+				2C47D2FA709847369C92A596 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1562,6 +1563,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C47D2FA709847369C92A596 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AED071744AB930546A88F55B /* Check Pods Manifest.lock */ = {
@@ -1935,15 +1951,14 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-SDWebImage\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-lz",
 					"-lstdc++",
 					"-lsqlite3",
 					"-licucore",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1985,15 +2000,14 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-SDWebImage\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-lz",
 					"-lstdc++",
 					"-lsqlite3",
 					"-licucore",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
 				PRODUCT_NAME = "$(TARGET_NAME)";

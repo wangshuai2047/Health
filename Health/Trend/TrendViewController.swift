@@ -208,7 +208,9 @@ extension TrendViewController: DoubleYAxisLineChartDataSource {
 extension TrendViewController: UserSelectViewDelegate {
     // 点击人物头像
     func headButtonPressed(userId: Int) {
-
+        let detailController = EvaluationDetailViewController()
+        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        detailController.isRefreshAllData = true
     }
     
     // 点击访客

@@ -53,16 +53,19 @@ struct UserRequest {
         }
         
         if imageURL != nil {
-            let image = UIImage(contentsOfFile: imageURL!)
-            let data = UIImageJPEGRepresentation(image!, 1)
             
-            let options: NSDataBase64EncodingOptions = [
-                .Encoding76CharacterLineLength,
-                .EncodingEndLineWithLineFeed
-            ]
-            if let base64String = data?.base64EncodedStringWithOptions(options) {
-                params["head"] = base64String
+            if let image = UIImage(contentsOfFile: imageURL!) {
+                let data = UIImageJPEGRepresentation(image, 1)
+                
+                let options: NSDataBase64EncodingOptions = [
+                    .Encoding76CharacterLineLength,
+                    .EncodingEndLineWithLineFeed
+                ]
+                if let base64String = data?.base64EncodedStringWithOptions(options) {
+                    params["head"] = base64String
+                }
             }
+            
         }
         
         RequestType.CompleteUserInfo.startRequest(params, completionHandler: { (data, response, error) -> Void in
@@ -107,15 +110,16 @@ struct UserRequest {
         var params = ["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)]
         
         if imageURL != nil {
-            let image = UIImage(contentsOfFile: imageURL!)
-            let data = UIImageJPEGRepresentation(image!, 1)
-            
-            let options: NSDataBase64EncodingOptions = [
-                .Encoding76CharacterLineLength,
-                .EncodingEndLineWithLineFeed
-            ]
-            if let base64String = data?.base64EncodedStringWithOptions(options) {
-                params["head"] = base64String
+            if let image = UIImage(contentsOfFile: imageURL!) {
+                let data = UIImageJPEGRepresentation(image, 1)
+                
+                let options: NSDataBase64EncodingOptions = [
+                    .Encoding76CharacterLineLength,
+                    .EncodingEndLineWithLineFeed
+                ]
+                if let base64String = data?.base64EncodedStringWithOptions(options) {
+                    params["head"] = base64String
+                }
             }
         }
         

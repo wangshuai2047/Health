@@ -85,7 +85,7 @@ struct  LoginRequest {
     // 第三方登录
     static func loginThirdPlatform(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((userInfo: [String: AnyObject]?, NSError?) -> Void)) {
         
-        RequestType.LoginThirdPlatform.startRequest(["name": name, "headurl": headURLStr, "openid": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+        RequestType.LoginThirdPlatform.startRequest(["name": name, "headURL": headURLStr, "openId": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {

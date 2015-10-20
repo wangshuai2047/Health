@@ -19,7 +19,9 @@ struct UserModel {
     init(info: [String : AnyObject]) {
         userId = (info["userId"] as! NSNumber).integerValue
         age = (info["age"] as! NSNumber).unsignedCharValue
-        gender = (info["gender"] as! NSNumber).boolValue
+        
+        gender = (info["gender"] as! NSNumber).integerValue == 1 ? true : false
+//        gender = (info["gender"] as! NSNumber).boolValue
         height = (info["height"] as! NSNumber).unsignedCharValue
         name = info["name"] as! String
         
