@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3511E9FDDF87881CB0D0657C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331D48E4B2E73489E6443B /* libPods.a */; };
-		E0039BD61BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
-		E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; settings = {ASSET_TAGS = (); }; };
+		E0039BD61BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; };
+		E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; };
+		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
+		E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
 		E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */; };
 		E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */; };
 		E00580801B9DE78C00ABDF1A /* ScoreRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */; };
@@ -132,9 +132,9 @@
 		E0C50BA01B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA11B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50BA31B862AA0007A9393 /* UserSelectView.swift */; };
-		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; settings = {ASSET_TAGS = (); }; };
-		E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; settings = {ASSET_TAGS = (); }; };
-		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
+		E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
+		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; };
 		E0CD63131BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63141BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
@@ -147,8 +147,8 @@
 		E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140A1B913DE40079F957 /* ScaleResult.swift */; };
 		E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
 		E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
-		E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */; settings = {ASSET_TAGS = (); }; };
-		E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */; };
+		E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; };
 		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F9DAEF1B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
