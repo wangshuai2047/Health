@@ -20,7 +20,9 @@ class EvaluationDetailViewController: UIViewController {
     var isVisitor: Bool = false
     
 //    @IBOutlet weak var backgroundScrollView: UIScrollView!
-    @IBOutlet var detailView: UIView!
+//    @IBOutlet var detailView: UIView!
+    
+    @IBOutlet var detailTableView: EvaluationResultTableView!
     @IBOutlet weak var tableView: UITableView!
     
     // 显示数据
@@ -64,6 +66,8 @@ class EvaluationDetailViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+//        scoreCicleView.update([(0, deepBlue), (100, lightBlue)], animated: true)
         
         if isRefreshAllData {
             refreshAllData()
@@ -131,7 +135,7 @@ class EvaluationDetailViewController: UIViewController {
     }
     
     @IBAction func shareButtonPressed(sender: AnyObject) {
-        ShareViewController.showShareViewController(detailView.convertToImage(), delegate: self, rootController: self)
+        ShareViewController.showShareViewController(detailTableView.convertToImage(), delegate: self, rootController: self)
     }
     
 }
@@ -172,23 +176,23 @@ extension EvaluationDetailViewController {
         
         // 设置数据
         
-        refreshScoreData()
-        refreshDescriptionData()
-        
-        refreshWeightData()
-        refreshBMRData()
-        refreshFattyLiverData()
-        refreshFatData()
-        
-        refreshFatWeightData()
-        refreshMuscleData()
-        refreshBoneMuscleData()
-        refreshWaterData()
-        refreshProteinData()
-        refreshBoneData()
-        refreshVisceralFatData()
-        refreshBMIData()
-        refreshBodyAgeData()
+//        refreshScoreData()
+//        refreshDescriptionData()
+//        
+//        refreshWeightData()
+//        refreshBMRData()
+//        refreshFattyLiverData()
+//        refreshFatData()
+//        
+//        refreshFatWeightData()
+//        refreshMuscleData()
+//        refreshBoneMuscleData()
+//        refreshWaterData()
+//        refreshProteinData()
+//        refreshBoneData()
+//        refreshVisceralFatData()
+//        refreshBMIData()
+//        refreshBodyAgeData()
     }
     
     func healthCount() -> (Int, Int, Int) {
@@ -279,6 +283,7 @@ extension EvaluationDetailViewController {
     
     func refreshFatData() {
         initFatDetailView()
+        
         fatPercentageLabel.text = "\(data!.fatPercentage)"
         fatPercentageLabel.textColor = data!.fatPercentageStatus.statusColor
         
@@ -384,8 +389,12 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
                 
             }
             
-            detailView.frame = CGRect(x:0, y: 0, width: tableView.frame.size.width, height: detailView.frame.size.height)
-            cell!.contentView.addSubview(detailView)
+            detailTableView.frame = CGRect(x:0, y: 0, width: tableView.frame.size.width, height: detailTableView.currentViewHeight)
+            detailTableView.data = data
+            cell!.contentView.addSubview(detailTableView)
+            cell!.contentView.clipsToBounds = true
+            
+            detailTableView.reloadData()
             
             return cell!
         }
@@ -408,7 +417,7 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.section == 0 {
-            return detailView.frame.size.height
+            return detailTableView.currentViewHeight
         }
         else {
             return 54
