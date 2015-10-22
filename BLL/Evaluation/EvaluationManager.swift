@@ -43,7 +43,7 @@ class EvaluationManager :NSObject {
     func addTestDatas() {
         
         
-        for var i = 0; i >= 0; i-- {
+        for var i = 40; i >= 0; i-- {
             let weight = 50 + random() % 10
             let waterPercentage = 55 + random() % 11
             let visceralFatContent = 1 + random() % 10
@@ -72,7 +72,6 @@ class EvaluationManager :NSObject {
                 return setDatas;
             })
         }
-        
     }
     
    // 开始测量秤
