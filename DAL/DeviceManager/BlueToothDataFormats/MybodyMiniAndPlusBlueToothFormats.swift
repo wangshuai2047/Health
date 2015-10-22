@@ -26,7 +26,7 @@ struct MybodyMiniAndPlusBlueToothFormats {
     
     var packageHead: UInt8 = 0xBC //包头
     var packageEnd: NSData {
-        return NSData(bytes: [0xD4, 0xC6, 0xC8, 0xD4], length: 4)
+        return NSData(bytes: [UInt8(0xD4), UInt8(0xC6), UInt8(0xC8), UInt8(0xD4)], length: 4)
     }
     
     // 上行数据
@@ -102,11 +102,11 @@ struct MybodyMiniAndPlusBlueToothFormats {
     func toReceiveWeightData() -> NSData {
         
         let data = NSMutableData(data: headPackageData())
-        data.appendData(NSData(bytes: [0x00], length: 1))
-        data.appendData(NSData(bytes: [0xD4], length: 1))
-        data.appendData(NSData(bytes: [0xC6], length: 1))
-        data.appendData(NSData(bytes: [0xC8], length: 1))
-        data.appendData(NSData(bytes: [0xD4], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0x00)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xD4)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xC6)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xC8)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xD4)], length: 1))
 //        data.appendData(packageEnd)
 //        print(packageEnd)
 //        , , ,
@@ -115,11 +115,11 @@ struct MybodyMiniAndPlusBlueToothFormats {
     
     func toReceiveBodyData() -> NSData {
         let data = NSMutableData(data: headPackageData())
-        data.appendData(NSData(bytes: [0x00], length: 1))
-        data.appendData(NSData(bytes: [0xD4], length: 1))
-        data.appendData(NSData(bytes: [0xC6], length: 1))
-        data.appendData(NSData(bytes: [0xC8], length: 1))
-        data.appendData(NSData(bytes: [0xD4], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0x00)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xD4)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xC6)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xC8)], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0xD4)], length: 1))
 //        data.appendData(packageEnd)
         
         return data
@@ -127,7 +127,7 @@ struct MybodyMiniAndPlusBlueToothFormats {
     
     func toSetDeviceNameData() -> NSData {
         let data = NSMutableData(data: headPackageData())
-        data.appendData(NSData(bytes: [0x00], length: 1))
+        data.appendData(NSData(bytes: [UInt8(0x00)], length: 1))
         data.appendData(packageEnd)
         
         return data

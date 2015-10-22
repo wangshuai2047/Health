@@ -23,6 +23,7 @@ class EvaluationDetailExtendCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: AttributedLabel!
     
     
+    @IBOutlet weak var markBgImageView: UIImageView!
     @IBOutlet weak var markIconCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var markHighLabelCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var markLowLabelConstraint: NSLayoutConstraint!
@@ -43,42 +44,57 @@ class EvaluationDetailExtendCell: UITableViewCell {
     func setResultValue(value: String, range: (Float, Float), unit: String, status: ValueStatus?) {
         unitLabel.text = unit
         
+//        let a = value[0]
+        var isNumber = true
+        for c in value.characters {
+            if c == "0" || c == "1" || c == "2" || c == "3" || c == "4" || c == "5" || c == "6" || c == "7" || c == "8" || c == "9" {
+                break
+            }
+            else {
+                isNumber = false
+                break
+            }
+        }
         
-        if let numberValues = (value as? NSString)?.floatValue {
-            resultLabel.text = "\(numberValues)"
+        if isNumber {
+            let numberValues = value.floatValue
+            resultLabel.text = String(format: "%.1f", numberValues)
             
-            markHighLabel.text = "\(range.1)\(unit)"
-            markLowLabel.text = "\(range.0)\(unit)"
+            markHighLabel.text = String(format: "%.1f\(unit)", range.1)
+            markLowLabel.text = String(format: "%.1f\(unit)", range.0)
             
             descriptionLabel.clear()
             
             if status == ValueStatus.High {
-                descriptionLabel.append("\(titleLabel!.text)出现警告,请重视!", font: nil, color: status?.statusColor)
+                descriptionLabel.append("\(titleLabel!.text!)出现警告,请重视!", font: nil, color: status?.statusColor)
             }
             else if status == ValueStatus.Normal {
-                descriptionLabel.append("\(titleLabel!.text)正常, 请保持!", font: nil, color: status?.statusColor)
+                descriptionLabel.append("\(titleLabel!.text!)正常, 请保持!", font: nil, color: status?.statusColor)
             }
             else if status == ValueStatus.Low {
-                descriptionLabel.append("\(titleLabel!.text)出现警告, 注意控制!", font: nil, color: status?.statusColor)
+                descriptionLabel.append("\(titleLabel!.text!)出现警告, 注意控制!", font: nil, color: status?.statusColor)
             }
             
-//            descriptionLabel.append("标准\(titleLabel!.text)为", font: nil, color: UIColor.grayColor())
-//            descriptionLabel.append("\(data!.standardFatPercentage)%", font: nil, color: UIColor.greenColor())
-//            
-//            if data!.standardFatPercentage > data!.fatPercentage {
-//                // 增肥
-//                descriptionLabel.append("还需增加", font: nil, color: UIColor.grayColor())
-//                
-//                descriptionLabel.append("\(data!.weight * (data!.standardFatPercentage - data!.fatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
-//            }
-//            else {
-//                // 减肥
-//                descriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
-//                descriptionLabel.append("\(data!.weight * (data!.fatPercentage - data!.standardFatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
-//                
-//            }
-//            
-//            descriptionLabel.append("脂肪", font: nil, color: UIColor.grayColor())
+            
+            // 计算标记位置
+            let rulerWidth = markBgImageView.frame.size.width
+            let labelPad = rulerWidth / 3 / 2 + 15
+            let labelPad2 = rulerWidth / 2 - 20
+            
+            
+            fatPercentageLeanLabelCenterConstraint.constant = -1 * labelPad2
+            fatPercentageTooHighLabelCenterConstraint.constant = labelPad2
+            
+            markHighLabelCenterConstraint.constant = labelPad
+            markLowLabelConstraint.constant = labelPad * -1
+            
+            let middleValue = (range.0 + range.1) / 2
+            let offset = middleValue - numberValues
+        
+            if range.1 != middleValue {
+                markIconCenterConstraint.constant = CGFloat(offset) * (labelPad / CGFloat(range.1 - middleValue))
+            }
+            
         }
         else {
             resultLabel.text = value
@@ -90,6 +106,8 @@ class EvaluationDetailExtendCell: UITableViewCell {
         else {
             resultLabel.textColor = UIColor.grayColor()
         }
+        
+        
     }
     
 //    func refreshFatData() {

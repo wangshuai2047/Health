@@ -69,6 +69,8 @@ class EvaluationDetailViewController: UIViewController {
         
 //        scoreCicleView.update([(0, deepBlue), (100, lightBlue)], animated: true)
         
+        detailTableView.physiqueDelegate = self
+        
         if isRefreshAllData {
             refreshAllData()
         }
@@ -139,6 +141,20 @@ class EvaluationDetailViewController: UIViewController {
     }
     
 }
+
+// MARK: - 详细view 代理
+extension EvaluationDetailViewController: EvaluationResultTableViewDelegate {
+    func tapPhysiqueButton() {
+        let controller = EvaluationPhysiqueDetailViewController()
+        controller.physique = data?.physique
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func viewHeightChanged() {
+        tableView.reloadData()
+    }
+}
+
 // MARK: - 分享
 extension EvaluationDetailViewController: ShareViewControllerDelegate {
     func shareFinished(shareType: ShareType, error: NSError?) {

@@ -10,6 +10,7 @@ import UIKit
 
 protocol EvaluationResultTableViewDelegate {
     func tapPhysiqueButton()
+    func viewHeightChanged()
 }
 
 class EvaluationResultTableView: UITableView {
@@ -65,7 +66,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return false
             },
-            "status" : ValueStatus.High
+            "status" : {() -> ValueStatus? in
+                return ValueStatus.High
+            }
             ])
         
         // 体重
@@ -88,7 +91,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.weightStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.weightStatus
+            }
             ])
 
         // 体脂率
@@ -111,7 +116,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.fatPercentageStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.fatPercentageStatus
+            }
             ])
         
         // 脂肪量
@@ -134,7 +141,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.fatWeightStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.fatWeightStatus
+            }
             ])
         
         // 肌肉
@@ -157,7 +166,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.muscleWeightStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.muscleWeightStatus
+            }
             ])
         
         // 骨骼肌
@@ -180,7 +191,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.boneMuscleLevel
+            "status" : {() -> ValueStatus? in
+                return self.data?.boneMuscleLevel
+            }
             ])
         
         // 水分
@@ -203,7 +216,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.waterWeightStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.waterWeightStatus
+            }
             ])
         
         // 蛋白质
@@ -226,7 +241,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.proteinWeightStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.proteinWeightStatus
+            }
             ])
         
         // 骨量
@@ -249,7 +266,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.boneWeightStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.boneWeightStatus
+            }
             ])
         
         // 内脏脂肪
@@ -272,7 +291,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.visceralFatContentStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.visceralFatContentStatus
+            }
             ])
         
         // BMI
@@ -295,14 +316,16 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return true
             },
-            "status" : self.data?.BMIStatus
+            "status" : {() -> ValueStatus? in
+                return self.data?.BMIStatus
+            }
             ])
         
         // 基础代谢
         list.append([
             "headIcon" : "BMRIcon",
             "title" : "基础代谢",
-            "unit" : "",
+            "unit" : "kcal",
             "range": {() -> (Float, Float) in
                 return (0,0)
             },
@@ -315,7 +338,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return false
             },
-            "status" : ValueStatus.Normal
+            "status" : {() -> ValueStatus? in
+                return ValueStatus.Normal
+            }
             ])
         
         
@@ -336,7 +361,9 @@ class EvaluationResultTableView: UITableView {
             "canExtend": {() -> Bool in
                 return false
             },
-            "status" : ValueStatus.Normal
+            "status" : {() -> ValueStatus? in
+                return ValueStatus.Normal
+            }
             ])
     }
     
@@ -390,11 +417,13 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
             let range = info["range"] as? () -> (Float, Float)
             let value = info["value"] as? () -> String
             // "status" : ValueStatus.Normal
-            let status = info["status"] as? ValueStatus
+            let status = info["status"] as? () -> ValueStatus?
+            
+            let statusValue = status?()
             
             cell.iconImageView.image = UIImage(named: iconName!)
             cell.titleLabel.text = title!
-            cell.setResultValue(value!(), range: range!(), unit: unit!, status: status)
+            cell.setResultValue(value!(), range: range!(), unit: unit!, status: statusValue == nil ? ValueStatus.Normal : statusValue)
             
             return cell
         }
@@ -431,10 +460,18 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
             let info = list[indexPath.row]
             let canExtend = info["canExtend"] as? () -> Bool
             if canExtend!() {
-                selectedIndexRow = indexPath.row
+                if selectedIndexRow == indexPath.row {
+                    selectedIndexRow = -1
+                }
+                else {
+                    selectedIndexRow = indexPath.row
+                }
                 tableView.reloadData()
+                
+                self.physiqueDelegate?.viewHeightChanged()
             }
             
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
 }
