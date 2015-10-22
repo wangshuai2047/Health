@@ -35,6 +35,16 @@ class SleepDetailViewController: UIViewController {
         let nibCell = UINib(nibName: "GoalDetailTableViewCell", bundle: nil)
         tableView.registerNib(nibCell, forCellReuseIdentifier: cellId)
         
+        refreshData()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func refreshData() {
+        // Do any additional setup after loading the view.
         let (_, _, lightSleep, deepSleep) = sevenDaysData.first!
         lightSleepLabel.text = String(format: "浅层睡眠\n%d小时", arguments: [lightSleep/60])
         deepSleepLabel.text = String(format: "深度睡眠\n%d小时", arguments: [deepSleep/60])
@@ -53,12 +63,6 @@ class SleepDetailViewController: UIViewController {
         tableView.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     /*
     // MARK: - Navigation
 
@@ -76,6 +80,15 @@ class SleepDetailViewController: UIViewController {
     @IBAction func shareButtonPressed(sender: AnyObject) {
         ShareViewController.showShareViewController(self.view.convertToImage(), delegate: self, rootController: self)
     }
+    
+    @IBAction func syncButtonPressed(sender: AnyObject) {
+        if GoalManager.isConnectDevice() {
+            GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
+                self.refreshData()
+                })
+        }
+    }
+    
 }
 
 // MARK: - 分享

@@ -30,6 +30,20 @@ class SportDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let cellNib = UINib(nibName: cellId, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
+        
+        refreshData()
+    }
+    //
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    func refreshData() {
         // Do any additional setup after loading the view.
         let (walk, _, _,_) = sevenDaysData.first!
         let goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
@@ -49,19 +63,7 @@ class SportDetailViewController: UIViewController {
         }
         
         tableView.reloadData()
-        
-        
-        let cellNib = UINib(nibName: cellId, bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
     }
-    //
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     /*
     // MARK: - Navigation
 
@@ -79,6 +81,15 @@ class SportDetailViewController: UIViewController {
     @IBAction func shareButtonPressed(sender: AnyObject) {
         ShareViewController.showShareViewController(self.view.convertToImage(), delegate: self, rootController: self)
     }
+    
+    @IBAction func syncButtonPressed(sender: AnyObject) {
+        if GoalManager.isConnectDevice() {
+            GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
+                self.refreshData()
+            })
+        }
+    }
+    
 }
 
 // MARK: - 分享
