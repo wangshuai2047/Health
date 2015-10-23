@@ -110,6 +110,7 @@ class UserSelectView: UIView {
     func setUsers(users: [(Int, String, String)], isNeedExt: Bool) {
         needSetUsers = users
         needExt = isNeedExt
+        self.setNeedsDisplay()
     }
     
     // 设置切换按钮的隐藏与显示

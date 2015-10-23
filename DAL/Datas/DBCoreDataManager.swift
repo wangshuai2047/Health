@@ -94,7 +94,7 @@ extension DBManager: DBUserProtocol {
             
             let request = NSFetchRequest()
             request.entity = entityDescription
-            request.predicate = NSPredicate(format: "userId == %@", userModel.userId)
+            request.predicate = NSPredicate(format: "userId == %d", userModel.userId)
             
             let listData = (try! context.executeFetchRequest(request)) as! [UserDBData]
             
@@ -143,7 +143,7 @@ extension DBManager: DBUserProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "userId == %@", userId)
+        request.predicate = NSPredicate(format: "userId == %d", userId)
         
         let listData:[AnyObject]?
         do {
