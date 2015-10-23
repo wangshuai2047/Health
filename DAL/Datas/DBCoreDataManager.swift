@@ -425,6 +425,26 @@ extension DBManager: DBManagerProtocol {
         return datas
     }
     
+    func queryCountEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int, count: Int) -> [[String: AnyObject]] {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp, endTimescamp, userId)
+        request.fetchLimit = count
+        let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
+        request.sortDescriptors = [endDateSort]
+        
+        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        
+        var datas: [[String: AnyObject]] = []
+        for managedObject in listData {
+            datas += [convertModel(managedObject)]
+        }
+        return datas
+    }
+    
     func queryNoUploadEvaluationDatas() -> [[String: AnyObject]] {
         let context = self.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)

@@ -43,7 +43,7 @@ class TrendViewController: UIViewController {
         super.viewWillAppear(animated)
         
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
-        
+        userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
         viewModel.eightDaysDatas()
         tableView.reloadData()
         chartView.reloadDatas()
@@ -144,10 +144,13 @@ class TrendViewController: UIViewController {
 extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.allDatas.count > 5 {
+            return 5
+        }
         return viewModel.allDatas.count
     }
     

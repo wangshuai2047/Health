@@ -54,6 +54,7 @@ class EvaluationViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
+        userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
         
         if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
             showView(connectDeviceView)
@@ -174,7 +175,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
     func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol) {
         
         // 绑定
-        SettingManager.bindDevice(device)
+//        SettingManager.bindDevice(device)
         
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
