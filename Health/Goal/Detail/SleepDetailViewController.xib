@@ -46,8 +46,8 @@
                         <constraint firstAttribute="width" constant="46" id="uXj-g8-ums"/>
                     </constraints>
                     <inset key="titleEdgeInsets" minX="-23" minY="0.0" maxX="0.0" maxY="-43"/>
-                    <inset key="imageEdgeInsets" minX="11" minY="-15" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="同步" image="delete">
+                    <inset key="imageEdgeInsets" minX="2" minY="-19" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="同步" image="refresh">
                         <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -253,12 +253,12 @@
                 <constraint firstAttribute="bottom" secondItem="tUo-5e-5M6" secondAttribute="bottom" constant="8" id="wqf-zO-uSC"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="316" y="505"/>
+            <point key="canvasLocation" x="117" y="907"/>
         </view>
     </objects>
     <resources>
         <image name="back" width="15" height="26"/>
-        <image name="delete" width="32" height="27"/>
+        <image name="refresh" width="19" height="19"/>
         <image name="share" width="26" height="26"/>
     </resources>
 </document>
