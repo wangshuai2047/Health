@@ -41,7 +41,6 @@ class UserSelectView: UIView {
     required init?(coder aDecoder: NSCoder) {
         
         showHeadView = NSBundle.mainBundle().loadNibNamed("UserView", owner: nil, options: nil)[0] as! UIView
-        
         super.init(coder: aDecoder)
         
         self.clipsToBounds = true
@@ -54,7 +53,7 @@ class UserSelectView: UIView {
         showHeadView.frame = self.bounds
         self.addSubview(showHeadView)
         
-        let (headButton, _, changeButton) = getShowViewControl()
+        let (headButton, _, changeButton, _) = getShowViewControl()
         headButton.addTarget(self, action: Selector("headButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         changeButton.addTarget(self, action: Selector("changePeoplePressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -116,10 +115,17 @@ class UserSelectView: UIView {
     
     // 设置切换按钮的隐藏与显示
     func setChangeButton(hidden: Bool) {
-        let (headButton, _, changeButton) = getShowViewControl()
+        let (headButton, _, changeButton, nameYConstraint) = getShowViewControl()
         changeButton.hidden = hidden
         
         headButton.userInteractionEnabled = !hidden
+        
+        if hidden {
+            nameYConstraint.constant = 0
+        }
+        else {
+            nameYConstraint.constant = 20
+        }
     }
     
     func setShowViewUserId(userId: Int) {
@@ -137,7 +143,7 @@ class UserSelectView: UIView {
     func setShowView(info: (String, String)) {
         // 设置showView
         let (headURLStr, name) = info
-        let (headButton, nameLabel, _) = getShowViewControl()
+        let (headButton, nameLabel, _, _) = getShowViewControl()
         
         headButton.sd_setImageWithURL(NSURL(string: headURLStr), forState: UIControlState.Normal, placeholderImage: UIImage(named: "defaultHead"))
         nameLabel.text = name
@@ -186,7 +192,7 @@ class UserSelectView: UIView {
         }
         else {
             
-            let (headButton, nameLabel, _) = getShowViewControl()
+            let (headButton, nameLabel, _, _) = getShowViewControl()
             
             headButton.sd_setImageWithURL(NSURL(string: headURLStr), forState: UIControlState.Normal, placeholderImage: UIImage(named: "defaultHead"))
             nameLabel.text = name
@@ -218,12 +224,20 @@ class UserSelectView: UIView {
         self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
     
-    func getShowViewControl() -> (UIButton, UILabel, UIButton) {
+    func getShowViewControl() -> (UIButton, UILabel, UIButton, NSLayoutConstraint) {
         let headButton = showHeadView.viewWithTag(headImageViewTag) as! UIButton
         let nameLabel = showHeadView.viewWithTag(nameLabelTag) as! UILabel
         let changeButton = showHeadView.viewWithTag(changePeopleButtonTag) as! UIButton
         
-        return (headButton, nameLabel, changeButton)
+        var nameYConstraint: NSLayoutConstraint?
+        for constraint in showHeadView.constraints {
+            if constraint.identifier == "nameYConstaint" {
+                nameYConstraint = constraint
+                break
+            }
+        }
+        
+        return (headButton, nameLabel, changeButton,nameYConstraint!)
     }
 }
 
