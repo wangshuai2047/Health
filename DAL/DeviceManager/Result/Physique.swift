@@ -10,15 +10,15 @@ import Foundation
 
 // 体型
 enum Physique: Int {
-    case HiddenFat = 1      // 隐性肥胖  hiddenFatFemaleSelected
-    case LotOfFat       // 脂肪过多 lotOfFatFemaleSelected
-    case Fat            // 肥胖   fatFemaleSelected
-    case LittleMuscle   // 肌肉不足 littleMuscleFemaleSelected
-    case Health          // 健康  healthFemaleSelected
-    case LotOfMuscle    // 超重肌肉 lotOfMuscleFemaleSelected
-    case Spare          // 消瘦   spareFemaleSelected
-    case LittleFat      // 低脂肪  littleFatFemaleSelected
-    case Athlete        // 运动员  athleteFemaleSelected
+    case HiddenFat = 1      // 隐性肥胖  hiddenFat
+    case LotOfFat       // 脂肪过多 lotOfFat
+    case Fat            // 肥胖   fat
+    case LittleMuscle   // 肌肉不足 littleMuscle
+    case Health          // 健康  health
+    case LotOfMuscle    // 超重肌肉 lotOfMuscle
+    case Spare          // 消瘦   spareFemale
+    case LittleFat      // 低脂肪  littleFat
+    case Athlete        // 运动员  athlete
     
     // gender true为男  false为女
     func imageName(gender: Bool) -> String {
@@ -77,6 +77,29 @@ enum Physique: Int {
             return "低脂肪型"
         case .Athlete:
             return "运动员型"
+        }
+    }
+    
+    var detailDescription: String {
+        switch self {
+        case .HiddenFat:
+            return "体重较轻，而体内脂肪含量相对较高，有心脑血管疾病风险，需要注意减脂。"
+        case .LotOfFat:
+            return "虽然体重不高，但脂肪含量较高，对健康不利，应适当减脂。"
+        case .Fat:
+            return "体型偏胖，体内脂肪含量高，存在健康风险，需注意改善。"
+        case .LittleMuscle:
+            return "体重适中，但肌肉比例较低，应注意锻炼。"
+        case .Health:
+            return "您的体型适中，不胖不瘦，成分合理，请保持。"
+        case .LotOfMuscle:
+            return "体重高于正常范围，但体脂肪不高，属于肌肉发达，可以保持。"
+        case .Spare:
+            return "体重和体脂肪都偏低，应增加营养和热量摄入。"
+        case .LittleFat:
+            return "体重适中，但脂肪含量较低，可适当补充脂肪摄入。"
+        case .Athlete:
+            return "体重高于正常范围，但体脂肪略低，应为长期有氧运动的结果，可以保持。"
         }
     }
     

@@ -65,6 +65,10 @@
 		E007CC231BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */; };
 		E007CC241BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */; };
 		E007CC251BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */; };
+		E0092D3A1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0092D381BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift */; };
+		E0092D3B1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0092D391BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib */; };
+		E0092D3E1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0092D3C1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift */; };
+		E0092D3F1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */; };
 		E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */; };
@@ -340,6 +344,10 @@
 		E007CC1B1BCAA2D200365FA8 /* DeviceScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceScanViewController.xib; sourceTree = "<group>"; };
 		E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScanCell.swift; sourceTree = "<group>"; };
 		E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceScanCell.xib; sourceTree = "<group>"; };
+		E0092D381BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationPhysiqueDetailCell.swift; sourceTree = "<group>"; };
+		E0092D391BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueDetailCell.xib; sourceTree = "<group>"; };
+		E0092D3C1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationPhysiqueIntroduceViewController.swift; sourceTree = "<group>"; };
+		E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueIntroduceViewController.xib; sourceTree = "<group>"; };
 		E00C00EA1B7ECC6D006A4343 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -743,6 +751,10 @@
 				E061AC641BD7ABE50046094B /* EvaluationResultTableView.swift */,
 				E0FCC5AF1BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift */,
 				E0FCC5B01BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib */,
+				E0092D381BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift */,
+				E0092D391BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib */,
+				E0092D3C1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift */,
+				E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */,
 			);
 			name = EvaluationDetail;
 			path = Health/Evaluation/EvaluationDetail;
@@ -1516,6 +1528,7 @@
 				E0FBED3C1B835BEE00A70598 /* LoginViewController.xib in Resources */,
 				E09EC8C21B7E3B5000CC07E3 /* Main.storyboard in Resources */,
 				E0FCC5B21BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib in Resources */,
+				E0092D3F1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib in Resources */,
 				E09EC8C71B7E3B5000CC07E3 /* LaunchScreen.xib in Resources */,
 				E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */,
 				E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */,
@@ -1540,6 +1553,7 @@
 				E061AC631BD7915D0046094B /* EvaluationDetailExtendCell.xib in Resources */,
 				E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */,
 				E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */,
+				E0092D3B1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib in Resources */,
 				E0F7A6B31BC6C36900AF6B8B /* VisitorAddViewController.xib in Resources */,
 				E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */,
 				E015BB561BC52B3900225C32 /* FeedBackViewController.xib in Resources */,
@@ -1707,7 +1721,9 @@
 				E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */,
 				E0039BD61BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
 				E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */,
+				E0092D3E1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift in Sources */,
 				E0255E6D1BC9556300CEE5D4 /* Physique.swift in Sources */,
+				E0092D3A1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift in Sources */,
 				E08B329D1B85A91E0040ADE7 /* CompleteAgeDataView.swift in Sources */,
 				E007CC1C1BCAA2D200365FA8 /* DeviceScanViewController.swift in Sources */,
 				E08B328E1B85A7660040ADE7 /* ActivityManager.swift in Sources */,

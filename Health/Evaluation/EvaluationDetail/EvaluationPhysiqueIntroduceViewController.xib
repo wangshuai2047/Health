@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EvaluationPhysiqueIntroduceViewController" customModule="Health" customModuleProvider="target">
+            <connections>
+                <outlet property="introduceTextView" destination="63Z-t4-Ekz" id="spf-Ww-zLW"/>
+                <outlet property="introduceTitleLabel" destination="MUZ-tZ-qAz" id="12X-rW-EIG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJg-pL-cae">
+                    <rect key="frame" x="180" y="150" width="240" height="299"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="visitorBg" translatesAutoresizingMaskIntoConstraints="NO" id="gGF-OE-dXX">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="299"/>
+                            <animations/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请选择分享方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUZ-tZ-qAz">
+                            <rect key="frame" x="24" y="24" width="127" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="体重较轻，而体内脂肪含量相对较高，有心脑血管疾病风险，需要注意减脂。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="63Z-t4-Ekz">
+                            <rect key="frame" x="8" y="53" width="224" height="238"/>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="dyf-ha-8Mm"/>
+                        <constraint firstAttribute="height" constant="299" id="mKk-Op-VBL"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajN-Nw-o5B">
+                    <rect key="frame" x="387" y="150" width="35" height="34"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="cwK-R7-y3A"/>
+                        <constraint firstAttribute="width" constant="35" id="f3g-jI-OWm"/>
+                    </constraints>
+                    <state key="normal" image="closeButton"/>
+                    <connections>
+                        <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="y39-Pc-R0R"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jJg-pL-cae" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BZk-Hm-aqU"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerY" secondItem="jJg-pL-cae" secondAttribute="centerY" id="IPt-eQ-ea9"/>
+                <constraint firstItem="jJg-pL-cae" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Lt1-2p-LKe"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerX" secondItem="jJg-pL-cae" secondAttribute="centerX" id="M9S-uM-FLw"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerX" secondItem="jJg-pL-cae" secondAttribute="centerX" constant="104.5" id="cvy-wH-IKd"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerY" secondItem="jJg-pL-cae" secondAttribute="centerY" constant="-132.5" id="zyK-sB-Gtp"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="IPt-eQ-ea9"/>
+                    <exclude reference="M9S-uM-FLw"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="closeButton" width="17" height="17"/>
+        <image name="visitorBg" width="254" height="239"/>
+    </resources>
+</document>
