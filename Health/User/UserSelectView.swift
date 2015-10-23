@@ -73,7 +73,7 @@ class UserSelectView: UIView {
         if needSetUsers != nil && needExt != nil {
             self.users = needSetUsers!
             if needExt! {
-                self.users += [(-1, "", "访客"), (-2, "", "新增")]
+                self.users += [(-2, "", "增加用户"),(-1, "", "访客")]
             }
             
             for view in userViews {
@@ -208,17 +208,12 @@ class UserSelectView: UIView {
     
     // MARK: - ShowView Method
     func headButtonPressed(button: UIButton) {
-        
-        // 直接用主账户操作
-//        delegate?.headButtonPressed(UserManager.mainUser.userId)
-        
         let (userId, _, _) = self.users[currentShowIndex]
         delegate?.headButtonPressed(userId)
     }
     
     func changePeoplePressed(button: UIButton) {
         
-        // 功能暂不开放
         self.showHeadView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
         self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
         self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
