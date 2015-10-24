@@ -163,6 +163,12 @@ class CompleteInfoViewController: UIViewController {
     
     @IBAction func nextPageButtonPressed(sender: AnyObject) {
         
+        
+        if headAndNameDataView.name == nil || headAndNameDataView.name == "" {
+            Alert.showErrorAlert("", message: "请输入名字")
+            return
+        }
+        
         if pageControl.currentPage == 4 {
             
             let userId = userModel == nil ? 0 : userModel!.userId
