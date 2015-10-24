@@ -48,7 +48,6 @@ class GoalViewController: UIViewController {
                 if self.respondsToSelector(Selector("refreshView")) {
                     self.refreshView()
                 }
-                
             })
         }
         

@@ -129,14 +129,21 @@ class EvaluationViewController: UIViewController {
             let detailController = EvaluationDetailViewController()
             AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
             
-            EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
+            EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
                     detailController.data = result
                     detailController.refreshData()
                     self.showView(self.connectDeviceView)
                 } else {
-                    self.showView(self.notConnectDeviceView)
+                    
+                    if isTimeOut {
+                        self.showView(self.notConnectDeviceView)
+                    }
+                    else {
+                        self.showView(self.connectDeviceView)
+                        self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
+                    }
                     detailController.navigationController?.popViewControllerAnimated(true)
 //                    Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
                 }
@@ -205,15 +212,20 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
-        EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
+        EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
                 detailController.data = info
                 detailController.refreshData()
                 //                self.pushToDetailEvaluationViewController(info!)
                 self.showView(self.connectDeviceView)
             } else {
-                
-                self.showView(self.notConnectDeviceView)
+                if isTimeOut {
+                    self.showView(self.notConnectDeviceView)
+                }
+                else {
+                    self.showView(self.connectDeviceView)
+                    self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
+                }
                 detailController.navigationController?.popViewControllerAnimated(true)
                 
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
@@ -286,12 +298,19 @@ extension EvaluationViewController: VisitorAddDelegate {
         detailController.isVisitor = true
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
-        EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info, error) -> Void in
+        EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
             if error == nil {
                 detailController.data = info
                 self.showView(self.connectDeviceView)
             } else {
-                self.showView(self.notConnectDeviceView)
+                if isTimeOut {
+                    self.showView(self.notConnectDeviceView)
+                }
+                else {
+                    self.showView(self.connectDeviceView)
+                    self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
+                }
+                detailController.navigationController?.popViewControllerAnimated(true)
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }

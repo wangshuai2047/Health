@@ -36,9 +36,9 @@ class EvaluationManager :NSObject {
         return DBManager.shareInstance().haveConnectedScale
     }
     
-    func scan(complete: (devices: [DeviceManagerProtocol], error: NSError?) -> Void) {
-        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], error: NSError?) -> Void in
-            complete(devices: devices, error: error)
+    func scan(complete: (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void) {
+        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void in
+            complete(devices: devices,isTimeOut: isTimeOut, error: error)
         }
     }
     
@@ -64,16 +64,16 @@ class EvaluationManager :NSObject {
     }
     
    // 开始测量秤
-    func startScale(complete: (info: ScaleResultProtocol?, error: NSError?) -> Void) {
+    func startScale(complete: (info: ScaleResultProtocol?, isTimeOut: Bool, error: NSError?) -> Void) {
         
         
-        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], error: NSError?) -> Void in
+        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], isTimeOut: Bool, error: NSError?) -> Void in
             
             if error == nil {
                 if devices.count > 0 {
                     let userModel = UserManager.shareInstance().currentUser
                     let device = devices.first!
-                    BluetoothManager.shareInstance.fire(device.uuid, info: ["userModel" : userModel], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+                    BluetoothManager.shareInstance.fire(device.uuid, info: ["userModel" : userModel], complete: { (result: ResultProtocol?, isTimeOut: Bool, error: NSError?) -> Void in
                         if error == nil {
                             if let braceletResult = result as? ScaleResultProtocol {
                                 
@@ -83,12 +83,12 @@ class EvaluationManager :NSObject {
                                 self.updateEvaluationData()
                             }
                         }
-                        complete(info: result as? ScaleResultProtocol, error: error)
+                        complete(info: result as? ScaleResultProtocol,isTimeOut: isTimeOut, error: error)
                     })
                 }
             }
             else {
-                complete(info: nil, error: error)
+                complete(info: nil,isTimeOut: isTimeOut, error: error)
             }
             
             
@@ -118,13 +118,13 @@ class EvaluationManager :NSObject {
     }
     
     // 访客测量
-    func visitorStartScale(user: UserModel, complete: (info: ScaleResultProtocol?, error: NSError?) -> Void) {
-        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], error: NSError?) -> Void in
+    func visitorStartScale(user: UserModel, complete: (info: ScaleResultProtocol?,isTimeOut: Bool, error: NSError?) -> Void) {
+        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void in
             
             if error == nil {
                 if devices.count > 0 {
                     let device = devices.first!
-                    BluetoothManager.shareInstance.fire(device.uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+                    BluetoothManager.shareInstance.fire(device.uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?,isTimeOut: Bool, error: NSError?) -> Void in
                         if error == nil {
                             if let braceletResult = result as? ScaleResultProtocol {
                                 
@@ -132,12 +132,12 @@ class EvaluationManager :NSObject {
                                 DBManager.shareInstance().addEvaluationData(braceletResult)
                             }
                         }
-                        complete(info: result as? ScaleResultProtocol, error: error)
+                        complete(info: result as? ScaleResultProtocol,isTimeOut: isTimeOut, error: error)
                     })
                 }
             }
             else {
-                complete(info: nil, error: error)
+                complete(info: nil,isTimeOut: isTimeOut, error: error)
             }
         }
         

@@ -786,13 +786,13 @@
 				E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */,
 				E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */,
 			);
-			name = DeviceManager;
-			path = ../DeviceManager/DeviceManager;
+			path = DeviceManager;
 			sourceTree = "<group>";
 		};
 		E02979451B801E1500AAE085 /* DeviceManager */ = {
 			isa = PBXGroup;
 			children = (
+				E0255E801BC95B8400CEE5D4 /* DeviceManager */,
 				E0EDBDF01BCE5B4700137FB0 /* BlueToothDataFormats */,
 				E0255E671BC9556300CEE5D4 /* Result */,
 				E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */,
@@ -813,7 +813,6 @@
 		E08A24501B807BE4004269BB /* Datas */ = {
 			isa = PBXGroup;
 			children = (
-				E0255E801BC95B8400CEE5D4 /* DeviceManager */,
 				E08A24511B807BE4004269BB /* DBCoreDataManager.swift */,
 				E08A24521B807BE4004269BB /* DBManager.swift */,
 			);

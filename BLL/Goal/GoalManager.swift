@@ -69,7 +69,7 @@ struct GoalManager {
     static func syncDatas(complete: ((NSError?) -> Void)) {
         
         if let uuid = braceletUUID {
-            BluetoothManager.shareInstance.fire(uuid, info: [:], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+            BluetoothManager.shareInstance.fire(uuid, info: [:], complete: { (result: ResultProtocol?,isTimeOut: Bool, error: NSError?) -> Void in
                 if error == nil {
                     if let braceletResult = result as? BraceletResult {
                         

@@ -50,21 +50,27 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
     }
     
     private func reveiveData(data: NSData) {
-        let format = MybodyMiniAndPlusBlueToothFormats(data: data)
-        if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.weightData {
-            // 已收到称重数据
-            self.result?.weight = Float(format.weight)
-            self.result?.hepaticAdiposeInfiltration = format.resultCode == 0x30 ? false : true
-            
-            self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-            
-//            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
+        
+        var firstBuffer: UInt8 = 0
+        data.getBytes(buffer: &firstBuffer, range: NSRange(location: 0, length: 1))
+        if firstBuffer == 0xBC {
+            let format = MybodyMiniAndPlusBlueToothFormats(data: data)
+            if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.weightData {
+                // 已收到称重数据
+                self.result?.weight = Float(format.weight)
+                self.result?.hepaticAdiposeInfiltration = format.resultCode == 0x30 ? false : true
+                
+                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+            }
+            else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
+                self.result?.setDatas(format.datas)
+                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                
+                fireComplete?(result, nil)
+            }
         }
-        else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
-            self.result?.setDatas(format.datas)
-            self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-            
-            fireComplete?(result, nil)
+        else {
+            fireComplete?(nil, NSError(domain: "评测错误", code: 1, userInfo: [NSLocalizedDescriptionKey : "BodyMini 返回的数据格式错误,无法解析"]))
         }
     }
 }

@@ -75,7 +75,7 @@ class BluetoothManager: NSObject {
     private var timeoutTimer: NSTimer?
     
     private var isScan: Bool = true
-    private var scanClosure: (([DeviceManagerProtocol], NSError?) -> Void)?
+    private var scanClosure: (([DeviceManagerProtocol],Bool, NSError?) -> Void)?
     
     private var scanDevice = NSMutableDictionary()
     private var scanDeviceType: [DeviceType]?
@@ -92,7 +92,7 @@ class BluetoothManager: NSObject {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    func scanDevice(scanTypes: [DeviceType]? ,complete: ([DeviceManagerProtocol], NSError?) -> Void) {
+    func scanDevice(scanTypes: [DeviceType]? ,complete: ([DeviceManagerProtocol], isTimeOut: Bool, NSError?) -> Void) {
         isScan = true
         scanDevice.removeAllObjects()
         scanClosure = complete
@@ -109,7 +109,7 @@ class BluetoothManager: NSObject {
         for value in scanDevice.allValues {
             devices.append(value as! DeviceManagerProtocol)
         }
-        scanClosure?(devices, NSError(domain: "搜索结束", code: 1001, userInfo: [NSLocalizedDescriptionKey : "搜索时间到"]))
+        scanClosure?(devices, true, NSError(domain: "搜索结束", code: 1001, userInfo: [NSLocalizedDescriptionKey : "搜索时间到"]))
         
         clearWork()
     }
@@ -129,19 +129,19 @@ class BluetoothManager: NSObject {
         }
     }
     
-    func fire(uuid: String, info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
+    func fire(uuid: String, info: [String : Any], complete: (ResultProtocol?, isTimeOut: Bool, NSError?) -> Void) {
         
         if currentDevice != nil && currentDevice?.uuid == uuid {
             self.isScan = false
             connect(currentDevice!.peripheral!)
             currentDevice?.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
                     self.currentDevice = nil
-                    complete(result, error)
+                    complete(result, isTimeOut: false, error)
                     self.clearWork()
                 })
         }
         else {
-            scanDevice(nil, complete: { [unowned self] (results: [DeviceManagerProtocol], error: NSError?) -> Void in
+            scanDevice(nil, complete: { [unowned self] (results: [DeviceManagerProtocol], isTimeOut: Bool, error: NSError?) -> Void in
                 
                 if error == nil {
                     for device in results {
@@ -154,7 +154,7 @@ class BluetoothManager: NSObject {
                             self.connect(self.currentDevice!.peripheral!)
                             currentDevice.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
                                 
-                                complete(result, error)
+                                complete(result,isTimeOut: isTimeOut, error)
                                 self.clearWork()
                                 self.currentDevice = nil
                             })
@@ -163,7 +163,7 @@ class BluetoothManager: NSObject {
                 }
                 else
                 {
-                    complete(nil, error)
+                    complete(nil,isTimeOut: isTimeOut, error)
                 }
             })
         }
@@ -272,7 +272,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
             for value in scanDevice.allValues {
                 devices.append(value as! DeviceManagerProtocol)
             }
-            scanClosure?(devices, nil)
+            scanClosure?(devices, false, nil)
         }
     }
     
