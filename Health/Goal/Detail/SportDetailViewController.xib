@@ -47,7 +47,7 @@
                         <constraint firstAttribute="height" constant="65" id="beY-BU-JWh"/>
                     </constraints>
                     <inset key="titleEdgeInsets" minX="-31" minY="0.0" maxX="0.0" maxY="-43"/>
-                    <inset key="imageEdgeInsets" minX="7" minY="-15" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="7" minY="-17" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="同步" image="refresh">
                         <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -240,7 +240,7 @@
     </objects>
     <resources>
         <image name="back" width="15" height="26"/>
-        <image name="refresh" width="39" height="39"/>
+        <image name="refresh" width="26" height="26"/>
         <image name="share" width="26" height="26"/>
     </resources>
 </document>
