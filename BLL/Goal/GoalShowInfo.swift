@@ -26,7 +26,7 @@ struct GoalShowInfo {
         let dayCalorie = scaleResult.weight * addFatPercentage * 15
         dayCalorieGoal = dayCalorie + scaleResult.dayNeedCalorie
         
-        dayWalkGoal = Int(dayCalorie / 500)
+        dayWalkGoal = Int(dayCalorie / 500) == 0 ? 10000 : Int(dayCalorie / 500)
         
         var walkSteps: Int = 0
         var walkSleeps: Int = 0

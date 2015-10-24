@@ -35,7 +35,7 @@ struct TrendViewModel {
     
     mutating func eightDaysDatas() -> [TrendCellViewModel] {
         let endDate = NSDate()
-        let beginDate = endDate.dateByAddingTimeInterval(-300 * 24 * 60 * 60)
+        let beginDate = endDate.dateByAddingTimeInterval(-30 * 24 * 60 * 60)
         
         let evaluationDatas = TrendManager.eightDaysDatas(beginDate, endTimescamp: endDate)
         

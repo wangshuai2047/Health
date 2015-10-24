@@ -102,6 +102,29 @@ class UserManager {
             complete(error)
         }
     }
+    
+    func queryUser(userId: Int) -> UserModel? {
+        if let info = DBManager.shareInstance().queryUser(userId) {
+            return UserModel(info: info)
+        }
+        return nil
+    }
+    
+    func changeUserInfo(user: UserModel,  complete: (NSError?) -> Void) {
+        UserRequest.completeUserInfo(user.userId, gender: user.gender, height: user.height, age: user.age, name: user.name, phone: nil, organizationCode: nil, imageURL: user.headURL) { (imageURL, error) -> Void in
+            if error == nil {
+                
+                if user.headURL != nil {
+                    _ = try? NSFileManager.defaultManager().removeItemAtPath(user.headURL!)
+                }
+                
+                var dbUser = user
+                dbUser.headURL = imageURL
+                DBManager.shareInstance().addOrUpdateUser(dbUser)
+            }
+            complete(error)
+        }
+    }
 }
 
 extension UserModel {

@@ -94,7 +94,7 @@ extension DBManager: DBUserProtocol {
             
             let request = NSFetchRequest()
             request.entity = entityDescription
-            request.predicate = NSPredicate(format: "userId == %@", userModel.userId)
+            request.predicate = NSPredicate(format: "userId == %d", userModel.userId)
             
             let listData = (try! context.executeFetchRequest(request)) as! [UserDBData]
             
@@ -143,7 +143,7 @@ extension DBManager: DBUserProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "userId == %@", userId)
+        request.predicate = NSPredicate(format: "userId == %d", userId)
         
         let listData:[AnyObject]?
         do {
@@ -413,6 +413,26 @@ extension DBManager: DBManagerProtocol {
         let request = NSFetchRequest()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp, endTimescamp, userId)
+        let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
+        request.sortDescriptors = [endDateSort]
+        
+        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        
+        var datas: [[String: AnyObject]] = []
+        for managedObject in listData {
+            datas += [convertModel(managedObject)]
+        }
+        return datas
+    }
+    
+    func queryCountEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int, count: Int) -> [[String: AnyObject]] {
+        let context = self.managedObjectContext!
+        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp, endTimescamp, userId)
+        request.fetchLimit = count
         let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         request.sortDescriptors = [endDateSort]
         

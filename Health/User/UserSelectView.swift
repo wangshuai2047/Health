@@ -41,7 +41,6 @@ class UserSelectView: UIView {
     required init?(coder aDecoder: NSCoder) {
         
         showHeadView = NSBundle.mainBundle().loadNibNamed("UserView", owner: nil, options: nil)[0] as! UIView
-        
         super.init(coder: aDecoder)
         
         self.clipsToBounds = true
@@ -54,7 +53,7 @@ class UserSelectView: UIView {
         showHeadView.frame = self.bounds
         self.addSubview(showHeadView)
         
-        let (headButton, _, changeButton) = getShowViewControl()
+        let (headButton, _, changeButton, _) = getShowViewControl()
         headButton.addTarget(self, action: Selector("headButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         changeButton.addTarget(self, action: Selector("changePeoplePressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -69,12 +68,11 @@ class UserSelectView: UIView {
         // Drawing code
         scrollView.frame = self.bounds
         // add user
-//        setUsers([(UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name)], isNeedExt: false)
         
         if needSetUsers != nil && needExt != nil {
             self.users = needSetUsers!
             if needExt! {
-                self.users += [(-1, "", "访客"), (-2, "", "新增")]
+                self.users += [(-2, "", "增加用户"),(-1, "", "访客")]
             }
             
             for view in userViews {
@@ -112,14 +110,22 @@ class UserSelectView: UIView {
     func setUsers(users: [(Int, String, String)], isNeedExt: Bool) {
         needSetUsers = users
         needExt = isNeedExt
+        self.setNeedsDisplay()
     }
     
     // 设置切换按钮的隐藏与显示
     func setChangeButton(hidden: Bool) {
-        let (headButton, _, changeButton) = getShowViewControl()
+        let (headButton, _, changeButton, nameYConstraint) = getShowViewControl()
         changeButton.hidden = hidden
         
         headButton.userInteractionEnabled = !hidden
+        
+        if hidden {
+            nameYConstraint.constant = 0
+        }
+        else {
+            nameYConstraint.constant = 20
+        }
     }
     
     func setShowViewUserId(userId: Int) {
@@ -137,7 +143,7 @@ class UserSelectView: UIView {
     func setShowView(info: (String, String)) {
         // 设置showView
         let (headURLStr, name) = info
-        let (headButton, nameLabel, _) = getShowViewControl()
+        let (headButton, nameLabel, _, _) = getShowViewControl()
         
         headButton.sd_setImageWithURL(NSURL(string: headURLStr), forState: UIControlState.Normal, placeholderImage: UIImage(named: "defaultHead"))
         nameLabel.text = name
@@ -186,7 +192,7 @@ class UserSelectView: UIView {
         }
         else {
             
-            let (headButton, nameLabel, _) = getShowViewControl()
+            let (headButton, nameLabel, _, _) = getShowViewControl()
             
             headButton.sd_setImageWithURL(NSURL(string: headURLStr), forState: UIControlState.Normal, placeholderImage: UIImage(named: "defaultHead"))
             nameLabel.text = name
@@ -202,28 +208,31 @@ class UserSelectView: UIView {
     
     // MARK: - ShowView Method
     func headButtonPressed(button: UIButton) {
-        
-        // 直接用主账户操作
-//        delegate?.headButtonPressed(UserManager.mainUser.userId)
-        
         let (userId, _, _) = self.users[currentShowIndex]
         delegate?.headButtonPressed(userId)
     }
     
     func changePeoplePressed(button: UIButton) {
         
-        // 功能暂不开放
         self.showHeadView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
         self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
         self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
     
-    func getShowViewControl() -> (UIButton, UILabel, UIButton) {
+    func getShowViewControl() -> (UIButton, UILabel, UIButton, NSLayoutConstraint) {
         let headButton = showHeadView.viewWithTag(headImageViewTag) as! UIButton
         let nameLabel = showHeadView.viewWithTag(nameLabelTag) as! UILabel
         let changeButton = showHeadView.viewWithTag(changePeopleButtonTag) as! UIButton
         
-        return (headButton, nameLabel, changeButton)
+        var nameYConstraint: NSLayoutConstraint?
+        for constraint in showHeadView.constraints {
+            if constraint.identifier == "nameYConstaint" {
+                nameYConstraint = constraint
+                break
+            }
+        }
+        
+        return (headButton, nameLabel, changeButton,nameYConstraint!)
     }
 }
 

@@ -163,9 +163,16 @@ class CompleteInfoViewController: UIViewController {
     
     @IBAction func nextPageButtonPressed(sender: AnyObject) {
         
+        
+        if headAndNameDataView.name == nil || headAndNameDataView.name == "" {
+            Alert.showErrorAlert("", message: "请输入名字")
+            return
+        }
+        
         if pageControl.currentPage == 4 {
             
-            let user = UserModel(userId: 0, age: ageDataView.age, gender: genderDataView.gender, height: UInt8(heightDataView.height), name: headAndNameDataView.name!, headURL:tempHeadPath)
+            let userId = userModel == nil ? 0 : userModel!.userId
+            let user = UserModel(userId: userId, age: ageDataView.age, gender: genderDataView.gender, height: UInt8(heightDataView.height), name: headAndNameDataView.name!, headURL:tempHeadPath)
             delegate?.completeInfo(self, user: user, phone: organizationDataView.phone, organizationCode: organizationDataView.code)
         }
         else {

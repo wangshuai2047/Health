@@ -15,15 +15,20 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
     let selectedColor = UIColor(red: 0, green: 64/255.0, blue: 128/255.0, alpha: 1)
     let selectedFemailColor = UIColor(red: 215/255.0, green: 148/255.0, blue: 239/255.0, alpha: 1)
     
+    let cellId = "EvaluationPhysiqueDetailCell"
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     convenience init() {
         self.init(nibName: "EvaluationPhysiqueDetailViewController", bundle: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        refreshView()
+//        refreshView()
+        tableView.registerNib(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,56 +36,9 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if physique != nil {
-            let (titleLabel, button, _) = labelAndButtonAndIntroduceView(self.view.viewWithTag(physique!.rawValue + 10)!)
-            titleLabel.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
-            button.selected = true
-        }
-        
-        //为了兼容iOS7，http://stackoverflow.com/questions/15490140/auto-layout-error
-        //iOS8下无需这句话
-        self.view.layoutSubviews()
-    }
-    
-    func labelAndButtonAndIntroduceView(view: UIView) -> (UILabel, UIButton, UIView) {
-        let titleLabel = view.viewWithTag(1) as! UILabel
-        let button = view.viewWithTag(2) as! UIButton
-        let introduceView = view.viewWithTag(3)
-        
-        return (titleLabel, button, introduceView!)
-    }
-    
-    func refreshView() {
-        for i in 11...19 {
-            let currtentview = self.view.viewWithTag(i)!
-            let (titleLabel, button, _) = labelAndButtonAndIntroduceView(currtentview)
-            
-            let physique = Physique(rawValue: i - 10)
-            
-            titleLabel.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
-            button.setImage(UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender)), forState: UIControlState.Normal)
-            button.setImage(UIImage(named: physique!.selectedImageName(UserManager.shareInstance().currentUser.gender)), forState: UIControlState.Selected)
-        }
-    }
-    
     @IBAction func physiqueButtonPressed(sender: UIButton) {
-        
-        if let view = sender.superview {
-            for i in 11...19 {
-                let currtentview = self.view.viewWithTag(i)!
-                let (_, _, introduceView) = labelAndButtonAndIntroduceView(currtentview)
-                
-                if i == view.tag {
-                    introduceView.hidden = !introduceView.hidden
-                }
-                else {
-                    introduceView.hidden = true
-                }
-            }
-        }
+        let physique = Physique(rawValue: sender.tag)
+        EvaluationPhysiqueIntroduceViewController.showEvaluationPhysiqueIntroduceViewController(physique!.description, introduce: physique!.detailDescription, rootController: self)
     }
     
     @IBAction func backButtonPressed(sender: AnyObject) {
@@ -96,5 +54,62 @@ class EvaluationPhysiqueDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! EvaluationPhysiqueDetailCell
+        
+        // 第一列
+        var physique = Physique(rawValue: indexPath.row + 1)
+        cell.titleLabel1.text = physique?.description
+        cell.titleLabel1.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
+        cell.physiqueImageView1.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
+        cell.physiqueButton1.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.physiqueButton1.tag = physique!.rawValue
+        
+        if physique == self.physique {
+            cell.physiqueImageView1.image = UIImage(named: physique!.selectedImageName(UserManager.shareInstance().currentUser.gender))
+        }
+        
+        // 第二列
+        physique = Physique(rawValue: indexPath.row + 2)
+        cell.titleLabel2.text = physique?.description
+        cell.physiqueImageView2.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
+        cell.physiqueButton2.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.physiqueButton2.tag = physique!.rawValue
+        
+        if physique == self.physique {
+            cell.physiqueImageView2.image = UIImage(named: physique!.selectedImageName(UserManager.shareInstance().currentUser.gender))
+        }
+        
+        // 第三列
+        physique = Physique(rawValue: indexPath.row + 3)
+        cell.titleLabel3.text = physique?.description
+        cell.physiqueImageView3.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
+        cell.physiqueButton3.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.physiqueButton3.tag = physique!.rawValue
+        
+        if physique == self.physique {
+            cell.physiqueImageView3.image = UIImage(named: physique!.selectedImageName(UserManager.shareInstance().currentUser.gender))
+        }
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return tableView.frame.size.height / 3
+    }
+    
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let deCell = cell as? EvaluationPhysiqueDetailCell {
+            deCell.physiqueButton1.removeTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+            deCell.physiqueButton2.removeTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+            deCell.physiqueButton3.removeTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        }
+    }
 }

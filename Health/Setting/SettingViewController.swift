@@ -12,8 +12,8 @@ class SettingViewController: UIViewController {
 
     // 数据格式为  (ImageName, Title, 进入的Controller)
     var list: [(String, String, UIViewController)] = [
-        ("membersManager", "成员资料修改管理", UIViewController()),
-        ("membersManager", "家庭成员修改", FamilyMembersViewController()),
+//        ("membersManager", "成员资料修改管理", UIViewController()),
+        ("membersManager", "资料修改管理", FamilyMembersViewController()),
         ("socialBind", "社交账号绑定管理", ThirdPlatformBindController()),
         ("deviceManager", "健康设备管理", DeviceBindViewController()),
         ("feedback", "用户建议反馈", FeedBackViewController()),
@@ -91,7 +91,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             LoginManager.logout()
             AppDelegate.applicationDelegate().changeToLoginController()
         }
-        else if indexPath.row == 0 {
+        else if indexPath.row == -1 {
             // 成员资料修改管理
             let controller = CompleteInfoViewController()
             controller.userModel = UserManager.mainUser

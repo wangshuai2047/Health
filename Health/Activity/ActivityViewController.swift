@@ -13,6 +13,8 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var userSelectView: UserSelectView!
     @IBOutlet weak var adsScrollView: UIScrollView!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var rankLabel: UILabel!
+    
     @IBOutlet weak var adsPageControl: UIPageControl!
     
     @IBOutlet weak var superWalkerButton: UIButton!
@@ -79,12 +81,14 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        ActivityManager.queryScoreAds {[unowned self] (score: Float?, error: NSError?) -> Void in
+        ActivityManager.queryScoreAds {[unowned self] (score: Int?, rank: Int?, error: NSError?) -> Void in
             if error == nil {
                 self.scoreLabel.text = "\(score!)"
+                self.rankLabel.text = "\(rank!)"
             }
             else {
                 self.scoreLabel.text = "0"
+                self.rankLabel.text = "0"
             }
         }
         

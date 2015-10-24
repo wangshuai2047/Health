@@ -26,6 +26,7 @@ protocol DBEvaluationProtocol {
     func queryNoUploadEvaluationDatas() -> [[String: AnyObject]]
     func updateUploadEvaluationDatas(newDataIdInfos: [[String: AnyObject]])
     func queryLastEvaluationData(userId: Int) -> [String: AnyObject]?
+    func queryCountEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int, count: Int) -> [[String: AnyObject]]
 }
 
 protocol DBGoalProtocol {

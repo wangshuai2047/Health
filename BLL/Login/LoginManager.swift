@@ -260,8 +260,6 @@ struct LoginManager {
                 }
             })
         }
-        
-        
     }
     
     static func cancelBindThirdParty(type: ThirdPlatformType) {
@@ -309,7 +307,6 @@ struct LoginManager {
         if let userId = userInfo["userId"] as? NSNumber {
             print("userId\(userId)")
             UserData.shareInstance().userId = userId.integerValue
-            
         }
         
         if let phone = userInfo["mobile"] as? String {

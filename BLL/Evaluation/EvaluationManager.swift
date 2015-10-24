@@ -90,6 +90,11 @@ class EvaluationManager :NSObject {
         if let uuid = myBodyUUID {
             BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
                 
+                if let scaleResult = result as? ScaleResultProtocol {
+                    
+                    // 存数据库
+                    DBManager.shareInstance().addEvaluationData(scaleResult)
+                }
                     complete(info: result as? ScaleResultProtocol, error: error)
                 })
         }
@@ -99,7 +104,8 @@ class EvaluationManager :NSObject {
     }
     
     static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: AnyObject]] {
-        return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserData.shareInstance().userId!)
+        return DBManager.shareInstance().queryCountEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserManager.shareInstance().currentUser.userId, count: 5)
+//        return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserData.shareInstance().userId!)
     }
     
     func updateEvaluationData() {

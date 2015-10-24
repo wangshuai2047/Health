@@ -32,6 +32,8 @@ class TrendViewController: UIViewController {
 //        let datas = viewModel.eightDaysDatas()
         userSelectView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        weightButton.selected = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,10 +45,11 @@ class TrendViewController: UIViewController {
         super.viewWillAppear(animated)
         
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
-        
+        userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
         viewModel.eightDaysDatas()
         tableView.reloadData()
         chartView.reloadDatas()
+        refreshSelectedData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,19 +65,75 @@ class TrendViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func selectedButton() -> UIButton? {
+        
+        if muscleButton.selected {
+            return muscleButton
+        }
+        
+        if fatButton.selected {
+            return fatButton
+        }
+        
+        if waterButton.selected {
+            return waterButton
+        }
+        
+        if proteinButton.selected {
+            return proteinButton
+        }
+        
+        return nil
+    }
 
     @IBAction func selectButtonPressed(button: UIButton) {
         
-        if button.selected {
-            button.selected = false
-            refreshSelectedData()
-        }
-        else {
-            if selectCount() < 2 {
-                button.selected = true
+        if weightButton == button {
+            if weightButton.selected {
+                weightButton.selected = false
                 refreshSelectedData()
             }
+            else {
+                if selectCount() > 1 {
+                    if let selectButton = selectedButton() {
+                        weightButton.selected = true
+                        selectButton.selected = false
+                        refreshSelectedData()
+                    }
+                }
+                else {
+                    weightButton.selected = true
+                    refreshSelectedData()
+                }
+                
+            }
         }
+        else {
+            if button.selected {
+                button.selected = false
+                refreshSelectedData()
+            }
+            else {
+                if weightButton.selected {
+                    if let selectButton = selectedButton() {
+                        selectButton.selected = false
+                        
+                    }
+                    button.selected = true
+                    refreshSelectedData()
+                }
+                else {
+                    if selectCount() < 2 {
+                        button.selected = true
+                        refreshSelectedData()
+                    }
+                }
+                
+            }
+        }
+        
+        
     }
     
     func refreshSelectedData() {
@@ -144,10 +203,13 @@ class TrendViewController: UIViewController {
 extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.allDatas.count > 5 {
+            return 5
+        }
         return viewModel.allDatas.count
     }
     
