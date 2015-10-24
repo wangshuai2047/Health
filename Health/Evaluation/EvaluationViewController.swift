@@ -19,6 +19,7 @@ class EvaluationViewController: UIViewController {
     @IBOutlet weak var waterContentInputDataTextField: UITextField!
     @IBOutlet weak var visceralFatContentInputDataTextField: UITextField!
     
+    @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var evaluationResultView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
@@ -31,6 +32,7 @@ class EvaluationViewController: UIViewController {
     @IBOutlet weak var bodyFatLabel: UILabel!
     @IBOutlet weak var bodyFatLevelLabel: UILabel!
     
+    var canScale: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,25 @@ class EvaluationViewController: UIViewController {
         
         UIApplication.sharedApplication().applicationSupportsShakeToEdit = true
         self.becomeFirstResponder()
+        
+        showView(connectDeviceView)
+        EvaluationManager.shareInstance().setCheckStatusBlock { [unowned self] (status: CBCentralManagerState) -> Void in
+            
+            self.canScale = false
+            if status == CBCentralManagerState.PoweredOff {
+                self.tipLabel.text = "蓝牙未打开,请打开蓝牙!"
+            }
+            else if status == CBCentralManagerState.Unauthorized {
+                self.tipLabel.text = "蓝牙未被授权,请在设置中对此应用进行授权!"
+            }
+            else if status == CBCentralManagerState.Unsupported {
+                self.tipLabel.text = "设备不支持蓝牙,无法使用!"
+            }
+            else if status == CBCentralManagerState.PoweredOn {
+                self.tipLabel.text = "摇一摇请上秤!"
+                self.canScale = true
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -56,12 +77,12 @@ class EvaluationViewController: UIViewController {
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
         userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
         
-        if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
-            showView(connectDeviceView)
-        }
-        else {
-            showView(notConnectDeviceView)
-        }
+//        if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
+//            showView(connectDeviceView)
+//        }
+//        else {
+//            showView(notConnectDeviceView)
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,17 +125,21 @@ class EvaluationViewController: UIViewController {
     // MARK: - connectDeviceView Response Method
     @IBAction func startEvaluationPressed(sender: AnyObject) {
         
-        let detailController = EvaluationDetailViewController()
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
-        
-        EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
+        if canScale {
+            let detailController = EvaluationDetailViewController()
+            AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
             
-            if error == nil {
-                detailController.data = result
-                detailController.refreshData()
-                self.showView(self.connectDeviceView)
-            } else {
-                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+            EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
+                
+                if error == nil {
+                    detailController.data = result
+                    detailController.refreshData()
+                    self.showView(self.connectDeviceView)
+                } else {
+                    self.showView(self.notConnectDeviceView)
+                    detailController.navigationController?.popViewControllerAnimated(true)
+//                    Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+                }
             }
         }
     }
@@ -187,7 +212,11 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
                 //                self.pushToDetailEvaluationViewController(info!)
                 self.showView(self.connectDeviceView)
             } else {
-                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+                
+                self.showView(self.notConnectDeviceView)
+                detailController.navigationController?.popViewControllerAnimated(true)
+                
+//                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }
     }
@@ -262,7 +291,8 @@ extension EvaluationViewController: VisitorAddDelegate {
                 detailController.data = info
                 self.showView(self.connectDeviceView)
             } else {
-                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+                self.showView(self.notConnectDeviceView)
+//                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }
     }

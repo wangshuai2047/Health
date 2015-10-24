@@ -37,8 +37,8 @@ class EvaluationManager :NSObject {
     }
     
     func scan(complete: (devices: [DeviceManagerProtocol], error: NSError?) -> Void) {
-        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol]) -> Void in
-            complete(devices: devices, error: nil)
+        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], error: NSError?) -> Void in
+            complete(devices: devices, error: error)
         }
     }
     
@@ -59,48 +59,103 @@ class EvaluationManager :NSObject {
         }
     }
     
+    func setCheckStatusBlock(complete: (CBCentralManagerState) -> Void) {
+        BluetoothManager.shareInstance.setCheckStatusBlock(complete)
+    }
+    
    // 开始测量秤
     func startScale(complete: (info: ScaleResultProtocol?, error: NSError?) -> Void) {
         
-        if let uuid = myBodyUUID {
+        
+        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], error: NSError?) -> Void in
             
-            // setScaleData(userId: Int, gender: Bool, age: UInt8, height: UInt8)
-            let userModel = UserManager.shareInstance().currentUser
-            
-            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : userModel], complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
-                if error == nil {
-                    if let braceletResult = result as? ScaleResultProtocol {
-                        
-                        // 存数据库
-                        DBManager.shareInstance().addEvaluationData(braceletResult)
-                        
-                        self.updateEvaluationData()
-                    }
+            if error == nil {
+                if devices.count > 0 {
+                    let userModel = UserManager.shareInstance().currentUser
+                    let device = devices.first!
+                    BluetoothManager.shareInstance.fire(device.uuid, info: ["userModel" : userModel], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+                        if error == nil {
+                            if let braceletResult = result as? ScaleResultProtocol {
+                                
+                                // 存数据库
+                                DBManager.shareInstance().addEvaluationData(braceletResult)
+                                
+                                self.updateEvaluationData()
+                            }
+                        }
+                        complete(info: result as? ScaleResultProtocol, error: error)
+                    })
                 }
-                complete(info: result as? ScaleResultProtocol, error: error)
-            })
+            }
+            else {
+                complete(info: nil, error: error)
+            }
+            
+            
         }
-        else {
-            complete(info: nil, error: NSError(domain: "同步失败", code: 1001, userInfo: [NSLocalizedDescriptionKey : "未绑定设备"]))
-        }
+        
+//        if let uuid = myBodyUUID {
+//            
+//            // setScaleData(userId: Int, gender: Bool, age: UInt8, height: UInt8)
+//            let userModel = UserManager.shareInstance().currentUser
+//            
+//            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : userModel], complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
+//                if error == nil {
+//                    if let braceletResult = result as? ScaleResultProtocol {
+//                        
+//                        // 存数据库
+//                        DBManager.shareInstance().addEvaluationData(braceletResult)
+//                        
+//                        self.updateEvaluationData()
+//                    }
+//                }
+//                complete(info: result as? ScaleResultProtocol, error: error)
+//            })
+//        }
+//        else {
+//            complete(info: nil, error: NSError(domain: "同步失败", code: 1001, userInfo: [NSLocalizedDescriptionKey : "未绑定设备"]))
+//        }
     }
     
     // 访客测量
     func visitorStartScale(user: UserModel, complete: (info: ScaleResultProtocol?, error: NSError?) -> Void) {
-        if let uuid = myBodyUUID {
-            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
-                
-                if let scaleResult = result as? ScaleResultProtocol {
-                    
-                    // 存数据库
-                    DBManager.shareInstance().addEvaluationData(scaleResult)
+        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], error: NSError?) -> Void in
+            
+            if error == nil {
+                if devices.count > 0 {
+                    let device = devices.first!
+                    BluetoothManager.shareInstance.fire(device.uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+                        if error == nil {
+                            if let braceletResult = result as? ScaleResultProtocol {
+                                
+                                // 存数据库
+                                DBManager.shareInstance().addEvaluationData(braceletResult)
+                            }
+                        }
+                        complete(info: result as? ScaleResultProtocol, error: error)
+                    })
                 }
-                    complete(info: result as? ScaleResultProtocol, error: error)
-                })
+            }
+            else {
+                complete(info: nil, error: error)
+            }
         }
-        else {
-            complete(info: nil, error: NSError(domain: "同步失败", code: 1001, userInfo: [NSLocalizedDescriptionKey : "未绑定设备"]))
-        }
+        
+        
+//        if let uuid = myBodyUUID {
+//            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+//                
+//                if let scaleResult = result as? ScaleResultProtocol {
+//                    
+//                    // 存数据库
+//                    DBManager.shareInstance().addEvaluationData(scaleResult)
+//                }
+//                    complete(info: result as? ScaleResultProtocol, error: error)
+//                })
+//        }
+//        else {
+//            complete(info: nil, error: NSError(domain: "同步失败", code: 1001, userInfo: [NSLocalizedDescriptionKey : "未绑定设备"]))
+//        }
     }
     
     static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: AnyObject]] {

@@ -32,8 +32,10 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
     }
     
     func refreshData() {
-        refreshScoreData()
-        refreshDescriptionData()
+        if data != nil {
+            refreshScoreData()
+            refreshDescriptionData()
+        }
     }
     
     func healthCount() -> (Int, Int, Int) {

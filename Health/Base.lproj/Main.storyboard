@@ -125,6 +125,125 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LA-4X-Uym">
+                                <rect key="frame" x="0.0" y="162" width="600" height="389"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写您的体重(kg)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONa-W3-deo">
+                                        <rect key="frame" x="8" y="8" width="584" height="33"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="Z6k-cw-l4I"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写您的水分率(%)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J0V-ER-ayU">
+                                        <rect key="frame" x="8" y="58" width="584" height="33"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="e3j-WE-6Go"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写您的内脏脂肪率(%)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="53Q-5I-P0a">
+                                        <rect key="frame" x="8" y="109" width="584" height="33"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="6Cf-bd-mXb"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2K-Dr-0AZ">
+                                        <rect key="frame" x="8" y="156" width="584" height="33"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="Q1S-V6-ce5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="确认提交" backgroundImage="buttonBg">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="manualInputDataCommitPressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="dIs-rX-E0t"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-o8-dpO">
+                                        <rect key="frame" x="8" y="238" width="579" height="105"/>
+                                        <animations/>
+                                        <string key="text">不知道您的身体数据？
+应用将无法给出全面的改善建议</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJb-kg-cnb">
+                                        <rect key="frame" x="8" y="351" width="584" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="j4Z-LE-SAw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="立即购买mybody体脂秤">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buyDevicePressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="VXG-1c-r4b"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo3-QE-Gfv">
+                                        <rect key="frame" x="8" y="197" width="584" height="33"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="w3l-I0-Qpy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="取消" backgroundImage="buttonBg">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="manualInputDataCancelPressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="04g-fr-LNS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="eJz-o8-dpO" firstAttribute="top" secondItem="Yo3-QE-Gfv" secondAttribute="bottom" constant="8" id="0Xw-fD-ScS"/>
+                                    <constraint firstAttribute="trailing" secondItem="J0V-ER-ayU" secondAttribute="trailing" constant="8" id="1ln-fh-sRK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yo3-QE-Gfv" secondAttribute="trailing" constant="8" id="35X-vu-IcE"/>
+                                    <constraint firstItem="J0V-ER-ayU" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="8v6-ks-yZN"/>
+                                    <constraint firstAttribute="bottom" secondItem="AJb-kg-cnb" secondAttribute="bottom" constant="8" id="A7M-Ny-eva"/>
+                                    <constraint firstAttribute="trailing" secondItem="AJb-kg-cnb" secondAttribute="trailing" constant="8" id="BZn-ok-gpJ"/>
+                                    <constraint firstItem="ONa-W3-deo" firstAttribute="top" secondItem="9LA-4X-Uym" secondAttribute="top" constant="8" id="De4-au-mgf"/>
+                                    <constraint firstItem="53Q-5I-P0a" firstAttribute="top" secondItem="J0V-ER-ayU" secondAttribute="bottom" constant="18" id="FpX-TA-RBz"/>
+                                    <constraint firstItem="J0V-ER-ayU" firstAttribute="top" secondItem="ONa-W3-deo" secondAttribute="bottom" constant="17" id="Ia4-Yr-oPR"/>
+                                    <constraint firstItem="AJb-kg-cnb" firstAttribute="top" secondItem="eJz-o8-dpO" secondAttribute="bottom" constant="8" id="J5F-aT-Ihy"/>
+                                    <constraint firstItem="Yo3-QE-Gfv" firstAttribute="top" secondItem="B2K-Dr-0AZ" secondAttribute="bottom" constant="8" id="UxQ-8A-5hN"/>
+                                    <constraint firstItem="B2K-Dr-0AZ" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="Y4b-aH-gSZ"/>
+                                    <constraint firstItem="AJb-kg-cnb" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="Zjq-x7-5GR"/>
+                                    <constraint firstItem="Yo3-QE-Gfv" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="bzP-bw-Co9"/>
+                                    <constraint firstItem="B2K-Dr-0AZ" firstAttribute="top" secondItem="53Q-5I-P0a" secondAttribute="bottom" constant="14" id="hkZ-f4-Hei"/>
+                                    <constraint firstItem="53Q-5I-P0a" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="m0M-wP-jX6"/>
+                                    <constraint firstItem="ONa-W3-deo" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="nkr-Ec-Iyc"/>
+                                    <constraint firstAttribute="trailing" secondItem="ONa-W3-deo" secondAttribute="trailing" constant="8" id="qSJ-uO-9Mg"/>
+                                    <constraint firstAttribute="trailing" secondItem="B2K-Dr-0AZ" secondAttribute="trailing" constant="8" id="t3L-rw-i6j"/>
+                                    <constraint firstAttribute="trailing" secondItem="53Q-5I-P0a" secondAttribute="trailing" constant="8" id="tg5-el-b8X"/>
+                                    <constraint firstAttribute="trailing" secondItem="eJz-o8-dpO" secondAttribute="trailing" constant="13" id="vDs-Sl-mM2"/>
+                                    <constraint firstItem="eJz-o8-dpO" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="wuT-S4-JRy"/>
+                                    <constraint firstItem="eJz-o8-dpO" firstAttribute="top" secondItem="B2K-Dr-0AZ" secondAttribute="bottom" constant="8" id="xjR-At-gxe"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xjR-At-gxe"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhT-Xr-w1L" customClass="UserSelectView" customModule="Health" customModuleProvider="target">
                                 <rect key="frame" x="4" y="64" width="592" height="90"/>
                                 <animations/>
@@ -303,7 +422,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCP-6j-4JS">
                                 <rect key="frame" x="4" y="162" width="592" height="389"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统没有成功搜索到设备,如果您还没有MyBody体质秤,您可以选择。如果您已有设备，则尝试激活设备后扫描设备。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-DV-G7q">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统没有成功搜索到设备,如果您还没有MyBody体质秤,您可以选择。如果您已有设备，则尝试激活设备后,摇一摇进行评测。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-DV-G7q">
                                         <rect key="frame" x="30" y="43" width="532" height="41"/>
                                         <animations/>
                                         <constraints>
@@ -346,7 +465,7 @@
                                             <action selector="enterMyBodyDataPressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="Oyc-gb-3tz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlv-J7-9Of">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlv-J7-9Of">
                                         <rect key="frame" x="30" y="214" width="532" height="42"/>
                                         <animations/>
                                         <constraints>
@@ -381,8 +500,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IDf-ib-hcA">
                                 <rect key="frame" x="4" y="162" width="592" height="389"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已成功连接体质秤,摇一摇或点击开始评测" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2b-9Y-Pif">
-                                        <rect key="frame" x="110" y="20" width="372" height="26"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已成功连接体质秤,摇一摇或点击开始评测" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2b-9Y-Pif">
+                                        <rect key="frame" x="177" y="20" width="238" height="26"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="Y7K-9v-iI7"/>
@@ -391,7 +510,7 @@
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcp-2h-PKm">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcp-2h-PKm">
                                         <rect key="frame" x="110" y="261" width="372" height="42"/>
                                         <animations/>
                                         <constraints>
@@ -419,6 +538,7 @@
                                 <constraints>
                                     <constraint firstItem="tcp-2h-PKm" firstAttribute="leading" secondItem="IDf-ib-hcA" secondAttribute="leading" constant="110" id="8t2-ic-UCu"/>
                                     <constraint firstItem="A2b-9Y-Pif" firstAttribute="leading" secondItem="IDf-ib-hcA" secondAttribute="leading" constant="110" id="9Uh-jQ-9aj"/>
+                                    <constraint firstItem="A2b-9Y-Pif" firstAttribute="centerX" secondItem="IDf-ib-hcA" secondAttribute="centerX" id="CuW-w9-0OJ"/>
                                     <constraint firstItem="MCu-dS-X42" firstAttribute="top" secondItem="A2b-9Y-Pif" secondAttribute="bottom" constant="8" id="FgY-ge-Ihh"/>
                                     <constraint firstItem="A2b-9Y-Pif" firstAttribute="top" secondItem="IDf-ib-hcA" secondAttribute="top" constant="20" id="PO0-x5-yLZ"/>
                                     <constraint firstAttribute="trailing" secondItem="tcp-2h-PKm" secondAttribute="trailing" constant="110" id="R6e-TQ-oEH"/>
@@ -426,123 +546,10 @@
                                     <constraint firstAttribute="trailing" secondItem="A2b-9Y-Pif" secondAttribute="trailing" constant="110" id="d1S-hI-sXv"/>
                                     <constraint firstAttribute="centerX" secondItem="MCu-dS-X42" secondAttribute="centerX" id="qHo-lV-LwY"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LA-4X-Uym">
-                                <rect key="frame" x="0.0" y="162" width="600" height="389"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写您的体重(kg)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONa-W3-deo">
-                                        <rect key="frame" x="8" y="8" width="584" height="33"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="Z6k-cw-l4I"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写您的水分率(%)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J0V-ER-ayU">
-                                        <rect key="frame" x="8" y="58" width="584" height="33"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="e3j-WE-6Go"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写您的内脏脂肪率(%)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="53Q-5I-P0a">
-                                        <rect key="frame" x="8" y="109" width="584" height="33"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="6Cf-bd-mXb"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2K-Dr-0AZ">
-                                        <rect key="frame" x="8" y="156" width="584" height="33"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="Q1S-V6-ce5"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="确认提交" backgroundImage="buttonBg">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="manualInputDataCommitPressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="dIs-rX-E0t"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-o8-dpO">
-                                        <rect key="frame" x="8" y="238" width="579" height="105"/>
-                                        <animations/>
-                                        <string key="text">不知道您的身体数据？
-应用将无法给出全面的改善建议</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJb-kg-cnb">
-                                        <rect key="frame" x="8" y="351" width="584" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="j4Z-LE-SAw"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="立即购买mybody体脂秤">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buyDevicePressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="VXG-1c-r4b"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo3-QE-Gfv">
-                                        <rect key="frame" x="8" y="197" width="584" height="33"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="w3l-I0-Qpy"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="取消" backgroundImage="buttonBg">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="manualInputDataCancelPressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="04g-fr-LNS"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="eJz-o8-dpO" firstAttribute="top" secondItem="Yo3-QE-Gfv" secondAttribute="bottom" constant="8" id="0Xw-fD-ScS"/>
-                                    <constraint firstAttribute="trailing" secondItem="J0V-ER-ayU" secondAttribute="trailing" constant="8" id="1ln-fh-sRK"/>
-                                    <constraint firstAttribute="trailing" secondItem="Yo3-QE-Gfv" secondAttribute="trailing" constant="8" id="35X-vu-IcE"/>
-                                    <constraint firstItem="J0V-ER-ayU" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="8v6-ks-yZN"/>
-                                    <constraint firstAttribute="bottom" secondItem="AJb-kg-cnb" secondAttribute="bottom" constant="8" id="A7M-Ny-eva"/>
-                                    <constraint firstAttribute="trailing" secondItem="AJb-kg-cnb" secondAttribute="trailing" constant="8" id="BZn-ok-gpJ"/>
-                                    <constraint firstItem="ONa-W3-deo" firstAttribute="top" secondItem="9LA-4X-Uym" secondAttribute="top" constant="8" id="De4-au-mgf"/>
-                                    <constraint firstItem="53Q-5I-P0a" firstAttribute="top" secondItem="J0V-ER-ayU" secondAttribute="bottom" constant="18" id="FpX-TA-RBz"/>
-                                    <constraint firstItem="J0V-ER-ayU" firstAttribute="top" secondItem="ONa-W3-deo" secondAttribute="bottom" constant="17" id="Ia4-Yr-oPR"/>
-                                    <constraint firstItem="AJb-kg-cnb" firstAttribute="top" secondItem="eJz-o8-dpO" secondAttribute="bottom" constant="8" id="J5F-aT-Ihy"/>
-                                    <constraint firstItem="Yo3-QE-Gfv" firstAttribute="top" secondItem="B2K-Dr-0AZ" secondAttribute="bottom" constant="8" id="UxQ-8A-5hN"/>
-                                    <constraint firstItem="B2K-Dr-0AZ" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="Y4b-aH-gSZ"/>
-                                    <constraint firstItem="AJb-kg-cnb" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="Zjq-x7-5GR"/>
-                                    <constraint firstItem="Yo3-QE-Gfv" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="bzP-bw-Co9"/>
-                                    <constraint firstItem="B2K-Dr-0AZ" firstAttribute="top" secondItem="53Q-5I-P0a" secondAttribute="bottom" constant="14" id="hkZ-f4-Hei"/>
-                                    <constraint firstItem="53Q-5I-P0a" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="m0M-wP-jX6"/>
-                                    <constraint firstItem="ONa-W3-deo" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="nkr-Ec-Iyc"/>
-                                    <constraint firstAttribute="trailing" secondItem="ONa-W3-deo" secondAttribute="trailing" constant="8" id="qSJ-uO-9Mg"/>
-                                    <constraint firstAttribute="trailing" secondItem="B2K-Dr-0AZ" secondAttribute="trailing" constant="8" id="t3L-rw-i6j"/>
-                                    <constraint firstAttribute="trailing" secondItem="53Q-5I-P0a" secondAttribute="trailing" constant="8" id="tg5-el-b8X"/>
-                                    <constraint firstAttribute="trailing" secondItem="eJz-o8-dpO" secondAttribute="trailing" constant="13" id="vDs-Sl-mM2"/>
-                                    <constraint firstItem="eJz-o8-dpO" firstAttribute="leading" secondItem="9LA-4X-Uym" secondAttribute="leading" constant="8" id="wuT-S4-JRy"/>
-                                    <constraint firstItem="eJz-o8-dpO" firstAttribute="top" secondItem="B2K-Dr-0AZ" secondAttribute="bottom" constant="8" id="xjR-At-gxe"/>
-                                </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="xjR-At-gxe"/>
+                                        <exclude reference="9Uh-jQ-9aj"/>
+                                        <exclude reference="d1S-hI-sXv"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -596,6 +603,7 @@
                         <outlet property="metabolismLevelLabel" destination="5fI-d6-WUN" id="jQC-xD-ilP"/>
                         <outlet property="notConnectDeviceView" destination="KCP-6j-4JS" id="ZJW-Es-f6y"/>
                         <outlet property="scoreLabel" destination="SLc-o0-NnO" id="9bn-lb-ogo"/>
+                        <outlet property="tipLabel" destination="A2b-9Y-Pif" id="ay7-aU-O9B"/>
                         <outlet property="userSelectView" destination="OhT-Xr-w1L" id="uUX-tz-RbZ"/>
                         <outlet property="visceralFatContentInputDataTextField" destination="53Q-5I-P0a" id="4jk-S8-JuE"/>
                         <outlet property="waterContentInputDataTextField" destination="J0V-ER-ayU" id="Vfm-cc-rIa"/>
@@ -1424,7 +1432,7 @@
         <image name="muscleIconSelected" width="25" height="27"/>
         <image name="proteinIcon" width="26" height="26"/>
         <image name="proteinIconSelected" width="26" height="26"/>
-        <image name="scaleTip" width="233" height="241"/>
+        <image name="scaleTip" width="233" height="189"/>
         <image name="setting" width="32" height="32"/>
         <image name="shareGeek" width="49" height="70"/>
         <image name="shareGeekSelected" width="49" height="70"/>

@@ -52,7 +52,7 @@ class DeviceScanViewController: UIViewController {
         let cellNib = UINib(nibName: cellId, bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
         
-        BluetoothManager.shareInstance.scanDevice(scanTypes) { [unowned self] (results: [DeviceManagerProtocol]) -> Void in
+        BluetoothManager.shareInstance.scanDevice(scanTypes) { [unowned self] (results: [DeviceManagerProtocol], error: NSError?) -> Void in
             self.scanResult = results
             self.tableView.reloadData()
         }
