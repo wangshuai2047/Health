@@ -87,13 +87,13 @@ class UserSelectView: UIView {
             var startCenter = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
             let padding: CGFloat = 112
             for var i = 0; i < self.users.count; i++ {
-                let (_, headURLStr, name) = self.users[i]
+                let (userId, headURLStr, name) = self.users[i]
                 let view = createSelectedHeadView((headURLStr, name, i))
                 view.center = startCenter
                 scrollView.addSubview(view)
                 startCenter = CGPoint(x: startCenter.x + padding, y: startCenter.y)
                 
-                if i == 0 {
+                if UserManager.shareInstance().currentUser.userId == userId {
                     setShowView((headURLStr, name))
                 }
             }
