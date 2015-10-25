@@ -46,18 +46,22 @@ class SleepDetailViewController: UIViewController {
     func refreshData() {
         // Do any additional setup after loading the view.
         let (_, _, lightSleep, deepSleep) = sevenDaysData.first!
-        lightSleepLabel.text = String(format: "浅层睡眠\n%d小时", arguments: [lightSleep/60])
-        deepSleepLabel.text = String(format: "深度睡眠\n%d小时", arguments: [deepSleep/60])
-        cicleView.update([(Double(deepSleep/60), deepSleepColor), (Double(lightSleep/60) , lightSleepColor)], animated: true)
         
-        let totalSleep = (lightSleep + deepSleep)/60
+        let lightSleepHour = GoalManager.dealSleepMinutesToHours(lightSleep)
+        let deepSleepHour = GoalManager.dealSleepMinutesToHours(deepSleep)
+        
+        lightSleepLabel.text = String(format: "浅层睡眠\n%d小时", arguments: [lightSleepHour])
+        deepSleepLabel.text = String(format: "深度睡眠\n%d小时", arguments: [deepSleepHour])
+        cicleView.update([(Double(deepSleepHour), deepSleepColor), (Double(lightSleepHour) , lightSleepColor)], animated: true)
+        
+        let totalSleep = lightSleepHour + deepSleepHour
         sleepCountLabel.text = String(format: "%d", arguments: [totalSleep])
         
         if totalSleep > 8 {
             sleepDescriptionLabel.text = "今天的睡眠时长已达到目标"
         }
         else {
-            sleepDescriptionLabel.text =  String(format: "今天还需睡眠%d小时", arguments: [8 - totalSleep])
+            sleepDescriptionLabel.text =  String(format: "今天还需睡眠%d小时", arguments: [(8 - totalSleep) < 0 ? 0 : (8 - totalSleep)])
         }
         
         tableView.reloadData()
@@ -117,8 +121,11 @@ extension SleepDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         let colors = [lightSleepColor, lightSleepColor, lightSleepColor, deepSleepColor, deepSleepColor]
         let (_, _, lightSleep, deepSleep) = sevenDaysData[indexPath.row]
+        let lightSleepHour = GoalManager.dealSleepMinutesToHours(lightSleep)
+        let deepSleepHour = GoalManager.dealSleepMinutesToHours(deepSleep)
         
-        cell.setColors(colors, step: Int((lightSleep + deepSleep)/60), goalStep: 8, day: indexPath.row + 1, unit: "小时")
+        
+        cell.setColors(colors, step: Int(lightSleepHour + deepSleepHour), goalStep: 8, day: indexPath.row + 1, unit: "小时")
         
         return cell
     }

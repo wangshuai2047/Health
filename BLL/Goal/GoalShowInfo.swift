@@ -28,6 +28,10 @@ struct GoalShowInfo {
         
         dayWalkGoal = Int(dayCalorie / 500) == 0 ? 10000 : Int(dayCalorie / 500)
         
+        if dayWalkGoal < 0 {
+            dayWalkGoal = 10000
+        }
+        
         var walkSteps: Int = 0
         var walkSleeps: Int = 0
         for (walkStep,_,sleepTime,deepSleepTime) in sevenDaysDatas {

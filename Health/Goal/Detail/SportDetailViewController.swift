@@ -54,8 +54,8 @@ class SportDetailViewController: UIViewController {
         cicleView.update([(Double(walk), deepBlue), (Double(needWalk) , lightBlue)], animated: true)
         
         todayWalkLabel.text = "\(walk)"
-        let percenage = Int(walk) / goalWalk! * 100 > 100 ? 100 : Int(walk) / goalWalk! * 100
-        walkPercenageLabel.text = String(format: "%.f%", arguments: [percenage])
+        let percenage = Float(walk) / Float(goalWalk!) * 100 > 100 ? 100 : Float(walk) / Float(goalWalk!) * 100
+        walkPercenageLabel.text = String(format: "%.f%%", arguments: [percenage])
         goalStepLabel.text = "\(goalWalk!)"
         
         if needWalk == 0 {

@@ -73,6 +73,7 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
     // 添加家庭成员
     func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
         
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "提交数据", detailMsg: nil, progress: nil)
         if isEditUser {
             UserManager.shareInstance().changeUserInfo(user, complete: { [unowned self] (error: NSError?) -> Void in
                 if error == nil {
@@ -84,6 +85,7 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
                 else {
                     Alert.showErrorAlert("修改家庭成员失败", message: error?.localizedDescription)
                 }
+                AppDelegate.applicationDelegate().hiddenHUD()
             })
         }
         else {
@@ -97,6 +99,7 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
                 else {
                     Alert.showErrorAlert("添加家庭成员失败", message: error?.localizedDescription)
                 }
+                AppDelegate.applicationDelegate().hiddenHUD()
             }
         }
     }

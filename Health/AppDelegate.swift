@@ -6,6 +6,15 @@
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
+/*
+#pragma mark - HUD
+@property (nonatomic, strong) MBProgressHUD *progressHUD;
+
+- (void)updateHUDWithType:(BT_HUD_TYPE)type message:(NSString *)msg detailMsg:(NSString *)detailMsg progress:(float)progress;
+
+- (void)hiddenHUD;
+*/
+
 import UIKit
 import CoreData
 
@@ -14,6 +23,9 @@ let deepBlue: UIColor = UIColor(red: 26/255.0, green: 146/255.0, blue: 214/255.0
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    private var progressHUD: MBProgressHUD?
+    private var isShowingHUD: Bool = false
 
     class func applicationDelegate() -> AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -66,6 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         
+        
+        progressHUD = MBProgressHUD(window: window)
+        
         HealthManager.syncHealthData()
         
         return true
@@ -96,3 +111,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+enum HUDType {
+    case Hotwheels  // 只有一个风火轮,加文字
+    case Progress   // 初始化通讯录时有进度条
+    case OnlyMsg     // 只有文字
+}
+
+extension AppDelegate {
+    func updateHUD(type: HUDType, message: String?, detailMsg: String?, progress: Float?) {
+        switch type {
+        case .Hotwheels:
+            progressHUD?.labelText = message
+            progressHUD?.detailsLabelText = detailMsg
+            progressHUD?.mode = MBProgressHUDMode.Indeterminate
+        case .OnlyMsg:
+            progressHUD?.labelText = message
+            progressHUD?.detailsLabelText = detailMsg
+            progressHUD?.mode = MBProgressHUDMode.Text
+        case .Progress:
+            progressHUD?.labelText = message
+            progressHUD?.detailsLabelText = detailMsg
+            progressHUD?.mode = MBProgressHUDMode.DeterminateHorizontalBar
+        }
+        
+        if !isShowingHUD {
+            UIApplication.sharedApplication().keyWindow?.addSubview(progressHUD!)
+            progressHUD?.show(true)
+            isShowingHUD = true
+        }
+    }
+    
+    func hiddenHUD() {
+        isShowingHUD = false
+        AppDelegate.applicationDelegate().progressHUD?.hide(true)
+    }
+}

@@ -44,10 +44,12 @@ class GoalViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if GoalManager.isConnectDevice() {
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
             GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
                 if self.respondsToSelector(Selector("refreshView")) {
                     self.refreshView()
                 }
+                AppDelegate.applicationDelegate().hiddenHUD()
             })
         }
         

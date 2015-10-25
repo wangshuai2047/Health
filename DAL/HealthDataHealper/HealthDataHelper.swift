@@ -148,8 +148,4 @@ class HealthDataHelper: NSObject {
         
         return (0, 0, NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
     }
-    
-//    static func dealSleepMinutesToHours(minutes: Int) -> Int {
-//        let
-//    }
 }
