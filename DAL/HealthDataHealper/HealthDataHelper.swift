@@ -101,11 +101,10 @@ class HealthDataHelper: NSObject {
                         sleepEndTime = data.startTime.timeIntervalSince1970
                         
                         // 浅睡眠
-                        let liteSleepMinutes = (sleepEndTime - sleepStartTime + 60 - 0.001) / 60
+                        let sleepMinutes = (sleepEndTime - sleepStartTime + 60 - 0.001) / 60
                         
-                        
-                        print("浅睡眠: \(liteSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
-                        return (Int(liteSleepMinutes), Int(deepSleepMinutes), NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
+                        print("浅睡眠: \(Int(sleepMinutes) - deepSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
+                        return (Int(sleepMinutes) - deepSleepMinutes, Int(deepSleepMinutes), NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
                         
                         //                        sleepStarted = false
                         //                        sleepStartTime = 0
@@ -142,11 +141,15 @@ class HealthDataHelper: NSObject {
         if sleepStarted {
             // 睡眠未结束  需要继续监听数据
             // 浅睡眠
-            let liteSleepMinutes = (sleepEndTime - sleepStartTime + 60 - 0.001) / 60
-            print("浅睡眠: \(liteSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
-            return (Int(liteSleepMinutes), Int(deepSleepMinutes), NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
+            let sleepMinutes = (sleepEndTime - sleepStartTime + 60 - 0.001) / 60
+            print("浅睡眠: \(Int(sleepMinutes) - deepSleepMinutes)分钟   深睡眠: \(deepSleepMinutes)分钟")
+            return (Int(sleepMinutes) - deepSleepMinutes, Int(deepSleepMinutes), NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
         }
         
         return (0, 0, NSDate(timeIntervalSince1970: sleepStartTime), NSDate(timeIntervalSince1970: sleepEndTime))
     }
+    
+//    static func dealSleepMinutesToHours(minutes: Int) -> Int {
+//        let
+//    }
 }

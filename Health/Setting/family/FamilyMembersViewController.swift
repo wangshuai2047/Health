@@ -158,7 +158,14 @@ extension FamilyMembersViewController: UITableViewDataSource, UITableViewDelegat
             let (userId, _, _) = users[indexPath.row]
             isEditUser = true
             let controller = CompleteInfoViewController()
-            controller.userModel = UserManager.shareInstance().queryUser(userId)
+            
+            if userId == UserManager.mainUser.userId {
+                controller.userModel = UserManager.mainUser
+            }
+            else {
+                controller.userModel = UserManager.shareInstance().queryUser(userId)
+            }
+            
             controller.canBack = true
             controller.delegate = self
             self.navigationController?.pushViewController(controller, animated: true)

@@ -12,7 +12,7 @@ import UIKit
 struct GoalShowInfo {
     var addFatPercentage: Float  // 需改变的体脂率 负数为需降低
     var dayCalorieGoal: Float // 每天需摄入的卡路里
-    var dayWalkGoal: Int        // 每日走多少路
+    var dayWalkGoal: Int = 10000        // 每日走多少路
     
     var sevenDaysWalkAverageValue: Int  // 过去七天平均步行多少
     var sevenDaysSleepAverageValue: Int // 过去七天平均睡眠多少

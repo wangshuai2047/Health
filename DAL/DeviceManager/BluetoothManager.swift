@@ -49,11 +49,6 @@ enum DeviceType: Int16 {
             buffer.append(0x01)
             buffer.append(0x08)
             buffer.append(0xf4)
-            buffer.append(0x06)
-            buffer.append(0xa5)
-            buffer.append(0x00)
-            buffer.append(0xbe)
-            buffer.append(0x3f)
             
             let data = NSData(bytes: buffer, length: buffer.count)
             return data
@@ -104,14 +99,17 @@ class BluetoothManager: NSObject {
     }
     
     func scanTimerFinished() {
-        timeoutTimer?.invalidate()
-        var devices: [DeviceManagerProtocol] = []
-        for value in scanDevice.allValues {
-            devices.append(value as! DeviceManagerProtocol)
-        }
-        scanClosure?(devices, true, NSError(domain: "搜索结束", code: 1001, userInfo: [NSLocalizedDescriptionKey : "搜索时间到"]))
         
-        clearWork()
+        if timeoutTimer != nil {
+            timeoutTimer?.invalidate()
+            var devices: [DeviceManagerProtocol] = []
+            for value in scanDevice.allValues {
+                devices.append(value as! DeviceManagerProtocol)
+            }
+            scanClosure?(devices, true, NSError(domain: "搜索结束", code: 1001, userInfo: [NSLocalizedDescriptionKey : "搜索时间到"]))
+            
+            clearWork()
+        }
     }
     
     func stopScanDevice() {

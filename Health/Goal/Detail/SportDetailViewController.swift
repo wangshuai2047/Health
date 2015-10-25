@@ -46,7 +46,10 @@ class SportDetailViewController: UIViewController {
     func refreshData() {
         // Do any additional setup after loading the view.
         let (walk, _, _,_) = sevenDaysData.first!
-        let goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
+        var goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
+        if goalWalk == nil {
+            goalWalk = 10000
+        }
         let needWalk = goalWalk! - Int(walk) < 0 ? 0 : goalWalk! - Int(walk)
         cicleView.update([(Double(walk), deepBlue), (Double(needWalk) , lightBlue)], animated: true)
         
@@ -115,8 +118,10 @@ extension SportDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         let colors = [lightBlue, lightBlue, lightBlue, deepBlue, deepBlue]
         let (walk, _, _,_) = sevenDaysData[indexPath.row]
-        let goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
-        
+        var goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
+        if goalWalk == nil {
+            goalWalk = 10000
+        }
         cell.setColors(colors, step: Int(walk), goalStep: goalWalk!, day: indexPath.row + 1, unit: "步")
         
         return cell

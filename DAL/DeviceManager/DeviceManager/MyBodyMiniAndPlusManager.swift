@@ -60,17 +60,25 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                 self.result?.weight = Float(format.weight)
                 self.result?.hepaticAdiposeInfiltration = format.resultCode == 0x30 ? false : true
                 
-                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                let receiveWeightData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData()
+                print("write receiveWeightData : \(receiveWeightData)")
+                self.peripheral?.writeValue(receiveWeightData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
             }
             else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
                 self.result?.setDatas(format.datas)
-                self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData(), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                
+                let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
+                print("write receiveBodyData : \(receiveBodyData)")
+                self.peripheral?.writeValue(receiveBodyData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                 
                 fireComplete?(result, nil)
             }
         }
         else {
-            fireComplete?(nil, NSError(domain: "评测错误", code: 1, userInfo: [NSLocalizedDescriptionKey : "BodyMini 返回的数据格式错误,无法解析"]))
+            dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
+                self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
+            })
+//            fireComplete?(nil, NSError(domain: "评测错误", code: 1, userInfo: [NSLocalizedDescriptionKey : "BodyMini 返回的数据格式错误,无法解析"]))
         }
     }
 }
@@ -90,6 +98,7 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
                 
                 if CBUUID(string: "BCA1") == characteristic.UUID {
                     self.readCharacteristic = characteristic
+//                    self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
 //                    self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
 //                    self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
                     
@@ -107,11 +116,13 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
 //                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
                         
 //                        dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
-                            self.peripheral?.writeValue(MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height), forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                        let setUserData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height)
+                        print("write user data: %@", setUserData)
+                            self.peripheral?.writeValue(setUserData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                         
                             
 //                        })
-                        print("write char: \(self.writeCharacteristic)")
+                        
                     }
                 }
             }
@@ -146,13 +157,15 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             fireComplete?(nil, error)
         }
         else {
+            print("write char: \(self.writeCharacteristic)")
             print("read char: \(self.readCharacteristic)")
-            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
-//            fireComplete?(nil, error)
-//            dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
-//                self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
-//                })
             
+//            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
+//            fireComplete?(nil, error)
+            dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
+//                self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
+                self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
+            })
         }
     }
     

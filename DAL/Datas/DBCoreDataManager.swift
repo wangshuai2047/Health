@@ -512,6 +512,33 @@ extension DBManager: DBManagerProtocol {
 
 // MARK: - 目标数据
 extension DBManager {
+    
+    func addGoalDatas(data: BraceletResultProtocol) {
+        
+        let context = self.managedObjectContext!
+        
+        for result in data.results {
+            let insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
+            
+            insertData.dataId = result.dataId
+            insertData.userId = NSNumber(integer: result.userId)
+            insertData.isUpload = false
+            
+            insertData.startTime = result.startTime
+            insertData.endTime = result.endTime
+            insertData.steps = NSNumber(unsignedShort: result.steps)
+            insertData.stepsType = NSNumber(unsignedShort: result.stepsType.rawValue)
+            
+        }
+        
+        do {
+            try context.save()
+        } catch _ {
+            
+        }
+        
+    }
+    
     func addGoalData(setDatas: (inout setDatas: GoalData) -> GoalData) {
         
         let context = self.managedObjectContext!

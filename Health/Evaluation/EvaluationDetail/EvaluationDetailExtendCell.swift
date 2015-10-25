@@ -11,7 +11,7 @@ import UIKit
 class EvaluationDetailExtendCell: UITableViewCell {
     
     static var normalHeight: CGFloat = 65
-    static var extendHeight: CGFloat = 194
+    static var extendHeight: CGFloat = 246
     
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
