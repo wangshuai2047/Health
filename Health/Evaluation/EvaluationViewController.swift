@@ -64,6 +64,9 @@ class EvaluationViewController: UIViewController {
                 self.canScale = true
             }
         }
+        
+//        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
+//        userSelectView.setShowViewUserId(UserManager.mainUser.userId)
     }
     
     override func viewDidLayoutSubviews() {

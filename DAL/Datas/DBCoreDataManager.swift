@@ -486,7 +486,6 @@ extension DBManager: DBManagerProtocol {
         }catch let error1 as NSError {
             print(error1)
         }
-        
     }
     
     func queryLastEvaluationData(userId: Int) -> [String : AnyObject]? {
