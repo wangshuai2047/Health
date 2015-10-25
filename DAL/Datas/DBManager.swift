@@ -18,8 +18,8 @@ protocol DBUserProtocol {
 }
 
 protocol DBEvaluationProtocol {
+    
     func addEvaluationData(result: ScaleResultProtocol)
-    func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData)
     func deleteEvaluationData(dataId: String, userId: Int)
     func queryEvaluationData(dataId: String, userId: Int) -> [String: AnyObject]?
     func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int) -> [[String: AnyObject]]
@@ -30,8 +30,9 @@ protocol DBEvaluationProtocol {
 }
 
 protocol DBGoalProtocol {
-    func addGoalData(setDatas:(inout setDatas: GoalData)-> GoalData)
+    func addGoalDatas(data: BraceletResultProtocol)
     func deleteGoalData(dataId: String)
+    func deleteGoalDatas(date: NSDate)
     func queryGoalData(dataId: String) -> [String: AnyObject]?
     func queryLastGoalData() -> [String: AnyObject]?
     func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]]

@@ -192,6 +192,35 @@ struct LoginManager {
         }
     }
     
+    static func loginThirdPlatform(type: ThirdPlatformType, complete: (name: String?, headURLStr: String?, error: NSError?) -> Void) {
+        
+        func dealLoginFinished(uid: String?, name: String?, headIcon: String?, error: NSError?) {
+            if error == nil {
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: type) { (error: NSError?) -> Void in
+                    complete(name: name, headURLStr: headIcon, error: error)
+                }
+            }
+            else {
+                complete(name: nil, headURLStr: nil, error: error)
+            }
+        }
+        
+        switch type {
+        case .QQ:
+            ShareSDKHelper.loginWithQQ({ (uid, name, headIcon, error) -> Void in
+                dealLoginFinished(uid, name: name, headIcon: headIcon, error: error)
+            })
+        case .WeChat:
+            ShareSDKHelper.loginWithWeChat({ (uid, name, headIcon, error) -> Void in
+                dealLoginFinished(uid, name: name, headIcon: headIcon, error: error)
+            })
+        case .Weibo:
+            ShareSDKHelper.loginWithWeiBo({ (uid, name, headIcon, error) -> Void in
+                dealLoginFinished(uid, name: name, headIcon: headIcon, error: error)
+            })
+        }
+    }
+    
     static func loginThirdParty(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((NSError?) -> Void) ) {
         LoginRequest.loginThirdPlatform(name, headURLStr: headURLStr, openId: openId, type: type) { (userInfo, error: NSError?) -> Void in
             

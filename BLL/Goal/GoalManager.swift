@@ -75,38 +75,10 @@ struct GoalManager {
                         
                         DBManager.shareInstance().addGoalDatas(braceletResult)
                         
-//                        
-//                        var datas: [[String: AnyObject]] = []
-//                        for result in braceletResult.results {
-//                            
-//                            datas.append([
-//                                "userId" : Int(result.userId),
-//                                "steps" : Int(result.steps),
-//                                "stepsType" : Int(result.stepsType.rawValue),
-//                                "startTime" : result.startTime.secondTimeInteval(),
-//                                "endTime" : result.endTime.secondTimeInteval()
-//                                ])
-//                            
-//                            // 插入数据库
-//                            
-//                            
-//                            
-//                            DBManager.shareInstance().addGoalData({ (inout setDatas: GoalData) -> GoalData in
-//                                
-//                                setDatas.dataId = result.dataId
-//                                setDatas.userId = NSNumber(integer: result.userId)
-//                                setDatas.isUpload = false
-//                                
-//                                setDatas.startTime = result.startTime
-//                                setDatas.endTime = result.endTime
-//                                setDatas.steps = NSNumber(unsignedShort: result.steps)
-//                                setDatas.stepsType = NSNumber(unsignedShort: result.stepsType.rawValue)
-//                                
-//                                return setDatas;
-//                            })
-//                        }
-                        
                         updateGoalData()
+                        
+                        // 删除七天前数据
+                        DBManager.shareInstance().deleteGoalDatas(NSDate(timeIntervalSinceNow: -9 * 24 * 60 * 60))
                         
                         refreshSevenDaysData()
                     }

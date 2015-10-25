@@ -126,12 +126,14 @@ class EvaluationViewController: UIViewController {
     @IBAction func startEvaluationPressed(sender: AnyObject) {
         
         if canScale {
-            let detailController = EvaluationDetailViewController()
-            AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
             
+            
+            self.tipLabel.text = "已开始扫描，设备请上秤!"
             EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
+                    let detailController = EvaluationDetailViewController()
+                    AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
                     detailController.data = result
                     detailController.refreshData()
                     self.showView(self.connectDeviceView)
@@ -144,7 +146,7 @@ class EvaluationViewController: UIViewController {
                         self.showView(self.connectDeviceView)
                         self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
                     }
-                    detailController.navigationController?.popViewControllerAnimated(true)
+//                    detailController.navigationController?.popViewControllerAnimated(true)
 //                    Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
                 }
             }
@@ -209,11 +211,13 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         // 绑定
 //        SettingManager.bindDevice(device)
         
-        let detailController = EvaluationDetailViewController()
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
+        
+        self.tipLabel.text = "已开始扫描，设备请上秤!"
         EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
+                let detailController = EvaluationDetailViewController()
+                AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
                 detailController.data = info
                 detailController.refreshData()
                 //                self.pushToDetailEvaluationViewController(info!)
@@ -226,7 +230,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
                     self.showView(self.connectDeviceView)
                     self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
                 }
-                detailController.navigationController?.popViewControllerAnimated(true)
+//                detailController.navigationController?.popViewControllerAnimated(true)
                 
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
@@ -294,12 +298,14 @@ extension EvaluationViewController: CompleteInfoDelegate {
 extension EvaluationViewController: VisitorAddDelegate {
     func completeInfo(controller: VisitorAddViewController, user: UserModel) {
         
-        let detailController = EvaluationDetailViewController()
-        detailController.isVisitor = true
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+        
         
         EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
+            self.tipLabel.text = "已开始扫描，设备请上秤!"
             if error == nil {
+                let detailController = EvaluationDetailViewController()
+                detailController.isVisitor = true
+                AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
                 detailController.data = info
                 self.showView(self.connectDeviceView)
             } else {
@@ -310,7 +316,7 @@ extension EvaluationViewController: VisitorAddDelegate {
                     self.showView(self.connectDeviceView)
                     self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
                 }
-                detailController.navigationController?.popViewControllerAnimated(true)
+//                detailController.navigationController?.popViewControllerAnimated(true)
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }

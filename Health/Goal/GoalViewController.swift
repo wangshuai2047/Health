@@ -94,7 +94,8 @@ class GoalViewController: UIViewController {
                 }
                 else {
                     goalDetailLabel.append("天,还需降低", font: nil, color: deepBlue)
-                    goalDetailLabel.append(" \(abs(showInfo.addFatPercentage))% ", font: nil, color: lightBlue)
+                    let fatPercentage = String(format: " %.f%% ", abs(showInfo.addFatPercentage))
+                    goalDetailLabel.append(fatPercentage, font: nil, color: lightBlue)
                     goalDetailLabel.append("体脂率", font: nil, color: deepBlue)
                 }
             }

@@ -591,6 +591,39 @@ extension DBManager {
         }
     }
     
+    func deleteGoalDatas(date: NSDate) {
+        let context = self.managedObjectContext!
+        
+        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "endTime <= %@", date)
+        
+        var error: NSError? = nil
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch let error1 as NSError {
+            error = error1
+            listData = nil
+            print(error)
+        }
+        
+        if let datas = listData {
+            for data in datas as! [EvaluationData] {
+                context.deleteObject(data)
+            }
+            
+            do {
+                try context.save()
+            } catch _ {
+                
+            }
+        }
+        
+    }
+    
     func queryGoalData(dataId: String) -> [String: AnyObject]? {
         
         let context = self.managedObjectContext!
