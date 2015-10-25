@@ -29,9 +29,9 @@ class UserManager {
     
     var currentUser: UserModel = UserManager.mainUser
     
-    func userHeadURL(headURLString: String) -> String {
-        return Request.requestPHPPathURL() + headURLString
-    }
+//    func userHeadURL(headURLString: String) -> String {
+//        return Request.requestPHPPathURL() + headURLString
+//    }
     
     // (userId: Int, headURLStr: String, name: String)
     func queryAllUsers() -> [(Int, String, String)] {
@@ -40,12 +40,12 @@ class UserManager {
         var list: [(Int, String,String)] = []
         for var i = 0; i < userList.count; i++ {
             let userInfo = userList[i]
-            let headURL = userHeadURL(userInfo["headURL"] as! String)
+            let headURL = userInfo["headURL"] as! String
             list.append(((userInfo["userId"] as! NSNumber).integerValue, headURL, userInfo["name"] as! String))
         }
         
         // 把自己添加上
-        list.insert((UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : userHeadURL(UserManager.mainUser.headURL!), UserManager.mainUser.name), atIndex: 0)
+        list.insert((UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name), atIndex: 0)
         
         return list
     }

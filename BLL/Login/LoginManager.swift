@@ -353,7 +353,7 @@ struct LoginManager {
             UserData.shareInstance().gender = gender.integerValue == 1 ? true : false
         }
         
-        if let head = userInfo["head"] as? String {
+        if let head = userInfo["headURL"] as? String {
             print("head\(head)")
             UserData.shareInstance().headURL = head
         }
