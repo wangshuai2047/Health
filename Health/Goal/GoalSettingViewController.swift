@@ -10,6 +10,9 @@ import UIKit
 
 class GoalSettingViewController: UIViewController {
 
+    
+    var viewModel = GoalSettingViewModel()
+    
     @IBOutlet weak var backButton: UIButton!
     
     var heightConstraint: NSLayoutConstraint?
@@ -118,7 +121,7 @@ class GoalSettingViewController: UIViewController {
         
         if scrollView.contentOffset.x >= scrollView.contentSize.width - scrollView.frame.size.width {
             
-            GoalManager.setGoal(goalType, number: strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)], days: strategyDayRange[setDaysGoalPicker.selectedRowInComponent(0)])
+            GoalManager.setGoal(goalType, number: goalNumber(), days: calculeDays())
             backButtonPressed(NSObject())
         }
         else {
@@ -153,64 +156,79 @@ class GoalSettingViewController: UIViewController {
         // 数值数据 测试
         strategyNumberRange = []
         strategyDayRange = []
-        for index in 0...100 {
-            strategyNumberRange += [index]
-            strategyDayRange += [index]
-        }
         
-        var goalString = ""
         // 数值数据单位
         if weightGoalButton.selected {
             unit = "kg"
-            goalString = "减重"
             goalType = .Weight
         }
         else if fatGoalButton.selected {
             unit = "公斤"
-            goalString = "减脂"
             goalType = .Fat
         }
         else if muscleGoalButton.selected {
             unit = "double斤"
-            goalString = "增肌"
             goalType = .Muscle
         }
         
+        // 设置范围值
+        let (numberRange, dayRange) = viewModel.rangeOfGoalType(goalType)
+        strategyNumberRange = numberRange
+        strategyDayRange = dayRange
+        
         // 设置数值
-        setNumberAttLabel.attributedString.deleteCharactersInRange(NSRange(location: 0, length: setNumberAttLabel.attributedString.length))
-        setNumberAttLabel.append("系统根据您的身体数据分析\n建议您将\(goalString)目标设置为: ", font: nil, color: deepBlue)
-        setNumberAttLabel.append("\(goalNumber())", font: nil, color: lightBlue)
-        setNumberAttLabel.append("\(unit!)\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
+        setNumberDescription()
         
         // 设置天数
-        setDaysAttLabel.attributedString.deleteCharactersInRange(NSRange(location: 0, length: setDaysAttLabel.attributedString.length))
-        setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康减重到", font: nil, color: deepBlue)
-        setDaysAttLabel.append("\(self.setNumberGoalPicker.selectedRowInComponent(0))", font: nil, color: lightBlue)
-        setDaysAttLabel.append("公斤\n建议您采取", font: nil, color: deepBlue)
-        setDaysAttLabel.append("\(calculeDays())", font: nil, color: lightBlue)
-        setDaysAttLabel.append("天的周期\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
+        setDaysDescription()
         
         // 刷新界面
         setNumberGoalPicker.reloadAllComponents()
         setDaysGoalPicker.reloadAllComponents()
     }
     
+    func setNumberDescription() {
+        setNumberAttLabel.clear()
+        setNumberAttLabel.append("系统根据您的身体数据分析\n建议您将\(goalType.description())目标设置为: ", font: nil, color: deepBlue)
+        setNumberAttLabel.append("\(goalNumber())", font: nil, color: lightBlue)
+        setNumberAttLabel.append("\(unit!)\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
+    }
+    
+    func setDaysDescription() {
+        setDaysAttLabel.clear()
+        setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康减重到", font: nil, color: deepBlue)
+        setDaysAttLabel.append("\(goalNumber())", font: nil, color: lightBlue)
+        setDaysAttLabel.append("公斤\n建议您采取", font: nil, color: deepBlue)
+        setDaysAttLabel.append("\(calculeDays())", font: nil, color: lightBlue)
+        setDaysAttLabel.append("天的周期\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
+    }
+    
     func goalNumber() -> Int {
         
-        
-        if goalType == .Fat {
-            
+        if viewModel.lastEvaluationData != nil {
+            if goalType == .Fat {
+                return Int((viewModel.lastEvaluationData!.fatWeight)) - strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)]
+            }
+            else if goalType == .Weight {
+                return Int((viewModel.lastEvaluationData!.weight)) - strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)]
+            }
         }
-        else if goalType == .Weight {
-            
-        }
         
-        
-        return 49
+        return 0
     }
     
     func calculeDays() -> Int {
-        return 30
+        
+        if viewModel.lastEvaluationData != nil {
+            if goalType == .Fat {
+                return strategyDayRange[setDaysGoalPicker.selectedRowInComponent(0)]
+            }
+            else if goalType == .Weight {
+                return strategyDayRange[setDaysGoalPicker.selectedRowInComponent(0)]
+            }
+        }
+        
+        return 0
     }
 }
 

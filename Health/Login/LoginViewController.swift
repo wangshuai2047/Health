@@ -72,12 +72,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - response method
-    func dealLoginFinished(error: NSError?) {
+    func dealLoginFinished(name: String?, headURL: String?, error: NSError?) {
         if error == nil {
             // 判断是否需要完善信息
             if LoginManager.isNeedCompleteInfo {
                 let completeInfoController = CompleteInfoViewController()
                 completeInfoController.delegate = self
+                completeInfoController.name = name
+                completeInfoController.headURLString = headURL
                 self.navigationController?.pushViewController(completeInfoController, animated: true)
             }
             else {
@@ -95,8 +97,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(sender: UIButton?) {
         
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        
         LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) {[unowned self] (error: NSError?) -> Void in
-            self.dealLoginFinished(error)
+            self.dealLoginFinished(nil, headURL: nil, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
         backgroundPressed(sender)
     }
@@ -108,20 +113,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginWithWeChat(sender: AnyObject) {
-        LoginManager.loginWithWeChat { [unowned self] (error: NSError?) -> Void in
-            self.dealLoginFinished(error)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        LoginManager.loginThirdPlatform(ThirdPlatformType.WeChat) { [unowned self] (name, headURLStr, error) -> Void in
+            self.dealLoginFinished(name, headURL: headURLStr, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
     
     @IBAction func loginWithQQ(sender: AnyObject) {
-        LoginManager.loginWithQQ { [unowned self] (error: NSError?) -> Void in
-            self.dealLoginFinished(error)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        LoginManager.loginThirdPlatform(ThirdPlatformType.QQ) { [unowned self] (name, headURLStr, error) -> Void in
+            self.dealLoginFinished(name, headURL: headURLStr, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
     
     @IBAction func loginWithWeiBo(sender: AnyObject) {
-        LoginManager.loginWithWeiBo { [unowned self] (error: NSError?) -> Void in
-            self.dealLoginFinished(error)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        LoginManager.loginThirdPlatform(ThirdPlatformType.Weibo) { [unowned self] (name, headURLStr, error) -> Void in
+            self.dealLoginFinished(name, headURL: headURLStr, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
     

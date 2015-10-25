@@ -38,17 +38,19 @@ class GoalViewController: UIViewController {
         showView(GoalManager.isConnectDevice() ? connectDeviceView : noDeviceView)
         userSelectView.setChangeButton(true)
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
+//        userSelectView.setShowViewUserId(UserManager.mainUser.userId)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         if GoalManager.isConnectDevice() {
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
             GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
                 if self.respondsToSelector(Selector("refreshView")) {
                     self.refreshView()
                 }
-                
+                AppDelegate.applicationDelegate().hiddenHUD()
             })
         }
         
@@ -93,7 +95,8 @@ class GoalViewController: UIViewController {
                 }
                 else {
                     goalDetailLabel.append("天,还需降低", font: nil, color: deepBlue)
-                    goalDetailLabel.append(" \(abs(showInfo.addFatPercentage))% ", font: nil, color: lightBlue)
+                    let fatPercentage = String(format: " %.f%% ", abs(showInfo.addFatPercentage))
+                    goalDetailLabel.append(fatPercentage, font: nil, color: lightBlue)
                     goalDetailLabel.append("体脂率", font: nil, color: deepBlue)
                 }
             }

@@ -72,6 +72,7 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
         
         userSelectView.setChangeButton(true)
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
+//        userSelectView.setShowViewUserId(UserManager.mainUser.userId)
     }
     
     override func viewDidLayoutSubviews() {

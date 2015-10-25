@@ -19,6 +19,7 @@ class EvaluationViewController: UIViewController {
     @IBOutlet weak var waterContentInputDataTextField: UITextField!
     @IBOutlet weak var visceralFatContentInputDataTextField: UITextField!
     
+    @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var evaluationResultView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
@@ -31,6 +32,7 @@ class EvaluationViewController: UIViewController {
     @IBOutlet weak var bodyFatLabel: UILabel!
     @IBOutlet weak var bodyFatLevelLabel: UILabel!
     
+    var canScale: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,28 @@ class EvaluationViewController: UIViewController {
         
         UIApplication.sharedApplication().applicationSupportsShakeToEdit = true
         self.becomeFirstResponder()
+        
+        showView(connectDeviceView)
+        EvaluationManager.shareInstance().setCheckStatusBlock { [unowned self] (status: CBCentralManagerState) -> Void in
+            
+            self.canScale = false
+            if status == CBCentralManagerState.PoweredOff {
+                self.tipLabel.text = "蓝牙未打开,请打开蓝牙!"
+            }
+            else if status == CBCentralManagerState.Unauthorized {
+                self.tipLabel.text = "蓝牙未被授权,请在设置中对此应用进行授权!"
+            }
+            else if status == CBCentralManagerState.Unsupported {
+                self.tipLabel.text = "设备不支持蓝牙,无法使用!"
+            }
+            else if status == CBCentralManagerState.PoweredOn {
+                self.tipLabel.text = "摇一摇请上秤!"
+                self.canScale = true
+            }
+        }
+        
+//        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
+//        userSelectView.setShowViewUserId(UserManager.mainUser.userId)
     }
     
     override func viewDidLayoutSubviews() {
@@ -56,12 +80,12 @@ class EvaluationViewController: UIViewController {
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
         userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
         
-        if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
-            showView(connectDeviceView)
-        }
-        else {
-            showView(notConnectDeviceView)
-        }
+//        if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
+//            showView(connectDeviceView)
+//        }
+//        else {
+//            showView(notConnectDeviceView)
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,17 +128,30 @@ class EvaluationViewController: UIViewController {
     // MARK: - connectDeviceView Response Method
     @IBAction func startEvaluationPressed(sender: AnyObject) {
         
-        let detailController = EvaluationDetailViewController()
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
-        
-        EvaluationManager.shareInstance().startScale {[unowned self] (result, error) -> Void in
+        if canScale {
             
-            if error == nil {
-                detailController.data = result
-                detailController.refreshData()
-                self.showView(self.connectDeviceView)
-            } else {
-                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+            
+            self.tipLabel.text = "已开始扫描，设备请上秤!"
+            EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
+                
+                if error == nil {
+                    let detailController = EvaluationDetailViewController()
+                    AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+                    detailController.data = result
+                    detailController.refreshData()
+                    self.showView(self.connectDeviceView)
+                } else {
+                    
+                    if isTimeOut {
+                        self.showView(self.notConnectDeviceView)
+                    }
+                    else {
+                        self.showView(self.connectDeviceView)
+                        self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
+                    }
+//                    detailController.navigationController?.popViewControllerAnimated(true)
+//                    Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+                }
             }
         }
     }
@@ -177,17 +214,28 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         // 绑定
 //        SettingManager.bindDevice(device)
         
-        let detailController = EvaluationDetailViewController()
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
-        EvaluationManager.shareInstance().startScale {[unowned self] (info, error) -> Void in
+        
+        self.tipLabel.text = "已开始扫描，设备请上秤!"
+        EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
+                let detailController = EvaluationDetailViewController()
+                AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
                 detailController.data = info
                 detailController.refreshData()
                 //                self.pushToDetailEvaluationViewController(info!)
                 self.showView(self.connectDeviceView)
             } else {
-                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+                if isTimeOut {
+                    self.showView(self.notConnectDeviceView)
+                }
+                else {
+                    self.showView(self.connectDeviceView)
+                    self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
+                }
+//                detailController.navigationController?.popViewControllerAnimated(true)
+                
+//                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }
     }
@@ -253,16 +301,26 @@ extension EvaluationViewController: CompleteInfoDelegate {
 extension EvaluationViewController: VisitorAddDelegate {
     func completeInfo(controller: VisitorAddViewController, user: UserModel) {
         
-        let detailController = EvaluationDetailViewController()
-        detailController.isVisitor = true
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
-        EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info, error) -> Void in
+        
+        EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
+            self.tipLabel.text = "已开始扫描，设备请上秤!"
             if error == nil {
+                let detailController = EvaluationDetailViewController()
+                detailController.isVisitor = true
+                AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
                 detailController.data = info
                 self.showView(self.connectDeviceView)
             } else {
-                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
+                if isTimeOut {
+                    self.showView(self.notConnectDeviceView)
+                }
+                else {
+                    self.showView(self.connectDeviceView)
+                    self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
+                }
+//                detailController.navigationController?.popViewControllerAnimated(true)
+//                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
         }
     }

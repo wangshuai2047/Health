@@ -217,6 +217,7 @@
 		E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
 		E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E0BC150B1BC740E5008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
+		E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */; };
@@ -478,6 +479,7 @@
 		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtend.swift; sourceTree = "<group>"; };
 		E0BC15091BC740AC008520AB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalSettingViewModel.swift; sourceTree = "<group>"; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginReqeustTests.swift; path = HealthTests/Request/LoginReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9A1B861D97007A9393 /* AdsReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdsReqeustTests.swift; path = HealthTests/Request/AdsReqeustTests.swift; sourceTree = SOURCE_ROOT; };
@@ -784,13 +786,13 @@
 				E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */,
 				E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */,
 			);
-			name = DeviceManager;
-			path = ../DeviceManager/DeviceManager;
+			path = DeviceManager;
 			sourceTree = "<group>";
 		};
 		E02979451B801E1500AAE085 /* DeviceManager */ = {
 			isa = PBXGroup;
 			children = (
+				E0255E801BC95B8400CEE5D4 /* DeviceManager */,
 				E0EDBDF01BCE5B4700137FB0 /* BlueToothDataFormats */,
 				E0255E671BC9556300CEE5D4 /* Result */,
 				E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */,
@@ -811,7 +813,6 @@
 		E08A24501B807BE4004269BB /* Datas */ = {
 			isa = PBXGroup;
 			children = (
-				E0255E801BC95B8400CEE5D4 /* DeviceManager */,
 				E08A24511B807BE4004269BB /* DBCoreDataManager.swift */,
 				E08A24521B807BE4004269BB /* DBManager.swift */,
 			);
@@ -920,6 +921,7 @@
 				E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */,
 				E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */,
 				E09588971BA99E0100033179 /* GoalViewModel.swift */,
+				E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */,
 			);
 			name = Goal;
 			path = BLL/Goal;
@@ -1648,6 +1650,7 @@
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
 				E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
 				E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */,
+				E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
 				E08B32971B85A8B00040ADE7 /* CompleteGenderDataView.swift in Sources */,
 				E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */,

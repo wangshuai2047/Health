@@ -21,6 +21,9 @@ class CompleteInfoViewController: UIViewController {
     var phone: String?
     var organizationCode: String?
     
+    var name: String?
+    var headURLString: String?
+    
     private let tempHeadPath = NSHomeDirectory() + "/Documents/headImage.jpg"
     
     @IBOutlet weak var backButton: UIButton!
@@ -112,10 +115,21 @@ class CompleteInfoViewController: UIViewController {
     }
     
     func initIfExistUserModel() {
+        
+        if name != nil {
+            headAndNameDataView.nickNameTextField.text = name
+        }
+        
+        if headURLString != nil {
+            if let headURL = NSURL(string: headURLString!) {
+                headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
+            }
+        }
+        
         if let user = userModel {
             self.headAndNameDataView.nickNameTextField.text = user.name
             if let headUrlStr =  user.headURL {
-                if let headURL = NSURL(string: UserManager.shareInstance().userHeadURL(headUrlStr)) {
+                if let headURL = NSURL(string: headUrlStr) {
                     self.headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
                 }
             }
@@ -135,6 +149,8 @@ class CompleteInfoViewController: UIViewController {
                 organizationDataView.codeTextField.text = code
             }
         }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

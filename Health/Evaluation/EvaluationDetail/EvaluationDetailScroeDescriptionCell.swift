@@ -32,8 +32,10 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
     }
     
     func refreshData() {
-        refreshScoreData()
-        refreshDescriptionData()
+        if data != nil {
+            refreshScoreData()
+            refreshDescriptionData()
+        }
     }
     
     func healthCount() -> (Int, Int, Int) {
@@ -73,7 +75,7 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
         let score = data!.score
         scoreCicleView.update([(Double(score), deepBlue), (Double(100.0 - score), lightBlue)], animated: true)
         
-        scoreLabel.text = "\(score)分"
+        scoreLabel.text = String(format: "%d分", arguments: [Int(score)])
         scoreLabel.textColor = deepBlue
         
         physiqueImageView.image = UIImage(named: data!.physique.selectedImageName(data!.gender))
@@ -87,9 +89,9 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
         descriptionLabel.clear()
         descriptionLabel.append("您的体型为", font: font, color: UIColor.grayColor())
         descriptionLabel.append("\(data!.physique.description)", font: font, color: deepBlue)
-        descriptionLabel.append("。您的得分击败了", font: font, color: UIColor.grayColor())
-        descriptionLabel.append("25%", font: font, color: deepBlue)
-        descriptionLabel.append("的用户。本次9项检查中有", font: font, color: UIColor.grayColor())
+//        descriptionLabel.append("。您的得分击败了", font: font, color: UIColor.grayColor())
+//        descriptionLabel.append("25%", font: font, color: deepBlue)
+        descriptionLabel.append("。本次9项检查中有", font: font, color: UIColor.grayColor())
         descriptionLabel.append("\(warningCount)", font: font, color: ValueStatus.High.statusColor)
         descriptionLabel.append("项警告，", font: font, color: UIColor.grayColor())
         descriptionLabel.append("\(earlyWarningCount)", font: font, color: ValueStatus.Low.statusColor)

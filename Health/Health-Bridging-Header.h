@@ -21,13 +21,13 @@
 #import "WeiboSDK.h"
 
 //
-#import "UIButton+WebCache.h"
-#import "UIImageView+WebCache.h"
-//#import <SDWebImage/UIButton+WebCache.h>
-//#import <SDWebImage/UIImageView+WebCache.h>
+//#import "UIButton+WebCache.h"
+//#import "UIImageView+WebCache.h"
+#import <SDWebImage/UIButton+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import <CommonCrypto/CommonDigest.h>
 
 // HUD
-//#import <MBProgressHUD/MBProgressHUD.h>
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+//#import "MBProgressHUD.h"

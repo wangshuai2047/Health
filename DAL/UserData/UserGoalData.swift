@@ -93,6 +93,10 @@ struct UserGoalData {
         let endDate = setDate?.dateByAddingTimeInterval(NSTimeInterval(days! * 24 * 60 * 60))
         let restTimeInterval = endDate!.timeIntervalSinceDate(NSDate())
         
+        if restTimeInterval < 0 {
+            return 0
+        }
+        
         return Int(restTimeInterval / (24 * 60 * 60))
     }
 }

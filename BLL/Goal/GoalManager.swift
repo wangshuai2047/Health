@@ -69,38 +69,16 @@ struct GoalManager {
     static func syncDatas(complete: ((NSError?) -> Void)) {
         
         if let uuid = braceletUUID {
-            BluetoothManager.shareInstance.fire(uuid, info: [:], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
+            BluetoothManager.shareInstance.fire(uuid, info: [:], complete: { (result: ResultProtocol?,isTimeOut: Bool, error: NSError?) -> Void in
                 if error == nil {
                     if let braceletResult = result as? BraceletResult {
                         
-                        var datas: [[String: AnyObject]] = []
-                        for result in braceletResult.results {
-                            
-                            datas.append([
-                                "userId" : Int(result.userId),
-                                "steps" : Int(result.steps),
-                                "stepsType" : Int(result.stepsType.rawValue),
-                                "startTime" : result.startTime.secondTimeInteval(),
-                                "endTime" : result.endTime.secondTimeInteval()
-                                ])
-                            
-                            // 插入数据库
-                            DBManager.shareInstance().addGoalData({ (inout setDatas: GoalData) -> GoalData in
-                                
-                                setDatas.dataId = result.dataId
-                                setDatas.userId = NSNumber(integer: result.userId)
-                                setDatas.isUpload = false
-                                
-                                setDatas.startTime = result.startTime
-                                setDatas.endTime = result.endTime
-                                setDatas.steps = NSNumber(unsignedShort: result.steps)
-                                setDatas.stepsType = NSNumber(unsignedShort: result.stepsType.rawValue)
-                                
-                                return setDatas;
-                            })
-                        }
+                        DBManager.shareInstance().addGoalDatas(braceletResult)
                         
                         updateGoalData()
+                        
+                        // 删除七天前数据
+                        DBManager.shareInstance().deleteGoalDatas(NSDate(timeIntervalSinceNow: -9 * 24 * 60 * 60))
                         
                         refreshSevenDaysData()
                     }
@@ -199,6 +177,25 @@ struct GoalManager {
         averageValues.0 /= 7
         
         return averageValues
+    }
+    
+    static func dealSleepMinutesToHours(minutes: Int) -> Int {
+        let remainders = minutes % 60
+        
+        var result = 0
+        
+        if remainders > 30 {
+            result = (remainders + minutes) / 60
+        }
+        else {
+            result = (remainders + minutes) / 60 - 1
+        }
+        
+        if result < 0 {
+            result = 0
+        }
+        
+        return result
     }
 }
 

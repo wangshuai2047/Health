@@ -123,7 +123,7 @@ class EvaluationResultTableView: UITableView {
         
         // 脂肪量
         list.append([
-            "headIcon" : "proteinIcon",
+            "headIcon" : "fatIcon",
             "title" : "脂肪量",
             "unit" : "kg",
             "range": {() -> (Float, Float) in

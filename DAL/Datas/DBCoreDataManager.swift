@@ -486,7 +486,6 @@ extension DBManager: DBManagerProtocol {
         }catch let error1 as NSError {
             print(error1)
         }
-        
     }
     
     func queryLastEvaluationData(userId: Int) -> [String : AnyObject]? {
@@ -512,6 +511,33 @@ extension DBManager: DBManagerProtocol {
 
 // MARK: - 目标数据
 extension DBManager {
+    
+    func addGoalDatas(data: BraceletResultProtocol) {
+        
+        let context = self.managedObjectContext!
+        
+        for result in data.results {
+            let insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
+            
+            insertData.dataId = result.dataId
+            insertData.userId = NSNumber(integer: result.userId)
+            insertData.isUpload = false
+            
+            insertData.startTime = result.startTime
+            insertData.endTime = result.endTime
+            insertData.steps = NSNumber(unsignedShort: result.steps)
+            insertData.stepsType = NSNumber(unsignedShort: result.stepsType.rawValue)
+            
+        }
+        
+        do {
+            try context.save()
+        } catch _ {
+            
+        }
+        
+    }
+    
     func addGoalData(setDatas: (inout setDatas: GoalData) -> GoalData) {
         
         let context = self.managedObjectContext!
@@ -562,6 +588,39 @@ extension DBManager {
                 }
             }
         }
+    }
+    
+    func deleteGoalDatas(date: NSDate) {
+        let context = self.managedObjectContext!
+        
+        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "endTime <= %@", date)
+        
+        var error: NSError? = nil
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch let error1 as NSError {
+            error = error1
+            listData = nil
+            print(error)
+        }
+        
+        if let datas = listData {
+            for data in datas as! [EvaluationData] {
+                context.deleteObject(data)
+            }
+            
+            do {
+                try context.save()
+            } catch _ {
+                
+            }
+        }
+        
     }
     
     func queryGoalData(dataId: String) -> [String: AnyObject]? {
