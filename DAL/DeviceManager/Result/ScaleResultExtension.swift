@@ -130,7 +130,7 @@ extension ScaleResultProtocol {
     // 内脏脂肪范围
     var visceralFatContentRange: (Float, Float) {
         get {
-            return (5.5, 10)
+            return (10, 14)
         }
         set {
             
@@ -229,11 +229,21 @@ extension ScaleResultProtocol {
     }
     
     var boneMuscleLevel: ValueStatus {
+        
+        let status: ValueStatus;
         if gender {
-            return ValueStatus(value: boneMuscleWeight, low: 0.75 * 0.9 * m_smm * 0.82, high: 0.75 * 1.1 * m_smm * 0.82)
+            status = ValueStatus(value: boneMuscleWeight, low: 0.75 * 0.9 * m_smm * 0.82, high: 0.75 * 1.1 * m_smm * 0.82)
         }
         else {
-            return ValueStatus(value: boneMuscleWeight, low: 0.75 * 0.9 * m_smm * 0.77, high: 0.75 * 1.1 * m_smm * 0.77)
+            status = ValueStatus(value: boneMuscleWeight, low: 0.75 * 0.9 * m_smm * 0.77, high: 0.75 * 1.1 * m_smm * 0.77)
+        }
+        
+        // 骨骼肌 如果低则提示警告，高则是正常的。
+        if status == .Low {
+            return .Low
+        }
+        else {
+            return .Normal
         }
     }
     

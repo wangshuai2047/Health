@@ -55,13 +55,32 @@ struct MyBodyResult: ScaleResultProtocol {
     var WHRRange: (Float, Float) = (0,0)
     
     // 骨骼肌正常范围下限 + 骨骼肌正常范围上限
-    var boneMuscleRange: (Float, Float) = (0,0)
+    var boneMuscleRange: (Float, Float) {
+        get {
+            if gender {
+                return (0.75*0.9*m_smm*0.82, 0.75*1.1*m_smm*0.82)
+            }
+            else {
+                return (0.75*0.9*m_smm*0.77, 0.75*1.1*m_smm*0.77)
+            }
+        }
+        set {}
+/*
+        骨骼肌(男)	0.75*0.9*标准肌肉*0.82	0.75*1.1*标准肌肉*0.82
+        骨骼肌(女)	0.75*0.9*标准肌肉*0.77	0.75*1.1*标准肌肉*0.77
+*/
+    }
     
     // 体重控制(有符号)
     var weightControl: Float = 0
     
     // 标准体重正常范围下限 + 标准体重正常范围上限
-    var SWRange: (Float, Float) = (0,0)
+    var SWRange: (Float, Float){
+        get {
+            return (0.9 * SW, 1.1 * SW)
+        }
+        set {}
+    }
     
     // 目标体重
     var goalWeight: Float = 0
@@ -481,7 +500,7 @@ extension MyBodyResult {
             dtotal = 0.1 * m_fGradeSLM + 0.6 * m_fGradeFM + 0.2 * m_fGradePM + 0.1 * m_fGradeMM
             
             if dtotal > 100 {
-                dtotal == 100
+                dtotal = 100
             }
             
             return  dtotal

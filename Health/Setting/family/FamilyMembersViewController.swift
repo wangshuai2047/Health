@@ -95,7 +95,7 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
                     self.tableView.reloadData()
                     
                     controller.navigationController?.popToRootViewControllerAnimated(true)
-                    
+                    UserManager.shareInstance().changeUserToUserId(userModel!.userId)
                     // 成功后直接跳转到评测主页开始评测
                     AppDelegate.applicationDelegate().changeToMainIndex(0)
                     
