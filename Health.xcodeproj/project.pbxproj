@@ -138,6 +138,7 @@
 		E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E046FC591BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */; };
+		E046FC5D1BDFD10500DC116C /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E046FC5C1BDFD10500DC116C /* FXBlurView.m */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -395,6 +396,8 @@
 		E0418EF91BC3554800B2788D /* DeviceBindCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceBindCell.xib; sourceTree = "<group>"; };
 		E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewModel.swift; sourceTree = "<group>"; };
 		E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailExtendViewModel.swift; sourceTree = "<group>"; };
+		E046FC5B1BDFD10500DC116C /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		E046FC5C1BDFD10500DC116C /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
@@ -803,6 +806,15 @@
 			path = DeviceManager;
 			sourceTree = "<group>";
 		};
+		E046FC5A1BDFD10500DC116C /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				E046FC5B1BDFD10500DC116C /* FXBlurView.h */,
+				E046FC5C1BDFD10500DC116C /* FXBlurView.m */,
+			);
+			path = FXBlurView;
+			sourceTree = "<group>";
+		};
 		E05D048C1B8BE7840090137C /* Compents */ = {
 			isa = PBXGroup;
 			children = (
@@ -1196,6 +1208,7 @@
 		E09EC8E21B7E3FCC00CC07E3 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E046FC5A1BDFD10500DC116C /* FXBlurView */,
 				E0039C1F1BCF28C10014ED50 /* ShareSDK */,
 				E0C588521BA6FD68000955FC /* Charts */,
 				E08A24631B80810A004269BB /* DeviceLib */,
@@ -1676,6 +1689,7 @@
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
+				E046FC5D1BDFD10500DC116C /* FXBlurView.m in Sources */,
 				E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */,
 				E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
 				E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,

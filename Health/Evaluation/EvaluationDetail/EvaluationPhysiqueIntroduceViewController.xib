@@ -7,8 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EvaluationPhysiqueIntroduceViewController" customModule="Health" customModuleProvider="target">
             <connections>
+                <outlet property="blurView" destination="R3I-sc-x5t" id="gXr-Gs-pnB"/>
                 <outlet property="introduceTextView" destination="63Z-t4-Ekz" id="spf-Ww-zLW"/>
-                <outlet property="introduceTitleLabel" destination="MUZ-tZ-qAz" id="12X-rW-EIG"/>
+                <outlet property="rootControllerImageView" destination="bIY-Kb-Uq2" id="YBp-zu-zk4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,68 +18,97 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJg-pL-cae">
-                    <rect key="frame" x="180" y="150" width="240" height="299"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="visitorBg" translatesAutoresizingMaskIntoConstraints="NO" id="gGF-OE-dXX">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="299"/>
-                            <animations/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请选择分享方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUZ-tZ-qAz">
-                            <rect key="frame" x="24" y="24" width="127" height="21"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="体重较轻，而体内脂肪含量相对较高，有心脑血管疾病风险，需要注意减脂。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="63Z-t4-Ekz">
-                            <rect key="frame" x="8" y="53" width="224" height="238"/>
-                            <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                    </subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="lanchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bIY-Kb-Uq2">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <animations/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="240" id="dyf-ha-8Mm"/>
-                        <constraint firstAttribute="height" constant="299" id="mKk-Op-VBL"/>
-                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3I-sc-x5t" customClass="FXBlurView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajN-Nw-o5B">
-                    <rect key="frame" x="387" y="150" width="35" height="34"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="cwK-R7-y3A"/>
                         <constraint firstAttribute="width" constant="35" id="f3g-jI-OWm"/>
                     </constraints>
-                    <state key="normal" image="closeButton"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="cwK-R7-y3A"/>
+                            <exclude reference="f3g-jI-OWm"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="y39-Pc-R0R"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJg-pL-cae">
+                    <rect key="frame" x="238" y="203" width="125" height="169"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="introduceBg" translatesAutoresizingMaskIntoConstraints="NO" id="gGF-OE-dXX">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="169"/>
+                            <animations/>
+                        </imageView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="体重较轻，而体内脂肪含量相对较高，有心脑血管疾病风险，需要注意减脂。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="63Z-t4-Ekz">
+                            <rect key="frame" x="0.0" y="12" width="125" height="146"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="dyf-ha-8Mm"/>
+                        <constraint firstAttribute="height" constant="169" id="mKk-Op-VBL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="jJg-pL-cae" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BZk-Hm-aqU"/>
+                <constraint firstItem="bIY-Kb-Uq2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0n0-9n-6nJ"/>
+                <constraint firstAttribute="trailing" secondItem="bIY-Kb-Uq2" secondAttribute="trailing" id="27B-Ab-QoZ"/>
+                <constraint firstItem="jJg-pL-cae" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-12.5" id="BZk-Hm-aqU"/>
+                <constraint firstItem="R3I-sc-x5t" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Dhy-xM-Ipx"/>
                 <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerY" secondItem="jJg-pL-cae" secondAttribute="centerY" id="IPt-eQ-ea9"/>
+                <constraint firstAttribute="bottom" secondItem="ajN-Nw-o5B" secondAttribute="bottom" id="IYf-ia-GKd"/>
+                <constraint firstAttribute="trailing" secondItem="ajN-Nw-o5B" secondAttribute="trailing" id="IeO-JD-tnz"/>
+                <constraint firstItem="R3I-sc-x5t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KHB-4U-kJZ"/>
+                <constraint firstItem="bIY-Kb-Uq2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LKB-hu-om6"/>
+                <constraint firstAttribute="bottom" secondItem="bIY-Kb-Uq2" secondAttribute="bottom" id="LmK-ZZ-P9A"/>
                 <constraint firstItem="jJg-pL-cae" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Lt1-2p-LKe"/>
                 <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerX" secondItem="jJg-pL-cae" secondAttribute="centerX" id="M9S-uM-FLw"/>
-                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerX" secondItem="jJg-pL-cae" secondAttribute="centerX" constant="104.5" id="cvy-wH-IKd"/>
-                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerY" secondItem="jJg-pL-cae" secondAttribute="centerY" constant="-132.5" id="zyK-sB-Gtp"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="T5N-pS-PQM"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ah3-Yq-ZHz"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerX" secondItem="jJg-pL-cae" secondAttribute="centerX" constant="60.5" id="cvy-wH-IKd"/>
+                <constraint firstAttribute="trailing" secondItem="R3I-sc-x5t" secondAttribute="trailing" id="e3L-Ux-WuQ"/>
+                <constraint firstAttribute="bottom" secondItem="R3I-sc-x5t" secondAttribute="bottom" id="u6x-XD-y7A"/>
+                <constraint firstItem="ajN-Nw-o5B" firstAttribute="centerY" secondItem="jJg-pL-cae" secondAttribute="centerY" constant="-94.5" id="zyK-sB-Gtp"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="IPt-eQ-ea9"/>
                     <exclude reference="M9S-uM-FLw"/>
+                    <exclude reference="cvy-wH-IKd"/>
+                    <exclude reference="zyK-sB-Gtp"/>
                 </mask>
             </variation>
         </view>
     </objects>
     <resources>
-        <image name="closeButton" width="17" height="17"/>
-        <image name="visitorBg" width="254" height="239"/>
+        <image name="introduceBg" width="68" height="119"/>
+        <image name="lanchIcon" width="135" height="135"/>
     </resources>
 </document>

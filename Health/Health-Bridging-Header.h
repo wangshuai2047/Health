@@ -31,3 +31,6 @@
 // HUD
 #import <MBProgressHUD/MBProgressHUD.h>
 //#import "MBProgressHUD.h"
+
+// 模糊效果
+#import "FXBlurView.h"

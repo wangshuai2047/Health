@@ -136,10 +136,14 @@ class GoalSettingViewController: UIViewController {
     @IBAction func setGoalButtonPressed(button: UIButton) {
         
         weightGoalButton.selected = false
+        weightGoalButton.alpha = 0.5
         fatGoalButton.selected = false
+        fatGoalButton.alpha = 0.5
         muscleGoalButton.selected = false
+        muscleGoalButton.alpha = 0.5
         
         button.selected = true
+        button.alpha = 1
         
         freshGoalStrategy()
     }

@@ -12,7 +12,11 @@ class EvaluationPhysiqueIntroduceViewController: UIViewController {
 
     var introduce: String?
     var introduceTitle: String?
+    var rootImage: UIImage?
     
+    
+    @IBOutlet weak var blurView: FXBlurView!
+    @IBOutlet weak var rootControllerImageView: UIImageView!
     @IBOutlet weak var introduceTitleLabel: UILabel!
     @IBOutlet weak var introduceTextView: UITextView!
     
@@ -21,16 +25,18 @@ class EvaluationPhysiqueIntroduceViewController: UIViewController {
         let controller = EvaluationPhysiqueIntroduceViewController()
         controller.introduce = introduce
         controller.introduceTitle = introduceTitle
+        controller.rootImage = rootController.view.convertToImage()
         if #available(iOS 8.0, *) {
-            controller.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+//            controller.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         } else {
             // Fallback on earlier versions
-            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+//            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
         }
         // UIModalPresentationFormSheet
-        rootController.presentViewController(controller, animated: true) { () -> Void in
-            controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        }
+        rootController.presentViewController(controller, animated: true, completion: nil)
+//        rootController.presentViewController(controller, animated: true) { () -> Void in
+//            controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        }
     }
     
     convenience init() {
@@ -41,8 +47,13 @@ class EvaluationPhysiqueIntroduceViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.introduceTitleLabel.text = introduceTitle
+//        self.introduceTitleLabel.text = introduceTitle
         self.introduceTextView.text = introduce
+        self.rootControllerImageView.image = rootImage
+        
+//        self.blurView.blurRadius = 40;
+//        blurView.dynamic = true
+        blurView.blurRadius = 20
     }
 
     override func didReceiveMemoryWarning() {
