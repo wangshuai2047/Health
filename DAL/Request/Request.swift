@@ -58,7 +58,7 @@ extension Request {
         // create request
         let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestPHPURL())!)
         request.HTTPMethod = "POST"
-        
+        request.timeoutInterval = 15
         request.HTTPBody = generatePHPStyleBodyStr(requestType.rawValue, params: params).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in

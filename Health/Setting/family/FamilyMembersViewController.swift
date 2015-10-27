@@ -53,6 +53,7 @@ class FamilyMembersViewController: UIViewController {
     func deleteButtonPressed(button: UIButton) {
         let (userId, _, _) = users[button.tag]
         
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "删除中", detailMsg: nil, progress: nil)
         UserManager.shareInstance().deleteUser(userId) { [unowned self] (error: NSError?) -> Void in
             if error == nil {
                 self.users = UserManager.shareInstance().queryAllUsers()
@@ -61,6 +62,7 @@ class FamilyMembersViewController: UIViewController {
             else {
                 Alert.showErrorAlert("删除失败", message: error?.localizedDescription)
             }
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
     

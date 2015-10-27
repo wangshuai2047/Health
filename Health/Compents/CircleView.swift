@@ -20,6 +20,9 @@ class CircleView: UIView {
     
     func draw() {
         
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.3)
+        UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
         var total: Double = 0
         for (progress, _) in self.datas {
             total += progress
@@ -43,6 +46,8 @@ class CircleView: UIView {
             
             startAngle += CGFloat(M_PI * 2 * progress / total)
         }
+        
+        UIView.commitAnimations()
     }
     
     // Only override drawRect: if you perform custom drawing.

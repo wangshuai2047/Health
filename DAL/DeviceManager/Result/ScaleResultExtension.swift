@@ -249,7 +249,7 @@ extension ScaleResultProtocol {
     
     var visceralFatContentStatus: ValueStatus {
         
-        /*内脏脂肪指数判定 0.5-5.5 		正常 5.5-10 		超标 10以上 		高*/
+        /*内脏脂肪指数判定 0-10 		正常 10-14 		超标 14以上 		高*/
         let status = ValueStatus(value: visceralFatPercentage, low: visceralFatContentRange.0, high: visceralFatContentRange.1)
         if status == .Low {
             return .Normal

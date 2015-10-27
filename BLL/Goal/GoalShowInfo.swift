@@ -19,6 +19,7 @@ struct GoalShowInfo {
     
     var sevenDaysDatas: [(Int, Int, Int, Int)]
     
+    // 脂肪=体重*体脂率，减重我们默认其实就是减脂肪，一周减0.3公斤重量（脂肪），每天要减的热量为0.3*7700/7=330千卡
     init(scaleResult: ScaleResultProtocol, sevenDaysDatas: [(Int, Int, Int, Int)]) {
         // 需改变的体脂率
         addFatPercentage = scaleResult.standardFatPercentage - scaleResult.fatPercentage
