@@ -222,6 +222,7 @@ extension LoginViewController: CompleteInfoDelegate {
     
     func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
         
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在提交", detailMsg: nil, progress: nil)
         LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { (error) -> Void in
             
             if error == nil {
@@ -232,6 +233,8 @@ extension LoginViewController: CompleteInfoDelegate {
             else {
                 UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
             }
+            
+            AppDelegate.applicationDelegate().hiddenHUD()
         })
     }
 }

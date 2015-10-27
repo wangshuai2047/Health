@@ -31,7 +31,7 @@ class EvaluationResultTableView: UITableView {
         }
     }
     
-    var list: [[String : Any]] = []
+    var list: [EvaluationDetailExtendViewModel] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,328 +43,45 @@ class EvaluationResultTableView: UITableView {
         self.registerNib(UINib(nibName: detailCellId, bundle: nil), forCellReuseIdentifier: detailCellId)
         
         // 脂肪肝
-        list.append([
-            "headIcon" : "fattyLiverIcon",
-            "title" : "脂肪肝",
-            "unit" : "",
-            "range": {() -> (Float, Float) in
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    if let has = self.data!.hepaticAdiposeInfiltration {
-                        if has {
-                            return "有脂肪肝"
-                        }
-                        else {
-                            return "无脂肪肝"
-                        }
-                    }
-                }
-                return "此秤不支持"
-            },
-            "canExtend": {() -> Bool in
-                return false
-            },
-            "status" : {() -> ValueStatus? in
-                return ValueStatus.High
-            }
-            ])
+//        EvaluationDetailExtendViewModel(type
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.fattyLiver))
         
         // 体重
-        list.append([
-            "headIcon" : "weightIcon",
-            "title" : "体重",
-            "unit" : "kg",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.SWRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.weight)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.weightStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.weight))
 
         // 体脂率
-        list.append([
-            "headIcon" : "fatIcon",
-            "title" : "体脂率",
-            "unit" : "%",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.fatPercentageRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.fatPercentage)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.fatPercentageStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.fatPercentage))
         
         // 脂肪量
-        list.append([
-            "headIcon" : "fatIcon",
-            "title" : "脂肪量",
-            "unit" : "kg",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.fatWeightRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.fatWeight)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.fatWeightStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.fat))
         
         // 肌肉
-        list.append([
-            "headIcon" : "muscleIcon",
-            "title" : "肌肉",
-            "unit" : "kg",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.muscleWeightRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.muscleWeight)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.muscleWeightStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.muscle))
         
         // 骨骼肌
-        list.append([
-            "headIcon" : "muscleIcon",
-            "title" : "骨骼肌",
-            "unit" : "kg",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.boneMuscleRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.boneMuscleWeight)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.boneMuscleLevel
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.boneMuscle))
         
         // 水分
-        list.append([
-            "headIcon" : "waterIcon",
-            "title" : "水分",
-            "unit" : "kg",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.waterWeightRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.waterWeight)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.waterWeightStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.water))
         
         // 蛋白质
-        list.append([
-            "headIcon" : "proteinIcon",
-            "title" : "蛋白质",
-            "unit" : "kg",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.proteinWeightRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.proteinWeight)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.proteinWeightStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.protein))
         
         // 骨量
-        list.append([
-            "headIcon" : "boneIcon",
-            "title" : "骨量",
-            "unit" : "kg",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.boneWeightRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.boneWeight)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.boneWeightStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.bone))
         
         // 内脏脂肪
-        list.append([
-            "headIcon" : "visceralFatIcon",
-            "title" : "内脏脂肪",
-            "unit" : "",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.visceralFatContentRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.visceralFatPercentage)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.visceralFatContentStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.visceralFat))
         
         // BMI
-        list.append([
-            "headIcon" : "BMI",
-            "title" : "BMI",
-            "unit" : "",
-            "range": {() -> (Float, Float) in
-                if self.data != nil {
-                    return self.data!.BMIRange
-                }
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.BMI)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return true
-            },
-            "status" : {() -> ValueStatus? in
-                return self.data?.BMIStatus
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.bmi))
         
         // 基础代谢
-        list.append([
-            "headIcon" : "BMRIcon",
-            "title" : "基础代谢",
-            "unit" : "kcal",
-            "range": {() -> (Float, Float) in
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.BMR)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return false
-            },
-            "status" : {() -> ValueStatus? in
-                return ValueStatus.Normal
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.BMR))
         
         
         // 身体年龄
-        list.append([
-            "headIcon" : "BMI",
-            "title" : "身体年龄",
-            "unit" : "岁",
-            "range": {() -> (Float, Float) in
-                return (0,0)
-            },
-            "value": {() -> String in
-                if self.data != nil {
-                    return "\(self.data!.bodyAge)"
-                }
-                return "0"
-            },
-            "canExtend": {() -> Bool in
-                return false
-            },
-            "status" : {() -> ValueStatus? in
-                return ValueStatus.Normal
-            }
-            ])
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.bodyAge))
     }
     
     // Only override drawRect: if you perform custom drawing.
@@ -410,21 +127,9 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         else {
             let cell = tableView.dequeueReusableCellWithIdentifier(detailCellId, forIndexPath: indexPath) as! EvaluationDetailExtendCell
             
-            let info = list[indexPath.row]
-            let iconName = info["headIcon"] as? String
-            let title = info["title"] as? String
-            let unit = info["unit"] as? String
-            let range = info["range"] as? () -> (Float, Float)
-            let value = info["value"] as? () -> String
-            // "status" : ValueStatus.Normal
-            let status = info["status"] as? () -> ValueStatus?
-            
-            let statusValue = status?()
-            
-            cell.iconImageView.image = UIImage(named: iconName!)
-            cell.titleLabel.text = title!
-            cell.setResultValue(value!(), range: range!(), unit: unit!, status: statusValue == nil ? ValueStatus.Normal : statusValue)
-            
+            var info = list[indexPath.row]
+            info.data = self.data
+            cell.setViewModel(info)
             return cell
         }
         
@@ -458,8 +163,8 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         
         if indexPath.section == 1 {
             let info = list[indexPath.row]
-            let canExtend = info["canExtend"] as? () -> Bool
-            if canExtend!() {
+            let canExtend = info.type.canExtend
+            if canExtend {
                 if selectedIndexRow == indexPath.row {
                     selectedIndexRow = -1
                 }

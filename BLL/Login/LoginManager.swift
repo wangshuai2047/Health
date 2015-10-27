@@ -380,5 +380,7 @@ struct LoginManager {
                 DBManager.shareInstance().addOrUpdateUser(userModel)
             }
         }
+        
+        UserManager.shareInstance().currentUser = UserManager.mainUser
     }
 }

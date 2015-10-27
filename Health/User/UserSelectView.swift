@@ -140,6 +140,10 @@ class UserSelectView: UIView {
     
     func setShowViewUserId(userId: Int) {
         
+        if users.count == 0 && needSetUsers != nil {
+            users = needSetUsers!
+        }
+        
         for var i = 0; i < self.users.count; i++ {
             let (currentUserId, headURLStr, name) = self.users[i]
             if userId == currentUserId {
@@ -172,6 +176,8 @@ class UserSelectView: UIView {
         // 讲头像设置为圆角
         headImageView.layer.cornerRadius = headImageView.frame.size.width/2
         headImageView.layer.masksToBounds = true
+        headImageView.layer.borderWidth = 0.1
+        headImageView.layer.borderColor = UIColor.blackColor().CGColor
         
         // 名字
         let nameLabel = UILabel(frame: CGRectMake(0, 66, 81, 21))

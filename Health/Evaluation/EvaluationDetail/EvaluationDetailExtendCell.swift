@@ -22,6 +22,9 @@ class EvaluationDetailExtendCell: UITableViewCell {
     @IBOutlet weak var markHighLabel: UILabel!
     @IBOutlet weak var descriptionLabel: AttributedLabel!
     
+    @IBOutlet weak var lowLevelLabel: UILabel!
+    @IBOutlet weak var normalLevelLabel: UILabel!
+    @IBOutlet weak var highLevelLabel: UILabel!
     
     @IBOutlet weak var markBgImageView: UIImageView!
     @IBOutlet weak var markIconCenterConstraint: NSLayoutConstraint!
@@ -41,46 +44,43 @@ class EvaluationDetailExtendCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setResultValue(value: String, range: (Float, Float), unit: String, status: ValueStatus?) {
-        unitLabel.text = unit
+    func setViewModel(viewModel: EvaluationDetailExtendViewModel) {
         
-//        let a = value[0]
-        var isNumber = true
-        for c in value.characters {
-            if c == "0" || c == "1" || c == "2" || c == "3" || c == "4" || c == "5" || c == "6" || c == "7" || c == "8" || c == "9" {
-                break
-            }
-            else {
-                isNumber = false
-                break
-            }
-        }
+        iconImageView.image = UIImage(named: viewModel.type.headIcon)
+        titleLabel.text = viewModel.type.title
+        unitLabel.text = viewModel.type.unit
+        resultLabel.textColor = viewModel.status.statusColor
         
-        if isNumber {
-            let numberValues = value.floatValue
-            resultLabel.text = String(format: "%.1f", numberValues)
+        if viewModel.valueIsNumber {
+            resultLabel.text = viewModel.value
             
-            markHighLabel.text = String(format: "%.1f\(unit)", range.1)
-            markLowLabel.text = String(format: "%.1f\(unit)", range.0)
+            markHighLabel.text = String(format: "%.1f\(viewModel.type.unit)", viewModel.range.1)
+            markLowLabel.text = String(format: "%.1f\(viewModel.type.unit)", viewModel.range.0)
             
+            // 等级描述
             descriptionLabel.clear()
+            let levelDescription = viewModel.type.levelDescription
+            if viewModel.status == ValueStatus.High {
+                descriptionLabel.append(levelDescription.2, font: nil, color: viewModel.status.statusColor)
+            }
+            else if viewModel.status == ValueStatus.Normal {
+                descriptionLabel.append(levelDescription.1, font: nil, color: viewModel.status.statusColor)
+            }
+            else if viewModel.status == ValueStatus.Low {
+                descriptionLabel.append(levelDescription.0, font: nil, color: viewModel.status.statusColor)
+            }
             
-            if status == ValueStatus.High {
-                descriptionLabel.append("\(titleLabel!.text!)出现警告,请重视!", font: nil, color: status?.statusColor)
-            }
-            else if status == ValueStatus.Normal {
-                descriptionLabel.append("\(titleLabel!.text!)正常, 请保持!", font: nil, color: status?.statusColor)
-            }
-            else if status == ValueStatus.Low {
-                descriptionLabel.append("\(titleLabel!.text!)出现警告, 注意控制!", font: nil, color: status?.statusColor)
-            }
-            
+            // 等级title
+            let levelTitle = viewModel.type.levelTitle
+            lowLevelLabel.text = levelTitle.0
+            normalLevelLabel.text = levelTitle.1
+            highLevelLabel.text = levelTitle.2
             
             // 计算标记位置
             let rulerWidth = markBgImageView.frame.size.width
             let labelPad = rulerWidth / 3 / 2 + 15
             let labelPad2 = rulerWidth / 2 - 20
-            
+            let numberValues = viewModel.value.floatValue
             
             fatPercentageLeanLabelCenterConstraint.constant = -1 * labelPad2
             fatPercentageTooHighLabelCenterConstraint.constant = labelPad2
@@ -88,12 +88,12 @@ class EvaluationDetailExtendCell: UITableViewCell {
             markHighLabelCenterConstraint.constant = labelPad
             markLowLabelConstraint.constant = labelPad * -1
             
-            let middleValue = (range.0 + range.1) / 2
+            let middleValue = (viewModel.range.0 + viewModel.range.1) / 2
             let offset = numberValues - middleValue
-        
-            if range.1 != middleValue {
+            
+            if viewModel.range.1 != middleValue {
                 
-                var constant = CGFloat(offset) * (labelPad / CGFloat(range.1 - middleValue))
+                var constant = CGFloat(offset) * (labelPad / CGFloat(viewModel.range.1 - middleValue))
                 
                 if constant > markBgImageView.frame.size.width / 2 {
                     constant = markBgImageView.frame.size.width / 2
@@ -104,18 +104,12 @@ class EvaluationDetailExtendCell: UITableViewCell {
                 
                 markIconCenterConstraint.constant = constant
             }
-            
         }
         else {
-            resultLabel.text = value
+            resultLabel.text = viewModel.value
         }
         
-        if status != nil {
-            resultLabel.textColor = status?.statusColor
-        }
-        else {
-            resultLabel.textColor = UIColor.grayColor()
-        }
+        
     }
     
 //    func refreshFatData() {

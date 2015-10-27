@@ -25,7 +25,7 @@ class CompleteHeadAndNameDataView: UIView {
         layer.masksToBounds = true
         layer.cornerRadius = headIconButton.frame.size.height / 2.0
         layer.borderWidth = 0.1
-        layer.borderColor = UIColor.clearColor().CGColor
+        layer.borderColor = UIColor.blackColor().CGColor
 //        CALayer * layer = [self.headImageView layer];
 //        [layer setMasksToBounds:YES];
 //        [layer setCornerRadius:self.headImageView.frame.size.height/2.0];

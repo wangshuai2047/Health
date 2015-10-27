@@ -269,3 +269,9 @@ extension CompleteInfoViewController: UIScrollViewDelegate {
         }
     }
 }
+
+extension CompleteInfoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+}

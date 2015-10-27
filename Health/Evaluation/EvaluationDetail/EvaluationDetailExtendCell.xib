@@ -59,7 +59,7 @@
                             <constraint firstAttribute="height" constant="146.5" id="ST3-28-BGp"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏瘦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VM-GI-OH2">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="偏低" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VM-GI-OH2">
                         <rect key="frame" x="28" y="143" width="35" height="21"/>
                         <animations/>
                         <constraints>
@@ -190,18 +190,21 @@
                 <outlet property="descriptionLabel" destination="SGg-SQ-MFa" id="GXK-TX-SVZ"/>
                 <outlet property="fatPercentageLeanLabelCenterConstraint" destination="jA8-wN-gV9" id="EWs-GS-eSU"/>
                 <outlet property="fatPercentageTooHighLabelCenterConstraint" destination="Qjd-mU-ISr" id="wKL-Nt-Dhb"/>
+                <outlet property="highLevelLabel" destination="ieA-Td-mC0" id="03i-G2-5v2"/>
                 <outlet property="iconImageView" destination="Jkc-Tt-qqN" id="ffC-aE-JN8"/>
+                <outlet property="lowLevelLabel" destination="0VM-GI-OH2" id="RyV-5Q-ZaV"/>
                 <outlet property="markBgImageView" destination="cy9-H1-aa9" id="8YS-fk-xSb"/>
                 <outlet property="markHighLabel" destination="hHg-Dd-xqj" id="rjY-xX-9Pz"/>
                 <outlet property="markHighLabelCenterConstraint" destination="i7P-aV-cY1" id="ibb-bX-V1b"/>
                 <outlet property="markIconCenterConstraint" destination="5Fx-up-X8a" id="tfZ-T3-WMc"/>
                 <outlet property="markLowLabel" destination="iQH-oP-ICO" id="jAg-ug-bOL"/>
                 <outlet property="markLowLabelConstraint" destination="u6S-yZ-kxC" id="CUO-Il-CpT"/>
+                <outlet property="normalLevelLabel" destination="3f5-99-pnU" id="WUn-gl-0AP"/>
                 <outlet property="resultLabel" destination="L1c-TG-bcq" id="396-sk-Wo8"/>
                 <outlet property="titleLabel" destination="Vxy-eV-L3K" id="3p8-BZ-N19"/>
                 <outlet property="unitLabel" destination="UVM-3n-nAW" id="ciY-C0-uAB"/>
             </connections>
-            <point key="canvasLocation" x="138" y="370"/>
+            <point key="canvasLocation" x="366" y="325"/>
         </tableViewCell>
     </objects>
     <resources>

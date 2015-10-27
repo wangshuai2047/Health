@@ -120,7 +120,10 @@ class UserManager {
                 
                 var dbUser = user
                 dbUser.headURL = imageURL
-                DBManager.shareInstance().addOrUpdateUser(dbUser)
+                
+                if user.userId != UserManager.mainUser.userId {
+                    DBManager.shareInstance().addOrUpdateUser(dbUser)
+                }
             }
             complete(error)
         }

@@ -122,7 +122,12 @@ class EvaluationViewController: UIViewController {
     }
     
     @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
-        DeviceScanViewController.showDeviceScanViewController([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus], delegate: self, rootController: AppDelegate.rootNavgationViewController())
+        
+        // 现在改为返回评测界面
+        self.tipLabel.text = "摇一摇请上秤!"
+        showView(connectDeviceView)
+        
+//        DeviceScanViewController.showDeviceScanViewController([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus], delegate: self, rootController: AppDelegate.rootNavgationViewController())
     }
     
     // MARK: - connectDeviceView Response Method

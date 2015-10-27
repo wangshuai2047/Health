@@ -465,14 +465,14 @@
                                             <action selector="enterMyBodyDataPressed:" destination="jp7-mN-LXK" eventType="touchUpInside" id="Oyc-gb-3tz"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlv-J7-9Of">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlv-J7-9Of">
                                         <rect key="frame" x="30" y="214" width="532" height="42"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="cqT-pD-woG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="扫描设备" backgroundImage="buttonBg">
+                                        <state key="normal" title="返回" backgroundImage="buttonBg">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -699,26 +699,6 @@
                                                 <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="kSv-xg-gb9"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psb-lu-XNF">
-                                            <rect key="frame" x="16" y="118" width="90" height="45"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="90" id="V5D-W6-UC1"/>
-                                                <constraint firstAttribute="height" constant="45" id="pNi-vf-e79"/>
-                                            </constraints>
-                                            <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="-4"/>
-                                            <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="水分" image="waterIcon">
-                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" image="waterIconSelected">
-                                                <color key="titleColor" red="0.140625" green="0.3203125" blue="0.859375" alpha="0.50196081399917603" colorSpace="deviceRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="FmB-GW-5W8"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUi-Qa-hWd">
                                             <rect key="frame" x="494" y="118" width="90" height="45"/>
                                             <animations/>
@@ -766,6 +746,26 @@
                                             </state>
                                             <connections>
                                                 <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="5nT-od-0XP"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psb-lu-XNF">
+                                            <rect key="frame" x="16" y="118" width="90" height="45"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="90" id="V5D-W6-UC1"/>
+                                                <constraint firstAttribute="height" constant="45" id="pNi-vf-e79"/>
+                                            </constraints>
+                                            <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="-4"/>
+                                            <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="水分" image="waterIcon">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="waterIconSelected">
+                                                <color key="titleColor" red="0.140625" green="0.3203125" blue="0.859375" alpha="0.50196081399917603" colorSpace="deviceRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="selectButtonPressed:" destination="UA0-Lq-IUw" eventType="touchUpInside" id="FmB-GW-5W8"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1132,7 +1132,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEs-mg-Toq">
-                                <rect key="frame" x="149" y="298" width="13" height="21"/>
+                                <rect key="frame" x="169" y="298" width="13" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="9JR-4s-jBM"/>
@@ -1142,12 +1142,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45646" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbV-Cq-FMk">
-                                <rect key="frame" x="89" y="298" width="52.5" height="21"/>
+                                <rect key="frame" x="89" y="298" width="72.5" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="A9U-AJ-G5h"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1168,7 +1168,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前的等级为" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FX-4N-jT2">
-                                <rect key="frame" x="173.5" y="298" width="78" height="21"/>
+                                <rect key="frame" x="193.5" y="298" width="78" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="oYo-F7-314"/>
@@ -1178,7 +1178,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="级" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeW-Xg-tip">
-                                <rect key="frame" x="320" y="298" width="13" height="21"/>
+                                <rect key="frame" x="360" y="298" width="13" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6fV-5p-rb5"/>
@@ -1188,12 +1188,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45646" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe6-Dq-cLt">
-                                <rect key="frame" x="259.5" y="298" width="52.5" height="21"/>
+                                <rect key="frame" x="279.5" y="298" width="72.5" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="sBP-E3-1BU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1225,30 +1225,30 @@
                                         <state key="selected" image="shareGeekSelected"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不倦行者" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5P-Aw-f5R">
-                                        <rect key="frame" x="35" y="151" width="68" height="20.5"/>
+                                        <rect key="frame" x="43" y="151" width="52" height="16"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安睡达人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKZ-uU-lEL">
-                                        <rect key="frame" x="177" y="151" width="68" height="20.5"/>
+                                        <rect key="frame" x="185" y="151" width="52" height="16"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评测专家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnD-F7-Kjp">
-                                        <rect key="frame" x="319" y="151" width="68" height="20.5"/>
+                                        <rect key="frame" x="327" y="151" width="52" height="16"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享狂人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7J5-BY-8sR">
-                                        <rect key="frame" x="461" y="151" width="68" height="20.5"/>
+                                        <rect key="frame" x="469" y="151" width="52" height="16"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>

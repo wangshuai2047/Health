@@ -65,7 +65,7 @@ extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! EvaluationPhysiqueDetailCell
         
         // 第一列
-        var physique = Physique(rawValue: indexPath.row + 1)
+        var physique = Physique(rawValue: indexPath.row * 3 + 1)
         cell.titleLabel1.text = physique?.description
         cell.titleLabel1.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
         cell.physiqueImageView1.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
@@ -77,8 +77,9 @@ extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITable
         }
         
         // 第二列
-        physique = Physique(rawValue: indexPath.row + 2)
+        physique = Physique(rawValue: indexPath.row * 3 + 2)
         cell.titleLabel2.text = physique?.description
+        cell.titleLabel2.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
         cell.physiqueImageView2.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
         cell.physiqueButton2.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         cell.physiqueButton2.tag = physique!.rawValue
@@ -88,8 +89,9 @@ extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITable
         }
         
         // 第三列
-        physique = Physique(rawValue: indexPath.row + 3)
+        physique = Physique(rawValue: indexPath.row * 3 + 3)
         cell.titleLabel3.text = physique?.description
+        cell.titleLabel3.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
         cell.physiqueImageView3.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
         cell.physiqueButton3.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         cell.physiqueButton3.tag = physique!.rawValue
