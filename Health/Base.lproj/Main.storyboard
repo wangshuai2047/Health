@@ -1395,7 +1395,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="jkC-Lt-T6x">
             <objects>
-                <tabBarController id="FxS-9p-8zO" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" id="FxS-9p-8zO" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="3WA-d1-kis"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="69y-oU-VSO">

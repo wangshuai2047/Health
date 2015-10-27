@@ -28,11 +28,11 @@ enum ValueStatus {
     var statusColor: UIColor {
         switch self {
         case .Low:
-            return UIColor(red: 169/255.0, green: 123/255.0, blue: 47/255.0, alpha: 1)
+            return UIColor(red: 235/255.0, green: 189/255.0, blue: 72/255.0, alpha: 1)
         case .Normal:
-            return UIColor(red: 122/255.0, green: 160/255.0, blue: 44/255.0, alpha: 1)
+            return UIColor(red: 118/255.0, green: 218/255.0, blue: 66/255.0, alpha: 1)
         case .High:
-            return UIColor.redColor()
+            return UIColor(red: 211/255.0, green: 46/255.0, blue: 55/255.0, alpha: 1)
         }
     }
 }

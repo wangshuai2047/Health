@@ -113,14 +113,14 @@ extension SleepDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sevenDaysData.count
+        return sevenDaysData.count - 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! GoalDetailTableViewCell
         
         let colors = [lightSleepColor, lightSleepColor, lightSleepColor, deepSleepColor, deepSleepColor]
-        let (_, _, lightSleep, deepSleep) = sevenDaysData[indexPath.row]
+        let (_, _, lightSleep, deepSleep) = sevenDaysData[indexPath.row + 1]
         let lightSleepHour = GoalManager.dealSleepMinutesToHours(lightSleep)
         let deepSleepHour = GoalManager.dealSleepMinutesToHours(deepSleep)
         

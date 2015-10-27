@@ -176,15 +176,16 @@ class GoalSettingViewController: UIViewController {
         strategyNumberRange = numberRange
         strategyDayRange = dayRange
         
+        // 刷新界面
+        setNumberGoalPicker.reloadAllComponents()
+        setDaysGoalPicker.reloadAllComponents()
+
         // 设置数值
         setNumberDescription()
         
         // 设置天数
         setDaysDescription()
         
-        // 刷新界面
-        setNumberGoalPicker.reloadAllComponents()
-        setDaysGoalPicker.reloadAllComponents()
     }
     
     func setNumberDescription() {

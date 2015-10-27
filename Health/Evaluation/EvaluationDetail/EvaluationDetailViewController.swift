@@ -294,7 +294,9 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
             
             let model: EvaluationDetailCellViewModel = viewModel.allDatas[indexPath.row]
             cell?.textLabel?.text = "\(model.timeShowString)"
-            cell?.detailTextLabel?.text = "体重:\(model.scaleResult.weight)kg 体脂:\(model.scaleResult.fatPercentage)%"
+            
+            let description = String(format: "体重:%.1fkg 体脂:%.1f%%", model.scaleResult.weight, model.scaleResult.fatPercentage)
+            cell?.detailTextLabel?.text = description
             
             return cell!
         }

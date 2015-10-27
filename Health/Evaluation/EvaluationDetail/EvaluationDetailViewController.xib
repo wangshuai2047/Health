@@ -53,7 +53,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuH-yM-UvH">
-                                <rect key="frame" x="17" y="8" width="46" height="65"/>
+                                <rect key="frame" x="17" y="18" width="46" height="65"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="Fx5-HC-Gj0"/>
@@ -70,7 +70,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaP-SZ-OgB">
-                                <rect key="frame" x="537" y="8" width="46" height="65"/>
+                                <rect key="frame" x="537" y="18" width="46" height="65"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="dTT-zO-bjS"/>
@@ -87,7 +87,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-yg-bOA">
-                                <rect key="frame" x="277" y="8" width="46" height="65"/>
+                                <rect key="frame" x="277" y="18" width="46" height="65"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="V7N-uy-eZD"/>
@@ -107,11 +107,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CZh-yg-bOA" firstAttribute="top" secondItem="KSv-br-Sqc" secondAttribute="top" constant="8" id="2gN-5a-aqB"/>
+                            <constraint firstItem="CZh-yg-bOA" firstAttribute="top" secondItem="KSv-br-Sqc" secondAttribute="top" constant="18" id="2gN-5a-aqB"/>
                             <constraint firstItem="TuH-yM-UvH" firstAttribute="leading" secondItem="KSv-br-Sqc" secondAttribute="leading" constant="17" id="F3y-HA-Kcq"/>
                             <constraint firstAttribute="trailing" secondItem="UaP-SZ-OgB" secondAttribute="trailing" constant="17" id="eNs-qq-iRH"/>
-                            <constraint firstItem="UaP-SZ-OgB" firstAttribute="top" secondItem="KSv-br-Sqc" secondAttribute="top" constant="8" id="fhJ-AS-qzd"/>
-                            <constraint firstItem="TuH-yM-UvH" firstAttribute="top" secondItem="KSv-br-Sqc" secondAttribute="top" constant="8" id="ita-qm-4hj"/>
+                            <constraint firstItem="UaP-SZ-OgB" firstAttribute="top" secondItem="KSv-br-Sqc" secondAttribute="top" constant="18" id="fhJ-AS-qzd"/>
+                            <constraint firstItem="TuH-yM-UvH" firstAttribute="top" secondItem="KSv-br-Sqc" secondAttribute="top" constant="18" id="ita-qm-4hj"/>
                             <constraint firstItem="CZh-yg-bOA" firstAttribute="centerX" secondItem="KSv-br-Sqc" secondAttribute="centerX" id="wxf-lf-KQe"/>
                         </constraints>
                     </view>

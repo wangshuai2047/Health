@@ -43,12 +43,12 @@ enum DeviceType: Int16 {
             // a8 01 01 01 08 f4 06 a5 00 be 3f
             // a8 01 01 01 08 f4 06 a5 00 be 3f 01 0108f406 a500be3f
             var buffer: [UInt8] = []
-            buffer.append(0xa8)
-            buffer.append(0x01)
-            buffer.append(0x01)
-            buffer.append(0x01)
-            buffer.append(0x08)
             buffer.append(0xf4)
+            buffer.append(0x06)
+            buffer.append(0xa5)
+            buffer.append(0x00)
+            buffer.append(0xbe)
+            buffer.append(0x3f)
             
             let data = NSData(bytes: buffer, length: buffer.count)
             return data
@@ -290,6 +290,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         print("didDisconnectPeripheral error: \(error)")
+//        scanClosure?(devices, false, nil)
     }
 }
 

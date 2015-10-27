@@ -94,7 +94,11 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
                     self.users = UserManager.shareInstance().queryAllUsers()
                     self.tableView.reloadData()
                     
-                    controller.navigationController?.popViewControllerAnimated(true)
+                    controller.navigationController?.popToRootViewControllerAnimated(true)
+                    
+                    // 成功后直接跳转到评测主页开始评测
+                    AppDelegate.applicationDelegate().changeToMainIndex(0)
+                    
                 }
                 else {
                     Alert.showErrorAlert("添加家庭成员失败", message: error?.localizedDescription)

@@ -130,7 +130,7 @@ extension ScaleResultProtocol {
     // 内脏脂肪范围
     var visceralFatContentRange: (Float, Float) {
         get {
-            return (10, 5.5)
+            return (5.5, 10)
         }
         set {
             

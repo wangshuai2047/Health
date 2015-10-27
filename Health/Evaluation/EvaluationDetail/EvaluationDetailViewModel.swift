@@ -34,7 +34,8 @@ struct EvaluationDetailCellViewModel {
     var timeShowString: String
     
     init(info: [String: AnyObject]) {
-        scaleResult = MyBodyResult(info: info)
+        
+        scaleResult = ScaleResultProtocolCreate(info)
         timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
     }
 }

@@ -110,14 +110,14 @@ extension SportDetailViewController: ShareViewControllerDelegate {
 extension SportDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sevenDaysData.count
+        return sevenDaysData.count - 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! GoalDetailTableViewCell
         
         let colors = [lightBlue, lightBlue, lightBlue, deepBlue, deepBlue]
-        let (walk, _, _,_) = sevenDaysData[indexPath.row]
+        let (walk, _, _,_) = sevenDaysData[indexPath.row + 1]
         var goalWalk = GoalManager.currentGoalInfo()?.dayWalkGoal
         if goalWalk == nil {
             goalWalk = 10000

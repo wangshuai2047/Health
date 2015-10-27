@@ -89,10 +89,20 @@ class EvaluationDetailExtendCell: UITableViewCell {
             markLowLabelConstraint.constant = labelPad * -1
             
             let middleValue = (range.0 + range.1) / 2
-            let offset = middleValue - numberValues
+            let offset = numberValues - middleValue
         
             if range.1 != middleValue {
-                markIconCenterConstraint.constant = CGFloat(offset) * (labelPad / CGFloat(range.1 - middleValue))
+                
+                var constant = CGFloat(offset) * (labelPad / CGFloat(range.1 - middleValue))
+                
+                if constant > markBgImageView.frame.size.width / 2 {
+                    constant = markBgImageView.frame.size.width / 2
+                }
+                else if constant < -1 * markBgImageView.frame.size.width / 2 {
+                    constant = -1 * markBgImageView.frame.size.width / 2
+                }
+                
+                markIconCenterConstraint.constant = constant
             }
             
         }
@@ -106,8 +116,6 @@ class EvaluationDetailExtendCell: UITableViewCell {
         else {
             resultLabel.textColor = UIColor.grayColor()
         }
-        
-        
     }
     
 //    func refreshFatData() {

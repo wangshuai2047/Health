@@ -1094,8 +1094,10 @@ extension DBManager {
         info["bmiMax"] = data.valueForKey("bmiMax") as! NSNumber
         info["bmr"] = data.valueForKey("bmr") as! NSNumber
         info["bodyAge"] = data.valueForKey("bodyAge") as! NSNumber
-        info["boneMuscleWeightMin"] = data.valueForKey("boneMuscleWeightMin") as! NSNumber
-        info["boneMuscleWeightMax"] = data.valueForKey("boneMuscleWeightMax") as! NSNumber
+        let boneMuscleWeightMin = data.valueForKey("boneMuscleWeightMin") as! NSNumber
+        let boneMuscleWeightMax = data.valueForKey("boneMuscleWeightMax") as! NSNumber
+        info["boneMuscleWeightMin"] = boneMuscleWeightMin
+        info["boneMuscleWeightMax"] = boneMuscleWeightMax
         info["muscleControl"] = data.valueForKey("muscleControl") as! NSNumber
         info["fatControl"] = data.valueForKey("fatControl") as! NSNumber
         info["weightControl"] = data.valueForKey("weightControl") as! NSNumber
@@ -1124,7 +1126,8 @@ extension DBManager {
         info["internalMoisture"] = data.valueForKey("internalMoisture") as! NSNumber
         info["edemaFactor"] = data.valueForKey("edemaFactor") as! NSNumber
         info["obesity"] = data.valueForKey("obesity") as! NSNumber
-        info["score"] = data.valueForKey("score") as! NSNumber
+        let score = data.valueForKey("score") as! NSNumber
+        info["score"] = score
         
         return info
     }
