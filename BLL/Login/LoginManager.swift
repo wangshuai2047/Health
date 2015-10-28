@@ -295,6 +295,15 @@ struct LoginManager {
         func serverBind(openId: String?, type: ThirdPlatformType) {
             LoginRequest.bindThirdPlatform(UserData.shareInstance().userId!, openId: openId!, type: type) { (error: NSError?) -> Void in
                 if error == nil {
+                    if type == ThirdPlatformType.QQ {
+                        bindQQOpenId = openId
+                    }
+                    else if type == ThirdPlatformType.WeChat {
+                        bindWeChatOpenId = openId
+                    }
+                    else if type == ThirdPlatformType.Weibo {
+                        bindWeiBoOpenId = openId
+                    }
                     complete(nil)
                 }
                 else {
@@ -350,7 +359,18 @@ struct LoginManager {
         }
         
         LoginRequest.cancelBindThirdPlatform(UserData.shareInstance().userId!, openId: openId, type: type) { (error: NSError?) -> Void in
-            
+            if error == nil {
+                if type == ThirdPlatformType.QQ {
+                    bindQQOpenId = nil
+                }
+                else if type == ThirdPlatformType.WeChat {
+                    bindWeChatOpenId = nil
+                }
+                else if type == ThirdPlatformType.Weibo {
+                    bindWeiBoOpenId = nil
+                }
+            }
+            complete(error)
         }
         ShareSDKHelper.cancelBind(ShareType(type: type))
     }

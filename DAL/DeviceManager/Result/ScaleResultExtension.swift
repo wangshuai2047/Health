@@ -9,17 +9,29 @@
 import UIKit
 
 func ScaleResultProtocolCreate(info: [String : AnyObject]) -> ScaleResultProtocol {
-    let deviceType = (info["deviceType"] as! NSNumber).integerValue
     
-    if deviceType == 0 {
-        return MyBodyResult(info: info)
-    }
-    else if deviceType == 1 {
-        return MyBodyMiniAndPlusResult(info: info)
+    if let deviceType = (info["deviceType"] as? NSNumber) {
+        if deviceType == 0 {
+            return MyBodyResult(info: info)
+        }
+        else if deviceType == 1 {
+            return MyBodyMiniAndPlusResult(info: info)
+        }
+        else {
+            return MyBodyMiniAndPlusResult(info: info)
+        }
     }
     else {
-        return MyBodyResult(info: info)
+        if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {
+            
+            if HAI.shortValue == 1 || HAI.shortValue == 2{
+                return MyBodyMiniAndPlusResult(info: info)
+            }
+        }
+        return MyBodyMiniAndPlusResult(info: info)
     }
+    
+    
 }
 
 

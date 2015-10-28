@@ -116,7 +116,7 @@ class ThirdPlatformBindController: UIViewController {
         
         
         if LoginManager.isBindThirdParty(pType) {
-            LoginManager.cancelBindThirdParty(pType, complete: { (error: NSError?) -> Void in
+            LoginManager.cancelBindThirdParty(pType, complete: {[unowned self] (error: NSError?) -> Void in
                 if error == nil {
                     self.tableView.reloadData()
                 }
@@ -126,7 +126,7 @@ class ThirdPlatformBindController: UIViewController {
             })
         }
         else {
-            LoginManager.bindThirdParty(pType, complete: { (error: NSError?) -> Void in
+            LoginManager.bindThirdParty(pType, complete: {[unowned self] (error: NSError?) -> Void in
                 if error == nil {
                     self.tableView.reloadData()
                 }

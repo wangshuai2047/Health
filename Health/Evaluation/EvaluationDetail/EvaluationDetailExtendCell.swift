@@ -60,14 +60,15 @@ class EvaluationDetailExtendCell: UITableViewCell {
             // 等级描述
             descriptionLabel.clear()
             let levelDescription = viewModel.type.levelDescription
+            let font = UIFont.systemFontOfSize(13)
             if viewModel.status == ValueStatus.High {
-                descriptionLabel.append(levelDescription.2, font: nil, color: viewModel.status.statusColor)
+                descriptionLabel.append(levelDescription.2, font: font, color: viewModel.status.statusColor)
             }
             else if viewModel.status == ValueStatus.Normal {
-                descriptionLabel.append(levelDescription.1, font: nil, color: viewModel.status.statusColor)
+                descriptionLabel.append(levelDescription.1, font: font, color: viewModel.status.statusColor)
             }
             else if viewModel.status == ValueStatus.Low {
-                descriptionLabel.append(levelDescription.0, font: nil, color: viewModel.status.statusColor)
+                descriptionLabel.append(levelDescription.0, font: font, color: viewModel.status.statusColor)
             }
             
             // 等级title

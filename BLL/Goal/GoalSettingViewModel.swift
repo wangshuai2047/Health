@@ -12,13 +12,35 @@ struct GoalSettingViewModel {
     
     lazy var lastEvaluationData = GoalManager.lastEvaluationData()
     
+    mutating func calculeSuggestDays(type: UserGoalData.GoalType, range: Int) -> Int {
+        if type == .Weight {
+            return Int(Float(range) / (0.3 / 7))
+        }
+        else if type == .Fat {
+            if lastEvaluationData != nil {
+                if lastEvaluationData!.gender {
+                    return Int(Float(range) / ((0.3 * 0.15) / 7))
+                }
+                else {
+                    return Int(Float(range) / ((0.3 * 0.25) / 7))
+                }
+            }
+        }
+        return 0
+    }
+    
     mutating func rangeOfGoalType(type: UserGoalData.GoalType) -> ([Int], [Int]) {
+        
+        var dayRange: [Int] = []
+        for var i = 7; i <= 60; i++ {
+            dayRange.append(i)
+        }
+        
         var numberRange: [Int] = [0]
-        var dayRange: [Int] = [0]
         if lastEvaluationData != nil {
             if type == UserGoalData.GoalType.Weight {
                 // 标准体重
-                let sw = lastEvaluationData!.SW
+                let sw = lastEvaluationData!.SWRange.0
                 let weight = lastEvaluationData!.weight
                 
                 let weightRange = weight - sw
@@ -28,32 +50,17 @@ struct GoalSettingViewModel {
                         numberRange.append(i)
                     }
                 }
-                
-                let totalDays = Int(weightRange * 7 / 0.3)
-                if totalDays > 0 {
-                    for var i = 1; i < totalDays; i++ {
-                        dayRange.append(i)
-                    }
-                }
             }
             else if type == UserGoalData.GoalType.Fat {
                 // 标准体脂率
-                let sfp = lastEvaluationData!.standardFatPercentage
+                let sfp = lastEvaluationData!.fatPercentageRange.0
                 let fatPercentage = lastEvaluationData!.fatPercentage
                 
                 let fatPercentageRange = fatPercentage - sfp
                 
                 if fatPercentageRange > 0 {
-                    for var i = 1; i < Int(fatPercentageRange * lastEvaluationData!.weight); i++ {
+                    for var i = 1; i < Int(fatPercentageRange * lastEvaluationData!.weight / 100); i++ {
                         numberRange.append(i)
-                    }
-                    
-                    // 每周减0.06千克脂肪
-                    let totalDays = Int(fatPercentageRange * lastEvaluationData!.weight * 7 / 0.06)
-                    if totalDays > 0 {
-                        for var i = 1; i < totalDays; i++ {
-                            dayRange.append(i)
-                        }
                     }
                 }
             }

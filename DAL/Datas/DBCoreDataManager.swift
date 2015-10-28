@@ -244,6 +244,104 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
+    func addEvaluationDatas(results: [ScaleResultProtocol]) {
+        let context = self.managedObjectContext!
+        
+        for result in results {
+            let insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
+            
+            if let _ = result as? MyBodyResult {
+                insertData.deviceType = 0
+            }
+            if let _ = result as? MyBodyMiniAndPlusResult {
+                insertData.deviceType = 1
+            }
+            
+            insertData.dataId = result.dataId
+            insertData.userId = result.userId
+            insertData.timeStamp = NSDate()
+            insertData.isUpload = false
+            
+            insertData.boneMuscleWeight = result.boneMuscleWeight
+            insertData.boneWeight = result.boneWeight
+            insertData.fatPercentage = result.fatPercentage
+            insertData.fatWeight = result.fatWeight
+            insertData.muscleWeight = result.muscleWeight
+            insertData.proteinWeight = result.proteinWeight
+            insertData.visceralFatPercentage = result.visceralFatPercentage
+            insertData.waterPercentage = result.waterPercentage
+            insertData.waterWeight = result.waterWeight
+            insertData.weight = result.weight
+            // 脂肪肝
+            if let hepaticAdiposeInfiltration = result.hepaticAdiposeInfiltration {
+                insertData.hepaticAdiposeInfiltration = hepaticAdiposeInfiltration ? 1 : 2  // 1为有  2为没有
+            }
+            else {
+                insertData.hepaticAdiposeInfiltration = 0 // 0为不支持
+            }
+            insertData.fatFreeBodyWeight = result.fatFreeBodyWeight
+            insertData.fatFreeBodyWeightMin = result.fatFreeBodyWeightRange.0
+            insertData.fatFreeBodyWeightMax = result.fatFreeBodyWeightRange.1
+            insertData.muscleWeightMin = result.muscleWeightRange.0
+            insertData.muscleWeightMax = result.muscleWeightRange.1
+            insertData.proteinWeightMin = result.proteinWeightRange.0
+            insertData.proteinWeightMax = result.proteinWeightRange.1
+            insertData.boneWeightMin = result.boneWeightRange.0
+            insertData.boneWeightMax = result.boneWeightRange.1
+            insertData.waterWeightMin = result.waterWeightRange.0
+            insertData.waterWeightMax = result.waterWeightRange.1
+            insertData.fatWeightMin = result.fatWeightRange.0
+            insertData.fatWeightMax = result.fatWeightRange.1
+            insertData.fatPercentageMin = result.fatPercentageRange.0
+            insertData.fatPercentageMax = result.fatPercentageRange.1
+            insertData.whr = result.WHR
+            insertData.whrMin = result.WHRRange.0
+            insertData.whrMax = result.WHRRange.1
+            insertData.bmi = result.BMI
+            insertData.bmiMin = result.BMIRange.0
+            insertData.bmiMax = result.BMIRange.1
+            insertData.bmr = result.BMR
+            insertData.bodyAge = result.bodyAge
+            insertData.boneMuscleWeightMin = result.boneMuscleRange.0
+            insertData.boneMuscleWeightMax = result.boneMuscleRange.1
+            insertData.muscleControl = result.muscleControl
+            insertData.fatControl = result.fatControl
+            insertData.weightControl = result.weightControl
+            insertData.sw = result.SW
+            insertData.swMin = result.SWRange.0
+            insertData.swMax = result.SWRange.1
+            insertData.goalWeight = result.goalWeight
+            insertData.m_smm = result.m_smm
+            insertData.rightUpperExtremityFat = result.rightUpperExtremityFat
+            insertData.rightUpperExtremityMuscle = result.rightUpperExtremityMuscle
+            insertData.rightUpperExtremityBone = result.rightUpperExtremityBone
+            insertData.leftUpperExtremityFat = result.leftUpperExtremityFat
+            insertData.leftUpperExtremityMuscle = result.leftUpperExtremityMuscle
+            insertData.leftUpperExtremityBone = result.leftUpperExtremityBone
+            insertData.trunkLimbFat = result.trunkLimbFat
+            insertData.trunkLimbMuscle = result.trunkLimbMuscle
+            insertData.trunkLimbBone = result.trunkLimbBone
+            insertData.rightLowerExtremityFat = result.rightLowerExtremityFat
+            insertData.rightLowerExtremityMuscle = result.rightLowerExtremityMuscle
+            insertData.rightLowerExtremityBone = result.rightLowerExtremityBone
+            insertData.leftLowerExtremityFat = result.leftLowerExtremityFat
+            insertData.leftLowerExtremityMuscle = result.leftLowerExtremityMuscle
+            insertData.leftLowerExtremityBone = result.leftLowerExtremityBone
+            insertData.externalMoisture = result.externalMoisture
+            insertData.internalMoisture = result.internalMoisture
+            insertData.edemaFactor = result.edemaFactor
+            insertData.obesity = result.obesity
+            insertData.score = result.score
+            
+        }
+        
+        do {
+            try context.save()
+        } catch _ {
+            
+        }
+    }
+    
     func addEvaluationData(result: ScaleResultProtocol) {
         let context = self.managedObjectContext!
         let insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
@@ -362,7 +460,7 @@ extension DBManager: DBManagerProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %@", dataId, userId)
+        request.predicate = NSPredicate(format: "dataId == %s AND userId == %d", dataId, userId)
         
         let listData:[AnyObject]?
         do {
@@ -388,7 +486,7 @@ extension DBManager: DBManagerProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %@", dataId, userId)
+        request.predicate = NSPredicate(format: "dataId == %s AND userId == %d", dataId, userId)
         
         let listData: [AnyObject]?
         do {

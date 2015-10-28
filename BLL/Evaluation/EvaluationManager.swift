@@ -48,10 +48,10 @@ class EvaluationManager :NSObject {
     }
     
     func addTestDatas() {
-        for var i = 40; i >= 0; i-- {
-            let weight = 50 + random() % 10
+        for var i = 1; i >= 0; i-- {
+            let weight = 60 + random() % 10
             let waterPercentage = 55 + random() % 11
-            let visceralFatContent = 1 + random() % 10
+            let visceralFatContent = 10 + random() % 10
             
             let result = startScaleInputData(Float(weight), waterContent: Float(waterPercentage), visceralFatContent: Float(visceralFatContent))
             
@@ -63,7 +63,7 @@ class EvaluationManager :NSObject {
         BluetoothManager.shareInstance.setCheckStatusBlock(complete)
     }
     
-   // 开始测量秤
+    // 开始测量秤
     func startScale(complete: (info: ScaleResultProtocol?, isTimeOut: Bool, error: NSError?) -> Void) {
         
         
@@ -90,31 +90,7 @@ class EvaluationManager :NSObject {
             else {
                 complete(info: nil,isTimeOut: isTimeOut, error: error)
             }
-            
-            
         }
-        
-//        if let uuid = myBodyUUID {
-//            
-//            // setScaleData(userId: Int, gender: Bool, age: UInt8, height: UInt8)
-//            let userModel = UserManager.shareInstance().currentUser
-//            
-//            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : userModel], complete: { [unowned self] (result: ResultProtocol?, error: NSError?) -> Void in
-//                if error == nil {
-//                    if let braceletResult = result as? ScaleResultProtocol {
-//                        
-//                        // 存数据库
-//                        DBManager.shareInstance().addEvaluationData(braceletResult)
-//                        
-//                        self.updateEvaluationData()
-//                    }
-//                }
-//                complete(info: result as? ScaleResultProtocol, error: error)
-//            })
-//        }
-//        else {
-//            complete(info: nil, error: NSError(domain: "同步失败", code: 1001, userInfo: [NSLocalizedDescriptionKey : "未绑定设备"]))
-//        }
     }
     
     // 访客测量
@@ -140,27 +116,35 @@ class EvaluationManager :NSObject {
                 complete(info: nil,isTimeOut: isTimeOut, error: error)
             }
         }
-        
-        
-//        if let uuid = myBodyUUID {
-//            BluetoothManager.shareInstance.fire(uuid, info: ["userModel" : user], complete: { (result: ResultProtocol?, error: NSError?) -> Void in
-//                
-//                if let scaleResult = result as? ScaleResultProtocol {
-//                    
-//                    // 存数据库
-//                    DBManager.shareInstance().addEvaluationData(scaleResult)
-//                }
-//                    complete(info: result as? ScaleResultProtocol, error: error)
-//                })
-//        }
-//        else {
-//            complete(info: nil, error: NSError(domain: "同步失败", code: 1001, userInfo: [NSLocalizedDescriptionKey : "未绑定设备"]))
-//        }
     }
     
     static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: AnyObject]] {
         return DBManager.shareInstance().queryCountEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserManager.shareInstance().currentUser.userId, count: 5)
-//        return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserData.shareInstance().userId!)
+    }
+    
+    static func checkAndSyncEvaluationDatas(complete: (NSError?) -> Void) {
+        // 看是否需要获取历史信息
+        let lastInfo = DBManager.shareInstance().queryLastEvaluationData(UserData.shareInstance().userId!)
+        if lastInfo == nil {
+            // 去获取历史数据
+            EvaluationRequest.queryEvaluationDatas(UserData.shareInstance().userId!, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate(), complete: { (datas, error: NSError?) -> Void in
+                
+                if error == nil {
+                    var results: [ScaleResultProtocol] = []
+                    for data in datas! {
+                        results.append(ScaleResultProtocolCreate(data))
+                    }
+                    
+                    DBManager.shareInstance().addEvaluationDatas(results)
+                }
+                
+                
+                complete(error)
+            })
+        }
+        else {
+            complete(nil)
+        }
     }
     
     func updateEvaluationData() {

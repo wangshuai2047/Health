@@ -656,7 +656,16 @@ extension MyBodyResult {
     
     init(info: [String: AnyObject]) {
         
-        dataId = info["dataId"] as! String
+        self.dataId = NSUUID().UUIDString
+        if let dataId = info["dataId"] as? String {
+            self.dataId = dataId
+        }
+        
+        if let dataId = info["dataId"] as? NSNumber {
+            self.dataId = "\(dataId)"
+        }
+        
+//        dataId = info["dataId"] as! String
         userId = (info["userId"] as! NSNumber).integerValue
         weight = (info["weight"] as! NSNumber).floatValue
         waterPercentage = (info["waterPercentage"] as! NSNumber).floatValue

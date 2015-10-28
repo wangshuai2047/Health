@@ -92,6 +92,53 @@ struct GoalManager {
         }
     }
     
+    static func checkAndSyncGoalDatas(complete: (NSError?) -> Void) {
+        // 看是否需要获取历史信息
+        let lastInfo = DBManager.shareInstance().queryLastGoalData()
+        if lastInfo == nil {
+            // 去获取历史数据
+            GoalRequest.queryGoalDatas(UserData.shareInstance().userId!, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate(), complete: { (datas, error: NSError?) -> Void in
+                if error == nil {
+                    var results: [BraceletData] = []
+                    for data in datas! {
+                        
+                        var muData = data
+                        muData["userId"] = UserData.shareInstance().userId!
+                        if let startTime = data["startTime"] as? NSString {
+                            muData["startTime"] = NSDate(timeIntervalSince1970: startTime.doubleValue)
+                        }
+                        
+                        if let endTime = data["endTime"] as? NSString {
+                            muData["endTime"] = NSDate(timeIntervalSince1970: endTime.doubleValue)
+                        }
+                        
+                        if let dataId = data["dataId"] as? NSString {
+                            muData["dataId"] = dataId
+                        }
+                        
+                        if let steps = data["steps"] as? NSString {
+                            muData["steps"] = NSNumber(integer: steps.integerValue)
+                        }
+                        
+                        if let stepsType = data["stepsType"] as? NSString {
+                            muData["stepsType"] = NSNumber(integer: stepsType.integerValue)
+                        }
+                        
+                        results.append(BraceletData(info: muData))
+                    }
+                    
+                    var result = BraceletResult()
+                    result.results = results
+                    DBManager.shareInstance().addGoalDatas(result)
+                }
+                complete(error)
+            })
+        }
+        else {
+            complete(nil)
+        }
+    }
+    
     private static func updateGoalData() {
         // 获取所有没上传的数据
         let datas = DBManager.shareInstance().queryNoUploadGoalDatas()
@@ -202,7 +249,15 @@ struct GoalManager {
 extension BraceletData {
     init(info: [String: AnyObject]) {
         
-        self.dataId = info["dataId"] as! String
+        self.dataId = NSUUID().UUIDString
+        if let dataId = info["dataId"] as? String {
+            self.dataId = dataId
+        }
+        
+        if let dataId = info["dataId"] as? NSNumber {
+            self.dataId = "\(dataId)"
+        }
+        
         self.userId = (info["userId"] as! NSNumber).integerValue
         
         self.startTime = info["startTime"] as! NSDate

@@ -226,6 +226,7 @@ extension LoginViewController: CompleteInfoDelegate {
         LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { (error) -> Void in
             
             if error == nil {
+                
                 // 跳转到主页
                 SettingManager.addLocalNotification()
                 AppDelegate.applicationDelegate().changeToMainController()

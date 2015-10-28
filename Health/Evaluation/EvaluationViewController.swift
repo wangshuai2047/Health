@@ -36,6 +36,8 @@ class EvaluationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        EvaluationManager.shareInstance().addTestDatas()
 
         // Do any additional setup after loading the view.\
         self.navigationController?.navigationBarHidden = true
@@ -65,27 +67,24 @@ class EvaluationViewController: UIViewController {
             }
         }
         
-//        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
-//        userSelectView.setShowViewUserId(UserManager.mainUser.userId)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步评测历史数据", detailMsg: nil, progress: nil)
+        EvaluationManager.checkAndSyncEvaluationDatas { (error: NSError?) -> Void in
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环历史数据", detailMsg: nil, progress: nil)
+            // 开始目标数据同步
+            GoalManager.checkAndSyncGoalDatas({ (error: NSError?) -> Void in
+                AppDelegate.applicationDelegate().hiddenHUD()
+            })
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
         userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
-        
-//        if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
-//            showView(connectDeviceView)
-//        }
-//        else {
-//            showView(notConnectDeviceView)
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,7 +92,6 @@ class EvaluationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -126,8 +124,6 @@ class EvaluationViewController: UIViewController {
         // 现在改为返回评测界面
         self.tipLabel.text = "摇一摇请上秤!"
         showView(connectDeviceView)
-        
-//        DeviceScanViewController.showDeviceScanViewController([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus], delegate: self, rootController: AppDelegate.rootNavgationViewController())
     }
     
     // MARK: - connectDeviceView Response Method

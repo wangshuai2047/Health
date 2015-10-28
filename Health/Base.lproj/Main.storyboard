@@ -540,9 +540,11 @@
                                     <constraint firstItem="A2b-9Y-Pif" firstAttribute="leading" secondItem="IDf-ib-hcA" secondAttribute="leading" constant="110" id="9Uh-jQ-9aj"/>
                                     <constraint firstItem="A2b-9Y-Pif" firstAttribute="centerX" secondItem="IDf-ib-hcA" secondAttribute="centerX" id="CuW-w9-0OJ"/>
                                     <constraint firstItem="MCu-dS-X42" firstAttribute="top" secondItem="A2b-9Y-Pif" secondAttribute="bottom" constant="8" id="FgY-ge-Ihh"/>
+                                    <constraint firstItem="A2b-9Y-Pif" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IDf-ib-hcA" secondAttribute="leading" constant="20" id="KJq-XQ-bWJ"/>
                                     <constraint firstItem="A2b-9Y-Pif" firstAttribute="top" secondItem="IDf-ib-hcA" secondAttribute="top" constant="20" id="PO0-x5-yLZ"/>
                                     <constraint firstAttribute="trailing" secondItem="tcp-2h-PKm" secondAttribute="trailing" constant="110" id="R6e-TQ-oEH"/>
                                     <constraint firstItem="tcp-2h-PKm" firstAttribute="top" secondItem="MCu-dS-X42" secondAttribute="bottom" constant="8" id="VSu-cS-3ZE"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="A2b-9Y-Pif" secondAttribute="trailing" constant="20" id="avm-cB-XAW"/>
                                     <constraint firstAttribute="trailing" secondItem="A2b-9Y-Pif" secondAttribute="trailing" constant="110" id="d1S-hI-sXv"/>
                                     <constraint firstAttribute="centerX" secondItem="MCu-dS-X42" secondAttribute="centerX" id="qHo-lV-LwY"/>
                                 </constraints>
