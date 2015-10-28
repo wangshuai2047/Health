@@ -132,12 +132,14 @@ struct LoginManager {
             complete(error: NSError(domain: "\(__FUNCTION__)", code: 0, userInfo: [NSLocalizedDescriptionKey: "未登录请先登录"]))
             return
         }
-        
-//        UserRequest.uploadHeadIcon(UserData.shareInstance().userId!, imageURL: imageURL, complete: complete)
     }
     
     // 登出
     static func logout() {
+        
+        bindQQOpenId = nil
+        bindWeiBoOpenId = nil
+        bindWeChatOpenId = nil
         UserData.shareInstance().clearDatas()
     }
     
@@ -245,6 +247,49 @@ struct LoginManager {
         }
     }
     
+    // MARK: - bind
+    static private var bindQQOpenId: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("isBindQQ") as? String
+        }
+        set {
+            if newValue != nil {
+                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "isBindQQ")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("isBindQQ")
+            }
+        }
+    }
+    
+    static private var bindWeChatOpenId: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("isBindWeChat") as? String
+        }
+        set {
+            if newValue != nil {
+                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "isBindWeChat")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("isBindWeChat")
+            }
+        }
+    }
+    
+    static private var bindWeiBoOpenId: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("isBindWeiBo") as? String
+        }
+        set {
+            if newValue != nil {
+                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "isBindWeiBo")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("isBindWeiBo")
+            }
+        }
+    }
+    
     static func bindThirdParty(type: ThirdPlatformType, complete: (NSError?) -> Void) {
         
         func serverBind(openId: String?, type: ThirdPlatformType) {
@@ -254,6 +299,7 @@ struct LoginManager {
                 }
                 else {
                     complete(error)
+                    ShareSDKHelper.cancelBind(ShareType(type: type))
                 }
             }
         }
@@ -290,32 +336,42 @@ struct LoginManager {
         }
     }
     
-    static func cancelBindThirdParty(type: ThirdPlatformType) {
-        var shareType: ShareType?
-        if type == .WeChat {
-            shareType = ShareType.WeChatSession
+    static func cancelBindThirdParty(type: ThirdPlatformType, complete: (NSError?) -> Void) {
+        
+        var openId: String = ""
+        if type == ThirdPlatformType.QQ {
+            openId = bindQQOpenId!
         }
-        else if type == .Weibo {
-            shareType = ShareType.WeiBo
+        else if type == ThirdPlatformType.WeChat {
+            openId = bindWeChatOpenId!
         }
-        else if type == .QQ {
-            shareType = ShareType.QQFriend
+        else if type == ThirdPlatformType.Weibo {
+            openId = bindWeiBoOpenId!
         }
-        ShareSDKHelper.cancelBind(shareType!)
+        
+        LoginRequest.cancelBindThirdPlatform(UserData.shareInstance().userId!, openId: openId, type: type) { (error: NSError?) -> Void in
+            
+        }
+        ShareSDKHelper.cancelBind(ShareType(type: type))
     }
     
     static func isBindThirdParty(type: ThirdPlatformType) -> Bool {
-        var shareType: ShareType?
         if type == .WeChat {
-            shareType = ShareType.WeChatSession
+            if bindWeChatOpenId != nil {
+                return true
+            }
         }
         else if type == .Weibo {
-            shareType = ShareType.WeiBo
+            if bindWeiBoOpenId != nil {
+                return true
+            }
         }
         else if type == .QQ {
-            shareType = ShareType.QQFriend
+            if bindQQOpenId != nil {
+                return true
+            }
         }
-        return ShareSDKHelper.isBind(shareType!)
+        return false
     }
     
     static func parseUserInfo(userInfo: [String: AnyObject]) {
@@ -381,5 +437,26 @@ struct LoginManager {
         }
         
         UserManager.shareInstance().currentUser = UserManager.mainUser
+        
+        // 第三方绑定
+        bindQQOpenId = nil
+        bindWeiBoOpenId = nil
+        bindWeChatOpenId = nil
+        if let apps = userInfo["app"] as? [[String : AnyObject]] {
+            for app in apps {
+                let openId = app["openId"] as? String
+                if let type = app["type"] as? String {
+                    if type == ThirdPlatformType.QQ.rawValue {
+                        bindQQOpenId = openId
+                    }
+                    else if type == ThirdPlatformType.WeChat.rawValue {
+                        bindWeChatOpenId = openId
+                    }
+                    else if type == ThirdPlatformType.Weibo.rawValue {
+                        bindWeiBoOpenId = openId
+                    }
+                }
+            }
+        }
     }
 }

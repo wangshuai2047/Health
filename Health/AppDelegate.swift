@@ -27,7 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var progressHUD: MBProgressHUD?
     private var isShowingHUD: Bool = false
     
-    var tabBarViewController: UITabBarController?
+    var tabBarViewController: UITabBarController? {
+        if let navController = window?.rootViewController as? UINavigationController {
+            if let tabBarController = navController.viewControllers.first as? UITabBarController {
+                return tabBarController
+            }
+        }
+        
+        return nil
+    }
 
     class func applicationDelegate() -> AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -55,7 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func changeToMainController() -> UINavigationController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let rootNavController = mainStoryboard.instantiateInitialViewController() as! UINavigationController
-        tabBarViewController = rootNavController.viewControllers.first as? UITabBarController
         self.window?.rootViewController = rootNavController
         return self.window?.rootViewController as! UINavigationController
     }

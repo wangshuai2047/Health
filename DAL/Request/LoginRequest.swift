@@ -53,6 +53,7 @@ struct  LoginRequest {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 var info = jsonObj?.valueForKey("info") as? [String: AnyObject]
                 info?["child"] = jsonObj?.valueForKey("child")
+                info?["app"] = jsonObj?.valueForKey("app")
                 complete(userInfo: info, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
@@ -95,8 +96,13 @@ struct  LoginRequest {
                 #endif
             }
             else {
-                let jsonObj: [String: AnyObject]? = result.jsonObj as? [String: AnyObject]
-                complete(userInfo: jsonObj?["info"] as? [String: AnyObject], nil)
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                
+                var info = jsonObj?.valueForKey("info") as? [String: AnyObject]
+                info?["child"] = jsonObj?.valueForKey("child")
+                info?["app"] = jsonObj?.valueForKey("app")
+                
+                complete(userInfo: info, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif
@@ -106,6 +112,27 @@ struct  LoginRequest {
     
     // 第三方绑定 字段：userId 用户id  绑定类型 type:1 微信  2：微博  3：qq登录  openid：第三方的id
     static func bindThirdPlatform(userId: Int, openId: String, type: ThirdPlatformType, complete: ((NSError?) -> Void)) {
+        
+        RequestType.BindThirdPlatform.startRequest(["userId": userId, "openid": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                complete(nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
+    
+    // 第三方取消绑定 // 解除绑定接口  传 userId 和  openId 的值就行
+    static func cancelBindThirdPlatform(userId: Int, openId: String, type: ThirdPlatformType, complete: ((NSError?) -> Void)) {
         
         RequestType.BindThirdPlatform.startRequest(["userId": userId, "openid": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
             

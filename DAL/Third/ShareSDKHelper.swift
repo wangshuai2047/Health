@@ -13,6 +13,32 @@ enum ShareType: Int {
     case WeiBo  // 新浪微博
     case QQFriend   // qq 好友
     case WeChatTimeline // 微信朋友圈
+    
+    func toThirdPlatformType() -> ThirdPlatformType {
+        switch self {
+        case .WeChatSession, .WeChatTimeline:
+            return ThirdPlatformType.WeChat
+        case .QQFriend:
+            return ThirdPlatformType.QQ
+        case .WeiBo:
+            return ThirdPlatformType.Weibo
+        }
+    }
+    
+    init(type: ThirdPlatformType) {
+        if type == .Weibo {
+            self = .WeiBo
+        }
+        else if type == .WeChat {
+            self = .WeChatSession
+        }
+        else if type == .QQ {
+            self = .QQFriend
+        }
+        else {
+            self = .WeiBo
+        }
+    }
 }
 
 /*

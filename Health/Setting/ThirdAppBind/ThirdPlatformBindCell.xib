@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,6 +16,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oTq-Se-55r">
                         <rect key="frame" x="12" y="8" width="70" height="70"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="cL4-FX-7bU"/>
                             <constraint firstAttribute="width" constant="70" id="t5M-FB-Pfj"/>
@@ -22,6 +24,7 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信朋友圈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12z-L3-yco">
                         <rect key="frame" x="12" y="86" width="70" height="21"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="JXi-td-JBy"/>
                         </constraints>
@@ -31,6 +34,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffn-OB-Kl0">
                         <rect key="frame" x="215" y="43" width="97" height="30"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="k8E-e5-bmd"/>
                             <constraint firstAttribute="width" constant="97" id="m7z-5c-FBk"/>
@@ -38,8 +42,10 @@
                         <state key="normal" title="去绑定" backgroundImage="buttonBg">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <state key="selected" title="取消绑定"/>
                     </button>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="ffn-OB-Kl0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="X4c-uu-mo0"/>
                     <constraint firstItem="oTq-Se-55r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="m50-Re-Qvj"/>
@@ -49,6 +55,7 @@
                     <constraint firstItem="oTq-Se-55r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="waV-kO-YoL"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="bindButton" destination="ffn-OB-Kl0" id="Ey6-Ul-fSx"/>
                 <outlet property="headImageView" destination="oTq-Se-55r" id="MMm-Rc-Pxi"/>

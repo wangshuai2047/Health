@@ -103,23 +103,29 @@ class ThirdPlatformBindController: UIViewController {
     // MARK: - 业务执行
     func thirdPartBindChange(type: ShareType) {
         
-        if ShareSDKHelper.isBind(type) {
-            ShareSDKHelper.cancelBind(type)
-            self.tableView.reloadData()
+        let pType: ThirdPlatformType
+        if type == ShareType.QQFriend {
+            pType = ThirdPlatformType.QQ
+        }
+        else if type == ShareType.WeiBo {
+            pType = ThirdPlatformType.Weibo
         }
         else {
-            
-            let pType: ThirdPlatformType
-            if type == ShareType.QQFriend {
-                pType = ThirdPlatformType.QQ
-            }
-            else if type == ShareType.WeiBo {
-                pType = ThirdPlatformType.Weibo
-            }
-            else {
-                pType = ThirdPlatformType.WeChat
-            }
-            
+            pType = ThirdPlatformType.WeChat
+        }
+        
+        
+        if LoginManager.isBindThirdParty(pType) {
+            LoginManager.cancelBindThirdParty(pType, complete: { (error: NSError?) -> Void in
+                if error == nil {
+                    self.tableView.reloadData()
+                }
+                else {
+                    Alert.showErrorAlert("改变失败", message: error!.localizedDescription)
+                }
+            })
+        }
+        else {
             LoginManager.bindThirdParty(pType, complete: { (error: NSError?) -> Void in
                 if error == nil {
                     self.tableView.reloadData()
@@ -152,7 +158,7 @@ extension ThirdPlatformBindController : UITableViewDataSource, UITableViewDelega
         cell.titleLabel.text = info["title"] as? String
         cell.headImageView.image = UIImage(named: info["headIcon"] as! String)
         cell.bindButton.tag = indexPath.row
-        cell.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
         cell.bindButton.addTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         let isBind = info["isBind"] as! () -> Bool
@@ -163,5 +169,12 @@ extension ThirdPlatformBindController : UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 116
+    }
+    
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let c = cell as? ThirdPlatformBindCell {
+            c.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        }
+        
     }
 }

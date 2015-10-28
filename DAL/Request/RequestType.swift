@@ -13,6 +13,7 @@ enum RequestType: String {
     case QueryCaptchas = "100010"
     case LoginThirdPlatform = "100003"
     case BindThirdPlatform = "100004"
+    case CancelBindThirdPlatform = "100030" // 解除绑定接口  传 userId 和  openId 的值就行
     
     case CreateUser = "100009"
     case DeleteUser = "100016"
@@ -30,6 +31,7 @@ enum RequestType: String {
     
     case QueryScore = "100017"
     case Share = "100018"
+    case QueryBadge = "100029"  // 获取徽章 传userId
     
     case QueryLaunchAds = "100011"
     case QueryActivityAds = "100012"
