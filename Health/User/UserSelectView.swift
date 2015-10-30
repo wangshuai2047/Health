@@ -140,8 +140,11 @@ class UserSelectView: UIView {
     
     func setShowViewUserId(userId: Int) {
         
-        if users.count == 0 && needSetUsers != nil {
-            users = needSetUsers!
+        if needSetUsers != nil && needExt != nil {
+            self.users = needSetUsers!
+            if needExt! {
+                self.users += [(-2, "", "增加用户"),(-1, "", "访客")]
+            }
         }
         
         for var i = 0; i < self.users.count; i++ {
@@ -149,7 +152,7 @@ class UserSelectView: UIView {
             if userId == currentUserId {
                 setShowView((headURLStr, name))
                 currentShowIndex = i
-                break
+                return
             }
         }
     }

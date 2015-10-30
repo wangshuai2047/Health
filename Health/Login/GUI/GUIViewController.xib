@@ -34,7 +34,7 @@
                         <outlet property="delegate" destination="-1" id="R4H-oq-L7V"/>
                     </connections>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRb-pU-oCA">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRb-pU-oCA">
                     <rect key="frame" x="155" y="522" width="141" height="30"/>
                     <animations/>
                     <constraints>
@@ -49,7 +49,7 @@
                         <action selector="frontButtonPressed:" destination="-1" eventType="touchUpInside" id="AID-IG-Ez9"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzn-Ni-o7K">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzn-Ni-o7K">
                     <rect key="frame" x="304" y="522" width="141" height="30"/>
                     <animations/>
                     <constraints>

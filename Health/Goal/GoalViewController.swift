@@ -45,6 +45,7 @@ class GoalViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        
         if GoalManager.isConnectDevice() {
             AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
             GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
@@ -124,6 +125,9 @@ class GoalViewController: UIViewController {
                 suggestCalorieLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
             }
         }
+        else {
+            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+        }
     }
     
     func setConnectDevice() {
@@ -146,6 +150,9 @@ class GoalViewController: UIViewController {
             }
             
         }
+        else {
+            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+        }
     }
     
     func setSleepDetail() {
@@ -164,22 +171,31 @@ class GoalViewController: UIViewController {
                 sleepDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
             }
         }
+        else {
+            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+        }
     }
     
     func setNoDeviceView() {
         noDeviceDetailLabel.clear()
-        if let showInfo = GoalManager.currentGoalInfo() {
-            noDeviceDetailLabel.append("为按期达到目标\n建议每天行走", font: nil, color: deepBlue)
-            noDeviceDetailLabel.append("\(showInfo.dayWalkGoal) 步\n\n\n", font: numberFont, color: lightBlue)
-            noDeviceDetailLabel.append("建议每天睡眠", font: nil, color: deepBlue)
-            noDeviceDetailLabel.append("8 小时\n", font: numberFont, color: lightBlue)
-            noDeviceDetailLabel.append("深度睡眠应大于", font: nil, color: deepBlue)
-            noDeviceDetailLabel.append("2 小时\n", font: numberFont, color: lightBlue)
+        if GoalManager.isSetGoal {
+            if let showInfo = GoalManager.currentGoalInfo() {
+                noDeviceDetailLabel.append("为按期达到目标\n建议每天行走", font: nil, color: deepBlue)
+                noDeviceDetailLabel.append("\(showInfo.dayWalkGoal) 步\n\n\n", font: numberFont, color: lightBlue)
+                noDeviceDetailLabel.append("建议每天睡眠", font: nil, color: deepBlue)
+                noDeviceDetailLabel.append("8 小时\n", font: numberFont, color: lightBlue)
+                noDeviceDetailLabel.append("深度睡眠应大于", font: nil, color: deepBlue)
+                noDeviceDetailLabel.append("2 小时\n", font: numberFont, color: lightBlue)
+            }
+            else
+            {
+                noDeviceDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
+            }
         }
-        else
-        {
-            noDeviceDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
+        else {
+            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
         }
+        
         
     }
 

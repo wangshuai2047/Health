@@ -286,9 +286,9 @@ extension EvaluationViewController: CompleteInfoDelegate {
     func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
         UserManager.shareInstance().addUser(user.name, gender: user.gender, age: user.age, height: user.height, imageURL: user.headURL) { [unowned self] (userModel, error: NSError?) -> Void in
             if error == nil {
+                UserManager.shareInstance().changeUserToUserId(userModel!.userId)
                 self.userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
                 self.userSelectView.setShowViewUserId(userModel!.userId)
-                self.userSelectView.setNeedsDisplay()
                 
                 controller.navigationController?.popViewControllerAnimated(false)
                 

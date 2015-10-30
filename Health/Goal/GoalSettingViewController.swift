@@ -201,9 +201,19 @@ class GoalSettingViewController: UIViewController {
     
     func setDaysDescription() {
         setDaysAttLabel.clear()
-        setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康减重到", font: nil, color: deepBlue)
-        setDaysAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
-        setDaysAttLabel.append("公斤\n建议您采取", font: nil, color: deepBlue)
+        // 健康将脂肪含量减重到13公斤
+        if goalType == UserGoalData.GoalType.Weight {
+            setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康将体重减到", font: nil, color: deepBlue)
+            setDaysAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
+            setDaysAttLabel.append("kg\n建议您采取", font: nil, color: deepBlue)
+        }
+        else {
+            setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康将脂肪含量减到", font: nil, color: deepBlue)
+            setDaysAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
+            setDaysAttLabel.append("公斤\n建议您采取", font: nil, color: deepBlue)
+        }
+        
+        
         setDaysAttLabel.append(" \(calculeDays()) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
         setDaysAttLabel.append("天的周期\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
     }

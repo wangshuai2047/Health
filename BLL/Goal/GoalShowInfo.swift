@@ -35,9 +35,15 @@ struct GoalShowInfo {
 //            addFatPercentage = scaleResult.standardFatPercentage - scaleResult.fatPercentage
         }
         
+        var dayCalorie: Float
+        if let restDays = UserGoalData.restDays {
+            dayCalorie = needReduceFat * 1000 * 15 / Float(restDays)
+        }
+        else {
+            dayCalorie = scaleResult.dayNeedCalorie
+        }
         
-        let dayCalorie = needReduceFat * 1000 * 15 / 7
-        dayCalorieGoal = dayCalorie - scaleResult.dayNeedCalorie
+        dayCalorieGoal = scaleResult.dayNeedCalorie
         
         dayWalkGoal = Int(dayCalorie / 500) == 0 ? 10000 : Int(dayCalorie * 10000 / 500)
         

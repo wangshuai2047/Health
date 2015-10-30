@@ -48,7 +48,7 @@ class EvaluationManager :NSObject {
     }
     
     func addTestDatas() {
-        for var i = 1; i >= 0; i-- {
+        for var i = 41; i >= 0; i-- {
             let weight = 60 + random() % 10
             let waterPercentage = 55 + random() % 11
             let visceralFatContent = 10 + random() % 10
