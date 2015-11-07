@@ -34,3 +34,7 @@
 
 // 模糊效果
 #import "FXBlurView.h"
+
+// Git加载控件
+#import <FLAnimatedImage/FLAnimatedImage.h>
+#import <FLAnimatedImage/FLAnimatedImageView.h>

@@ -58,10 +58,10 @@ struct MyBodyResult: ScaleResultProtocol {
     var boneMuscleRange: (Float, Float) {
         get {
             if gender {
-                return (0.75*0.9*m_smm*0.82, 0.75*1.1*m_smm*0.82)
+                return (0.75*0.9*m_smm, 0.75*1.1*m_smm)
             }
             else {
-                return (0.75*0.9*m_smm*0.77, 0.75*1.1*m_smm*0.77)
+                return (0.75*0.9*m_smm, 0.75*1.1*m_smm)
             }
         }
         set {}

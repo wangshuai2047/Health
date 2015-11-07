@@ -206,6 +206,9 @@
 		E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */; };
 		E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */; };
 		E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */; };
+		E0A1D6541BE85BFA00BE2C02 /* LaunchAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D6521BE85BFA00BE2C02 /* LaunchAnimationController.swift */; };
+		E0A1D6551BE85BFA00BE2C02 /* LaunchAnimationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D6531BE85BFA00BE2C02 /* LaunchAnimationController.xib */; };
+		E0A1D6591BE85DAB00BE2C02 /* launchAnimation.gif in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D6581BE85DAB00BE2C02 /* launchAnimation.gif */; };
 		E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */; };
 		E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B221B9E83500085E5B5 /* RequestTests.swift */; };
 		E0A45B251B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
@@ -476,6 +479,9 @@
 		E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SportDetailViewController.xib; sourceTree = "<group>"; };
 		E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepDetailViewController.swift; sourceTree = "<group>"; };
 		E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepDetailViewController.xib; sourceTree = "<group>"; };
+		E0A1D6521BE85BFA00BE2C02 /* LaunchAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAnimationController.swift; sourceTree = "<group>"; };
+		E0A1D6531BE85BFA00BE2C02 /* LaunchAnimationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchAnimationController.xib; sourceTree = "<group>"; };
+		E0A1D6581BE85DAB00BE2C02 /* launchAnimation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = launchAnimation.gif; sourceTree = "<group>"; };
 		E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
 		E0A45B221B9E83500085E5B5 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestTests.swift; path = HealthTests/Request/RequestTests.swift; sourceTree = SOURCE_ROOT; };
 		E0A45B241B9E8FC40085E5B5 /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
@@ -1112,6 +1118,7 @@
 				E08A24611B807C16004269BB /* Setting */,
 				E08A24621B807C16004269BB /* Trend */,
 				E007CC191BCAA2B600365FA8 /* DeviceScan */,
+				E0A1D6511BE85B8800BE2C02 /* LaunchAnimation */,
 				E09EC8C01B7E3B5000CC07E3 /* Main.storyboard */,
 				E09EC8C31B7E3B5000CC07E3 /* Images.xcassets */,
 				E09EC8C51B7E3B5000CC07E3 /* LaunchScreen.xib */,
@@ -1225,6 +1232,16 @@
 			);
 			name = Framework;
 			path = Health.xcodeproj;
+			sourceTree = "<group>";
+		};
+		E0A1D6511BE85B8800BE2C02 /* LaunchAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				E0A1D6581BE85DAB00BE2C02 /* launchAnimation.gif */,
+				E0A1D6521BE85BFA00BE2C02 /* LaunchAnimationController.swift */,
+				E0A1D6531BE85BFA00BE2C02 /* LaunchAnimationController.xib */,
+			);
+			path = LaunchAnimation;
 			sourceTree = "<group>";
 		};
 		E0AF85B51BAAF490005BB95E /* BLL */ = {
@@ -1540,6 +1557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0A1D6591BE85DAB00BE2C02 /* launchAnimation.gif in Resources */,
 				E0039C441BCF28C10014ED50 /* WeiboSDK.bundle in Resources */,
 				E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */,
 				E007CC1E1BCAA2D200365FA8 /* DeviceScanViewController.xib in Resources */,
@@ -1553,6 +1571,7 @@
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
 				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
 				E0E079541BD520A9008B8BE3 /* FamilyMembersViewController.xib in Resources */,
+				E0A1D6551BE85BFA00BE2C02 /* LaunchAnimationController.xib in Resources */,
 				E09AAC541BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib in Resources */,
 				E0418EF61BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
 				E0039C4A1BCF28C10014ED50 /* ShareSDK.bundle in Resources */,
@@ -1721,6 +1740,7 @@
 				E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */,
 				E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
 				E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */,
+				E0A1D6541BE85BFA00BE2C02 /* LaunchAnimationController.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
 				E0255E881BC9680300CEE5D4 /* MyBodyManager.swift in Sources */,

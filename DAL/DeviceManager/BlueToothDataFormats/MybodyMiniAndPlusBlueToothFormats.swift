@@ -36,7 +36,13 @@ struct MybodyMiniAndPlusBlueToothFormats {
     var datas: [Float] = []
     
     // 下行数据
-    var weight: Int32 = 0   // 体重
+    var weight: Float {
+        if self.datas.count > 0 {
+            return self.datas[0]
+        }
+        return 0
+    }// 体重
+    
     var length: UInt8 = 0
     
     init(cmd: CMD) {

@@ -19,10 +19,30 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
     @IBOutlet weak var physiqueImageView: UIImageView!
     @IBOutlet weak var physiqueButton: UIButton!
     
+    
+    var lightColor: UIColor {
+        if UserManager.shareInstance().currentUser.gender {
+            return lightBlue
+        }
+        else {
+            return lightPink
+        }
+    }
+    
+    var deepColor: UIColor {
+        if UserManager.shareInstance().currentUser.gender {
+            return deepBlue
+        }
+        else {
+            return deepPink
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        scoreCicleView.update([(0, deepBlue), (100, lightBlue)], animated: true)
+        scoreCicleView.update([(0, deepColor), (100, lightColor)], animated: true)
+        physiqueImageView.image = UIImage(named: Physique.Athlete.selectedImageName(UserManager.shareInstance().currentUser.gender))
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -73,7 +93,7 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
     func refreshScoreData() {
         // 分数
         let score = data!.score
-        scoreCicleView.update([(Double(score), deepBlue), (Double(100.0 - score), lightBlue)], animated: true)
+        scoreCicleView.update([(Double(score), deepColor), (Double(100.0 - score), lightColor)], animated: true)
         
         scoreLabel.text = String(format: "%d分", arguments: [Int(score)])
         scoreLabel.textColor = deepBlue

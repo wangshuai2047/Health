@@ -26,28 +26,6 @@ class EvaluationDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // 显示数据
-    @IBOutlet weak var scoreCicleView: CircleView!
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var physiqueImageView: UIImageView!
-    @IBOutlet weak var evaluationDescriptionLabel: AttributedLabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    
-    @IBOutlet weak var BMRLabel: UILabel!   // 代谢
-    @IBOutlet weak var fattyLiverLabel: UILabel! // 脂肪肝
-    @IBOutlet weak var fatPercentageLabel: UILabel! // 体脂率、脂肪
-    @IBOutlet weak var fatPercentageLowLabel: UILabel!
-    @IBOutlet weak var fatPercentageHighLabel: UILabel!
-    @IBOutlet weak var fatPercentageDescriptionLabel: AttributedLabel!
-    
-    @IBOutlet weak var fatWeightLabel: UILabel!     // 脂肪量
-    @IBOutlet weak var musclePercentageLabel: UILabel! // 肌肉率
-    @IBOutlet weak var boneMuscleLabel: UILabel!        // 骨骼肌
-    @IBOutlet weak var waterPercentageLabel: UILabel!
-    @IBOutlet weak var proteinPercentageLabel: UILabel!
-    @IBOutlet weak var boneWeightLabel: UILabel!
-    @IBOutlet weak var visceralFatWeightLabel: UILabel!
-    @IBOutlet weak var BMILabel: UILabel!
-    @IBOutlet weak var bodyAgeLabel: UILabel!
     
     convenience init() {
         self.init(nibName: "EvaluationDetailViewController", bundle: nil)
@@ -87,29 +65,6 @@ class EvaluationDetailViewController: UIViewController {
     }
     
     // MARK: - Init View
-    
-    @IBOutlet weak var fatPercentageLowLabelConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fatPercentageHighLabelLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fatPercentageMarkImageViewLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fatPercentageLeanLabelRightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fatPercentageTooHighLabelLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fatPercentageRulerImageView: UIImageView!
-    @IBOutlet weak var fatPercentageRulerMarkImageView: UIImageView!
-    
-    func initFatDetailView() {
-        let rulerWidth = fatPercentageRulerImageView.frame.size.width
-        
-        fatPercentageLowLabelConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
-        fatPercentageHighLabelLeftConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
-        
-        fatPercentageLeanLabelRightConstraint.constant = rulerWidth / 3 / 2
-        fatPercentageTooHighLabelLeftConstraint.constant = rulerWidth / 3 / 2
-        
-        let minValue = data!.fatPercentageRange.0 - data!.fatPercentageRange.1 + data!.fatPercentageRange.0
-        let maxValue = data!.fatPercentageRange.1 + data!.fatPercentageRange.1 - data!.fatPercentageRange.0
-        let value = data!.fatPercentage - minValue
-        fatPercentageMarkImageViewLeftConstraint.constant = rulerWidth * CGFloat(value / (maxValue - minValue)) - fatPercentageRulerMarkImageView.frame.size.width/2
-    }
     /*
     // MARK: - Navigation
 
@@ -119,13 +74,9 @@ class EvaluationDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func physiqueButtonPressed(sender: AnyObject) {
-        let controller = EvaluationPhysiqueDetailViewController()
-        controller.physique = data?.physique
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
 
     @IBAction func backButtonPressed(sender: AnyObject) {
+        BluetoothManager.shareInstance.stopScanDevice()
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -190,54 +141,6 @@ extension EvaluationDetailViewController {
         viewModel.reloadData()
         tableView.reloadData()
         
-        // 设置数据
-        
-//        refreshScoreData()
-//        refreshDescriptionData()
-//        
-//        refreshWeightData()
-//        refreshBMRData()
-//        refreshFattyLiverData()
-//        refreshFatData()
-//        
-//        refreshFatWeightData()
-//        refreshMuscleData()
-//        refreshBoneMuscleData()
-//        refreshWaterData()
-//        refreshProteinData()
-//        refreshBoneData()
-//        refreshVisceralFatData()
-//        refreshBMIData()
-//        refreshBodyAgeData()
-    }
-    
-    func refreshFatData() {
-        initFatDetailView()
-        
-        fatPercentageLabel.text = "\(data!.fatPercentage)"
-        fatPercentageLabel.textColor = data!.fatPercentageStatus.statusColor
-        
-        fatPercentageHighLabel.text = "\(data!.fatPercentageRange.1)%"
-        fatPercentageLowLabel.text = "\(data!.fatPercentageRange.0)%"
-        
-        fatPercentageDescriptionLabel.clear()
-        fatPercentageDescriptionLabel.append("标准体脂率为", font: nil, color: UIColor.grayColor())
-        fatPercentageDescriptionLabel.append("\(data!.standardFatPercentage)%", font: nil, color: UIColor.greenColor())
-        
-        if data!.standardFatPercentage > data!.fatPercentage {
-            // 增肥
-            fatPercentageDescriptionLabel.append("还需增加", font: nil, color: UIColor.grayColor())
-            
-            fatPercentageDescriptionLabel.append("\(data!.weight * (data!.standardFatPercentage - data!.fatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
-        }
-        else {
-            // 减肥
-            fatPercentageDescriptionLabel.append("还需减掉", font: nil, color: UIColor.grayColor())
-            fatPercentageDescriptionLabel.append("\(data!.weight * (data!.fatPercentage - data!.standardFatPercentage)/100)kg", font: nil, color: UIColor.greenColor())
-            
-        }
-        
-        fatPercentageDescriptionLabel.append("脂肪", font: nil, color: UIColor.grayColor())
     }
 }
 

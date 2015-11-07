@@ -456,7 +456,10 @@ struct LoginManager {
             }
         }
         
-        UserManager.shareInstance().currentUser = UserManager.mainUser
+        // 如果不需要完善信息
+        if !LoginManager.isNeedCompleteInfo {
+            UserManager.shareInstance().currentUser = UserManager.mainUser
+        }
         
         // 第三方绑定
         bindQQOpenId = nil

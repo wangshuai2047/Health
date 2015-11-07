@@ -54,6 +54,7 @@ struct  LoginRequest {
                 var info = jsonObj?.valueForKey("info") as? [String: AnyObject]
                 info?["child"] = jsonObj?.valueForKey("child")
                 info?["app"] = jsonObj?.valueForKey("app")
+                info?["usertype"] = jsonObj?.valueForKey("usertype")
                 complete(userInfo: info, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
@@ -101,7 +102,7 @@ struct  LoginRequest {
                 var info = jsonObj?.valueForKey("info") as? [String: AnyObject]
                 info?["child"] = jsonObj?.valueForKey("child")
                 info?["app"] = jsonObj?.valueForKey("app")
-                
+                info?["usertype"] = jsonObj?.valueForKey("usertype")
                 complete(userInfo: info, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")

@@ -20,6 +20,8 @@ import CoreData
 
 let lightBlue = UIColor(red: 121/255.0, green: 199/255.0, blue: 235/255.0, alpha: 1)
 let deepBlue: UIColor = UIColor(red: 26/255.0, green: 146/255.0, blue: 214/255.0, alpha: 1)
+let lightPink = UIColor(red: 232/255.0, green: 215/255.0, blue: 238/255.0, alpha: 1)
+let deepPink: UIColor = UIColor(red: 211/255.0, green: 147/255.0, blue: 235/255.0, alpha: 1)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -60,6 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func changeToLaunchAnimation() {
+        let controller = LaunchAnimationController()
+        
+        self.window?.rootViewController = controller
+    }
+    
     func changeToMainController() -> UINavigationController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let rootNavController = mainStoryboard.instantiateInitialViewController() as! UINavigationController
@@ -77,26 +85,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
             // [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         
-        // 判断是否登录 是否跳过GUI 是否跳过广告
-        // 进入广告界面
-        var navController: UINavigationController?
-        if LoginManager.isShowAds {
-            let adsController = LoginAdsViewController()
-            navController = UINavigationController(rootViewController: adsController)
-            self.window?.rootViewController = navController
+        let launchAnimationController = LaunchAnimationController.showLaunchAnimationController {[unowned self] () -> Void in
+            
+            // 判断是否登录 是否跳过GUI 是否跳过广告
+            // 进入广告界面
+            var navController: UINavigationController?
+            if LoginManager.isShowAds {
+                let adsController = LoginAdsViewController()
+                navController = UINavigationController(rootViewController: adsController)
+                self.window?.rootViewController = navController
+            }
+            else if LoginManager.showedGUI {
+                let guiController = GUIViewController()
+                navController = UINavigationController(rootViewController: guiController)
+                self.window?.rootViewController = navController
+            }
+            else if !LoginManager.isLogin || LoginManager.isNeedCompleteInfo{
+                navController = self.changeToLoginController()
+            }
+            else {
+                navController = self.changeToMainController()
+            }
+            navController?.navigationBarHidden = true
         }
-        else if LoginManager.showedGUI {
-            let guiController = GUIViewController()
-            navController = UINavigationController(rootViewController: guiController)
-            self.window?.rootViewController = navController
-        }
-        else if !LoginManager.isLogin || LoginManager.isNeedCompleteInfo{
-            navController = changeToLoginController()
-        }
-        else {
-            navController = changeToMainController()
-        }
-        navController?.navigationBarHidden = true
+        
+        window?.rootViewController = launchAnimationController
         
         window?.makeKeyAndVisible()
         
