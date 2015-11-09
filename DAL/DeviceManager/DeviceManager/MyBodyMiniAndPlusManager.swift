@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
     var name: String
@@ -58,7 +59,6 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
             if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.weightData {
                 // 已收到称重数据
                 self.result?.weight = Float(format.weight)
-                self.result?.hepaticAdiposeInfiltration = format.resultCode == 0x30 ? false : true
                 
                 let receiveWeightData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData()
                 print("write receiveWeightData : \(receiveWeightData)")
@@ -66,6 +66,13 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
             }
             else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
                 self.result?.setDatas(format.datas)
+                if format.resultCode == 0x30 {
+                    self.result?.hepaticAdiposeInfiltration = false
+                }
+                else if format.resultCode == 0x31 {
+                    self.result?.hepaticAdiposeInfiltration = true
+                }
+                
                 
                 let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
                 print("write receiveBodyData : \(receiveBodyData)")

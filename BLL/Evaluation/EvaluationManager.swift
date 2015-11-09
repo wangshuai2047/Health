@@ -135,7 +135,7 @@ class EvaluationManager :NSObject {
                         results.append(ScaleResultProtocolCreate(data))
                     }
                     
-                    DBManager.shareInstance().addEvaluationDatas(results)
+                    DBManager.shareInstance().addEvaluationDatas(results, isUpload: true)
                 }
                 
                 
@@ -162,6 +162,9 @@ class EvaluationManager :NSObject {
             if error == nil {
                 // 更新数据
                 DBManager.shareInstance().updateUploadEvaluationDatas(info!)
+                
+                // 删除一月前数据
+                DBManager.shareInstance().deleteEvaluationDatas(NSDate(timeIntervalSinceNow: -31 * 24 * 60 * 60))
             }
         }
     }

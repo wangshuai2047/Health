@@ -13,6 +13,8 @@ struct MyBodyResult: ScaleResultProtocol {
     var dataId: String
     var userId: Int
     
+    var timeStamp: NSDate
+    
     // true 男 false 女
     var gender: Bool
     var age: UInt8
@@ -162,6 +164,7 @@ struct MyBodyResult: ScaleResultProtocol {
         self.proteinWeight = proteinWeight
         self.boneWeight = boneWeight
         self.boneMuscleWeight = boneMuscleWeight
+        self.timeStamp = NSDate()
     }
 }
 
@@ -687,6 +690,13 @@ extension MyBodyResult {
             gender = UserManager.shareInstance().currentUser.gender
             age = UserManager.shareInstance().currentUser.age
             height = UserManager.shareInstance().currentUser.height
+        }
+        
+        if let time = info["timeStamp"] as? Int {
+            timeStamp = NSDate(timeIntervalSince1970: NSTimeInterval(time))
+        }
+        else {
+            timeStamp = NSDate()
         }
     }
 }

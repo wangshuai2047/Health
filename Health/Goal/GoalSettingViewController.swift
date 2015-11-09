@@ -43,7 +43,7 @@ class GoalSettingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        backButton.hidden = !GoalManager.isSetGoal
+//        backButton.hidden = !GoalManager.isSetGoal
         
         initContentView()
         
@@ -194,8 +194,8 @@ class GoalSettingViewController: UIViewController {
     
     func setNumberDescription() {
         setNumberAttLabel.clear()
-        setNumberAttLabel.append("您将\(goalType.description())目标设置为: ", font: nil, color: deepBlue)
-        setNumberAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
+        setNumberAttLabel.append("您将\(goalType.description()): ", font: nil, color: deepBlue)
+        setNumberAttLabel.append(" \(strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)])", font: UIFont.systemFontOfSize(22), color: lightBlue)
         setNumberAttLabel.append("\(unit!)\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
     }
     

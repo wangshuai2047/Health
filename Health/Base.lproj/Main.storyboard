@@ -1070,9 +1070,12 @@
                         <outlet property="connectDeviceView" destination="q3Y-sx-Myx" id="nSU-Qa-QQQ"/>
                         <outlet property="goalDetailLabel" destination="IIg-Vs-fMh" id="qVD-X3-xhQ"/>
                         <outlet property="noDeviceDetailLabel" destination="ylx-fB-qyL" id="Bz1-nS-YRe"/>
+                        <outlet property="noDeviceDetailLabelHeightConstraint" destination="DdX-l1-O3G" id="BPx-oq-Yz6"/>
                         <outlet property="noDeviceView" destination="1GX-ay-OAB" id="32s-F2-CCv"/>
                         <outlet property="sleepDetailLabel" destination="HyW-Zv-ysj" id="25E-gt-FH0"/>
+                        <outlet property="sleepDetailLabelHeightConstraint" destination="vRe-bn-EJd" id="k6Y-0M-Qdj"/>
                         <outlet property="sportDetailLabel" destination="REp-yd-Pjc" id="SfM-40-DaW"/>
+                        <outlet property="sprotDetailLabelHeightConstraint" destination="oaU-2S-Pjr" id="uqG-2Z-GBo"/>
                         <outlet property="suggestCalorieLabel" destination="re0-D2-osY" id="Iqx-fA-msW"/>
                         <outlet property="userSelectView" destination="vSB-Lp-6gx" id="tvE-ao-5Vv"/>
                     </connections>
@@ -1142,7 +1145,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEs-mg-Toq">
-                                <rect key="frame" x="169" y="340" width="13" height="21"/>
+                                <rect key="frame" x="111.5" y="340" width="13" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="9JR-4s-jBM"/>
@@ -1151,8 +1154,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45646" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbV-Cq-FMk">
-                                <rect key="frame" x="89" y="340" width="72.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbV-Cq-FMk">
+                                <rect key="frame" x="89" y="340" width="15" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="A9U-AJ-G5h"/>
@@ -1178,7 +1181,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前的等级为" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FX-4N-jT2">
-                                <rect key="frame" x="193.5" y="340" width="78" height="21"/>
+                                <rect key="frame" x="136" y="340" width="78" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="oYo-F7-314"/>
@@ -1188,7 +1191,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="级" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeW-Xg-tip">
-                                <rect key="frame" x="360" y="340" width="13" height="21"/>
+                                <rect key="frame" x="245" y="340" width="13" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6fV-5p-rb5"/>
@@ -1197,8 +1200,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45646" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe6-Dq-cLt">
-                                <rect key="frame" x="279.5" y="340" width="72.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe6-Dq-cLt">
+                                <rect key="frame" x="222" y="340" width="15" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="sBP-E3-1BU"/>

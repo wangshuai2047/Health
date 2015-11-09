@@ -12,6 +12,8 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     var dataId: String
     var userId: Int
     
+    var timeStamp: NSDate
+    
     // true 男 false 女
     var gender: Bool
     var age: UInt8
@@ -172,6 +174,8 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
         self.gender = gender
         self.age = age
         self.height = height
+        
+        self.timeStamp = NSDate()
     }
     
     mutating func setDatas(datas: [Float]) {
@@ -335,6 +339,13 @@ extension MyBodyMiniAndPlusResult {
         
         if let dataId = info["dataId"] as? NSNumber {
             self.dataId = "\(dataId)"
+        }
+        
+        if let time = info["timeStamp"] as? Int {
+            timeStamp = NSDate(timeIntervalSince1970: NSTimeInterval(time))
+        }
+        else {
+            timeStamp = NSDate()
         }
         
         userId = (info["userId"] as! NSNumber).integerValue

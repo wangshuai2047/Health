@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 protocol DeviceManagerProtocol: CBCentralManagerDelegate, CBPeripheralDelegate {
     var name: String { get set }

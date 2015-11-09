@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class BraceletManager: NSObject, DeviceManagerProtocol {
     var name: String

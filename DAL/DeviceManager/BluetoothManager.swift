@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 enum DeviceType: Int16 {
     case MyBody = 0

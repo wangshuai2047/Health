@@ -23,6 +23,10 @@ class GoalViewController: UIViewController {
     @IBOutlet weak var noDeviceView: UIView!
     @IBOutlet weak var noDeviceDetailLabel: AttributedLabel!
     
+    @IBOutlet weak var sleepDetailLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sprotDetailLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var noDeviceDetailLabelHeightConstraint: NSLayoutConstraint!
+    
     let numberFont = UIFont.systemFontOfSize(22)
     
     override func viewDidLoad() {
@@ -126,7 +130,7 @@ class GoalViewController: UIViewController {
             }
         }
         else {
-            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+            suggestCalorieLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
         }
     }
     
@@ -149,9 +153,11 @@ class GoalViewController: UIViewController {
                 sportDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
             }
             
+            sprotDetailLabelHeightConstraint.constant = 118
         }
         else {
-            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+            sportDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+            sprotDetailLabelHeightConstraint.constant = 0
         }
     }
     
@@ -170,9 +176,12 @@ class GoalViewController: UIViewController {
             {
                 sleepDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
             }
+            
+            sleepDetailLabelHeightConstraint.constant = 135
         }
         else {
-            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+            sleepDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+            sleepDetailLabelHeightConstraint.constant = 0
         }
     }
     
@@ -191,9 +200,12 @@ class GoalViewController: UIViewController {
             {
                 noDeviceDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
             }
+            
+            noDeviceDetailLabelHeightConstraint.constant = 183
         }
         else {
-            goalDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+            noDeviceDetailLabel.append("您还没有设置目标,请先设置目标", font: nil, color: deepBlue)
+            noDeviceDetailLabelHeightConstraint.constant = 0
         }
         
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class MyBodyManager: NSObject, DeviceManagerProtocol {
     var name: String

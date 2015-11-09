@@ -244,7 +244,7 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func addEvaluationDatas(results: [ScaleResultProtocol]) {
+    func addEvaluationDatas(results: [ScaleResultProtocol], isUpload: Bool) {
         let context = self.managedObjectContext!
         
         for result in results {
@@ -259,8 +259,8 @@ extension DBManager: DBManagerProtocol {
             
             insertData.dataId = result.dataId
             insertData.userId = result.userId
-            insertData.timeStamp = NSDate()
-            insertData.isUpload = false
+            insertData.timeStamp = result.timeStamp
+            insertData.isUpload = isUpload
             
             insertData.boneMuscleWeight = result.boneMuscleWeight
             insertData.boneWeight = result.boneWeight
@@ -476,6 +476,38 @@ extension DBManager: DBManagerProtocol {
                 print("删除成功")
             } catch let error as NSError {
                 print("删除失败: \(error)")
+            }
+        }
+    }
+    
+    func deleteEvaluationDatas(date: NSDate) {
+        let context = self.managedObjectContext!
+        
+        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: "timeStamp <= %@", date)
+        
+        var error: NSError? = nil
+        let listData:[AnyObject]?
+        do {
+            listData = try context.executeFetchRequest(request)
+        } catch let error1 as NSError {
+            error = error1
+            listData = nil
+            print(error)
+        }
+        
+        if let datas = listData {
+            for data in datas as! [EvaluationData] {
+                context.deleteObject(data)
+            }
+            
+            do {
+                try context.save()
+            } catch _ {
+                
             }
         }
     }
@@ -708,7 +740,7 @@ extension DBManager {
         }
         
         if let datas = listData {
-            for data in datas as! [EvaluationData] {
+            for data in datas as! [GoalData] {
                 context.deleteObject(data)
             }
             

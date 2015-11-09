@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015年-2016年 同方健康科技(北京)股份有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0BV-ZH-Dqj">
-                    <rect key="frame" x="8" y="571" width="584" height="21"/>
+                    <rect key="frame" x="20" y="571" width="560" height="21"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Ivr-lj-aBV"/>
@@ -39,8 +39,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Nzj-aC-3Dy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="2wn-iz-BHc"/>
-                <constraint firstItem="0BV-ZH-Dqj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Iap-zf-wtI"/>
-                <constraint firstAttribute="trailing" secondItem="0BV-ZH-Dqj" secondAttribute="trailing" constant="8" id="Ttz-ob-zWO"/>
+                <constraint firstItem="0BV-ZH-Dqj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Iap-zf-wtI"/>
+                <constraint firstAttribute="trailing" secondItem="0BV-ZH-Dqj" secondAttribute="trailing" constant="20" id="Ttz-ob-zWO"/>
                 <constraint firstAttribute="bottom" secondItem="0BV-ZH-Dqj" secondAttribute="bottom" constant="8" id="bDF-tQ-lGJ"/>
                 <constraint firstItem="Nzj-aC-3Dy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ueL-K7-suS"/>
             </constraints>
