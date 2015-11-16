@@ -59,7 +59,7 @@ enum EvaluationDetailExtendType {
     var title: String {
         switch self {
         case .fattyLiver:
-            return "脂肪肝"
+            return "脂肪肝风险度"
         case .weight:
             return "体重"
         case .fatPercentage:
@@ -87,9 +87,12 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    var unit: String {
+    func unit(data: ScaleResultProtocol) -> String {
         switch self {
         case .fattyLiver:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "%"
+            }
             return ""
         case .weight:
             return "kg"
@@ -120,6 +123,8 @@ enum EvaluationDetailExtendType {
     
     var levelTitle: (String, String, String) {
         switch self {
+        case .fattyLiver:
+            return ("轻度风险", "中度风险", "高度风险")
         case .visceralFat:
             return ("正常", "超标", "危险")
         default:
@@ -127,10 +132,21 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    var levelDescription: (String, String, String) {
+    var markBgImageName: String {
         switch self {
         case .fattyLiver:
-            return ("", "", "")
+            return "markbg2"
+        case .visceralFat:
+            return "markbg2"
+        default:
+            return "markBg"
+        }
+    }
+    
+    func levelDescription(data: ScaleResultProtocol) -> (String, String, String) {
+        switch self {
+        case .fattyLiver:
+            return ("脂肪肝风险度：\(data.fattyLiverRisk)% 中度风险", "脂肪肝风险度：\(data.fattyLiverRisk)% 低度风险", "脂肪肝风险度：\(data.fattyLiverRisk)% 高度风险")
         case .weight:
             return ("您的体重偏低，需要注意。", "您的体重正常，请保持。", "您已经超重，请注意控制体重。")
         case .fatPercentage:
@@ -158,9 +174,12 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    var canExtend: Bool {
+    func canExtend(data: ScaleResultProtocol) -> Bool {
         switch self {
         case .fattyLiver:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return true
+            }
             return false
         case .weight:
             return true
@@ -192,13 +211,8 @@ enum EvaluationDetailExtendType {
     func value(data: ScaleResultProtocol) -> String {
         switch self {
         case .fattyLiver:
-            if let has = data.hepaticAdiposeInfiltration {
-                if has {
-                    return "有脂肪肝"
-                }
-                else {
-                    return "无脂肪肝"
-                }
+            if let _ = data.hepaticAdiposeInfiltration {
+                return String(format: "%.0f", data.fattyLiverRisk)
             }
             return "此秤不支持"
         case .weight:
@@ -231,7 +245,7 @@ enum EvaluationDetailExtendType {
     func status(data: ScaleResultProtocol) -> ValueStatus {
         switch self {
         case .fattyLiver:
-            return ValueStatus.High
+            return data.fattyLiverStatus
         case .weight:
             return data.weightStatus
         case .fatPercentage:
@@ -281,6 +295,8 @@ enum EvaluationDetailExtendType {
             return data.visceralFatContentRange
         case .bmi:
             return data.BMIRange
+        case .fattyLiver:
+            return (50 , 80)
         default:
             return (0,0)
         }
@@ -307,6 +323,20 @@ struct EvaluationDetailExtendViewModel {
             return type.value(data!)
         }
         return "0"
+    }
+    
+    var unit: String {
+        if data != nil {
+            return type.unit(data!)
+        }
+        return ""
+    }
+    
+    var levelDescription: (String, String, String) {
+        if data != nil {
+            return type.levelDescription(data!)
+        }
+        return ("","","")
     }
     
     var valueIsNumber: Bool {

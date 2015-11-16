@@ -163,7 +163,7 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         
         if indexPath.section == 1 {
             let info = list[indexPath.row]
-            let canExtend = info.type.canExtend
+            let canExtend = info.type.canExtend(data!)
             if canExtend {
                 if selectedIndexRow == indexPath.row {
                     selectedIndexRow = -1

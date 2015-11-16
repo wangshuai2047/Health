@@ -330,7 +330,7 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
 
 extension MyBodyMiniAndPlusResult {
     
-    init(info: [String: AnyObject]) {
+    init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
         
         self.dataId = NSUUID().UUIDString
         if let dataId = info["dataId"] as? String {
@@ -360,16 +360,20 @@ extension MyBodyMiniAndPlusResult {
         boneWeight = (info["boneWeight"] as! NSNumber).floatValue
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
-        if let userInfo = DBManager.shareInstance().queryUser(userId) {
-            gender = (userInfo["gender"] as! NSNumber).boolValue
-            age = (userInfo["age"] as! NSNumber).unsignedCharValue
-            height = (userInfo["height"] as! NSNumber).unsignedCharValue
-        }
-        else {
-            gender = UserManager.shareInstance().currentUser.gender
-            age = UserManager.shareInstance().currentUser.age
-            height = UserManager.shareInstance().currentUser.height
-        }
+//        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+//            gender = (userInfo["gender"] as! NSNumber).boolValue
+//            age = (userInfo["age"] as! NSNumber).unsignedCharValue
+//            height = (userInfo["height"] as! NSNumber).unsignedCharValue
+//        }
+//        else {
+//            gender = UserManager.shareInstance().currentUser.gender
+//            age = UserManager.shareInstance().currentUser.age
+//            height = UserManager.shareInstance().currentUser.height
+//        }
+        
+        self.gender = gender
+        self.age = age
+        self.height = height
         
         // 脂肪肝  1为有  2为没有  0为不支持
         if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {

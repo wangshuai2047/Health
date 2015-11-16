@@ -41,7 +41,7 @@ struct TrendViewModel {
         
         allDatas.removeAll(keepCapacity: false)
         for evaluationData in evaluationDatas {
-            allDatas += [TrendCellViewModel(info: evaluationData)]
+            allDatas += [TrendCellViewModel(info: evaluationData, gender: UserManager.shareInstance().currentUser.gender, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)]
         }
         
         dealShowData()
@@ -200,8 +200,8 @@ struct TrendCellViewModel {
     var timeShowString: String
     var dateString: String
     
-    init(info: [String: AnyObject]) {
-        scaleResult = MyBodyResult(info: info)
+    init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
+        scaleResult = MyBodyResult(info: info, gender: gender, age: age, height: height)
         timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
         dateString = (info["timeStamp"] as! NSDate).YYdd()
     }

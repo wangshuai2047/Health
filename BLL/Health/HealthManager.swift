@@ -44,7 +44,7 @@ class HealthManager: NSObject {
         
         let result: ScaleResultProtocol?
         if let evaluationData = DBManager.shareInstance().queryLastEvaluationData(UserData.shareInstance().userId!) {
-            result = ScaleResultProtocolCreate(evaluationData)
+            result = ScaleResultProtocolCreate(evaluationData, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
             
             let timeStamp = evaluationData["timeStamp"] as! NSDate;
             

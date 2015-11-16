@@ -66,7 +66,6 @@ class EvaluationManager :NSObject {
     // 开始测量秤
     func startScale(complete: (info: ScaleResultProtocol?, isTimeOut: Bool, error: NSError?) -> Void) {
         
-        
         BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], isTimeOut: Bool, error: NSError?) -> Void in
             
             if error == nil {
@@ -131,8 +130,9 @@ class EvaluationManager :NSObject {
                 
                 if error == nil {
                     var results: [ScaleResultProtocol] = []
+                    
                     for data in datas! {
-                        results.append(ScaleResultProtocolCreate(data))
+                        results.append(ScaleResultProtocolCreate(data, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!))
                     }
                     
                     DBManager.shareInstance().addEvaluationDatas(results, isUpload: true)
@@ -153,7 +153,22 @@ class EvaluationManager :NSObject {
         
         var uploadDatas: [[String : AnyObject]] = []
         for info in datas {
-            let result = ScaleResultProtocolCreate(info)
+            let gender: Bool
+            let age: UInt8
+            let height: UInt8
+            let userId = (info["userId"] as! NSNumber).integerValue
+            if let userInfo = DBManager.shareInstance().queryUser(userId) {
+                gender = (userInfo["gender"] as! NSNumber).boolValue
+                age = (userInfo["age"] as! NSNumber).unsignedCharValue
+                height = (userInfo["height"] as! NSNumber).unsignedCharValue
+            }
+            else {
+                gender = UserManager.mainUser.gender
+                age = UserManager.mainUser.age
+                height = UserManager.mainUser.height
+            }
+            
+            let result = ScaleResultProtocolCreate(info, gender: gender, age: age, height: height)
             uploadDatas.append(result.uploadInfo((info["timeStamp"] as! NSDate).secondTimeInteval()))
         }
         
