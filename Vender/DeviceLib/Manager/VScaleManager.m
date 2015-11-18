@@ -222,8 +222,6 @@ static VScaleManager *instance = nil;
                         NSLog(@"VC_STATUS_CACULATING done");
                         [self gotoStatus:VCStatusCaculate];
                         [self.delegate updateUIDataWithFatScale:self.scaleResult];
-                        
-                        
                         [deviceModel disconnect];
                         if (_scaleComplete) {
                             _scaleComplete(result, nil);

@@ -44,7 +44,7 @@ extension ScaleResultProtocol {
             "userId" : userId,
             "boneWeight" : boneWeight,
             "boneMuscleWeight" : boneMuscleWeight,
-            "fatPercentage" : fatPercentage,
+            "fatPercentage" : fatPercentage / 100,
             "fatWeight" : fatWeight,
             "muscleWeight" : muscleWeight,
             "proteinWeight" : proteinWeight,

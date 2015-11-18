@@ -61,8 +61,12 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                 self.result?.weight = Float(format.weight)
                 
                 let receiveWeightData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData()
-                print("write receiveWeightData : \(receiveWeightData)")
+                NSLog("write receiveWeightData : \(receiveWeightData)")
                 self.peripheral?.writeValue(receiveWeightData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+//                dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
+//                    
+//                })
+                
             }
             else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
                 self.result?.setDatas(format.datas)
@@ -75,7 +79,7 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                 
                 
                 let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
-                print("write receiveBodyData : \(receiveBodyData)")
+                NSLog("write receiveBodyData : \(receiveBodyData)")
                 self.peripheral?.writeValue(receiveBodyData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                 
                 fireComplete?(result, nil)
@@ -124,7 +128,7 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
                         
 //                        dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
                         let setUserData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height)
-                        print("write user data: %@", setUserData)
+                        NSLog("write user data: %@", setUserData)
                             self.peripheral?.writeValue(setUserData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                         
                             
@@ -146,7 +150,7 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         if error == nil && characteristic.value != nil {
-            print("接收到数据: \(characteristic.value)")
+            NSLog("接收到数据: \(characteristic.value)")
             reveiveData(characteristic.value!)
         }
         else {

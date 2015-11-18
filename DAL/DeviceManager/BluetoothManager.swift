@@ -96,12 +96,22 @@ class BluetoothManager: NSObject {
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
         centralManager.delegate = self;
         
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("scanTimerFinished"), userInfo: nil, repeats: false)
+//        timeoutTimer = NSTimer(timeInterval: 30, target: self, selector: Selector("scanTimerFinished"), userInfo: nil, repeats: false)
+//        timeoutTimer?.fire()
+        if timeoutTimer != nil {
+            if timeoutTimer!.valid {
+                timeoutTimer?.invalidate()
+            }
+            timeoutTimer = nil
+        }
+        
+        
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("scanTimerFinished:"), userInfo: nil, repeats: false)
     }
     
-    func scanTimerFinished() {
-        
+    func scanTimerFinished(timer: NSTimer) {
         if timeoutTimer != nil {
+            
             timeoutTimer?.invalidate()
             var devices: [DeviceManagerProtocol] = []
             for value in scanDevice.allValues {
@@ -141,10 +151,12 @@ class BluetoothManager: NSObject {
         }
         else {
             scanDevice(nil, complete: { [unowned self] (results: [DeviceManagerProtocol], isTimeOut: Bool, error: NSError?) -> Void in
+                self.timeoutTimer?.invalidate()
                 
                 if error == nil {
                     for device in results {
                         if device.uuid == uuid {
+                            
                             self.centralManager.stopScan()
                             self.currentDevice = device
                             self.isScan = false
@@ -169,6 +181,9 @@ class BluetoothManager: NSObject {
     }
     
     func clearWork() {
+        
+        NSLog("clear work =============================");
+        
         self.centralManager.stopScan()
         if currentDevice?.peripheral != nil {
             self.centralManager.cancelPeripheralConnection(currentDevice!.peripheral!)

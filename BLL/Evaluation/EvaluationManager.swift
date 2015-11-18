@@ -132,7 +132,10 @@ class EvaluationManager :NSObject {
                 if error == nil {
                     var results: [ScaleResultProtocol] = []
                     for data in datas! {
-                        results.append(ScaleResultProtocolCreate(data))
+                        var info = data;
+                        let fatPercentage = (data["fatPercentage"] as! NSNumber).floatValue
+                        info["fatPercentage"] = NSNumber(float: fatPercentage * 100)
+                        results.append(ScaleResultProtocolCreate(info))
                     }
                     
                     DBManager.shareInstance().addEvaluationDatas(results, isUpload: true)
