@@ -48,18 +48,19 @@ class EvaluationDetailExtendCell: UITableViewCell {
         
         iconImageView.image = UIImage(named: viewModel.type.headIcon)
         titleLabel.text = viewModel.type.title
-        unitLabel.text = viewModel.type.unit
+        unitLabel.text = viewModel.unit
         resultLabel.textColor = viewModel.status.statusColor
+        markBgImageView.image = UIImage(named: viewModel.type.markBgImageName)
         
         if viewModel.valueIsNumber {
             resultLabel.text = viewModel.value
             
-            markHighLabel.text = String(format: "%.1f\(viewModel.type.unit)", viewModel.range.1)
-            markLowLabel.text = String(format: "%.1f\(viewModel.type.unit)", viewModel.range.0)
+            markHighLabel.text = String(format: "%.1f\(viewModel.unit)", viewModel.range.1)
+            markLowLabel.text = String(format: "%.1f\(viewModel.unit)", viewModel.range.0)
             
             // 等级描述
             descriptionLabel.clear()
-            let levelDescription = viewModel.type.levelDescription
+            let levelDescription = viewModel.levelDescription
             let font = UIFont.systemFontOfSize(13)
             if viewModel.status == ValueStatus.High {
                 descriptionLabel.append(levelDescription.2, font: font, color: viewModel.status.statusColor)

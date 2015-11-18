@@ -8,30 +8,28 @@
 
 import UIKit
 
-func ScaleResultProtocolCreate(info: [String : AnyObject]) -> ScaleResultProtocol {
+func ScaleResultProtocolCreate(info: [String : AnyObject], gender: Bool, age: UInt8, height: UInt8) -> ScaleResultProtocol {
     
     if let deviceType = (info["deviceType"] as? NSNumber) {
         if deviceType == 0 {
-            return MyBodyResult(info: info)
+            return MyBodyResult(info: info, gender: gender, age: age, height: height)
         }
         else if deviceType == 1 {
-            return MyBodyMiniAndPlusResult(info: info)
+            return MyBodyMiniAndPlusResult(info: info, gender: gender, age: age, height: height)
         }
         else {
-            return MyBodyMiniAndPlusResult(info: info)
+            return MyBodyMiniAndPlusResult(info: info, gender: gender, age: age, height: height)
         }
     }
     else {
         if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {
             
             if HAI.shortValue == 1 || HAI.shortValue == 2{
-                return MyBodyMiniAndPlusResult(info: info)
+                return MyBodyMiniAndPlusResult(info: info, gender: gender, age: age, height: height)
             }
         }
-        return MyBodyMiniAndPlusResult(info: info)
+        return MyBodyMiniAndPlusResult(info: info, gender: gender, age: age, height: height)
     }
-    
-    
 }
 
 
@@ -208,10 +206,101 @@ extension ScaleResultProtocol {
             }
         }
     }
+    
+    // 脂肪肝风险度
+    var fattyLiverRisk: Float {
+        if gender {
+            // 男
+            if fatWeight < 10 {
+                return 0
+            }
+            else if fatWeight < 11.9 {
+                return 10
+            }
+            else if fatWeight < 13.6 {
+                return 20
+            }
+            else if fatWeight < 14.9 {
+                return 30
+            }
+            else if fatWeight < 16.55 {
+                return 40
+            }
+            else if fatWeight < 16.80 {
+                return 50
+            }
+            else if fatWeight < 17.70 {
+                return 60
+            }
+            else if fatWeight < 19.30 {
+                return 70
+            }
+            else if fatWeight < 22.00 {
+                return 80
+            }
+            else {
+                return 90
+            }
+        }
+        else {
+            // 女
+            if fatWeight < 10.6 {
+                return 0
+            }
+            else if fatWeight < 13.00 {
+                return 10
+            }
+            else if fatWeight < 14.70 {
+                return 20
+            }
+            else if fatWeight < 16.10 {
+                return 30
+            }
+            else if fatWeight < 17.45 {
+                return 40
+            }
+            else if fatWeight < 18.40 {
+                return 50
+            }
+            else if fatWeight < 20.10 {
+                return 60
+            }
+            else if fatWeight < 22.00 {
+                return 70
+            }
+            else if fatWeight < 24.90 {
+                return 80
+            }
+            else {
+                return 90
+            }
+        }
+    }
+    
+    var fattyLiverRange: (Float, Float) {
+        return (50, 80)
+    }
 }
 
 // MARK: - 等级判断
 extension ScaleResultProtocol {
+    
+    var fattyLiverStatus: ValueStatus {
+        
+        if hepaticAdiposeInfiltration == nil {
+            return .High
+        }
+        
+        if fattyLiverRisk < fattyLiverRange.0 {
+            return ValueStatus.Normal
+        }
+        else if fattyLiverRisk < fattyLiverRange.1 {
+            return ValueStatus.Low
+        }
+        else {
+            return ValueStatus.High
+        }
+    }
     
     var waterWeightStatus: ValueStatus {
         return ValueStatus(value: waterWeight, low: waterWeightRange.0, high: waterWeightRange.1)

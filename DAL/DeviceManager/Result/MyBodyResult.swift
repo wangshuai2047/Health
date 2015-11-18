@@ -657,7 +657,7 @@ extension MyBodyResult {
 
 extension MyBodyResult {
     
-    init(info: [String: AnyObject]) {
+    init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
         
         self.dataId = NSUUID().UUIDString
         if let dataId = info["dataId"] as? String {
@@ -681,16 +681,20 @@ extension MyBodyResult {
         boneWeight = (info["boneWeight"] as! NSNumber).floatValue
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
-        if let userInfo = DBManager.shareInstance().queryUser(userId) {
-            gender = (userInfo["gender"] as! NSNumber).boolValue
-            age = (userInfo["age"] as! NSNumber).unsignedCharValue
-            height = (userInfo["height"] as! NSNumber).unsignedCharValue
-        }
-        else {
-            gender = UserManager.shareInstance().currentUser.gender
-            age = UserManager.shareInstance().currentUser.age
-            height = UserManager.shareInstance().currentUser.height
-        }
+//        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+//            gender = (userInfo["gender"] as! NSNumber).boolValue
+//            age = (userInfo["age"] as! NSNumber).unsignedCharValue
+//            height = (userInfo["height"] as! NSNumber).unsignedCharValue
+//        }
+//        else {
+//            gender = UserManager.shareInstance().currentUser.gender
+//            age = UserManager.shareInstance().currentUser.age
+//            height = UserManager.shareInstance().currentUser.height
+//        }
+        
+        self.gender = gender
+        self.age = age
+        self.height = height
         
         if let time = info["timeStamp"] as? Int {
             timeStamp = NSDate(timeIntervalSince1970: NSTimeInterval(time))

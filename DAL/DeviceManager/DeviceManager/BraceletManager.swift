@@ -23,6 +23,8 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
     private var currentFormate: BraceletBlueToothFormats?
     private var result: BraceletResult?  // 同步运动数据
     
+    private var user: UserModel?
+    
     var fireComplete: ((ResultProtocol?, NSError?) -> Void)?
     
     init(name setName: String, uuid setUUID: String, peripheral setPeripheral: CBPeripheral?, characteristic setCharacteristic: CBCharacteristic?) {
@@ -105,7 +107,7 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
             var startTime = bodyData.start_time
             
             for data in bodyData.info {
-                let result = BraceletData(userId: UserData.shareInstance().userId!, startTime: startTime, endTime: data.end_time, steps: data.steps, stepsType: data.stepsType)
+                let result = BraceletData(userId: user!.userId, startTime: startTime, endTime: data.end_time, steps: data.steps, stepsType: data.stepsType)
                 list.append(result)
                 startTime = data.end_time
             }
@@ -115,6 +117,9 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
     }
     
     func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
+        if let user = info["userModel"] as? UserModel {
+            self.user = user
+        }
         fireComplete = complete
         receiveDatas.setData(NSData())
         result = BraceletResult()

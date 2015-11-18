@@ -70,13 +70,7 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
             }
             else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
                 self.result?.setDatas(format.datas)
-                if format.resultCode == 0x30 {
-                    self.result?.hepaticAdiposeInfiltration = false
-                }
-                else if format.resultCode == 0x31 {
-                    self.result?.hepaticAdiposeInfiltration = true
-                }
-                
+                self.result?.hepaticAdiposeInfiltration = true
                 
                 let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
                 NSLog("write receiveBodyData : \(receiveBodyData)")
