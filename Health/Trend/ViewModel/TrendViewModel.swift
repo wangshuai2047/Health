@@ -201,7 +201,7 @@ struct TrendCellViewModel {
     var dateString: String
     
     init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
-        scaleResult = MyBodyResult(info: info, gender: gender, age: age, height: height)
+        scaleResult = ScaleResultProtocolCreate(info, gender: gender, age: age, height: height)
         timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
         dateString = (info["timeStamp"] as! NSDate).YYdd()
     }
