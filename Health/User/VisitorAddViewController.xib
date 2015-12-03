@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VisitorAddViewController" customModule="Health" customModuleProvider="target">
+            <connections>
+                <outlet property="ageTextField" destination="wEv-Uv-7MV" id="rht-0F-tLx"/>
+                <outlet property="femaleButton" destination="qL5-WP-qVP" id="UuU-iM-cOZ"/>
+                <outlet property="heightTextField" destination="yB2-WD-ZyW" id="Ug8-Rn-es1"/>
+                <outlet property="maleButton" destination="6Bf-qA-sIR" id="cF7-ZU-qTD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ep-M6-3DK">
+                    <rect key="frame" x="40" y="80" width="240" height="299"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="visitorBg" translatesAutoresizingMaskIntoConstraints="NO" id="nCf-dr-MIv">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="299"/>
+                            <animations/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="访客信息填写" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mri-LE-9Yr">
+                            <rect key="frame" x="24" y="24" width="108" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择访客性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srV-kk-FIH">
+                            <rect key="frame" x="34" y="53" width="92" height="16"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qL5-WP-qVP">
+                            <rect key="frame" x="152" y="74" width="55" height="94"/>
+                            <animations/>
+                            <state key="normal" image="visitorFemale"/>
+                            <state key="selected" image="visitorFemaleSelected"/>
+                            <connections>
+                                <action selector="sexButtonPressed:" destination="-1" eventType="touchUpInside" id="tAx-ap-lxn"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sg2-ix-vUR">
+                            <rect key="frame" x="24" y="252" width="193" height="30"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="确认" backgroundImage="buttonBg">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="sureButtonPressed:" destination="-1" eventType="touchUpInside" id="kA1-Pt-Wg2"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="175" borderStyle="roundedRect" placeholder="请输入访客身高/厘米" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yB2-WD-ZyW">
+                            <rect key="frame" x="24" y="214" width="193" height="30"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="25" borderStyle="roundedRect" placeholder="请输入访客年龄/岁" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEv-Uv-7MV">
+                            <rect key="frame" x="24" y="176" width="193" height="30"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bf-qA-sIR">
+                            <rect key="frame" x="34" y="74" width="55" height="94"/>
+                            <animations/>
+                            <state key="normal" image="visitorMale"/>
+                            <state key="selected" image="visitorMaleSelected"/>
+                            <connections>
+                                <action selector="sexButtonPressed:" destination="-1" eventType="touchUpInside" id="7yo-3H-8Vj"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="eEw-oS-Hce"/>
+                        <constraint firstAttribute="height" constant="299" id="ngL-Ao-cil"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-ie-GF2">
+                    <rect key="frame" x="247" y="80" width="35" height="34"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="6ix-ZF-jwg"/>
+                        <constraint firstAttribute="height" constant="34" id="BeI-W1-daN"/>
+                    </constraints>
+                    <state key="normal" image="closeButton"/>
+                    <connections>
+                        <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="x9R-hf-RLp"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="gp0-ie-GF2" firstAttribute="centerX" secondItem="3ep-M6-3DK" secondAttribute="centerX" constant="104.5" id="GG6-HT-lO3"/>
+                <constraint firstItem="3ep-M6-3DK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="I2V-be-9mG"/>
+                <constraint firstItem="3ep-M6-3DK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QIR-Ck-Mn4"/>
+                <constraint firstItem="gp0-ie-GF2" firstAttribute="centerY" secondItem="3ep-M6-3DK" secondAttribute="centerY" constant="-132.5" id="isq-uJ-dK2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="4JA-N1-JDa" appends="YES" id="yGP-37-fU8"/>
+            </connections>
+            <point key="canvasLocation" x="1033" y="519"/>
+        </view>
+        <tapGestureRecognizer id="4JA-N1-JDa">
+            <connections>
+                <action selector="backgroundPressed:" destination="-1" id="K8p-v9-RFZ"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="buttonBg" width="19" height="19"/>
+        <image name="closeButton" width="17" height="17"/>
+        <image name="visitorBg" width="254" height="239"/>
+        <image name="visitorFemale" width="51" height="66"/>
+        <image name="visitorFemaleSelected" width="51" height="66"/>
+        <image name="visitorMale" width="149" height="66"/>
+        <image name="visitorMaleSelected" width="51" height="66"/>
+    </resources>
+</document>

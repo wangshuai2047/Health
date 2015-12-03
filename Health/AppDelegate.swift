@@ -6,14 +6,38 @@
 //  Copyright (c) 2015年 Yalin. All rights reserved.
 //
 
+/*
+#pragma mark - HUD
+@property (nonatomic, strong) MBProgressHUD *progressHUD;
+
+- (void)updateHUDWithType:(BT_HUD_TYPE)type message:(NSString *)msg detailMsg:(NSString *)detailMsg progress:(float)progress;
+
+- (void)hiddenHUD;
+*/
+
 import UIKit
 import CoreData
 
 let lightBlue = UIColor(red: 121/255.0, green: 199/255.0, blue: 235/255.0, alpha: 1)
 let deepBlue: UIColor = UIColor(red: 26/255.0, green: 146/255.0, blue: 214/255.0, alpha: 1)
+let lightPink = UIColor(red: 232/255.0, green: 215/255.0, blue: 238/255.0, alpha: 1)
+let deepPink: UIColor = UIColor(red: 211/255.0, green: 147/255.0, blue: 235/255.0, alpha: 1)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    private var progressHUD: MBProgressHUD?
+    private var isShowingHUD: Bool = false
+    
+    var tabBarViewController: UITabBarController? {
+        if let navController = window?.rootViewController as? UINavigationController {
+            if let tabBarController = navController.viewControllers.first as? UITabBarController {
+                return tabBarController
+            }
+        }
+        
+        return nil
+    }
 
     class func applicationDelegate() -> AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -28,8 +52,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return self.window?.rootViewController as! UINavigationController
     }
     
+    func changeToMainIndex(index: Int) {
+        if let tabBarController = tabBarViewController {
+            
+            if index < tabBarController.viewControllers?.count {
+                tabBarController.selectedIndex = index
+            }
+            
+        }
+    }
+    
+    func changeToLaunchAnimation() {
+        let controller = LaunchAnimationController()
+        
+        self.window?.rootViewController = controller
+    }
+    
     func changeToMainController() -> UINavigationController {
-        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UINavigationController
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let rootNavController = mainStoryboard.instantiateInitialViewController() as! UINavigationController
+        self.window?.rootViewController = rootNavController
         return self.window?.rootViewController as! UINavigationController
     }
     
@@ -38,31 +80,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        ShareSDKHelper.initSDK()
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
             // [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         
-        // 判断是否登录 是否跳过GUI 是否跳过广告
-        // 进入广告界面
-        var navController: UINavigationController?
-        if LoginManager.isShowAds {
-            let adsController = LoginAdsViewController()
-            navController = UINavigationController(rootViewController: adsController)
-            self.window?.rootViewController = navController
+        let launchAnimationController = LaunchAnimationController.showLaunchAnimationController {[unowned self] () -> Void in
+            
+            // 判断是否登录 是否跳过GUI 是否跳过广告
+            // 进入广告界面
+            var navController: UINavigationController?
+            if LoginManager.isShowAds {
+                let adsController = LoginAdsViewController()
+                navController = UINavigationController(rootViewController: adsController)
+                self.window?.rootViewController = navController
+            }
+            else if LoginManager.showedGUI {
+                let guiController = GUIViewController()
+                navController = UINavigationController(rootViewController: guiController)
+                self.window?.rootViewController = navController
+            }
+            else if !LoginManager.isLogin || LoginManager.isNeedCompleteInfo{
+                navController = self.changeToLoginController()
+            }
+            else {
+                navController = self.changeToMainController()
+            }
+            navController?.navigationBarHidden = true
         }
-        else if LoginManager.showedGUI {
-            let guiController = GUIViewController()
-            navController = UINavigationController(rootViewController: guiController)
-            self.window?.rootViewController = navController
-        }
-        else if !LoginManager.isLogin || LoginManager.isNeedCompleteInfo{
-            navController = changeToLoginController()
-        }
-        else {
-            navController = changeToMainController()
-        }
-        navController?.navigationBarHidden = true
+        
+        window?.rootViewController = launchAnimationController
         
         window?.makeKeyAndVisible()
+        
+        
+        progressHUD = MBProgressHUD(window: window)
+        
+        HealthManager.syncHealthData()
+        
         return true
     }
 
@@ -78,6 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        HealthManager.syncHealthData()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -90,3 +146,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+enum HUDType {
+    case Hotwheels  // 只有一个风火轮,加文字
+    case Progress   // 初始化通讯录时有进度条
+    case OnlyMsg     // 只有文字
+}
+
+extension AppDelegate {
+    func updateHUD(type: HUDType, message: String?, detailMsg: String?, progress: Float?) {
+        switch type {
+        case .Hotwheels:
+            progressHUD?.labelText = message
+            progressHUD?.detailsLabelText = detailMsg
+            progressHUD?.mode = MBProgressHUDMode.Indeterminate
+        case .OnlyMsg:
+            progressHUD?.labelText = message
+            progressHUD?.detailsLabelText = detailMsg
+            progressHUD?.mode = MBProgressHUDMode.Text
+        case .Progress:
+            progressHUD?.labelText = message
+            progressHUD?.detailsLabelText = detailMsg
+            progressHUD?.mode = MBProgressHUDMode.DeterminateHorizontalBar
+        }
+        
+        if !isShowingHUD {
+            UIApplication.sharedApplication().keyWindow?.addSubview(progressHUD!)
+            progressHUD?.show(true)
+            isShowingHUD = true
+        }
+    }
+    
+    func hiddenHUD() {
+        isShowingHUD = false
+        AppDelegate.applicationDelegate().progressHUD?.hide(true)
+    }
+}

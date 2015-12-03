@@ -14,8 +14,8 @@ struct  LoginRequest {
     static func login(username: String, password: String, complete : (([String: AnyObject]? , NSError?) -> Void)) {
         
         // 假数据
-        complete(["userId" : NSNumber(integer: 123)], nil)
-        return;
+//        complete(["userId" : NSNumber(integer: 123)], nil)
+//        return;
         
         let pushToken = "fefjewioafjaeofja"
         
@@ -51,7 +51,11 @@ struct  LoginRequest {
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(userInfo: jsonObj?.valueForKey("info") as? [String: AnyObject], nil)
+                var info = jsonObj?.valueForKey("info") as? [String: AnyObject]
+                info?["child"] = jsonObj?.valueForKey("child")
+                info?["app"] = jsonObj?.valueForKey("app")
+                info?["usertype"] = jsonObj?.valueForKey("usertype")
+                complete(userInfo: info, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif
@@ -83,7 +87,7 @@ struct  LoginRequest {
     // 第三方登录
     static func loginThirdPlatform(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((userInfo: [String: AnyObject]?, NSError?) -> Void)) {
         
-        RequestType.LoginThirdPlatform.startRequest(["name": name, "headurl": headURLStr, "openid": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+        RequestType.LoginThirdPlatform.startRequest(["name": name, "headURL": headURLStr, "openId": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
@@ -94,7 +98,54 @@ struct  LoginRequest {
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(userInfo: jsonObj?.valueForKey("info") as? [String: AnyObject], nil)
+                
+                var info = jsonObj?.valueForKey("info") as? [String: AnyObject]
+                info?["child"] = jsonObj?.valueForKey("child")
+                info?["app"] = jsonObj?.valueForKey("app")
+                info?["usertype"] = jsonObj?.valueForKey("usertype")
+                complete(userInfo: info, nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
+    
+    // 第三方绑定 字段：userId 用户id  绑定类型 type:1 微信  2：微博  3：qq登录  openid：第三方的id
+    static func bindThirdPlatform(userId: Int, openId: String, type: ThirdPlatformType, complete: ((NSError?) -> Void)) {
+        
+        RequestType.BindThirdPlatform.startRequest(["userId": userId, "openId": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                complete(nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        })
+    }
+    
+    // 第三方取消绑定 // 解除绑定接口  传 userId 和  openId 的值就行
+    static func cancelBindThirdPlatform(userId: Int, openId: String, type: ThirdPlatformType, complete: ((NSError?) -> Void)) {
+        
+        RequestType.CancelBindThirdPlatform.startRequest(["userId": userId, "openId": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                complete(nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

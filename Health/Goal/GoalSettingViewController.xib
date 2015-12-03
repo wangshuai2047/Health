@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalSettingViewController" customModule="Health" customModuleProvider="target">
@@ -32,6 +32,7 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIi-EU-bdY">
                     <rect key="frame" x="0.0" y="73" width="320" height="333"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="JPl-AW-a1H"/>
@@ -39,6 +40,7 @@
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYk-HO-iK2">
                     <rect key="frame" x="20" y="430" width="130" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Q3r-AJ-FiS"/>
                     </constraints>
@@ -52,6 +54,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSL-vN-ZVf">
                     <rect key="frame" x="170" y="430" width="130" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="qhR-1e-aHx"/>
                     </constraints>
@@ -65,6 +68,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUF-mC-CaW">
                     <rect key="frame" x="8" y="0.0" width="46" height="65"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="T9g-g3-SHi"/>
                         <constraint firstAttribute="width" constant="46" id="dla-Kd-ah6"/>
@@ -80,6 +84,7 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="dSL-vN-ZVf" secondAttribute="trailing" constant="20" id="2q8-es-HRA"/>
@@ -105,7 +110,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="333"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您的目标" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiL-Ll-UZ4">
-                            <rect key="frame" x="100.5" y="8" width="119" height="21"/>
+                            <rect key="frame" x="100" y="8" width="119" height="21"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="IMD-Ur-vFe"/>
                             </constraints>
@@ -115,6 +121,7 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD2-f4-RsT">
                             <rect key="frame" x="78" y="37" width="163" height="87"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="87" id="Q62-x7-BVD"/>
                                 <constraint firstAttribute="width" constant="163" id="dEp-w2-9We"/>
@@ -122,12 +129,14 @@
                             <state key="normal" title="减重" backgroundImage="buttonBg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="selected" title="已选减重" backgroundImage="buttonBg"/>
                             <connections>
                                 <action selector="setGoalButtonPressed:" destination="-1" eventType="touchUpInside" id="b7V-rY-Tsm"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yn-YA-S13">
                             <rect key="frame" x="78" y="132" width="163" height="87"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="163" id="P7c-gK-e2y"/>
                                 <constraint firstAttribute="height" constant="87" id="wwC-Eh-69M"/>
@@ -135,12 +144,14 @@
                             <state key="normal" title="减脂" backgroundImage="buttonBg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="selected" title="已选减脂" backgroundImage="buttonBg"/>
                             <connections>
                                 <action selector="setGoalButtonPressed:" destination="-1" eventType="touchUpInside" id="isf-oz-fH6"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wS-IF-4oc">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wS-IF-4oc">
                             <rect key="frame" x="78" y="227" width="163" height="87"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="163" id="Yap-Lq-T6g"/>
                                 <constraint firstAttribute="height" constant="87" id="lB3-7o-pNE"/>
@@ -148,11 +159,13 @@
                             <state key="normal" title="增肌" backgroundImage="buttonBg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="selected" title="已选增肌" backgroundImage="buttonBg"/>
                             <connections>
                                 <action selector="setGoalButtonPressed:" destination="-1" eventType="touchUpInside" id="BVc-Fc-cCT"/>
                             </connections>
                         </button>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="6wS-IF-4oc" firstAttribute="top" secondItem="6Yn-YA-S13" secondAttribute="bottom" constant="8" id="2mU-Hh-JDs"/>
@@ -169,20 +182,23 @@
                     <rect key="frame" x="320" y="0.0" width="320" height="333"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTW-ts-Baw" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
-                            <rect key="frame" x="8" y="8" width="304" height="126"/>
+                            <rect key="frame" x="8" y="8" width="304" height="98"/>
+                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="126" id="C3f-E3-thQ"/>
+                                <constraint firstAttribute="height" constant="98" id="C3f-E3-thQ"/>
                             </constraints>
                         </view>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLo-i8-9eB">
-                            <rect key="frame" x="0.0" y="143" width="320" height="180"/>
+                            <rect key="frame" x="0.0" y="114" width="320" height="211"/>
+                            <animations/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="cW5-jA-701"/>
                                 <outlet property="delegate" destination="-1" id="7Od-YH-kQx"/>
                             </connections>
                         </pickerView>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="eLo-i8-9eB" firstAttribute="leading" secondItem="9tL-bA-EdE" secondAttribute="leading" id="DcV-Rc-euo"/>
@@ -199,19 +215,22 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKC-WH-dXe" customClass="AttributedLabel" customModule="Health" customModuleProvider="target">
                             <rect key="frame" x="8" y="8" width="304" height="126"/>
+                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="126" id="iEf-OE-piD"/>
                             </constraints>
                         </view>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMF-sl-GbS">
-                            <rect key="frame" x="0.0" y="143" width="320" height="180"/>
+                            <rect key="frame" x="0.0" y="142" width="320" height="183"/>
+                            <animations/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="Lbg-Up-cqH"/>
                                 <outlet property="delegate" destination="-1" id="xxQ-GS-uaa"/>
                             </connections>
                         </pickerView>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="EMF-sl-GbS" firstAttribute="leading" secondItem="Aap-s8-wKR" secondAttribute="leading" id="9Ob-Cy-9rR"/>
@@ -224,6 +243,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="9tL-bA-EdE" firstAttribute="width" secondItem="Aap-s8-wKR" secondAttribute="width" id="0g9-Iv-HSZ"/>

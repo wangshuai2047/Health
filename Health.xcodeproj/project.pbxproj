@@ -12,6 +12,41 @@
 		E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; };
 		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
 		E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
+		E0039BDE1BCF28370014ED50 /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
+		E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
+		E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */; };
+		E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D048D1B8BE7DC0090137C /* CircleView.swift */; };
+		E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */; };
+		E0039BEC1BCF28370014ED50 /* CompleteHeadAndNameDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32931B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift */; };
+		E0039BED1BCF28370014ED50 /* CompleteGenderDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32961B85A8B00040ADE7 /* CompleteGenderDataView.swift */; };
+		E0039BEE1BCF28370014ED50 /* CompleteHeightDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32991B85A8C50040ADE7 /* CompleteHeightDataView.swift */; };
+		E0039BEF1BCF28370014ED50 /* CompleteAgeDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B329C1B85A91E0040ADE7 /* CompleteAgeDataView.swift */; };
+		E0039BF01BCF28370014ED50 /* CompleteOrganizationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */; };
+		E0039BF21BCF28370014ED50 /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
+		E0039C3E1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */; };
+		E0039C3F1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */; };
+		E0039C401BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C241BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		E0039C411BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C241BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		E0039C421BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C261BCF28C10014ED50 /* libWeiboSDK.a */; };
+		E0039C431BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C261BCF28C10014ED50 /* libWeiboSDK.a */; };
+		E0039C441BCF28C10014ED50 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C301BCF28C10014ED50 /* WeiboSDK.bundle */; };
+		E0039C451BCF28C10014ED50 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C301BCF28C10014ED50 /* WeiboSDK.bundle */; };
+		E0039C461BCF28C10014ED50 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C341BCF28C10014ED50 /* libWeChatSDK.a */; };
+		E0039C471BCF28C10014ED50 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C341BCF28C10014ED50 /* libWeChatSDK.a */; };
+		E0039C481BCF28C10014ED50 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C371BCF28C10014ED50 /* MOBFoundation.framework */; };
+		E0039C491BCF28C10014ED50 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C371BCF28C10014ED50 /* MOBFoundation.framework */; };
+		E0039C4A1BCF28C10014ED50 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C381BCF28C10014ED50 /* ShareSDK.bundle */; };
+		E0039C4B1BCF28C10014ED50 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C381BCF28C10014ED50 /* ShareSDK.bundle */; };
+		E0039C4C1BCF28C10014ED50 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C391BCF28C10014ED50 /* ShareSDK.framework */; };
+		E0039C4D1BCF28C10014ED50 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C391BCF28C10014ED50 /* ShareSDK.framework */; };
+		E0039C4E1BCF28C10014ED50 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C3A1BCF28C10014ED50 /* ShareSDKConnector.framework */; };
+		E0039C4F1BCF28C10014ED50 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C3A1BCF28C10014ED50 /* ShareSDKConnector.framework */; };
+		E0039C501BCF28C10014ED50 /* ShareSDKExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C3B1BCF28C10014ED50 /* ShareSDKExtension.framework */; };
+		E0039C511BCF28C10014ED50 /* ShareSDKExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C3B1BCF28C10014ED50 /* ShareSDKExtension.framework */; };
+		E0039C521BCF28C10014ED50 /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C3C1BCF28C10014ED50 /* ShareSDKUI.bundle */; };
+		E0039C531BCF28C10014ED50 /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C3C1BCF28C10014ED50 /* ShareSDKUI.bundle */; };
+		E0039C541BCF28C10014ED50 /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C3D1BCF28C10014ED50 /* ShareSDKUI.framework */; };
+		E0039C551BCF28C10014ED50 /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C3D1BCF28C10014ED50 /* ShareSDKUI.framework */; };
 		E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */; };
 		E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */; };
 		E00580801B9DE78C00ABDF1A /* ScoreRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */; };
@@ -24,11 +59,31 @@
 		E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005808A1B9E55FE00ABDF1A /* Crypto.swift */; };
 		E005808C1B9E55FE00ABDF1A /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005808A1B9E55FE00ABDF1A /* Crypto.swift */; };
 		E005808E1B9E588700ABDF1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E005808D1B9E588700ABDF1A /* Security.framework */; };
+		E007CC1C1BCAA2D200365FA8 /* DeviceScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC1A1BCAA2D200365FA8 /* DeviceScanViewController.swift */; };
+		E007CC1E1BCAA2D200365FA8 /* DeviceScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC1B1BCAA2D200365FA8 /* DeviceScanViewController.xib */; };
+		E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */; };
+		E007CC231BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */; };
+		E007CC241BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */; };
+		E007CC251BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */; };
+		E0092D3A1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0092D381BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift */; };
+		E0092D3B1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0092D391BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib */; };
+		E0092D3E1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0092D3C1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift */; };
+		E0092D3F1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */; };
 		E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EA1B7ECC6D006A4343 /* UserData.swift */; };
 		E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */; };
 		E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
+		E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB521BC52B3900225C32 /* FeedBackViewController.swift */; };
+		E015BB561BC52B3900225C32 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB531BC52B3900225C32 /* FeedBackViewController.xib */; };
+		E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB591BC5520700225C32 /* FeedbackCell.swift */; };
+		E015BB5C1BC5520700225C32 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015BB591BC5520700225C32 /* FeedbackCell.swift */; };
+		E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; };
+		E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E015BB5A1BC5520700225C32 /* FeedbackCell.xib */; };
 		E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */; };
+		E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01917F91BC80FA4002819CB /* ShareViewController.swift */; };
+		E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01917FA1BC80FA4002819CB /* ShareViewController.xib */; };
+		E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; };
+		E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */; };
 		E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */; };
 		E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */; };
 		E01C81591B8804AF00A1F7AC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C81581B8804AF00A1F7AC /* Device.swift */; };
@@ -40,24 +95,50 @@
 		E021FCB71B8F5B8E00565FDB /* EvaluationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */; };
 		E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */; };
 		E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */; };
-		E02979471B801E4900AAE085 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979461B801E4900AAE085 /* DeviceManager.swift */; };
-		E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02979461B801E4900AAE085 /* DeviceManager.swift */; };
-		E029794D1B80292500AAE085 /* BluetoothProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029794C1B80292500AAE085 /* BluetoothProtocol.swift */; };
-		E029794E1B80292500AAE085 /* BluetoothProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029794C1B80292500AAE085 /* BluetoothProtocol.swift */; };
+		E0255E6D1BC9556300CEE5D4 /* Physique.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E681BC9556300CEE5D4 /* Physique.swift */; };
+		E0255E6E1BC9556300CEE5D4 /* Physique.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E681BC9556300CEE5D4 /* Physique.swift */; };
+		E0255E6F1BC9556300CEE5D4 /* ResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E691BC9556300CEE5D4 /* ResultProtocol.swift */; };
+		E0255E701BC9556300CEE5D4 /* ResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E691BC9556300CEE5D4 /* ResultProtocol.swift */; };
+		E0255E711BC9556300CEE5D4 /* ScaleResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E6A1BC9556300CEE5D4 /* ScaleResultExtension.swift */; };
+		E0255E721BC9556300CEE5D4 /* ScaleResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E6A1BC9556300CEE5D4 /* ScaleResultExtension.swift */; };
+		E0255E731BC9556300CEE5D4 /* ValueStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E6B1BC9556300CEE5D4 /* ValueStatus.swift */; };
+		E0255E741BC9556300CEE5D4 /* ValueStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E6B1BC9556300CEE5D4 /* ValueStatus.swift */; };
+		E0255E751BC9556300CEE5D4 /* WeightStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E6C1BC9556300CEE5D4 /* WeightStatus.swift */; };
+		E0255E761BC9556300CEE5D4 /* WeightStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E6C1BC9556300CEE5D4 /* WeightStatus.swift */; };
+		E0255E781BC955BB00CEE5D4 /* StepsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E771BC955BB00CEE5D4 /* StepsType.swift */; };
+		E0255E791BC955BB00CEE5D4 /* StepsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E771BC955BB00CEE5D4 /* StepsType.swift */; };
+		E0255E7B1BC9562A00CEE5D4 /* BraceletResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E7A1BC9562A00CEE5D4 /* BraceletResult.swift */; };
+		E0255E7C1BC9562A00CEE5D4 /* BraceletResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E7A1BC9562A00CEE5D4 /* BraceletResult.swift */; };
+		E0255E7E1BC9573E00CEE5D4 /* MyBodyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E7D1BC9573E00CEE5D4 /* MyBodyResult.swift */; };
+		E0255E7F1BC9573E00CEE5D4 /* MyBodyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E7D1BC9573E00CEE5D4 /* MyBodyResult.swift */; };
+		E0255E821BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E811BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift */; };
+		E0255E831BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E811BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift */; };
+		E0255E851BC95C8000CEE5D4 /* BraceletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E841BC95C8000CEE5D4 /* BraceletManager.swift */; };
+		E0255E861BC95C8000CEE5D4 /* BraceletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E841BC95C8000CEE5D4 /* BraceletManager.swift */; };
+		E0255E881BC9680300CEE5D4 /* MyBodyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */; };
+		E0255E891BC9680300CEE5D4 /* MyBodyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */; };
+		E0255E8B1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */; };
+		E0255E8C1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */; };
 		E038D1FD1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
-		E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68921B97D12000F4C505 /* BraceletManager.swift */; };
-		E03B68951B97D12000F4C505 /* BraceletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68921B97D12000F4C505 /* BraceletManager.swift */; };
-		E03B68961B97D12000F4C505 /* BraceletProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68931B97D12000F4C505 /* BraceletProtocol.swift */; };
-		E03B68971B97D12000F4C505 /* BraceletProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68931B97D12000F4C505 /* BraceletProtocol.swift */; };
-		E03B68991B97D15D00F4C505 /* BraceletResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68981B97D15D00F4C505 /* BraceletResult.swift */; };
-		E03B689A1B97D15D00F4C505 /* BraceletResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B68981B97D15D00F4C505 /* BraceletResult.swift */; };
-		E03B689C1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */; };
-		E03B689D1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */; };
 		E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0418EDB1BC2BABC00B2788D /* UIKit.framework */; };
 		E0418EDE1BC2BAC500B2788D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0418EDD1BC2BAC500B2788D /* Foundation.framework */; };
+		E0418EE81BC34B2600B2788D /* ThirdPlatformBindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EE61BC34B2600B2788D /* ThirdPlatformBindController.swift */; };
+		E0418EEA1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EE71BC34B2600B2788D /* ThirdPlatformBindController.xib */; };
+		E0418EEE1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */; };
+		E0418EEF1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */; };
+		E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */; };
+		E0418EF11BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */; };
+		E0418EF41BC3552C00B2788D /* DeviceBindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF21BC3552C00B2788D /* DeviceBindViewController.swift */; };
+		E0418EF61BC3552C00B2788D /* DeviceBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF31BC3552C00B2788D /* DeviceBindViewController.xib */; };
+		E0418EFA1BC3554800B2788D /* DeviceBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF81BC3554800B2788D /* DeviceBindCell.swift */; };
+		E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0418EF81BC3554800B2788D /* DeviceBindCell.swift */; };
+		E0418EFC1BC3554800B2788D /* DeviceBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF91BC3554800B2788D /* DeviceBindCell.xib */; };
+		E0418EFD1BC3554800B2788D /* DeviceBindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0418EF91BC3554800B2788D /* DeviceBindCell.xib */; };
 		E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
+		E046FC591BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */; };
+		E046FC5D1BDFD10500DC116C /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E046FC5C1BDFD10500DC116C /* FXBlurView.m */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -79,10 +160,11 @@
 		E060CD921B8401D20002AEE7 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E060CD861B8401700002AEE7 /* JavaScriptCore.framework */; };
 		E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */; };
 		E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */; };
+		E061AC621BD7915D0046094B /* EvaluationDetailExtendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E061AC601BD7915D0046094B /* EvaluationDetailExtendCell.swift */; };
+		E061AC631BD7915D0046094B /* EvaluationDetailExtendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E061AC611BD7915D0046094B /* EvaluationDetailExtendCell.xib */; };
+		E061AC651BD7ABE50046094B /* EvaluationResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E061AC641BD7ABE50046094B /* EvaluationResultTableView.swift */; };
 		E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
-		E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */; };
 		E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
-		E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
 		E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
 		E08A24541B807BE4004269BB /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24521B807BE4004269BB /* DBManager.swift */; };
 		E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E08A24651B808154004269BB /* libvtble_scale.a */; };
@@ -101,9 +183,17 @@
 		E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */; };
 		E08B32A41B85A9CC0040ADE7 /* CompleteInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32A21B85A9CC0040ADE7 /* CompleteInfoViewController.swift */; };
 		E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E08B32A31B85A9CC0040ADE7 /* CompleteInfoViewController.xib */; };
+		E094E01D1BD283060017079B /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E01C1BD283060017079B /* HealthManager.swift */; };
+		E094E01E1BD283060017079B /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E01C1BD283060017079B /* HealthManager.swift */; };
+		E094E0211BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; };
+		E094E0221BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; };
 		E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
 		E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09EC8E91B7E406B00CC07E3 /* CoreData.framework */; };
+		E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; };
+		E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; };
+		E09AAC531BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */; };
+		E09AAC541BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E09AAC521BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib */; };
 		E09EC8B81B7E3B5000CC07E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */; };
 		E09EC8C21B7E3B5000CC07E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E09EC8C01B7E3B5000CC07E3 /* Main.storyboard */; };
 		E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E09EC8C31B7E3B5000CC07E3 /* Images.xcassets */; };
@@ -116,14 +206,23 @@
 		E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */; };
 		E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */; };
 		E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */; };
+		E0A1D6541BE85BFA00BE2C02 /* LaunchAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D6521BE85BFA00BE2C02 /* LaunchAnimationController.swift */; };
+		E0A1D6551BE85BFA00BE2C02 /* LaunchAnimationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D6531BE85BFA00BE2C02 /* LaunchAnimationController.xib */; };
+		E0A1D6591BE85DAB00BE2C02 /* launchAnimation.gif in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D6581BE85DAB00BE2C02 /* launchAnimation.gif */; };
 		E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */; };
 		E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B221B9E83500085E5B5 /* RequestTests.swift */; };
 		E0A45B251B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
 		E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A45B241B9E8FC40085E5B5 /* RequestType.swift */; };
+		E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */; };
+		E0AF85B41BAABE81005BB95E /* GoalShowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */; };
+		E0AF85B71BAAF4B8005BB95E /* GoalManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */; };
 		E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
 		E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
+		E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
+		E0BC150B1BC740E5008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
+		E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */; };
@@ -135,22 +234,43 @@
 		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
 		E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
 		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; };
+		E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; };
+		E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; };
 		E0CD63131BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63141BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
 		E0CD63171BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
-		E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14021B9130480079F957 /* ScaleOld.swift */; };
-		E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14021B9130480079F957 /* ScaleOld.swift */; };
-		E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14071B9130730079F957 /* ScaleProtocol.swift */; };
-		E0DD14091B9130730079F957 /* ScaleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD14071B9130730079F957 /* ScaleProtocol.swift */; };
-		E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140A1B913DE40079F957 /* ScaleResult.swift */; };
-		E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140A1B913DE40079F957 /* ScaleResult.swift */; };
+		E0D403FE1BCAC51D001F8A15 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */; };
+		E0D403FF1BCAC51D001F8A15 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; };
 		E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
 		E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD140E1B91795A0079F957 /* ConvertString.swift */; };
+		E0E079531BD520A9008B8BE3 /* FamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E079511BD520A9008B8BE3 /* FamilyMembersViewController.swift */; };
+		E0E079541BD520A9008B8BE3 /* FamilyMembersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E079521BD520A9008B8BE3 /* FamilyMembersViewController.xib */; };
+		E0E079571BD521CF008B8BE3 /* FamilyMembersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E079551BD521CF008B8BE3 /* FamilyMembersCell.swift */; };
+		E0E079581BD521CF008B8BE3 /* FamilyMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E079561BD521CF008B8BE3 /* FamilyMembersCell.xib */; };
+		E0E5DE901BC88A78001BCCD1 /* BindOrganzationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */; };
+		E0E5DE911BC88A78001BCCD1 /* BindOrganzationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */; };
+		E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */; };
+		E0E5DE951BC88A89001BCCD1 /* BindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */; };
 		E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */; };
 		E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */; };
+		E0E735CD1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */; };
+		E0EDBDEF1BCE5B3A00137FB0 /* MyBodyMiniAndPlusResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */; };
+		E0EDBDF31BCE5B4700137FB0 /* BraceletBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDBDF11BCE5B4700137FB0 /* BraceletBlueToothFormats.swift */; };
+		E0EDBDF41BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */; };
+		E0EDBDF51BCE5B8E00137FB0 /* BraceletBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDBDF11BCE5B4700137FB0 /* BraceletBlueToothFormats.swift */; };
+		E0EDBDF61BCE5B8E00137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */; };
+		E0F048381BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
+		E0F048391BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
+		E0F0483B1BCFFA5300C63540 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F0483A1BCFFA5300C63540 /* HomeKit.framework */; };
+		E0F048401BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
+		E0F048411BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
+		E0F048431BD0779700C63540 /* QQHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048421BD0779700C63540 /* QQHealthManager.swift */; };
+		E0F048441BD0779700C63540 /* QQHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048421BD0779700C63540 /* QQHealthManager.swift */; };
 		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
 		E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
+		E0F7A6B11BC6C36900AF6B8B /* VisitorAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */; };
+		E0F7A6B31BC6C36900AF6B8B /* VisitorAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0F7A6B01BC6C36900AF6B8B /* VisitorAddViewController.xib */; };
 		E0F9DAEF1B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
 		E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */; };
 		E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9DAF11B85456600504454 /* LoginAdsViewController.swift */; };
@@ -172,6 +292,8 @@
 		E0FBED441B835C9100A70598 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED411B835C9100A70598 /* Request.swift */; };
 		E0FBED451B835C9100A70598 /* ResponseDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */; };
 		E0FBED461B835C9100A70598 /* ResponseDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */; };
+		E0FCC5B11BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FCC5AF1BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift */; };
+		E0FCC5B21BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0FCC5B01BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib */; };
 		E0FDBBC21B9D81D800AE1A7C /* ScaleResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDBBC11B9D81D800AE1A7C /* ScaleResultTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +313,31 @@
 		A5030CB749F74A7C0EA0A589 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EvaluationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
+		E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		E0039C241BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		E0039C261BCF28C10014ED50 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		E0039C271BCF28C10014ED50 /* WBHttpRequest+WeiboGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboGame.h"; sourceTree = "<group>"; };
+		E0039C281BCF28C10014ED50 /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
+		E0039C291BCF28C10014ED50 /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
+		E0039C2A1BCF28C10014ED50 /* WBHttpRequest+WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboUser.h"; sourceTree = "<group>"; };
+		E0039C2B1BCF28C10014ED50 /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
+		E0039C2C1BCF28C10014ED50 /* WBSDKBasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKBasicButton.h; sourceTree = "<group>"; };
+		E0039C2D1BCF28C10014ED50 /* WBSDKCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKCommentButton.h; sourceTree = "<group>"; };
+		E0039C2E1BCF28C10014ED50 /* WBSDKRelationshipButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKRelationshipButton.h; sourceTree = "<group>"; };
+		E0039C2F1BCF28C10014ED50 /* WeiboSDK+Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeiboSDK+Statistics.h"; sourceTree = "<group>"; };
+		E0039C301BCF28C10014ED50 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		E0039C311BCF28C10014ED50 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		E0039C321BCF28C10014ED50 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
+		E0039C341BCF28C10014ED50 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		E0039C351BCF28C10014ED50 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		E0039C361BCF28C10014ED50 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		E0039C371BCF28C10014ED50 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		E0039C381BCF28C10014ED50 /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
+		E0039C391BCF28C10014ED50 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
+		E0039C3A1BCF28C10014ED50 /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
+		E0039C3B1BCF28C10014ED50 /* ShareSDKExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKExtension.framework; sourceTree = "<group>"; };
+		E0039C3C1BCF28C10014ED50 /* ShareSDKUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKUI.bundle; sourceTree = "<group>"; };
+		E0039C3D1BCF28C10014ED50 /* ShareSDKUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKUI.framework; sourceTree = "<group>"; };
 		E005807B1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationRequstTests.swift; path = HealthTests/Request/EvaluationRequstTests.swift; sourceTree = SOURCE_ROOT; };
 		E005807D1B9DE73F00ABDF1A /* GoalRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalRequestTests.swift; path = HealthTests/Request/GoalRequestTests.swift; sourceTree = SOURCE_ROOT; };
 		E005807F1B9DE78C00ABDF1A /* ScoreRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreRequestTests.swift; path = HealthTests/Request/ScoreRequestTests.swift; sourceTree = SOURCE_ROOT; };
@@ -199,11 +346,26 @@
 		E00580871B9DE8CA00ABDF1A /* ScoreRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreRequest.swift; sourceTree = "<group>"; };
 		E005808A1B9E55FE00ABDF1A /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		E005808D1B9E588700ABDF1A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E007CC1A1BCAA2D200365FA8 /* DeviceScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScanViewController.swift; sourceTree = "<group>"; };
+		E007CC1B1BCAA2D200365FA8 /* DeviceScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceScanViewController.xib; sourceTree = "<group>"; };
+		E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScanCell.swift; sourceTree = "<group>"; };
+		E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceScanCell.xib; sourceTree = "<group>"; };
+		E0092D381BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationPhysiqueDetailCell.swift; sourceTree = "<group>"; };
+		E0092D391BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueDetailCell.xib; sourceTree = "<group>"; };
+		E0092D3C1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationPhysiqueIntroduceViewController.swift; sourceTree = "<group>"; };
+		E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueIntroduceViewController.xib; sourceTree = "<group>"; };
 		E00C00EA1B7ECC6D006A4343 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		E015BB521BC52B3900225C32 /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
+		E015BB531BC52B3900225C32 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
+		E015BB591BC5520700225C32 /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
+		E015BB5A1BC5520700225C32 /* FeedbackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		E015ED9A1B9516F200D66A6B /* TrendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendViewModel.swift; path = Health/Trend/ViewModel/TrendViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E01917F91BC80FA4002819CB /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		E01917FA1BC80FA4002819CB /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_ConvertToImage.swift; sourceTree = "<group>"; };
 		E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSettingViewController.swift; path = Health/Goal/GoalSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoalSettingViewController.xib; path = Health/Goal/GoalSettingViewController.xib; sourceTree = SOURCE_ROOT; };
 		E01C81581B8804AF00A1F7AC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -212,16 +374,33 @@
 		E021FCB51B8F5B8E00565FDB /* EvaluationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewController.swift; sourceTree = "<group>"; };
 		E021FCB61B8F5B8E00565FDB /* EvaluationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationDetailViewController.xib; sourceTree = "<group>"; };
 		E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
-		E02979461B801E4900AAE085 /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		E029794C1B80292500AAE085 /* BluetoothProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothProtocol.swift; sourceTree = "<group>"; };
+		E0255E681BC9556300CEE5D4 /* Physique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Physique.swift; sourceTree = "<group>"; };
+		E0255E691BC9556300CEE5D4 /* ResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultProtocol.swift; sourceTree = "<group>"; };
+		E0255E6A1BC9556300CEE5D4 /* ScaleResultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResultExtension.swift; sourceTree = "<group>"; };
+		E0255E6B1BC9556300CEE5D4 /* ValueStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueStatus.swift; sourceTree = "<group>"; };
+		E0255E6C1BC9556300CEE5D4 /* WeightStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightStatus.swift; sourceTree = "<group>"; };
+		E0255E771BC955BB00CEE5D4 /* StepsType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsType.swift; sourceTree = "<group>"; };
+		E0255E7A1BC9562A00CEE5D4 /* BraceletResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraceletResult.swift; sourceTree = "<group>"; };
+		E0255E7D1BC9573E00CEE5D4 /* MyBodyResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBodyResult.swift; sourceTree = "<group>"; };
+		E0255E811BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManagerProtocol.swift; sourceTree = "<group>"; };
+		E0255E841BC95C8000CEE5D4 /* BraceletManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraceletManager.swift; sourceTree = "<group>"; };
+		E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBodyManager.swift; sourceTree = "<group>"; };
+		E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBodyMiniAndPlusManager.swift; sourceTree = "<group>"; };
 		E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGoalData.swift; sourceTree = "<group>"; };
-		E03B68921B97D12000F4C505 /* BraceletManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletManager.swift; path = DAL/Bracelet/BraceletManager.swift; sourceTree = SOURCE_ROOT; };
-		E03B68931B97D12000F4C505 /* BraceletProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletProtocol.swift; path = DAL/Bracelet/BraceletProtocol.swift; sourceTree = SOURCE_ROOT; };
-		E03B68981B97D15D00F4C505 /* BraceletResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletResult.swift; path = DAL/Bracelet/BraceletResult.swift; sourceTree = SOURCE_ROOT; };
-		E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BraceletBlueToothFormats.swift; path = DAL/Bracelet/BraceletBlueToothFormats.swift; sourceTree = SOURCE_ROOT; };
 		E0418EDB1BC2BABC00B2788D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E0418EDD1BC2BAC500B2788D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E0418EE61BC34B2600B2788D /* ThirdPlatformBindController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPlatformBindController.swift; sourceTree = "<group>"; };
+		E0418EE71BC34B2600B2788D /* ThirdPlatformBindController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdPlatformBindController.xib; sourceTree = "<group>"; };
+		E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPlatformBindCell.swift; sourceTree = "<group>"; };
+		E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdPlatformBindCell.xib; sourceTree = "<group>"; };
+		E0418EF21BC3552C00B2788D /* DeviceBindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceBindViewController.swift; sourceTree = "<group>"; };
+		E0418EF31BC3552C00B2788D /* DeviceBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceBindViewController.xib; sourceTree = "<group>"; };
+		E0418EF81BC3554800B2788D /* DeviceBindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceBindCell.swift; sourceTree = "<group>"; };
+		E0418EF91BC3554800B2788D /* DeviceBindCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceBindCell.xib; sourceTree = "<group>"; };
 		E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailViewModel.swift; sourceTree = "<group>"; };
+		E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailExtendViewModel.swift; sourceTree = "<group>"; };
+		E046FC5B1BDFD10500DC116C /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		E046FC5C1BDFD10500DC116C /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
@@ -234,6 +413,9 @@
 		E060CD8A1B8401810002AEE7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E060CD8C1B8401890002AEE7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E060CD951B8402E60002AEE7 /* ShareSDKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSDKHelper.swift; sourceTree = "<group>"; };
+		E061AC601BD7915D0046094B /* EvaluationDetailExtendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailExtendCell.swift; sourceTree = "<group>"; };
+		E061AC611BD7915D0046094B /* EvaluationDetailExtendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationDetailExtendCell.xib; sourceTree = "<group>"; };
+		E061AC641BD7ABE50046094B /* EvaluationResultTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationResultTableView.swift; sourceTree = "<group>"; };
 		E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationPhysiqueDetailViewController.swift; sourceTree = "<group>"; };
 		E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueDetailViewController.xib; sourceTree = "<group>"; };
 		E08A24511B807BE4004269BB /* DBCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCoreDataManager.swift; sourceTree = "<group>"; };
@@ -277,6 +459,11 @@
 		E08B329F1B85A99B0040ADE7 /* CompleteOrganizationDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteOrganizationDataView.swift; sourceTree = "<group>"; };
 		E08B32A21B85A9CC0040ADE7 /* CompleteInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteInfoViewController.swift; sourceTree = "<group>"; };
 		E08B32A31B85A9CC0040ADE7 /* CompleteInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompleteInfoViewController.xib; sourceTree = "<group>"; };
+		E094E01C1BD283060017079B /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		E094E0201BD294E30017079B /* HealthDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataHelper.swift; sourceTree = "<group>"; };
+		E09588971BA99E0100033179 /* GoalViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalViewModel.swift; path = Health/Goal/GoalViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailTableViewCell.swift; sourceTree = "<group>"; };
+		E09AAC521BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalDetailTableViewCell.xib; sourceTree = "<group>"; };
 		E09EC8B21B7E3B5000CC07E3 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E09EC8B61B7E3B5000CC07E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -292,11 +479,18 @@
 		E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SportDetailViewController.xib; sourceTree = "<group>"; };
 		E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepDetailViewController.swift; sourceTree = "<group>"; };
 		E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepDetailViewController.xib; sourceTree = "<group>"; };
+		E0A1D6521BE85BFA00BE2C02 /* LaunchAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAnimationController.swift; sourceTree = "<group>"; };
+		E0A1D6531BE85BFA00BE2C02 /* LaunchAnimationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchAnimationController.xib; sourceTree = "<group>"; };
+		E0A1D6581BE85DAB00BE2C02 /* launchAnimation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = launchAnimation.gif; sourceTree = "<group>"; };
 		E0A45B201B9E7E340085E5B5 /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
 		E0A45B221B9E83500085E5B5 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestTests.swift; path = HealthTests/Request/RequestTests.swift; sourceTree = SOURCE_ROOT; };
 		E0A45B241B9E8FC40085E5B5 /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalShowInfo.swift; sourceTree = "<group>"; };
+		E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalManagerTests.swift; path = HealthTests/BLL/GoalManagerTests.swift; sourceTree = SOURCE_ROOT; };
 		E0B29B061B9BD2D000F2F2CC /* GoalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtend.swift; sourceTree = "<group>"; };
+		E0BC15091BC740AC008520AB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalSettingViewModel.swift; sourceTree = "<group>"; };
 		E0C50B911B861A04007A9393 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		E0C50B981B861D7F007A9393 /* LoginReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginReqeustTests.swift; path = HealthTests/Request/LoginReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9A1B861D97007A9393 /* AdsReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdsReqeustTests.swift; path = HealthTests/Request/AdsReqeustTests.swift; sourceTree = SOURCE_ROOT; };
@@ -306,15 +500,31 @@
 		E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYAxisLineChart.swift; sourceTree = "<group>"; };
 		E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYLineChartCell.swift; sourceTree = "<group>"; };
 		E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleYLineChartCell.xib; sourceTree = "<group>"; };
+		E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E0CD63151BA2511F00477090 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
-		E0DD14021B9130480079F957 /* ScaleOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleOld.swift; sourceTree = "<group>"; };
-		E0DD14071B9130730079F957 /* ScaleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleProtocol.swift; sourceTree = "<group>"; };
-		E0DD140A1B913DE40079F957 /* ScaleResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResult.swift; sourceTree = "<group>"; };
 		E0DD140E1B91795A0079F957 /* ConvertString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertString.swift; sourceTree = "<group>"; };
+		E0E079511BD520A9008B8BE3 /* FamilyMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMembersViewController.swift; sourceTree = "<group>"; };
+		E0E079521BD520A9008B8BE3 /* FamilyMembersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FamilyMembersViewController.xib; sourceTree = "<group>"; };
+		E0E079551BD521CF008B8BE3 /* FamilyMembersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMembersCell.swift; sourceTree = "<group>"; };
+		E0E079561BD521CF008B8BE3 /* FamilyMembersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FamilyMembersCell.xib; sourceTree = "<group>"; };
+		E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindOrganzationViewController.swift; sourceTree = "<group>"; };
+		E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindOrganzationViewController.xib; sourceTree = "<group>"; };
+		E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindPhoneViewController.swift; sourceTree = "<group>"; };
+		E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindPhoneViewController.xib; sourceTree = "<group>"; };
 		E0E5DE991BC8AD8E001BCCD1 /* ShareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
 		E0E5DE9A1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShareData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBodyMiniAndPlusResult.swift; sourceTree = "<group>"; };
+		E0EDBDF11BCE5B4700137FB0 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraceletBlueToothFormats.swift; sourceTree = "<group>"; };
+		E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MybodyMiniAndPlusBlueToothFormats.swift; sourceTree = "<group>"; };
+		E0F048371BCFFA3000C63540 /* HealthDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataManager.swift; sourceTree = "<group>"; };
+		E0F0483A1BCFFA5300C63540 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		E0F0483C1BCFFA5300C63540 /* Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Health.entitlements; sourceTree = "<group>"; };
+		E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleHealthKitManager.swift; sourceTree = "<group>"; };
+		E0F048421BD0779700C63540 /* QQHealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQHealthManager.swift; sourceTree = "<group>"; };
 		E0F70D4F1B93362900341F1C /* ConvertFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertFloat.swift; sourceTree = "<group>"; };
+		E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VisitorAddViewController.swift; path = Health/User/VisitorAddViewController.swift; sourceTree = SOURCE_ROOT; };
+		E0F7A6B01BC6C36900AF6B8B /* VisitorAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VisitorAddViewController.xib; path = Health/User/VisitorAddViewController.xib; sourceTree = SOURCE_ROOT; };
 		E0F9DAEE1B84D4D300504454 /* EvaluationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationManager.swift; sourceTree = "<group>"; };
 		E0F9DAF11B85456600504454 /* LoginAdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAdsViewController.swift; sourceTree = "<group>"; };
 		E0F9DAF21B85456600504454 /* LoginAdsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginAdsViewController.xib; sourceTree = "<group>"; };
@@ -332,6 +542,8 @@
 		E0FBED391B835BEE00A70598 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Health/Login/LoginViewController.xib; sourceTree = SOURCE_ROOT; };
 		E0FBED411B835C9100A70598 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = "../../../../../../../workSpace/Project/好体知/Code/Health/DAL/Request/Request.swift"; sourceTree = "<group>"; };
 		E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseDataFilter.swift; path = "../../../../../../../workSpace/Project/好体知/Code/Health/DAL/Request/ResponseDataFilter.swift"; sourceTree = "<group>"; };
+		E0FCC5AF1BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailScroeDescriptionCell.swift; sourceTree = "<group>"; };
+		E0FCC5B01BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationDetailScroeDescriptionCell.xib; sourceTree = "<group>"; };
 		E0FDBBC11B9D81D800AE1A7C /* ScaleResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResultTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -340,17 +552,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */,
 				E0418EDE1BC2BAC500B2788D /* Foundation.framework in Frameworks */,
 				E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */,
+				E0039C501BCF28C10014ED50 /* ShareSDKExtension.framework in Frameworks */,
+				E0039C421BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */,
+				E0039C4C1BCF28C10014ED50 /* ShareSDK.framework in Frameworks */,
 				E005808E1B9E588700ABDF1A /* Security.framework in Frameworks */,
+				E0039C3E1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */,
+				E0039C4E1BCF28C10014ED50 /* ShareSDKConnector.framework in Frameworks */,
 				E060CD8D1B8401890002AEE7 /* Accounts.framework in Frameworks */,
 				E060CD8B1B8401810002AEE7 /* Social.framework in Frameworks */,
+				E0039C481BCF28C10014ED50 /* MOBFoundation.framework in Frameworks */,
 				E060CD891B8401790002AEE7 /* ImageIO.framework in Frameworks */,
 				E060CD871B8401700002AEE7 /* JavaScriptCore.framework in Frameworks */,
 				E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */,
+				E0F0483B1BCFFA5300C63540 /* HomeKit.framework in Frameworks */,
+				E0039C541BCF28C10014ED50 /* ShareSDKUI.framework in Frameworks */,
 				E09EC8EA1B7E406B00CC07E3 /* CoreData.framework in Frameworks */,
 				E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */,
 				3511E9FDDF87881CB0D0657C /* libPods.a in Frameworks */,
+				E0039C461BCF28C10014ED50 /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,9 +580,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0039C491BCF28C10014ED50 /* MOBFoundation.framework in Frameworks */,
+				E0BC150B1BC740E5008520AB /* AdSupport.framework in Frameworks */,
+				E0039C511BCF28C10014ED50 /* ShareSDKExtension.framework in Frameworks */,
+				E0039C551BCF28C10014ED50 /* ShareSDKUI.framework in Frameworks */,
+				E0039C3F1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */,
+				E0039C4F1BCF28C10014ED50 /* ShareSDKConnector.framework in Frameworks */,
 				E060CD921B8401D20002AEE7 /* JavaScriptCore.framework in Frameworks */,
 				E060CD911B8401CA0002AEE7 /* ImageIO.framework in Frameworks */,
 				E060CD901B8401C50002AEE7 /* Social.framework in Frameworks */,
+				E0039C4D1BCF28C10014ED50 /* ShareSDK.framework in Frameworks */,
+				E0039C471BCF28C10014ED50 /* libWeChatSDK.a in Frameworks */,
+				E0039C431BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */,
 				E060CD8F1B8401C00002AEE7 /* Accounts.framework in Frameworks */,
 				E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */,
 				E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */,
@@ -374,6 +605,8 @@
 		B3076E6D2DA86A662569F363 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E0F0483A1BCFFA5300C63540 /* HomeKit.framework */,
+				E0BC15091BC740AC008520AB /* AdSupport.framework */,
 				E0418EDD1BC2BAC500B2788D /* Foundation.framework */,
 				E0418EDB1BC2BABC00B2788D /* UIKit.framework */,
 				E005808D1B9E588700ABDF1A /* Security.framework */,
@@ -395,6 +628,89 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E0039C1F1BCF28C10014ED50 /* ShareSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E0039C201BCF28C10014ED50 /* libraries */,
+			);
+			path = ShareSDK;
+			sourceTree = "<group>";
+		};
+		E0039C201BCF28C10014ED50 /* libraries */ = {
+			isa = PBXGroup;
+			children = (
+				E0039C211BCF28C10014ED50 /* extends */,
+				E0039C371BCF28C10014ED50 /* MOBFoundation.framework */,
+				E0039C381BCF28C10014ED50 /* ShareSDK.bundle */,
+				E0039C391BCF28C10014ED50 /* ShareSDK.framework */,
+				E0039C3A1BCF28C10014ED50 /* ShareSDKConnector.framework */,
+				E0039C3B1BCF28C10014ED50 /* ShareSDKExtension.framework */,
+				E0039C3C1BCF28C10014ED50 /* ShareSDKUI.bundle */,
+				E0039C3D1BCF28C10014ED50 /* ShareSDKUI.framework */,
+			);
+			path = libraries;
+			sourceTree = "<group>";
+		};
+		E0039C211BCF28C10014ED50 /* extends */ = {
+			isa = PBXGroup;
+			children = (
+				E0039C221BCF28C10014ED50 /* QQSDK */,
+				E0039C251BCF28C10014ED50 /* SinaWeiboSDK */,
+				E0039C331BCF28C10014ED50 /* WeChatSDK */,
+			);
+			path = extends;
+			sourceTree = "<group>";
+		};
+		E0039C221BCF28C10014ED50 /* QQSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */,
+				E0039C241BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			path = QQSDK;
+			sourceTree = "<group>";
+		};
+		E0039C251BCF28C10014ED50 /* SinaWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E0039C261BCF28C10014ED50 /* libWeiboSDK.a */,
+				E0039C271BCF28C10014ED50 /* WBHttpRequest+WeiboGame.h */,
+				E0039C281BCF28C10014ED50 /* WBHttpRequest+WeiboShare.h */,
+				E0039C291BCF28C10014ED50 /* WBHttpRequest+WeiboToken.h */,
+				E0039C2A1BCF28C10014ED50 /* WBHttpRequest+WeiboUser.h */,
+				E0039C2B1BCF28C10014ED50 /* WBHttpRequest.h */,
+				E0039C2C1BCF28C10014ED50 /* WBSDKBasicButton.h */,
+				E0039C2D1BCF28C10014ED50 /* WBSDKCommentButton.h */,
+				E0039C2E1BCF28C10014ED50 /* WBSDKRelationshipButton.h */,
+				E0039C2F1BCF28C10014ED50 /* WeiboSDK+Statistics.h */,
+				E0039C301BCF28C10014ED50 /* WeiboSDK.bundle */,
+				E0039C311BCF28C10014ED50 /* WeiboSDK.h */,
+				E0039C321BCF28C10014ED50 /* WeiboUser.h */,
+			);
+			path = SinaWeiboSDK;
+			sourceTree = "<group>";
+		};
+		E0039C331BCF28C10014ED50 /* WeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E0039C341BCF28C10014ED50 /* libWeChatSDK.a */,
+				E0039C351BCF28C10014ED50 /* WXApi.h */,
+				E0039C361BCF28C10014ED50 /* WXApiObject.h */,
+			);
+			path = WeChatSDK;
+			sourceTree = "<group>";
+		};
+		E007CC191BCAA2B600365FA8 /* DeviceScan */ = {
+			isa = PBXGroup;
+			children = (
+				E007CC1A1BCAA2D200365FA8 /* DeviceScanViewController.swift */,
+				E007CC1B1BCAA2D200365FA8 /* DeviceScanViewController.xib */,
+				E007CC201BCAA5DC00365FA8 /* DeviceScanCell.swift */,
+				E007CC211BCAA5DC00365FA8 /* DeviceScanCell.xib */,
+			);
+			path = DeviceScan;
+			sourceTree = "<group>";
+		};
 		E00C00E91B7ECC4A006A4343 /* UserData */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +721,18 @@
 			path = UserData;
 			sourceTree = "<group>";
 		};
+		E015BB511BC52B1F00225C32 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				E015BB521BC52B3900225C32 /* FeedBackViewController.swift */,
+				E015BB531BC52B3900225C32 /* FeedBackViewController.xib */,
+				E015BB591BC5520700225C32 /* FeedbackCell.swift */,
+				E015BB5A1BC5520700225C32 /* FeedbackCell.xib */,
+			);
+			name = Feedback;
+			path = Health/Setting/Feedback;
+			sourceTree = SOURCE_ROOT;
+		};
 		E015ED991B9516D300D66A6B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +740,15 @@
 			);
 			name = ViewModel;
 			path = "../../../../../../../workSpace/Project/好体知/Code/Health/Health/Trend/ViewModel";
+			sourceTree = "<group>";
+		};
+		E01917F81BC80F8F002819CB /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				E01917F91BC80FA4002819CB /* ShareViewController.swift */,
+				E01917FA1BC80FA4002819CB /* ShareViewController.xib */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		E021FCB41B8F5B7900565FDB /* EvaluationDetail */ = {
@@ -422,30 +759,66 @@
 				E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */,
 				E07EE9D31BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift */,
 				E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */,
+				E061AC601BD7915D0046094B /* EvaluationDetailExtendCell.swift */,
+				E061AC611BD7915D0046094B /* EvaluationDetailExtendCell.xib */,
+				E061AC641BD7ABE50046094B /* EvaluationResultTableView.swift */,
+				E0FCC5AF1BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift */,
+				E0FCC5B01BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib */,
+				E0092D381BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift */,
+				E0092D391BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib */,
+				E0092D3C1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift */,
+				E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */,
+				E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */,
 			);
 			name = EvaluationDetail;
 			path = Health/Evaluation/EvaluationDetail;
 			sourceTree = SOURCE_ROOT;
 		};
-		E02979451B801E1500AAE085 /* DeviceManager */ = {
+		E0255E671BC9556300CEE5D4 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				E02979461B801E4900AAE085 /* DeviceManager.swift */,
-				E029794C1B80292500AAE085 /* BluetoothProtocol.swift */,
+				E0255E691BC9556300CEE5D4 /* ResultProtocol.swift */,
+				E0255E6A1BC9556300CEE5D4 /* ScaleResultExtension.swift */,
+				E0255E7A1BC9562A00CEE5D4 /* BraceletResult.swift */,
+				E0255E7D1BC9573E00CEE5D4 /* MyBodyResult.swift */,
+				E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */,
+				E0255E6B1BC9556300CEE5D4 /* ValueStatus.swift */,
+				E0255E6C1BC9556300CEE5D4 /* WeightStatus.swift */,
+				E0255E771BC955BB00CEE5D4 /* StepsType.swift */,
+				E0255E681BC9556300CEE5D4 /* Physique.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		E0255E801BC95B8400CEE5D4 /* DeviceManager */ = {
+			isa = PBXGroup;
+			children = (
+				E0255E811BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift */,
+				E0255E841BC95C8000CEE5D4 /* BraceletManager.swift */,
+				E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */,
+				E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */,
 			);
 			path = DeviceManager;
 			sourceTree = "<group>";
 		};
-		E03B68911B97D0FC00F4C505 /* Bracelet */ = {
+		E02979451B801E1500AAE085 /* DeviceManager */ = {
 			isa = PBXGroup;
 			children = (
-				E03B68921B97D12000F4C505 /* BraceletManager.swift */,
-				E03B689B1B98232C00F4C505 /* BraceletBlueToothFormats.swift */,
-				E03B68931B97D12000F4C505 /* BraceletProtocol.swift */,
-				E03B68981B97D15D00F4C505 /* BraceletResult.swift */,
+				E0255E801BC95B8400CEE5D4 /* DeviceManager */,
+				E0EDBDF01BCE5B4700137FB0 /* BlueToothDataFormats */,
+				E0255E671BC9556300CEE5D4 /* Result */,
+				E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */,
 			);
-			name = Bracelet;
-			path = "../../../../../../workSpace/Project/好体知/Code/Health/DAL/Bracelet";
+			path = DeviceManager;
+			sourceTree = "<group>";
+		};
+		E046FC5A1BDFD10500DC116C /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				E046FC5B1BDFD10500DC116C /* FXBlurView.h */,
+				E046FC5C1BDFD10500DC116C /* FXBlurView.m */,
+			);
+			path = FXBlurView;
 			sourceTree = "<group>";
 		};
 		E05D048C1B8BE7840090137C /* Compents */ = {
@@ -470,6 +843,9 @@
 		E08A24551B807BFA004269BB /* HealthKitAndQQHealth */ = {
 			isa = PBXGroup;
 			children = (
+				E0F048371BCFFA3000C63540 /* HealthDataManager.swift */,
+				E0F0483D1BD070A700C63540 /* HealthKit */,
+				E0F0483E1BD070A700C63540 /* QQHealth */,
 			);
 			path = HealthKitAndQQHealth;
 			sourceTree = "<group>";
@@ -518,6 +894,7 @@
 			isa = PBXGroup;
 			children = (
 				E08B32811B85A6C50040ADE7 /* GoalManager.swift */,
+				E0AF85B21BAABE81005BB95E /* GoalShowInfo.swift */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
@@ -564,6 +941,8 @@
 				E0F9DB0D1B854B9900504454 /* Detail */,
 				E01B20841B9A99DB00951997 /* GoalSettingViewController.swift */,
 				E01B20851B9A99DB00951997 /* GoalSettingViewController.xib */,
+				E09588971BA99E0100033179 /* GoalViewModel.swift */,
+				E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */,
 			);
 			name = Goal;
 			path = BLL/Goal;
@@ -585,6 +964,8 @@
 		E08A24611B807C16004269BB /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				E0E079501BD52086008B8BE3 /* family */,
+				E015BB511BC52B1F00225C32 /* Feedback */,
 				E0F9DB111B854BBA00504454 /* DeviceBind */,
 				E0F9DB121B854BBA00504454 /* Infomation */,
 				E0F9DB131B854BBA00504454 /* ThirdAppBind */,
@@ -671,6 +1052,22 @@
 			path = VScale;
 			sourceTree = "<group>";
 		};
+		E094E01B1BD282EF0017079B /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				E094E01C1BD283060017079B /* HealthManager.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		E094E01F1BD294CB0017079B /* HealthDataHealper */ = {
+			isa = PBXGroup;
+			children = (
+				E094E0201BD294E30017079B /* HealthDataHelper.swift */,
+			);
+			path = HealthDataHealper;
+			sourceTree = "<group>";
+		};
 		E09528891B82A43E00F7B8D0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,7 +1105,9 @@
 		E09EC8B41B7E3B5000CC07E3 /* Health */ = {
 			isa = PBXGroup;
 			children = (
+				E0F0483C1BCFFA5300C63540 /* Health.entitlements */,
 				E09EC8B71B7E3B5000CC07E3 /* AppDelegate.swift */,
+				E01917F81BC80F8F002819CB /* Share */,
 				E05D048C1B8BE7840090137C /* Compents */,
 				E0C50BA21B862A7F007A9393 /* User */,
 				E0F9DB191B85541400504454 /* Extend */,
@@ -718,6 +1117,8 @@
 				E08A24601B807C16004269BB /* Login */,
 				E08A24611B807C16004269BB /* Setting */,
 				E08A24621B807C16004269BB /* Trend */,
+				E007CC191BCAA2B600365FA8 /* DeviceScan */,
+				E0A1D6511BE85B8800BE2C02 /* LaunchAnimation */,
 				E09EC8C01B7E3B5000CC07E3 /* Main.storyboard */,
 				E09EC8C31B7E3B5000CC07E3 /* Images.xcassets */,
 				E09EC8C51B7E3B5000CC07E3 /* LaunchScreen.xib */,
@@ -738,6 +1139,7 @@
 		E09EC8CF1B7E3B5000CC07E3 /* HealthTests */ = {
 			isa = PBXGroup;
 			children = (
+				E0AF85B51BAAF490005BB95E /* BLL */,
 				E0C50B941B861D20007A9393 /* Request */,
 				E09EC8D21B7E3B5000CC07E3 /* HealthTests.swift */,
 				E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */,
@@ -760,6 +1162,7 @@
 		E09EC8DC1B7E3FCC00CC07E3 /* BLL */ = {
 			isa = PBXGroup;
 			children = (
+				E094E01B1BD282EF0017079B /* Health */,
 				E0C50B9E1B862371007A9393 /* User */,
 				E08A24581B807C09004269BB /* Activity */,
 				E08A24591B807C09004269BB /* Evaluation */,
@@ -782,8 +1185,7 @@
 		E09EC8DE1B7E3FCC00CC07E3 /* DAL */ = {
 			isa = PBXGroup;
 			children = (
-				E03B68911B97D0FC00F4C505 /* Bracelet */,
-				E0DD14001B9130480079F957 /* Scale */,
+				E094E01F1BD294CB0017079B /* HealthDataHealper */,
 				E08A24551B807BFA004269BB /* HealthKitAndQQHealth */,
 				E08A24561B807BFA004269BB /* Request */,
 				E08A24571B807BFA004269BB /* Third */,
@@ -813,6 +1215,8 @@
 		E09EC8E21B7E3FCC00CC07E3 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				E046FC5A1BDFD10500DC116C /* FXBlurView */,
+				E0039C1F1BCF28C10014ED50 /* ShareSDK */,
 				E0C588521BA6FD68000955FC /* Charts */,
 				E08A24631B80810A004269BB /* DeviceLib */,
 			);
@@ -828,6 +1232,25 @@
 			);
 			name = Framework;
 			path = Health.xcodeproj;
+			sourceTree = "<group>";
+		};
+		E0A1D6511BE85B8800BE2C02 /* LaunchAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				E0A1D6581BE85DAB00BE2C02 /* launchAnimation.gif */,
+				E0A1D6521BE85BFA00BE2C02 /* LaunchAnimationController.swift */,
+				E0A1D6531BE85BFA00BE2C02 /* LaunchAnimationController.xib */,
+			);
+			path = LaunchAnimation;
+			sourceTree = "<group>";
+		};
+		E0AF85B51BAAF490005BB95E /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+				E0AF85B61BAAF4B8005BB95E /* GoalManagerTests.swift */,
+			);
+			name = BLL;
+			path = "../../../../../../workSpace/Project/好体知/Code/Health/HealthTests/BLL";
 			sourceTree = "<group>";
 		};
 		E0C50B941B861D20007A9393 /* Request */ = {
@@ -860,6 +1283,8 @@
 				E0C50BA31B862AA0007A9393 /* UserSelectView.swift */,
 				E05B1A321B8E04B000B37F1C /* UserView.xib */,
 				E05B1A351B8E077700B37F1C /* UserSelectView.xib */,
+				E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */,
+				E0F7A6B01BC6C36900AF6B8B /* VisitorAddViewController.xib */,
 			);
 			name = User;
 			path = "../../../../../../workSpace/Project/好体知/Code/Health/Health/User";
@@ -884,16 +1309,6 @@
 			path = DoubleYAxisLineChart;
 			sourceTree = "<group>";
 		};
-		E0DD14001B9130480079F957 /* Scale */ = {
-			isa = PBXGroup;
-			children = (
-				E0DD14021B9130480079F957 /* ScaleOld.swift */,
-				E0DD14071B9130730079F957 /* ScaleProtocol.swift */,
-				E0DD140A1B913DE40079F957 /* ScaleResult.swift */,
-			);
-			path = Scale;
-			sourceTree = "<group>";
-		};
 		E0DD140D1B9179330079F957 /* Extend */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,8 +1317,46 @@
 				E05382D51B991C2F002FE2EB /* ConvertData.swift */,
 				E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */,
 				E005808A1B9E55FE00ABDF1A /* Crypto.swift */,
+				E01918001BC81B98002819CB /* UIView_ConvertToImage.swift */,
 			);
 			path = Extend;
+			sourceTree = "<group>";
+		};
+		E0E079501BD52086008B8BE3 /* family */ = {
+			isa = PBXGroup;
+			children = (
+				E0E079511BD520A9008B8BE3 /* FamilyMembersViewController.swift */,
+				E0E079521BD520A9008B8BE3 /* FamilyMembersViewController.xib */,
+				E0E079551BD521CF008B8BE3 /* FamilyMembersCell.swift */,
+				E0E079561BD521CF008B8BE3 /* FamilyMembersCell.xib */,
+			);
+			name = family;
+			path = Health/Setting/family;
+			sourceTree = SOURCE_ROOT;
+		};
+		E0EDBDF01BCE5B4700137FB0 /* BlueToothDataFormats */ = {
+			isa = PBXGroup;
+			children = (
+				E0EDBDF11BCE5B4700137FB0 /* BraceletBlueToothFormats.swift */,
+				E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */,
+			);
+			path = BlueToothDataFormats;
+			sourceTree = "<group>";
+		};
+		E0F0483D1BD070A700C63540 /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */,
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		E0F0483E1BD070A700C63540 /* QQHealth */ = {
+			isa = PBXGroup;
+			children = (
+				E0F048421BD0779700C63540 /* QQHealthManager.swift */,
+			);
+			path = QQHealth;
 			sourceTree = "<group>";
 		};
 		E0F9DB0D1B854B9900504454 /* Detail */ = {
@@ -913,6 +1366,8 @@
 				E0A0B1231B8B53C200E9BF69 /* SportDetailViewController.xib */,
 				E0A0B1261B8B53D200E9BF69 /* SleepDetailViewController.swift */,
 				E0A0B1271B8B53D200E9BF69 /* SleepDetailViewController.xib */,
+				E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */,
+				E09AAC521BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib */,
 			);
 			name = Detail;
 			path = Health/Goal/Detail;
@@ -921,6 +1376,10 @@
 		E0F9DB111B854BBA00504454 /* DeviceBind */ = {
 			isa = PBXGroup;
 			children = (
+				E0418EF21BC3552C00B2788D /* DeviceBindViewController.swift */,
+				E0418EF31BC3552C00B2788D /* DeviceBindViewController.xib */,
+				E0418EF81BC3554800B2788D /* DeviceBindCell.swift */,
+				E0418EF91BC3554800B2788D /* DeviceBindCell.xib */,
 			);
 			name = DeviceBind;
 			path = Health/Setting/DeviceBind;
@@ -937,6 +1396,14 @@
 		E0F9DB131B854BBA00504454 /* ThirdAppBind */ = {
 			isa = PBXGroup;
 			children = (
+				E0418EE61BC34B2600B2788D /* ThirdPlatformBindController.swift */,
+				E0418EE71BC34B2600B2788D /* ThirdPlatformBindController.xib */,
+				E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */,
+				E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */,
+				E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */,
+				E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */,
+				E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */,
+				E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */,
 			);
 			name = ThirdAppBind;
 			path = Health/Setting/ThirdAppBind;
@@ -1007,6 +1474,7 @@
 				E09EC8AF1B7E3B5000CC07E3 /* Frameworks */,
 				E09EC8B01B7E3B5000CC07E3 /* Resources */,
 				2241F97EB4DAE1A938D48145 /* Copy Pods Resources */,
+				2C47D2FA709847369C92A596 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1053,6 +1521,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.HomeKit = {
+								enabled = 1;
+							};
 						};
 					};
 					E09EC8CB1B7E3B5000CC07E3 = {
@@ -1086,22 +1557,47 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0A1D6591BE85DAB00BE2C02 /* launchAnimation.gif in Resources */,
+				E0039C441BCF28C10014ED50 /* WeiboSDK.bundle in Resources */,
+				E015BB5D1BC5520700225C32 /* FeedbackCell.xib in Resources */,
+				E007CC1E1BCAA2D200365FA8 /* DeviceScanViewController.xib in Resources */,
 				E0FBED3C1B835BEE00A70598 /* LoginViewController.xib in Resources */,
 				E09EC8C21B7E3B5000CC07E3 /* Main.storyboard in Resources */,
+				E0FCC5B21BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib in Resources */,
+				E0092D3F1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib in Resources */,
 				E09EC8C71B7E3B5000CC07E3 /* LaunchScreen.xib in Resources */,
 				E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */,
 				E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */,
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
 				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
+				E0E079541BD520A9008B8BE3 /* FamilyMembersViewController.xib in Resources */,
+				E0A1D6551BE85BFA00BE2C02 /* LaunchAnimationController.xib in Resources */,
+				E09AAC541BB05C4A00CE2CCB /* GoalDetailTableViewCell.xib in Resources */,
+				E0418EF61BC3552C00B2788D /* DeviceBindViewController.xib in Resources */,
+				E0039C4A1BCF28C10014ED50 /* ShareSDK.bundle in Resources */,
+				E0418EEA1BC34B2600B2788D /* ThirdPlatformBindController.xib in Resources */,
 				E0A0B1251B8B53C200E9BF69 /* SportDetailViewController.xib in Resources */,
+				E0E079581BD521CF008B8BE3 /* FamilyMembersCell.xib in Resources */,
+				E01917FD1BC80FA4002819CB /* ShareViewController.xib in Resources */,
+				E007CC241BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */,
+				E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
+				E0039C521BCF28C10014ED50 /* ShareSDKUI.bundle in Resources */,
+				E0E5DE951BC88A89001BCCD1 /* BindPhoneViewController.xib in Resources */,
+				E0039C401BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
 				E0F9DAF51B85456600504454 /* LoginAdsViewController.xib in Resources */,
+				E061AC631BD7915D0046094B /* EvaluationDetailExtendCell.xib in Resources */,
 				E08B32A61B85A9CC0040ADE7 /* CompleteInfoViewController.xib in Resources */,
 				E09EC8C41B7E3B5000CC07E3 /* Images.xcassets in Resources */,
+				E0092D3B1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.xib in Resources */,
+				E0F7A6B31BC6C36900AF6B8B /* VisitorAddViewController.xib in Resources */,
 				E021FCB31B8F5A8D00565FDB /* TrendDetailViewController.xib in Resources */,
+				E015BB561BC52B3900225C32 /* FeedBackViewController.xib in Resources */,
+				E0418EFC1BC3554800B2788D /* DeviceBindCell.xib in Resources */,
 				E0F9DAFB1B85488300504454 /* GUIViewController.xib in Resources */,
 				E01B20871B9A99DB00951997 /* GoalSettingViewController.xib in Resources */,
+				E0E5DE911BC88A78001BCCD1 /* BindOrganzationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,7 +1605,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E07EE9D81BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */,
+				E0039C531BCF28C10014ED50 /* ShareSDKUI.bundle in Resources */,
+				E015BB5E1BC5520700225C32 /* FeedbackCell.xib in Resources */,
+				E0039C411BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				E007CC251BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */,
+				E0418EF11BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
+				E0039C4B1BCF28C10014ED50 /* ShareSDK.bundle in Resources */,
+				E0418EFD1BC3554800B2788D /* DeviceBindCell.xib in Resources */,
+				E0039C451BCF28C10014ED50 /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,6 +1632,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C47D2FA709847369C92A596 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AED071744AB930546A88F55B /* Check Pods Manifest.lock */ = {
@@ -1153,16 +1671,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E029794D1B80292500AAE085 /* BluetoothProtocol.swift in Sources */,
 				E09EC8B81B7E3B5000CC07E3 /* AppDelegate.swift in Sources */,
 				E0F9DB081B854B8200504454 /* EvaluationViewController.swift in Sources */,
+				E0418EEE1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
 				E0C50BA01B862381007A9393 /* UserManager.swift in Sources */,
-				E0DD14051B9130480079F957 /* ScaleOld.swift in Sources */,
 				E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */,
 				E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */,
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
+				E0E079571BD521CF008B8BE3 /* FamilyMembersCell.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
+				E0F048401BD070C700C63540 /* AppleHealthKitManager.swift in Sources */,
+				E0E079531BD520A9008B8BE3 /* FamilyMembersViewController.swift in Sources */,
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
+				E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
+				E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */,
+				E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
 				E08B32971B85A8B00040ADE7 /* CompleteGenderDataView.swift in Sources */,
 				E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */,
@@ -1171,62 +1694,96 @@
 				E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */,
 				E0FBED3A1B835BEE00A70598 /* LoginViewController.swift in Sources */,
 				E0FBED301B83539000A70598 /* VScaleManager.m in Sources */,
-				E02979471B801E4900AAE085 /* DeviceManager.swift in Sources */,
+				E046FC591BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift in Sources */,
 				E00580881B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
+				E094E0211BD294E30017079B /* HealthDataHelper.swift in Sources */,
 				E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */,
 				E060CD961B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
+				E09AAC531BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift in Sources */,
+				E094E01D1BD283060017079B /* HealthManager.swift in Sources */,
 				E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */,
 				E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */,
 				E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */,
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
+				E046FC5D1BDFD10500DC116C /* FXBlurView.m in Sources */,
+				E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */,
+				E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
+				E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E00C00EB1B7ECC6D006A4343 /* UserData.swift in Sources */,
+				E0255E851BC95C8000CEE5D4 /* BraceletManager.swift in Sources */,
 				E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */,
+				E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */,
+				E0255E7B1BC9562A00CEE5D4 /* BraceletResult.swift in Sources */,
 				E05B1A301B8E028900B37F1C /* Alert.swift in Sources */,
+				E0418EF41BC3552C00B2788D /* DeviceBindViewController.swift in Sources */,
 				E060CD111B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
+				E0255E821BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift in Sources */,
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
 				E08B32941B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift in Sources */,
+				E0EDBDF41BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */,
 				E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */,
+				E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */,
+				E0255E7E1BC9573E00CEE5D4 /* MyBodyResult.swift in Sources */,
 				E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */,
+				E061AC651BD7ABE50046094B /* EvaluationResultTableView.swift in Sources */,
 				E08B32A41B85A9CC0040ADE7 /* CompleteInfoViewController.swift in Sources */,
 				E08A24541B807BE4004269BB /* DBManager.swift in Sources */,
+				E0F7A6B11BC6C36900AF6B8B /* VisitorAddViewController.swift in Sources */,
 				E038D1FD1B9ABFE80011A61E /* UserGoalData.swift in Sources */,
 				E08B32821B85A6C50040ADE7 /* GoalManager.swift in Sources */,
+				E0255E6F1BC9556300CEE5D4 /* ResultProtocol.swift in Sources */,
+				E0F048381BCFFA3000C63540 /* HealthDataManager.swift in Sources */,
 				E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */,
 				E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */,
-				E0DD140B1B913DE40079F957 /* ScaleResult.swift in Sources */,
+				E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
+				E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */,
+				E0A1D6541BE85BFA00BE2C02 /* LaunchAnimationController.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
+				E0255E881BC9680300CEE5D4 /* MyBodyManager.swift in Sources */,
 				E0CD63131BA2501A00477090 /* UserModel.swift in Sources */,
+				E061AC621BD7915D0046094B /* EvaluationDetailExtendCell.swift in Sources */,
 				E0A45B251B9E8FC40085E5B5 /* RequestType.swift in Sources */,
 				E05D048E1B8BE7DC0090137C /* CircleView.swift in Sources */,
 				E021FCB71B8F5B8E00565FDB /* EvaluationDetailViewController.swift in Sources */,
 				E0F9DAF91B85488300504454 /* GUIViewController.swift in Sources */,
 				E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */,
-				E0DD14081B9130730079F957 /* ScaleProtocol.swift in Sources */,
-				E03B68941B97D12000F4C505 /* BraceletManager.swift in Sources */,
+				E0255E711BC9556300CEE5D4 /* ScaleResultExtension.swift in Sources */,
+				E0F048431BD0779700C63540 /* QQHealthManager.swift in Sources */,
+				E0255E8B1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */,
+				E0EDBDF31BCE5B4700137FB0 /* BraceletBlueToothFormats.swift in Sources */,
+				E0E735CD1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift in Sources */,
 				E04256D61BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
 				E01C81591B8804AF00A1F7AC /* Device.swift in Sources */,
-				E03B68991B97D15D00F4C505 /* BraceletResult.swift in Sources */,
+				E0E5DE901BC88A78001BCCD1 /* BindOrganzationViewController.swift in Sources */,
 				E015ED9B1B9516F200D66A6B /* TrendViewModel.swift in Sources */,
 				E0039BD61BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
 				E0F9DAF31B85456600504454 /* LoginAdsViewController.swift in Sources */,
+				E0092D3E1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.swift in Sources */,
+				E0255E6D1BC9556300CEE5D4 /* Physique.swift in Sources */,
+				E0092D3A1BDA77F300396A46 /* EvaluationPhysiqueDetailCell.swift in Sources */,
 				E08B329D1B85A91E0040ADE7 /* CompleteAgeDataView.swift in Sources */,
+				E007CC1C1BCAA2D200365FA8 /* DeviceScanViewController.swift in Sources */,
 				E08B328E1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
 				E0F9DB051B854B7300504454 /* ActivityViewController.swift in Sources */,
-				E03B68961B97D12000F4C505 /* BraceletProtocol.swift in Sources */,
 				E09EC8E31B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0A0B1281B8B53D200E9BF69 /* SleepDetailViewController.swift in Sources */,
+				E0255E781BC955BB00CEE5D4 /* StepsType.swift in Sources */,
 				E00580851B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
-				E03B689C1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */,
+				E0255E751BC9556300CEE5D4 /* WeightStatus.swift in Sources */,
+				E0418EFA1BC3554800B2788D /* DeviceBindCell.swift in Sources */,
 				E08B329A1B85A8C50040ADE7 /* CompleteHeightDataView.swift in Sources */,
 				E08B328B1B85A7210040ADE7 /* TrendManager.swift in Sources */,
 				E0A0B1241B8B53C200E9BF69 /* SportDetailViewController.swift in Sources */,
 				E0F9DB0F1B854BAF00504454 /* SettingViewController.swift in Sources */,
 				E0FBED451B835C9100A70598 /* ResponseDataFilter.swift in Sources */,
+				E0255E731BC9556300CEE5D4 /* ValueStatus.swift in Sources */,
 				E0F9DAEF1B84D4D300504454 /* EvaluationManager.swift in Sources */,
+				E0418EE81BC34B2600B2788D /* ThirdPlatformBindController.swift in Sources */,
+				E0FCC5B11BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,63 +1791,95 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0039BDE1BCF28370014ED50 /* DoubleYAxisLineChart.swift in Sources */,
+				E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */,
+				E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */,
+				E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */,
+				E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */,
+				E0039BEC1BCF28370014ED50 /* CompleteHeadAndNameDataView.swift in Sources */,
+				E0039BED1BCF28370014ED50 /* CompleteGenderDataView.swift in Sources */,
+				E0039BEE1BCF28370014ED50 /* CompleteHeightDataView.swift in Sources */,
+				E0039BEF1BCF28370014ED50 /* CompleteAgeDataView.swift in Sources */,
+				E0039BF01BCF28370014ED50 /* CompleteOrganizationDataView.swift in Sources */,
+				E0039BF21BCF28370014ED50 /* TrendViewModel.swift in Sources */,
+				E094E01E1BD283060017079B /* HealthManager.swift in Sources */,
+				E0EDBDF51BCE5B8E00137FB0 /* BraceletBlueToothFormats.swift in Sources */,
+				E0EDBDF61BCE5B8E00137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */,
+				E0EDBDEF1BCE5B3A00137FB0 /* MyBodyMiniAndPlusResult.swift in Sources */,
+				E0D403FE1BCAC51D001F8A15 /* ShareData.swift in Sources */,
+				E0D403FF1BCAC51D001F8A15 /* ShareData+CoreDataProperties.swift in Sources */,
+				E0255E7F1BC9573E00CEE5D4 /* MyBodyResult.swift in Sources */,
 				E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */,
+				E007CC231BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
 				E00580891B9DE8CA00ABDF1A /* ScoreRequest.swift in Sources */,
-				E03B68951B97D12000F4C505 /* BraceletManager.swift in Sources */,
 				E0DD14101B91795A0079F957 /* ConvertString.swift in Sources */,
-				E0DD14091B9130730079F957 /* ScaleProtocol.swift in Sources */,
 				E005807C1B9DE6DC00ABDF1A /* EvaluationRequstTests.swift in Sources */,
 				E01C815B1B880C3D00A1F7AC /* DBCoreDataManager.swift in Sources */,
 				E01C815C1B880C3D00A1F7AC /* DBManager.swift in Sources */,
 				E0C50B931B861A04007A9393 /* UserRequest.swift in Sources */,
-				E07EE9D61BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E0A45B211B9E7E340085E5B5 /* CryptoTests.swift in Sources */,
-				E0DD14061B9130480079F957 /* ScaleOld.swift in Sources */,
+				E0255E741BC9556300CEE5D4 /* ValueStatus.swift in Sources */,
+				E0255E7C1BC9562A00CEE5D4 /* BraceletResult.swift in Sources */,
+				E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */,
 				E060CD151B8377E50002AEE7 /* AdsRequest.swift in Sources */,
+				E0255E791BC955BB00CEE5D4 /* StepsType.swift in Sources */,
 				E0CD63171BA2511F00477090 /* UserDBData.swift in Sources */,
 				E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */,
 				E0FBED311B83539000A70598 /* VScaleManager.m in Sources */,
 				E01C815A1B8804AF00A1F7AC /* Device.swift in Sources */,
 				E0C50B9D1B861DAC007A9393 /* UserReqeustTests.swift in Sources */,
-				E029794E1B80292500AAE085 /* BluetoothProtocol.swift in Sources */,
 				E0FBED341B835BA900A70598 /* LoginManager.swift in Sources */,
+				E0255E861BC95C8000CEE5D4 /* BraceletManager.swift in Sources */,
+				E015BB5C1BC5520700225C32 /* FeedbackCell.swift in Sources */,
 				E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
+				E0255E8C1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */,
 				E0FBED441B835C9100A70598 /* Request.swift in Sources */,
+				E0F048411BD070C700C63540 /* AppleHealthKitManager.swift in Sources */,
 				E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */,
+				E0255E721BC9556300CEE5D4 /* ScaleResultExtension.swift in Sources */,
 				E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
 				E0A45B231B9E83500085E5B5 /* RequestTests.swift in Sources */,
+				E0F048391BCFFA3000C63540 /* HealthDataManager.swift in Sources */,
 				E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */,
 				E00C00EC1B7ECC6D006A4343 /* UserData.swift in Sources */,
-				E03B689D1B98232C00F4C505 /* BraceletBlueToothFormats.swift in Sources */,
 				E060CD121B836F1C0002AEE7 /* LoginRequest.swift in Sources */,
+				E0255E701BC9556300CEE5D4 /* ResultProtocol.swift in Sources */,
 				E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */,
 				E005807E1B9DE73F00ABDF1A /* GoalRequestTests.swift in Sources */,
+				E0418EFB1BC3554800B2788D /* DeviceBindCell.swift in Sources */,
 				E00580861B9DE8A600ABDF1A /* GoalRequest.swift in Sources */,
 				E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */,
-				E02979481B801E4900AAE085 /* DeviceManager.swift in Sources */,
+				E0255E761BC9556300CEE5D4 /* WeightStatus.swift in Sources */,
+				E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
 				E05B1A311B8E028900B37F1C /* Alert.swift in Sources */,
+				E01918021BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
+				E094E0221BD294E30017079B /* HealthDataHelper.swift in Sources */,
+				E0255E891BC9680300CEE5D4 /* MyBodyManager.swift in Sources */,
 				E09EC8D31B7E3B5000CC07E3 /* HealthTests.swift in Sources */,
+				E0418EEF1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
 				E08B32831B85A6C50040ADE7 /* GoalManager.swift in Sources */,
 				E00C00F01B7ECE84006A4343 /* DBManagerTests.swift in Sources */,
 				E005808C1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E00580801B9DE78C00ABDF1A /* ScoreRequestTests.swift in Sources */,
 				E08B32891B85A7020040ADE7 /* SettingManager.swift in Sources */,
-				E03B68971B97D12000F4C505 /* BraceletProtocol.swift in Sources */,
+				E0255E6E1BC9556300CEE5D4 /* Physique.swift in Sources */,
 				E0C50B991B861D7F007A9393 /* LoginReqeustTests.swift in Sources */,
 				E0C50BA11B862381007A9393 /* UserManager.swift in Sources */,
+				E0F048441BD0779700C63540 /* QQHealthManager.swift in Sources */,
 				E08B328F1B85A7660040ADE7 /* ActivityManager.swift in Sources */,
 				E0CD63141BA2501A00477090 /* UserModel.swift in Sources */,
 				E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */,
 				E00580831B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0F70D511B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B328C1B85A7210040ADE7 /* TrendManager.swift in Sources */,
-				E0DD140C1B913DE40079F957 /* ScaleResult.swift in Sources */,
+				E0AF85B41BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
 				E0C50B9B1B861D97007A9393 /* AdsReqeustTests.swift in Sources */,
 				E09EC8E41B7E3FCC00CC07E3 /* Health.xcdatamodeld in Sources */,
 				E0FBED461B835C9100A70598 /* ResponseDataFilter.swift in Sources */,
-				E03B689A1B97D15D00F4C505 /* BraceletResult.swift in Sources */,
 				E0FDBBC21B9D81D800AE1A7C /* ScaleResultTests.swift in Sources */,
 				E0F9DAF01B84D4D300504454 /* EvaluationManager.swift in Sources */,
+				E0AF85B71BAAF4B8005BB95E /* GoalManagerTests.swift in Sources */,
+				E0255E831BC95BBF00CEE5D4 /* DeviceManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,7 +2006,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1438,17 +2029,16 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-SDWebImage\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-lz",
 					"-lstdc++",
 					"-lsqlite3",
 					"-licucore",
+					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
@@ -1465,7 +2055,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1486,17 +2078,16 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries/extends/WeChatSDK",
 				);
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-SDWebImage\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-lz",
 					"-lstdc++",
 					"-lsqlite3",
 					"-licucore",
+					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
@@ -1526,6 +2117,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = HealthTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1568,6 +2160,7 @@
 					"$(PROJECT_DIR)/Vender/ShareSDK/libraries",
 				);
 				INFOPLIST_FILE = HealthTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -81,7 +81,7 @@ class EvaluationRequstTests: XCTestCase {
             "timestamp" : NSDate().secondTimeInteval()
             ])
         
-        EvaluationRequest.uploadEvaluationDatas(datas) { (info, error: NSError?) -> Void in
+        EvaluationRequest.uploadEvaluationDatas(UserManager.mainUser.userId, datas: datas) { (info, error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_evaluationRequest_uploadDatas_isSucess 错误: \(error?.description)")
         }

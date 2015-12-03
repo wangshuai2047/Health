@@ -12,12 +12,13 @@ class SettingViewController: UIViewController {
 
     // 数据格式为  (ImageName, Title, 进入的Controller)
     var list: [(String, String, UIViewController)] = [
-        ("membersManager", "成员资料修改管理", UIViewController()),
-//        ("socialBind", "社交账号绑定管理", UIViewController()),
-//        ("deviceManager", "健康设备管理", UIViewController()),
+//        ("membersManager", "成员资料修改管理", UIViewController()),
+        ("membersManager", "人员资料修改管理", FamilyMembersViewController()),
+        ("socialBind", "社交账号绑定管理", ThirdPlatformBindController()),
+        ("deviceManager", "健康设备管理", DeviceBindViewController()),
+        ("feedback", "用户建议反馈", FeedBackViewController()),
 //        ("HealthCenterBind", "健康中心绑定", UIViewController()),
 //        ("checkUpdate", "检查软件更新", UIViewController()),
-//        ("feedback", "用户建议反馈", UIViewController()),
     ]
 //    var list: [(String, String, UIViewController)] = [
 //        ("membersManager", "成员资料修改管理", UIViewController()),
@@ -86,13 +87,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == list.count {
+            SettingManager.removeLocalNotification()
             LoginManager.logout()
             AppDelegate.applicationDelegate().changeToLoginController()
         }
-        else if indexPath.row == 0 {
+        else if indexPath.row == -1 {
             // 成员资料修改管理
             let controller = CompleteInfoViewController()
+            controller.userModel = UserManager.mainUser
             controller.canBack = true
+            controller.delegate = self
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
         }
 //        else if indexPath.row == 1 {
@@ -120,5 +124,22 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
+    }
+}
+
+extension SettingViewController: CompleteInfoDelegate {
+    
+    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+        
+        LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { (error) -> Void in
+            
+            if error == nil {
+                // 跳转到主页
+                controller.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            }
+        })
     }
 }

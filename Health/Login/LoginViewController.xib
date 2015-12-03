@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -7,11 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Health" customModuleProvider="target">
             <connections>
+                <outlet property="QQLoginButton" destination="Lf7-wK-7ZX" id="yCp-IX-3IW"/>
                 <outlet property="logoUpConstraint" destination="U6g-Iv-79n" id="PQn-l6-cfF"/>
                 <outlet property="passwordTextField" destination="C9H-8g-DBW" id="3R1-AK-B9S"/>
                 <outlet property="reQueryCaptchasButton" destination="X9s-Gk-rUK" id="qtW-e5-Pog"/>
                 <outlet property="usernameTextField" destination="Xxy-2s-eyw" id="mfI-U5-31y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weiBoLoginButton" destination="OBp-Ns-ZPu" id="56I-1Q-mqd"/>
+                <outlet property="weiChatLoginButton" destination="QhU-4m-Abq" id="9Ot-xF-zEB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,6 +24,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="neq-6G-lfB">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -30,6 +34,7 @@
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用社交账号快速登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-SG-zwU">
                     <rect key="frame" x="198" y="26" width="205" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="205" id="Gu7-4D-vwn"/>
                         <constraint firstAttribute="height" constant="21" id="uMF-cX-cg4"/>
@@ -40,6 +45,7 @@
                 </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhU-4m-Abq">
                     <rect key="frame" x="176" y="78" width="77" height="76"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="77" id="53e-d0-xau"/>
                         <constraint firstAttribute="height" constant="76" id="QKB-xw-kbp"/>
@@ -57,6 +63,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-wK-7ZX">
                     <rect key="frame" x="261" y="78" width="77" height="76"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="lrT-jv-lrA"/>
                         <constraint firstAttribute="width" constant="77" id="naW-mV-4Nc"/>
@@ -74,6 +81,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBp-Ns-ZPu">
                     <rect key="frame" x="346" y="78" width="77" height="76"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="5aY-as-Llc"/>
                         <constraint firstAttribute="width" constant="77" id="mMp-zU-CNm"/>
@@ -91,6 +99,7 @@
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xxy-2s-eyw">
                     <rect key="frame" x="177" y="285" width="247" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="247" id="3MK-cQ-jxA"/>
                         <constraint firstAttribute="height" constant="30" id="eCD-fJ-nVt"/>
@@ -103,6 +112,7 @@
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C9H-8g-DBW">
                     <rect key="frame" x="177" y="361" width="247" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Ftk-PG-4F2"/>
                         <constraint firstAttribute="width" constant="247" id="MAW-Xa-dKa"/>
@@ -115,6 +125,7 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9s-Gk-rUK">
                     <rect key="frame" x="177" y="323" width="247" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="247" id="RVq-u7-cOM"/>
                         <constraint firstAttribute="height" constant="30" id="VFA-uZ-KMr"/>
@@ -130,6 +141,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPv-on-tnh">
                     <rect key="frame" x="177" y="562" width="247" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="247" id="37y-BF-Ok9"/>
                         <constraint firstAttribute="height" constant="30" id="mh2-Wh-srK"/>
@@ -145,6 +157,7 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用手机号码验证登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sap-6F-v8H">
                     <rect key="frame" x="177" y="237" width="247" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="247" id="APm-lT-2tR"/>
                         <constraint firstAttribute="height" constant="21" id="irs-XH-8Rt"/>
@@ -155,6 +168,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVK-me-4u8">
                     <rect key="frame" x="8" y="195" width="584" height="21"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="584" id="3uJ-nV-coC"/>
                         <constraint firstAttribute="height" constant="21" id="cfR-Jp-nyq"/>
@@ -166,6 +180,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Va6-9u-BOA">
                     <rect key="frame" x="177" y="399" width="247" height="30"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="uLW-fp-lkK"/>
                         <constraint firstAttribute="width" constant="247" id="uac-ok-isu"/>
@@ -180,6 +195,7 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="neq-6G-lfB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="09z-cF-LwW"/>
@@ -209,7 +225,7 @@
                 <constraint firstAttribute="centerX" secondItem="sap-6F-v8H" secondAttribute="centerX" id="xzk-0Q-VGs"/>
                 <constraint firstAttribute="centerX" secondItem="OPv-on-tnh" secondAttribute="centerX" id="yLF-D9-dKc"/>
             </constraints>
-            <point key="canvasLocation" x="-92" y="97"/>
+            <point key="canvasLocation" x="47" y="101"/>
         </view>
     </objects>
     <resources>

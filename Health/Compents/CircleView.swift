@@ -20,6 +20,9 @@ class CircleView: UIView {
     
     func draw() {
         
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.3)
+        UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
         var total: Double = 0
         for (progress, _) in self.datas {
             total += progress
@@ -30,7 +33,7 @@ class CircleView: UIView {
             
             let (progress,color) = self.datas[i]
             
-            var layer = CAShapeLayer()
+            let layer = CAShapeLayer()
             layer.bounds = self.bounds
             layer.fillColor = nil
             layer.lineWidth = self.progressWidth
@@ -38,11 +41,13 @@ class CircleView: UIView {
             layer.strokeColor = color.CGColor
             self.layer.addSublayer(layer)
             
-            var path = UIBezierPath(arcCenter: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height), radius: CGFloat((self.bounds.size.width-progressWidth)/2), startAngle: startAngle, endAngle: startAngle + CGFloat(M_PI * 2 * progress / total), clockwise: true)
+            let path = UIBezierPath(arcCenter: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height), radius: CGFloat((self.bounds.size.width-progressWidth)/2), startAngle: startAngle, endAngle: startAngle + CGFloat(M_PI * 2 * progress / total), clockwise: true)
             layer.path = path.CGPath
             
             startAngle += CGFloat(M_PI * 2 * progress / total)
         }
+        
+        UIView.commitAnimations()
     }
     
     // Only override drawRect: if you perform custom drawing.

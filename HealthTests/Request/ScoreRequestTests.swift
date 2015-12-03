@@ -36,10 +36,10 @@ class ScoreRequestTests: XCTestCase {
     func test_ScoreRequest_queryScore_isSucess() {
         let expectation = expectationWithDescription("test_ScoreRequest_queryScore_isSucess")
         
-        ScoreRequest.queryScore(1234, complete: { (score: Float?, error: NSError?) -> Void in
+        ScoreRequest.queryScore(1234) { (allscore, monthscore, rank, monthrank, error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error?.description)")
-        })
+        }
         
         waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
             

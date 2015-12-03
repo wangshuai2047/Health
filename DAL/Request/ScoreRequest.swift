@@ -9,19 +9,25 @@
 import Foundation
 
 struct ScoreRequest {
-    static func queryScore(userId: Int, complete: ((Float?, NSError?) -> Void)) {
+    // 'allscore'总积分,'monthscore',当月积分'rank',会员等级 'monthrank' 当月等级
+    static func queryScore(userId: Int, complete: ((allscore: Int?, monthscore: Int?, rank: Int?, monthrank: Int?, NSError?) -> Void)) {
         
         RequestType.QueryScore.startRequest(["userId": userId], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(nil, err)
+                complete(allscore: nil,monthscore: nil,rank: nil,monthrank: nil, err)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(jsonObj?.valueForKey("score") as? Float, nil)
+                let scoreInfo = jsonObj?.valueForKey("score") as? NSDictionary
+                let allscore = scoreInfo?.valueForKey("allscore") as? Int
+                let monthscore = scoreInfo?.valueForKey("monthscore") as? Int
+                let rank = scoreInfo?.valueForKey("rank") as? Int
+                let monthrank = scoreInfo?.valueForKey("monthrank") as? Int
+                complete(allscore: allscore,monthscore: monthscore,rank: rank,monthrank: monthrank,nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

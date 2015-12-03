@@ -46,6 +46,10 @@ struct Request {
 // PHP Style
 extension Request {
     
+    static func requestPHPPathURL() -> String {
+        return "http://123.56.131.212/api/"
+    }
+    
     static func requestPHPURL() -> String {
         return "http://123.56.131.212/api/index.php"
     }
@@ -54,7 +58,7 @@ extension Request {
         // create request
         let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestPHPURL())!)
         request.HTTPMethod = "POST"
-        
+        request.timeoutInterval = 15
         request.HTTPBody = generatePHPStyleBodyStr(requestType.rawValue, params: params).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in

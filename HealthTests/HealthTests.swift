@@ -28,11 +28,6 @@ class HealthTests: XCTestCase {
     }
     
     func test_timezone() {
-        var timeZone = NSTimeZone.systemTimeZone()
-        
-        print("\(timeZone.secondsFromGMT / 60 / 60)")
-        
-        GoalManager.querySevenDaysData()
     }
     
     func testPerformanceExample() {

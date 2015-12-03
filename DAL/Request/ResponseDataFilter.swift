@@ -15,11 +15,14 @@ extension Request {
         var err : NSError?
         
         do {
+            let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+            
+            print("responseJson", jsonStr)
+            
+            
             let result : NSDictionary? = try NSJSONSerialization.JSONObjectWithData(data,  options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
             
-            let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
             let message: AnyObject? = result?.valueForKey("errormsg")
-            print("responseJson", jsonStr)
             print("responseStr: \(result) \(message)")
             
             if let jsonObj = result {
@@ -45,10 +48,6 @@ extension Request {
         } catch let error1 as NSError {
             return (nil, error1)
         }
-        
-        
-        
-        
     }
     
     // 处理返回数据

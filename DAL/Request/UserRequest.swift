@@ -53,16 +53,19 @@ struct UserRequest {
         }
         
         if imageURL != nil {
-            let image = UIImage(contentsOfFile: imageURL!)
-            let data = UIImageJPEGRepresentation(image!, 1)
             
-            let options: NSDataBase64EncodingOptions = [
-                .Encoding76CharacterLineLength,
-                .EncodingEndLineWithLineFeed
-            ]
-            if let base64String = data?.base64EncodedStringWithOptions(options) {
-                params["head"] = base64String
+            if let image = UIImage(contentsOfFile: imageURL!) {
+                let data = UIImageJPEGRepresentation(image, 1)
+                
+                let options: NSDataBase64EncodingOptions = [
+                    .Encoding76CharacterLineLength,
+                    .EncodingEndLineWithLineFeed
+                ]
+                if let base64String = data?.base64EncodedStringWithOptions(options) {
+                    params["head"] = base64String
+                }
             }
+            
         }
         
         RequestType.CompleteUserInfo.startRequest(params, completionHandler: { (data, response, error) -> Void in
@@ -102,19 +105,36 @@ struct UserRequest {
         })
     }
     
-    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool, complete: ((userId: Int?, NSError?) -> Void)) {
-        RequestType.CreateUser.startRequest(["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)], completionHandler: { (data, response, error) -> Void in
+    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool,imageURL: String?, complete: ((userId: Int?, headURL: String?, NSError?) -> Void)) {
+        
+        var params = ["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)]
+        
+        if imageURL != nil {
+            if let image = UIImage(contentsOfFile: imageURL!) {
+                let data = UIImageJPEGRepresentation(image, 1)
+                
+                let options: NSDataBase64EncodingOptions = [
+                    .Encoding76CharacterLineLength,
+                    .EncodingEndLineWithLineFeed
+                ]
+                if let base64String = data?.base64EncodedStringWithOptions(options) {
+                    params["head"] = base64String
+                }
+            }
+        }
+        
+        RequestType.CreateUser.startRequest(params, completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(userId: nil, err)
+                complete(userId: nil, headURL: nil, err)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(userId: jsonObj?.valueForKey("userId") as? Int, nil)
+                complete(userId: jsonObj?.valueForKey("userId") as? Int, headURL: jsonObj?.valueForKey("headURL") as? String, nil)
                 #if DEBUG
                     println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
                 #endif

@@ -9,35 +9,53 @@
 import Foundation
 
 protocol DBUserProtocol {
-    func queryAllUser() -> [[String: NSObject]]
+    func queryAllUser() -> [[String: AnyObject]]
     func addUser(setDatas:(inout setDatas: UserDBData)-> UserDBData)
-    func deleteUser(userId: UInt8)
+    func addOrUpdateUser(userModel: UserModel)
+    func deleteUser(userId: Int)
+    func queryUser(userId: Int) -> [String: AnyObject]?
+    func deleteAllUser()
 }
 
 protocol DBEvaluationProtocol {
-    func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData)
-    func deleteEvaluationData(dataId: String)
-    func queryEvaluationData(dataId: String) -> [String: NSObject]?
-    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: NSObject]]
-    func queryNoUploadEvaluationDatas() -> [[String: NSObject]]
+    
+    func addEvaluationData(result: ScaleResultProtocol)
+    func deleteEvaluationData(dataId: String, userId: Int)
+    func queryEvaluationData(dataId: String, userId: Int) -> [String: AnyObject]?
+    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int) -> [[String: AnyObject]]
+    func queryNoUploadEvaluationDatas() -> [[String: AnyObject]]
     func updateUploadEvaluationDatas(newDataIdInfos: [[String: AnyObject]])
+    func queryLastEvaluationData(userId: Int) -> [String: AnyObject]?
+    func queryCountEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int, count: Int) -> [[String: AnyObject]]
 }
 
 protocol DBGoalProtocol {
-    func addGoalData(setDatas:(inout setDatas: GoalData)-> GoalData)
+    func addGoalDatas(data: BraceletResultProtocol)
     func deleteGoalData(dataId: String)
-    func queryGoalData(dataId: String) -> [String: NSObject]?
-    func queryLastGoalData() -> [String: NSObject]?
-    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: NSObject]]
+    func deleteGoalDatas(date: NSDate)
+    func queryGoalData(dataId: String) -> [String: AnyObject]?
+    func queryLastGoalData() -> [String: AnyObject]?
+    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]]
+    func queryNoUploadGoalDatas() -> [[String: AnyObject]]
+    func updateUploadGoalDatas(newDataIdInfos: [[String: AnyObject]])
 }
 
 protocol DBDeviceProtocol {
+    func removeDeviceBind(type: DeviceType)
+    func haveConnectedWithType(type: DeviceType) -> Bool
     var haveConnectedScale: Bool { get }
     var haveConnectedBracelet: Bool { get }
-    func addDevice(uuid: String, name: String, type: Int16)
+    func braceletInfo() -> (uuid: String, name: String)?
+    func myBodyInfo() -> (uuid: String, name: String)?
+    func addDevice(uuid: String, name: String, type: DeviceType)
 }
 
-protocol DBManagerProtocol : DBUserProtocol, DBEvaluationProtocol, DBGoalProtocol, DBDeviceProtocol {
+protocol DBShareProtocol {
+    func addShareData(type: Int)
+    func queryShareDatas(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]]
+}
+
+protocol DBManagerProtocol : DBUserProtocol, DBEvaluationProtocol, DBGoalProtocol, DBDeviceProtocol, DBShareProtocol {
     func saveContext()
 }
 

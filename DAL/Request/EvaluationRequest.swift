@@ -32,7 +32,7 @@ struct EvaluationRequest {
     }
     
     // 上传评测数据
-    static func uploadEvaluationDatas(datas: [[String: AnyObject]]? , complete: ((info: [[String: AnyObject]]?, NSError?) -> Void)) {
+    static func uploadEvaluationDatas(pid: Int, datas: [[String: AnyObject]]? , complete: ((info: [[String: AnyObject]]?, NSError?) -> Void)) {
         
 //        let jsonStr = NSString(data: NSJSONSerialization.dataWithJSONObject(datas!, options: NSJSONWritingOptions.PrettyPrinted, error: nil)!, encoding: NSUTF8StringEncoding)
         

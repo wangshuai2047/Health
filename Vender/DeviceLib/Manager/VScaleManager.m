@@ -222,8 +222,6 @@ static VScaleManager *instance = nil;
                         NSLog(@"VC_STATUS_CACULATING done");
                         [self gotoStatus:VCStatusCaculate];
                         [self.delegate updateUIDataWithFatScale:self.scaleResult];
-                        
-                        
                         [deviceModel disconnect];
                         if (_scaleComplete) {
                             _scaleComplete(result, nil);
@@ -362,7 +360,7 @@ static VScaleManager *instance = nil;
             
             
             /* If found a new device */
-            NSString *vendorName = NSLocalizedString(@"VTrump", nil);
+//            NSString *vendorName = NSLocalizedString(@"VTrump", nil);
             NSString *subType;
             
             if(modelNumber.subType == VT_VSCALE_FAT){
@@ -373,7 +371,7 @@ static VScaleManager *instance = nil;
                 subType = NSLocalizedString(@"Weight Scale",nil);
             }
             
-            NSString *msg = [NSString stringWithFormat:@"%@ %@ %@?", NSLocalizedString(@"Connect to",nil), vendorName,subType];
+//            NSString *msg = [NSString stringWithFormat:@"%@ %@ %@?", NSLocalizedString(@"Connect to",nil), vendorName,subType];
             //NSLocalizedString(@"Connent to ?",nil);
             
             /*

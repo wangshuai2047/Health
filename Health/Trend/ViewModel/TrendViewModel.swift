@@ -26,7 +26,7 @@ struct TrendViewModel {
     var proteinRange: (Float, Float) = (0, 0)
     
     let weightColor = UIColor(red: 36/255.0, green: 171/255.0, blue: 232/255.0, alpha: 1)
-    let fatColor = UIColor(red: 175/255.0, green: 204/255.0, blue: 92/255.0, alpha: 1)
+    let fatColor = UIColor(red: 118/255.0, green: 218/255.0, blue: 66/255.0, alpha: 1)
     let muscleColor = UIColor(red: 229/255.0, green: 153/255.0, blue: 44/255.0, alpha: 1)
     let waterColor = UIColor(red: 36/255.0, green: 82/255.0, blue: 219/255.0, alpha: 1)
     let proteinColor = UIColor(red: 239/255.0, green: 225/255.0, blue: 55/255.0, alpha: 1)
@@ -35,13 +35,13 @@ struct TrendViewModel {
     
     mutating func eightDaysDatas() -> [TrendCellViewModel] {
         let endDate = NSDate()
-        let beginDate = endDate.dateByAddingTimeInterval(-300 * 24 * 60 * 60)
+        let beginDate = endDate.dateByAddingTimeInterval(-30 * 24 * 60 * 60)
         
         let evaluationDatas = TrendManager.eightDaysDatas(beginDate, endTimescamp: endDate)
         
         allDatas.removeAll(keepCapacity: false)
         for evaluationData in evaluationDatas {
-            allDatas += [TrendCellViewModel(info: evaluationData)]
+            allDatas += [TrendCellViewModel(info: evaluationData, gender: UserManager.shareInstance().currentUser.gender, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)]
         }
         
         dealShowData()
@@ -196,13 +196,13 @@ struct TrendViewModel {
 }
 
 struct TrendCellViewModel {
-    var scaleResult: ScaleResult
+    var scaleResult: ScaleResultProtocol
     var timeShowString: String
     var dateString: String
     
-    init(info: [String: NSObject]) {
-        scaleResult = ScaleResult(info: info)
-        timeShowString = (info["timeStamp"] as! NSDate).description
+    init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
+        scaleResult = ScaleResultProtocolCreate(info, gender: gender, age: age, height: height)
+        timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
         dateString = (info["timeStamp"] as! NSDate).YYdd()
     }
 }

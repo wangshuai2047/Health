@@ -23,8 +23,8 @@ class DBManagerTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_DBManager_addEvaluationData_isSuccess()
+    func test_DBManager_queryEvaluationData_isSuccess()
     {
-        
+        DBManager.shareInstance().queryEvaluationDatas(NSDate(timeIntervalSinceNow: -24 * 60 * 60), endTimescamp: NSDate(), userId: 9)
     }
 }

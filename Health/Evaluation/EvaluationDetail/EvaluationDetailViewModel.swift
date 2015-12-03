@@ -10,7 +10,7 @@ import UIKit
 
 struct EvaluationDetailViewModel {
     
-     var allDatas: [EvaluationDetailCellViewModel] = []
+    var allDatas: [EvaluationDetailCellViewModel] = []
     
     init() {
         reloadData()
@@ -30,11 +30,27 @@ struct EvaluationDetailViewModel {
 }
 
 struct EvaluationDetailCellViewModel {
-    var scaleResult: ScaleResult
+    var scaleResult: ScaleResultProtocol
     var timeShowString: String
     
-    init(info: [String: NSObject]) {
-        scaleResult = ScaleResult(info: info)
+    init(info: [String: AnyObject]) {
+        
+        let gender: Bool
+        let age: UInt8
+        let height: UInt8
+        let userId = (info["userId"] as! NSNumber).integerValue
+        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+            gender = (userInfo["gender"] as! NSNumber).boolValue
+            age = (userInfo["age"] as! NSNumber).unsignedCharValue
+            height = (userInfo["height"] as! NSNumber).unsignedCharValue
+        }
+        else {
+            gender = UserManager.mainUser.gender
+            age = UserManager.mainUser.age
+            height = UserManager.mainUser.height
+        }
+        
+        scaleResult = ScaleResultProtocolCreate(info, gender: gender, age: age, height: height)
         timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
     }
 }

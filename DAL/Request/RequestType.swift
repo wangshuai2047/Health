@@ -12,6 +12,8 @@ enum RequestType: String {
     case Login = "100002"
     case QueryCaptchas = "100010"
     case LoginThirdPlatform = "100003"
+    case BindThirdPlatform = "100004"
+    case CancelBindThirdPlatform = "100030" // 解除绑定接口  传 userId 和  openId 的值就行
     
     case CreateUser = "100009"
     case DeleteUser = "100016"
@@ -27,8 +29,9 @@ enum RequestType: String {
     case DeleteGoalData = "100021"
     case DeleteGoalDatas = "100024"
     
-    case QueryScore = "1000131"
-    case Share = "1000141"
+    case QueryScore = "100017"
+    case Share = "100018"
+    case QueryBadge = "100029"  // 获取徽章 传userId
     
     case QueryLaunchAds = "100011"
     case QueryActivityAds = "100012"
@@ -43,7 +46,7 @@ enum RequestType: String {
 
 
 enum ThirdPlatformType: String {
-    case WeiChat = "1"
+    case WeChat = "1"
     case Weibo = "2"
     case QQ = "3"
 }

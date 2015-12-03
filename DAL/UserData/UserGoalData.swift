@@ -43,6 +43,7 @@ struct UserGoalData {
         }
     }
     
+    // 目标数量
     static var number: Int? {
         get {
             return (NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.number") as? NSNumber)?.integerValue
@@ -57,6 +58,7 @@ struct UserGoalData {
         }
     }
     
+    // 目标天数
     static var days: Int? {
         get {
             return (NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.days") as? NSNumber)?.integerValue
@@ -69,5 +71,32 @@ struct UserGoalData {
                 NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "\(UserData.shareInstance().userId!).UserGoalData.days")
             }
         }
+    }
+    
+    // 设置目标的时间
+    static var setDate: NSDate? {
+        get {
+            return NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.setDate") as? NSDate
+        }
+        set {
+            if newValue == nil {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("\(UserData.shareInstance().userId!).UserGoalData.setDate")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: "\(UserData.shareInstance().userId!).UserGoalData.setDate")
+            }
+        }
+    }
+    
+    // 获取剩余天数
+    static var restDays: Int? {
+        let endDate = setDate?.dateByAddingTimeInterval(NSTimeInterval(days! * 24 * 60 * 60))
+        let restTimeInterval = endDate!.timeIntervalSinceDate(NSDate())
+        
+        if restTimeInterval < 0 {
+            return 0
+        }
+        
+        return Int(restTimeInterval / (24 * 60 * 60))
     }
 }

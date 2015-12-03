@@ -16,6 +16,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logoUpConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var weiChatLoginButton: UIButton!
+    @IBOutlet weak var QQLoginButton: UIButton!
+    @IBOutlet weak var weiBoLoginButton: UIButton!
+    
     
     @IBOutlet weak var reQueryCaptchasButton: UIButton!
     var reQueryCaptchas: NSTimer?
@@ -48,6 +52,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let keyboardHideSelector: Selector = "keyboardHide"
         NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardShowSelector, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardHideSelector, name: UIKeyboardWillHideNotification, object: nil)
+        
+        
+        // 根据是否安装第三方应用显示图标
+//        sina
+        QQLoginButton.hidden = !LoginManager.isExistShareApp(ShareType.QQFriend)
+        weiChatLoginButton.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
+        weiBoLoginButton.hidden = !LoginManager.isExistShareApp(ShareType.WeiBo)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,25 +72,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - response method
+    func dealLoginFinished(name: String?, headURL: String?, error: NSError?) {
+        if error == nil {
+            // 判断是否需要完善信息
+            if LoginManager.isNeedCompleteInfo {
+                let completeInfoController = CompleteInfoViewController()
+                completeInfoController.delegate = self
+                completeInfoController.name = name
+                completeInfoController.headURLString = headURL
+                self.navigationController?.pushViewController(completeInfoController, animated: true)
+            }
+            else {
+                if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                    appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
+                    SettingManager.addLocalNotification()
+                }
+            }
+        }
+        else
+        {
+            UIAlertView(title: error?.domain, message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+        }
+    }
+    
     @IBAction func loginButtonPressed(sender: UIButton?) {
         
-        LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) { (error: NSError?) -> Void in
-            if error == nil {
-                // 判断是否需要完善信息
-                if LoginManager.isNeedCompleteInfo {
-                    let completeInfoController = CompleteInfoViewController()
-                    self.navigationController?.pushViewController(completeInfoController, animated: true)
-                }
-                else {
-                    if let appdelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                        appdelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
-                    }
-                }
-            }
-            else
-            {
-                UIAlertView(title: error?.domain, message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
-            }
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        
+        LoginManager.login(self.usernameTextField.text!, captchas: self.passwordTextField.text!) {[unowned self] (error: NSError?) -> Void in
+            self.dealLoginFinished(nil, headURL: nil, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
         backgroundPressed(sender)
     }
@@ -91,12 +113,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginWithWeChat(sender: AnyObject) {
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        LoginManager.loginThirdPlatform(ThirdPlatformType.WeChat) { [unowned self] (name, headURLStr, error) -> Void in
+            self.dealLoginFinished(name, headURL: headURLStr, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
+        }
     }
     
     @IBAction func loginWithQQ(sender: AnyObject) {
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        LoginManager.loginThirdPlatform(ThirdPlatformType.QQ) { [unowned self] (name, headURLStr, error) -> Void in
+            self.dealLoginFinished(name, headURL: headURLStr, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
+        }
     }
     
     @IBAction func loginWithWeiBo(sender: AnyObject) {
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在登录", detailMsg: nil, progress: nil)
+        LoginManager.loginThirdPlatform(ThirdPlatformType.Weibo) { [unowned self] (name, headURLStr, error) -> Void in
+            self.dealLoginFinished(name, headURL: headURLStr, error: error)
+            AppDelegate.applicationDelegate().hiddenHUD()
+        }
     }
     
     @IBAction func reQueryCaptchas(sender: AnyObject) {
@@ -169,7 +206,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Requery Captchas Timer
     func requeryCaptchasTimer() {
         
-        let maxRequeryCount: Int8 = 10
+        let maxRequeryCount: Int8 = 60
         requeryCaptchasTimerCount++
         reQueryCaptchasButton.setTitle("\(maxRequeryCount - requeryCaptchasTimerCount)秒后 重新发送验证码", forState: UIControlState.Normal)
         
@@ -178,5 +215,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             reQueryCaptchas?.invalidate()
             reQueryCaptchasButton.setTitle("发送验证码", forState: UIControlState.Normal)
         }
+    }
+}
+
+extension LoginViewController: CompleteInfoDelegate {
+    
+    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+        
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在提交", detailMsg: nil, progress: nil)
+        LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { (error) -> Void in
+            
+            if error == nil {
+                
+                // 跳转到主页
+                SettingManager.addLocalNotification()
+                AppDelegate.applicationDelegate().changeToMainController()
+            }
+            else {
+                UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            }
+            
+            AppDelegate.applicationDelegate().hiddenHUD()
+        })
     }
 }

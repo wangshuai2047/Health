@@ -12,4 +12,8 @@ struct Alert {
     static func showErrorAlert(title: String?, message: String?) {
         UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "取消").show()
     }
+    
+    static func showError(error: NSError) {
+        UIAlertView(title: error.domain, message: error.localizedDescription, delegate: nil, cancelButtonTitle: "取消").show()
+    }
 }

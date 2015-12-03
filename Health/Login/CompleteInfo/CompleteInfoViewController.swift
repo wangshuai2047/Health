@@ -8,9 +8,23 @@
 
 import UIKit
 
+protocol CompleteInfoDelegate {
+    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?)
+}
+
 class CompleteInfoViewController: UIViewController {
 
+    var delegate: CompleteInfoDelegate?
+    
     var canBack: Bool = false
+    var userModel: UserModel?
+    var phone: String?
+    var organizationCode: String?
+    
+    var name: String?
+    var headURLString: String?
+    
+    private let tempHeadPath = NSHomeDirectory() + "/Documents/headImage.jpg"
     
     @IBOutlet weak var backButton: UIButton!
     
@@ -48,6 +62,8 @@ class CompleteInfoViewController: UIViewController {
         headAndNameDataView.headIconButton.addTarget(self, action: Selector("headIconButtonPressed"), forControlEvents: UIControlEvents.TouchUpInside)
         
         backButton.hidden = !canBack
+        
+        initIfExistUserModel()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,6 +113,47 @@ class CompleteInfoViewController: UIViewController {
         widthConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.width * 5)
         scrollContentView.addConstraint(widthConstraint!)
     }
+    
+    func initIfExistUserModel() {
+        
+        if name != nil {
+            headAndNameDataView.nickNameTextField.text = name
+        }
+        
+        if headURLString != nil {
+            if let headURL = NSURL(string: headURLString!) {
+                headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
+            }
+        }
+        
+        if let user = userModel {
+            self.headAndNameDataView.nickNameTextField.text = user.name
+            
+            self.headAndNameDataView.headIconButton.setImage(UIImage(named: "defaultHead"), forState: UIControlState.Normal)
+            if let headUrlStr =  user.headURL {
+                if let headURL = NSURL(string: headUrlStr) {
+                    self.headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
+                }
+            }
+            
+            genderDataView.womanButton.selected = !user.gender
+            genderDataView.menButton.selected = user.gender
+            
+            ageDataView.selectedRow = Int(user.age)
+            
+            heightDataView.height = Double(user.height)
+            
+            if let phone = self.phone {
+                organizationDataView.phoneTextField.text = phone
+            }
+            
+            if let code = self.organizationCode {
+                organizationDataView.codeTextField.text = code
+            }
+        }
+        
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -124,26 +181,17 @@ class CompleteInfoViewController: UIViewController {
     
     @IBAction func nextPageButtonPressed(sender: AnyObject) {
         
+        
+        if headAndNameDataView.name == nil || headAndNameDataView.name == "" {
+            Alert.showErrorAlert("", message: "请输入名字")
+            return
+        }
+        
         if pageControl.currentPage == 4 {
             
-            LoginManager.completeInfomation(headAndNameDataView.name!, gender: genderDataView.gender, age: ageDataView.age, height: UInt8(heightDataView.height), phone: organizationDataView.phone, organizationCode: organizationDataView.code, complete: {[unowned self] (error) -> Void in
-                
-                if error == nil {
-                    // 跳转到主页
-                    if self.canBack {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    }
-                    else {
-                        AppDelegate.applicationDelegate().changeToMainController()
-                    }
-                    
-                }
-                else {
-                    UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
-                }
-            })
-            
-            
+            let userId = userModel == nil ? 0 : userModel!.userId
+            let user = UserModel(userId: userId, age: ageDataView.age, gender: genderDataView.gender, height: UInt8(heightDataView.height), name: headAndNameDataView.name!, headURL:tempHeadPath)
+            delegate?.completeInfo(self, user: user, phone: organizationDataView.phone, organizationCode: organizationDataView.code)
         }
         else {
             scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x + scrollView.bounds.size.width, 0), animated: true)
@@ -164,6 +212,8 @@ class CompleteInfoViewController: UIViewController {
 
 extension CompleteInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        UIImageJPEGRepresentation(image, 0.2)?.writeToFile(tempHeadPath, atomically: false)
+        
         self.headAndNameDataView.headIconButton.setImage(image, forState: UIControlState.Normal)
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -174,7 +224,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
         if buttonIndex == 1 {
             // 拍照
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-                var picker = UIImagePickerController()
+                let picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
                 picker.videoQuality = UIImagePickerControllerQualityType.TypeLow
@@ -188,7 +238,7 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
         else if buttonIndex == 2 {
             // 照片库
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-                var picker = UIImagePickerController()
+                let picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
                 picker.videoQuality = UIImagePickerControllerQualityType.TypeLow
@@ -217,5 +267,11 @@ extension CompleteInfoViewController: UIScrollViewDelegate {
         else if page == 0 {
             frontPageButton.hidden = true
         }
+    }
+}
+
+extension CompleteInfoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
     }
 }
