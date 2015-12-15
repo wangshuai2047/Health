@@ -110,7 +110,7 @@ class GoalViewController: UIViewController {
                 }
             }
             else {
-                goalDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
+                goalDetailLabel.append("您还没有使用成分秤评测过,请先评测", font: nil, color: deepBlue)
             }
         }
         else {
@@ -126,7 +126,7 @@ class GoalViewController: UIViewController {
                 suggestCalorieLabel.append("\(showInfo.dayCalorieGoal) kcal", font: numberFont, color: lightBlue)
             }
             else {
-                suggestCalorieLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
+                suggestCalorieLabel.append("您还没有使用成分秤评测过,请先评测", font: nil, color: deepBlue)
             }
         }
         else {
@@ -150,7 +150,7 @@ class GoalViewController: UIViewController {
             }
             else
             {
-                sportDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
+                sportDetailLabel.append("您还没有使用成分秤评测过,请先评测", font: nil, color: deepBlue)
             }
             
             sprotDetailLabelHeightConstraint.constant = 118
@@ -174,7 +174,7 @@ class GoalViewController: UIViewController {
             }
             else
             {
-                sleepDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
+                sleepDetailLabel.append("您还没有使用成分秤评测过,请先评测", font: nil, color: deepBlue)
             }
             
             sleepDetailLabelHeightConstraint.constant = 135
@@ -198,7 +198,7 @@ class GoalViewController: UIViewController {
             }
             else
             {
-                noDeviceDetailLabel.append("您还没有使用体重秤评测过,请先评测", font: nil, color: deepBlue)
+                noDeviceDetailLabel.append("您还没有使用成分秤评测过,请先评测", font: nil, color: deepBlue)
             }
             
             noDeviceDetailLabelHeightConstraint.constant = 183
@@ -241,7 +241,7 @@ class GoalViewController: UIViewController {
     }
     
     @IBAction func buyDevicePressed(sender: AnyObject) {
-        
+        Alert.showErrorAlert("温馨提示", message: "设备未上线,无法购买!")
     }
     
     @IBAction func bindDevicePressed(sender: AnyObject) {

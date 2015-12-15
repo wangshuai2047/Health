@@ -47,9 +47,6 @@ enum DeviceType: Int16 {
             buffer.append(0xf4)
             buffer.append(0x06)
             buffer.append(0xa5)
-            buffer.append(0x00)
-            buffer.append(0xbe)
-            buffer.append(0x3f)
             
             let data = NSData(bytes: buffer, length: buffer.count)
             return data
@@ -245,7 +242,10 @@ extension BluetoothManager: CBCentralManagerDelegate {
         // 判断是否是手环
         if scanTypes!.contains(DeviceType.Bracelet) {
             if let kCBAdvDataManufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? NSData {
-                if kCBAdvDataManufacturerData.rangeOfData(DeviceType.Bracelet.AdvDataManufacturerData, options: NSDataSearchOptions.Backwards, range: NSRange(location: 0, length: kCBAdvDataManufacturerData.length)).location != NSNotFound {
+                
+                let macData = kCBAdvDataManufacturerData.subdataWithRange(NSRange(location: kCBAdvDataManufacturerData.length - 6, length: 3))
+                
+                if macData.isEqualToData(DeviceType.Bracelet.AdvDataManufacturerData) {
                     return BraceletManager(name: peripheral.name == nil ? "手环" : peripheral.name!, uuid: peripheral.identifier.UUIDString, peripheral: peripheral, characteristic: nil)
                 }
             }

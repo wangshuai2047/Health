@@ -192,8 +192,16 @@ struct ShareSDKHelper {
     }
     
     static func isExistShareType(type: ShareType) -> Bool {
-        
-        return ShareSDK.isSupportAuth(shareTypeToSSDKPlatformType(type))
+        if type == .WeChatSession || type == .WeChatTimeline {
+            return WXApi.isWXAppInstalled()
+        }
+        else if type == .WeiBo {
+            return WeiboSDK.isWeiboAppInstalled()
+            
+        }
+        else {
+            return QQApi.isQQInstalled()
+        }
     }
     
     // MARK: - 分享
@@ -211,6 +219,7 @@ struct ShareSDKHelper {
             platformType = SSDKPlatformType.SubTypeWechatTimeline
         }
         else if shareType == ShareType.QQFriend {
+            //构造分享内容
             shareInfo = QQShareData(image, isEvaluation: isEvaluation)
             platformType = SSDKPlatformType.SubTypeQQFriend
         }
@@ -244,6 +253,8 @@ struct ShareSDKHelper {
     }
     
     private static func weChatShareData(image: UIImage, isEvaluation: Bool, forPlatformSubType: SSDKPlatformType) -> NSMutableDictionary {
+        
+        
         let shareInfo = NSMutableDictionary()
         
         shareInfo.SSDKSetupWeChatParamsByText(nil, title: "title 好体知微信分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, musicFileURL: nil, extInfo: nil, fileData: nil, emoticonData: nil, type: SSDKContentType.Image, forPlatformSubType: forPlatformSubType)
@@ -251,10 +262,27 @@ struct ShareSDKHelper {
         return shareInfo
     }
     
+    /**
+     *  设置QQ分享参数
+     *
+     *  @param text            分享内容
+     *  @param title           分享标题
+     *  @param url             分享链接
+     *  @param thumbImage      缩略图，可以为UIImage、NSString（图片路径）、NSURL（图片路径）、SSDKImage
+     *  @param image           图片，可以为UIImage、NSString（图片路径）、NSURL（图片路径）、SSDKImage
+     *  @param type            分享类型, 仅支持Text（仅QQFriend）、Image（仅QQFriend）、WebPage、Audio、Video类型
+     *  @param platformSubType 平台子类型，只能传入SSDKPlatformSubTypeQZone或者SSDKPlatformSubTypeQQFriend其中一个
+     */
     private static func QQShareData(image: UIImage, isEvaluation: Bool) -> NSMutableDictionary {
         let shareInfo = NSMutableDictionary()
         
-        shareInfo.SSDKSetupQQParamsByText("text 好体知QQ分享测试", title: "title 好体知QQ分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, type: SSDKContentType.Image, forPlatformSubType: SSDKPlatformType.TypeQQ)
+        shareInfo.SSDKSetupQQParamsByText(nil, title: "title 好体知QQ分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, type: SSDKContentType.Image, forPlatformSubType: SSDKPlatformType.TypeQQ)
+        shareInfo.setValue("好体知分享", forKey: "text")
+        shareInfo.setValue("好体知分享", forKey: "title")
+        shareInfo.setValue(SSDKImage(image: UIImage(named: "appIcon"), format: SSDKImageFormatJpeg, settings: [:]), forKey: "thumbImage")
+        shareInfo.setValue([SSDKImage(image: image, format: SSDKImageFormatJpeg, settings: [:])], forKey: "images")
+        shareInfo.setValue(NSNumber(unsignedLong: SSDKContentType.Image.rawValue), forKey: "type")
+        shareInfo.setValue(NSNumber(unsignedLong: SSDKPlatformType.TypeQQ.rawValue), forKey: "platformSubType")
         
         return shareInfo
     }

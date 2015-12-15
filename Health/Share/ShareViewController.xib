@@ -7,7 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController" customModule="Health" customModuleProvider="target">
             <connections>
+                <outlet property="qqButton" destination="d8E-rn-SYt" id="vMa-Gl-rWO"/>
+                <outlet property="qqLabel" destination="nw0-L9-bg5" id="Jpp-jK-Pte"/>
+                <outlet property="sinaButton" destination="RHz-Hv-Nvx" id="ZxU-pT-20J"/>
+                <outlet property="sinaLabel" destination="erC-TH-ac8" id="7Jn-dD-FM6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weChatFriendButton" destination="PuM-aC-zDl" id="6X3-yV-eRk"/>
+                <outlet property="weChatFriendLabel" destination="wSg-pI-gZO" id="mxn-MK-E3I"/>
+                <outlet property="weChatSessionButton" destination="mlF-ZP-q6Q" id="zX5-xO-MUU"/>
+                <outlet property="weChatSessionLabel" destination="p8U-Ts-eZb" id="xm8-0o-ybu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -41,16 +49,25 @@
                             <rect key="frame" x="143" y="74" width="58" height="58"/>
                             <animations/>
                             <state key="normal" image="wechatLogin"/>
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="-1" eventType="touchUpInside" id="yDa-Bo-UA2"/>
+                            </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-rn-SYt">
                             <rect key="frame" x="33" y="177" width="58" height="58"/>
                             <animations/>
                             <state key="normal" image="qqLogin"/>
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="-1" eventType="touchUpInside" id="sGE-Ye-KLT"/>
+                            </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHz-Hv-Nvx">
                             <rect key="frame" x="143" y="177" width="58" height="58"/>
                             <animations/>
                             <state key="normal" image="weiboLogin"/>
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="-1" eventType="touchUpInside" id="rOq-dd-PZi"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微信好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSg-pI-gZO">
                             <rect key="frame" x="31" y="140" width="62" height="18"/>

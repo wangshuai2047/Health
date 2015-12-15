@@ -188,7 +188,7 @@
                                             <constraint firstAttribute="height" constant="30" id="j4Z-LE-SAw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="立即购买mybody体脂秤">
+                                        <state key="normal" title="立即购买mybody成分秤">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -422,7 +422,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCP-6j-4JS">
                                 <rect key="frame" x="4" y="162" width="592" height="389"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统没有成功搜索到设备,如果您还没有MyBody体质秤,您可以选择。如果您已有设备，则尝试激活设备后,摇一摇进行评测。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-DV-G7q">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统没有成功搜索到设备,如果您还没有MyBody成分秤,您可以选择。如果您已有设备，则尝试激活设备后,摇一摇进行评测。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-DV-G7q">
                                         <rect key="frame" x="30" y="43" width="532" height="41"/>
                                         <animations/>
                                         <constraints>
@@ -444,7 +444,7 @@
                                             <constraint firstAttribute="height" constant="42" id="Blm-Sc-vzO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="京东商城在线购买" backgroundImage="buttonBg">
+                                        <state key="normal" title="网上商城购买" backgroundImage="buttonBg">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -452,10 +452,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIX-UL-z1q">
-                                        <rect key="frame" x="30" y="164" width="532" height="42"/>
+                                        <rect key="frame" x="30" y="164" width="532" height="0.0"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="Zbc-88-Zax"/>
+                                            <constraint firstAttribute="height" id="Zbc-88-Zax"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="手动输入体质数据" backgroundImage="buttonBg">
@@ -466,7 +466,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlv-J7-9Of">
-                                        <rect key="frame" x="30" y="214" width="532" height="42"/>
+                                        <rect key="frame" x="30" y="164" width="532" height="42"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="cqT-pD-woG"/>
@@ -491,7 +491,7 @@
                                     <constraint firstItem="UGw-CN-Zjr" firstAttribute="top" secondItem="YB6-DV-G7q" secondAttribute="bottom" constant="30" id="UQx-UU-EuM"/>
                                     <constraint firstItem="YB6-DV-G7q" firstAttribute="leading" secondItem="KCP-6j-4JS" secondAttribute="leading" constant="30" id="YnA-gr-9rI"/>
                                     <constraint firstItem="YB6-DV-G7q" firstAttribute="top" secondItem="KCP-6j-4JS" secondAttribute="top" constant="43" id="hR8-Qv-OJZ"/>
-                                    <constraint firstItem="Tlv-J7-9Of" firstAttribute="top" secondItem="KIX-UL-z1q" secondAttribute="bottom" constant="8" id="jQs-Ww-4ie"/>
+                                    <constraint firstItem="Tlv-J7-9Of" firstAttribute="top" secondItem="KIX-UL-z1q" secondAttribute="bottom" id="jQs-Ww-4ie"/>
                                     <constraint firstAttribute="trailing" secondItem="YB6-DV-G7q" secondAttribute="trailing" constant="30" id="pf0-WL-W81"/>
                                     <constraint firstItem="KIX-UL-z1q" firstAttribute="leading" secondItem="KCP-6j-4JS" secondAttribute="leading" constant="30" id="w5j-L1-nPI"/>
                                     <constraint firstAttribute="trailing" secondItem="KIX-UL-z1q" secondAttribute="trailing" constant="30" id="wch-uk-rum"/>
@@ -500,7 +500,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IDf-ib-hcA">
                                 <rect key="frame" x="4" y="162" width="592" height="389"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已成功连接体质秤,摇一摇或点击开始评测" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2b-9Y-Pif">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已成功连接成分秤,摇一摇或点击开始评测" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2b-9Y-Pif">
                                         <rect key="frame" x="140.5" y="20" width="311" height="60"/>
                                         <animations/>
                                         <constraints>
