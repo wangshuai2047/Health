@@ -185,7 +185,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     // 按回车可以登录
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
         if string == "\n" {
             loginButtonPressed(nil)
             return false

@@ -4,7 +4,7 @@
 //
 //  Created by Yalin on 15/10/7.
 //  Copyright © 2015年 Yalin. All rights reserved.
-//
+// cstf158tfht0123456789
 
 import UIKit
 import CoreBluetooth
@@ -69,6 +69,7 @@ class BluetoothManager: NSObject {
     
     private var isScan: Bool = true
     private var scanClosure: (([DeviceManagerProtocol],Bool, NSError?) -> Void)?
+//    private var fileClosure: ((ResultProtocol?, isTimeOut: Bool, NSError?) -> Void)?
     
     private var scanDevice = NSMutableDictionary()
     private var scanDeviceType: [DeviceType]?
@@ -137,6 +138,8 @@ class BluetoothManager: NSObject {
     
     func fire(uuid: String, info: [String : Any], complete: (ResultProtocol?, isTimeOut: Bool, NSError?) -> Void) {
         
+//        fileClosure = complete
+        
         if currentDevice != nil && currentDevice?.uuid == uuid {
             self.isScan = false
             connect(currentDevice!.peripheral!)
@@ -148,7 +151,7 @@ class BluetoothManager: NSObject {
         }
         else {
             scanDevice(nil, complete: { [unowned self] (results: [DeviceManagerProtocol], isTimeOut: Bool, error: NSError?) -> Void in
-                self.timeoutTimer?.invalidate()
+                
                 
                 if error == nil {
                     for device in results {
@@ -166,6 +169,8 @@ class BluetoothManager: NSObject {
                                 self.clearWork()
                                 self.currentDevice = nil
                             })
+                            
+                            self.timeoutTimer?.invalidate()
                         }
                     }
                 }
@@ -181,10 +186,12 @@ class BluetoothManager: NSObject {
         
         NSLog("clear work =============================");
         
-        self.centralManager.stopScan()
+        
         if currentDevice?.peripheral != nil {
+            NSLog("\(self.centralManager)xxxxxxxxxxxxxxxxxxxxxxxxx\(currentDevice!.peripheral!)");
             self.centralManager.cancelPeripheralConnection(currentDevice!.peripheral!)
         }
+        self.centralManager.stopScan()
         self.centralManager.delegate = nil
         currentDevice?.peripheral?.delegate = nil
         currentDevice?.peripheral = nil
@@ -192,6 +199,7 @@ class BluetoothManager: NSObject {
         timeoutTimer?.invalidate()
         timeoutTimer = nil
         scanClosure = nil
+//        fileClosure = nil
         scanDeviceType = nil
         currentDevice = nil
     }
@@ -302,11 +310,14 @@ extension BluetoothManager: CBCentralManagerDelegate {
         NSLog("connect peripheral error: %@", error!)
 //        syncComplete?([], error)
         currentDevice?.centralManager?(central, didFailToConnectPeripheral: peripheral, error: error)
+        // ResultProtocol?, isTimeOut: Bool, NSError?
+//        fileClosure?(nil, isTimeOut: false, error)
     }
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         print("didDisconnectPeripheral error: \(error)")
 //        scanClosure?(devices, false, nil)
+        currentDevice?.centralManager?(central, didDisconnectPeripheral: peripheral, error: error)
     }
 }
 

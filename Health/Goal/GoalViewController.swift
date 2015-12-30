@@ -123,7 +123,8 @@ class GoalViewController: UIViewController {
         if GoalManager.isSetGoal {
             if let showInfo = GoalManager.currentGoalInfo() {
                 suggestCalorieLabel.append("建议每天摄入热量", font: nil, color: deepBlue)
-                suggestCalorieLabel.append("\(showInfo.dayCalorieGoal) kcal", font: numberFont, color: lightBlue)
+                suggestCalorieLabel.append("\(showInfo.dayCalorieGoal)", font: numberFont, color: lightBlue)
+                suggestCalorieLabel.append(" kcal", font: nil, color: deepBlue)
             }
             else {
                 suggestCalorieLabel.append("您还没有使用成分秤评测过,请先评测", font: nil, color: deepBlue)
@@ -144,9 +145,10 @@ class GoalViewController: UIViewController {
         if GoalManager.isSetGoal {
             if let showInfo = GoalManager.currentGoalInfo() {
                 sportDetailLabel.append("过去7天内平均每天行走", font: nil, color: deepBlue)
-                sportDetailLabel.append("\(showInfo.sevenDaysWalkAverageValue) 步\n", font: numberFont, color: lightBlue)
-                sportDetailLabel.append("为按期达到目标\n建议每天行走", font: nil, color: deepBlue)
-                sportDetailLabel.append("\(showInfo.dayWalkGoal) 步\n", font: numberFont, color: lightBlue)
+                sportDetailLabel.append("\(showInfo.sevenDaysWalkAverageValue)", font: numberFont, color: lightBlue)
+                sportDetailLabel.append(" 步\n为按期达到目标\n建议每天行走", font: nil, color: deepBlue)
+                sportDetailLabel.append("\(showInfo.dayWalkGoal)", font: numberFont, color: lightBlue)
+                sportDetailLabel.append(" 步\n", font: nil, color: deepBlue)
             }
             else
             {
@@ -166,11 +168,12 @@ class GoalViewController: UIViewController {
         if GoalManager.isSetGoal {
             if let showInfo = GoalManager.currentGoalInfo() {
                 sleepDetailLabel.append("过去7天内平均每天睡", font: nil, color: deepBlue)
-                sleepDetailLabel.append("\(showInfo.sevenDaysSleepAverageValue)小时\n", font: numberFont, color: lightBlue)
-                sleepDetailLabel.append("为按期达到目标\n建议每天睡眠", font: nil, color: deepBlue)
-                sleepDetailLabel.append("8 小时\n", font: numberFont, color: lightBlue)
-                sleepDetailLabel.append("深度睡眠应大于", font: nil, color: deepBlue)
-                sleepDetailLabel.append("2 小时\n", font: numberFont, color: lightBlue)
+                sleepDetailLabel.append("\(showInfo.sevenDaysSleepAverageValue)", font: numberFont, color: lightBlue)
+                sleepDetailLabel.append("小时\n为按期达到目标\n建议每天睡眠", font: nil, color: deepBlue)
+                sleepDetailLabel.append("8 ", font: numberFont, color: lightBlue)
+                sleepDetailLabel.append("小时\n深度睡眠应大于", font: nil, color: deepBlue)
+                sleepDetailLabel.append("2 ", font: numberFont, color: lightBlue)
+                sleepDetailLabel.append("小时\n", font: nil, color: deepBlue)
             }
             else
             {
@@ -190,11 +193,12 @@ class GoalViewController: UIViewController {
         if GoalManager.isSetGoal {
             if let showInfo = GoalManager.currentGoalInfo() {
                 noDeviceDetailLabel.append("为按期达到目标\n建议每天行走", font: nil, color: deepBlue)
-                noDeviceDetailLabel.append("\(showInfo.dayWalkGoal) 步\n\n\n", font: numberFont, color: lightBlue)
-                noDeviceDetailLabel.append("建议每天睡眠", font: nil, color: deepBlue)
-                noDeviceDetailLabel.append("8 小时\n", font: numberFont, color: lightBlue)
-                noDeviceDetailLabel.append("深度睡眠应大于", font: nil, color: deepBlue)
-                noDeviceDetailLabel.append("2 小时\n", font: numberFont, color: lightBlue)
+                noDeviceDetailLabel.append("\(showInfo.dayWalkGoal)", font: numberFont, color: lightBlue)
+                noDeviceDetailLabel.append(" 步\n\n\n建议每天睡眠", font: nil, color: deepBlue)
+                noDeviceDetailLabel.append("8", font: numberFont, color: lightBlue)
+                noDeviceDetailLabel.append(" 小时\n深度睡眠应大于", font: nil, color: deepBlue)
+                noDeviceDetailLabel.append("2", font: numberFont, color: lightBlue)
+                noDeviceDetailLabel.append(" 小时\n", font: nil, color: deepBlue)
             }
             else
             {

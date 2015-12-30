@@ -133,7 +133,7 @@ class EvaluationViewController: UIViewController {
             let detailController = EvaluationDetailViewController()
             AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
             
-            self.tipLabel.text = "已开始扫描，设备请上秤!"
+            self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
@@ -218,7 +218,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
-        self.tipLabel.text = "已开始扫描，设备请上秤!"
+        self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
         EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
                 
@@ -311,7 +311,7 @@ extension EvaluationViewController: VisitorAddDelegate {
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
-            self.tipLabel.text = "已开始扫描，设备请上秤!"
+            self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             if error == nil {
                 
                 detailController.data = info

@@ -119,6 +119,7 @@
 		E0255E891BC9680300CEE5D4 /* MyBodyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */; };
 		E0255E8B1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */; };
 		E0255E8C1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */; };
+		E02F9AC41C1FB56F00DC79E8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E038D1FD1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0418EDB1BC2BABC00B2788D /* UIKit.framework */; };
@@ -220,7 +221,6 @@
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
 		E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
-		E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E0BC150B1BC740E5008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
@@ -552,7 +552,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */,
+				E02F9AC41C1FB56F00DC79E8 /* AdSupport.framework in Frameworks */,
 				E0418EDE1BC2BAC500B2788D /* Foundation.framework in Frameworks */,
 				E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */,
 				E0039C501BCF28C10014ED50 /* ShareSDKExtension.framework in Frameworks */,
@@ -2007,8 +2007,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2040,7 +2040,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb85a3f5-c6e6-48a9-bd34-83f453ad61b0";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -2056,8 +2056,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2089,7 +2089,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb85a3f5-c6e6-48a9-bd34-83f453ad61b0";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};

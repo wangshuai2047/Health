@@ -140,6 +140,10 @@ extension BraceletManager: CBCentralManagerDelegate {
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         fireComplete?(nil, error)
     }
+    
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        fireComplete?(nil, error)
+    }
 }
 
 // 外设手环服务

@@ -124,7 +124,7 @@ enum EvaluationDetailExtendType {
     var levelTitle: (String, String, String) {
         switch self {
         case .fattyLiver:
-            return ("轻度风险", "中度风险", "高度风险")
+            return ("低度风险", "中度风险", "高度风险")
         case .visceralFat:
             return ("正常", "超标", "危险")
         default:

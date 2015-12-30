@@ -37,7 +37,13 @@ struct GoalShowInfo {
         
         var dayCalorie: Float
         if let restDays = UserGoalData.restDays {
-            dayCalorie = needReduceFat * 1000 * 15 / Float(restDays)
+            if restDays == 0 {
+                dayCalorie = 0;
+            }
+            else {
+                dayCalorie = needReduceFat * 1000 * 15 / Float(restDays)
+            }
+            
         }
         else {
             dayCalorie = scaleResult.dayNeedCalorie
