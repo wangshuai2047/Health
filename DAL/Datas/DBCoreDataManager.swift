@@ -465,6 +465,9 @@ extension DBManager: DBManagerProtocol {
         let listData:[AnyObject]?
         do {
             listData = try context.executeFetchRequest(request)
+            
+            print(listData)
+            
         } catch let error as NSError {
             print(error)
             listData = nil
@@ -567,7 +570,6 @@ extension DBManager: DBManagerProtocol {
         request.sortDescriptors = [endDateSort]
         
         let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
-        
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
             datas += [convertModel(managedObject)]

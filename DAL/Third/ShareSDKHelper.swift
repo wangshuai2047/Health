@@ -52,8 +52,8 @@ struct ShareSDKHelper {
     static let shareSDKAppKey = "a4fd2ee725e8"
     static let shareSDKAppSecret = "96eaf1881e7e37847fcdc75bf4f833c2"
     
-    static let sinaWeiboAppKey = "4153895349"
-    static let sinaWeiboAppSecret = "1ecfe5957e5d1450c4444fb75a1e1718"
+    static let sinaWeiboAppKey = "3329439896"
+    static let sinaWeiboAppSecret = "fc4d61248d9fb33c35a9e5afb4cc2b5c"
     static let sinaWeiboAppRedirectURI = "https://api.weibo.com/oauth2/default.html"
     
     static let weChatAppId = "wxac0b90fe1dda50a2"

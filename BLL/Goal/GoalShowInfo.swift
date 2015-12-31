@@ -35,6 +35,7 @@ struct GoalShowInfo {
 //            addFatPercentage = scaleResult.standardFatPercentage - scaleResult.fatPercentage
         }
         
+        // 计算每天消耗卡路里
         var dayCalorie: Float
         if let restDays = UserGoalData.restDays {
             if restDays == 0 {
@@ -49,9 +50,22 @@ struct GoalShowInfo {
             dayCalorie = scaleResult.dayNeedCalorie
         }
         
-        dayCalorieGoal = scaleResult.dayNeedCalorie
         
-        dayWalkGoal = Int(dayCalorie / 500) == 0 ? 10000 : Int(dayCalorie * 10000 / 500)
+        // 每天摄入卡路里  每天步数
+        
+        var walkNeedKll: Float = 0
+        if dayCalorie / 2 > scaleResult.dayNeedCalorie {
+            dayCalorieGoal = 0
+            
+            walkNeedKll = dayCalorie - scaleResult.dayNeedCalorie / 2
+        }
+        else {
+            dayCalorieGoal = scaleResult.dayNeedCalorie - dayCalorie / 2
+            
+            walkNeedKll = dayCalorie / 2
+        }
+        
+        dayWalkGoal = Int(walkNeedKll * 10000 / 340)
         
         if dayWalkGoal < 0 {
             dayWalkGoal = 10000

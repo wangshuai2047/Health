@@ -12,8 +12,6 @@
 		E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; };
 		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
 		E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
-		E0039BDE1BCF28370014ED50 /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
-		E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
 		E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */; };
 		E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D048D1B8BE7DC0090137C /* CircleView.swift */; };
 		E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */; };
@@ -140,6 +138,7 @@
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E046FC591BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */; };
 		E046FC5D1BDFD10500DC116C /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E046FC5C1BDFD10500DC116C /* FXBlurView.m */; };
+		E052D1561C34156100E52C9F /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052D1551C34156100E52C9F /* DoubleYLineChartCell.swift */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -232,7 +231,6 @@
 		E0C50BA11B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50BA31B862AA0007A9393 /* UserSelectView.swift */; };
 		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
-		E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
 		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; };
 		E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; };
 		E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; };
@@ -401,6 +399,7 @@
 		E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailExtendViewModel.swift; sourceTree = "<group>"; };
 		E046FC5B1BDFD10500DC116C /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		E046FC5C1BDFD10500DC116C /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		E052D1551C34156100E52C9F /* DoubleYLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleYLineChartCell.swift; path = Vender/Charts/DoubleYAxisLineChart/DoubleYLineChartCell.swift; sourceTree = SOURCE_ROOT; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
@@ -498,7 +497,6 @@
 		E0C50B9F1B862381007A9393 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = BLL/User/UserManager.swift; sourceTree = SOURCE_ROOT; };
 		E0C50BA31B862AA0007A9393 /* UserSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSelectView.swift; path = Health/User/UserSelectView.swift; sourceTree = SOURCE_ROOT; };
 		E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYAxisLineChart.swift; sourceTree = "<group>"; };
-		E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYLineChartCell.swift; sourceTree = "<group>"; };
 		E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleYLineChartCell.xib; sourceTree = "<group>"; };
 		E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -1303,7 +1301,7 @@
 			isa = PBXGroup;
 			children = (
 				E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */,
-				E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */,
+				E052D1551C34156100E52C9F /* DoubleYLineChartCell.swift */,
 				E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */,
 			);
 			path = DoubleYAxisLineChart;
@@ -1686,6 +1684,7 @@
 				E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
 				E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */,
 				E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */,
+				E052D1561C34156100E52C9F /* DoubleYLineChartCell.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
 				E08B32971B85A8B00040ADE7 /* CompleteGenderDataView.swift in Sources */,
 				E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */,
@@ -1704,7 +1703,6 @@
 				E094E01D1BD283060017079B /* HealthManager.swift in Sources */,
 				E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */,
 				E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */,
-				E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */,
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
@@ -1791,8 +1789,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0039BDE1BCF28370014ED50 /* DoubleYAxisLineChart.swift in Sources */,
-				E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */,
 				E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */,
 				E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */,
 				E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */,

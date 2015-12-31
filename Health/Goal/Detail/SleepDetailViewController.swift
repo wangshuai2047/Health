@@ -35,7 +35,13 @@ class SleepDetailViewController: UIViewController {
         let nibCell = UINib(nibName: "GoalDetailTableViewCell", bundle: nil)
         tableView.registerNib(nibCell, forCellReuseIdentifier: cellId)
         
-        refreshData()
+        if GoalManager.isConnectDevice() {
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
+            GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
+                self.refreshData()
+                AppDelegate.applicationDelegate().hiddenHUD()
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {

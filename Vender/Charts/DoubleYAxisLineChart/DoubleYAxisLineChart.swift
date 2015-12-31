@@ -118,7 +118,6 @@ class DoubleYAxisLineChart: UIView {
                 self.addSubview(YLabel)
             }
         }
-        
     }
     
     func drawRightYLabels() {
