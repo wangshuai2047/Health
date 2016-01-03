@@ -236,7 +236,7 @@ enum EvaluationDetailExtendType {
         case .bmi:
             return String(format: "%.1f", data.BMI)
         case .BMR:
-            return String(format: "%.1f", data.BMR)
+            return String(format: "%.0f", data.BMR)
         case .bodyAge:
             return String(format: "%.0f", data.bodyAge)
         }

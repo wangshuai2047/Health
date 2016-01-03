@@ -870,7 +870,7 @@
                                                             <action selector="bindDevicePressed:" destination="Ogf-A7-MfS" eventType="touchUpInside" id="UfS-Zs-3Qf"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32Q-wI-BKs">
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32Q-wI-BKs">
                                                         <rect key="frame" x="74" y="214" width="436" height="42"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="42" id="7du-GW-F6T"/>
@@ -1039,7 +1039,7 @@
                                     <constraint firstAttribute="height" constant="90" id="hR2-dG-gEu"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kVC-SJ-6na">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVC-SJ-6na">
                                 <rect key="frame" x="16" y="162" width="568" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="VE8-6g-uuw"/>

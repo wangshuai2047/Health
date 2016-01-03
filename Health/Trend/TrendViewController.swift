@@ -34,6 +34,7 @@ class TrendViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         weightButton.selected = true
+        fatButton.selected = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -236,11 +237,11 @@ extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let model: TrendCellViewModel = viewModel.allDatas[indexPath.row]
-        
-        let detailController = EvaluationDetailViewController()
-        detailController.data = model.scaleResult
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+//        let model: TrendCellViewModel = viewModel.allDatas[indexPath.row]
+//        
+//        let detailController = EvaluationDetailViewController()
+//        detailController.data = model.scaleResult
+//        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
     }
 }
 

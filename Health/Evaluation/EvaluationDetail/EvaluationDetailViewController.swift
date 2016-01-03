@@ -106,7 +106,7 @@ extension EvaluationDetailViewController: UIAlertViewDelegate {
                     }
                     
                     AppDelegate.applicationDelegate().hiddenHUD()
-                    })
+                })
                 
             }
         }

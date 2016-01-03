@@ -282,8 +282,19 @@ extension EvaluationViewController: UserSelectViewDelegate {
     
     // 用户改变
     func userChangeToUserId(userId: Int) {
-        UserManager.shareInstance().changeUserToUserId(userId)
-        userSelectView.setShowViewUserId(userId)
+        
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
+        
+        EvaluationManager.checkAndSyncEvaluationDatas(userId) { [unowned self] (error: NSError?) -> Void in
+            
+            UserManager.shareInstance().changeUserToUserId(userId)
+            self.userSelectView.setShowViewUserId(userId)
+            
+            
+            AppDelegate.applicationDelegate().hiddenHUD()
+        }
+        
+        
     }
 }
 

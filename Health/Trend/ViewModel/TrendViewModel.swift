@@ -74,24 +74,41 @@ struct TrendViewModel {
     }
     
     func rangeOfSelectTag(tag: Int?) -> (Double, Double) {
+        
+        var minValue: Double = 0
+        var maxValue: Double = 0
+        
         if tag == 1 {
-            return (Double(weightRange.0), Double(weightRange.1))
+            minValue = Double(weightRange.0)
+            maxValue = Double(weightRange.1)
         }
         else if tag == 2 {
-            return (Double(fatRange.0), Double(fatRange.1))
+            minValue = Double(fatRange.0)
+            maxValue = Double(fatRange.1)
         }
         else if tag == 3 {
-            return (Double(muscleRange.0), Double(muscleRange.1))
+            minValue = Double(muscleRange.0)
+            maxValue = Double(muscleRange.1)
         }
         else if tag == 4 {
-            return (Double(waterRange.0), Double(waterRange.1))
+            minValue = Double(waterRange.0)
+            maxValue = Double(waterRange.1)
         }
         else if tag == 5 {
-            return (Double(proteinRange.0), Double(proteinRange.1))
+            minValue = Double(proteinRange.0)
+            maxValue = Double(proteinRange.1)
         }
-        else {
-            return (0,0)
+        
+        if minValue == maxValue {
+            maxValue += 1
+            minValue -= 1
+            
+            if minValue < 0 {
+                minValue = 0
+            }
         }
+        
+        return (minValue, maxValue)
     }
     
     func value(index: Int) -> (Double?, Double?, String) {
