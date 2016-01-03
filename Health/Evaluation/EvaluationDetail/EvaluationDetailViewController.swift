@@ -81,16 +81,36 @@ class EvaluationDetailViewController: UIViewController {
     }
     
     @IBAction func deleteButtonPressed(sender: AnyObject) {
-        if data != nil {
-            EvaluationManager.shareInstance().deleteEvaluationData(data!)
-            refreshAllData()
-        }
+        
+        UIAlertView(title: "确认删除?", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定").show()
+        
     }
     
     @IBAction func shareButtonPressed(sender: AnyObject) {
         ShareViewController.showShareViewController(detailTableView.convertToImage(), delegate: self, rootController: self)
     }
     
+}
+
+extension EvaluationDetailViewController: UIAlertViewDelegate {
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            if data != nil {
+                AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "删除中", detailMsg: nil, progress: nil)
+                EvaluationManager.shareInstance().deleteEvaluationData(data!, complete: { [unowned self] (error: NSError?) -> Void in
+                    if error == nil {
+                        self.refreshAllData()
+                    }
+                    else {
+                        Alert.showErrorAlert("删除失败", message: error!.localizedDescription)
+                    }
+                    
+                    AppDelegate.applicationDelegate().hiddenHUD()
+                    })
+                
+            }
+        }
+    }
 }
 
 // MARK: - 详细view 代理

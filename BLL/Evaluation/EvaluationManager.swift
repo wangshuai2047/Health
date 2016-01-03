@@ -187,8 +187,15 @@ class EvaluationManager :NSObject {
         }
     }
     
-    func deleteEvaluationData(result: ScaleResultProtocol) {
-        DBManager.shareInstance().deleteEvaluationData(result.dataId,userId: result.userId)
+    func deleteEvaluationData(result: ScaleResultProtocol, complete: (NSError?) -> Void) {
+        
+        EvaluationRequest.deleteEvaluationData(result.dataId, userId: result.userId) { (error: NSError?) -> Void in
+            if error == nil {
+                DBManager.shareInstance().deleteEvaluationData(result.dataId,userId: result.userId)
+            }
+            complete(error)
+        }
+        
     }
     
     func share(shareType: ShareType, image: UIImage, complete: (NSError?) -> Void) {

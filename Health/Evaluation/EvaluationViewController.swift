@@ -134,6 +134,8 @@ class EvaluationViewController: UIViewController {
             AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
             
             self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
+            
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
             EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
@@ -153,6 +155,8 @@ class EvaluationViewController: UIViewController {
                     detailController.navigationController?.popViewControllerAnimated(true)
 //                    Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
                 }
+                
+                AppDelegate.applicationDelegate().hiddenHUD()
             }
         }
     }
@@ -219,6 +223,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
         EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
                 
@@ -238,6 +243,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
                 
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
 }
@@ -310,6 +316,8 @@ extension EvaluationViewController: VisitorAddDelegate {
         detailController.isVisitor = true
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
+        
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
         EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
             self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             if error == nil {
@@ -327,6 +335,8 @@ extension EvaluationViewController: VisitorAddDelegate {
                 detailController.navigationController?.popViewControllerAnimated(true)
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
+            
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
 }

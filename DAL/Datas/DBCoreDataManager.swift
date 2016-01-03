@@ -460,7 +460,8 @@ extension DBManager: DBManagerProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %s AND userId == %d", dataId, userId)
+        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %d", dataId, userId)
+//        request.predicate = NSPredicate(format: "dataId == %@", dataId)
         
         let listData:[AnyObject]?
         do {
@@ -521,7 +522,7 @@ extension DBManager: DBManagerProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %s AND userId == %d", dataId, userId)
+        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %d", dataId, userId)
         
         let listData: [AnyObject]?
         do {
