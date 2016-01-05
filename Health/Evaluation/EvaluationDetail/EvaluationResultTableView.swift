@@ -163,18 +163,21 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         
         if indexPath.section == 1 {
             let info = list[indexPath.row]
-            let canExtend = info.type.canExtend(data!)
-            if canExtend {
-                if selectedIndexRow == indexPath.row {
-                    selectedIndexRow = -1
+            if data != nil {
+                let canExtend = info.type.canExtend(data!)
+                if canExtend {
+                    if selectedIndexRow == indexPath.row {
+                        selectedIndexRow = -1
+                    }
+                    else {
+                        selectedIndexRow = indexPath.row
+                    }
+                    tableView.reloadData()
+                    
+                    self.physiqueDelegate?.viewHeightChanged()
                 }
-                else {
-                    selectedIndexRow = indexPath.row
-                }
-                tableView.reloadData()
-                
-                self.physiqueDelegate?.viewHeightChanged()
             }
+           
             
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }

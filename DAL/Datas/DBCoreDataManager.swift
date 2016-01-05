@@ -460,11 +460,15 @@ extension DBManager: DBManagerProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %s AND userId == %d", dataId, userId)
+        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %d", dataId, userId)
+//        request.predicate = NSPredicate(format: "dataId == %@", dataId)
         
         let listData:[AnyObject]?
         do {
             listData = try context.executeFetchRequest(request)
+            
+            print(listData)
+            
         } catch let error as NSError {
             print(error)
             listData = nil
@@ -518,7 +522,7 @@ extension DBManager: DBManagerProtocol {
         
         let request = NSFetchRequest()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "dataId == %s AND userId == %d", dataId, userId)
+        request.predicate = NSPredicate(format: "dataId == %@ AND userId == %d", dataId, userId)
         
         let listData: [AnyObject]?
         do {
@@ -567,7 +571,6 @@ extension DBManager: DBManagerProtocol {
         request.sortDescriptors = [endDateSort]
         
         let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
-        
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
             datas += [convertModel(managedObject)]

@@ -120,9 +120,19 @@ class GoalSettingViewController: UIViewController {
     @IBAction func nextButtonPressed(sender: AnyObject) {
         
         if scrollView.contentOffset.x >= scrollView.contentSize.width - scrollView.frame.size.width {
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "提交中", detailMsg: nil, progress: nil)
+            GoalManager.setGoal(goalType, number: goalNumber(), days: strategyDayRange[setDaysGoalPicker.selectedRowInComponent(0)], complete: { [unowned self] (error: NSError?) -> Void in
+                
+                if error == nil {
+                    self.backButtonPressed(NSObject())
+                }
+                else {
+                    Alert.showErrorAlert("提交失败", message: error?.localizedDescription)
+                }
+                
+                AppDelegate.applicationDelegate().hiddenHUD()
+            })
             
-            GoalManager.setGoal(goalType, number: goalNumber(), days: strategyDayRange[setDaysGoalPicker.selectedRowInComponent(0)])
-            backButtonPressed(NSObject())
         }
         else {
             scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x + scrollView.bounds.size.width, 0), animated: true)

@@ -17,6 +17,8 @@ class DoubleYLineChartCell: UICollectionViewCell {
     @IBOutlet weak var barViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var linePointTopConstraint: NSLayoutConstraint!
     
+    @IBOutlet var gridTopContraints: [NSLayoutConstraint]!
+    
     var leftYValueRange: (Double, Double)?
     var rightYValueRange: (Double, Double)?
     private var drawTotalHeight: CGFloat?
@@ -48,6 +50,11 @@ class DoubleYLineChartCell: UICollectionViewCell {
         lineDrawView.secondPoint = nil
         lineDrawView.height = nil
         lineDrawView.color = nil
+        
+        let margin = (drawTotalHeight! - 6) / 5;
+        for contraint in gridTopContraints {
+            contraint.constant = margin;
+        }
     }
     
     func setLeftValues(minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {

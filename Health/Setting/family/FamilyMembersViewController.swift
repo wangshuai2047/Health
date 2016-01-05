@@ -18,6 +18,10 @@ class FamilyMembersViewController: UIViewController {
     
     var isEditUser: Bool = false
     
+    convenience init() {
+        self.init(nibName: "FamilyMembersViewController", bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

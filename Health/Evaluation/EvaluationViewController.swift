@@ -72,7 +72,11 @@ class EvaluationViewController: UIViewController {
             AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环历史数据", detailMsg: nil, progress: nil)
             // 开始目标数据同步
             GoalManager.checkAndSyncGoalDatas({ (error: NSError?) -> Void in
-                AppDelegate.applicationDelegate().hiddenHUD()
+                
+                AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步目标数据", detailMsg: nil, progress: nil)
+                GoalManager.checkSyncSettingDatas { (error: NSError?) -> Void in
+                    AppDelegate.applicationDelegate().hiddenHUD()
+                }
             })
         }
     }
@@ -111,7 +115,7 @@ class EvaluationViewController: UIViewController {
     }
     // MARK: - notConnectDeviceView Response Method
     @IBAction func buyDevicePressed(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://item.jd.com/1295110.html")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://shop124322383.taobao.com/")!)
 //        EvaluationManager.shareInstance().addTestDatas()
     }
 
@@ -133,7 +137,9 @@ class EvaluationViewController: UIViewController {
             let detailController = EvaluationDetailViewController()
             AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
             
-            self.tipLabel.text = "已开始扫描，设备请上秤!"
+            self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
+            
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
             EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
@@ -153,6 +159,8 @@ class EvaluationViewController: UIViewController {
                     detailController.navigationController?.popViewControllerAnimated(true)
 //                    Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
                 }
+                
+                AppDelegate.applicationDelegate().hiddenHUD()
             }
         }
     }
@@ -218,7 +226,8 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
-        self.tipLabel.text = "已开始扫描，设备请上秤!"
+        self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
         EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
                 
@@ -238,6 +247,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
                 
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
 }
@@ -276,8 +286,15 @@ extension EvaluationViewController: UserSelectViewDelegate {
     
     // 用户改变
     func userChangeToUserId(userId: Int) {
-        UserManager.shareInstance().changeUserToUserId(userId)
-        userSelectView.setShowViewUserId(userId)
+        
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
+        
+        EvaluationManager.checkAndSyncEvaluationDatas(userId) { [unowned self] (error: NSError?) -> Void in
+            
+            UserManager.shareInstance().changeUserToUserId(userId)
+            self.userSelectView.setShowViewUserId(userId)
+            AppDelegate.applicationDelegate().hiddenHUD()
+        }
     }
 }
 
@@ -293,7 +310,7 @@ extension EvaluationViewController: CompleteInfoDelegate {
                 controller.navigationController?.popViewControllerAnimated(false)
                 
                 // 添加家庭成员 后默认是去进行评测
-                self.startEvaluationPressed(NSObject())
+//                self.startEvaluationPressed(NSObject())
             }
             else {
                 Alert.showErrorAlert("添加家庭成员失败", message: error?.localizedDescription)
@@ -310,8 +327,10 @@ extension EvaluationViewController: VisitorAddDelegate {
         detailController.isVisitor = true
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
+        
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
         EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
-            self.tipLabel.text = "已开始扫描，设备请上秤!"
+            self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             if error == nil {
                 
                 detailController.data = info
@@ -327,6 +346,8 @@ extension EvaluationViewController: VisitorAddDelegate {
                 detailController.navigationController?.popViewControllerAnimated(true)
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
+            
+            AppDelegate.applicationDelegate().hiddenHUD()
         }
     }
 }

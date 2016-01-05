@@ -17,6 +17,16 @@ class ShareViewController: UIViewController {
     var delegate: ShareViewControllerDelegate?
     var shareImage: UIImage?
     
+    @IBOutlet weak var weChatFriendButton: UIButton!
+    @IBOutlet weak var weChatFriendLabel: UILabel!
+    @IBOutlet weak var weChatSessionButton: UIButton!
+    @IBOutlet weak var weChatSessionLabel: UILabel!
+    @IBOutlet weak var qqButton: UIButton!
+    @IBOutlet weak var qqLabel: UILabel!
+    @IBOutlet weak var sinaButton: UIButton!
+    @IBOutlet weak var sinaLabel: UILabel!
+    
+    
     class func showShareViewController(image: UIImage, delegate: ShareViewControllerDelegate?, rootController: UIViewController) {
         
         let controller = ShareViewController()
@@ -42,6 +52,17 @@ class ShareViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        qqButton.hidden = !LoginManager.isExistShareApp(ShareType.QQFriend)
+        qqLabel.hidden = !LoginManager.isExistShareApp(ShareType.QQFriend)
+        
+        weChatFriendButton.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
+        weChatFriendLabel.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
+        weChatSessionButton.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
+        weChatSessionLabel.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
+        
+        sinaButton.hidden = !LoginManager.isExistShareApp(ShareType.WeiBo)
+        sinaLabel.hidden = !LoginManager.isExistShareApp(ShareType.WeiBo)
     }
 
     override func didReceiveMemoryWarning() {

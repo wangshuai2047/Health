@@ -63,20 +63,25 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                 let receiveWeightData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData()
                 NSLog("write receiveWeightData : \(receiveWeightData)")
                 self.peripheral?.writeValue(receiveWeightData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-//                dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
-//                    
-//                })
-                
             }
             else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
-                self.result?.setDatas(format.datas)
-                self.result?.hepaticAdiposeInfiltration = true
                 
-                let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
-                NSLog("write receiveBodyData : \(receiveBodyData)")
-                self.peripheral?.writeValue(receiveBodyData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                // 判断测试是否成功
+                var error: NSError? = nil
+                if format.resultCode == 0x33 {
+                    // 测试失败
+                    error = NSError(domain: "MyBodyMiniAndPlusManager", code: 99, userInfo: [NSLocalizedDescriptionKey : "请重新测试"])
+                }
+                else {
+                    self.result?.setDatas(format.datas)
+                    self.result?.hepaticAdiposeInfiltration = true
+                    
+                    let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
+                    NSLog("write receiveBodyData : \(receiveBodyData)")
+                    self.peripheral?.writeValue(receiveBodyData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                }
                 
-                fireComplete?(result, nil)
+                fireComplete?(result, error)
             }
         }
         else {
@@ -91,6 +96,14 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
 extension MyBodyMiniAndPlusManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager) {
         
+    }
+    
+    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        fireComplete?(nil, error)
+    }
+    
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        fireComplete?(nil, error)
     }
 }
 

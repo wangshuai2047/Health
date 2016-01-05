@@ -70,12 +70,15 @@ class AttributedLabel: UIView {
         let lineSpacing = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineSpacingAdjustment, valueSize: sizeof(CGFloat), value: &spacing)
         
         // 居中
-//        var alignmentValue = CTRubyAlignment.Center
-//        var alignment = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.Alignment, valueSize: sizeof(CTRubyAlignment), value: &alignmentValue)
-        
-        
-        attributedString.addAttribute(String(kCTParagraphStyleAttributeName), value: CTParagraphStyleCreate([lineBreakModel, lineSpacing], 2), range: NSRange(location: 0, length: attributedString.length))
-        
+        if #available(iOS 8.0, *) {
+            var alignmentValue = CTRubyAlignment.Center
+             let alignment = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.Alignment, valueSize: sizeof(CTRubyAlignment), value: &alignmentValue)
+            
+            attributedString.addAttribute(String(kCTParagraphStyleAttributeName), value: CTParagraphStyleCreate([lineBreakModel, lineSpacing,alignment], 3), range: NSRange(location: 0, length: attributedString.length))
+        } else {
+            // Fallback on earlier versions
+            
+            attributedString.addAttribute(String(kCTParagraphStyleAttributeName), value: CTParagraphStyleCreate([lineBreakModel, lineSpacing], 2), range: NSRange(location: 0, length: attributedString.length))
+        }
     }
-
 }

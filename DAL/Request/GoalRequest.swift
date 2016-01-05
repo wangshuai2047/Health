@@ -9,7 +9,50 @@
 import Foundation
 
 struct GoalRequest {
-    // 获取评测数据
+    
+    // 上传设置目标数据  "userId":149,"type":2,"number":100,"days":13,"setDate":1451833727}
+    static func uploadSettingGoalDatas(userId: Int, type: Int, number: Int, days: Int, setDate: NSDate, complete: (NSError?) -> Void) {
+        RequestType.UploadSettingGoalDatas.startRequest(["userId" : userId, "type": type, "number" : number, "days" : days, "setDate" : setDate.secondTimeInteval()]) { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        }
+    }
+    
+    // 获取设置目标数据
+    static func querySettingGoalDatas(userId: Int, complete: (datas: [String: AnyObject]?, NSError?) -> Void) {
+        RequestType.QuerySettingGoalDatas.startRequest(["userId" : userId]) { (data, response, error) -> Void in
+            
+            let result = Request.dealResponseData(data, response: response, error: error)
+            if let err = result.error {
+                complete(datas: nil, err)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                #endif
+            }
+            else {
+                let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
+                complete(datas: jsonObj?.valueForKey("info") as? [String: AnyObject], nil)
+                #if DEBUG
+                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                #endif
+            }
+        }
+    }
+    
+    // 获取目标数据
     static func queryGoalDatas(userId: Int, startDate: NSDate, endDate: NSDate, complete : ((datas: [[String: AnyObject]]? , NSError?) -> Void)) {
         RequestType.QueryGoalDatas.startRequest(["userId": userId, "startTimestamp" : startDate.secondTimeInteval(), "endTimestamp" : endDate.secondTimeInteval()], completionHandler: { (data, response, error) -> Void in
             

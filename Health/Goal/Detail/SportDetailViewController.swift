@@ -33,7 +33,15 @@ class SportDetailViewController: UIViewController {
         let cellNib = UINib(nibName: cellId, bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
         
-        refreshData()
+        
+        
+        if GoalManager.isConnectDevice() {
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
+            GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
+                self.refreshData()
+                AppDelegate.applicationDelegate().hiddenHUD()
+            })
+        }
     }
     //
 

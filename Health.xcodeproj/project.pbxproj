@@ -12,8 +12,6 @@
 		E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; };
 		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
 		E0039BD91BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
-		E0039BDE1BCF28370014ED50 /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
-		E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
 		E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E021FD1B1B905A8C00565FDB /* AttributedLabel.swift */; };
 		E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D048D1B8BE7DC0090137C /* CircleView.swift */; };
 		E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09AAC511BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift */; };
@@ -119,6 +117,7 @@
 		E0255E891BC9680300CEE5D4 /* MyBodyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */; };
 		E0255E8B1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */; };
 		E0255E8C1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */; };
+		E02F9AC41C1FB56F00DC79E8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E038D1FD1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E038D1FE1B9ABFE80011A61E /* UserGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038D1FC1B9ABFE80011A61E /* UserGoalData.swift */; };
 		E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0418EDB1BC2BABC00B2788D /* UIKit.framework */; };
@@ -139,6 +138,7 @@
 		E04256D71BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04256D51BA07DAF00AE3BB8 /* EvaluationDetailViewModel.swift */; };
 		E046FC591BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */; };
 		E046FC5D1BDFD10500DC116C /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E046FC5C1BDFD10500DC116C /* FXBlurView.m */; };
+		E052D1561C34156100E52C9F /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052D1551C34156100E52C9F /* DoubleYLineChartCell.swift */; };
 		E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05382D71B991C2F002FE2EB /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05382D51B991C2F002FE2EB /* ConvertData.swift */; };
 		E05B1A301B8E028900B37F1C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B1A2F1B8E028900B37F1C /* Alert.swift */; };
@@ -188,7 +188,6 @@
 		E094E0211BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; };
 		E094E0221BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; };
 		E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
-		E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09EC8E91B7E406B00CC07E3 /* CoreData.framework */; };
 		E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; };
 		E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; };
@@ -220,7 +219,6 @@
 		E0B29B081B9BD5F400F2F2CC /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B061B9BD2D000F2F2CC /* GoalData.swift */; };
 		E0B29B0A1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
 		E0B29B0B1B9BE10200F2F2CC /* NSDateExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B29B091B9BE10200F2F2CC /* NSDateExtend.swift */; };
-		E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E0BC150B1BC740E5008520AB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC15091BC740AC008520AB /* AdSupport.framework */; };
 		E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C33A9C1BDB233400B62C59 /* GoalSettingViewModel.swift */; };
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
@@ -232,7 +230,6 @@
 		E0C50BA11B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50BA31B862AA0007A9393 /* UserSelectView.swift */; };
 		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
-		E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */; };
 		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; };
 		E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; };
 		E0CBCC0D1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; };
@@ -262,7 +259,6 @@
 		E0EDBDF61BCE5B8E00137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */; };
 		E0F048381BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
 		E0F048391BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
-		E0F0483B1BCFFA5300C63540 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F0483A1BCFFA5300C63540 /* HomeKit.framework */; };
 		E0F048401BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
 		E0F048411BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
 		E0F048431BD0779700C63540 /* QQHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048421BD0779700C63540 /* QQHealthManager.swift */; };
@@ -356,7 +352,6 @@
 		E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueIntroduceViewController.xib; sourceTree = "<group>"; };
 		E00C00EA1B7ECC6D006A4343 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
-		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E015BB521BC52B3900225C32 /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
 		E015BB531BC52B3900225C32 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
@@ -401,6 +396,7 @@
 		E046FC581BDFBAE600DC116C /* EvaluationDetailExtendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailExtendViewModel.swift; sourceTree = "<group>"; };
 		E046FC5B1BDFD10500DC116C /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		E046FC5C1BDFD10500DC116C /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		E052D1551C34156100E52C9F /* DoubleYLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleYLineChartCell.swift; path = Vender/Charts/DoubleYAxisLineChart/DoubleYLineChartCell.swift; sourceTree = SOURCE_ROOT; };
 		E05382D51B991C2F002FE2EB /* ConvertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
 		E05B1A2F1B8E028900B37F1C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E05B1A321B8E04B000B37F1C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserView.xib; path = Health/User/UserView.xib; sourceTree = SOURCE_ROOT; };
@@ -498,7 +494,6 @@
 		E0C50B9F1B862381007A9393 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = BLL/User/UserManager.swift; sourceTree = SOURCE_ROOT; };
 		E0C50BA31B862AA0007A9393 /* UserSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSelectView.swift; path = Health/User/UserSelectView.swift; sourceTree = SOURCE_ROOT; };
 		E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYAxisLineChart.swift; sourceTree = "<group>"; };
-		E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYLineChartCell.swift; sourceTree = "<group>"; };
 		E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleYLineChartCell.xib; sourceTree = "<group>"; };
 		E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -518,7 +513,6 @@
 		E0EDBDF11BCE5B4700137FB0 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraceletBlueToothFormats.swift; sourceTree = "<group>"; };
 		E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MybodyMiniAndPlusBlueToothFormats.swift; sourceTree = "<group>"; };
 		E0F048371BCFFA3000C63540 /* HealthDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataManager.swift; sourceTree = "<group>"; };
-		E0F0483A1BCFFA5300C63540 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		E0F0483C1BCFFA5300C63540 /* Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Health.entitlements; sourceTree = "<group>"; };
 		E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleHealthKitManager.swift; sourceTree = "<group>"; };
 		E0F048421BD0779700C63540 /* QQHealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQHealthManager.swift; sourceTree = "<group>"; };
@@ -552,7 +546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0BC150A1BC740AC008520AB /* AdSupport.framework in Frameworks */,
+				E02F9AC41C1FB56F00DC79E8 /* AdSupport.framework in Frameworks */,
 				E0418EDE1BC2BAC500B2788D /* Foundation.framework in Frameworks */,
 				E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */,
 				E0039C501BCF28C10014ED50 /* ShareSDKExtension.framework in Frameworks */,
@@ -567,7 +561,6 @@
 				E060CD891B8401790002AEE7 /* ImageIO.framework in Frameworks */,
 				E060CD871B8401700002AEE7 /* JavaScriptCore.framework in Frameworks */,
 				E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */,
-				E0F0483B1BCFFA5300C63540 /* HomeKit.framework in Frameworks */,
 				E0039C541BCF28C10014ED50 /* ShareSDKUI.framework in Frameworks */,
 				E09EC8EA1B7E406B00CC07E3 /* CoreData.framework in Frameworks */,
 				E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */,
@@ -594,7 +587,6 @@
 				E0039C431BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */,
 				E060CD8F1B8401C00002AEE7 /* Accounts.framework in Frameworks */,
 				E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */,
-				E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */,
 				E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,7 +597,6 @@
 		B3076E6D2DA86A662569F363 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E0F0483A1BCFFA5300C63540 /* HomeKit.framework */,
 				E0BC15091BC740AC008520AB /* AdSupport.framework */,
 				E0418EDD1BC2BAC500B2788D /* Foundation.framework */,
 				E0418EDB1BC2BABC00B2788D /* UIKit.framework */,
@@ -1227,7 +1218,6 @@
 			isa = PBXGroup;
 			children = (
 				E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */,
-				E00C01641B7FAB99006A4343 /* HealthKit.framework */,
 				E09EC8E91B7E406B00CC07E3 /* CoreData.framework */,
 			);
 			name = Framework;
@@ -1303,7 +1293,7 @@
 			isa = PBXGroup;
 			children = (
 				E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */,
-				E0C588551BA6FD68000955FC /* DoubleYLineChartCell.swift */,
+				E052D1551C34156100E52C9F /* DoubleYLineChartCell.swift */,
 				E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */,
 			);
 			path = DoubleYAxisLineChart;
@@ -1521,8 +1511,11 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
 							com.apple.HomeKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1686,6 +1679,7 @@
 				E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
 				E015BB541BC52B3900225C32 /* FeedBackViewController.swift in Sources */,
 				E0C33A9D1BDB233400B62C59 /* GoalSettingViewModel.swift in Sources */,
+				E052D1561C34156100E52C9F /* DoubleYLineChartCell.swift in Sources */,
 				E0F9DB151B854BCD00504454 /* TrendViewController.swift in Sources */,
 				E08B32971B85A8B00040ADE7 /* CompleteGenderDataView.swift in Sources */,
 				E021FD1C1B905A8C00565FDB /* AttributedLabel.swift in Sources */,
@@ -1704,7 +1698,6 @@
 				E094E01D1BD283060017079B /* HealthManager.swift in Sources */,
 				E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */,
 				E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */,
-				E0C588581BA6FD68000955FC /* DoubleYLineChartCell.swift in Sources */,
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
 				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
@@ -1791,8 +1784,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0039BDE1BCF28370014ED50 /* DoubleYAxisLineChart.swift in Sources */,
-				E0039BDF1BCF28370014ED50 /* DoubleYLineChartCell.swift in Sources */,
 				E0039BE01BCF28370014ED50 /* AttributedLabel.swift in Sources */,
 				E0039BE11BCF28370014ED50 /* CircleView.swift in Sources */,
 				E0039BE91BCF28370014ED50 /* GoalDetailTableViewCell.swift in Sources */,
@@ -2006,7 +1997,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -2038,7 +2028,7 @@
 					"-licucore",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
@@ -2055,7 +2045,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -2087,7 +2076,7 @@
 					"-licucore",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.studio37.MyBody;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";

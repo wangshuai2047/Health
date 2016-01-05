@@ -121,33 +121,51 @@ class EvaluationManager :NSObject {
         return DBManager.shareInstance().queryCountEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserManager.shareInstance().currentUser.userId, count: 5)
     }
     
-    static func checkAndSyncEvaluationDatas(complete: (NSError?) -> Void) {
-        // 看是否需要获取历史信息
-        let lastInfo = DBManager.shareInstance().queryLastEvaluationData(UserData.shareInstance().userId!)
-        if lastInfo == nil {
-            // 去获取历史数据
-            EvaluationRequest.queryEvaluationDatas(UserData.shareInstance().userId!, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate(), complete: { (datas, error: NSError?) -> Void in
-                
-                if error == nil {
-                    var results: [ScaleResultProtocol] = []
+    static func checkAndSyncEvaluationDatas(userId: Int, complete: (NSError?) -> Void) {
+        
+        var user: UserModel? = nil
+        if userId == UserData.shareInstance().userId {
+            user = UserModel(userId: userId, age: UserData.shareInstance().age!, gender: UserData.shareInstance().gender!, height: UserData.shareInstance().height!, name: UserData.shareInstance().name!, headURL: nil)
+        }
+        else if let userInfo = DBManager.shareInstance().queryUser(userId) {
+            user = UserModel(info: userInfo)
+        }
+        
+        if user != nil {
+            // 看是否需要获取历史信息
+            let lastInfo = DBManager.shareInstance().queryLastEvaluationData(userId)
+            
+            if lastInfo == nil {
+                EvaluationRequest.queryEvaluationDatas(userId, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate(), complete: { (datas, error: NSError?) -> Void in
                     
-                    for data in datas! {
-                        var info = data;
-                        let fatPercentage = (data["fatPercentage"] as! NSNumber).floatValue
-                        info["fatPercentage"] = NSNumber(float: fatPercentage * 100)
-                        results.append(ScaleResultProtocolCreate(info, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!))
+                    if error == nil {
+                        var results: [ScaleResultProtocol] = []
+                        
+                        for data in datas! {
+                            var info = data;
+                            let fatPercentage = (data["fatPercentage"] as! NSNumber).floatValue
+                            info["fatPercentage"] = NSNumber(float: fatPercentage * 100)
+                            results.append(ScaleResultProtocolCreate(info, gender: user!.gender, age: user!.age, height: user!.height))
+                        }
+                        
+                        DBManager.shareInstance().addEvaluationDatas(results, isUpload: true)
                     }
                     
-                    DBManager.shareInstance().addEvaluationDatas(results, isUpload: true)
-                }
-                
-                
-                complete(error)
-            })
+                    complete(error)
+                })
+            }
+            else {
+                complete(nil)
+            }
         }
         else {
-            complete(nil)
+            complete(NSError(domain: "EvaluationManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "未找到用户"]))
         }
+        
+    }
+    
+    static func checkAndSyncEvaluationDatas(complete: (NSError?) -> Void) {
+        self.checkAndSyncEvaluationDatas(UserData.shareInstance().userId!, complete: complete)
     }
     
     func updateEvaluationData() {
@@ -187,8 +205,15 @@ class EvaluationManager :NSObject {
         }
     }
     
-    func deleteEvaluationData(result: ScaleResultProtocol) {
-        DBManager.shareInstance().deleteEvaluationData(result.dataId,userId: result.userId)
+    func deleteEvaluationData(result: ScaleResultProtocol, complete: (NSError?) -> Void) {
+        
+        EvaluationRequest.deleteEvaluationData(result.dataId, userId: result.userId) { (error: NSError?) -> Void in
+            if error == nil {
+                DBManager.shareInstance().deleteEvaluationData(result.dataId,userId: result.userId)
+            }
+            complete(error)
+        }
+        
     }
     
     func share(shareType: ShareType, image: UIImage, complete: (NSError?) -> Void) {
