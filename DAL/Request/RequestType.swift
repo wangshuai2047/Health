@@ -29,6 +29,9 @@ enum RequestType: String {
     case DeleteGoalData = "100021"
     case DeleteGoalDatas = "100024"
     
+    case UploadSettingGoalDatas = "100031"
+    case QuerySettingGoalDatas = "100032"
+    
     case QueryScore = "100017"
     case Share = "100018"
     case QueryBadge = "100029"  // 获取徽章 传userId

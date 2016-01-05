@@ -188,7 +188,6 @@
 		E094E0211BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; };
 		E094E0221BD294E30017079B /* HealthDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E0201BD294E30017079B /* HealthDataHelper.swift */; };
 		E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */; };
-		E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C01641B7FAB99006A4343 /* HealthKit.framework */; };
 		E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09EC8E91B7E406B00CC07E3 /* CoreData.framework */; };
 		E09588981BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; };
 		E09588991BA99E0100033179 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09588971BA99E0100033179 /* GoalViewModel.swift */; };
@@ -260,7 +259,6 @@
 		E0EDBDF61BCE5B8E00137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */; };
 		E0F048381BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
 		E0F048391BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
-		E0F0483B1BCFFA5300C63540 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F0483A1BCFFA5300C63540 /* HomeKit.framework */; };
 		E0F048401BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
 		E0F048411BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
 		E0F048431BD0779700C63540 /* QQHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048421BD0779700C63540 /* QQHealthManager.swift */; };
@@ -354,7 +352,6 @@
 		E0092D3D1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueIntroduceViewController.xib; sourceTree = "<group>"; };
 		E00C00EA1B7ECC6D006A4343 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E00C00EF1B7ECE84006A4343 /* DBManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
-		E00C01641B7FAB99006A4343 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E015BB521BC52B3900225C32 /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
 		E015BB531BC52B3900225C32 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
@@ -516,7 +513,6 @@
 		E0EDBDF11BCE5B4700137FB0 /* BraceletBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraceletBlueToothFormats.swift; sourceTree = "<group>"; };
 		E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MybodyMiniAndPlusBlueToothFormats.swift; sourceTree = "<group>"; };
 		E0F048371BCFFA3000C63540 /* HealthDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataManager.swift; sourceTree = "<group>"; };
-		E0F0483A1BCFFA5300C63540 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		E0F0483C1BCFFA5300C63540 /* Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Health.entitlements; sourceTree = "<group>"; };
 		E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleHealthKitManager.swift; sourceTree = "<group>"; };
 		E0F048421BD0779700C63540 /* QQHealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQHealthManager.swift; sourceTree = "<group>"; };
@@ -565,7 +561,6 @@
 				E060CD891B8401790002AEE7 /* ImageIO.framework in Frameworks */,
 				E060CD871B8401700002AEE7 /* JavaScriptCore.framework in Frameworks */,
 				E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */,
-				E0F0483B1BCFFA5300C63540 /* HomeKit.framework in Frameworks */,
 				E0039C541BCF28C10014ED50 /* ShareSDKUI.framework in Frameworks */,
 				E09EC8EA1B7E406B00CC07E3 /* CoreData.framework in Frameworks */,
 				E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */,
@@ -592,7 +587,6 @@
 				E0039C431BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */,
 				E060CD8F1B8401C00002AEE7 /* Accounts.framework in Frameworks */,
 				E09528821B82300C00F7B8D0 /* CoreData.framework in Frameworks */,
-				E09528811B82300000F7B8D0 /* HealthKit.framework in Frameworks */,
 				E09528801B822FFB00F7B8D0 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,7 +597,6 @@
 		B3076E6D2DA86A662569F363 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E0F0483A1BCFFA5300C63540 /* HomeKit.framework */,
 				E0BC15091BC740AC008520AB /* AdSupport.framework */,
 				E0418EDD1BC2BAC500B2788D /* Foundation.framework */,
 				E0418EDB1BC2BABC00B2788D /* UIKit.framework */,
@@ -1225,7 +1218,6 @@
 			isa = PBXGroup;
 			children = (
 				E00C01661B7FABA0006A4343 /* CoreBluetooth.framework */,
-				E00C01641B7FAB99006A4343 /* HealthKit.framework */,
 				E09EC8E91B7E406B00CC07E3 /* CoreData.framework */,
 			);
 			name = Framework;
@@ -1519,8 +1511,11 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
 							com.apple.HomeKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -2002,7 +1997,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -2051,7 +2045,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;

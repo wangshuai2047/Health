@@ -289,12 +289,20 @@ extension TrendViewController: UserSelectViewDelegate {
     
     // 用户改变
     func userChangeToUserId(userId: Int) {
-        UserManager.shareInstance().changeUserToUserId(userId)
-        userSelectView.setShowViewUserId(userId)
         
-        // 刷新界面
-        viewModel.eightDaysDatas()
-        tableView.reloadData()
-        chartView.reloadDatas()
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
+        
+        EvaluationManager.checkAndSyncEvaluationDatas(userId) { [unowned self] (error: NSError?) -> Void in
+            
+            UserManager.shareInstance().changeUserToUserId(userId)
+            self.userSelectView.setShowViewUserId(userId)
+            
+            // 刷新界面
+            self.viewModel.eightDaysDatas()
+            self.tableView.reloadData()
+            self.chartView.reloadDatas()
+            
+            AppDelegate.applicationDelegate().hiddenHUD()
+        }
     }
 }

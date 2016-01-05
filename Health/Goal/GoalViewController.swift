@@ -49,11 +49,6 @@ class GoalViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.refreshView()
-        
-        setGoalDetail()
-        setSuggestCalorie()
-        setConnectDevice()
-        setNoDeviceView()
     }
 
     override func didReceiveMemoryWarning() {

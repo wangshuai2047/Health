@@ -72,7 +72,11 @@ class EvaluationViewController: UIViewController {
             AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环历史数据", detailMsg: nil, progress: nil)
             // 开始目标数据同步
             GoalManager.checkAndSyncGoalDatas({ (error: NSError?) -> Void in
-                AppDelegate.applicationDelegate().hiddenHUD()
+                
+                AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步目标数据", detailMsg: nil, progress: nil)
+                GoalManager.checkSyncSettingDatas { (error: NSError?) -> Void in
+                    AppDelegate.applicationDelegate().hiddenHUD()
+                }
             })
         }
     }
@@ -289,12 +293,8 @@ extension EvaluationViewController: UserSelectViewDelegate {
             
             UserManager.shareInstance().changeUserToUserId(userId)
             self.userSelectView.setShowViewUserId(userId)
-            
-            
             AppDelegate.applicationDelegate().hiddenHUD()
         }
-        
-        
     }
 }
 
@@ -310,7 +310,7 @@ extension EvaluationViewController: CompleteInfoDelegate {
                 controller.navigationController?.popViewControllerAnimated(false)
                 
                 // 添加家庭成员 后默认是去进行评测
-                self.startEvaluationPressed(NSObject())
+//                self.startEvaluationPressed(NSObject())
             }
             else {
                 Alert.showErrorAlert("添加家庭成员失败", message: error?.localizedDescription)

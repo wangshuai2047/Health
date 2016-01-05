@@ -66,6 +66,34 @@ struct GoalManager {
         }
     }
     
+    static func checkSyncSettingDatas(complete: (NSError?) -> Void) {
+        if !isSetGoal {
+            GoalRequest.querySettingGoalDatas(UserData.shareInstance().userId!, complete: { (datas, error: NSError?) -> Void in
+                
+                // "userId":149,"type":2,"number":100,"days":13,"setDate":1451833727}
+                if error == nil {
+                    let type: UserGoalData.GoalType = UserGoalData.GoalType(rawValue: (datas!["type"] as! NSNumber).integerValue)!
+                    let number = (datas!["number"] as! NSNumber).integerValue
+                    let days = (datas!["days"] as! NSNumber).integerValue
+                    let setDate = NSDate(timeIntervalSince1970: (datas!["setDate"] as! NSNumber).doubleValue)
+                    
+                    
+                    UserGoalData.type = type
+                    UserGoalData.number = number
+                    UserGoalData.days = days
+                    UserGoalData.setDate = setDate
+                    
+                }
+                
+                complete(error)
+                
+            })
+        }
+        else {
+            complete(nil)
+        }
+    }
+    
     static func syncDatas(complete: ((NSError?) -> Void)) {
         
         if let uuid = braceletUUID {
@@ -171,11 +199,22 @@ struct GoalManager {
         }
     }
     
-    static func setGoal(type: UserGoalData.GoalType, number: Int?, days: Int?) {
-        UserGoalData.type = type
-        UserGoalData.number = number
-        UserGoalData.days = days
-        UserGoalData.setDate = NSDate()
+    static func setGoal(type: UserGoalData.GoalType, number: Int, days: Int, complete: (NSError?) -> Void) {
+        
+        let date = NSDate()
+        GoalRequest.uploadSettingGoalDatas(UserData.shareInstance().userId!, type: type.rawValue, number: number, days: days, setDate: date) { (error: NSError?) -> Void in
+            
+            if error == nil {
+                UserGoalData.type = type
+                UserGoalData.number = number
+                UserGoalData.days = days
+                UserGoalData.setDate = date
+            }
+            
+            complete(error)
+        }
+        
+        
     }
     
     private static var sevenDaysData: [(Int,Int,Int,Int)] = []
