@@ -47,9 +47,15 @@ struct UserRequest {
         if phone != nil {
             params["phone"] = phone!
         }
+        else {
+            params["phone"] = ""
+        }
         
         if organizationCode != nil {
             params["organizationCode"] = organizationCode!
+        }
+        else {
+            params["organizationCode"] = ""
         }
         
         if imageURL != nil {

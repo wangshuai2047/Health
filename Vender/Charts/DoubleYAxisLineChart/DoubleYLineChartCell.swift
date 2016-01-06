@@ -17,11 +17,21 @@ class DoubleYLineChartCell: UICollectionViewCell {
     @IBOutlet weak var barViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var linePointTopConstraint: NSLayoutConstraint!
     
-    @IBOutlet var gridTopContraints: [NSLayoutConstraint]!
+//    @IBOutlet var gridTopContraints: [NSLayoutConstraint]!
     
     var leftYValueRange: (Double, Double)?
     var rightYValueRange: (Double, Double)?
-    private var drawTotalHeight: CGFloat?
+    
+    // 直接写在iphone4s 7.1.2上面会蹦  不知道为什么
+    private var temp: CGFloat?
+    private var drawTotalHeight: CGFloat? {
+        get {
+            return temp
+        }
+        set {
+            temp = newValue
+        }
+    }
     private var leftValues: (minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?)?
     private var rightValues: (minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?)?
     
@@ -51,10 +61,10 @@ class DoubleYLineChartCell: UICollectionViewCell {
         lineDrawView.height = nil
         lineDrawView.color = nil
         
-        let margin = (drawTotalHeight! - 6) / 5;
-        for contraint in gridTopContraints {
-            contraint.constant = margin;
-        }
+//        let margin = (drawTotalHeight! - 6) / 5;
+//        for contraint in gridTopContraints {
+//            contraint.constant = margin;
+//        }
     }
     
     func setLeftValues(minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {

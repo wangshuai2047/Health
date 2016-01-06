@@ -217,9 +217,11 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
             
             let model: EvaluationDetailCellViewModel = viewModel.allDatas[indexPath.row]
             cell?.textLabel?.text = "\(model.timeShowString)"
+            cell?.textLabel?.textColor = UIColor.darkGrayColor()
             
             let description = String(format: "体重:%.1fkg 体脂:%.1f%%", model.scaleResult.weight, model.scaleResult.fatPercentage)
             cell?.detailTextLabel?.text = description
+            cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
             
             return cell!
         }

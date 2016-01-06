@@ -32,6 +32,7 @@ class EvaluationViewController: UIViewController {
     @IBOutlet weak var bodyFatLabel: UILabel!
     @IBOutlet weak var bodyFatLevelLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     var canScale: Bool = false
     
     override func viewDidLoad() {
@@ -62,7 +63,7 @@ class EvaluationViewController: UIViewController {
                 self.tipLabel.text = "设备不支持蓝牙,无法使用!"
             }
             else if status == CBCentralManagerState.PoweredOn {
-                self.tipLabel.text = "摇一摇请上秤!"
+                self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量!"
                 self.canScale = true
             }
         }
@@ -83,6 +84,7 @@ class EvaluationViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.scrollView.contentSize = CGSizeMake(0, self.scrollView.contentSize.height)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -126,7 +128,7 @@ class EvaluationViewController: UIViewController {
     @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
         
         // 现在改为返回评测界面
-        self.tipLabel.text = "摇一摇请上秤!"
+        self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量!"
         showView(connectDeviceView)
     }
     

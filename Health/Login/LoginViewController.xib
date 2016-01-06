@@ -67,7 +67,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <inset key="titleEdgeInsets" minX="-43" minY="0.0" maxX="13" maxY="-65"/>
                     <inset key="imageEdgeInsets" minX="10" minY="-14" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="腾讯登录" image="qqLogin">
+                    <state key="normal" title="QQ登录" image="qqLogin">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

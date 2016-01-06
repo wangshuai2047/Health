@@ -110,7 +110,6 @@ struct LoginManager {
                 _ = try? NSFileManager.defaultManager().removeItemAtPath(headURL!)
             }
             
-            
             if error == nil {
                 UserData.shareInstance().name = name
                 UserData.shareInstance().gender = gender
@@ -413,9 +412,11 @@ struct LoginManager {
             UserData.shareInstance().userId = userId.integerValue
         }
         
-        if let phone = userInfo["mobile"] as? String {
+        if let phone = userInfo["mobile"] as? NSNumber {
             print("mobile\(phone)")
-            UserData.shareInstance().phone = phone
+            if phone != "" {
+                UserData.shareInstance().phone = phone.stringValue
+            }
         }
         
         if let age = userInfo["age"] as? NSNumber {
@@ -445,7 +446,9 @@ struct LoginManager {
         
         if let organizationCode = userInfo["organizationCode"] as? String {
             print("organizationCode\(organizationCode)")
-            UserData.shareInstance().organizationCode = organizationCode
+            if organizationCode != "" {
+                UserData.shareInstance().organizationCode = organizationCode
+            }
         }
         
         if let childs = userInfo["child"] as? [[String : AnyObject]] {

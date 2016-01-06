@@ -122,6 +122,7 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
         
         let font = UIFont.systemFontOfSize(15)
         descriptionLabel.clear()
+        descriptionLabel.isCenterAlignment = false
         descriptionLabel.append("您的体型为", font: font, color: UIColor.grayColor())
         descriptionLabel.append("\(data!.physique.description)", font: font, color: deepBlue)
         descriptionLabel.append("。本次\(allStatus.count)项检查中有", font: font, color: UIColor.grayColor())
