@@ -1262,6 +1262,8 @@ extension DBManager {
         let score = data.valueForKey("score") as! NSNumber
         info["score"] = score
         
+        print("timeStamptimeStamp \(info["timeStamp"])")
+        
         return info
     }
 }

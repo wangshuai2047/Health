@@ -85,6 +85,8 @@ class EvaluationViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.scrollView.contentSize = CGSizeMake(0, self.scrollView.contentSize.height)
+        
+        self.view.layoutSubviews()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -141,7 +143,7 @@ class EvaluationViewController: UIViewController {
             
             self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             
-            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
+            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测试中", detailMsg: nil, progress: nil)
             EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
@@ -229,7 +231,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测试中", detailMsg: nil, progress: nil)
         EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
                 
@@ -330,12 +332,13 @@ extension EvaluationViewController: VisitorAddDelegate {
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测量中", detailMsg: nil, progress: nil)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测试中", detailMsg: nil, progress: nil)
         EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
             self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             if error == nil {
                 
                 detailController.data = info
+                detailController.refreshData()
                 self.showView(self.connectDeviceView)
             } else {
                 if isTimeOut {

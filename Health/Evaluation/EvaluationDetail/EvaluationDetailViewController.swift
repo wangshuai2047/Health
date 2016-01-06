@@ -55,7 +55,7 @@ class EvaluationDetailViewController: UIViewController {
         else {
             refreshData()
         }
-        
+        self.view.layoutSubviews()
         self.view.setNeedsDisplay()
     }
 

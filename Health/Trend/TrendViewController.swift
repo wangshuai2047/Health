@@ -52,10 +52,6 @@ class TrendViewController: UIViewController {
         chartView.reloadDatas()
         refreshSelectedData()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
 
     /*
     // MARK: - Navigation
@@ -223,7 +219,7 @@ extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)
         }
         
-        let model: TrendCellViewModel = viewModel.allDatas[indexPath.row]
+        let model: TrendCellViewModel = viewModel.allDatas[viewModel.allDatas.count - 1 - indexPath.row]
         cell?.textLabel?.text = "\(model.timeShowString)"
         cell?.textLabel?.textColor = UIColor.darkGrayColor()
         

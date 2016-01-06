@@ -171,6 +171,8 @@ extension DoubleYAxisLineChart: UICollectionViewDelegate, UICollectionViewDataSo
         
         
         cell.resetCell()
+        cell.leftValues = nil
+        cell.rightValues = nil
         cell.leftYValueRange = leftRangeValues
         cell.rightYValueRange = rightRangeValues
         

@@ -28,6 +28,12 @@ class FamilyMembersViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.registerNib(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        users = UserManager.shareInstance().queryAllUsers()
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

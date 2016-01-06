@@ -42,6 +42,8 @@ class GUIViewController: UIViewController {
         }
         
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(imageViews.count), height: 0)
+        
+        self.view.layoutSubviews()
     }
 
     override func didReceiveMemoryWarning() {
