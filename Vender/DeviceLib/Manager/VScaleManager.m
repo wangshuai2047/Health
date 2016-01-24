@@ -223,8 +223,15 @@ static VScaleManager *instance = nil;
                         [self gotoStatus:VCStatusCaculate];
                         [self.delegate updateUIDataWithFatScale:self.scaleResult];
                         [deviceModel disconnect];
+                        
+                        
+                        NSError *error = nil;
+                        if ([(VTFatScaleTestResult *)result waterContent] == 0) {
+                            error = [NSError errorWithDomain:@"VScale Error" code:1 userInfo:@{NSLocalizedDescriptionKey : @"测试失败"}];
+                        }
+                        
                         if (_scaleComplete) {
-                            _scaleComplete(result, nil);
+                            _scaleComplete(result, error);
                         }
                         
                         [self gotoStatus:VCStatusServiceReady];
