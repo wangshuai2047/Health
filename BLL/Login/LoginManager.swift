@@ -140,6 +140,8 @@ struct LoginManager {
         bindWeiBoOpenId = nil
         bindWeChatOpenId = nil
         UserData.shareInstance().clearDatas()
+        
+        
     }
     
     

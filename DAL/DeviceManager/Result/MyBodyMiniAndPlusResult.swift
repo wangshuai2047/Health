@@ -34,17 +34,58 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     var fatFreeBodyWeightRange: (Float, Float) = (0,0)
     
     // 肌肉重
-    var muscleWeight: Float = 0
+    var tempMuscleWeight: Float = 0
+    var muscleWeight: Float {
+        get {
+            return tempMuscleWeight
+        }
+        set {
+            if gender {
+                tempMuscleWeight = newValue - 0.4
+            }
+            else {
+                tempMuscleWeight = newValue - 1.5
+            }
+        }
+    }
     // 肌肉重正常范围下限 + 肌肉重正常范围上限
     var muscleWeightRange: (Float, Float) = (0,0)
     
     // 蛋白质重
-    var proteinWeight: Float = 0
+    var tempProteinWeight: Float = 0
+    var proteinWeight: Float {
+        get {
+            return tempProteinWeight
+        }
+        set {
+            if gender {
+                tempProteinWeight = newValue - 0.4
+            }
+            else {
+                tempProteinWeight = newValue - 1.5
+            }
+            
+        }
+    }
     // 蛋白质正常范围下限 + 蛋白质正常范围上限
     var proteinWeightRange: (Float, Float) = (0,0)
     
     // 骨重
-    var boneWeight: Float = 0
+    var tempBoneWeight: Float = 0
+    var boneWeight: Float {
+        get {
+            return tempBoneWeight
+            
+        }
+        set {
+            if gender {
+                tempBoneWeight = newValue + 0.4
+            }
+            else {
+                tempBoneWeight = newValue + 1.5
+            }
+        }
+    }
     // 骨质重正常范围下限 + 骨质重正常范围上限
     var boneWeightRange: (Float, Float) = (0,0)
     
@@ -56,7 +97,14 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     // 脂肪重
     var fatWeight: Float = 0
     // 脂肪重正常范围下限 + 脂肪重正常范围上限
-    var fatWeightRange: (Float, Float) = (0,0)
+    var fatWeightRange: (Float, Float) {
+        get {
+            return (weight * fatPercentageRange.0, weight * fatPercentageRange.1)
+        }
+        set {
+            
+        }
+    }
     
     // 体脂率
     var fatPercentage: Float = 0
@@ -215,7 +263,7 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
         // 脂肪重
         fatWeight = datas[index++]
         // 脂肪重正常范围下限 + 脂肪重正常范围上限
-        fatWeightRange = (datas[index++], datas[index++])
+        (datas[index++], datas[index++])
         
         // 体脂率
         fatPercentage = datas[index++]
@@ -347,7 +395,7 @@ extension MyBodyMiniAndPlusResult {
         else {
             timeStamp = NSDate()
         }
-        
+        // self used before all stored properties are initialized
         userId = (info["userId"] as! NSNumber).integerValue
         weight = (info["weight"] as! NSNumber).floatValue
         waterPercentage = (info["waterPercentage"] as! NSNumber).floatValue
@@ -355,9 +403,7 @@ extension MyBodyMiniAndPlusResult {
         fatPercentage = (info["fatPercentage"] as! NSNumber).floatValue
         fatWeight = (info["fatWeight"] as! NSNumber).floatValue
         waterWeight = (info["waterWeight"] as! NSNumber).floatValue
-        muscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
-        proteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
-        boneWeight = (info["boneWeight"] as! NSNumber).floatValue
+        
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
 //        if let userInfo = DBManager.shareInstance().queryUser(userId) {
@@ -374,6 +420,21 @@ extension MyBodyMiniAndPlusResult {
         self.gender = gender
         self.age = age
         self.height = height
+        
+        /*
+        男的:骨质在现有值上加0.4，肌肉和蛋白质在现有值上分别减0.4
+        女的:骨质在现有值上加1.5，肌肉和蛋白质在现有值上分别减1.5
+        */
+        if gender {
+            self.tempMuscleWeight = (info["muscleWeight"] as! NSNumber).floatValue - 0.4
+            self.tempProteinWeight = (info["proteinWeight"] as! NSNumber).floatValue - 0.4
+            self.tempBoneWeight = (info["boneWeight"] as! NSNumber).floatValue + 0.4
+        } else {
+            self.tempMuscleWeight = (info["muscleWeight"] as! NSNumber).floatValue - 1.5
+            self.tempProteinWeight = (info["proteinWeight"] as! NSNumber).floatValue - 1.5
+            self.tempBoneWeight = (info["boneWeight"] as! NSNumber).floatValue + 1.5
+        }
+        
         
         // 脂肪肝  1为有  2为没有  0为不支持
         if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {
@@ -400,8 +461,8 @@ extension MyBodyMiniAndPlusResult {
         
         waterWeightRange.0 = (info["waterWeightMin"] as! NSNumber).floatValue
         waterWeightRange.1 = (info["waterWeightMax"] as! NSNumber).floatValue
-        fatWeightRange.0 = (info["fatWeightMin"] as! NSNumber).floatValue
-        fatWeightRange.1 = (info["fatWeightMax"] as! NSNumber).floatValue
+//        fatWeightRange.0 = (info["fatWeightMin"] as! NSNumber).floatValue
+//        fatWeightRange.1 = (info["fatWeightMax"] as! NSNumber).floatValue
         fatPercentageRange.0 = (info["fatPercentageMin"] as! NSNumber).floatValue
         fatPercentageRange.1 = (info["fatPercentageMax"] as! NSNumber).floatValue
         

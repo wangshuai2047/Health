@@ -227,6 +227,7 @@ extension LoginViewController: CompleteInfoDelegate {
             if error == nil {
                 
                 // 跳转到主页
+                UserManager.shareInstance().changeUserToUserId(UserManager.mainUser.userId)
                 SettingManager.addLocalNotification()
                 AppDelegate.applicationDelegate().changeToMainController()
             }

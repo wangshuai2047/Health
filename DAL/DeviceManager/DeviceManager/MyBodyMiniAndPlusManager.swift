@@ -58,7 +58,9 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
             let format = MybodyMiniAndPlusBlueToothFormats(data: data)
             if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.weightData {
                 // 已收到称重数据
-                self.result?.weight = Float(format.weight)
+                // 新称获取到的体重的值，原本是两位小数，不要做四舍五入，直接把最后一位小数舍去。
+                let weight: Float = Float(Int(format.weight * 10) / 10)
+                self.result?.weight = weight
                 
                 let receiveWeightData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData()
                 NSLog("write receiveWeightData : \(receiveWeightData)")

@@ -144,6 +144,8 @@ class UserData {
         self.phone = nil
         self.organizationCode = nil
         self.headURL = nil
+        
+        DBManager.shareInstance().deleteAllUser()
     }
     
 }
