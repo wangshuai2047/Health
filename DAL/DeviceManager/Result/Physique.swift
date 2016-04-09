@@ -103,10 +103,11 @@ enum Physique: Int {
         }
     }
     
-    init (gender: Bool, fatPercentage: Float, BMI: Float) {
-        let lowFatPercentage: Float = gender ? 10 : 20
-        let highFatPercentage: Float = gender ? 20 : 30
-        
+    init (gender: Bool, fatPercentage: Float, BMI: Float, lowFatPercentage: Float, highFatPercentage: Float) {
+//    init (gender: Bool, fatPercentage: Float, BMI: Float) {
+//        let lowFatPercentage: Float = gender ? 10 : 20
+//        let highFatPercentage: Float = gender ? 20 : 30
+    
         let lowBMI: Float = 18.5
         let highBMI: Float = 25
         

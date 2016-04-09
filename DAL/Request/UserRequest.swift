@@ -20,7 +20,7 @@ struct UserRequest {
             if let err = result.error {
                 complete(error: err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
@@ -30,7 +30,7 @@ struct UserRequest {
                 
                 complete(error: nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         }
@@ -79,14 +79,14 @@ struct UserRequest {
             if let err = result.error {
                 complete(imageURL: nil, error: err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(imageURL: jsonObj?["headURL"] as? String, error: nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -99,13 +99,13 @@ struct UserRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 complete( nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -135,14 +135,14 @@ struct UserRequest {
             if let err = result.error {
                 complete(userId: nil, headURL: nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(userId: jsonObj?.valueForKey("userId") as? Int, headURL: jsonObj?.valueForKey("headURL") as? String, nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -154,13 +154,13 @@ struct UserRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 complete( nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })

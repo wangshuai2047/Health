@@ -27,14 +27,14 @@ struct AdsRequest {
             if let err = result.error {
                 complete(ad: nil, error: err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(ad: RequestLoginAdModel(imageURL: jsonObj!.valueForKey("imageURL") as! String, linkURL: jsonObj!.valueForKey("targetURL") as! String), error: nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -46,7 +46,7 @@ struct AdsRequest {
             if let err = result.error {
                 complete(ads: nil, error: err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
@@ -60,7 +60,7 @@ struct AdsRequest {
                 }
                 complete(ads: adModels, error: nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })

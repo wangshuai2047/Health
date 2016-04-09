@@ -26,14 +26,14 @@ struct  LoginRequest {
             if let err = result.error {
                 complete(nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(nil, nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         }
@@ -46,7 +46,7 @@ struct  LoginRequest {
             if let err = result.error {
                 complete(userInfo: nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
@@ -57,7 +57,7 @@ struct  LoginRequest {
                 info?["usertype"] = jsonObj?.valueForKey("usertype")
                 complete(userInfo: info, nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -71,29 +71,35 @@ struct  LoginRequest {
             if let err = result.error {
                 complete("", err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(jsonObj?["authCode"] as? String, nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
     }
     
     // 第三方登录
-    static func loginThirdPlatform(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((userInfo: [String: AnyObject]?, NSError?) -> Void)) {
+    static func loginThirdPlatform(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, unionid: String?, complete: ((userInfo: [String: AnyObject]?, NSError?) -> Void)) {
         
-        RequestType.LoginThirdPlatform.startRequest(["name": name, "headURL": headURLStr, "openId": openId, "type": type.rawValue], completionHandler: { (data, response, error) -> Void in
+        var info = ["name": name, "headURL": headURLStr, "openId": openId, "type": type.rawValue]
+        
+        if unionid != nil {
+            info["unionid"] = unionid
+        }
+        
+        RequestType.LoginThirdPlatform.startRequest(info, completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
                 complete(userInfo: nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
@@ -105,7 +111,7 @@ struct  LoginRequest {
                 info?["usertype"] = jsonObj?.valueForKey("usertype")
                 complete(userInfo: info, nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -120,13 +126,13 @@ struct  LoginRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 complete(nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -141,13 +147,13 @@ struct  LoginRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 complete(nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })

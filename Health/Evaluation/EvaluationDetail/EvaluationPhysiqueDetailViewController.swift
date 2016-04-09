@@ -69,7 +69,7 @@ extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITable
         cell.titleLabel1.text = physique?.description
         cell.titleLabel1.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
         cell.physiqueImageView1.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
-        cell.physiqueButton1.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.physiqueButton1.addTarget(self, action: #selector(EvaluationPhysiqueDetailViewController.physiqueButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         cell.physiqueButton1.tag = physique!.rawValue
         
         if physique == self.physique {
@@ -81,7 +81,7 @@ extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITable
         cell.titleLabel2.text = physique?.description
         cell.titleLabel2.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
         cell.physiqueImageView2.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
-        cell.physiqueButton2.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.physiqueButton2.addTarget(self, action: #selector(EvaluationPhysiqueDetailViewController.physiqueButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         cell.physiqueButton2.tag = physique!.rawValue
         
         if physique == self.physique {
@@ -93,7 +93,7 @@ extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITable
         cell.titleLabel3.text = physique?.description
         cell.titleLabel3.textColor = UserManager.shareInstance().currentUser.gender ? selectedColor : selectedFemailColor
         cell.physiqueImageView3.image = UIImage(named: physique!.imageName(UserManager.shareInstance().currentUser.gender))
-        cell.physiqueButton3.addTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.physiqueButton3.addTarget(self, action: #selector(EvaluationPhysiqueDetailViewController.physiqueButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         cell.physiqueButton3.tag = physique!.rawValue
         
         if physique == self.physique {
@@ -109,9 +109,9 @@ extension EvaluationPhysiqueDetailViewController: UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if let deCell = cell as? EvaluationPhysiqueDetailCell {
-            deCell.physiqueButton1.removeTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
-            deCell.physiqueButton2.removeTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
-            deCell.physiqueButton3.removeTarget(self, action: Selector("physiqueButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+            deCell.physiqueButton1.removeTarget(self, action: #selector(EvaluationPhysiqueDetailViewController.physiqueButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            deCell.physiqueButton2.removeTarget(self, action: #selector(EvaluationPhysiqueDetailViewController.physiqueButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            deCell.physiqueButton3.removeTarget(self, action: #selector(EvaluationPhysiqueDetailViewController.physiqueButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         }
     }
 }

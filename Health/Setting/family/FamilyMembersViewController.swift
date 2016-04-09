@@ -87,7 +87,7 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
         
         AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "提交数据", detailMsg: nil, progress: nil)
         if isEditUser {
-            UserManager.shareInstance().changeUserInfo(user, complete: { [unowned self] (error: NSError?) -> Void in
+            UserManager.shareInstance().changeUserInfo(user, phone: phone, organizationCode: organizationCode, complete: { [unowned self] (error: NSError?) -> Void in
                 if error == nil {
                     self.users = UserManager.shareInstance().queryAllUsers()
                     self.tableView.reloadData()
@@ -153,16 +153,16 @@ extension FamilyMembersViewController: UITableViewDataSource, UITableViewDelegat
         }
         
         cell.deleteButton.tag = indexPath.row
-        cell.addFamilyButton.addTarget(self, action: Selector("addFamilyButtonPressed"), forControlEvents: UIControlEvents.TouchUpInside)
-        cell.deleteButton.addTarget(self, action: Selector("deleteButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.addFamilyButton.addTarget(self, action: #selector(FamilyMembersViewController.addFamilyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(FamilyMembersViewController.deleteButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         return cell
     }
     
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if let fCell = cell as? FamilyMembersCell {
-            fCell.addFamilyButton.removeTarget(self, action: Selector("addFamilyButtonPressed"), forControlEvents: UIControlEvents.TouchUpInside)
-            fCell.deleteButton.removeTarget(self, action: Selector("deleteButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+            fCell.addFamilyButton.removeTarget(self, action: #selector(FamilyMembersViewController.addFamilyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+            fCell.deleteButton.removeTarget(self, action: #selector(FamilyMembersViewController.deleteButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         }
     }
     

@@ -68,7 +68,7 @@ class LoginReqeustTests: XCTestCase {
     func test_loginRequest_loginThirdPlatform_isSucess() {
         let expectation = expectationWithDescription("test_loginRequest_loginThirdPlatform_isSucess")
         
-        LoginRequest.loginThirdPlatform("亚霖", headURLStr: "http://www.baidu.com", openId: "13423456", type: ThirdPlatformType.QQ) { (userInfo, error: NSError?) -> Void in
+        LoginRequest.loginThirdPlatform("亚霖", headURLStr: "http://www.baidu.com", openId: "13423456", type: ThirdPlatformType.QQ, unionid: nil) { (userInfo, error: NSError?) -> Void in
             expectation.fulfill()
             
              XCTAssertNil(error, "登录第三方平台错误: \(error?.description)")

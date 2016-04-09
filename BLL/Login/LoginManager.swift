@@ -100,7 +100,7 @@ struct LoginManager {
     static func completeInfomation(name: String, gender: Bool, age: UInt8, height: UInt8, phone: String?, organizationCode: String?, headURL: String?, complete: ((error: NSError?) -> Void)) {
         
         if UserData.shareInstance().userId == nil {
-            complete(error: NSError(domain: "\(__FUNCTION__)", code: 0, userInfo: [NSLocalizedDescriptionKey: "未登录请先登录"]))
+            complete(error: NSError(domain: "\(#function)", code: 0, userInfo: [NSLocalizedDescriptionKey: "未登录请先登录"]))
             return
         }
         
@@ -128,7 +128,7 @@ struct LoginManager {
     
     static func uploadHeadIcon(imageURL: NSURL, complete: ((error: NSError?) -> Void)) {
         if UserData.shareInstance().userId == nil {
-            complete(error: NSError(domain: "\(__FUNCTION__)", code: 0, userInfo: [NSLocalizedDescriptionKey: "未登录请先登录"]))
+            complete(error: NSError(domain: "\(#function)", code: 0, userInfo: [NSLocalizedDescriptionKey: "未登录请先登录"]))
             return
         }
     }
@@ -160,7 +160,7 @@ struct LoginManager {
         ShareSDKHelper.loginWithQQ { (uid, name, headIcon, error) -> Void in
             // deal userInfo
             if error == nil {
-                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.QQ, complete: complete)
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.QQ, unionid: nil, complete: complete)
             }
             else {
                 complete(error)
@@ -170,10 +170,10 @@ struct LoginManager {
     
     // 通过WeChat登录
     static func loginWithWeChat(complete: ((NSError?) -> Void)) {
-        ShareSDKHelper.loginWithWeChat { (uid, name, headIcon, error) -> Void in
+        ShareSDKHelper.loginWithWeChat { (uid, name, headIcon, unionid, error) -> Void in
             // deal userInfo
             if error == nil {
-                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.WeChat, complete: complete)
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.WeChat, unionid: unionid, complete: complete)
             }
             else {
                 complete(error)
@@ -186,7 +186,7 @@ struct LoginManager {
         ShareSDKHelper.loginWithWeiBo { (uid, name, headIcon, error) -> Void in
             // deal userInfo
             if error == nil {
-                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.Weibo, complete: complete)
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: ThirdPlatformType.Weibo, unionid: nil, complete: complete)
             }
             else {
                 complete(error)
@@ -196,9 +196,9 @@ struct LoginManager {
     
     static func loginThirdPlatform(type: ThirdPlatformType, complete: (name: String?, headURLStr: String?, error: NSError?) -> Void) {
         
-        func dealLoginFinished(uid: String?, name: String?, headIcon: String?, error: NSError?) {
+        func dealLoginFinished(uid: String?, name: String?, headIcon: String?, unionid: String?, error: NSError?) {
             if error == nil {
-                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: type) { (error: NSError?) -> Void in
+                loginThirdParty(name!, headURLStr: headIcon!, openId: uid!, type: type, unionid: unionid) { (error: NSError?) -> Void in
                     complete(name: name, headURLStr: headIcon, error: error)
                 }
             }
@@ -210,21 +210,21 @@ struct LoginManager {
         switch type {
         case .QQ:
             ShareSDKHelper.loginWithQQ({ (uid, name, headIcon, error) -> Void in
-                dealLoginFinished(uid, name: name, headIcon: headIcon, error: error)
+                dealLoginFinished(uid, name: name, headIcon: headIcon, unionid: nil, error: error)
             })
         case .WeChat:
-            ShareSDKHelper.loginWithWeChat({ (uid, name, headIcon, error) -> Void in
-                dealLoginFinished(uid, name: name, headIcon: headIcon, error: error)
+            ShareSDKHelper.loginWithWeChat({ (uid, name, headIcon, unionid, error) -> Void in
+                dealLoginFinished(uid, name: name, headIcon: headIcon, unionid: unionid, error: error)
             })
         case .Weibo:
             ShareSDKHelper.loginWithWeiBo({ (uid, name, headIcon, error) -> Void in
-                dealLoginFinished(uid, name: name, headIcon: headIcon, error: error)
+                dealLoginFinished(uid, name: name, headIcon: headIcon, unionid: nil, error: error)
             })
         }
     }
     
-    static func loginThirdParty(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, complete: ((NSError?) -> Void) ) {
-        LoginRequest.loginThirdPlatform(name, headURLStr: headURLStr, openId: openId, type: type) { (userInfo, error: NSError?) -> Void in
+    static func loginThirdParty(name: String, headURLStr: String, openId: String, type: ThirdPlatformType, unionid: String?, complete: ((NSError?) -> Void) ) {
+        LoginRequest.loginThirdPlatform(name, headURLStr: headURLStr, openId: openId, type: type,unionid: unionid) { (userInfo, error: NSError?) -> Void in
             
             if error == nil {
                 parseUserInfo(userInfo!)
@@ -335,7 +335,7 @@ struct LoginManager {
             })
         }
         else {
-            ShareSDKHelper.loginWithWeChat({ (uid, name, headIcon, error) -> Void in
+            ShareSDKHelper.loginWithWeChat({ (uid, name, headIcon, unionid, error) -> Void in
                 if error == nil {
                     serverBind(uid, type: type)
                 }

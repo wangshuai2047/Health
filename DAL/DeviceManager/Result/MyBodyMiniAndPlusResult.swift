@@ -34,58 +34,17 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     var fatFreeBodyWeightRange: (Float, Float) = (0,0)
     
     // 肌肉重
-    var tempMuscleWeight: Float = 0
-    var muscleWeight: Float {
-        get {
-            return tempMuscleWeight
-        }
-        set {
-            if gender {
-                tempMuscleWeight = newValue - 0.4
-            }
-            else {
-                tempMuscleWeight = newValue - 1.5
-            }
-        }
-    }
+    var muscleWeight: Float = 0
     // 肌肉重正常范围下限 + 肌肉重正常范围上限
     var muscleWeightRange: (Float, Float) = (0,0)
     
     // 蛋白质重
-    var tempProteinWeight: Float = 0
-    var proteinWeight: Float {
-        get {
-            return tempProteinWeight
-        }
-        set {
-            if gender {
-                tempProteinWeight = newValue - 0.4
-            }
-            else {
-                tempProteinWeight = newValue - 1.5
-            }
-            
-        }
-    }
+    var proteinWeight: Float = 0
     // 蛋白质正常范围下限 + 蛋白质正常范围上限
     var proteinWeightRange: (Float, Float) = (0,0)
     
     // 骨重
-    var tempBoneWeight: Float = 0
-    var boneWeight: Float {
-        get {
-            return tempBoneWeight
-            
-        }
-        set {
-            if gender {
-                tempBoneWeight = newValue + 0.4
-            }
-            else {
-                tempBoneWeight = newValue + 1.5
-            }
-        }
-    }
+    var boneWeight: Float = 0
     // 骨质重正常范围下限 + 骨质重正常范围上限
     var boneWeightRange: (Float, Float) = (0,0)
     
@@ -268,7 +227,7 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
         // 体脂率
         fatPercentage = datas[index++]
         // 体脂百分比正常范围下限 + 体脂百分比正常范围上限
-        fatPercentageRange = (datas[index++], datas[index++])
+        fatPercentageRange = (datas[index++] / 100, datas[index++] / 100)
         
         // 腰臀比(两位小数)
         WHR = datas[index++]
@@ -421,19 +380,9 @@ extension MyBodyMiniAndPlusResult {
         self.age = age
         self.height = height
         
-        /*
-        男的:骨质在现有值上加0.4，肌肉和蛋白质在现有值上分别减0.4
-        女的:骨质在现有值上加1.5，肌肉和蛋白质在现有值上分别减1.5
-        */
-        if gender {
-            self.tempMuscleWeight = (info["muscleWeight"] as! NSNumber).floatValue - 0.4
-            self.tempProteinWeight = (info["proteinWeight"] as! NSNumber).floatValue - 0.4
-            self.tempBoneWeight = (info["boneWeight"] as! NSNumber).floatValue + 0.4
-        } else {
-            self.tempMuscleWeight = (info["muscleWeight"] as! NSNumber).floatValue - 1.5
-            self.tempProteinWeight = (info["proteinWeight"] as! NSNumber).floatValue - 1.5
-            self.tempBoneWeight = (info["boneWeight"] as! NSNumber).floatValue + 1.5
-        }
+        self.muscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
+        self.proteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
+        self.boneWeight = (info["boneWeight"] as! NSNumber).floatValue
         
         
         // 脂肪肝  1为有  2为没有  0为不支持
@@ -508,5 +457,12 @@ extension MyBodyMiniAndPlusResult {
         edemaFactor = (info["edemaFactor"] as! NSNumber).floatValue
         obesity = (info["obesity"] as! NSNumber).floatValue
         score = (info["score"] as! NSNumber).floatValue
+    }
+}
+
+extension MyBodyMiniAndPlusResult {
+    // 体型
+    var physique: Physique {
+        return Physique(gender: gender, fatPercentage: fatPercentage, BMI: BMI, lowFatPercentage: fatPercentageRange.0, highFatPercentage: fatPercentageRange.1)
     }
 }

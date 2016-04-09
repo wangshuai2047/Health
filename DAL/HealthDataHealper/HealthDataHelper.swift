@@ -118,15 +118,20 @@ class HealthDataHelper: NSObject {
                 else {  // 睡眠未结束
                     if todayDone {continue}
                     
+                    
+                    let a = data.endTime.timeIntervalSinceDate(data.startTime)
+                    let b = NSTimeInterval(data.steps * 25 * 60) / data.endTime.timeIntervalSinceDate(data.startTime)
+                    
                     // 在走路 可能是去WC
                     if (data.stepsType != .Sleep) {
-                        ++wakeupDataCnt
+                        wakeupDataCnt += 1
                         walkMinutes += Int((data.endTime.timeIntervalSinceDate(data.startTime) + 60 - 0.001) / 60)
                     }
                     else if data.endTime.timeIntervalSinceDate(data.startTime) > 5 && NSTimeInterval(data.steps * 60) / data.endTime.timeIntervalSinceDate(data.startTime) > 1 {
-                        ++wakeupDataCnt
-                    }
-                    else if data.endTime.timeIntervalSinceDate(data.startTime) > 20 * 60 && NSTimeInterval(data.steps * 25 * 60) / data.endTime.timeIntervalSinceDate(data.startTime) <= 2 {
+                        wakeupDataCnt += 1
+                        
+                    } // Expression was too complex to be solved in reasonable time; consider breaking up the expression into distinct sub-expressions
+                    else if a > 20 * 60 && b <= 2 {
                         wakeupDataCnt = 0
                         deepSleepMinutes += Int(sleepEndTime - sleepStartTime) / 60
                     }

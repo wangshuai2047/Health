@@ -24,6 +24,12 @@ enum EvaluationDetailExtendType {
     case bmi
     case BMR                // 基础代谢
     case bodyAge            // 身体年龄
+    case fatLevel           // 肥胖等级
+    case standardWeight     // 标准体重
+    case weightControl      // 体重控制量
+    case noFatWeight        // 去脂体重
+    case fatControl         // 脂肪控制量
+    case muscleControl      // 肌肉控制量
     
     var headIcon: String {
         switch self {
@@ -52,6 +58,18 @@ enum EvaluationDetailExtendType {
         case .BMR:
             return "BMRIcon"
         case .bodyAge:
+            return "BMI"
+        case .fatLevel:
+            return "BMI"
+        case .standardWeight:
+            return "BMI"
+        case .weightControl:
+            return "BMI"
+        case .noFatWeight:
+            return "BMI"
+        case .fatControl:
+            return "BMI"
+        case .muscleControl:
             return "BMI"
         }
     }
@@ -84,6 +102,18 @@ enum EvaluationDetailExtendType {
             return "基础代谢"
         case .bodyAge:
             return "身体年龄"
+        case .fatLevel:
+            return "肥胖等级"
+        case .standardWeight:
+            return "标准体重"
+        case .weightControl:
+            return "体重控制量"
+        case .noFatWeight:
+            return "去酯体重"
+        case .fatControl:
+            return "脂肪控制量"
+        case .muscleControl:
+            return "肌肉控制量"
         }
     }
     
@@ -118,6 +148,18 @@ enum EvaluationDetailExtendType {
             return "kcal"
         case .bodyAge:
             return "岁"
+        case .fatLevel:
+            return ""
+        case .standardWeight:
+            return "kg"
+        case .weightControl:
+            return "kg"
+        case .noFatWeight:
+            return "kg"
+        case .fatControl:
+            return "kg"
+        case .muscleControl:
+            return "kg"
         }
     }
     
@@ -171,6 +213,18 @@ enum EvaluationDetailExtendType {
             return ("", "", "")
         case .bodyAge:
             return ("", "", "")
+        case .fatLevel:
+            return ("", "", "")
+        case .standardWeight:
+            return ("", "", "")
+        case .weightControl:
+            return ("", "", "")
+        case .noFatWeight:
+            return ("", "", "")
+        case .fatControl:
+            return ("", "", "")
+        case .muscleControl:
+            return ("", "", "")
         }
     }
     
@@ -205,6 +259,81 @@ enum EvaluationDetailExtendType {
             return false
         case .bodyAge:
             return false
+        case .fatLevel:
+            return false
+        case .standardWeight:
+            return false
+        case .weightControl:
+            return false
+        case .noFatWeight:
+            return false
+        case .fatControl:
+            return false
+        case .muscleControl:
+            return false
+        }
+    }
+    
+    func fatLevelShowString(fatPercentage: Float, gender: Bool) -> String {
+        /*
+         男：
+         16以下 较轻
+         16=<   <20 正常
+         20=<   <24 轻度肥胖
+         24=<   <28 中度肥胖
+         28=<   <30 重度肥胖
+         >=30        极度肥胖
+         
+         女：
+         18以下 较轻
+         18=<   <22 正常
+         22=<   <26 轻度肥胖
+         26=<   <29 中度肥胖
+         29=<   <35 重度肥胖
+         >=35        极度肥胖
+         */
+        
+        if gender {
+            // 男
+            if fatPercentage < 16 {
+                return "较轻"
+            }
+            else if fatPercentage < 20 {
+                return "正常"
+            }
+            else if fatPercentage < 24 {
+                return "轻度肥胖"
+            }
+            else if fatPercentage < 28 {
+                return "中度肥胖"
+            }
+            else if fatPercentage < 30 {
+                return "重度肥胖"
+            }
+            else {
+                return "极度肥胖"
+            }
+        }
+        else {
+            // 女
+            if fatPercentage < 18 {
+                return "较轻"
+            }
+            else if fatPercentage < 22 {
+                return "正常"
+            }
+            else if fatPercentage < 26 {
+                return "轻度肥胖"
+            }
+            else if fatPercentage < 29 {
+                return "中度肥胖"
+            }
+            else if fatPercentage < 35 {
+                return "重度肥胖"
+            }
+            else {
+                return "极度肥胖"
+            }
         }
     }
     
@@ -239,8 +368,22 @@ enum EvaluationDetailExtendType {
             return String(format: "%.0f", data.BMR)
         case .bodyAge:
             return String(format: "%.0f", data.bodyAge)
+        case .fatLevel:
+            return fatLevelShowString(data.fatPercentage, gender: data.gender)
+        case .standardWeight:
+            return String(format: "%.0f", data.SW)
+        case .weightControl:
+            return String(format: "%.0f", data.weight - data.SW)
+        case .noFatWeight:
+            return String(format: "%.0f", data.LBM)
+        case .fatControl:
+            return String(format: "%.0f", data.fatControl)
+        case .muscleControl:
+            return String(format: "%.0f", data.muscleControl)
         }
     }
+    
+    
     
     func status(data: ScaleResultProtocol) -> ValueStatus {
         switch self {
@@ -270,6 +413,18 @@ enum EvaluationDetailExtendType {
             return ValueStatus.Normal
         case .bodyAge:
             return ValueStatus.Normal
+        case .fatLevel:
+            return ValueStatus.Normal
+        case .standardWeight:
+            return ValueStatus.Normal
+        case .weightControl:
+            return ValueStatus.Normal
+        case .noFatWeight:
+            return ValueStatus.Normal
+        case .fatControl:
+            return ValueStatus.Normal
+        case .muscleControl:
+            return ValueStatus.Normal
         }
     }
     
@@ -278,7 +433,7 @@ enum EvaluationDetailExtendType {
         case .weight:
             return data.SWRange
         case .fatPercentage:
-            return data.fatPercentageRange
+            return (data.fatPercentageRange.0 * 100, data.fatPercentageRange.1 * 100)
         case .fat:
             return data.fatWeightRange
         case .muscle:

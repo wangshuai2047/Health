@@ -606,6 +606,10 @@ extension DBManager: DBManagerProtocol {
         
         let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
         
+        if listData.count != newDataIdInfos.count {
+            return
+        }
+        
         for var i = 0; i < listData.count; i++ {
             
             let managedObject = listData[i]
@@ -856,6 +860,10 @@ extension DBManager {
         request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
         
         let listData = (try! context.executeFetchRequest(request)) as! [GoalData]
+        
+        if listData.count != newDataIdInfos.count {
+            return
+        }
         
         for var i = 0; i < listData.count && i < newDataIdInfos.count; i++ {
             

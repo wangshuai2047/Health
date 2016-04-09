@@ -34,11 +34,54 @@ struct MyBodyResult: ScaleResultProtocol {
     // 水分重
     var waterWeight: Float
     // 肌肉重
-    var muscleWeight: Float
+    var tempMuscleWeight: Float = 0
+    var muscleWeight: Float {
+        get {
+            return tempMuscleWeight
+        }
+        set {
+            if gender {
+                tempMuscleWeight = newValue - 0.4
+            }
+            else {
+                tempMuscleWeight = newValue - 1.5
+            }
+        }
+    }
+    
     // 蛋白质重
-    var proteinWeight: Float
+    var tempProteinWeight: Float = 0
+    var proteinWeight: Float {
+        get {
+            return tempProteinWeight
+        }
+        set {
+            if gender {
+                tempProteinWeight = newValue - 0.4
+            }
+            else {
+                tempProteinWeight = newValue - 1.5
+            }
+            
+        }
+    }
     // 骨重
-    var boneWeight: Float
+    // 骨重
+    var tempBoneWeight: Float = 0
+    var boneWeight: Float {
+        get {
+            return tempBoneWeight
+            
+        }
+        set {
+            if gender {
+                tempBoneWeight = newValue + 0.4
+            }
+            else {
+                tempBoneWeight = newValue + 1.5
+            }
+        }
+    }
     // 骨骼肌
     var boneMuscleWeight: Float
     
@@ -160,11 +203,23 @@ struct MyBodyResult: ScaleResultProtocol {
         self.fatPercentage = fatPercentage
         self.fatWeight = fatWeight
         self.waterWeight = waterWeight
-        self.muscleWeight = muscleWeight
-        self.proteinWeight = proteinWeight
-        self.boneWeight = boneWeight
         self.boneMuscleWeight = boneMuscleWeight
         self.timeStamp = NSDate()
+        
+        
+        /*
+        男的:骨质在现有值上加0.4，肌肉和蛋白质在现有值上分别减0.4
+        女的:骨质在现有值上加1.5，肌肉和蛋白质在现有值上分别减1.5
+        */
+        if gender {
+            self.tempMuscleWeight = muscleWeight - 0.4
+            self.tempProteinWeight = proteinWeight - 0.4
+            self.tempBoneWeight = boneWeight + 0.4
+        } else {
+            self.tempMuscleWeight = muscleWeight - 1.5
+            self.tempProteinWeight = proteinWeight - 1.5
+            self.tempBoneWeight = boneWeight + 1.5
+        }
     }
 }
 
@@ -330,10 +385,10 @@ extension MyBodyResult {
     var fatPercentageRange: (Float, Float) {
         get {
             if gender {
-                return (10, 20)
+                return (0.10, 0.20)
             }
             else {
-                return (18, 28)
+                return (0.18, 0.28)
             }
         }
         set {
@@ -652,7 +707,13 @@ extension MyBodyResult {
 }
 
 extension MyBodyResult {
-    
+    // 体型
+    var physique: Physique {
+        
+        let lowFatPercentage: Float = gender ? 10 : 20
+        let highFatPercentage: Float = gender ? 20 : 30
+        return Physique(gender: gender, fatPercentage: fatPercentage, BMI: BMI, lowFatPercentage: lowFatPercentage, highFatPercentage: highFatPercentage)
+    }
 }
 
 extension MyBodyResult {
@@ -676,11 +737,11 @@ extension MyBodyResult {
         fatPercentage = (info["fatPercentage"] as! NSNumber).floatValue
         fatWeight = (info["fatWeight"] as! NSNumber).floatValue
         waterWeight = (info["waterWeight"] as! NSNumber).floatValue
-        muscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
-        proteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
-        boneWeight = (info["boneWeight"] as! NSNumber).floatValue
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
+        tempMuscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
+        tempProteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
+        tempBoneWeight = (info["boneWeight"] as! NSNumber).floatValue
 //        if let userInfo = DBManager.shareInstance().queryUser(userId) {
 //            gender = (userInfo["gender"] as! NSNumber).boolValue
 //            age = (userInfo["age"] as! NSNumber).unsignedCharValue

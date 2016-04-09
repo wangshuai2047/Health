@@ -17,7 +17,7 @@ struct ScoreRequest {
             if let err = result.error {
                 complete(allscore: nil,monthscore: nil,rank: nil,monthrank: nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
@@ -29,7 +29,7 @@ struct ScoreRequest {
                 let monthrank = scoreInfo?.valueForKey("monthrank") as? Int
                 complete(allscore: allscore,monthscore: monthscore,rank: rank,monthrank: monthrank,nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -41,14 +41,14 @@ struct ScoreRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })

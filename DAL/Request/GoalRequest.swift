@@ -18,14 +18,14 @@ struct GoalRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         }
@@ -39,14 +39,14 @@ struct GoalRequest {
             if let err = result.error {
                 complete(datas: nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(datas: jsonObj?.valueForKey("info") as? [String: AnyObject], nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         }
@@ -60,14 +60,14 @@ struct GoalRequest {
             if let err = result.error {
                 complete(datas: nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(datas: jsonObj?.valueForKey("datas") as? [[String: AnyObject]], nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -83,14 +83,14 @@ struct GoalRequest {
             if let err = result.error {
                 complete(info: nil, err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(info: jsonObj?.valueForKey("info") as? [[String: AnyObject]], nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -102,14 +102,14 @@ struct GoalRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })
@@ -123,14 +123,14 @@ struct GoalRequest {
             if let err = result.error {
                 complete(err)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nerror:\(err.localizedDescription)\n==========")
+                    println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 complete(nil)
                 #if DEBUG
-                    println("\n----------\n\(__FUNCTION__) \nresult \(jsonObj)\n==========")
+                    println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
             }
         })

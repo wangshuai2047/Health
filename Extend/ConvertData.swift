@@ -32,7 +32,7 @@ extension NSData {
         self.getBytes(&bytes, range: range)
         
         var outBuffer: [UInt8] = []
-        for var i = count - 1; i >= 0; i-- {
+        for var i = count - 1; i >= 0; i -= 1 {
             outBuffer += [bytes[i]]
         }
         buffer = UnsafePointer<T>(outBuffer).memory

@@ -55,8 +55,12 @@ class EvaluationDetailExtendCell: UITableViewCell {
         if viewModel.valueIsNumber {
             resultLabel.text = viewModel.value
             
-            markHighLabel.text = String(format: "%.1f\(viewModel.unit)", viewModel.range.1)
-            markLowLabel.text = String(format: "%.1f\(viewModel.unit)", viewModel.range.0)
+//            NSLog("%.1f\(viewModel.type) ---- %.1f", viewModel.range.1, viewModel.range.0);
+            let unit = viewModel.unit
+            let high = String(format: "%.1f", viewModel.range.1)
+            let low = String(format: "%.1f", viewModel.range.0)
+            markHighLabel.text = high + unit
+            markLowLabel.text = low + unit
             
             // 等级描述
             descriptionLabel.clear()
@@ -113,31 +117,4 @@ class EvaluationDetailExtendCell: UITableViewCell {
         
         
     }
-    
-//    func refreshFatData() {
-//        initFatDetailView()
-//        
-//        fatPercentageLabel.text = "\(data!.fatPercentage)"
-//        fatPercentageLabel.textColor = data!.fatPercentageStatus.statusColor
-//        
-//        fatPercentageHighLabel.text = "\(data!.fatPercentageRange.1)%"
-//        fatPercentageLowLabel.text = "\(data!.fatPercentageRange.0)%"
-//        
-//        
-//    }
-//    
-//    func initFatDetailView() {
-//        let rulerWidth = fatPercentageRulerImageView.frame.size.width
-//        
-//        fatPercentageLowLabelConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
-//        fatPercentageHighLabelLeftConstraint.constant = rulerWidth / 3 - fatPercentageLowLabel.frame.size.width/2
-//        
-//        fatPercentageLeanLabelRightConstraint.constant = rulerWidth / 3 / 2
-//        fatPercentageTooHighLabelLeftConstraint.constant = rulerWidth / 3 / 2
-//        
-//        let minValue = data!.fatPercentageRange.0 - data!.fatPercentageRange.1 + data!.fatPercentageRange.0
-//        let maxValue = data!.fatPercentageRange.1 + data!.fatPercentageRange.1 - data!.fatPercentageRange.0
-//        let value = data!.fatPercentage - minValue
-//        fatPercentageMarkImageViewLeftConstraint.constant = rulerWidth * CGFloat(value / (maxValue - minValue)) - fatPercentageRulerMarkImageView.frame.size.width/2
-//    }
 }

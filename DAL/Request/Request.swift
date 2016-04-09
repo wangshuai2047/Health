@@ -11,7 +11,7 @@ import Foundation
 struct Request {
     
     static func requestURL(type : String) -> String {
-        let urlString = "http://211.157.160.108/easygtd/v1/user/\(type)"
+        let urlString = "http://s.bodivis.com.cn/easygtd/v1/user/\(type)"
         return urlString
     }
     
@@ -47,11 +47,11 @@ struct Request {
 extension Request {
     
     static func requestPHPPathURL() -> String {
-        return "http://123.56.131.212/api/"
+        return "http://s.bodivis.com.cn/"
     }
     
     static func requestPHPURL() -> String {
-        return "http://123.56.131.212/api/index.php"
+        return "http://s.bodivis.com.cn/index.php"
     }
     
     static func startWithRequest(requestType: RequestType, params: [String : AnyObject], completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {

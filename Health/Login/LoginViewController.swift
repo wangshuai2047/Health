@@ -48,8 +48,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.title = "登录"
         
-        let keyboardShowSelector: Selector = "keyboardShow"
-        let keyboardHideSelector: Selector = "keyboardHide"
+        let keyboardShowSelector: Selector = #selector(LoginViewController.keyboardShow)
+        let keyboardHideSelector: Selector = #selector(LoginViewController.keyboardHide)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardShowSelector, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardHideSelector, name: UIKeyboardWillHideNotification, object: nil)
         
@@ -139,7 +139,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func reQueryCaptchas(sender: AnyObject) {
         reQueryCaptchasButton.enabled = false
         requeryCaptchasTimerCount = 0
-        reQueryCaptchas = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("requeryCaptchasTimer"), userInfo: nil, repeats: true)
+        reQueryCaptchas = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LoginViewController.requeryCaptchasTimer), userInfo: nil, repeats: true)
         
         LoginManager.queryCaptchas(self.usernameTextField.text) {[unowned self] (authCode:String?, error: NSError?) -> Void in
             if error != nil {
@@ -206,7 +206,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func requeryCaptchasTimer() {
         
         let maxRequeryCount: Int8 = 60
-        requeryCaptchasTimerCount++
+        requeryCaptchasTimerCount += 1
         reQueryCaptchasButton.setTitle("\(maxRequeryCount - requeryCaptchasTimerCount)秒后 重新发送验证码", forState: UIControlState.Normal)
         
         if requeryCaptchasTimerCount >= maxRequeryCount {

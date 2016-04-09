@@ -176,6 +176,9 @@ protocol ScaleResultProtocol: ResultProtocol {
     // 健康得分
     var score: Float { get set }
     
+    // 体型
+    var physique: Physique { get }
+    
 }
 
 protocol BraceletResultProtocol: ResultProtocol {

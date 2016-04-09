@@ -28,7 +28,7 @@ CG_INLINE NSString* MD5FromString(NSString *sourceString)
 extension String {
     var md5Value: String {
         
-        print("md5 String: \(self)")
+//        print("md5 String: \(self)")
         let original_str = NSString(string: self).dataUsingEncoding(NSUTF8StringEncoding)!.bytes
         
         var result: [CUnsignedChar] = [CUnsignedChar](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
