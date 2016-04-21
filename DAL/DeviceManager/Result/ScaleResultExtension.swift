@@ -53,6 +53,13 @@ extension ScaleResultProtocol {
             "timeStamp" : timestamp
         ]
         
+        if let _ = self as? MyBodyResult {
+            uploadInfo["deviceType"] = 0
+        }
+        if let _ = self as? MyBodyMiniAndPlusResult {
+            uploadInfo["deviceType"] = 1
+        }
+        
         uploadInfo["bmi"] = BMI
         uploadInfo["bmiMax"] = BMIRange.1
         uploadInfo["bmiMin"] = BMIRange.0
@@ -364,7 +371,7 @@ extension ScaleResultProtocol {
     }
     
     var fatPercentageStatus: ValueStatus {
-        return ValueStatus(value: fatPercentage, low: fatPercentageRange.0, high: fatPercentageRange.1)
+        return ValueStatus(value: fatPercentage, low: fatPercentageRange.0 * 100, high: fatPercentageRange.1 * 100)
     }
     
     var BMIStatus: ValueStatus {
@@ -379,10 +386,11 @@ extension ScaleResultProtocol {
 
 // MARK: - 体型
 extension ScaleResultProtocol {
-    // 体型
-    var physique: Physique {
-        return Physique(gender: gender, fatPercentage: fatPercentage, BMI: BMI)
-    }
+    // 已改为子类实现
+//    // 体型
+//    var physique: Physique {
+//        return Physique(gender: gender, fatPercentage: fatPercentage, BMI: BMI)
+//    }
 }
 
 

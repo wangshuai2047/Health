@@ -56,7 +56,14 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     // 脂肪重
     var fatWeight: Float = 0
     // 脂肪重正常范围下限 + 脂肪重正常范围上限
-    var fatWeightRange: (Float, Float) = (0,0)
+    var fatWeightRange: (Float, Float) {
+        get {
+            return (weight * fatPercentageRange.0, weight * fatPercentageRange.1)
+        }
+        set {
+            
+        }
+    }
     
     // 体脂率
     var fatPercentage: Float = 0
@@ -187,144 +194,194 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
         var index = 0
         
         // 瘦体重
-        fatFreeBodyWeight = datas[index++]
+        fatFreeBodyWeight = datas[index]
+        index += 1
         
         // 瘦体重正常范围下限 + 瘦体重正常范围上限
-        fatFreeBodyWeightRange = (datas[index++], datas[index++])
+        fatFreeBodyWeightRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 肌肉重
-        muscleWeight = datas[index++]
+        muscleWeight = datas[index]
+        index += 1
         // 肌肉重正常范围下限 + 肌肉重正常范围上限
-        muscleWeightRange = (datas[index++], datas[index++])
+        muscleWeightRange = (datas[index], datas[index+1])
+        index += 2
         
         // 蛋白质重
-        proteinWeight = datas[index++]
+        proteinWeight = datas[index]
+        index += 1
         // 蛋白质正常范围下限 + 蛋白质正常范围上限
-        proteinWeightRange = (datas[index++], datas[index++])
+        proteinWeightRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 骨重
-        boneWeight = datas[index++]
+        boneWeight = datas[index]
+        index += 1
         // 骨质重正常范围下限 + 骨质重正常范围上限
-        boneWeightRange = (datas[index++], datas[index++])
+        boneWeightRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 水分重
-        waterWeight = datas[index++]
+        waterWeight = datas[index]
+        index += 1
         // 细胞总水正常范围下限 + 细胞总水正常范围上限
-        waterWeightRange = (datas[index++], datas[index++])
+        waterWeightRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 脂肪重
-        fatWeight = datas[index++]
+        fatWeight = datas[index]
+        index += 1
         // 脂肪重正常范围下限 + 脂肪重正常范围上限
-        fatWeightRange = (datas[index++], datas[index++])
+        (datas[index], datas[index + 1])
+        index += 2
         
         // 体脂率
-        fatPercentage = datas[index++]
+        fatPercentage = datas[index]
+        index += 1
         // 体脂百分比正常范围下限 + 体脂百分比正常范围上限
-        fatPercentageRange = (datas[index++], datas[index++])
+        fatPercentageRange = (datas[index] / 100, datas[index + 1] / 100)
+        index += 2
         
         // 腰臀比(两位小数)
-        WHR = datas[index++]
+        WHR = datas[index]
+        index += 1
         // 腰臀比正常范围下限 + 腰臀比正常范围上限
-        WHRRange = (datas[index++], datas[index++])
+        WHRRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 内脏脂肪率
-        visceralFatPercentage = datas[index++]
+        visceralFatPercentage = datas[index]
+        index += 1
         
         // 体质指数
-        BMI = datas[index++]
+        BMI = datas[index]
+        index += 1
         // 体质指数正常范围下限 + 体质指数正常范围上限
-        BMIRange = (datas[index++], datas[index++])
+        BMIRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 基础代谢率
-        BMR = datas[index++]
+        BMR = datas[index]
+        index += 1
         
         // 身体年龄
-        bodyAge = datas[index++]
+        bodyAge = datas[index]
+        index += 1
         
         // 骨骼肌
-        boneMuscleWeight = datas[index++]
+        boneMuscleWeight = datas[index]
+        index += 1
         // 骨骼肌正常范围下限 + 骨骼肌正常范围上限
-        boneMuscleRange = (datas[index++], datas[index++])
+        boneMuscleRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 肌肉控制(有符号)
-        muscleControl = datas[index++]
+        muscleControl = datas[index]
+        index += 1
         
         // 脂肪控制(有符号)
-        fatControl = datas[index++]
+        fatControl = datas[index]
+        index += 1
         
         // 体重控制(有符号)
-        weightControl = datas[index++]
+        weightControl = datas[index]
+        index += 1
         
         // 标准体重
-        SW = datas[index++]
+        SW = datas[index]
+        index += 1
         // 标准体重正常范围下限 + 标准体重正常范围上限
-        SWRange = (datas[index++], datas[index++])
+        SWRange = (datas[index], datas[index + 1])
+        index += 2
         
         // 目标体重
-        goalWeight = datas[index++]
+        goalWeight = datas[index]
+        index += 1
         
         // 标准肌肉
-        m_smm = datas[index++]
+        m_smm = datas[index]
+        index += 1
         
         // 右上肢脂肪
-        rightUpperExtremityFat = datas[index++]
+        rightUpperExtremityFat = datas[index]
+        index += 1
         
         // 右上肢肌肉
-        rightUpperExtremityMuscle = datas[index++]
+        rightUpperExtremityMuscle = datas[index]
+        index += 1
         
         // 右上肢骨质
-        rightUpperExtremityBone = datas[index++]
+        rightUpperExtremityBone = datas[index]
+        index += 1
         
         // 左上肢脂肪
-        leftUpperExtremityFat = datas[index++]
+        leftUpperExtremityFat = datas[index]
+        index += 1
         
         // 左上肢肌肉
-        leftUpperExtremityMuscle = datas[index++]
+        leftUpperExtremityMuscle = datas[index]
+        index += 1
         
         // 左上肢骨质
-        leftUpperExtremityBone = datas[index++]
+        leftUpperExtremityBone = datas[index]
+        index += 1
         
         // 躯干肢脂肪
-        trunkLimbFat = datas[index++]
+        trunkLimbFat = datas[index]
+        index += 1
         
         // 躯干肢肌肉
-        trunkLimbMuscle = datas[index++]
+        trunkLimbMuscle = datas[index]
+        index += 1
         
         // 躯干肢骨质
-        trunkLimbBone = datas[index++]
+        trunkLimbBone = datas[index]
+        index += 1
         
         // 右下肢脂肪
-        rightLowerExtremityFat = datas[index++]
+        rightLowerExtremityFat = datas[index]
+        index += 1
         
         // 右下肢肌肉
-        rightLowerExtremityMuscle = datas[index++]
+        rightLowerExtremityMuscle = datas[index]
+        index += 1
         
         // 右下肢骨质
-        rightLowerExtremityBone = datas[index++]
+        rightLowerExtremityBone = datas[index]
+        index += 1
         
         // 左下肢脂肪
-        leftLowerExtremityFat = datas[index++]
+        leftLowerExtremityFat = datas[index]
+        index += 1
         
         // 左下肢肌肉
-        leftLowerExtremityMuscle = datas[index++]
+        leftLowerExtremityMuscle = datas[index]
+        index += 1
         
         // 左下肢骨质
-        leftLowerExtremityBone = datas[index++]
+        leftLowerExtremityBone = datas[index]
+        index += 1
         
         // 外水
-        externalMoisture = datas[index++]
+        externalMoisture = datas[index]
+        index += 1
         
         // 内水
-        internalMoisture = datas[index++]
+        internalMoisture = datas[index]
+        index += 1
         
         // 水肿系数
-        edemaFactor = datas[index++]
+        edemaFactor = datas[index]
+        index += 1
         
         // 肥胖度
-        obesity = datas[index++]
+        obesity = datas[index]
+        index += 1
         
         // 健康得分
-        score = datas[index++]
+        score = datas[index]
+        index += 1
     }
 }
 
@@ -347,7 +404,7 @@ extension MyBodyMiniAndPlusResult {
         else {
             timeStamp = NSDate()
         }
-        
+        // self used before all stored properties are initialized
         userId = (info["userId"] as! NSNumber).integerValue
         weight = (info["weight"] as! NSNumber).floatValue
         waterPercentage = (info["waterPercentage"] as! NSNumber).floatValue
@@ -355,9 +412,7 @@ extension MyBodyMiniAndPlusResult {
         fatPercentage = (info["fatPercentage"] as! NSNumber).floatValue
         fatWeight = (info["fatWeight"] as! NSNumber).floatValue
         waterWeight = (info["waterWeight"] as! NSNumber).floatValue
-        muscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
-        proteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
-        boneWeight = (info["boneWeight"] as! NSNumber).floatValue
+        
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
 //        if let userInfo = DBManager.shareInstance().queryUser(userId) {
@@ -374,6 +429,11 @@ extension MyBodyMiniAndPlusResult {
         self.gender = gender
         self.age = age
         self.height = height
+        
+        self.muscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
+        self.proteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
+        self.boneWeight = (info["boneWeight"] as! NSNumber).floatValue
+        
         
         // 脂肪肝  1为有  2为没有  0为不支持
         if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {
@@ -400,8 +460,8 @@ extension MyBodyMiniAndPlusResult {
         
         waterWeightRange.0 = (info["waterWeightMin"] as! NSNumber).floatValue
         waterWeightRange.1 = (info["waterWeightMax"] as! NSNumber).floatValue
-        fatWeightRange.0 = (info["fatWeightMin"] as! NSNumber).floatValue
-        fatWeightRange.1 = (info["fatWeightMax"] as! NSNumber).floatValue
+//        fatWeightRange.0 = (info["fatWeightMin"] as! NSNumber).floatValue
+//        fatWeightRange.1 = (info["fatWeightMax"] as! NSNumber).floatValue
         fatPercentageRange.0 = (info["fatPercentageMin"] as! NSNumber).floatValue
         fatPercentageRange.1 = (info["fatPercentageMax"] as! NSNumber).floatValue
         
@@ -447,5 +507,12 @@ extension MyBodyMiniAndPlusResult {
         edemaFactor = (info["edemaFactor"] as! NSNumber).floatValue
         obesity = (info["obesity"] as! NSNumber).floatValue
         score = (info["score"] as! NSNumber).floatValue
+    }
+}
+
+extension MyBodyMiniAndPlusResult {
+    // 体型
+    var physique: Physique {
+        return Physique(gender: gender, fatPercentage: fatPercentage, BMI: BMI, lowFatPercentage: fatPercentageRange.0, highFatPercentage: fatPercentageRange.1)
     }
 }

@@ -54,8 +54,8 @@ class UserSelectView: UIView {
         self.addSubview(showHeadView)
         
         let (headButton, _, changeButton, _) = getShowViewControl()
-        headButton.addTarget(self, action: Selector("headButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
-        changeButton.addTarget(self, action: Selector("changePeoplePressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        headButton.addTarget(self, action: #selector(UserSelectView.headButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        changeButton.addTarget(self, action: #selector(UserSelectView.changePeoplePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         // 讲头像设置为圆角
         headButton.layer.cornerRadius = headButton.frame.size.width/2
@@ -89,7 +89,7 @@ class UserSelectView: UIView {
             
             let (_, _, changeButton, _) = getShowViewControl()
             
-            for var i = 0; i < self.users.count; i++ {
+            for i in 0 ..< self.users.count {
                 let (userId, headURLStr, name) = self.users[i]
                 let view = createSelectedHeadView((headURLStr, name, i))
                 view.center = startCenter
@@ -147,7 +147,7 @@ class UserSelectView: UIView {
             }
         }
         
-        for var i = 0; i < self.users.count; i++ {
+        for i in 0 ..< self.users.count {
             let (currentUserId, headURLStr, name) = self.users[i]
             if userId == currentUserId {
                 setShowView((headURLStr, name))
@@ -192,7 +192,7 @@ class UserSelectView: UIView {
         // 点击button
         let button = UIButton(type: UIButtonType.Custom)
         button.frame = headView.bounds
-        button.addTarget(self, action: Selector("selectHeadViewClick:"), forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(UserSelectView.selectHeadViewClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         button.tag = tag
         headView.addSubview(button)
         

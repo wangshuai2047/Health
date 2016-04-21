@@ -12,6 +12,8 @@ class AttributedLabel: UIView {
 
     var attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "")
     
+    var isCenterAlignment: Bool = true
+    
     func stringSize() -> CGSize {
         return attributedString.boundingRectWithSize(self.bounds.size, options: NSStringDrawingOptions.UsesFontLeading, context: nil).size
     }
@@ -68,6 +70,11 @@ class AttributedLabel: UIView {
         // 行间距
         var spacing: CGFloat = 4.0
         let lineSpacing = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineSpacingAdjustment, valueSize: sizeof(CGFloat), value: &spacing)
+        
+        
+        if isCenterAlignment == false {
+            return
+        }
         
         // 居中
         if #available(iOS 8.0, *) {

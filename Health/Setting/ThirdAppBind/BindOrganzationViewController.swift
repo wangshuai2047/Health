@@ -34,6 +34,10 @@ class BindOrganzationViewController: UIViewController {
         }
     }
     
+    class func cancelBind(complete: (NSError?) -> Void) {
+        LoginManager.completeInfomation(UserData.shareInstance().name!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, phone: UserData.shareInstance().phone, organizationCode: nil, headURL: UserData.shareInstance().headURL, complete: complete)
+    }
+    
     convenience init() {
         self.init(nibName: "BindOrganzationViewController", bundle: nil)
     }
@@ -66,7 +70,15 @@ class BindOrganzationViewController: UIViewController {
     
     @IBAction func sureButtonPressed(sender: AnyObject) {
         LoginManager.completeInfomation(UserData.shareInstance().name!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, phone: UserData.shareInstance().phone, organizationCode: self.codeTextField.text == nil || self.codeTextField.text! == "" ? nil : self.codeTextField.text, headURL: UserData.shareInstance().headURL) { [unowned self] (error: NSError?) -> Void in
+            
             self.delegate?.bindFinished(self.codeTextField.text == nil || self.codeTextField.text == "" ? nil : self.codeTextField.text, error: error)
+            
+            if error == nil {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            else {
+                Alert.showError(error!)
+            }
         }
     }
 }

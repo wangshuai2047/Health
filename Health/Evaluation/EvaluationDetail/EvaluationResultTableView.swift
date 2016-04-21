@@ -82,6 +82,24 @@ class EvaluationResultTableView: UITableView {
         
         // 身体年龄
         list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.bodyAge))
+        
+        // 肥胖等级
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.fatLevel))
+        
+        // 标准体重
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.standardWeight))
+        
+        // 体重控制量
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.weightControl))
+        
+        // 去脂体重
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.noFatWeight))
+        
+        // 脂肪控制量
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.fatControl))
+        
+        // 肌肉控制量
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.muscleControl))
     }
     
     // Only override drawRect: if you perform custom drawing.
@@ -116,7 +134,7 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(scoreCellId, forIndexPath: indexPath) as! EvaluationDetailScroeDescriptionCell
-            cell.physiqueButton.addTarget(self, action: Selector("tapPhysiqueButton"), forControlEvents: UIControlEvents.TouchUpInside)
+            cell.physiqueButton.addTarget(self, action: #selector(EvaluationResultTableView.tapPhysiqueButton), forControlEvents: UIControlEvents.TouchUpInside)
             
             // score
             cell.data = data

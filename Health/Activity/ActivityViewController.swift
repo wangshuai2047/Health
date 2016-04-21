@@ -75,11 +75,6 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
 //        userSelectView.setShowViewUserId(UserManager.mainUser.userId)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         ActivityManager.queryScoreAds {[unowned self] (score: Int?, rank: Int?, error: NSError?) -> Void in

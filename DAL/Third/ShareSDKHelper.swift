@@ -134,7 +134,9 @@ struct ShareSDKHelper {
     // MARK: - 登录
     static func loginWithWeiBo(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeSinaWeibo, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
+//            NSLog("loginWithWeiBo: %@ ssl: %@ --- %@", user.rawData,user.credential.rawData, user.credential.token)
             var err: NSError? = nil
+            
             if response == SSDKResponseState.Cancel {
                 err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
                 complete(uid: nil, name: nil, headIcon: nil, error: err)
@@ -148,18 +150,19 @@ struct ShareSDKHelper {
         })
     }
     
-    static func loginWithWeChat(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
+    static func loginWithWeChat(complete: ((uid: String?, name: String?, headIcon: String?, unionid: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeWechat, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
             var err: NSError? = nil
+//            NSLog("loginWithWeChat: %@ ssl: %@ --- %@", user.rawData,user.credential.rawData, user.credential.token)
             if response == SSDKResponseState.Cancel {
                 err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
-                complete(uid: nil, name: nil, headIcon: nil, error: err)
+                complete(uid: nil, name: nil, headIcon: nil, unionid: nil, error: err)
             }
             else if response == SSDKResponseState.Fail {
-                complete(uid: nil, name: nil, headIcon: nil, error: error)
+                complete(uid: nil, name: nil, headIcon: nil, unionid: nil, error: error)
             }
             else if response == SSDKResponseState.Success {
-                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, unionid: user.rawData["unionid"] as? String, error: nil)
             }
             
         })
@@ -176,6 +179,8 @@ struct ShareSDKHelper {
     
     static func loginWithQQ(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
         ShareSDK.getUserInfo(SSDKPlatformType.TypeQQ, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
+//            NSLog("loginWithQQ: ssl: %@ --- %@", user.rawData,user.credential.rawData, user.credential.token)
+            
             var err: NSError? = nil
             if response == SSDKResponseState.Cancel {
                 err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])

@@ -26,6 +26,8 @@
 
 @implementation VScaleManager
 
+
+
 static VScaleManager *instance = nil;
 
 +(VScaleManager *)sharedInstance
@@ -223,8 +225,15 @@ static VScaleManager *instance = nil;
                         [self gotoStatus:VCStatusCaculate];
                         [self.delegate updateUIDataWithFatScale:self.scaleResult];
                         [deviceModel disconnect];
+                        
+                        
+                        NSError *error = nil;
+                        if ([(VTFatScaleTestResult *)result waterContent] == 0) {
+                            error = [NSError errorWithDomain:@"VScale Error" code:1 userInfo:@{NSLocalizedDescriptionKey : @"测试失败"}];
+                        }
+                        
                         if (_scaleComplete) {
-                            _scaleComplete(result, nil);
+                            _scaleComplete(result, error);
                         }
                         
                         [self gotoStatus:VCStatusServiceReady];
@@ -441,6 +450,28 @@ static VScaleManager *instance = nil;
         
         //[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MODEL_NUMBER object:nil];
     }
+}
+
+/**
+ *	@brief	this method notify the implementer that a Bluetooth4.0 device will autoReconnect if they connected before. the implementer could get the device information for paramter device.
+ *
+ *	@param 	dm 	device manager
+ *	@param 	device 	discovered device
+ *  @return
+ */
+- (Boolean) didAutoReConnect:(VTDeviceManager*)dm device:(VTDeviceModel *)device {
+    return YES;
+}
+
+/**
+ *	@brief	this method notify the implementer that a Bluetooth4.0 device will scan Allow Duplicates Key.
+ *
+ *	@param 	dm 	device manager
+ *	@param 	device 	discovered device
+ *  @return
+ */
+- (Boolean) didScanOptionAllowDuplicatesKey:(VTDeviceManager*)dm {
+    return YES;
 }
 
 #pragma mark -

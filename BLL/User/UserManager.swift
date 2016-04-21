@@ -110,8 +110,8 @@ class UserManager {
         return nil
     }
     
-    func changeUserInfo(user: UserModel,  complete: (NSError?) -> Void) {
-        UserRequest.completeUserInfo(user.userId, gender: user.gender, height: user.height, age: user.age, name: user.name, phone: nil, organizationCode: nil, imageURL: user.headURL) { (imageURL, error) -> Void in
+    func changeUserInfo(user: UserModel, phone: String?, organizationCode: String?, complete: (NSError?) -> Void) {
+        UserRequest.completeUserInfo(user.userId, gender: user.gender, height: user.height, age: user.age, name: user.name, phone: phone, organizationCode: organizationCode, imageURL: user.headURL) { (imageURL, error) -> Void in
             if error == nil {
                 
                 if user.headURL != nil {

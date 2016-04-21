@@ -103,8 +103,7 @@ class BluetoothManager: NSObject {
             timeoutTimer = nil
         }
         
-        
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("scanTimerFinished:"), userInfo: nil, repeats: false)
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(BluetoothManager.scanTimerFinished(_:)), userInfo: nil, repeats: false)
     }
     
     func scanTimerFinished(timer: NSTimer) {
@@ -235,7 +234,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
         statusBlock?(centralManager.state)
     }
     
-    func isScanMyDevice(var scanTypes: [DeviceType]?, peripheral: CBPeripheral, advertisementData: [String : AnyObject]) -> DeviceManagerProtocol? {
+    func isScanMyDevice(inout scanTypes: [DeviceType]?, peripheral: CBPeripheral, advertisementData: [String : AnyObject]) -> DeviceManagerProtocol? {
         
         let kCBAdvDataIsConnectable = advertisementData["kCBAdvDataIsConnectable"] as? NSNumber
         
@@ -278,14 +277,14 @@ extension BluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         
-        print("--------------------------------- %s",__FUNCTION__)
+        print("--------------------------------- %s",#function)
         
         print("CenCentalManagerDelegate didDiscoverPeripheral")
         print("Discovered \(peripheral)")
         print("Rssi: \(RSSI)")
         print("advertisementData: \(advertisementData)")
         
-        if let device = isScanMyDevice(scanDeviceType, peripheral: peripheral, advertisementData: advertisementData) {
+        if let device = isScanMyDevice(&scanDeviceType, peripheral: peripheral, advertisementData: advertisementData) {
             
             device.RSSI = RSSI
             scanDevice.setObject(device, forKey: device.uuid)

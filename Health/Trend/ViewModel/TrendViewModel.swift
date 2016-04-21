@@ -40,7 +40,9 @@ struct TrendViewModel {
         let evaluationDatas = TrendManager.eightDaysDatas(beginDate, endTimescamp: endDate)
         
         allDatas.removeAll(keepCapacity: false)
-        for evaluationData in evaluationDatas {
+        
+        for var i = evaluationDatas.count - 1; i >= 0; i-- {
+            let evaluationData = evaluationDatas[i]
             allDatas += [TrendCellViewModel(info: evaluationData, gender: UserManager.shareInstance().currentUser.gender, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)]
         }
         

@@ -10,7 +10,7 @@ import UIKit
 
 struct Alert {
     static func showErrorAlert(title: String?, message: String?) {
-        UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "取消").show()
+        UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "确定").show()
     }
     
     static func showError(error: NSError) {

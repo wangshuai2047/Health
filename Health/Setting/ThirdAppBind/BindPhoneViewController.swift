@@ -35,6 +35,10 @@ class BindPhoneViewController: UIViewController {
         }
     }
     
+    class func cancelBind(complete: (NSError?) -> Void) {
+        LoginManager.completeInfomation(UserData.shareInstance().name!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, phone: nil, organizationCode: UserData.shareInstance().organizationCode, headURL: UserData.shareInstance().headURL, complete: complete)
+    }
+    
     convenience init() {
         self.init(nibName: "BindPhoneViewController", bundle: nil)
     }
@@ -65,8 +69,15 @@ class BindPhoneViewController: UIViewController {
     }
 
     @IBAction func sureButtonPressed(sender: AnyObject) {
-        LoginManager.completeInfomation(UserData.shareInstance().name!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, phone: self.phoneTextField.text == nil || self.phoneTextField.text! == "" ? nil : self.phoneTextField.text, organizationCode: UserData.shareInstance().phone, headURL: UserData.shareInstance().headURL) { [unowned self] (error: NSError?) -> Void in
+        LoginManager.completeInfomation(UserData.shareInstance().name!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, phone: self.phoneTextField.text == nil || self.phoneTextField.text! == "" ? nil : self.phoneTextField.text, organizationCode: UserData.shareInstance().organizationCode, headURL: UserData.shareInstance().headURL) { [unowned self] (error: NSError?) -> Void in
             self.delegate?.bindFinished(self.phoneTextField.text == nil || self.phoneTextField.text == "" ? nil : self.phoneTextField.text, error: error)
+            
+            if error == nil {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            else {
+                Alert.showError(error!)
+            }
         }
     }
 }

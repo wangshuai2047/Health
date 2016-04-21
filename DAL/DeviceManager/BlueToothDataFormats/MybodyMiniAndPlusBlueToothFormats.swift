@@ -56,17 +56,17 @@ struct MybodyMiniAndPlusBlueToothFormats {
         var tt: UInt8 = 0
         data.getBytes(buffer: &tt, range: NSRange(location: index, length: 1))
         type = DeviceType(rawValue: tt)!
-        index++
+        index += 1
         
         // cmd
         var cc: UInt8 = 0
         data.getBytes(buffer: &cc, range: NSRange(location: index, length: 1))
         cmd = CMD(rawValue: cc)!
-        index++
+        index += 1
         
         // resultCode
         data.getBytes(buffer: &resultCode, range: NSRange(location: index, length: 1))
-        index++
+        index += 1
         
         // 数据
         while (true) {

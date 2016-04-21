@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXa-js-SUc">
-                    <rect key="frame" x="180" y="76" width="240" height="299"/>
+                    <rect key="frame" x="180" y="32" width="240" height="299"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="visitorBg" translatesAutoresizingMaskIntoConstraints="NO" id="uYB-o5-MeB">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="299"/>
@@ -55,7 +55,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NK5-6G-zsF">
-                    <rect key="frame" x="387" y="76" width="35" height="34"/>
+                    <rect key="frame" x="387" y="32" width="35" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="35" id="74U-KO-Li1"/>
                         <constraint firstAttribute="height" constant="34" id="yYO-kF-ba4"/>
@@ -70,7 +70,7 @@
             <constraints>
                 <constraint firstItem="NK5-6G-zsF" firstAttribute="centerY" secondItem="pXa-js-SUc" secondAttribute="centerY" constant="-132.5" id="0SQ-nC-Xe3"/>
                 <constraint firstItem="pXa-js-SUc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BO9-Qn-LG0"/>
-                <constraint firstItem="pXa-js-SUc" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-74.5" id="IZ2-cd-aCH"/>
+                <constraint firstItem="pXa-js-SUc" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-118.5" id="IZ2-cd-aCH"/>
                 <constraint firstItem="NK5-6G-zsF" firstAttribute="centerX" secondItem="pXa-js-SUc" secondAttribute="centerX" constant="104.5" id="f7w-GG-S7g"/>
             </constraints>
             <point key="canvasLocation" x="367" y="396"/>

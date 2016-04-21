@@ -9,7 +9,7 @@
 import Foundation
 
 // 体型
-enum Physique: Int {
+public enum Physique: Int {
     case HiddenFat = 1      // 隐性肥胖  hiddenFat
     case LotOfFat       // 脂肪过多 lotOfFat
     case Fat            // 肥胖   fat
@@ -103,10 +103,11 @@ enum Physique: Int {
         }
     }
     
-    init (gender: Bool, fatPercentage: Float, BMI: Float) {
-        let lowFatPercentage: Float = gender ? 10 : 20
-        let highFatPercentage: Float = gender ? 20 : 30
-        
+    init (gender: Bool, fatPercentage: Float, BMI: Float, lowFatPercentage: Float, highFatPercentage: Float) {
+//    init (gender: Bool, fatPercentage: Float, BMI: Float) {
+//        let lowFatPercentage: Float = gender ? 10 : 20
+//        let highFatPercentage: Float = gender ? 20 : 30
+    
         let lowBMI: Float = 18.5
         let highBMI: Float = 25
         

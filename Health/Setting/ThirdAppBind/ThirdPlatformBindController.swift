@@ -19,15 +19,12 @@ class ThirdPlatformBindController: UIViewController {
         self.init(nibName: "ThirdPlatformBindController", bundle: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        let cellNib = UINib(nibName: cellId, bundle: nil)
-        self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
+        thirdPlatformBindListInfo.removeAll()
         // 微信朋友圈
-        thirdPlatformBindListInfo.append(["headIcon" : "wechatLogin", "title" : "微信朋友圈",
+        thirdPlatformBindListInfo.append(["headIcon" : "wechatLogin", "title" : "微信",
             "execute" : { [unowned self] () in
                 self.thirdPartBindChange(ShareType.WeChatSession)
             },
@@ -36,7 +33,7 @@ class ThirdPlatformBindController: UIViewController {
             }])
         
         // 腾讯
-        thirdPlatformBindListInfo.append(["headIcon" : "qqLogin", "title" : "腾讯",
+        thirdPlatformBindListInfo.append(["headIcon" : "qqLogin", "title" : "QQ",
             "execute" : {[unowned self] () in
                 self.thirdPartBindChange(ShareType.QQFriend)
             },
@@ -56,20 +53,64 @@ class ThirdPlatformBindController: UIViewController {
         // 集团账户
         thirdPlatformBindListInfo.append(["headIcon" : "orgazation", "title" : "集团账户",
             "execute" : { [unowned self] () in
-                BindOrganzationViewController.showBindOrganzationViewController(self, rootController: self)
+                
+                if UserData.shareInstance().organizationCode == nil {
+                    BindOrganzationViewController.showBindOrganzationViewController(self, rootController: self)
+                }
+                else {
+                    
+                    BindOrganzationViewController.cancelBind({[unowned self] (error: NSError?) -> Void in
+                        if error == nil {
+                            UserData.shareInstance().organizationCode = nil
+                            self.tableView.reloadData()
+                        }
+                        else {
+                            Alert.showError(error!)
+                        }
+                        })
+                }
             },
             "isBind": {() -> Bool in
                 return UserData.shareInstance().organizationCode != nil
             }])
         
-        // 手机号
-        thirdPlatformBindListInfo.append(["headIcon" : "phone", "title" : "手机号",
-            "execute" : { [unowned self] () in
-                BindPhoneViewController.showBindPhoneViewController(self, rootController: self)
-            },
-            "isBind": {() -> Bool in
-                return UserData.shareInstance().phone != nil
-            }])
+        
+        if UserData.shareInstance().phone == nil {
+            // 手机号
+            thirdPlatformBindListInfo.append(["headIcon" : "phone", "title" : "手机号",
+                "execute" : { [unowned self] () in
+                    
+                    if UserData.shareInstance().phone != nil {
+                        
+                        BindPhoneViewController.cancelBind({ [unowned self] (error: NSError?) -> Void in
+                            if error == nil {
+                                UserData.shareInstance().phone = nil
+                                self.tableView.reloadData()
+                            }
+                            else {
+                                Alert.showError(error!)
+                            }
+                            })
+                        
+                    }
+                    else {
+                        BindPhoneViewController.showBindPhoneViewController(self, rootController: self)
+                    }
+                },
+                "isBind": {() -> Bool in
+                    return UserData.shareInstance().phone != nil
+                }])
+        }
+        
+        tableView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        let cellNib = UINib(nibName: cellId, bundle: nil)
+        self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
     }
     
     

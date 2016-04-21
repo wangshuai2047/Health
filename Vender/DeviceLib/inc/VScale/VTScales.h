@@ -6,9 +6,6 @@
 //  Copyright (c) 2013年 Vtrump. All rights reserved.
 //
 
-#ifndef VTScales_h
-#define TScales_h
-
 #import "VTMacros.h"
 #import "VTScaleDefines.h"
 #import "VTDeviceManager.h"
@@ -21,5 +18,3 @@
 #import "VTProfile+Device.h"
 #import "VTProfile+VScale.h"
 #import "VTFatScaleTestResult.h"
-
-#endif

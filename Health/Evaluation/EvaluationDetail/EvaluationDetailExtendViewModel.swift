@@ -24,6 +24,12 @@ enum EvaluationDetailExtendType {
     case bmi
     case BMR                // 基础代谢
     case bodyAge            // 身体年龄
+    case fatLevel           // 肥胖等级
+    case standardWeight     // 标准体重
+    case weightControl      // 体重控制量
+    case noFatWeight        // 去脂体重
+    case fatControl         // 脂肪控制量
+    case muscleControl      // 肌肉控制量
     
     var headIcon: String {
         switch self {
@@ -52,6 +58,18 @@ enum EvaluationDetailExtendType {
         case .BMR:
             return "BMRIcon"
         case .bodyAge:
+            return "BMI"
+        case .fatLevel:
+            return "BMI"
+        case .standardWeight:
+            return "BMI"
+        case .weightControl:
+            return "BMI"
+        case .noFatWeight:
+            return "BMI"
+        case .fatControl:
+            return "BMI"
+        case .muscleControl:
             return "BMI"
         }
     }
@@ -84,6 +102,18 @@ enum EvaluationDetailExtendType {
             return "基础代谢"
         case .bodyAge:
             return "身体年龄"
+        case .fatLevel:
+            return "肥胖等级"
+        case .standardWeight:
+            return "标准体重"
+        case .weightControl:
+            return "体重控制量"
+        case .noFatWeight:
+            return "去酯体重"
+        case .fatControl:
+            return "脂肪控制量"
+        case .muscleControl:
+            return "肌肉控制量"
         }
     }
     
@@ -118,6 +148,33 @@ enum EvaluationDetailExtendType {
             return "kcal"
         case .bodyAge:
             return "岁"
+        case .fatLevel:
+            return ""
+        case .standardWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
+            return "kg"
+        case .weightControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
+            return "kg"
+        case .noFatWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
+            return "kg"
+        case .fatControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
+            return "kg"
+        case .muscleControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
+            return "kg"
         }
     }
     
@@ -156,7 +213,7 @@ enum EvaluationDetailExtendType {
         case .muscle:
             return ("您的肌肉含量偏低，建议适当增肌。", "您的肌肉含量正常，请保持。", "您的肌肉发达，请保持。")
         case .boneMuscle:
-            return ("您的肌肉含量偏低，建议适当增肌。", "您的肌肉含量正常，请保持。", "您的肌肉发达，请保持。")
+            return ("您的骨骼肌含量偏低，建议适当增肌。", "您的骨骼肌含量正常，请保持。", "您的骨骼肌发达，请保持。")
         case .water:
             return ("您体内水分偏低，注意多饮水。减低体脂肪含量有助于提高体内水分比例。", "您体内水分含量正常，请保持。", "您体内水分含量过高，请检查水肿系数。")
         case .protein:
@@ -170,6 +227,18 @@ enum EvaluationDetailExtendType {
         case .BMR:
             return ("", "", "")
         case .bodyAge:
+            return ("", "", "")
+        case .fatLevel:
+            return ("", "", "")
+        case .standardWeight:
+            return ("", "", "")
+        case .weightControl:
+            return ("", "", "")
+        case .noFatWeight:
+            return ("", "", "")
+        case .fatControl:
+            return ("", "", "")
+        case .muscleControl:
             return ("", "", "")
         }
     }
@@ -205,6 +274,81 @@ enum EvaluationDetailExtendType {
             return false
         case .bodyAge:
             return false
+        case .fatLevel:
+            return false
+        case .standardWeight:
+            return false
+        case .weightControl:
+            return false
+        case .noFatWeight:
+            return false
+        case .fatControl:
+            return false
+        case .muscleControl:
+            return false
+        }
+    }
+    
+    func fatLevelShowString(fatPercentage: Float, gender: Bool) -> String {
+        /*
+         男：
+         16以下 较轻
+         16=<   <20 正常
+         20=<   <24 轻度肥胖
+         24=<   <28 中度肥胖
+         28=<   <30 重度肥胖
+         >=30        极度肥胖
+         
+         女：
+         18以下 较轻
+         18=<   <22 正常
+         22=<   <26 轻度肥胖
+         26=<   <29 中度肥胖
+         29=<   <35 重度肥胖
+         >=35        极度肥胖
+         */
+        
+        if gender {
+            // 男
+            if fatPercentage < 16 {
+                return "较轻"
+            }
+            else if fatPercentage < 20 {
+                return "正常"
+            }
+            else if fatPercentage < 24 {
+                return "轻度肥胖"
+            }
+            else if fatPercentage < 28 {
+                return "中度肥胖"
+            }
+            else if fatPercentage < 30 {
+                return "重度肥胖"
+            }
+            else {
+                return "极度肥胖"
+            }
+        }
+        else {
+            // 女
+            if fatPercentage < 18 {
+                return "较轻"
+            }
+            else if fatPercentage < 22 {
+                return "正常"
+            }
+            else if fatPercentage < 26 {
+                return "轻度肥胖"
+            }
+            else if fatPercentage < 29 {
+                return "中度肥胖"
+            }
+            else if fatPercentage < 35 {
+                return "重度肥胖"
+            }
+            else {
+                return "极度肥胖"
+            }
         }
     }
     
@@ -239,6 +383,41 @@ enum EvaluationDetailExtendType {
             return String(format: "%.0f", data.BMR)
         case .bodyAge:
             return String(format: "%.0f", data.bodyAge)
+        case .fatLevel:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+            }
+            return fatLevelShowString(data.fatPercentage, gender: data.gender)
+        case .standardWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+                
+            }
+            return String(format: "%.0f", data.SW)
+        case .weightControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+            }
+            return String(format: "%.0f", data.weight - data.SW)
+            
+        case .noFatWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+                
+            }
+            return String(format: "%.0f", data.LBM)
+        case .fatControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+                
+            }
+            return String(format: "%.0f", data.fatControl)
+            
+        case .muscleControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+            }
+            return String(format: "%.0f", data.muscleControl)
         }
     }
     
@@ -270,6 +449,18 @@ enum EvaluationDetailExtendType {
             return ValueStatus.Normal
         case .bodyAge:
             return ValueStatus.Normal
+        case .fatLevel:
+            return ValueStatus.Normal
+        case .standardWeight:
+            return ValueStatus.Normal
+        case .weightControl:
+            return ValueStatus.Normal
+        case .noFatWeight:
+            return ValueStatus.Normal
+        case .fatControl:
+            return ValueStatus.Normal
+        case .muscleControl:
+            return ValueStatus.Normal
         }
     }
     
@@ -278,7 +469,7 @@ enum EvaluationDetailExtendType {
         case .weight:
             return data.SWRange
         case .fatPercentage:
-            return data.fatPercentageRange
+            return (data.fatPercentageRange.0 * 100, data.fatPercentageRange.1 * 100)
         case .fat:
             return data.fatWeightRange
         case .muscle:

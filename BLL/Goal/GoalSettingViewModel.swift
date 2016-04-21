@@ -53,7 +53,7 @@ struct GoalSettingViewModel {
             }
             else if type == UserGoalData.GoalType.Fat {
                 // 标准体脂率
-                let sfp = lastEvaluationData!.fatPercentageRange.0
+                let sfp = lastEvaluationData!.fatPercentageRange.0 * 100
                 let fatPercentage = lastEvaluationData!.fatPercentage
                 
                 let fatPercentageRange = fatPercentage - sfp

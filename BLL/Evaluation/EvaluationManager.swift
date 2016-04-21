@@ -165,6 +165,15 @@ class EvaluationManager :NSObject {
     }
     
     static func checkAndSyncEvaluationDatas(complete: (NSError?) -> Void) {
+        
+        let users = DBManager.shareInstance().queryAllUser()
+        for userInfo in users {
+            let user = UserModel(info: userInfo)
+            self.checkAndSyncEvaluationDatas(user.userId, complete: { (error: NSError?) -> Void in
+                // nothing
+            })
+        }
+        
         self.checkAndSyncEvaluationDatas(UserData.shareInstance().userId!, complete: complete)
     }
     
