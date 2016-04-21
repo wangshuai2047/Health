@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol ResultProtocol {
+public protocol ResultProtocol {
     var dataId: String { get set }
     var userId: Int { get set }
 }
 
-protocol ScaleResultProtocol: ResultProtocol {
+public protocol ScaleResultProtocol: ResultProtocol {
     
     var timeStamp: NSDate {get set}
     
@@ -27,7 +27,6 @@ protocol ScaleResultProtocol: ResultProtocol {
     var waterPercentage: Float { get set }
     // 体重
     var weight: Float { get set }
-    var weightRange: (Float, Float) { get set }
     // 脂肪肝 nil代表不支持
     var hepaticAdiposeInfiltration: Bool? { get set }
     // 去脂体重

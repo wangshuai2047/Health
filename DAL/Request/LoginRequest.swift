@@ -92,6 +92,10 @@ struct  LoginRequest {
         if unionid != nil {
             info["unionid"] = unionid
         }
+        // , token: String?
+//        if token != nil {
+//            info["token"] = token
+//        }
         
         RequestType.LoginThirdPlatform.startRequest(info, completionHandler: { (data, response, error) -> Void in
             

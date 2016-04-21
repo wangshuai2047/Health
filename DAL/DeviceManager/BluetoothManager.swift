@@ -103,7 +103,7 @@ class BluetoothManager: NSObject {
             timeoutTimer = nil
         }
         
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: Selector("scanTimerFinished:"), userInfo: nil, repeats: false)
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(BluetoothManager.scanTimerFinished(_:)), userInfo: nil, repeats: false)
     }
     
     func scanTimerFinished(timer: NSTimer) {

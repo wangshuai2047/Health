@@ -179,7 +179,7 @@ extension BraceletManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         if error == nil && characteristic.value != nil {
-            print("接收到数据: \(characteristic.value)")
+//            print("接收到数据: \(characteristic.value)")
             reveiveData(characteristic.value!)
         }
         else {

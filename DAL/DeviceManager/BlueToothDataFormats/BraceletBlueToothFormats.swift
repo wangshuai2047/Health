@@ -62,9 +62,9 @@ struct BraceletBlueToothFormats {
         var cmd_version: UInt8 = 0
         var cmd_type: UInt8 = 0
         data.getBytes(&cmd_version, range: NSRange(location: index, length: 1))
-        index++
+        index += 1
         data.getBytes(&cmd_type, range: NSRange(location: index, length: 1))
-        index++
+        index += 1
         
         if packageHead.nCmdId == BraceletBlueToothFormats.deviceToAppCmdId {
             // 设备发送给APP 请求命令
@@ -112,9 +112,9 @@ struct BraceletBlueToothFormats {
         
         var index: Int = 0
         data.getBytes(&bMagicNumber, range: NSRange(location: index, length: 1))
-        index++
+        index += 1
         data.getBytes(&bVer, range: NSRange(location: index, length: 1))
-        index++
+        index += 1
         
         data.getUInt16Bytes(&nLength, range: NSRange(location: index, length: sizeof(UInt16)))
         index += 2

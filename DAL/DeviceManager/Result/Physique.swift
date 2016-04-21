@@ -9,7 +9,7 @@
 import Foundation
 
 // 体型
-enum Physique: Int {
+public enum Physique: Int {
     case HiddenFat = 1      // 隐性肥胖  hiddenFat
     case LotOfFat       // 脂肪过多 lotOfFat
     case Fat            // 肥胖   fat

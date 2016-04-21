@@ -63,7 +63,7 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                 self.result?.weight = weight
                 
                 let receiveWeightData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData()
-                NSLog("write receiveWeightData : \(receiveWeightData)")
+//                NSLog("write receiveWeightData : \(receiveWeightData)")
                 self.peripheral?.writeValue(receiveWeightData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
             }
             else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
@@ -79,7 +79,7 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                     self.result?.hepaticAdiposeInfiltration = true
                     
                     let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
-                    NSLog("write receiveBodyData : \(receiveBodyData)")
+//                    NSLog("write receiveBodyData : \(receiveBodyData)")
                     self.peripheral?.writeValue(receiveBodyData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
                 }
                 
@@ -112,7 +112,7 @@ extension MyBodyMiniAndPlusManager: CBCentralManagerDelegate {
 extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
         
-        NSLog("search service UUID %@", service.characteristics!)
+//        NSLog("search service UUID %@", service.characteristics!)
         if error == nil && service.characteristics != nil {
             for characteristic in service.characteristics! {
                 
@@ -159,7 +159,7 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         if error == nil && characteristic.value != nil {
-            NSLog("接收到数据: \(characteristic.value)")
+//            NSLog("接收到数据: \(characteristic.value)")
             reveiveData(characteristic.value!)
         }
         else {
@@ -177,8 +177,8 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             fireComplete?(nil, error)
         }
         else {
-            print("write char: \(self.writeCharacteristic)")
-            print("read char: \(self.readCharacteristic)")
+//            print("write char: \(self.writeCharacteristic)")
+//            print("read char: \(self.readCharacteristic)")
             
 //            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
 //            fireComplete?(nil, error)

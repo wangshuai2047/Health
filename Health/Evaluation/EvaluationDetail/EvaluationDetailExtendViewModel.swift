@@ -151,14 +151,29 @@ enum EvaluationDetailExtendType {
         case .fatLevel:
             return ""
         case .standardWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
             return "kg"
         case .weightControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
             return "kg"
         case .noFatWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
             return "kg"
         case .fatControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
             return "kg"
         case .muscleControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return ""
+            }
             return "kg"
         }
     }
@@ -369,21 +384,42 @@ enum EvaluationDetailExtendType {
         case .bodyAge:
             return String(format: "%.0f", data.bodyAge)
         case .fatLevel:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+            }
             return fatLevelShowString(data.fatPercentage, gender: data.gender)
         case .standardWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+                
+            }
             return String(format: "%.0f", data.SW)
         case .weightControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+            }
             return String(format: "%.0f", data.weight - data.SW)
+            
         case .noFatWeight:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+                
+            }
             return String(format: "%.0f", data.LBM)
         case .fatControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+                
+            }
             return String(format: "%.0f", data.fatControl)
+            
         case .muscleControl:
+            if let _ = data.hepaticAdiposeInfiltration {
+                return "此秤不支持"
+            }
             return String(format: "%.0f", data.muscleControl)
         }
     }
-    
-    
     
     func status(data: ScaleResultProtocol) -> ValueStatus {
         switch self {
