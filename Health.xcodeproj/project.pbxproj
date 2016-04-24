@@ -259,8 +259,6 @@
 		E0EDBDF61BCE5B8E00137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */; };
 		E0F048381BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
 		E0F048391BCFFA3000C63540 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048371BCFFA3000C63540 /* HealthDataManager.swift */; };
-		E0F048401BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
-		E0F048411BD070C700C63540 /* AppleHealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */; };
 		E0F048431BD0779700C63540 /* QQHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048421BD0779700C63540 /* QQHealthManager.swift */; };
 		E0F048441BD0779700C63540 /* QQHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F048421BD0779700C63540 /* QQHealthManager.swift */; };
 		E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F70D4F1B93362900341F1C /* ConvertFloat.swift */; };
@@ -514,7 +512,6 @@
 		E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MybodyMiniAndPlusBlueToothFormats.swift; sourceTree = "<group>"; };
 		E0F048371BCFFA3000C63540 /* HealthDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataManager.swift; sourceTree = "<group>"; };
 		E0F0483C1BCFFA5300C63540 /* Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Health.entitlements; sourceTree = "<group>"; };
-		E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleHealthKitManager.swift; sourceTree = "<group>"; };
 		E0F048421BD0779700C63540 /* QQHealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQHealthManager.swift; sourceTree = "<group>"; };
 		E0F70D4F1B93362900341F1C /* ConvertFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertFloat.swift; sourceTree = "<group>"; };
 		E0F7A6AF1BC6C36900AF6B8B /* VisitorAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VisitorAddViewController.swift; path = Health/User/VisitorAddViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -1336,7 +1333,6 @@
 		E0F0483D1BD070A700C63540 /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
-				E0F0483F1BD070C700C63540 /* AppleHealthKitManager.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -1673,7 +1669,6 @@
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0E079571BD521CF008B8BE3 /* FamilyMembersCell.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
-				E0F048401BD070C700C63540 /* AppleHealthKitManager.swift in Sources */,
 				E0E079531BD520A9008B8BE3 /* FamilyMembersViewController.swift in Sources */,
 				E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */,
 				E007CC221BCAA5DC00365FA8 /* DeviceScanCell.swift in Sources */,
@@ -1825,7 +1820,6 @@
 				E060CD971B8402E60002AEE7 /* ShareSDKHelper.swift in Sources */,
 				E0255E8C1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift in Sources */,
 				E0FBED441B835C9100A70598 /* Request.swift in Sources */,
-				E0F048411BD070C700C63540 /* AppleHealthKitManager.swift in Sources */,
 				E0A45B261B9E8FC40085E5B5 /* RequestType.swift in Sources */,
 				E0255E721BC9556300CEE5D4 /* ScaleResultExtension.swift in Sources */,
 				E0039BD71BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */,
