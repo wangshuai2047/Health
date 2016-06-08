@@ -169,7 +169,7 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             if let disCell = cell as? EvaluationDetailScroeDescriptionCell {
-                disCell.physiqueButton.removeTarget(self, action: Selector("tapPhysiqueButton"), forControlEvents: UIControlEvents.TouchUpInside)
+                disCell.physiqueButton.removeTarget(self, action: #selector(EvaluationResultTableView.tapPhysiqueButton), forControlEvents: UIControlEvents.TouchUpInside)
             }
         }
         else {

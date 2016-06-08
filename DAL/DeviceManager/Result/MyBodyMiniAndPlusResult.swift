@@ -513,6 +513,6 @@ extension MyBodyMiniAndPlusResult {
 extension MyBodyMiniAndPlusResult {
     // 体型
     var physique: Physique {
-        return Physique(gender: gender, fatPercentage: fatPercentage, BMI: BMI, lowFatPercentage: fatPercentageRange.0, highFatPercentage: fatPercentageRange.1)
+        return Physique(gender: gender, fatPercentage: fatPercentage, BMI: BMI, lowFatPercentage: fatPercentageRange.0 * 100, highFatPercentage: fatPercentageRange.1 * 100)
     }
 }

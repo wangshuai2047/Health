@@ -393,31 +393,31 @@ enum EvaluationDetailExtendType {
                 return "此秤不支持"
                 
             }
-            return String(format: "%.0f", data.SW)
+            return String(format: "%.1f", data.SW)
         case .weightControl:
             if let _ = data.hepaticAdiposeInfiltration {
                 return "此秤不支持"
             }
-            return String(format: "%.0f", data.weight - data.SW)
+            return String(format: "%.1f", data.weight - data.SW)
             
         case .noFatWeight:
             if let _ = data.hepaticAdiposeInfiltration {
                 return "此秤不支持"
                 
             }
-            return String(format: "%.0f", data.LBM)
+            return String(format: "%.1f", data.LBM)
         case .fatControl:
             if let _ = data.hepaticAdiposeInfiltration {
                 return "此秤不支持"
                 
             }
-            return String(format: "%.0f", data.fatControl)
+            return String(format: "%.1f", data.fatControl)
             
         case .muscleControl:
             if let _ = data.hepaticAdiposeInfiltration {
                 return "此秤不支持"
             }
-            return String(format: "%.0f", data.muscleControl)
+            return String(format: "%.1f", data.muscleControl)
         }
     }
     

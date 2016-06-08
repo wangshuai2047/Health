@@ -157,7 +157,7 @@ extension ScaleResultProtocol {
     // 去脂体重
     var LBM: Float {
         get {
-            return (SW + 0.5684) / (1 - 0.0537)
+            return weight - fatWeight
         }
         set {
             
