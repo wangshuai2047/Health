@@ -28,14 +28,14 @@ class AdsReqeustTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }
 
     
     func test_AdsRequest_launchAppAds_isSucess() {
-        let expectation = expectationWithDescription("test_AdsRequest_launchAppAds_isSucess")
+        let expectation = self.expectation(withDescription: "test_AdsRequest_launchAppAds_isSucess")
         
         AdsRequest.queryLaunchAds { (ad, error) -> Void in
             
@@ -43,14 +43,14 @@ class AdsReqeustTests: XCTestCase {
             XCTAssertNil(error, "test_AdsRequest_launchAppAds_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }
     
     func test_AdsRequest_activityAds_isSucess() {
         
-        let expectation = expectationWithDescription("test_AdsRequest_activityAds_isSucess")
+        let expectation = self.expectation(withDescription: "test_AdsRequest_activityAds_isSucess")
         
         let userId = 10
         
@@ -59,7 +59,7 @@ class AdsReqeustTests: XCTestCase {
             XCTAssertNil(error, "test_AdsRequest_activityAds_isSucess 错误: \(error?.description)")
         })
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
         

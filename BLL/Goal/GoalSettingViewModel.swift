@@ -12,11 +12,11 @@ struct GoalSettingViewModel {
     
     lazy var lastEvaluationData = GoalManager.lastEvaluationData()
     
-    mutating func calculeSuggestDays(type: UserGoalData.GoalType, range: Int) -> Int {
-        if type == .Weight {
+    mutating func calculeSuggestDays(_ type: UserGoalData.GoalType, range: Int) -> Int {
+        if type == .weight {
             return Int(Float(range) / (0.3 / 7))
         }
-        else if type == .Fat {
+        else if type == .fat {
             if lastEvaluationData != nil {
                 if lastEvaluationData!.gender {
                     return Int(Float(range) / ((0.3 * 0.15) / 7))
@@ -29,16 +29,17 @@ struct GoalSettingViewModel {
         return 0
     }
     
-    mutating func rangeOfGoalType(type: UserGoalData.GoalType) -> ([Int], [Int]) {
+    mutating func rangeOfGoalType(_ type: UserGoalData.GoalType) -> ([Int], [Int]) {
         
         var dayRange: [Int] = []
-        for var i = 7; i <= 60; i++ {
+        
+        for i in 7...60 {
             dayRange.append(i)
         }
         
         var numberRange: [Int] = [0]
         if lastEvaluationData != nil {
-            if type == UserGoalData.GoalType.Weight {
+            if type == UserGoalData.GoalType.weight {
                 // 标准体重
                 let sw = lastEvaluationData!.SWRange.0
                 let weight = lastEvaluationData!.weight
@@ -46,12 +47,12 @@ struct GoalSettingViewModel {
                 let weightRange = weight - sw
                 
                 if weightRange > 0 {
-                    for var i = 1; i < Int(weightRange); i++ {
+                    for i in 1...Int(weightRange)-1 {
                         numberRange.append(i)
                     }
                 }
             }
-            else if type == UserGoalData.GoalType.Fat {
+            else if type == UserGoalData.GoalType.fat {
                 // 标准体脂率
                 let sfp = lastEvaluationData!.fatPercentageRange.0 * 100
                 let fatPercentage = lastEvaluationData!.fatPercentage
@@ -59,7 +60,7 @@ struct GoalSettingViewModel {
                 let fatPercentageRange = fatPercentage - sfp
                 
                 if fatPercentageRange > 0 {
-                    for var i = 1; i < Int(fatPercentageRange * lastEvaluationData!.weight / 100); i++ {
+                    for i in 1...Int(fatPercentageRange * lastEvaluationData!.weight / 100)-1 {
                         numberRange.append(i)
                     }
                 }

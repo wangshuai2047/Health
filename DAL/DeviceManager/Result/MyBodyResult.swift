@@ -13,7 +13,7 @@ struct MyBodyResult: ScaleResultProtocol {
     var dataId: String
     var userId: Int
     
-    var timeStamp: NSDate
+    var timeStamp: Date
     
     // true 男 false 女
     var gender: Bool
@@ -189,7 +189,7 @@ struct MyBodyResult: ScaleResultProtocol {
     
     
     init(userId: Int, gender: Bool, age: UInt8, height: UInt8, weight: Float, waterContent: Float, visceralFatContent: Float, fatPercentage: Float, fatWeight: Float, waterWeight: Float, muscleWeight: Float, proteinWeight: Float, boneWeight: Float, boneMuscleWeight: Float) {
-        dataId = NSUUID().UUIDString
+        dataId = UUID().uuidString
         
         self.userId = userId
         self.gender = gender
@@ -204,7 +204,7 @@ struct MyBodyResult: ScaleResultProtocol {
         self.fatWeight = fatWeight
         self.waterWeight = waterWeight
         self.boneMuscleWeight = boneMuscleWeight
-        self.timeStamp = NSDate()
+        self.timeStamp = Date()
         
         
         /*
@@ -720,7 +720,7 @@ extension MyBodyResult {
     
     init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
         
-        self.dataId = NSUUID().UUIDString
+        self.dataId = UUID().uuidString
         if let dataId = info["dataId"] as? String {
             self.dataId = dataId
         }
@@ -730,7 +730,7 @@ extension MyBodyResult {
         }
         
 //        dataId = info["dataId"] as! String
-        userId = (info["userId"] as! NSNumber).integerValue
+        userId = (info["userId"] as! NSNumber).intValue
         weight = (info["weight"] as! NSNumber).floatValue
         waterPercentage = (info["waterPercentage"] as! NSNumber).floatValue
         visceralFatPercentage = (info["visceralFatPercentage"] as! NSNumber).floatValue
@@ -742,15 +742,15 @@ extension MyBodyResult {
         tempMuscleWeight = (info["muscleWeight"] as! NSNumber).floatValue
         tempProteinWeight = (info["proteinWeight"] as! NSNumber).floatValue
         tempBoneWeight = (info["boneWeight"] as! NSNumber).floatValue
-//        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+//        if let userInfo = DBManager.sharedInstance.queryUser(userId) {
 //            gender = (userInfo["gender"] as! NSNumber).boolValue
 //            age = (userInfo["age"] as! NSNumber).unsignedCharValue
 //            height = (userInfo["height"] as! NSNumber).unsignedCharValue
 //        }
 //        else {
-//            gender = UserManager.shareInstance().currentUser.gender
-//            age = UserManager.shareInstance().currentUser.age
-//            height = UserManager.shareInstance().currentUser.height
+//            gender = UserManager.sharedInstance.currentUser.gender
+//            age = UserManager.sharedInstance.currentUser.age
+//            height = UserManager.sharedInstance.currentUser.height
 //        }
         
         self.gender = gender
@@ -758,10 +758,10 @@ extension MyBodyResult {
         self.height = height
         
         if let time = info["timeStamp"] as? Int {
-            timeStamp = NSDate(timeIntervalSince1970: NSTimeInterval(time))
+            timeStamp = Date(timeIntervalSince1970: TimeInterval(time))
         }
         else {
-            timeStamp = NSDate()
+            timeStamp = Date()
         }
     }
 }

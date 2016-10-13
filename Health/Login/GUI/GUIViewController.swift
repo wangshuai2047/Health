@@ -34,9 +34,9 @@ class GUIViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        for var i = 0; i < imageViews.count; i++ {
+        for i in 0...imageViews.count-1 {
             let imageView = imageViews[i]
-            imageView.contentMode = UIViewContentMode.ScaleAspectFit
+            imageView.contentMode = UIViewContentMode.scaleAspectFit
             imageView.frame = CGRect(x: CGFloat(i) * scrollView.frame.size.width, y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
             scrollView.addSubview(imageView)
         }
@@ -61,26 +61,26 @@ class GUIViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func frontButtonPressed(sender: AnyObject) {
-        scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x - scrollView.bounds.size.width, 0), animated: true)
+    @IBAction func frontButtonPressed(_ sender: AnyObject) {
+        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0), animated: true)
     }
     
-    @IBAction func nextButtonPressed(sender: AnyObject) {
+    @IBAction func nextButtonPressed(_ sender: AnyObject) {
         if pageControl.currentPage == imageViews.count - 1 {
             skipButtonPressed(sender)
             
         }
         else {
-            scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x + scrollView.bounds.size.width, 0), animated: true)
+            scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0), animated: true)
         }
     }
 
-    @IBAction func skipButtonPressed(sender: AnyObject) {
+    @IBAction func skipButtonPressed(_ sender: AnyObject) {
         if !LoginManager.isLogin || LoginManager.isNeedCompleteInfo{
-            AppDelegate.applicationDelegate().changeToLoginController()
+            _ = AppDelegate.applicationDelegate().changeToLoginController()
         }
         else {
-            AppDelegate.applicationDelegate().changeToMainController()
+            _ = AppDelegate.applicationDelegate().changeToMainController()
         }
         
         LoginManager.showedGUI = true
@@ -89,19 +89,19 @@ class GUIViewController: UIViewController {
 }
 
 extension GUIViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetX = scrollView.contentOffset.x + scrollView.bounds.size.width / 2
         let page = Int(offsetX / scrollView.bounds.size.width)
         self.pageControl.currentPage = page
         
-        frontButton.hidden = false
-        nextButton.hidden = false
-        nextButton.setTitle("下一页", forState: UIControlState.Normal)
+        frontButton.isHidden = false
+        nextButton.isHidden = false
+        nextButton.setTitle("下一页", for: UIControlState())
         if page == pageControl.numberOfPages - 1 {
-            nextButton.setTitle("开始使用", forState: UIControlState.Normal)
+            nextButton.setTitle("开始使用", for: UIControlState())
         }
         else if page == 0 {
-            frontButton.hidden = true
+            frontButton.isHidden = true
         }
     }
 }

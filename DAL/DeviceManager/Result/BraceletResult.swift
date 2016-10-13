@@ -13,13 +13,13 @@ struct BraceletData {
     var userId: Int
     var dataId: String
     
-    var startTime: NSDate
-    var endTime: NSDate
+    var startTime: Date
+    var endTime: Date
     var steps: UInt16        // 运动数量
     var stepsType: StepsType    // 运动类型  走路 10, 跑步 11, 睡觉 9
     
-    init(userId: Int, startTime: NSDate, endTime: NSDate, steps: UInt16, stepsType: UInt16) {
-        dataId = NSUUID().UUIDString
+    init(userId: Int, startTime: Date, endTime: Date, steps: UInt16, stepsType: UInt16) {
+        dataId = UUID().uuidString
         
         self.userId = userId
         self.startTime = startTime
@@ -27,7 +27,7 @@ struct BraceletData {
         self.steps = steps
         
         if stepsType != 10 && stepsType != 11 && stepsType != 9 {
-            self.stepsType = .Sleep
+            self.stepsType = .sleep
         }
         else {
             self.stepsType = StepsType(rawValue: stepsType)!

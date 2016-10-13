@@ -15,19 +15,19 @@ class AttributedLabel: UIView {
     var isCenterAlignment: Bool = true
     
     func stringSize() -> CGSize {
-        return attributedString.boundingRectWithSize(self.bounds.size, options: NSStringDrawingOptions.UsesFontLeading, context: nil).size
+        return attributedString.boundingRect(with: self.bounds.size, options: NSStringDrawingOptions.usesFontLeading, context: nil).size
     }
     
-    func append(text: String, font: UIFont?, color: UIColor?) {
+    func append(_ text: String, font: UIFont?, color: UIColor?) {
         
         let range = NSRange(location: attributedString.length, length: NSString(string: text).length)
-        attributedString.appendAttributedString(NSAttributedString(string: text))
+        attributedString.append(NSAttributedString(string: text))
         
         if font != nil {
             attributedString.addAttribute(String(kCTFontAttributeName), value: font!, range: range)
         }
         else {
-            attributedString.addAttribute(String(kCTFontAttributeName), value: UIFont.systemFontOfSize(15), range: range)
+            attributedString.addAttribute(String(kCTFontAttributeName), value: UIFont.systemFont(ofSize: 15), range: range)
         }
         
         if color != nil {
@@ -38,22 +38,24 @@ class AttributedLabel: UIView {
     }
     
     func clear() {
-        attributedString.deleteCharactersInRange(NSRange(location: 0, length: attributedString.length))
+        attributedString.deleteCharacters(in: NSRange(location: 0, length: attributedString.length))
         self.setNeedsDisplay()
     }
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         setting()
         
         let ctx = UIGraphicsGetCurrentContext()
-        CGContextConcatCTM(ctx, CGAffineTransformScale(CGAffineTransformMakeTranslation(0, rect.size.height), 1.0, -1.0))
+        ctx?.concatenate(CGAffineTransform(translationX: 0, y: rect.size.height).scaledBy(x: 1.0, y: -1.0))
         
         let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
-        let path = CGPathCreateMutable()
-        CGPathAddRect(path, nil, rect)
+        let path = CGMutablePath()
+        
+        path.addRect(rect)
+//        CGPathAddRect(path, nil, rect)
         
         let frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, nil)
         
@@ -64,12 +66,12 @@ class AttributedLabel: UIView {
         
         
         // line break
-        var lineBreak: CTLineBreakMode = .ByCharWrapping
-        let lineBreakModel: CTParagraphStyleSetting = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineBreakMode, valueSize: sizeof(CTLineBreakMode), value: &lineBreak)
+        var lineBreak: CTLineBreakMode = .byCharWrapping
+        let lineBreakModel: CTParagraphStyleSetting = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.lineBreakMode, valueSize: MemoryLayout<CTLineBreakMode>.size, value: &lineBreak)
         
         // 行间距
         var spacing: CGFloat = 4.0
-        let lineSpacing = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.LineSpacingAdjustment, valueSize: sizeof(CGFloat), value: &spacing)
+        let lineSpacing = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.lineSpacingAdjustment, valueSize: MemoryLayout<CGFloat>.size, value: &spacing)
         
         
         if isCenterAlignment == false {
@@ -78,8 +80,8 @@ class AttributedLabel: UIView {
         
         // 居中
         if #available(iOS 8.0, *) {
-            var alignmentValue = CTRubyAlignment.Center
-             let alignment = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.Alignment, valueSize: sizeof(CTRubyAlignment), value: &alignmentValue)
+            var alignmentValue = CTRubyAlignment.center
+             let alignment = CTParagraphStyleSetting(spec: CTParagraphStyleSpecifier.alignment, valueSize: MemoryLayout<CTRubyAlignment>.size, value: &alignmentValue)
             
             attributedString.addAttribute(String(kCTParagraphStyleAttributeName), value: CTParagraphStyleCreate([lineBreakModel, lineSpacing,alignment], 3), range: NSRange(location: 0, length: attributedString.length))
         } else {

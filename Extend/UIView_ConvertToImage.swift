@@ -12,9 +12,9 @@ import QuartzCore
 extension UIView {
     func convertToImage() -> UIImage {
         UIGraphicsBeginImageContext(self.bounds.size)
-        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        self.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
 }

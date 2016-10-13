@@ -17,12 +17,12 @@ struct EvaluationDetailViewModel {
     }
     
     mutating func reloadData() {
-        let endDate = NSDate()
-        let beginDate = endDate.dateByAddingTimeInterval(-30 * 24 * 60 * 60)
+        let endDate = Date()
+        let beginDate = endDate.addingTimeInterval(-30 * 24 * 60 * 60)
         
         let evaluationDatas = EvaluationManager.mouthDaysDatas(beginDate, endTimescamp: endDate)
         
-        allDatas.removeAll(keepCapacity: false)
+        allDatas.removeAll(keepingCapacity: false)
         for evaluationData in evaluationDatas {
             allDatas += [EvaluationDetailCellViewModel(info: evaluationData)]
         }
@@ -38,11 +38,11 @@ struct EvaluationDetailCellViewModel {
         let gender: Bool
         let age: UInt8
         let height: UInt8
-        let userId = (info["userId"] as! NSNumber).integerValue
-        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+        let userId = (info["userId"] as! NSNumber).intValue
+        if let userInfo = DBManager.sharedInstance.queryUser(userId) {
             gender = (userInfo["gender"] as! NSNumber).boolValue
-            age = (userInfo["age"] as! NSNumber).unsignedCharValue
-            height = (userInfo["height"] as! NSNumber).unsignedCharValue
+            age = (userInfo["age"] as! NSNumber).uint8Value
+            height = (userInfo["height"] as! NSNumber).uint8Value
         }
         else {
             gender = UserManager.mainUser.gender
@@ -51,6 +51,6 @@ struct EvaluationDetailCellViewModel {
         }
         
         scaleResult = ScaleResultProtocolCreate(info, gender: gender, age: age, height: height)
-        timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
+        timeShowString = (info["timeStamp"] as! Date).currentZoneFormatDescription()
     }
 }

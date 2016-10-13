@@ -14,15 +14,15 @@ class FeedBackViewController: UIViewController {
     @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textView: UITextView!
     
-    private let cellId = "FeedbackCell"
+    fileprivate let cellId = "FeedbackCell"
     
     var feedbacks: [(time: String, feedback: String)] = []
     
     // MARK: - Life Cycle
     deinit {
         // perform the deinitialization
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     convenience init() {
@@ -35,10 +35,10 @@ class FeedBackViewController: UIViewController {
         // Do any additional setup after loading the view.
         let keyboardShowSelector: Selector = "keyboardShow:"
         let keyboardHideSelector: Selector = "keyboardHide:"
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardShowSelector, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: keyboardHideSelector, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: keyboardShowSelector, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: keyboardHideSelector, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        tableView.registerNib(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
+        tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,10 +56,10 @@ class FeedBackViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func sendButtonPressed(sender: AnyObject) {
+    @IBAction func sendButtonPressed(_ sender: AnyObject) {
         SettingManager.sendFeedBack(textView.text) {[unowned self] (error) -> Void in
             if error == nil {
-                self.feedbacks.append((NSDate().currentZoneFormatDescription(), self.textView.text))
+                self.feedbacks.append((Date().currentZoneFormatDescription(), self.textView.text))
                 self.textView.resignFirstResponder()
                 self.textView.text = ""
                 self.tableView.reloadData()
@@ -70,44 +70,44 @@ class FeedBackViewController: UIViewController {
         }
     }
 
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - KeyboardNotification
-    func keyboardShow(notification: NSNotification) {
-        let info = notification.userInfo;
-        let animationDuration: NSTimeInterval  = NSTimeInterval((info![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue)
-        let keyboardFrame: CGRect = (info![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+    func keyboardShow(_ notification: Notification) {
+        let info = (notification as NSNotification).userInfo;
+        let animationDuration: TimeInterval  = TimeInterval((info![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue)
+        let keyboardFrame: CGRect = (info![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         viewBottomConstraint.constant = keyboardFrame.size.height
         view.setNeedsUpdateConstraints()
         
-        UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
             self.view.layoutIfNeeded()
         })
     }
     
-    func keyboardHide(notification: NSNotification) {
+    func keyboardHide(_ notification: Notification) {
         
         viewBottomConstraint.constant = 0
         view.setNeedsUpdateConstraints()
         
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.view.layoutIfNeeded()
         })
     }
 }
 
 extension FeedBackViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedbacks.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! FeedbackCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! FeedbackCell
         
-        let feedBack = feedbacks[indexPath.row]
+        let feedBack = feedbacks[(indexPath as NSIndexPath).row]
         
         cell.timeLabel.text = feedBack.time
         cell.feedbackLabel.text = feedBack.feedback
@@ -115,10 +115,10 @@ extension FeedBackViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let feedBack = feedbacks[indexPath.row]
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let feedBack = feedbacks[(indexPath as NSIndexPath).row]
         
-        let feedBackSize = NSString(string: feedBack.feedback).boundingRectWithSize(CGSizeMake(tableView.frame.size.width - 16, 1000), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(17)], context: nil)
+        let feedBackSize = NSString(string: feedBack.feedback).boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 17)], context: nil)
         
         return feedBackSize.height + 144 - 90.5
     }

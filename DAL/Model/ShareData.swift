@@ -14,7 +14,7 @@ class ShareData: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
     convenience init(context: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName("ShareData", inManagedObjectContext: context)!
-        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "ShareData", in: context)!
+        self.init(entity: entityDescription, insertInto: context)
     }
 }

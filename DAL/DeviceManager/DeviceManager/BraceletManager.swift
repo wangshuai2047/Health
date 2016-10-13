@@ -10,20 +10,21 @@ import UIKit
 import CoreBluetooth
 
 class BraceletManager: NSObject, DeviceManagerProtocol {
+
     var name: String
     var uuid: String
-    var RSSI = NSNumber(integer: 0)
+    var RSSI = NSNumber(value: 0 as Int)
     var peripheral: CBPeripheral?
     var characteristic: CBCharacteristic?
-    var type: DeviceType = DeviceType.Bracelet
+    var type: DeviceType = DeviceType.bracelet
     
     var serviceUUID: String { return "FFF0" }
     var characteristicUUID: [String] { return ["FFF2"] }
     
-    private var currentFormate: BraceletBlueToothFormats?
-    private var result: BraceletResult?  // 同步运动数据
+    fileprivate var currentFormate: BraceletBlueToothFormats?
+    fileprivate var result: BraceletResult?  // 同步运动数据
     
-    private var user: UserModel?
+    fileprivate var user: UserModel?
     
     var fireComplete: ((ResultProtocol?, NSError?) -> Void)?
     
@@ -37,18 +38,18 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
     
     var receiveDatas: NSMutableData = NSMutableData()
     
-    private func reveiveData(data: NSData) {
+    fileprivate func reveiveData(_ data: Data) {
         if receiveDatas.length == 0 {
             // 第一次接收数据
             currentFormate = BraceletBlueToothFormats(data: data)
         }
         
-        receiveDatas.appendData(data)
+        receiveDatas.append(data)
         
         if Int(currentFormate!.packageHead.nLength) == receiveDatas.length {
             
-            currentFormate!.setBodyData(receiveDatas)
-            receiveDatas.setData(NSData())
+            currentFormate!.setBodyData(receiveDatas as Data)
+            receiveDatas.setData(Data())
             
             if currentFormate!.packageHead.nCmdId == 10002 {
                 
@@ -57,9 +58,9 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
                     
                     result?.results.removeAll()
                     // 时间请求包
-                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.responseTimeCmdId, time: NSDate())
-                    self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
-                    receiveDatas.setData(NSData())
+                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.responseTimeCmdId, time: Date())
+                    self.peripheral!.writeValue(formats.toData(), for: self.characteristic!, type: CBCharacteristicWriteType.withResponse)
+                    receiveDatas.setData(Data())
                 }
                 else if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.sportCmdId {
                     // 收到运动数据
@@ -68,10 +69,10 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
                     result?.results += dealSuccessData()
                     
                     // 发送运动反馈包
-                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.sportCmdId, time: NSDate())
-                    self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
+                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.sportCmdId, time: Date())
+                    self.peripheral!.writeValue(formats.toData(), for: self.characteristic!, type: CBCharacteristicWriteType.withResponse)
                     
-                    receiveDatas.setData(NSData())
+                    receiveDatas.setData(Data())
                     
                 }
                 else if currentFormate!.packageBody?.cmd_type == BraceletBlueToothFormats.generalCmdId {
@@ -82,10 +83,10 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
                     }
                     
                     // 发送通用反馈包
-                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.generalCmdId, time: NSDate())
-                    self.peripheral!.writeValue(formats.toData(), forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
+                    let formats = BraceletBlueToothFormats(cmdId: BraceletBlueToothFormats.generalCmdId, time: Date())
+                    self.peripheral!.writeValue(formats.toData(), for: self.characteristic!, type: CBCharacteristicWriteType.withResponse)
                     
-                    receiveDatas.setData(NSData())
+                    receiveDatas.setData(Data())
                 }
                 else if currentFormate?.packageBody?.cmd_type == BraceletBlueToothFormats.batteryCmdId {
                     // 收到电量数据 可以结束了
@@ -116,67 +117,67 @@ class BraceletManager: NSObject, DeviceManagerProtocol {
         return list
     }
     
-    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
+    func fire(_ info: [String : Any], complete: @escaping (ResultProtocol?, Error?) -> Void) {
         if let user = info["userModel"] as? UserModel {
             self.user = user
         }
         fireComplete = complete
-        receiveDatas.setData(NSData())
+        receiveDatas.setData(Data())
         result = BraceletResult()
     }
 }
 
 extension BraceletManager: CBCentralManagerDelegate {
-    func centralManagerDidUpdateState(central: CBCentralManager) {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
     }
     
-    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
     }
     
-    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         // 连接上 外设  开始查找服务
     }
     
-    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        fireComplete?(nil, error)
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        fireComplete?(nil, error as NSError?)
     }
     
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        fireComplete?(nil, error)
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        fireComplete?(nil, error as NSError?)
     }
 }
 
 // 外设手环服务
 extension BraceletManager: CBPeripheralDelegate {
-    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if error == nil && self.peripheral!.services != nil {
             
         }
         else {
             // 调用失败代理
-            fireComplete?(nil, error)
+            fireComplete?(nil, error as NSError?)
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if error == nil && service.characteristics != nil {
             for char in service.characteristics! {
                 print("\(char)")
-                if char.UUID == CBUUID(string: "FFF1") || char.UUID == CBUUID(string: "FFF2") {
+                if char.uuid == CBUUID(string: "FFF1") || char.uuid == CBUUID(string: "FFF2") {
                     self.characteristic = char
-                    self.peripheral!.setNotifyValue(true, forCharacteristic: self.characteristic!)
+                    self.peripheral!.setNotifyValue(true, for: self.characteristic!)
 //                    break
                 }
             }
         }
         else {
             // 调用失败代理
-            NSLog("didDiscoverCharacteristicsForService error %@", error!)
-            fireComplete?(nil, error)
+            NSLog("didDiscoverCharacteristicsForService error \(error!)")
+            fireComplete?(nil, error as? NSError)
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if error == nil && characteristic.value != nil {
 //            print("接收到数据: \(characteristic.value)")
@@ -184,17 +185,17 @@ extension BraceletManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
-            NSLog("didUpdateValueForCharacteristic error %@", error!)
-            fireComplete?(nil, error)
+            NSLog("didUpdateValueForCharacteristic error \(error!)")
+            fireComplete?(nil, error as? NSError)
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if error != nil {
-            NSLog("didWriteValueForCharacteristic %@", error!)
+            NSLog("didWriteValueForCharacteristic \(error!)")
             // 调用失败代理
-            fireComplete?(nil, error)
+            fireComplete?(nil, error as? NSError)
         }
     }
 }

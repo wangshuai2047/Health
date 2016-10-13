@@ -8,7 +8,7 @@
 
 import UIKit
 
-func ScaleResultProtocolCreate(info: [String : AnyObject], gender: Bool, age: UInt8, height: UInt8) -> ScaleResultProtocol {
+func ScaleResultProtocolCreate(_ info: [String : AnyObject], gender: Bool, age: UInt8, height: UInt8) -> ScaleResultProtocol {
     
     if let deviceType = (info["deviceType"] as? NSNumber) {
         if deviceType == 0 {
@@ -24,7 +24,7 @@ func ScaleResultProtocolCreate(info: [String : AnyObject], gender: Bool, age: UI
     else {
         if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {
             
-            if HAI.shortValue == 1 || HAI.shortValue == 2{
+            if HAI.int16Value == 1 || HAI.int16Value == 2{
                 return MyBodyMiniAndPlusResult(info: info, gender: gender, age: age, height: height)
             }
         }
@@ -35,91 +35,91 @@ func ScaleResultProtocolCreate(info: [String : AnyObject], gender: Bool, age: UI
 
 extension ScaleResultProtocol {
     
-    func uploadInfo(timestamp: Int) -> [String: AnyObject] {
+    func uploadInfo(_ timestamp: Int) -> [String: AnyObject] {
         
         var uploadInfo : [String: AnyObject] = [
             
-            "userId" : userId,
-            "boneWeight" : boneWeight,
-            "boneMuscleWeight" : boneMuscleWeight,
-            "fatPercentage" : fatPercentage / 100,
-            "fatWeight" : fatWeight,
-            "muscleWeight" : muscleWeight,
-            "proteinWeight" : proteinWeight,
-            "visceralFatPercentage" : visceralFatPercentage,
-            "waterPercentage" : waterPercentage,
-            "waterWeight" : waterWeight,
-            "weight" : weight,
-            "timeStamp" : timestamp
+            "userId" : userId as AnyObject,
+            "boneWeight" : boneWeight as AnyObject,
+            "boneMuscleWeight" : boneMuscleWeight as AnyObject,
+            "fatPercentage" : fatPercentage / 100 as AnyObject,
+            "fatWeight" : fatWeight as AnyObject,
+            "muscleWeight" : muscleWeight as AnyObject,
+            "proteinWeight" : proteinWeight as AnyObject,
+            "visceralFatPercentage" : visceralFatPercentage as AnyObject,
+            "waterPercentage" : waterPercentage as AnyObject,
+            "waterWeight" : waterWeight as AnyObject,
+            "weight" : weight as AnyObject,
+            "timeStamp" : timestamp as AnyObject
         ]
         
         if let _ = self as? MyBodyResult {
-            uploadInfo["deviceType"] = 0
+            uploadInfo["deviceType"] = 0 as AnyObject
         }
         if let _ = self as? MyBodyMiniAndPlusResult {
-            uploadInfo["deviceType"] = 1
+            uploadInfo["deviceType"] = 1 as AnyObject
         }
         
-        uploadInfo["bmi"] = BMI
-        uploadInfo["bmiMax"] = BMIRange.1
-        uploadInfo["bmiMin"] = BMIRange.0
-        uploadInfo["bmr"] = BMR
-        uploadInfo["bodyAge"] = bodyAge
-        uploadInfo["boneMuscleWeightMax"] = boneMuscleRange.1
-        uploadInfo["boneMuscleWeightMin"] = boneMuscleRange.0
-        uploadInfo["boneWeightMax"] = boneWeightRange.1
-        uploadInfo["boneWeightMin"] = boneWeightRange.0
-        uploadInfo["fatControl"] = fatControl
-        uploadInfo["fatFreeBodyWeight"] = fatFreeBodyWeight
-        uploadInfo["fatFreeBodyWeightMax"] = fatFreeBodyWeightRange.1
-        uploadInfo["fatFreeBodyWeightMin"] = fatFreeBodyWeightRange.0
-        uploadInfo["fatPercentageMax"] = fatPercentageRange.1
-        uploadInfo["fatPercentageMin"] = fatPercentageRange.0
-        uploadInfo["fatWeightMax"] = fatWeightRange.1
-        uploadInfo["fatWeightMin"] = fatWeightRange.0
-        uploadInfo["goalWeight"] = goalWeight
+        uploadInfo["bmi"] = BMI as AnyObject
+        uploadInfo["bmiMax"] = BMIRange.1 as AnyObject
+        uploadInfo["bmiMin"] = BMIRange.0 as AnyObject
+        uploadInfo["bmr"] = BMR as AnyObject
+        uploadInfo["bodyAge"] = bodyAge as AnyObject
+        uploadInfo["boneMuscleWeightMax"] = boneMuscleRange.1 as AnyObject
+        uploadInfo["boneMuscleWeightMin"] = boneMuscleRange.0 as AnyObject
+        uploadInfo["boneWeightMax"] = boneWeightRange.1 as AnyObject
+        uploadInfo["boneWeightMin"] = boneWeightRange.0 as AnyObject
+        uploadInfo["fatControl"] = fatControl as AnyObject
+        uploadInfo["fatFreeBodyWeight"] = fatFreeBodyWeight as AnyObject
+        uploadInfo["fatFreeBodyWeightMax"] = fatFreeBodyWeightRange.1 as AnyObject
+        uploadInfo["fatFreeBodyWeightMin"] = fatFreeBodyWeightRange.0 as AnyObject
+        uploadInfo["fatPercentageMax"] = fatPercentageRange.1 as AnyObject
+        uploadInfo["fatPercentageMin"] = fatPercentageRange.0 as AnyObject
+        uploadInfo["fatWeightMax"] = fatWeightRange.1 as AnyObject
+        uploadInfo["fatWeightMin"] = fatWeightRange.0 as AnyObject
+        uploadInfo["goalWeight"] = goalWeight as AnyObject
         if hepaticAdiposeInfiltration == nil {
-            uploadInfo["hepaticAdiposeInfiltration"] = 0
+            uploadInfo["hepaticAdiposeInfiltration"] = 0 as AnyObject
         }
         else {
-            uploadInfo["hepaticAdiposeInfiltration"] = hepaticAdiposeInfiltration! ? 1 : 0
+            uploadInfo["hepaticAdiposeInfiltration"] = (hepaticAdiposeInfiltration! ? 1 : 0) as AnyObject
         }
-        uploadInfo["leftLowerExtremityBone"] = leftLowerExtremityBone
-        uploadInfo["leftLowerExtremityFat"] = leftLowerExtremityFat
-        uploadInfo["leftLowerExtremityMuscle"] = leftLowerExtremityMuscle
-        uploadInfo["leftUpperExtremityBone"] = leftUpperExtremityBone
-        uploadInfo["leftUpperExtremityFat"] = leftUpperExtremityFat
-        uploadInfo["leftUpperExtremityMuscle"] = leftUpperExtremityMuscle
-        uploadInfo["muscleControl"] = muscleControl
-        uploadInfo["m_smm"] = m_smm
-        uploadInfo["muscleWeightMax"] = muscleWeightRange.1
-        uploadInfo["muscleWeightMin"] = muscleWeightRange.0
-        uploadInfo["proteinWeightMax"] = proteinWeightRange.1
-        uploadInfo["proteinWeightMin"] = proteinWeightRange.0
-        uploadInfo["rightLowerExtremityBone"] = rightLowerExtremityBone
-        uploadInfo["rightLowerExtremityFat"] = rightLowerExtremityFat
-        uploadInfo["rightLowerExtremityMuscle"] = rightLowerExtremityMuscle
-        uploadInfo["rightUpperExtremityBone"] = rightUpperExtremityBone
-        uploadInfo["rightUpperExtremityFat"] = rightUpperExtremityFat
-        uploadInfo["rightUpperExtremityMuscle"] = rightUpperExtremityMuscle
-        uploadInfo["score"] = score
+        uploadInfo["leftLowerExtremityBone"] = leftLowerExtremityBone as AnyObject
+        uploadInfo["leftLowerExtremityFat"] = leftLowerExtremityFat as AnyObject
+        uploadInfo["leftLowerExtremityMuscle"] = leftLowerExtremityMuscle as AnyObject
+        uploadInfo["leftUpperExtremityBone"] = leftUpperExtremityBone as AnyObject
+        uploadInfo["leftUpperExtremityFat"] = leftUpperExtremityFat as AnyObject
+        uploadInfo["leftUpperExtremityMuscle"] = leftUpperExtremityMuscle as AnyObject
+        uploadInfo["muscleControl"] = muscleControl as AnyObject
+        uploadInfo["m_smm"] = m_smm as AnyObject
+        uploadInfo["muscleWeightMax"] = muscleWeightRange.1 as AnyObject
+        uploadInfo["muscleWeightMin"] = muscleWeightRange.0 as AnyObject
+        uploadInfo["proteinWeightMax"] = proteinWeightRange.1 as AnyObject
+        uploadInfo["proteinWeightMin"] = proteinWeightRange.0 as AnyObject
+        uploadInfo["rightLowerExtremityBone"] = rightLowerExtremityBone as AnyObject
+        uploadInfo["rightLowerExtremityFat"] = rightLowerExtremityFat as AnyObject
+        uploadInfo["rightLowerExtremityMuscle"] = rightLowerExtremityMuscle as AnyObject
+        uploadInfo["rightUpperExtremityBone"] = rightUpperExtremityBone as AnyObject
+        uploadInfo["rightUpperExtremityFat"] = rightUpperExtremityFat as AnyObject
+        uploadInfo["rightUpperExtremityMuscle"] = rightUpperExtremityMuscle as AnyObject
+        uploadInfo["score"] = score as AnyObject
         
-        uploadInfo["sw"] = SW
-        uploadInfo["swMax"] = SWRange.1
-        uploadInfo["swMin"] = SWRange.0
-        uploadInfo["trunkLimbBone"] = trunkLimbBone
-        uploadInfo["trunkLimbFat"] = trunkLimbFat
-        uploadInfo["trunkLimbMuscle"] = trunkLimbMuscle
-        uploadInfo["waterWeightMax"] = waterWeightRange.1
-        uploadInfo["waterWeightMin"] = waterWeightRange.0
-        uploadInfo["weightControl"] = weightControl
-        uploadInfo["whr"] = WHR
-        uploadInfo["whrMax"] = WHRRange.1
-        uploadInfo["whrMin"] = WHRRange.0
-        uploadInfo["externalMoisture"] = externalMoisture
-        uploadInfo["internalMoisture"] = internalMoisture
-        uploadInfo["edemaFactor"] = edemaFactor
-        uploadInfo["obesity"] = obesity
+        uploadInfo["sw"] = SW as AnyObject
+        uploadInfo["swMax"] = SWRange.1 as AnyObject
+        uploadInfo["swMin"] = SWRange.0 as AnyObject
+        uploadInfo["trunkLimbBone"] = trunkLimbBone as AnyObject
+        uploadInfo["trunkLimbFat"] = trunkLimbFat as AnyObject
+        uploadInfo["trunkLimbMuscle"] = trunkLimbMuscle as AnyObject
+        uploadInfo["waterWeightMax"] = waterWeightRange.1 as AnyObject
+        uploadInfo["waterWeightMin"] = waterWeightRange.0 as AnyObject
+        uploadInfo["weightControl"] = weightControl as AnyObject
+        uploadInfo["whr"] = WHR as AnyObject
+        uploadInfo["whrMax"] = WHRRange.1 as AnyObject
+        uploadInfo["whrMin"] = WHRRange.0 as AnyObject
+        uploadInfo["externalMoisture"] = externalMoisture as AnyObject
+        uploadInfo["internalMoisture"] = internalMoisture as AnyObject
+        uploadInfo["edemaFactor"] = edemaFactor as AnyObject
+        uploadInfo["obesity"] = obesity as AnyObject
         
         return uploadInfo
     }
@@ -295,17 +295,17 @@ extension ScaleResultProtocol {
     var fattyLiverStatus: ValueStatus {
         
         if hepaticAdiposeInfiltration == nil {
-            return .High
+            return .high
         }
         
         if fattyLiverRisk < fattyLiverRange.0 {
-            return ValueStatus.Normal
+            return ValueStatus.normal
         }
         else if fattyLiverRisk < fattyLiverRange.1 {
-            return ValueStatus.Low
+            return ValueStatus.low
         }
         else {
-            return ValueStatus.High
+            return ValueStatus.high
         }
     }
     
@@ -347,11 +347,11 @@ extension ScaleResultProtocol {
         }
         
         // 骨骼肌 如果低则提示警告，高则是正常的。
-        if status == .Low {
-            return .Low
+        if status == .low {
+            return .low
         }
         else {
-            return .Normal
+            return .normal
         }
     }
     
@@ -359,14 +359,14 @@ extension ScaleResultProtocol {
         
         /*内脏脂肪指数判定 0-10 		正常 10-14 		超标 14以上 		高*/
         let status = ValueStatus(value: visceralFatPercentage, low: visceralFatContentRange.0, high: visceralFatContentRange.1)
-        if status == .Low {
-            return .Normal
+        if status == .low {
+            return .normal
         }
-        else if status == .Normal {
-            return .Low
+        else if status == .normal {
+            return .low
         }
         else {
-            return .High
+            return .high
         }
     }
     

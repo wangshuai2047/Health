@@ -9,37 +9,37 @@
 import UIKit
 
 protocol DoubleYAxisLineChartDataSource {
-    func numberOfDatas(chart: DoubleYAxisLineChart) -> Int
-    func chart(chart: DoubleYAxisLineChart, minAndMaxLabelDatasOfYAxis isLeftYAxis: Bool) -> (minValue: Double, maxValue: Double)?
+    func numberOfDatas(_ chart: DoubleYAxisLineChart) -> Int
+    func chart(_ chart: DoubleYAxisLineChart, minAndMaxLabelDatasOfYAxis isLeftYAxis: Bool) -> (minValue: Double, maxValue: Double)?
     // 注意这里返回的值不能超出Y轴Label范围,(左边Y轴对应值，右边Y轴对应值，X轴对应值)
-    func chart(chart: DoubleYAxisLineChart, valueOfIndex: Int) -> (Double?, Double?, String)
-    func chart(chart: DoubleYAxisLineChart, colorOfChart isLeftYAxis: Bool) -> UIColor
+    func chart(_ chart: DoubleYAxisLineChart, valueOfIndex: Int) -> (Double?, Double?, String)
+    func chart(_ chart: DoubleYAxisLineChart, colorOfChart isLeftYAxis: Bool) -> UIColor
 }
 
 class DoubleYAxisLineChart: UIView {
 
-    private var collectionLayout: UICollectionViewFlowLayout
+    fileprivate var collectionLayout: UICollectionViewFlowLayout
     
     var dataSource: DoubleYAxisLineChartDataSource?
-    private var leftRangeValues: (Double, Double)?
-    private var rightRangeValues: (Double, Double)?
-    private var leftLabelColor: UIColor?
-    private var rightLabelColor: UIColor?
-    private let YLabelWidth: CGFloat = 44
+    fileprivate var leftRangeValues: (Double, Double)?
+    fileprivate var rightRangeValues: (Double, Double)?
+    fileprivate var leftLabelColor: UIColor?
+    fileprivate var rightLabelColor: UIColor?
+    fileprivate let YLabelWidth: CGFloat = 44
     
-    private var collectionView: UICollectionView
-    private let cellId = "DoubleYLineChartCell"
+    fileprivate var collectionView: UICollectionView
+    fileprivate let cellId = "DoubleYLineChartCell"
     
     required init?(coder aDecoder: NSCoder) {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
         flowLayout.minimumLineSpacing = 0
         
         collectionLayout = flowLayout
-        collectionView = UICollectionView(frame: CGRectMake(0, 0, 120, 120), collectionViewLayout: collectionLayout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 120, height: 120), collectionViewLayout: collectionLayout)
         super.init(coder: aDecoder)
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.clear
         collectionView.collectionViewLayout = collectionLayout
         
         registerCell()
@@ -65,14 +65,14 @@ class DoubleYAxisLineChart: UIView {
 //        registerCell()
 //    }
     
-    private func registerCell() {
-        collectionView.registerNib(UINib(nibName: cellId, bundle: nil), forCellWithReuseIdentifier: cellId)
+    fileprivate func registerCell() {
+        collectionView.register(UINib(nibName: cellId, bundle: nil), forCellWithReuseIdentifier: cellId)
     }
     
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         collectionView.frame = CGRect(x: YLabelWidth, y: 0, width: self.bounds.size.width - (2 * YLabelWidth), height: self.bounds.size.height)
         collectionView.dataSource = self
@@ -110,8 +110,8 @@ class DoubleYAxisLineChart: UIView {
                 frame.origin = CGPoint(x: frame.origin.x, y: self.frame.size.height - 57 - (CGFloat(i) * space) - (frame.size.height / 2))
                 let YLabel = UILabel(frame: frame)
                 YLabel.text = String(format: "%.1f", arguments: [values[i]])
-                YLabel.font = UIFont.systemFontOfSize(12)
-                YLabel.textAlignment = NSTextAlignment.Center
+                YLabel.font = UIFont.systemFont(ofSize: 12)
+                YLabel.textAlignment = NSTextAlignment.center
                 if leftLabelColor != nil {
                     YLabel.textColor = leftLabelColor!
                 }
@@ -133,8 +133,8 @@ class DoubleYAxisLineChart: UIView {
                 frame.origin = CGPoint(x: frame.origin.x, y: self.frame.size.height - 57 - (CGFloat(i) * space) - (frame.size.height / 2))
                 let YLabel = UILabel(frame: frame)
                 YLabel.text = String(format: "%.1f", arguments: [values[i]])
-                YLabel.font = UIFont.systemFontOfSize(12)
-                YLabel.textAlignment = NSTextAlignment.Center
+                YLabel.font = UIFont.systemFont(ofSize: 12)
+                YLabel.textAlignment = NSTextAlignment.center
                 if rightLabelColor != nil {
                     YLabel.textColor = rightLabelColor!
                 }
@@ -143,7 +143,7 @@ class DoubleYAxisLineChart: UIView {
         }
     }
     
-    func dealYAxisDatas(min: Double, max: Double) -> [Double] {
+    func dealYAxisDatas(_ min: Double, max: Double) -> [Double] {
         let length = (max - min) / 5
         var datas: [Double] = [min]
         
@@ -159,15 +159,15 @@ class DoubleYAxisLineChart: UIView {
 
 
 extension DoubleYAxisLineChart: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if dataSource != nil {
             return dataSource!.numberOfDatas(self)
         }
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! DoubleYLineChartCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DoubleYLineChartCell
         
         
         cell.resetCell()
@@ -176,10 +176,10 @@ extension DoubleYAxisLineChart: UICollectionViewDelegate, UICollectionViewDataSo
         cell.leftYValueRange = leftRangeValues
         cell.rightYValueRange = rightRangeValues
         
-        let currentIndexValues = dataSource?.chart(self, valueOfIndex: indexPath.row)
+        let currentIndexValues = dataSource?.chart(self, valueOfIndex: (indexPath as NSIndexPath).row)
         if currentIndexValues != nil {
-            if indexPath.row == 0 && indexPath.row+1 < collectionView.numberOfItemsInSection(0) {
-                let nextIndexValues = dataSource?.chart(self, valueOfIndex: indexPath.row + 1)
+            if (indexPath as NSIndexPath).row == 0 && (indexPath as NSIndexPath).row+1 < collectionView.numberOfItems(inSection: 0) {
+                let nextIndexValues = dataSource?.chart(self, valueOfIndex: (indexPath as NSIndexPath).row + 1)
                 
                 if currentIndexValues!.0 != nil {
                     cell.setLeftValues(nil, value: currentIndexValues!.0, maxValue: nextIndexValues!.0, XAxisString: currentIndexValues!.2, color: leftLabelColor)
@@ -189,8 +189,8 @@ extension DoubleYAxisLineChart: UICollectionViewDelegate, UICollectionViewDataSo
                     cell.setRightValues(nil, value: currentIndexValues!.1, maxValue: nextIndexValues!.1, XAxisString: currentIndexValues!.2, color: rightLabelColor)
                 }
             }
-            else if indexPath.row == collectionView.numberOfItemsInSection(0)-1 && indexPath.row > 0 {
-                let frontIndexValues = dataSource?.chart(self, valueOfIndex: indexPath.row - 1)
+            else if (indexPath as NSIndexPath).row == collectionView.numberOfItems(inSection: 0)-1 && (indexPath as NSIndexPath).row > 0 {
+                let frontIndexValues = dataSource?.chart(self, valueOfIndex: (indexPath as NSIndexPath).row - 1)
                 
                 if currentIndexValues!.0 != nil {
                     cell.setLeftValues(frontIndexValues!.0, value: currentIndexValues!.0, maxValue: nil, XAxisString: currentIndexValues!.2, color: leftLabelColor)
@@ -201,8 +201,8 @@ extension DoubleYAxisLineChart: UICollectionViewDelegate, UICollectionViewDataSo
                 }
             }
             else {
-                let nextIndexValues = dataSource?.chart(self, valueOfIndex: indexPath.row + 1)
-                let frontIndexValues = dataSource?.chart(self, valueOfIndex: indexPath.row - 1)
+                let nextIndexValues = dataSource?.chart(self, valueOfIndex: (indexPath as NSIndexPath).row + 1)
+                let frontIndexValues = dataSource?.chart(self, valueOfIndex: (indexPath as NSIndexPath).row - 1)
                 
                 if currentIndexValues!.0 != nil {
                     cell.setLeftValues(frontIndexValues!.0, value: currentIndexValues!.0, maxValue: nextIndexValues!.0, XAxisString: currentIndexValues!.2, color: leftLabelColor)
@@ -223,7 +223,7 @@ extension DoubleYAxisLineChart: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 extension DoubleYAxisLineChart: UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (self.frame.size.width  - (2 * YLabelWidth)) / 8, height: collectionView.frame.size.height)
     }
 }

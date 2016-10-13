@@ -22,7 +22,7 @@ enum EvaluationDetailExtendType {
     case bone
     case visceralFat
     case bmi
-    case BMR                // 基础代谢
+    case bmr                // 基础代谢
     case bodyAge            // 身体年龄
     case fatLevel           // 肥胖等级
     case standardWeight     // 标准体重
@@ -55,7 +55,7 @@ enum EvaluationDetailExtendType {
             return "visceralFatIcon"
         case .bmi:
             return "BMI"
-        case .BMR:
+        case .bmr:
             return "BMRIcon"
         case .bodyAge:
             return "BMI"
@@ -98,7 +98,7 @@ enum EvaluationDetailExtendType {
             return "内脏脂肪"
         case .bmi:
             return "BMI"
-        case .BMR:
+        case .bmr:
             return "基础代谢"
         case .bodyAge:
             return "身体年龄"
@@ -117,7 +117,7 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    func unit(data: ScaleResultProtocol) -> String {
+    func unit(_ data: ScaleResultProtocol) -> String {
         switch self {
         case .fattyLiver:
             if let _ = data.hepaticAdiposeInfiltration {
@@ -144,7 +144,7 @@ enum EvaluationDetailExtendType {
             return ""
         case .bmi:
             return ""
-        case .BMR:
+        case .bmr:
             return "kcal"
         case .bodyAge:
             return "岁"
@@ -200,7 +200,7 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    func levelDescription(data: ScaleResultProtocol) -> (String, String, String) {
+    func levelDescription(_ data: ScaleResultProtocol) -> (String, String, String) {
         switch self {
         case .fattyLiver:
             return ("脂肪肝风险度：\(data.fattyLiverRisk)% 中度风险", "脂肪肝风险度：\(data.fattyLiverRisk)% 低度风险", "脂肪肝风险度：\(data.fattyLiverRisk)% 高度风险")
@@ -224,7 +224,7 @@ enum EvaluationDetailExtendType {
             return ("您的内脏脂肪超标，容易患慢性疾病，请注意减脂。", "您的内脏脂肪正常，请保持。", "您的内脏脂肪较高，有较高的心脑血管疾病风险，请注意减脂。")
         case .bmi:
             return ("您的体型偏瘦，请适当增肌。", "您的体型正常，请保持。", "您已超重，请注意减重。")
-        case .BMR:
+        case .bmr:
             return ("", "", "")
         case .bodyAge:
             return ("", "", "")
@@ -243,7 +243,7 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    func canExtend(data: ScaleResultProtocol) -> Bool {
+    func canExtend(_ data: ScaleResultProtocol) -> Bool {
         switch self {
         case .fattyLiver:
             if let _ = data.hepaticAdiposeInfiltration {
@@ -270,7 +270,7 @@ enum EvaluationDetailExtendType {
             return true
         case .bmi:
             return true
-        case .BMR:
+        case .bmr:
             return false
         case .bodyAge:
             return false
@@ -289,7 +289,7 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    func fatLevelShowString(fatPercentage: Float, gender: Bool) -> String {
+    func fatLevelShowString(_ fatPercentage: Float, gender: Bool) -> String {
         /*
          男：
          16以下 较轻
@@ -352,7 +352,7 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    func value(data: ScaleResultProtocol) -> String {
+    func value(_ data: ScaleResultProtocol) -> String {
         switch self {
         case .fattyLiver:
             if let _ = data.hepaticAdiposeInfiltration {
@@ -379,7 +379,7 @@ enum EvaluationDetailExtendType {
             return String(format: "%.1f", data.visceralFatPercentage)
         case .bmi:
             return String(format: "%.1f", data.BMI)
-        case .BMR:
+        case .bmr:
             return String(format: "%.0f", data.BMR)
         case .bodyAge:
             return String(format: "%.0f", data.bodyAge)
@@ -421,7 +421,7 @@ enum EvaluationDetailExtendType {
         }
     }
     
-    func status(data: ScaleResultProtocol) -> ValueStatus {
+    func status(_ data: ScaleResultProtocol) -> ValueStatus {
         switch self {
         case .fattyLiver:
             return data.fattyLiverStatus
@@ -445,26 +445,26 @@ enum EvaluationDetailExtendType {
             return data.visceralFatContentStatus
         case .bmi:
             return data.BMIStatus
-        case .BMR:
-            return ValueStatus.Normal
+        case .bmr:
+            return ValueStatus.normal
         case .bodyAge:
-            return ValueStatus.Normal
+            return ValueStatus.normal
         case .fatLevel:
-            return ValueStatus.Normal
+            return ValueStatus.normal
         case .standardWeight:
-            return ValueStatus.Normal
+            return ValueStatus.normal
         case .weightControl:
-            return ValueStatus.Normal
+            return ValueStatus.normal
         case .noFatWeight:
-            return ValueStatus.Normal
+            return ValueStatus.normal
         case .fatControl:
-            return ValueStatus.Normal
+            return ValueStatus.normal
         case .muscleControl:
-            return ValueStatus.Normal
+            return ValueStatus.normal
         }
     }
     
-    func range(data: ScaleResultProtocol) -> (Float, Float) {
+    func range(_ data: ScaleResultProtocol) -> (Float, Float) {
         switch self {
         case .weight:
             return data.SWRange
@@ -547,6 +547,6 @@ struct EvaluationDetailExtendViewModel {
         if data != nil {
             return type.status(data!)
         }
-        return ValueStatus.High
+        return ValueStatus.high
     }
 }

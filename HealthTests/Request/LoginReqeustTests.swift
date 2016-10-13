@@ -28,14 +28,14 @@ class LoginReqeustTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }
     
     func test_loginRequest_queryCaptchas_isSucess() {
         
-        let expectation = expectationWithDescription("test_loginRequest_queryCaptchas_isSucess")
+        let expectation = self.expectation(withDescription: "test_loginRequest_queryCaptchas_isSucess")
         
         let phone = "18610729420"
         
@@ -44,13 +44,13 @@ class LoginReqeustTests: XCTestCase {
             XCTAssertNil(error, "获取验证码错误: \(error?.description)")
         })
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }
     
     func test_loginRequest_login_isSuccess() {
-        let expectation = expectationWithDescription("test_loginRequest_login_isSuccess")
+        let expectation = self.expectation(withDescription: "test_loginRequest_login_isSuccess")
         
         let phone = "18610729420"
         let captchas = "872728"
@@ -60,13 +60,13 @@ class LoginReqeustTests: XCTestCase {
             XCTAssertNil(error, "登录错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }
     
     func test_loginRequest_loginThirdPlatform_isSucess() {
-        let expectation = expectationWithDescription("test_loginRequest_loginThirdPlatform_isSucess")
+        let expectation = self.expectation(withDescription: "test_loginRequest_loginThirdPlatform_isSucess")
         
         LoginRequest.loginThirdPlatform("亚霖", headURLStr: "http://www.baidu.com", openId: "13423456", type: ThirdPlatformType.QQ, unionid: nil) { (userInfo, error: NSError?) -> Void in
             expectation.fulfill()
@@ -74,7 +74,7 @@ class LoginReqeustTests: XCTestCase {
              XCTAssertNil(error, "登录第三方平台错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }

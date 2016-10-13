@@ -10,12 +10,27 @@ import UIKit
 import CoreBluetooth
 
 class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
+    
+    internal func fire(_ info: [String : Any], complete: @escaping (ResultProtocol?, Error?) -> Void) {
+        self.fireComplete = complete
+        self.fireInfo = info
+        
+        if let userModel = fireInfo?["userModel"] as? UserModel {
+            self.result = MyBodyMiniAndPlusResult(dataId: UUID().uuidString, userId: userModel.userId, gender: userModel.gender, age: userModel.age, height: userModel.height)
+        }
+        else {
+            print("MyBodyMiniAndPlusManager fire error: info参数不对 没有userModel字段")
+            fireComplete?(nil, NSError(domain: "MyBodyMiniAndPlusManager fire error", code: 0, userInfo: [NSLocalizedDescriptionKey:"fire info参数不对 没有userModel字段"]))
+        }
+    }
+    
+
     var name: String
     var uuid: String
-    var RSSI = NSNumber(integer: 0)
+    var RSSI = NSNumber(value: 0 as Int)
     var peripheral: CBPeripheral?
     var characteristic: CBCharacteristic?
-    var type: DeviceType = DeviceType.MyBodyMini
+    var type: DeviceType = DeviceType.myBodyMini
     
     var serviceUUID: String { return "BCA0" }
     var characteristicUUID: [String] { return ["BCA1", "BCA2"] }
@@ -28,18 +43,6 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
     var fireInfo: [String : Any]?
     var fireComplete: ((ResultProtocol?, NSError?) -> Void)?
     
-    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
-        self.fireComplete = complete
-        self.fireInfo = info
-        
-        if let userModel = fireInfo?["userModel"] as? UserModel {
-            self.result = MyBodyMiniAndPlusResult(dataId: NSUUID().UUIDString, userId: userModel.userId, gender: userModel.gender, age: userModel.age, height: userModel.height)
-        }
-        else {
-            print("MyBodyMiniAndPlusManager fire error: info参数不对 没有userModel字段")
-            fireComplete?(nil, NSError(domain: "MyBodyMiniAndPlusManager fire error", code: 0, userInfo: [NSLocalizedDescriptionKey:"fire info参数不对 没有userModel字段"]))
-        }
-    }
     
     
     init(name setName: String, uuid setUUID: String, peripheral setPeripheral: CBPeripheral?, characteristic setCharacteristic: CBCharacteristic?) {
@@ -50,7 +53,7 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
         super.init()// Use of 'self' in delegating initializer before self.init is called
     }
     
-    private func reveiveData(data: NSData) {
+    fileprivate func reveiveData(_ data: Data) {
         
         var firstBuffer: UInt8 = 0
         data.getBytes(buffer: &firstBuffer, range: NSRange(location: 0, length: 1))
@@ -64,7 +67,7 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                 
                 let receiveWeightData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveWeightData).toReceiveWeightData()
 //                NSLog("write receiveWeightData : \(receiveWeightData)")
-                self.peripheral?.writeValue(receiveWeightData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                self.peripheral?.writeValue(receiveWeightData, for: self.writeCharacteristic!, type: CBCharacteristicWriteType.withResponse)
             }
             else if format.cmd == MybodyMiniAndPlusBlueToothFormats.CMD.bodyData {
                 
@@ -80,15 +83,15 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
                     
                     let receiveBodyData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.receiveBodyData).toReceiveBodyData()
 //                    NSLog("write receiveBodyData : \(receiveBodyData)")
-                    self.peripheral?.writeValue(receiveBodyData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                    self.peripheral?.writeValue(receiveBodyData, for: self.writeCharacteristic!, type: CBCharacteristicWriteType.withResponse)
                 }
                 
                 fireComplete?(result, error)
             }
         }
         else {
-            dispatch_after(1, dispatch_get_main_queue(), { [unowned self] () -> Void in
-                self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 1), execute: { [unowned self] () -> Void in
+                self.peripheral?.readValue(for: self.readCharacteristic!)
             })
 //            fireComplete?(nil, NSError(domain: "评测错误", code: 1, userInfo: [NSLocalizedDescriptionKey : "BodyMini 返回的数据格式错误,无法解析"]))
         }
@@ -96,27 +99,27 @@ class MyBodyMiniAndPlusManager: NSObject, DeviceManagerProtocol {
 }
 
 extension MyBodyMiniAndPlusManager: CBCentralManagerDelegate {
-    func centralManagerDidUpdateState(central: CBCentralManager) {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
     }
     
-    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        fireComplete?(nil, error)
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        fireComplete?(nil, error as NSError?)
     }
     
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        fireComplete?(nil, error)
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        fireComplete?(nil, error as NSError?)
     }
 }
 
 extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
-    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
 //        NSLog("search service UUID %@", service.characteristics!)
         if error == nil && service.characteristics != nil {
             for characteristic in service.characteristics! {
                 
-                if CBUUID(string: "BCA1") == characteristic.UUID {
+                if CBUUID(string: "BCA1") == characteristic.uuid {
                     self.readCharacteristic = characteristic
 //                    self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
 //                    self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
@@ -130,15 +133,15 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
 //                        
 //                    })
                 }
-                else if CBUUID(string: "BCA2") == characteristic.UUID {
+                else if CBUUID(string: "BCA2") == characteristic.uuid {
                     self.writeCharacteristic = characteristic
                     if let userModel = fireInfo?["userModel"] as? UserModel {
 //                        self.peripheral?.setNotifyValue(true, forCharacteristic: self.writeCharacteristic!)
                         
 //                        dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
                         let setUserData = MybodyMiniAndPlusBlueToothFormats(cmd: MybodyMiniAndPlusBlueToothFormats.CMD.setUserData).toSetUserData(userModel.gender, age: userModel.age, height: userModel.height)
-                        NSLog("write user data: %@", setUserData)
-                            self.peripheral?.writeValue(setUserData, forCharacteristic: self.writeCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                        NSLog("write user data: \(setUserData)")
+                            self.peripheral?.writeValue(setUserData, for: self.writeCharacteristic!, type: CBCharacteristicWriteType.withResponse)
                         
                             
 //                        })
@@ -151,12 +154,12 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
-            NSLog("didDiscoverCharacteristicsForService error %@", error!)
-            fireComplete?(nil, error)
+            NSLog("didDiscoverCharacteristicsForService error \(error!)")
+            fireComplete?(nil, error as NSError?)
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if error == nil && characteristic.value != nil {
 //            NSLog("接收到数据: \(characteristic.value)")
@@ -164,17 +167,17 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
         }
         else {
             // 调用失败代理
-            NSLog("didUpdateValueForCharacteristic error %@", error!)
-            fireComplete?(nil, error)
+            NSLog("didUpdateValueForCharacteristic error \(error!)")
+            fireComplete?(nil, error as NSError?)
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if error != nil {
-            NSLog("didWriteValueForCharacteristic %@", error!)
+            NSLog("didWriteValueForCharacteristic \(error!)")
             // 调用失败代理
-            fireComplete?(nil, error)
+            fireComplete?(nil, error as NSError?)
         }
         else {
 //            print("write char: \(self.writeCharacteristic)")
@@ -182,14 +185,14 @@ extension MyBodyMiniAndPlusManager: CBPeripheralDelegate {
             
 //            self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
 //            fireComplete?(nil, error)
-            dispatch_after(dispatch_time_t(1), dispatch_get_main_queue(), { [unowned self] () -> Void in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 1), execute: { [unowned self] () -> Void in
 //                self.peripheral?.setNotifyValue(true, forCharacteristic: self.readCharacteristic!)
-                self.peripheral?.readValueForCharacteristic(self.readCharacteristic!)
+                self.peripheral?.readValue(for: self.readCharacteristic!)
             })
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         print("didUpdateNotificationStateForCharacteristic \(error)")
     }
 }

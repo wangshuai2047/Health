@@ -9,22 +9,11 @@
 import UIKit
 
 class UserManager {
-    
     // 单例
-    class func shareInstance() -> UserManager {
-        struct Singleton {
-            static var predicate: dispatch_once_t = 0
-            static var instance: UserManager? = nil
-        }
-        dispatch_once(&Singleton.predicate, { () -> Void in
-            Singleton.instance = UserManager()
-        })
-        
-        return Singleton.instance!
-    }
+    static let sharedInstance = UserManager()
     
     static var mainUser: UserModel {
-        return UserModel(userId: UserData.shareInstance().userId!, age:UserData.shareInstance().age!, gender: UserData.shareInstance().gender!, height: UserData.shareInstance().height!, name: UserData.shareInstance().name!, headURL: UserData.shareInstance().headURL)
+        return UserModel(userId: UserData.sharedInstance.userId!, age:UserData.sharedInstance.age!, gender: UserData.sharedInstance.gender!, height: UserData.sharedInstance.height!, name: UserData.sharedInstance.name!, headURL: UserData.sharedInstance.headURL)
     }
     
     var currentUser: UserModel = UserManager.mainUser
@@ -36,49 +25,52 @@ class UserManager {
     // (userId: Int, headURLStr: String, name: String)
     func queryAllUsers() -> [(Int, String, String)] {
         
-        let userList = DBManager.shareInstance().queryAllUser()
+        let userList = DBManager.sharedInstance.queryAllUser()
         var list: [(Int, String,String)] = []
-        for var i = 0; i < userList.count; i++ {
-            let userInfo = userList[i]
-            let headURL = userInfo["headURL"] as! String
-            list.append(((userInfo["userId"] as! NSNumber).integerValue, headURL, userInfo["name"] as! String))
+        
+        if userList.count > 0 {
+            for i in 0...userList.count-1 {
+                let userInfo = userList[i]
+                let headURL = userInfo["headURL"] as! String
+                list.append(((userInfo["userId"] as! NSNumber).intValue, headURL, userInfo["name"] as! String))
+            }
         }
         
         // 把自己添加上
-        list.insert((UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name), atIndex: 0)
+        list.insert((UserManager.mainUser.userId, UserManager.mainUser.headURL == nil ? "" : UserManager.mainUser.headURL!, UserManager.mainUser.name), at: 0)
         
         return list
     }
     
-    func changeUserToUserId(userId: Int) {
-        if userId == UserData.shareInstance().userId! {
+    func changeUserToUserId(_ userId: Int) {
+        if userId == UserData.sharedInstance.userId! {
             currentUser = UserManager.mainUser
         }
         else {
-            if let info = DBManager.shareInstance().queryUser(userId) {
+            if let info = DBManager.sharedInstance.queryUser(userId) {
                 currentUser = UserModel(info: info)
             }
             
         }
     }
     
-    func addUser(name: String, gender: Bool, age: UInt8, height: UInt8, imageURL: String?, complete: ((userModel: UserModel?, NSError?) -> Void)) {
+    func addUser(_ name: String, gender: Bool, age: UInt8, height: UInt8, imageURL: String?, complete: @escaping ((_ userModel: UserModel?, NSError?) -> Void)) {
         
-        UserRequest.createUser(UserData.shareInstance().userId!, name: name, height: Int(height), age: Int(age), gender: gender, imageURL: imageURL) { (userId, headURL, error: NSError?) -> Void in
+        UserRequest.createUser(UserData.sharedInstance.userId!, name: name, height: Int(height), age: Int(age), gender: gender, imageURL: imageURL) { (userId, headURL, error: NSError?) -> Void in
             var userModel: UserModel? = nil
             if error == nil {
                 
                 if imageURL != nil {
-                    _ = try? NSFileManager.defaultManager().removeItemAtPath(imageURL!)
+                    _ = try? FileManager.default.removeItem(atPath: imageURL!)
                 }
                 
                 userModel = UserModel(userId: userId!, age: age, gender: gender, height: height, name: name, headURL: headURL)
                 // { (inout setDatas: EvaluationData) -> EvaluationData in
-                DBManager.shareInstance().addUser({ (inout setDatas: UserDBData) -> UserDBData in
-                    setDatas.userId = NSNumber(integer: userModel!.userId)
-                    setDatas.age = NSNumber(unsignedChar: age)
-                    setDatas.height = NSNumber(unsignedChar: height)
-                    setDatas.gender = NSNumber(bool: gender)
+                DBManager.sharedInstance.addUser({ (setDatas: inout UserDBData) -> UserDBData in
+                    setDatas.userId = NSNumber(value: userModel!.userId as Int)
+                    setDatas.age = NSNumber(value: age as UInt8)
+                    setDatas.height = NSNumber(value: height as UInt8)
+                    setDatas.gender = NSNumber(value: gender as Bool)
                     setDatas.name = name
                     if headURL != nil {
                         setDatas.headURL = headURL!
@@ -87,14 +79,14 @@ class UserManager {
                     return setDatas
                 })
             }
-            complete(userModel: userModel, error)
+            complete(userModel, error)
         }
     }
     
-    func deleteUser(userId: Int, complete: (NSError?) -> Void) {
-        UserRequest.deleteUser(UserData.shareInstance().userId!, userId: userId) { [unowned self] (error: NSError?) -> Void in
+    func deleteUser(_ userId: Int, complete: @escaping (NSError?) -> Void) {
+        UserRequest.deleteUser(UserData.sharedInstance.userId!, userId: userId) { [unowned self] (error: NSError?) -> Void in
             if error == nil {
-                DBManager.shareInstance().deleteUser(userId)
+                DBManager.sharedInstance.deleteUser(userId)
                 if self.currentUser.userId == userId {
                     self.changeUserToUserId(UserManager.mainUser.userId)
                 }
@@ -103,26 +95,26 @@ class UserManager {
         }
     }
     
-    func queryUser(userId: Int) -> UserModel? {
-        if let info = DBManager.shareInstance().queryUser(userId) {
+    func queryUser(_ userId: Int) -> UserModel? {
+        if let info = DBManager.sharedInstance.queryUser(userId) {
             return UserModel(info: info)
         }
         return nil
     }
     
-    func changeUserInfo(user: UserModel, phone: String?, organizationCode: String?, complete: (NSError?) -> Void) {
+    func changeUserInfo(_ user: UserModel, phone: String?, organizationCode: String?, complete: @escaping (NSError?) -> Void) {
         UserRequest.completeUserInfo(user.userId, gender: user.gender, height: user.height, age: user.age, name: user.name, phone: phone, organizationCode: organizationCode, imageURL: user.headURL) { (imageURL, error) -> Void in
             if error == nil {
                 
                 if user.headURL != nil {
-                    _ = try? NSFileManager.defaultManager().removeItemAtPath(user.headURL!)
+                    _ = try? FileManager.default.removeItem(atPath: user.headURL!)
                 }
                 
                 var dbUser = user
                 dbUser.headURL = imageURL
                 
                 if user.userId != UserManager.mainUser.userId {
-                    DBManager.shareInstance().addOrUpdateUser(dbUser)
+                    DBManager.sharedInstance.addOrUpdateUser(dbUser)
                 }
             }
             complete(error)

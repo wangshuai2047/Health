@@ -20,7 +20,7 @@ class EvaluationPhysiqueIntroduceViewController: UIViewController {
     @IBOutlet weak var introduceTitleLabel: UILabel!
     @IBOutlet weak var introduceTextView: UITextView!
     
-    class func showEvaluationPhysiqueIntroduceViewController(introduceTitle: String, introduce: String, rootController: UIViewController) {
+    class func showEvaluationPhysiqueIntroduceViewController(_ introduceTitle: String, introduce: String, rootController: UIViewController) {
         
         let controller = EvaluationPhysiqueIntroduceViewController()
         controller.introduce = introduce
@@ -33,7 +33,7 @@ class EvaluationPhysiqueIntroduceViewController: UIViewController {
 //            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
         }
         // UIModalPresentationFormSheet
-        rootController.presentViewController(controller, animated: true, completion: nil)
+        rootController.present(controller, animated: true, completion: nil)
 //        rootController.presentViewController(controller, animated: true) { () -> Void in
 //            controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
 //        }
@@ -72,7 +72,7 @@ class EvaluationPhysiqueIntroduceViewController: UIViewController {
     }
     */
 
-    @IBAction func closeButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

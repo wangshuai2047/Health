@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ShareViewControllerDelegate {
-    func shareFinished(shareType: ShareType, error: NSError?)
+    func shareFinished(_ shareType: ShareType, error: NSError?)
 }
 
 class ShareViewController: UIViewController {
@@ -27,19 +27,19 @@ class ShareViewController: UIViewController {
     @IBOutlet weak var sinaLabel: UILabel!
     
     
-    class func showShareViewController(image: UIImage, delegate: ShareViewControllerDelegate?, rootController: UIViewController) {
+    class func showShareViewController(_ image: UIImage, delegate: ShareViewControllerDelegate?, rootController: UIViewController) {
         
         let controller = ShareViewController()
         controller.shareImage = image
         controller.delegate = delegate
         if #available(iOS 8.0, *) {
-            controller.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         } else {
             // Fallback on earlier versions
-            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.currentContext
         }
         // UIModalPresentationFormSheet
-        rootController.presentViewController(controller, animated: true) { () -> Void in
+        rootController.present(controller, animated: true) { () -> Void in
             controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         }
     }
@@ -53,16 +53,16 @@ class ShareViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        qqButton.hidden = !LoginManager.isExistShareApp(ShareType.QQFriend)
-        qqLabel.hidden = !LoginManager.isExistShareApp(ShareType.QQFriend)
+        qqButton.isHidden = !LoginManager.isExistShareApp(ShareType.qqFriend)
+        qqLabel.isHidden = !LoginManager.isExistShareApp(ShareType.qqFriend)
         
-        weChatFriendButton.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
-        weChatFriendLabel.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
-        weChatSessionButton.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
-        weChatSessionLabel.hidden = !LoginManager.isExistShareApp( ShareType.WeChatTimeline)
+        weChatFriendButton.isHidden = !LoginManager.isExistShareApp( ShareType.weChatTimeline)
+        weChatFriendLabel.isHidden = !LoginManager.isExistShareApp( ShareType.weChatTimeline)
+        weChatSessionButton.isHidden = !LoginManager.isExistShareApp( ShareType.weChatTimeline)
+        weChatSessionLabel.isHidden = !LoginManager.isExistShareApp( ShareType.weChatTimeline)
         
-        sinaButton.hidden = !LoginManager.isExistShareApp(ShareType.WeiBo)
-        sinaLabel.hidden = !LoginManager.isExistShareApp(ShareType.WeiBo)
+        sinaButton.isHidden = !LoginManager.isExistShareApp(ShareType.weiBo)
+        sinaLabel.isHidden = !LoginManager.isExistShareApp(ShareType.weiBo)
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,22 +81,22 @@ class ShareViewController: UIViewController {
     }
     */
     
-    @IBAction func closeButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func shareButtonPressed(sender: UIButton) {
+    @IBAction func shareButtonPressed(_ sender: UIButton) {
         
         
         if shareImage == nil {
             self.delegate?.shareFinished(ShareType(rawValue: sender.tag)!, error: NSError(domain: "分享失败", code: -2, userInfo: [NSLocalizedDescriptionKey : "分享图片为空"]))
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             return
         }
         
-        EvaluationManager.shareInstance().share(ShareType(rawValue: sender.tag)!, image: shareImage!) { [unowned self] (error: NSError?) -> Void in
+        EvaluationManager.sharedInstance.share(ShareType(rawValue: sender.tag)!, image: shareImage!) { [unowned self] (error: NSError?) -> Void in
             self.delegate?.shareFinished(ShareType(rawValue: sender.tag)!, error: error)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
         
     }

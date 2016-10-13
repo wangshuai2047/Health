@@ -10,31 +10,31 @@ import Foundation
 
 struct SettingManager {
     static var isConnectMyBody: Bool {
-        return DBManager.shareInstance().haveConnectedWithType(DeviceType.MyBody)
+        return DBManager.sharedInstance.haveConnectedWithType(DeviceType.myBody)
     }
     static var isConnectMyBodyMini: Bool {
-        return DBManager.shareInstance().haveConnectedWithType(DeviceType.MyBodyMini)
+        return DBManager.sharedInstance.haveConnectedWithType(DeviceType.myBodyMini)
     }
     static var isConnectMyBodyPlus: Bool {
-        return DBManager.shareInstance().haveConnectedWithType(DeviceType.MyBodyPlus)
+        return DBManager.sharedInstance.haveConnectedWithType(DeviceType.myBodyPlus)
     }
     static var isConnectMyBracelet: Bool {
-        return DBManager.shareInstance().haveConnectedWithType(DeviceType.Bracelet)
+        return DBManager.sharedInstance.haveConnectedWithType(DeviceType.bracelet)
     }
     
-    static func removeDeviceBind(type: DeviceType) {
-        DBManager.shareInstance().removeDeviceBind(type)
+    static func removeDeviceBind(_ type: DeviceType) {
+        DBManager.sharedInstance.removeDeviceBind(type)
     }
     
-    static func sendFeedBack(feedback: String?, complete: (error: NSError?) -> Void) {
+    static func sendFeedBack(_ feedback: String?, complete: @escaping (_ error: NSError?) -> Void) {
         
         if feedback == nil || feedback == "" {
-            complete(error: NSError(domain: "用户反馈错误", code: 1, userInfo: [NSLocalizedDescriptionKey : "反馈内容不能为空"]))
+            complete(NSError(domain: "用户反馈错误", code: 1, userInfo: [NSLocalizedDescriptionKey : "反馈内容不能为空"]))
             return
         }
         
-        UserRequest.feedBack(UserData.shareInstance().userId!, feedback: feedback!) { (error: NSError?) -> Void in
-            complete(error: error)
+        UserRequest.feedBack(UserData.sharedInstance.userId!, feedback: feedback!) { (error: NSError?) -> Void in
+            complete(error)
         }
     }
     
@@ -45,21 +45,21 @@ struct SettingManager {
             "UUID" : "唯一ID"
         }
     */
-    static func searchDevice(type: DeviceType, complete: (deviceList: [[String: String]]) -> Void) {
-        if type == .MyBody {
+    static func searchDevice(_ type: DeviceType, complete: (_ deviceList: [[String: String]]) -> Void) {
+        if type == .myBody {
             
         }
-        else if type == .MyBodyMini || type == .MyBodyPlus {
+        else if type == .myBodyMini || type == .myBodyPlus {
             
         }
-        else if type == .Bracelet {
+        else if type == .bracelet {
             
         }
     }
     
-    static func isBindDevice(types: [DeviceType]) -> Bool {
+    static func isBindDevice(_ types: [DeviceType]) -> Bool {
         for type in types {
-            let have = DBManager.shareInstance().haveConnectedWithType(type)
+            let have = DBManager.sharedInstance.haveConnectedWithType(type)
             if have {
                 return have
             }
@@ -68,27 +68,27 @@ struct SettingManager {
         return false
     }
     
-    static func bindDevice(device: DeviceManagerProtocol) {
-        DBManager.shareInstance().addDevice(device.uuid, name: device.name, type: device.type)
+    static func bindDevice(_ device: DeviceManagerProtocol) {
+        DBManager.sharedInstance.addDevice(device.uuid, name: device.name, type: device.type)
     }
     
-    static func unBindDevice(types: [DeviceType]) {
+    static func unBindDevice(_ types: [DeviceType]) {
         for type in types {
-            DBManager.shareInstance().removeDeviceBind(type)
+            DBManager.sharedInstance.removeDeviceBind(type)
         }
     }
     
     static func addLocalNotification() {
         let notification = UILocalNotification()
         
-        notification.fireDate = NSDate().zeroTime().dateByAddingTimeInterval(20 * 60 * 60)
-        notification.repeatInterval = NSCalendarUnit.Day
+        notification.fireDate = Date().zeroTime().addingTimeInterval(20 * 60 * 60)
+        notification.repeatInterval = NSCalendar.Unit.day
         notification.alertBody = "今天身体测试时间到！"
         notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
     static func removeLocalNotification() {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.shared.cancelAllLocalNotifications()
     }
 }

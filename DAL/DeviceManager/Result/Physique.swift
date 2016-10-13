@@ -10,18 +10,18 @@ import Foundation
 
 // 体型
 public enum Physique: Int {
-    case HiddenFat = 1      // 隐性肥胖  hiddenFat
-    case LotOfFat       // 脂肪过多 lotOfFat
-    case Fat            // 肥胖   fat
-    case LittleMuscle   // 肌肉不足 littleMuscle
-    case Health          // 健康  health
-    case LotOfMuscle    // 超重肌肉 lotOfMuscle
-    case Spare          // 消瘦   spareFemale
-    case LittleFat      // 低脂肪  littleFat
-    case Athlete        // 运动员  athlete
+    case hiddenFat = 1      // 隐性肥胖  hiddenFat
+    case lotOfFat       // 脂肪过多 lotOfFat
+    case fat            // 肥胖   fat
+    case littleMuscle   // 肌肉不足 littleMuscle
+    case health          // 健康  health
+    case lotOfMuscle    // 超重肌肉 lotOfMuscle
+    case spare          // 消瘦   spareFemale
+    case littleFat      // 低脂肪  littleFat
+    case athlete        // 运动员  athlete
     
     // gender true为男  false为女
-    func imageName(gender: Bool) -> String {
+    func imageName(_ gender: Bool) -> String {
         if gender {
             return self.imageName
         }
@@ -30,75 +30,75 @@ public enum Physique: Int {
         }
     }
     
-    func selectedImageName(gender: Bool) -> String {
+    func selectedImageName(_ gender: Bool) -> String {
         return imageName(gender) + "Selected"
     }
     
-    private var imageName: String {
+    fileprivate var imageName: String {
         switch self {
-        case .HiddenFat:
+        case .hiddenFat:
             return "hiddenFat"
-        case .LotOfFat:
+        case .lotOfFat:
             return "lotOfFat"
-        case .Fat:
+        case .fat:
             return "fat"
-        case .LittleMuscle:
+        case .littleMuscle:
             return "littleMuscle"
-        case .Health:
+        case .health:
             return "health"
-        case .LotOfMuscle:
+        case .lotOfMuscle:
             return "lotOfMuscle"
-        case .Spare:
+        case .spare:
             return "spare"
-        case .LittleFat:
+        case .littleFat:
             return "littleFat"
-        case .Athlete:
+        case .athlete:
             return "athlete"
         }
     }
     
     var description: String {
         switch self {
-        case .HiddenFat:
+        case .hiddenFat:
             return "隐形肥胖型"
-        case .LotOfFat:
+        case .lotOfFat:
             return "脂肪过多型"
-        case .Fat:
+        case .fat:
             return "肥胖型"
-        case .LittleMuscle:
+        case .littleMuscle:
             return "肌肉不足型"
-        case .Health:
+        case .health:
             return "健康匀称型"
-        case .LotOfMuscle:
+        case .lotOfMuscle:
             return "超重肌肉型"
-        case .Spare:
+        case .spare:
             return "消瘦型"
-        case .LittleFat:
+        case .littleFat:
             return "低脂肪型"
-        case .Athlete:
+        case .athlete:
             return "运动员型"
         }
     }
     
     var detailDescription: String {
         switch self {
-        case .HiddenFat:
+        case .hiddenFat:
             return "体重较轻，而体内脂肪含量相对较高，有心脑血管疾病风险，需要注意减脂。"
-        case .LotOfFat:
+        case .lotOfFat:
             return "虽然体重不高，但脂肪含量较高，对健康不利，应适当减脂。"
-        case .Fat:
+        case .fat:
             return "体型偏胖，体内脂肪含量高，存在健康风险，需注意改善。"
-        case .LittleMuscle:
+        case .littleMuscle:
             return "体重适中，但肌肉比例较低，应注意锻炼。"
-        case .Health:
+        case .health:
             return "您的体型适中，不胖不瘦，成分合理，请保持。"
-        case .LotOfMuscle:
+        case .lotOfMuscle:
             return "体重高于正常范围，但体脂肪不高，属于肌肉发达，可以保持。"
-        case .Spare:
+        case .spare:
             return "体重和体脂肪都偏低，应增加营养和热量摄入。"
-        case .LittleFat:
+        case .littleFat:
             return "体重适中，但脂肪含量较低，可适当补充脂肪摄入。"
-        case .Athlete:
+        case .athlete:
             return "体重高于正常范围，但体脂肪略低，应为长期有氧运动的结果，可以保持。"
         }
     }
@@ -113,35 +113,35 @@ public enum Physique: Int {
         
         if fatPercentage < lowFatPercentage {
             if BMI < lowBMI {
-                self = .Spare
+                self = .spare
             }
             else if BMI > highBMI {
-                self = .Athlete
+                self = .athlete
             }
             else {
-                self = .LittleFat
+                self = .littleFat
             }
         }
         else if fatPercentage > highFatPercentage {
             if BMI < lowBMI {
-                self = .HiddenFat
+                self = .hiddenFat
             }
             else if BMI > highBMI {
-                self = .Fat
+                self = .fat
             }
             else {
-                self = .LotOfFat
+                self = .lotOfFat
             }
         }
         else {
             if BMI < lowBMI {
-                self = .LittleMuscle
+                self = .littleMuscle
             }
             else if BMI > highBMI {
-                self = .LotOfMuscle
+                self = .lotOfMuscle
             }
             else {
-                self = .Health
+                self = .health
             }
         }
     }

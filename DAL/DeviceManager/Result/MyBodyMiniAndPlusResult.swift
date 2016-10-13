@@ -12,7 +12,7 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
     var dataId: String
     var userId: Int
     
-    var timeStamp: NSDate
+    var timeStamp: Date
     
     // true 男 false 女
     var gender: Bool
@@ -182,10 +182,10 @@ struct MyBodyMiniAndPlusResult: ScaleResultProtocol {
         self.age = age
         self.height = height
         
-        self.timeStamp = NSDate()
+        self.timeStamp = Date()
     }
     
-    mutating func setDatas(datas: [Float]) {
+    mutating func setDatas(_ datas: [Float]) {
         
         if datas.count < 57 {
             return
@@ -389,7 +389,7 @@ extension MyBodyMiniAndPlusResult {
     
     init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
         
-        self.dataId = NSUUID().UUIDString
+        self.dataId = UUID().uuidString
         if let dataId = info["dataId"] as? String {
             self.dataId = dataId
         }
@@ -399,13 +399,13 @@ extension MyBodyMiniAndPlusResult {
         }
         
         if let time = info["timeStamp"] as? Int {
-            timeStamp = NSDate(timeIntervalSince1970: NSTimeInterval(time))
+            timeStamp = Date(timeIntervalSince1970: TimeInterval(time))
         }
         else {
-            timeStamp = NSDate()
+            timeStamp = Date()
         }
         // self used before all stored properties are initialized
-        userId = (info["userId"] as! NSNumber).integerValue
+        userId = (info["userId"] as! NSNumber).intValue
         weight = (info["weight"] as! NSNumber).floatValue
         waterPercentage = (info["waterPercentage"] as! NSNumber).floatValue
         visceralFatPercentage = (info["visceralFatPercentage"] as! NSNumber).floatValue
@@ -415,15 +415,15 @@ extension MyBodyMiniAndPlusResult {
         
         boneMuscleWeight = (info["boneMuscleWeight"] as! NSNumber).floatValue
         
-//        if let userInfo = DBManager.shareInstance().queryUser(userId) {
+//        if let userInfo = DBManager.sharedInstance.queryUser(userId) {
 //            gender = (userInfo["gender"] as! NSNumber).boolValue
 //            age = (userInfo["age"] as! NSNumber).unsignedCharValue
 //            height = (userInfo["height"] as! NSNumber).unsignedCharValue
 //        }
 //        else {
-//            gender = UserManager.shareInstance().currentUser.gender
-//            age = UserManager.shareInstance().currentUser.age
-//            height = UserManager.shareInstance().currentUser.height
+//            gender = UserManager.sharedInstance.currentUser.gender
+//            age = UserManager.sharedInstance.currentUser.age
+//            height = UserManager.sharedInstance.currentUser.height
 //        }
         
         self.gender = gender
@@ -438,10 +438,10 @@ extension MyBodyMiniAndPlusResult {
         // 脂肪肝  1为有  2为没有  0为不支持
         if let HAI = info["hepaticAdiposeInfiltration"] as? NSNumber {
             
-            if HAI.shortValue == 1 {
+            if HAI.int16Value == 1 {
                 hepaticAdiposeInfiltration = true
             }
-            else if HAI.shortValue == 2 {
+            else if HAI.int16Value == 2 {
                 hepaticAdiposeInfiltration = false
             }
         }

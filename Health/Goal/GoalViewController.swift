@@ -27,13 +27,13 @@ class GoalViewController: UIViewController {
     @IBOutlet weak var sprotDetailLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var noDeviceDetailLabelHeightConstraint: NSLayoutConstraint!
     
-    let numberFont = UIFont.systemFontOfSize(22)
+    let numberFont = UIFont.systemFont(ofSize: 22)
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         
         if !GoalManager.isSetGoal {
             let controller = GoalSettingViewController()
@@ -42,11 +42,11 @@ class GoalViewController: UIViewController {
         
         showView(GoalManager.isConnectDevice() ? connectDeviceView : noDeviceView)
         userSelectView.setChangeButton(true)
-        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
+        userSelectView.setUsers(UserManager.sharedInstance.queryAllUsers(), isNeedExt: false)
 //        userSelectView.setShowViewUserId(UserManager.mainUser.userId)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refreshView()
     }
@@ -82,13 +82,13 @@ class GoalViewController: UIViewController {
                 goalDetailLabel.append(" \(UserGoalData.restDays!) ", font: numberFont, color: lightBlue)
                 goalDetailLabel.append("天,还需减", font: nil, color: deepBlue)
                 
-                if UserGoalData.type == UserGoalData.GoalType.Weight {
+                if UserGoalData.type == UserGoalData.GoalType.weight {
                     
                     let weight = String(format: " %.f ", showInfo.needReduceNumber)
                     goalDetailLabel.append(" \(weight) ", font: numberFont, color: lightBlue)
                     goalDetailLabel.append("kg 体重", font: nil, color: deepBlue)
                 }
-                else if UserGoalData.type == UserGoalData.GoalType.Fat {
+                else if UserGoalData.type == UserGoalData.GoalType.fat {
                     let weight = String(format: " %.f ", showInfo.needReduceNumber)
                     goalDetailLabel.append(" \(weight) ", font: numberFont, color: lightBlue)
                     goalDetailLabel.append("公斤 脂肪", font: nil, color: deepBlue)
@@ -200,10 +200,10 @@ class GoalViewController: UIViewController {
         
     }
 
-    func showView(view: UIView) {
-        noDeviceView.hidden = true
-        connectDeviceView.hidden = true
-        view.hidden = false
+    func showView(_ view: UIView) {
+        noDeviceView.isHidden = true
+        connectDeviceView.isHidden = true
+        view.isHidden = false
     }
     /*
     // MARK: - Navigation
@@ -216,38 +216,38 @@ class GoalViewController: UIViewController {
     */
     
     // MARK: - Button Response
-    @IBAction func setGoalPressed(sender: AnyObject) {
+    @IBAction func setGoalPressed(_ sender: AnyObject) {
         let controller = GoalSettingViewController()
         AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
     }
 
-    @IBAction func showSportDetailPressed(sender: AnyObject) {
+    @IBAction func showSportDetailPressed(_ sender: AnyObject) {
         AppDelegate.rootNavgationViewController().pushViewController(SportDetailViewController(), animated: true)
     }
     
-    @IBAction func showSleepDetailPressed(sender: AnyObject) {
+    @IBAction func showSleepDetailPressed(_ sender: AnyObject) {
         AppDelegate.rootNavgationViewController().pushViewController(SleepDetailViewController(), animated: true)
     }
     
-    @IBAction func buyDevicePressed(sender: AnyObject) {
+    @IBAction func buyDevicePressed(_ sender: AnyObject) {
         Alert.showErrorAlert("温馨提示", message: "设备未上线,无法购买!")
     }
     
-    @IBAction func bindDevicePressed(sender: AnyObject) {
+    @IBAction func bindDevicePressed(_ sender: AnyObject) {
         
-        DeviceScanViewController.showDeviceScanViewController([DeviceType.Bracelet], delegate: self, rootController: AppDelegate.rootNavgationViewController())
+        DeviceScanViewController.showDeviceScanViewController([DeviceType.bracelet], delegate: self, rootController: AppDelegate.rootNavgationViewController())
     }
 }
 
 extension GoalViewController: DeviceScanViewControllerProtocol {
-    func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol) {
+    func didSelected(_ controller: DeviceScanViewController, device: DeviceManagerProtocol) {
         
         // 绑定
         SettingManager.bindDevice(device)
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
         GoalManager.syncDatas ({ [unowned self] (error: NSError?) -> Void in
-            if self.respondsToSelector(Selector("refreshView")) {
+            if self.responds(to: Selector("refreshView")) {
                 self.refreshView()
             }
             

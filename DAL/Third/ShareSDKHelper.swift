@@ -7,36 +7,37 @@
 //
 
 import UIKit
+//import ShareSDK
 
 enum ShareType: Int {
-    case WeChatSession = 1  // 微信好友
-    case WeiBo  // 新浪微博
-    case QQFriend   // qq 好友
-    case WeChatTimeline // 微信朋友圈
+    case weChatSession = 1  // 微信好友
+    case weiBo  // 新浪微博
+    case qqFriend   // qq 好友
+    case weChatTimeline // 微信朋友圈
     
     func toThirdPlatformType() -> ThirdPlatformType {
         switch self {
-        case .WeChatSession, .WeChatTimeline:
+        case .weChatSession, .weChatTimeline:
             return ThirdPlatformType.WeChat
-        case .QQFriend:
+        case .qqFriend:
             return ThirdPlatformType.QQ
-        case .WeiBo:
+        case .weiBo:
             return ThirdPlatformType.Weibo
         }
     }
     
     init(type: ThirdPlatformType) {
         if type == .Weibo {
-            self = .WeiBo
+            self = .weiBo
         }
         else if type == .WeChat {
-            self = .WeChatSession
+            self = .weChatSession
         }
         else if type == .QQ {
-            self = .QQFriend
+            self = .qqFriend
         }
         else {
-            self = .WeiBo
+            self = .weiBo
         }
     }
 }
@@ -63,106 +64,108 @@ struct ShareSDKHelper {
     static let QQAppkey = "rB5SFbkLlVuevi54"
     
     static func initSDK() {
-        ShareSDK.registerApp(shareSDKAppKey, activePlatforms: [SSDKPlatformType.TypeSinaWeibo.rawValue, SSDKPlatformType.TypeWechat.rawValue, SSDKPlatformType.TypeQQ.rawValue], onImport: { (platform: SSDKPlatformType) -> Void in
+        ShareSDK.registerApp(shareSDKAppKey, activePlatforms: [SSDKPlatformType.typeSinaWeibo.rawValue, SSDKPlatformType.typeWechat.rawValue, SSDKPlatformType.typeQQ.rawValue], onImport: { (platform: SSDKPlatformType) -> Void in
             
             switch platform {
-            case .TypeSinaWeibo:
+            case .typeSinaWeibo:
                 ShareSDKConnector.connectWeibo(WeiboSDK.classForCoder())
-            case .TypeWechat:
+            case .typeWechat:
                 ShareSDKConnector.connectWeChat(WXApi.classForCoder())
-            case .TypeQQ:
+            case .typeQQ:
                 ShareSDKConnector.connectQQ(QQApiInterface.classForCoder(), tencentOAuthClass: TencentOAuth.classForCoder())
             default:
                 break
             }
             
-            }) { (platform: SSDKPlatformType, appInfo: NSMutableDictionary!) -> Void in
+            }) { (platform: SSDKPlatformType, appInfo: NSMutableDictionary?) in
                 
                 switch platform {
-                case .TypeSinaWeibo:
+                case .typeSinaWeibo:
                     // 设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                    appInfo.SSDKSetupSinaWeiboByAppKey(self.sinaWeiboAppKey, appSecret: self.sinaWeiboAppSecret, redirectUri: sinaWeiboAppRedirectURI, authType: SSDKAuthTypeSSO)
-                case .TypeWechat:
-                    appInfo.SSDKSetupWeChatByAppId(self.weChatAppId, appSecret: self.weChatAppSecret)
-                case .TypeQQ:
-                    appInfo.SSDKSetupQQByAppId(self.QQAppId, appKey: self.QQAppkey, authType: SSDKAuthTypeBoth)
+                    appInfo?.ssdkSetupSinaWeibo(byAppKey: self.sinaWeiboAppKey, appSecret: self.sinaWeiboAppSecret, redirectUri: sinaWeiboAppRedirectURI, authType: SSDKAuthTypeSSO)
+                case .typeWechat:
+                    appInfo?.ssdkSetupWeChat(byAppId: self.weChatAppId, appSecret: self.weChatAppSecret)
+                case .typeQQ:
+                    appInfo?.ssdkSetupQQ(byAppId: self.QQAppId, appKey: self.QQAppkey, authType: SSDKAuthTypeBoth)
                 default:
                     break
                 }
         }
     }
     
-    private static func shareTypeToSSDKPlatformType(type: ShareType) -> SSDKPlatformType {
-        if type == ShareType.QQFriend {
-            return SSDKPlatformType.TypeQQ
+    fileprivate static func shareTypeToSSDKPlatformType(_ type: ShareType) -> SSDKPlatformType {
+        if type == ShareType.qqFriend {
+            return SSDKPlatformType.typeQQ
         }
-        else if type == ShareType.WeiBo {
-            return .TypeSinaWeibo
+        else if type == ShareType.weiBo {
+            return .typeSinaWeibo
         }
-        else if type == ShareType.WeChatSession || type == ShareType.WeChatTimeline {
-            return SSDKPlatformType.TypeWechat
+        else if type == ShareType.weChatSession || type == ShareType.weChatTimeline {
+            return SSDKPlatformType.typeWechat
         }
         
-        return SSDKPlatformType.TypeQQ
+        return SSDKPlatformType.typeQQ
     }
     
     // MARK: - 绑定
-    static func isBind(shareType: ShareType) -> Bool {
+    static func isBind(_ shareType: ShareType) -> Bool {
         return ShareSDK.hasAuthorized(shareTypeToSSDKPlatformType(shareType))
     }
     
-    static func bind(shareType: ShareType, complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
-        ShareSDK.getUserInfo(shareTypeToSSDKPlatformType(shareType)) { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
+    static func bind(_ shareType: ShareType, complete: @escaping ((_ uid: String?, _ name: String?, _ headIcon: String?, _ error: NSError?) -> Void)) {
+        
+        ShareSDK.getUserInfo(shareTypeToSSDKPlatformType(shareType)) { (response: SSDKResponseState, user: SSDKUser?, error: Error?) in
+            
             var err: NSError? = nil
-            if response == SSDKResponseState.Cancel {
+            if response == SSDKResponseState.cancel {
                 err = NSError(domain: "绑定失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消绑定"])
-                complete(uid: nil, name: nil, headIcon: nil, error: err)
+                complete(nil, nil, nil, err)
             }
-            else if response == SSDKResponseState.Fail {
-                complete(uid: nil, name: nil, headIcon: nil, error: error)
+            else if response == SSDKResponseState.fail {
+                complete(nil, nil, nil, error as NSError?)
             }
-            else if response == SSDKResponseState.Success {
-                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+            else if response == SSDKResponseState.success {
+                complete(user?.uid, user?.nickname, user?.icon, nil)
             }
         }
     }
     
-    static func cancelBind(type: ShareType) {
+    static func cancelBind(_ type: ShareType) {
         ShareSDK.cancelAuthorize(shareTypeToSSDKPlatformType(type))
     }
     
     // MARK: - 登录
-    static func loginWithWeiBo(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
-        ShareSDK.getUserInfo(SSDKPlatformType.TypeSinaWeibo, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
+    static func loginWithWeiBo(_ complete: @escaping ((_ uid: String?, _ name: String?, _ headIcon: String?, _ error: NSError?) -> Void)) {
+        ShareSDK.getUserInfo(SSDKPlatformType.typeSinaWeibo, onStateChanged: { (response: SSDKResponseState, user: SSDKUser?, error: Error?) in
 //            NSLog("loginWithWeiBo: %@ ssl: %@ --- %@", user.rawData,user.credential.rawData, user.credential.token)
             var err: NSError? = nil
             
-            if response == SSDKResponseState.Cancel {
+            if response == SSDKResponseState.cancel {
                 err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
-                complete(uid: nil, name: nil, headIcon: nil, error: err)
+                complete(nil, nil, nil, err)
             }
-            else if response == SSDKResponseState.Fail {
-                complete(uid: nil, name: nil, headIcon: nil, error: error)
+            else if response == SSDKResponseState.fail {
+                complete(nil, nil, nil, error as NSError?)
             }
-            else if response == SSDKResponseState.Success {
-                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, error: nil)
+            else if response == SSDKResponseState.success {
+                complete(user?.uid, user?.nickname, user?.icon, nil)
             }
         })
     }
     
-    static func loginWithWeChat(complete: ((uid: String?, name: String?, headIcon: String?, unionid: String?, error: NSError?) -> Void)) {
-        ShareSDK.getUserInfo(SSDKPlatformType.TypeWechat, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
+    static func loginWithWeChat(_ complete: @escaping ((_ uid: String?, _ name: String?, _ headIcon: String?, _ unionid: String?, _ error: NSError?) -> Void)) {
+        ShareSDK.getUserInfo(SSDKPlatformType.typeWechat, onStateChanged: { (response: SSDKResponseState, user: SSDKUser?, error: Error?) in
             var err: NSError? = nil
 //            NSLog("loginWithWeChat: %@ ssl: %@ --- %@", user.rawData,user.credential.rawData, user.credential.token)
-            if response == SSDKResponseState.Cancel {
+            if response == SSDKResponseState.cancel {
                 err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
-                complete(uid: nil, name: nil, headIcon: nil, unionid: nil, error: err)
+                complete(nil, nil, nil, nil, err)
             }
-            else if response == SSDKResponseState.Fail {
-                complete(uid: nil, name: nil, headIcon: nil, unionid: nil, error: error)
+            else if response == SSDKResponseState.fail {
+                complete(nil, nil, nil, nil, error as NSError?)
             }
-            else if response == SSDKResponseState.Success {
-                complete(uid: user.uid, name: user.nickname, headIcon: user.icon, unionid: user.rawData["unionid"] as? String, error: nil)
+            else if response == SSDKResponseState.success {
+                complete(user?.uid, user?.nickname, user?.icon, user?.rawData["unionid"] as? String, nil)
             }
             
         })
@@ -170,37 +173,37 @@ struct ShareSDKHelper {
     
     static var qqInfo: [String : AnyObject]? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("QQHealthInfo") as? [String : AnyObject]
+            return UserDefaults.standard.object(forKey: "QQHealthInfo") as? [String : AnyObject]
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "QQHealthInfo")
+            UserDefaults.standard.set(newValue, forKey: "QQHealthInfo")
         }
     }
     
-    static func loginWithQQ(complete: ((uid: String?, name: String?, headIcon: String?, error: NSError?) -> Void)) {
-        ShareSDK.getUserInfo(SSDKPlatformType.TypeQQ, onStateChanged: { (response: SSDKResponseState, user: SSDKUser!, error: NSError!) -> Void in
+    static func loginWithQQ(_ complete: @escaping ((_ uid: String?, _ name: String?, _ headIcon: String?, _ error: NSError?) -> Void)) {
+        ShareSDK.getUserInfo(SSDKPlatformType.typeQQ, onStateChanged: { (response: SSDKResponseState, user: SSDKUser?, error: Error?) in
 //            NSLog("loginWithQQ: ssl: %@ --- %@", user.rawData,user.credential.rawData, user.credential.token)
             
             var err: NSError? = nil
-            if response == SSDKResponseState.Cancel {
+            if response == SSDKResponseState.cancel {
                 err = NSError(domain: "登录失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消登录"])
-                complete(uid: nil, name: nil, headIcon: nil, error: err)
+                complete(nil, nil, nil, err)
             }
-            else if response == SSDKResponseState.Fail {
-                complete(uid: nil, name: nil, headIcon: nil, error: error)
+            else if response == SSDKResponseState.fail {
+                complete(nil, nil, nil, error as NSError?)
             }
-            else if response == SSDKResponseState.Success {
-                qqInfo = ["qqUserOpenId" : user.uid, "qqToken" : user.credential.token]
-                complete(uid: user.uid, name: user.nickname == nil ? "" : user.nickname, headIcon: user.icon == nil ? "" : user.icon, error: nil)
+            else if response == SSDKResponseState.success {
+                qqInfo = ["qqUserOpenId" : user?.uid as AnyObject, "qqToken" : user?.credential.token as AnyObject]
+                complete(user?.uid, user?.nickname == nil ? "" : user?.nickname, user?.icon == nil ? "" : user?.icon, nil)
             }
         })
     }
     
-    static func isExistShareType(type: ShareType) -> Bool {
-        if type == .WeChatSession || type == .WeChatTimeline {
+    static func isExistShareType(_ type: ShareType) -> Bool {
+        if type == .weChatSession || type == .weChatTimeline {
             return WXApi.isWXAppInstalled()
         }
-        else if type == .WeiBo {
+        else if type == .weiBo {
             return WeiboSDK.isWeiboAppInstalled()
             
         }
@@ -210,59 +213,59 @@ struct ShareSDKHelper {
     }
     
     // MARK: - 分享
-    static func shareImage(shareType: ShareType, image: UIImage, isEvaluation: Bool, complete: (NSError?) -> Void) {
+    static func shareImage(_ shareType: ShareType, image: UIImage, isEvaluation: Bool, complete: @escaping (NSError?) -> Void) {
 //        ShareSDK.
         var shareInfo: NSMutableDictionary?
         var platformType: SSDKPlatformType?
         
-        if shareType == ShareType.WeChatSession {
-            shareInfo = weChatShareData(image, isEvaluation: isEvaluation, forPlatformSubType: SSDKPlatformType.SubTypeWechatSession)
-            platformType = SSDKPlatformType.SubTypeWechatSession
+        if shareType == ShareType.weChatSession {
+            shareInfo = weChatShareData(image, isEvaluation: isEvaluation, forPlatformSubType: SSDKPlatformType.subTypeWechatSession)
+            platformType = SSDKPlatformType.subTypeWechatSession
         }
-        else if shareType == ShareType.WeChatTimeline {
-            shareInfo = weChatShareData(image, isEvaluation: isEvaluation, forPlatformSubType: SSDKPlatformType.SubTypeWechatTimeline)
-            platformType = SSDKPlatformType.SubTypeWechatTimeline
+        else if shareType == ShareType.weChatTimeline {
+            shareInfo = weChatShareData(image, isEvaluation: isEvaluation, forPlatformSubType: SSDKPlatformType.subTypeWechatTimeline)
+            platformType = SSDKPlatformType.subTypeWechatTimeline
         }
-        else if shareType == ShareType.QQFriend {
+        else if shareType == ShareType.qqFriend {
             //构造分享内容
             shareInfo = QQShareData(image, isEvaluation: isEvaluation)
-            platformType = SSDKPlatformType.SubTypeQQFriend
+            platformType = SSDKPlatformType.subTypeQQFriend
         }
         else {
             shareInfo = sinaShareData(image, isEvaluation: isEvaluation)
-            platformType = SSDKPlatformType.TypeSinaWeibo
+            platformType = SSDKPlatformType.typeSinaWeibo
         }
         
-        ShareSDK.share(platformType!, parameters: shareInfo!) { (status: SSDKResponseState, info: [NSObject : AnyObject]!, entity: SSDKContentEntity!, error: NSError!) -> Void in
+        ShareSDK.share(platformType!, parameters: shareInfo!) { (status: SSDKResponseState, info: [AnyHashable: Any]?, entity: SSDKContentEntity?, error: Error?) in
             
             var err: NSError? = nil
-            if status == SSDKResponseState.Cancel {
+            if status == SSDKResponseState.cancel {
                 err = NSError(domain: "分享失败", code: -1, userInfo: [NSLocalizedDescriptionKey: "用户取消分享"])
                 complete(err)
             }
-            else if status == SSDKResponseState.Fail {
-                complete(error)
+            else if status == SSDKResponseState.fail {
+                complete(error as NSError?)
             }
-            else if status == SSDKResponseState.Success {
+            else if status == SSDKResponseState.success {
                 complete(nil)
             }
         }
     }
     
-    private static func sinaShareData(image: UIImage, isEvaluation: Bool) -> NSMutableDictionary {
+    fileprivate static func sinaShareData(_ image: UIImage, isEvaluation: Bool) -> NSMutableDictionary {
         let shareInfo = NSMutableDictionary()
         
-        shareInfo.SSDKSetupSinaWeiboShareParamsByText("text 好体知SinaWeiBo分享测试", title: "title 好体知SinaWeiBo分享测试", image: image, url: nil, latitude: 0, longitude: 0, objectID: nil, type: SSDKContentType.Image)
+        shareInfo.ssdkSetupSinaWeiboShareParams(byText: "text 好体知SinaWeiBo分享测试", title: "title 好体知SinaWeiBo分享测试", image: image, url: nil, latitude: 0, longitude: 0, objectID: nil, type: SSDKContentType.image)
         
         return shareInfo
     }
     
-    private static func weChatShareData(image: UIImage, isEvaluation: Bool, forPlatformSubType: SSDKPlatformType) -> NSMutableDictionary {
+    fileprivate static func weChatShareData(_ image: UIImage, isEvaluation: Bool, forPlatformSubType: SSDKPlatformType) -> NSMutableDictionary {
         
         
         let shareInfo = NSMutableDictionary()
         
-        shareInfo.SSDKSetupWeChatParamsByText(nil, title: "title 好体知微信分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, musicFileURL: nil, extInfo: nil, fileData: nil, emoticonData: nil, type: SSDKContentType.Image, forPlatformSubType: forPlatformSubType)
+        shareInfo.ssdkSetupWeChatParams(byText: nil, title: "title 好体知微信分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, musicFileURL: nil, extInfo: nil, fileData: nil, emoticonData: nil, type: SSDKContentType.image, forPlatformSubType: forPlatformSubType)
         
         return shareInfo
     }
@@ -278,38 +281,38 @@ struct ShareSDKHelper {
      *  @param type            分享类型, 仅支持Text（仅QQFriend）、Image（仅QQFriend）、WebPage、Audio、Video类型
      *  @param platformSubType 平台子类型，只能传入SSDKPlatformSubTypeQZone或者SSDKPlatformSubTypeQQFriend其中一个
      */
-    private static func QQShareData(image: UIImage, isEvaluation: Bool) -> NSMutableDictionary {
+    fileprivate static func QQShareData(_ image: UIImage, isEvaluation: Bool) -> NSMutableDictionary {
         let shareInfo = NSMutableDictionary()
         
-        shareInfo.SSDKSetupQQParamsByText(nil, title: "title 好体知QQ分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, type: SSDKContentType.Image, forPlatformSubType: SSDKPlatformType.TypeQQ)
+        shareInfo.ssdkSetupQQParams(byText: nil, title: "title 好体知QQ分享测试", url: nil, thumbImage: UIImage(named: "appIcon"), image: image, type: SSDKContentType.image, forPlatformSubType: SSDKPlatformType.typeQQ)
         shareInfo.setValue("好体知分享", forKey: "text")
         shareInfo.setValue("好体知分享", forKey: "title")
         shareInfo.setValue(SSDKImage(image: UIImage(named: "appIcon"), format: SSDKImageFormatJpeg, settings: [:]), forKey: "thumbImage")
         shareInfo.setValue([SSDKImage(image: image, format: SSDKImageFormatJpeg, settings: [:])], forKey: "images")
-        shareInfo.setValue(NSNumber(unsignedLong: SSDKContentType.Image.rawValue), forKey: "type")
-        shareInfo.setValue(NSNumber(unsignedLong: SSDKPlatformType.TypeQQ.rawValue), forKey: "platformSubType")
+        shareInfo.setValue(NSNumber(value: SSDKContentType.image.rawValue as UInt), forKey: "type")
+        shareInfo.setValue(NSNumber(value: SSDKPlatformType.typeQQ.rawValue as UInt), forKey: "platformSubType")
         
         return shareInfo
     }
     
     // 记步数据同步 distance单位米 duration单位秒 calories单位千卡
-    static func syncStepsDatas(date: NSDate, distance: Int, steps: Int, duration: Int, calories: Int, complete: (NSError?) -> Void) {
+    static func syncStepsDatas(_ date: Date, distance: Int, steps: Int, duration: Int, calories: Int, complete: @escaping (NSError?) -> Void) {
         syncQQHealthData("report_steps", params: [
-            "time" : date.timeIntervalSince1970,
-            "distance" : distance,
-            "steps" : steps,
-            "duration" : duration,
-            "calories" : calories
+            "time" : date.timeIntervalSince1970 as AnyObject,
+            "distance" : distance as AnyObject,
+            "steps" : steps as AnyObject,
+            "duration" : duration as AnyObject,
+            "calories" : calories as AnyObject
             ], complete: complete)
     }
     
     // 体重体质数据同步
-    static func syncBodyDatas(date: NSDate, weight: Float, fat_per: Float, bmi: Float, complete: (NSError?) -> Void) {
+    static func syncBodyDatas(_ date: Date, weight: Float, fat_per: Float, bmi: Float, complete: @escaping (NSError?) -> Void) {
         syncQQHealthData("report_weight", params: [
-            "time" : date.timeIntervalSince1970,
-            "weight" : weight,
-            "fat_per" : fat_per,
-            "bmi" : bmi
+            "time" : date.timeIntervalSince1970 as AnyObject,
+            "weight" : weight as AnyObject,
+            "fat_per" : fat_per as AnyObject,
+            "bmi" : bmi as AnyObject
             ], complete: complete)
     }
     
@@ -323,20 +326,20 @@ struct ShareSDKHelper {
     awake_time      Int     分钟      今日睡眠期间醒来状态的总时间
     detail          String  -        睡眠阶段详情数据,格式[起始时间点,睡眠状态] (1-睡醒,2-浅睡眠,3-深睡眠), 当深睡, 浅睡,清醒,有状态改变时记录,例如 [1405585306,2],[1405591306,3],[1405631306,2]
 */
-    static func syncSleepDatas(start_time: NSDate, end_time: NSDate, total_time: Int, light_sleep: Int, deep_sleep: Int, awake_time: Int, detail: String, complete: (NSError?) -> Void) {
+    static func syncSleepDatas(_ start_time: Date, end_time: Date, total_time: Int, light_sleep: Int, deep_sleep: Int, awake_time: Int, detail: String, complete: @escaping (NSError?) -> Void) {
         syncQQHealthData("report_sleep", params: [
-            "start_time" : start_time.timeIntervalSince1970,
-            "end_time" : end_time.timeIntervalSince1970,
-            "total_time" : total_time,
-            "light_sleep" : light_sleep,
-            "deep_sleep" : deep_sleep,
-            "awake_time" : awake_time,
-            "detail" : detail
+            "start_time" : start_time.timeIntervalSince1970 as AnyObject,
+            "end_time" : end_time.timeIntervalSince1970 as AnyObject,
+            "total_time" : total_time as AnyObject,
+            "light_sleep" : light_sleep as AnyObject,
+            "deep_sleep" : deep_sleep as AnyObject,
+            "awake_time" : awake_time as AnyObject,
+            "detail" : detail as AnyObject
             ], complete: complete)
     }
     
     // 健康中心请求数据
-    private static func syncQQHealthData(interfaceName: String, params: [String : AnyObject], complete: (NSError?) -> Void) {
+    fileprivate static func syncQQHealthData(_ interfaceName: String, params: [String : AnyObject], complete: @escaping (NSError?) -> Void) {
         var urlStr = "https://openmobile.qq.com/v3/health/\(interfaceName)?"
         
         // 配置参数
@@ -374,31 +377,31 @@ struct ShareSDKHelper {
         paramsArr.append("pf=qzone")
         
         // 合成URL
-        urlStr += paramsArr.joinWithSeparator("&")
+        urlStr += paramsArr.joined(separator: "&")
         
         // URL编码
         
         // 发送请求
-        let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: urlStr)!)
-        request.HTTPMethod = "POST"
+        var request : URLRequest = URLRequest(url: URL(string: urlStr)!)
+        request.httpMethod = "POST"
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response:URLResponse?, error: Error?) in
             
             var err = error
             if error != nil {
                 do {
-                    let result : NSDictionary? = try NSJSONSerialization.JSONObjectWithData(data!,  options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+                    let result : NSDictionary? = try JSONSerialization.jsonObject(with: data!,  options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary
                     print("syncQQHealthData  \(result)")
                     if let jsonObj = result {
                         
-                        if let code = jsonObj.valueForKey("ret") as? Int {
+                        if let code = jsonObj.value(forKey: "ret") as? Int {
                             if code >= 0 {
                                 // 请求成功
                                 err = nil
                             }
                             else {
                                 // 请求失败
-                                if let msg = jsonObj.valueForKey("msg") as? String {
+                                if let msg = jsonObj.value(forKey: "msg") as? String {
                                     err = NSError(domain: "QQHealth error", code: code, userInfo: [NSLocalizedDescriptionKey : msg])
                                 }
                                 else
@@ -413,8 +416,8 @@ struct ShareSDKHelper {
                 }
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                complete(err)
+            DispatchQueue.main.async(execute: { () -> Void in
+                complete(err as NSError?)
             })
         })
         

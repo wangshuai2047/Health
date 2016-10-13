@@ -27,14 +27,14 @@ class TrendViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         chartView.dataSource = self
 //        let datas = viewModel.eightDaysDatas()
         userSelectView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
         
-        weightButton.selected = true
-        fatButton.selected = true
+        weightButton.isSelected = true
+        fatButton.isSelected = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,11 +42,11 @@ class TrendViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: false)
-        userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
+        userSelectView.setUsers(UserManager.sharedInstance.queryAllUsers(), isNeedExt: false)
+        userSelectView.setShowViewUserId(UserManager.sharedInstance.currentUser.userId)
         viewModel.eightDaysDatas()
         tableView.reloadData()
         chartView.reloadDatas()
@@ -65,64 +65,64 @@ class TrendViewController: UIViewController {
     
     func selectedButton() -> UIButton? {
         
-        if muscleButton.selected {
+        if muscleButton.isSelected {
             return muscleButton
         }
         
-        if fatButton.selected {
+        if fatButton.isSelected {
             return fatButton
         }
         
-        if waterButton.selected {
+        if waterButton.isSelected {
             return waterButton
         }
         
-        if proteinButton.selected {
+        if proteinButton.isSelected {
             return proteinButton
         }
         
         return nil
     }
 
-    @IBAction func selectButtonPressed(button: UIButton) {
+    @IBAction func selectButtonPressed(_ button: UIButton) {
         
         if weightButton == button {
-            if weightButton.selected {
-                weightButton.selected = false
+            if weightButton.isSelected {
+                weightButton.isSelected = false
                 refreshSelectedData()
             }
             else {
                 if selectCount() > 1 {
                     if let selectButton = selectedButton() {
-                        weightButton.selected = true
-                        selectButton.selected = false
+                        weightButton.isSelected = true
+                        selectButton.isSelected = false
                         refreshSelectedData()
                     }
                 }
                 else {
-                    weightButton.selected = true
+                    weightButton.isSelected = true
                     refreshSelectedData()
                 }
                 
             }
         }
         else {
-            if button.selected {
-                button.selected = false
+            if button.isSelected {
+                button.isSelected = false
                 refreshSelectedData()
             }
             else {
-                if weightButton.selected {
+                if weightButton.isSelected {
                     if let selectButton = selectedButton() {
-                        selectButton.selected = false
+                        selectButton.isSelected = false
                         
                     }
-                    button.selected = true
+                    button.isSelected = true
                     refreshSelectedData()
                 }
                 else {
                     if selectCount() < 2 {
-                        button.selected = true
+                        button.isSelected = true
                         refreshSelectedData()
                     }
                 }
@@ -138,48 +138,48 @@ class TrendViewController: UIViewController {
         
         viewModel.selectedTag = (nil, nil)
         
-        if weightButton.selected {
+        if weightButton.isSelected {
             viewModel.selectedTag = (weightButton.tag, nil)
-            count++
+            count += 1
         }
         
-        if fatButton.selected {
+        if fatButton.isSelected {
             if count == 1 {
                 viewModel.selectedTag = (viewModel.selectedTag.0, fatButton.tag)
             }
             else if count == 0 {
                 viewModel.selectedTag = (fatButton.tag, nil)
-                count++
+                count += 1
             }
         }
         
-        if muscleButton.selected {
+        if muscleButton.isSelected {
             if count == 1 {
                 viewModel.selectedTag = (viewModel.selectedTag.0, muscleButton.tag)
             }
             else if count == 0 {
                 viewModel.selectedTag = (muscleButton.tag, nil)
-                count++
+                count += 1
             }
         }
         
-        if waterButton.selected {
+        if waterButton.isSelected {
             if count == 1 {
                 viewModel.selectedTag = (viewModel.selectedTag.0, waterButton.tag)
             }
             else if count == 0 {
                 viewModel.selectedTag = (waterButton.tag, nil)
-                count++
+                count += 1
             }
         }
         
-        if proteinButton.selected {
+        if proteinButton.isSelected {
             if count == 1 {
                 viewModel.selectedTag = (viewModel.selectedTag.0, proteinButton.tag)
             }
             else if count == 0 {
                 viewModel.selectedTag = (proteinButton.tag, nil)
-                count++
+                count += 1
             }
         }
         
@@ -188,53 +188,53 @@ class TrendViewController: UIViewController {
     
     func selectCount() -> Int {
         var selectCount: Int = 0
-        selectCount += weightButton.selected ? 1 : 0
-        selectCount += fatButton.selected ? 1 : 0
-        selectCount += muscleButton.selected ? 1 : 0
-        selectCount += waterButton.selected ? 1 : 0
-        selectCount += proteinButton.selected ? 1 : 0
+        selectCount += weightButton.isSelected ? 1 : 0
+        selectCount += fatButton.isSelected ? 1 : 0
+        selectCount += muscleButton.isSelected ? 1 : 0
+        selectCount += waterButton.isSelected ? 1 : 0
+        selectCount += proteinButton.isSelected ? 1 : 0
         return selectCount
     }
 }
 
 extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.allDatas.count > 5 {
             return 5
         }
         return viewModel.allDatas.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId = "TrendTableViewDataCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: cellId)
         }
         
-        let model: TrendCellViewModel = viewModel.allDatas[viewModel.allDatas.count - 1 - indexPath.row]
+        let model: TrendCellViewModel = viewModel.allDatas[viewModel.allDatas.count - 1 - (indexPath as NSIndexPath).row]
         cell?.textLabel?.text = "\(model.timeShowString)"
-        cell?.textLabel?.textColor = UIColor.darkGrayColor()
+        cell?.textLabel?.textColor = UIColor.darkGray
         
         let description = String(format: "体重:%.1fkg 体脂:%.1f%%", model.scaleResult.weight, model.scaleResult.fatPercentage)
         cell?.detailTextLabel?.text = description
-        cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
+        cell?.detailTextLabel?.textColor = UIColor.darkGray
         
         return cell!
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let model: TrendCellViewModel = viewModel.allDatas[indexPath.row]
 //        
 //        let detailController = EvaluationDetailViewController()
@@ -245,12 +245,12 @@ extension TrendViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension TrendViewController: DoubleYAxisLineChartDataSource {
     
-    func chart(chart: DoubleYAxisLineChart, colorOfChart isLeftYAxis: Bool) -> UIColor {
+    func chart(_ chart: DoubleYAxisLineChart, colorOfChart isLeftYAxis: Bool) -> UIColor {
         
         return viewModel.chartColor(isLeftYAxis)
     }
     
-    func chart(chart: DoubleYAxisLineChart, minAndMaxLabelDatasOfYAxis isLeftYAxis: Bool) -> (minValue: Double, maxValue: Double)? {
+    func chart(_ chart: DoubleYAxisLineChart, minAndMaxLabelDatasOfYAxis isLeftYAxis: Bool) -> (minValue: Double, maxValue: Double)? {
         
         if isLeftYAxis {
             return viewModel.rangeOfSelectTag(viewModel.selectedTag.0)
@@ -258,19 +258,19 @@ extension TrendViewController: DoubleYAxisLineChartDataSource {
         return viewModel.rangeOfSelectTag(viewModel.selectedTag.1)
     }
     
-    func chart(chart: DoubleYAxisLineChart, valueOfIndex: Int) -> (Double?, Double?, String) {
+    func chart(_ chart: DoubleYAxisLineChart, valueOfIndex: Int) -> (Double?, Double?, String) {
         
         return viewModel.value(valueOfIndex)
     }
     
-    func numberOfDatas(chart: DoubleYAxisLineChart) -> Int {
+    func numberOfDatas(_ chart: DoubleYAxisLineChart) -> Int {
         return viewModel.weightDatas.count
     }
 }
 
 extension TrendViewController: UserSelectViewDelegate {
     // 点击人物头像
-    func headButtonPressed(userId: Int) {
+    func headButtonPressed(_ userId: Int) {
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         detailController.isRefreshAllData = true
@@ -286,13 +286,13 @@ extension TrendViewController: UserSelectViewDelegate {
     }
     
     // 用户改变
-    func userChangeToUserId(userId: Int) {
+    func userChangeToUserId(_ userId: Int) {
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
         
         EvaluationManager.checkAndSyncEvaluationDatas(userId) { [unowned self] (error: NSError?) -> Void in
             
-            UserManager.shareInstance().changeUserToUserId(userId)
+            UserManager.sharedInstance.changeUserToUserId(userId)
             self.userSelectView.setShowViewUserId(userId)
             
             // 刷新界面

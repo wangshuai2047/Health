@@ -34,16 +34,18 @@ struct TrendViewModel {
     var selectedTag: (Int?, Int?) = (nil, nil)
     
     mutating func eightDaysDatas() -> [TrendCellViewModel] {
-        let endDate = NSDate()
-        let beginDate = endDate.dateByAddingTimeInterval(-30 * 24 * 60 * 60)
+        let endDate = Date()
+        let beginDate = endDate.addingTimeInterval(-30 * 24 * 60 * 60)
         
         let evaluationDatas = TrendManager.eightDaysDatas(beginDate, endTimescamp: endDate)
         
-        allDatas.removeAll(keepCapacity: false)
+        allDatas.removeAll(keepingCapacity: false)
         
-        for var i = evaluationDatas.count - 1; i >= 0; i-- {
-            let evaluationData = evaluationDatas[i]
-            allDatas += [TrendCellViewModel(info: evaluationData, gender: UserManager.shareInstance().currentUser.gender, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)]
+        if evaluationDatas.count > 0 {
+            for i in evaluationDatas.count - 1...0 {
+                let evaluationData = evaluationDatas[i]
+                allDatas += [TrendCellViewModel(info: evaluationData, gender: UserManager.sharedInstance.currentUser.gender, age: UserManager.sharedInstance.currentUser.age, height: UserManager.sharedInstance.currentUser.height)]
+            }
         }
         
         dealShowData()
@@ -51,7 +53,7 @@ struct TrendViewModel {
         return allDatas
     }
     
-    func chartColor(isLeft: Bool) -> UIColor {
+    func chartColor(_ isLeft: Bool) -> UIColor {
         
         let tag = isLeft ? selectedTag.0 : selectedTag.1
         
@@ -71,11 +73,11 @@ struct TrendViewModel {
             return proteinColor
         }
         else {
-            return UIColor.grayColor()
+            return UIColor.gray
         }
     }
     
-    func rangeOfSelectTag(tag: Int?) -> (Double, Double) {
+    func rangeOfSelectTag(_ tag: Int?) -> (Double, Double) {
         
         var minValue: Double = 0
         var maxValue: Double = 0
@@ -113,7 +115,7 @@ struct TrendViewModel {
         return (minValue, maxValue)
     }
     
-    func value(index: Int) -> (Double?, Double?, String) {
+    func value(_ index: Int) -> (Double?, Double?, String) {
         
         if index >= dateStrings.count || index < 0 {
             return (0,0,"")
@@ -167,47 +169,48 @@ struct TrendViewModel {
         proteinDatas.removeAll()
         dateStrings.removeAll()
         
-        
-        for var i = 0; i < allDatas.count; i++ {
-            if i != 0 && allDatas[i-1].dateString == allDatas[i].dateString {
-                
-                weightDatas[weightDatas.count-1] = allDatas[i].scaleResult.weight
-                fatDatas[fatDatas.count-1] = allDatas[i].scaleResult.fatWeight
-                muscleDatas[muscleDatas.count-1] = allDatas[i].scaleResult.muscleWeight
-                waterDatas[waterDatas.count-1] = allDatas[i].scaleResult.waterWeight
-                proteinDatas[proteinDatas.count-1] = allDatas[i].scaleResult.proteinWeight
-            }
-            else {
-                dateStrings.append(allDatas[i].dateString)
-                weightDatas.append(allDatas[i].scaleResult.weight)
-                fatDatas.append(allDatas[i].scaleResult.fatWeight)
-                muscleDatas.append(allDatas[i].scaleResult.muscleWeight)
-                waterDatas.append(allDatas[i].scaleResult.waterWeight)
-                proteinDatas.append(allDatas[i].scaleResult.proteinWeight)
+        if allDatas.count > 0 {
+            for i in 0...allDatas.count-1 {
+                if i != 0 && allDatas[i-1].dateString == allDatas[i].dateString {
+                    
+                    weightDatas[weightDatas.count-1] = allDatas[i].scaleResult.weight
+                    fatDatas[fatDatas.count-1] = allDatas[i].scaleResult.fatWeight
+                    muscleDatas[muscleDatas.count-1] = allDatas[i].scaleResult.muscleWeight
+                    waterDatas[waterDatas.count-1] = allDatas[i].scaleResult.waterWeight
+                    proteinDatas[proteinDatas.count-1] = allDatas[i].scaleResult.proteinWeight
+                }
+                else {
+                    dateStrings.append(allDatas[i].dateString)
+                    weightDatas.append(allDatas[i].scaleResult.weight)
+                    fatDatas.append(allDatas[i].scaleResult.fatWeight)
+                    muscleDatas.append(allDatas[i].scaleResult.muscleWeight)
+                    waterDatas.append(allDatas[i].scaleResult.waterWeight)
+                    proteinDatas.append(allDatas[i].scaleResult.proteinWeight)
+                }
             }
         }
         
-        var tempDatas = weightDatas.sort()
+        var tempDatas = weightDatas.sorted()
         if weightDatas.count > 0 {
             weightRange = (tempDatas.first!, tempDatas.last!)
         }
         
-        tempDatas = fatDatas.sort()
+        tempDatas = fatDatas.sorted()
         if fatDatas.count > 0 {
             fatRange = (tempDatas.first!, tempDatas.last!)
         }
         
-        tempDatas = muscleDatas.sort()
+        tempDatas = muscleDatas.sorted()
         if muscleDatas.count > 0 {
             muscleRange = (tempDatas.first!, tempDatas.last!)
         }
         
-        tempDatas = waterDatas.sort()
+        tempDatas = waterDatas.sorted()
         if waterDatas.count > 0 {
             waterRange = (tempDatas.first!, tempDatas.last!)
         }
         
-        tempDatas = proteinDatas.sort()
+        tempDatas = proteinDatas.sorted()
         if proteinDatas.count > 0 {
             proteinRange = (tempDatas.first!, tempDatas.last!)
         }
@@ -221,8 +224,8 @@ struct TrendCellViewModel {
     
     init(info: [String: AnyObject], gender: Bool, age: UInt8, height: UInt8) {
         scaleResult = ScaleResultProtocolCreate(info, gender: gender, age: age, height: height)
-        timeShowString = (info["timeStamp"] as! NSDate).currentZoneFormatDescription()
-        dateString = (info["timeStamp"] as! NSDate).YYdd()
+        timeShowString = (info["timeStamp"] as! Date).currentZoneFormatDescription()
+        dateString = (info["timeStamp"] as! Date).YYdd()
     }
 }
 

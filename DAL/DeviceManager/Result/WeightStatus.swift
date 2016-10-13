@@ -9,69 +9,69 @@
 import Foundation
 
 enum WeightStatus {
-    case Thin   // 瘦
-    case Normal // 正常
-    case LittleFat  // 轻度肥胖
-    case MiddleFat  // 中度肥胖
-    case HighFat   // 重度肥胖
-    case VeryFat    // 极度肥胖
+    case thin   // 瘦
+    case normal // 正常
+    case littleFat  // 轻度肥胖
+    case middleFat  // 中度肥胖
+    case highFat   // 重度肥胖
+    case veryFat    // 极度肥胖
     
     init(fatPercentage: Float, gender: Bool) {
         if gender {
             if fatPercentage < 16 {
-                self = .Thin
+                self = .thin
             }
             else if fatPercentage < 20 {
-                self = .Normal
+                self = .normal
             }
             else if fatPercentage < 24 {
-                self = .LittleFat
+                self = .littleFat
             }
             else if fatPercentage < 28 {
-                self = .MiddleFat
+                self = .middleFat
             }
             else if fatPercentage < 30 {
-                self = .HighFat
+                self = .highFat
             }
             else {
-                self = .VeryFat
+                self = .veryFat
             }
         }
         else {
             if fatPercentage < 18 {
-                self = .Thin
+                self = .thin
             }
             else if fatPercentage < 22 {
-                self = .Normal
+                self = .normal
             }
             else if fatPercentage < 26 {
-                self = .LittleFat
+                self = .littleFat
             }
             else if fatPercentage < 29 {
-                self = .MiddleFat
+                self = .middleFat
             }
             else if fatPercentage < 35 {
-                self = .HighFat
+                self = .highFat
             }
             else {
-                self = .VeryFat
+                self = .veryFat
             }
         }
     }
     
     var description: String {
         switch self {
-        case .Thin:
+        case .thin:
             return "过瘦"
-        case .Normal:
+        case .normal:
             return "正常"
-        case .LittleFat:
+        case .littleFat:
             return "轻度肥胖"
-        case .MiddleFat:
+        case .middleFat:
             return "中度肥胖"
-        case .HighFat:
+        case .highFat:
             return "重度肥胖"
-        case .VeryFat:
+        case .veryFat:
             return "极度肥胖"
         }
     }

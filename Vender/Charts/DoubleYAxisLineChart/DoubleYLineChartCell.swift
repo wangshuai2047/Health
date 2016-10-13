@@ -7,6 +7,19 @@
 //
 
 import UIKit
+import CoreGraphics
+
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class DoubleYLineChartCell: UICollectionViewCell {
     
@@ -23,8 +36,8 @@ class DoubleYLineChartCell: UICollectionViewCell {
     var rightYValueRange: (Double, Double)?
     
     // 直接写在iphone4s 7.1.2上面会蹦  不知道为什么
-    private var temp: CGFloat?
-    private var drawTotalHeight: CGFloat? {
+    fileprivate var temp: CGFloat?
+    fileprivate var drawTotalHeight: CGFloat? {
         get {
             return temp
         }
@@ -39,12 +52,12 @@ class DoubleYLineChartCell: UICollectionViewCell {
         super.init(frame: frame)
         print("cell Init")
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     func resetCell() {
@@ -67,11 +80,11 @@ class DoubleYLineChartCell: UICollectionViewCell {
 //        }
     }
     
-    func setLeftValues(minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {
+    func setLeftValues(_ minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {
         leftValues = (minValue, value, maxValue, XAxisString, color)
     }
     
-    func setRightValues(minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {
+    func setRightValues(_ minValue: Double?, value: Double?, maxValue: Double?, XAxisString: String, color: UIColor?) {
         rightValues = (minValue, value, maxValue, XAxisString, color)
     }
     
@@ -99,7 +112,7 @@ class DoubleYLineChartCell: UICollectionViewCell {
         lineDrawView.middlePoint = CGPoint(x: 0, y: 0)
         lineDrawView.secondPoint = CGPoint(x: 0, y: 0)
         lineDrawView.height = 0
-        lineDrawView.color = UIColor.clearColor()
+        lineDrawView.color = UIColor.clear
         lineDrawView.setNeedsDisplay()
         
         if let (minValue, value, maxValue, _, color): (Double?, Double?, Double?, String, UIColor?) = rightValues {
@@ -148,7 +161,7 @@ class DoubleYLineChartCell: UICollectionViewCell {
         }
     }
     
-    func topHeight(value: Double, minAndMax:(Double, Double)) -> CGFloat {
+    func topHeight(_ value: Double, minAndMax:(Double, Double)) -> CGFloat {
         
         if minAndMax.0 == minAndMax.1 {
             return drawTotalHeight! - CGFloat(value)
@@ -157,8 +170,8 @@ class DoubleYLineChartCell: UICollectionViewCell {
         return drawTotalHeight! -  CGFloat((value - minAndMax.0) / (minAndMax.1 - minAndMax.0)) * drawTotalHeight! * 5 / 6
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         resetCell()
         drawLeftValues()
         drawRightValues()
@@ -177,8 +190,8 @@ class LineView: UIView {
     var height: CGFloat?
     var color: UIColor?
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         if middlePoint == nil || height == nil || color == nil {
             return
@@ -188,48 +201,51 @@ class LineView: UIView {
         if firstPoint != nil {
             
             // 画线
-            CGContextSetStrokeColorWithColor(context, color!.CGColor)
-            CGContextSetLineWidth(context, 1)
-            CGContextAddLines(context, [firstPoint!, middlePoint!], 2)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(color!.cgColor)
+            context?.setLineWidth(1)
+            context?.addLines(between: [firstPoint!, middlePoint!])
+//            CGContextAddLines(context, [firstPoint!, middlePoint!], 2)
+            context?.drawPath(using: CGPathDrawingMode.stroke)
             
             // 画多边形
-            CGContextSetStrokeColorWithColor(context, UIColor.clearColor().CGColor)
-            CGContextSetLineWidth(context, 0)
+            context?.setStrokeColor(UIColor.clear.cgColor)
+            context?.setLineWidth(0)
             var red: CGFloat = 0
             var green: CGFloat = 0
             var blue: CGFloat = 0
             color!.getRed(&red, green: &green, blue: &blue, alpha: nil)
-            CGContextSetFillColor(context, [red, green, blue, 0.5])
-            CGContextMoveToPoint(context, firstPoint!.x, firstPoint!.y)
-            CGContextAddLineToPoint(context, middlePoint!.x, middlePoint!.y)
-            CGContextAddLineToPoint(context, middlePoint!.x, height!)
-            CGContextAddLineToPoint(context, firstPoint!.x, height!)
-            CGContextClosePath(context)
-            CGContextDrawPath(context, CGPathDrawingMode.FillStroke); //根据坐标绘制路径
+            context?.setFillColor([red, green, blue, 0.5])
+            context?.move(to: CGPoint(x: firstPoint!.x, y: firstPoint!.y))
+            context?.addLine(to: CGPoint(x: middlePoint!.x, y: middlePoint!.y))
+            context?.addLine(to: CGPoint(x: middlePoint!.x, y: height!))
+            context?.addLine(to: CGPoint(x: firstPoint!.x, y: height!))
+            context?.closePath()
+            context?.drawPath(using: CGPathDrawingMode.fillStroke); //根据坐标绘制路径
         }
         
         if secondPoint != nil {
             // 画线
-            CGContextSetStrokeColorWithColor(context, color!.CGColor)
-            CGContextSetLineWidth(context, 1)
-            CGContextAddLines(context, [middlePoint!, secondPoint!], 2)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(color!.cgColor)
+            context?.setLineWidth(1)
+            
+            context?.addLines(between: [middlePoint!, secondPoint!])
+//            CGContextAddLines(context, [middlePoint!, secondPoint!], 2)
+            context?.drawPath(using: CGPathDrawingMode.stroke)
             
             // 画多边形
-            CGContextSetStrokeColorWithColor(context, UIColor.clearColor().CGColor)
-            CGContextSetLineWidth(context, 0)
+            context?.setStrokeColor(UIColor.clear.cgColor)
+            context?.setLineWidth(0)
             var red: CGFloat = 0
             var green: CGFloat = 0
             var blue: CGFloat = 0
             color!.getRed(&red, green: &green, blue: &blue, alpha: nil)
-            CGContextSetFillColor(context, [red, green, blue, 0.5])
-            CGContextMoveToPoint(context, middlePoint!.x, middlePoint!.y)
-            CGContextAddLineToPoint(context, secondPoint!.x, secondPoint!.y)
-            CGContextAddLineToPoint(context, secondPoint!.x, height!)
-            CGContextAddLineToPoint(context, middlePoint!.x, height!)
-            CGContextClosePath(context)
-            CGContextDrawPath(context, CGPathDrawingMode.FillStroke); //根据坐标绘制路径
+            context?.setFillColor([red, green, blue, 0.5])
+            context?.move(to: CGPoint(x: middlePoint!.x, y: middlePoint!.y))
+            context?.addLine(to: CGPoint(x: secondPoint!.x, y: secondPoint!.y))
+            context?.addLine(to: CGPoint(x: secondPoint!.x, y: height!))
+            context?.addLine(to: CGPoint(x: middlePoint!.x, y: height!))
+            context?.closePath()
+            context?.drawPath(using: CGPathDrawingMode.fillStroke); //根据坐标绘制路径
         }
     }
 }

@@ -10,11 +10,11 @@ import UIKit
 
 class FamilyMembersViewController: UIViewController {
 
-    private let cellId = "FamilyMembersCell"
+    fileprivate let cellId = "FamilyMembersCell"
     
     @IBOutlet weak var tableView: UITableView!
     
-    lazy var users = UserManager.shareInstance().queryAllUsers()
+    lazy var users = UserManager.sharedInstance.queryAllUsers()
     
     var isEditUser: Bool = false
     
@@ -26,12 +26,12 @@ class FamilyMembersViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.registerNib(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
+        tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        users = UserManager.shareInstance().queryAllUsers()
+        users = UserManager.sharedInstance.queryAllUsers()
         tableView.reloadData()
     }
 
@@ -60,13 +60,13 @@ class FamilyMembersViewController: UIViewController {
         self.navigationController?.pushViewController(completeInfoController, animated: true)
     }
     
-    func deleteButtonPressed(button: UIButton) {
+    func deleteButtonPressed(_ button: UIButton) {
         let (userId, _, _) = users[button.tag]
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "删除中", detailMsg: nil, progress: nil)
-        UserManager.shareInstance().deleteUser(userId) { [unowned self] (error: NSError?) -> Void in
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "删除中", detailMsg: nil, progress: nil)
+        UserManager.sharedInstance.deleteUser(userId) { [unowned self] (error: NSError?) -> Void in
             if error == nil {
-                self.users = UserManager.shareInstance().queryAllUsers()
+                self.users = UserManager.sharedInstance.queryAllUsers()
                 self.tableView.reloadData()
             }
             else {
@@ -76,23 +76,23 @@ class FamilyMembersViewController: UIViewController {
         }
     }
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
 extension FamilyMembersViewController: CompleteInfoDelegate {
     // 添加家庭成员
-    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+    func completeInfo(_ controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "提交数据", detailMsg: nil, progress: nil)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "提交数据", detailMsg: nil, progress: nil)
         if isEditUser {
-            UserManager.shareInstance().changeUserInfo(user, phone: phone, organizationCode: organizationCode, complete: { [unowned self] (error: NSError?) -> Void in
+            UserManager.sharedInstance.changeUserInfo(user, phone: phone, organizationCode: organizationCode, complete: { [unowned self] (error: NSError?) -> Void in
                 if error == nil {
-                    self.users = UserManager.shareInstance().queryAllUsers()
+                    self.users = UserManager.sharedInstance.queryAllUsers()
                     self.tableView.reloadData()
                     
-                    controller.navigationController?.popViewControllerAnimated(true)
+                    controller.navigationController?.popViewController(animated: true)
                 }
                 else {
                     Alert.showErrorAlert("修改家庭成员失败", message: error?.localizedDescription)
@@ -101,13 +101,13 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
             })
         }
         else {
-            UserManager.shareInstance().addUser(user.name, gender: user.gender, age: user.age, height: user.height, imageURL: user.headURL) { [unowned self] (userModel, error: NSError?) -> Void in
+            UserManager.sharedInstance.addUser(user.name, gender: user.gender, age: user.age, height: user.height, imageURL: user.headURL) { [unowned self] (userModel, error: NSError?) -> Void in
                 if error == nil {
-                    self.users = UserManager.shareInstance().queryAllUsers()
+                    self.users = UserManager.sharedInstance.queryAllUsers()
                     self.tableView.reloadData()
                     
-                    controller.navigationController?.popToRootViewControllerAnimated(true)
-                    UserManager.shareInstance().changeUserToUserId(userModel!.userId)
+                    controller.navigationController?.popToRootViewController(animated: true)
+                    UserManager.sharedInstance.changeUserToUserId(userModel!.userId)
                     // 成功后直接跳转到评测主页开始评测
                     AppDelegate.applicationDelegate().changeToMainIndex(0)
                     
@@ -123,58 +123,58 @@ extension FamilyMembersViewController: CompleteInfoDelegate {
 
 
 extension FamilyMembersViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count + 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! FamilyMembersCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! FamilyMembersCell
         
-        if indexPath.row == users.count {
-            cell.addFamilyButton.hidden = false
-            cell.headImageView.hidden = true
-            cell.nameLabel.hidden = true
-            cell.deleteButton.hidden = true
+        if (indexPath as NSIndexPath).row == users.count {
+            cell.addFamilyButton.isHidden = false
+            cell.headImageView.isHidden = true
+            cell.nameLabel.isHidden = true
+            cell.deleteButton.isHidden = true
         }
         else {
-            cell.addFamilyButton.hidden = true
-            cell.headImageView.hidden = false
-            cell.nameLabel.hidden = false
-            cell.deleteButton.hidden = false
+            cell.addFamilyButton.isHidden = true
+            cell.headImageView.isHidden = false
+            cell.nameLabel.isHidden = false
+            cell.deleteButton.isHidden = false
             
-            let (_, headURLStr, name) = users[indexPath.row]
-            cell.headImageView.sd_setImageWithURL(NSURL(string: headURLStr), placeholderImage: UIImage(named: "defaultHead"))
+            let (_, headURLStr, name) = users[(indexPath as NSIndexPath).row]
+            cell.headImageView.sd_setImage(with: URL(string: headURLStr), placeholderImage: UIImage(named: "defaultHead"))
             cell.nameLabel.text = name
         }
         
         // 主账户不能删除
-        if indexPath.row == 0 {
-            cell.deleteButton.hidden = true
+        if (indexPath as NSIndexPath).row == 0 {
+            cell.deleteButton.isHidden = true
         }
         
-        cell.deleteButton.tag = indexPath.row
-        cell.addFamilyButton.addTarget(self, action: #selector(FamilyMembersViewController.addFamilyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        cell.deleteButton.addTarget(self, action: #selector(FamilyMembersViewController.deleteButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.deleteButton.tag = (indexPath as NSIndexPath).row
+        cell.addFamilyButton.addTarget(self, action: #selector(FamilyMembersViewController.addFamilyButtonPressed), for: UIControlEvents.touchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(FamilyMembersViewController.deleteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let fCell = cell as? FamilyMembersCell {
-            fCell.addFamilyButton.removeTarget(self, action: #selector(FamilyMembersViewController.addFamilyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-            fCell.deleteButton.removeTarget(self, action: #selector(FamilyMembersViewController.deleteButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            fCell.addFamilyButton.removeTarget(self, action: #selector(FamilyMembersViewController.addFamilyButtonPressed), for: UIControlEvents.touchUpInside)
+            fCell.deleteButton.removeTarget(self, action: #selector(FamilyMembersViewController.deleteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 76
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row != users.count {
+        if (indexPath as NSIndexPath).row != users.count {
             // 成员资料修改管理
-            let (userId, _, _) = users[indexPath.row]
+            let (userId, _, _) = users[(indexPath as NSIndexPath).row]
             isEditUser = true
             let controller = CompleteInfoViewController()
             
@@ -182,14 +182,14 @@ extension FamilyMembersViewController: UITableViewDataSource, UITableViewDelegat
                 controller.userModel = UserManager.mainUser
             }
             else {
-                controller.userModel = UserManager.shareInstance().queryUser(userId)
+                controller.userModel = UserManager.sharedInstance.queryUser(userId)
             }
             
             controller.canBack = true
             controller.delegate = self
             self.navigationController?.pushViewController(controller, animated: true)
             
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         
         

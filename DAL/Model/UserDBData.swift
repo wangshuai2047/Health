@@ -20,7 +20,7 @@ class UserDBData: NSManagedObject {
     @NSManaged var headURL: String
 
     convenience init(context: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)!
-        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "UserDBData", in: context)!
+        self.init(entity: entityDescription, insertInto: context)
     }
 }

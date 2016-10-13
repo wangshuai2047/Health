@@ -12,21 +12,21 @@ class ThirdPlatformBindController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private let cellId = "ThirdPlatformBindCell"
-    private var thirdPlatformBindListInfo: [[String : Any]] = []
+    fileprivate let cellId = "ThirdPlatformBindCell"
+    fileprivate var thirdPlatformBindListInfo: [[String : Any]] = []
     
     convenience init() {
         self.init(nibName: "ThirdPlatformBindController", bundle: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         thirdPlatformBindListInfo.removeAll()
         // 微信朋友圈
         thirdPlatformBindListInfo.append(["headIcon" : "wechatLogin", "title" : "微信",
             "execute" : { [unowned self] () in
-                self.thirdPartBindChange(ShareType.WeChatSession)
+                self.thirdPartBindChange(ShareType.weChatSession)
             },
             "isBind": {() -> Bool in
                 return LoginManager.isBindThirdParty(ThirdPlatformType.WeChat)
@@ -35,7 +35,7 @@ class ThirdPlatformBindController: UIViewController {
         // 腾讯
         thirdPlatformBindListInfo.append(["headIcon" : "qqLogin", "title" : "QQ",
             "execute" : {[unowned self] () in
-                self.thirdPartBindChange(ShareType.QQFriend)
+                self.thirdPartBindChange(ShareType.qqFriend)
             },
             "isBind": {() -> Bool in
                 return LoginManager.isBindThirdParty(ThirdPlatformType.QQ)
@@ -44,7 +44,7 @@ class ThirdPlatformBindController: UIViewController {
         // 微博
         thirdPlatformBindListInfo.append(["headIcon" : "weiboLogin", "title" : "微博",
             "execute" : { [unowned self] () in
-                self.thirdPartBindChange(ShareType.WeiBo)
+                self.thirdPartBindChange(ShareType.weiBo)
             },
             "isBind": {() -> Bool in
                 return LoginManager.isBindThirdParty(ThirdPlatformType.Weibo)
@@ -54,14 +54,14 @@ class ThirdPlatformBindController: UIViewController {
         thirdPlatformBindListInfo.append(["headIcon" : "orgazation", "title" : "集团账户",
             "execute" : { [unowned self] () in
                 
-                if UserData.shareInstance().organizationCode == nil {
+                if UserData.sharedInstance.organizationCode == nil {
                     BindOrganzationViewController.showBindOrganzationViewController(self, rootController: self)
                 }
                 else {
                     
                     BindOrganzationViewController.cancelBind({[unowned self] (error: NSError?) -> Void in
                         if error == nil {
-                            UserData.shareInstance().organizationCode = nil
+                            UserData.sharedInstance.organizationCode = nil
                             self.tableView.reloadData()
                         }
                         else {
@@ -71,20 +71,20 @@ class ThirdPlatformBindController: UIViewController {
                 }
             },
             "isBind": {() -> Bool in
-                return UserData.shareInstance().organizationCode != nil
+                return UserData.sharedInstance.organizationCode != nil
             }])
         
         
-        if UserData.shareInstance().phone == nil {
+        if UserData.sharedInstance.phone == nil {
             // 手机号
             thirdPlatformBindListInfo.append(["headIcon" : "phone", "title" : "手机号",
                 "execute" : { [unowned self] () in
                     
-                    if UserData.shareInstance().phone != nil {
+                    if UserData.sharedInstance.phone != nil {
                         
                         BindPhoneViewController.cancelBind({ [unowned self] (error: NSError?) -> Void in
                             if error == nil {
-                                UserData.shareInstance().phone = nil
+                                UserData.sharedInstance.phone = nil
                                 self.tableView.reloadData()
                             }
                             else {
@@ -98,7 +98,7 @@ class ThirdPlatformBindController: UIViewController {
                     }
                 },
                 "isBind": {() -> Bool in
-                    return UserData.shareInstance().phone != nil
+                    return UserData.sharedInstance.phone != nil
                 }])
         }
         
@@ -110,7 +110,7 @@ class ThirdPlatformBindController: UIViewController {
 
         // Do any additional setup after loading the view.
         let cellNib = UINib(nibName: cellId, bundle: nil)
-        self.tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
+        self.tableView.register(cellNib, forCellReuseIdentifier: cellId)
     }
     
     
@@ -131,24 +131,24 @@ class ThirdPlatformBindController: UIViewController {
     }
     */
 
-    func bindButtonPressed(button: UIButton) {
+    func bindButtonPressed(_ button: UIButton) {
         let info = thirdPlatformBindListInfo[button.tag]
         let execute = info["execute"] as! () -> Void
         execute()
     }
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - 业务执行
-    func thirdPartBindChange(type: ShareType) {
+    func thirdPartBindChange(_ type: ShareType) {
         
         let pType: ThirdPlatformType
-        if type == ShareType.QQFriend {
+        if type == ShareType.qqFriend {
             pType = ThirdPlatformType.QQ
         }
-        else if type == ShareType.WeiBo {
+        else if type == ShareType.weiBo {
             pType = ThirdPlatformType.Weibo
         }
         else {
@@ -180,7 +180,7 @@ class ThirdPlatformBindController: UIViewController {
 }
 
 extension ThirdPlatformBindController: BindOrganzationViewControllerDelegate, BindPhoneViewControllerDelegate {
-    func bindFinished(codeOrCode: String?, error: NSError?) {
+    func bindFinished(_ codeOrCode: String?, error: NSError?) {
         if error == nil {
             self.tableView.reloadData()
         }
@@ -188,33 +188,33 @@ extension ThirdPlatformBindController: BindOrganzationViewControllerDelegate, Bi
 }
 
 extension ThirdPlatformBindController : UITableViewDataSource, UITableViewDelegate {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return thirdPlatformBindListInfo.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ThirdPlatformBindCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ThirdPlatformBindCell
         
-        let info = thirdPlatformBindListInfo[indexPath.row]
+        let info = thirdPlatformBindListInfo[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = info["title"] as? String
         cell.headImageView.image = UIImage(named: info["headIcon"] as! String)
-        cell.bindButton.tag = indexPath.row
+        cell.bindButton.tag = (indexPath as NSIndexPath).row
         
-        cell.bindButton.addTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.bindButton.addTarget(self, action: Selector("bindButtonPressed:"), for: UIControlEvents.touchUpInside)
         
         let isBind = info["isBind"] as! () -> Bool
-        cell.bindButton.selected = isBind()
+        cell.bindButton.isSelected = isBind()
         
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116
     }
     
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let c = cell as? ThirdPlatformBindCell {
-            c.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+            c.bindButton.removeTarget(self, action: Selector("bindButtonPressed:"), for: UIControlEvents.touchUpInside)
         }
         
     }

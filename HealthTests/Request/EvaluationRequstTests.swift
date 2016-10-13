@@ -28,26 +28,26 @@ class EvaluationRequstTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }
 
     func test_evaluationRequest_queryDatas_isSucess() {
-        let expectation = expectationWithDescription("test_evaluationRequest_queryDatas_isSucess")
+        let expectation = self.expectation(description: "test_evaluationRequest_queryDatas_isSucess")
         
-        EvaluationRequest.queryEvaluationDatas(10, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate()) { (datas, error: NSError?) -> Void in
+        EvaluationRequest.queryEvaluationDatas(10, startDate: Date(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: Date()) { (datas, error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_evaluationRequest_queryDatas_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 15) { (error: NSError?) -> Void in
             
         }
     }
     
     func test_evaluationRequest_uploadDatas_isSucess() {
-        let expectation = expectationWithDescription("test_evaluationRequest_uploadDatas_isSucess")
+        let expectation = self.expectation(withDescription: "test_evaluationRequest_uploadDatas_isSucess")
         
         var datas: [[String : AnyObject]] = []
         
@@ -63,7 +63,7 @@ class EvaluationRequstTests: XCTestCase {
             "waterPercentage" : 0.15,
             "waterWeight" : 13,
             "weight" : 59,
-            "timestamp" : NSDate().secondTimeInteval()
+            "timestamp" : Date().secondTimeInteval()
             ])
         
         datas.append([
@@ -78,7 +78,7 @@ class EvaluationRequstTests: XCTestCase {
             "waterPercentage" : 0.15,
             "waterWeight" : 13,
             "weight" : 59,
-            "timestamp" : NSDate().secondTimeInteval()
+            "timestamp" : Date().secondTimeInteval()
             ])
         
         EvaluationRequest.uploadEvaluationDatas(UserManager.mainUser.userId, datas: datas) { (info, error: NSError?) -> Void in
@@ -86,21 +86,21 @@ class EvaluationRequstTests: XCTestCase {
             XCTAssertNil(error, "test_evaluationRequest_uploadDatas_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }
     
     func test_evaluationRequest_deleteData_isSucess() {
         
-        let expectation = expectationWithDescription("test_evaluationRequest_deleteData_isSucess")
+        let expectation = self.expectation(withDescription: "test_evaluationRequest_deleteData_isSucess")
         
         EvaluationRequest.deleteEvaluationData("8", userId: 10) { (error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_evaluationRequest_deleteData_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
         
@@ -109,7 +109,7 @@ class EvaluationRequstTests: XCTestCase {
     
     func test_evaluationRequest_deleteDatas_isSucess() {
         
-        let expectation = expectationWithDescription("test_evaluationRequest_deleteDatas_isSucess")
+        let expectation = self.expectation(withDescription: "test_evaluationRequest_deleteDatas_isSucess")
         
         var datas: [[String : AnyObject]] = []
         
@@ -128,7 +128,7 @@ class EvaluationRequstTests: XCTestCase {
             XCTAssertNil(error, "test_evaluationRequest_deleteDatas_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
         

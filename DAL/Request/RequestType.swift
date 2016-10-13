@@ -42,7 +42,7 @@ enum RequestType: String {
     case FeedBack = "100007"
     
     
-    func startRequest(params: [String : AnyObject], completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
+    func startRequest(_ params: [String : AnyObject], completionHandler: @escaping (_ data: Data? , _ response: URLResponse?, _ error: NSError?) -> Void) {
         Request.startWithRequest(self, params: params, completionHandler: completionHandler)
     }
 }

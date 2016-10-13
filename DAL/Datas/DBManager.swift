@@ -10,49 +10,49 @@ import Foundation
 
 protocol DBUserProtocol {
     func queryAllUser() -> [[String: AnyObject]]
-    func addUser(setDatas:(inout setDatas: UserDBData)-> UserDBData)
-    func addOrUpdateUser(userModel: UserModel)
-    func deleteUser(userId: Int)
-    func queryUser(userId: Int) -> [String: AnyObject]?
+    func addUser(_ setDatas:( _ setDatas: inout UserDBData)-> UserDBData)
+    func addOrUpdateUser(_ userModel: UserModel)
+    func deleteUser(_ userId: Int)
+    func queryUser(_ userId: Int) -> [String: AnyObject]?
     func deleteAllUser()
 }
 
 protocol DBEvaluationProtocol {
     
-    func addEvaluationData(result: ScaleResultProtocol)
-    func deleteEvaluationData(dataId: String, userId: Int)
-    func queryEvaluationData(dataId: String, userId: Int) -> [String: AnyObject]?
-    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int) -> [[String: AnyObject]]
+    func addEvaluationData(_ result: ScaleResultProtocol)
+    func deleteEvaluationData(_ dataId: String, userId: Int)
+    func queryEvaluationData(_ dataId: String, userId: Int) -> [String: AnyObject]?
+    func queryEvaluationDatas(_ beginTimescamp: Date, endTimescamp: Date, userId: Int) -> [[String: AnyObject]]
     func queryNoUploadEvaluationDatas() -> [[String: AnyObject]]
-    func updateUploadEvaluationDatas(newDataIdInfos: [[String: AnyObject]])
-    func queryLastEvaluationData(userId: Int) -> [String: AnyObject]?
-    func queryCountEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int, count: Int) -> [[String: AnyObject]]
+    func updateUploadEvaluationDatas(_ newDataIdInfos: [[String: AnyObject]])
+    func queryLastEvaluationData(_ userId: Int) -> [String: AnyObject]?
+    func queryCountEvaluationDatas(_ beginTimescamp: Date, endTimescamp: Date, userId: Int, count: Int) -> [[String: AnyObject]]
 }
 
 protocol DBGoalProtocol {
-    func addGoalDatas(data: BraceletResultProtocol)
-    func deleteGoalData(dataId: String)
-    func deleteGoalDatas(date: NSDate)
-    func queryGoalData(dataId: String) -> [String: AnyObject]?
+    func addGoalDatas(_ data: BraceletResultProtocol)
+    func deleteGoalData(_ dataId: String)
+    func deleteGoalDatas(_ date: Date)
+    func queryGoalData(_ dataId: String) -> [String: AnyObject]?
     func queryLastGoalData() -> [String: AnyObject]?
-    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]]
+    func queryGoalData(_ beginDate: Date, endDate: Date) -> [[String: AnyObject]]
     func queryNoUploadGoalDatas() -> [[String: AnyObject]]
-    func updateUploadGoalDatas(newDataIdInfos: [[String: AnyObject]])
+    func updateUploadGoalDatas(_ newDataIdInfos: [[String: AnyObject]])
 }
 
 protocol DBDeviceProtocol {
-    func removeDeviceBind(type: DeviceType)
-    func haveConnectedWithType(type: DeviceType) -> Bool
+    func removeDeviceBind(_ type: DeviceType)
+    func haveConnectedWithType(_ type: DeviceType) -> Bool
     var haveConnectedScale: Bool { get }
     var haveConnectedBracelet: Bool { get }
     func braceletInfo() -> (uuid: String, name: String)?
     func myBodyInfo() -> (uuid: String, name: String)?
-    func addDevice(uuid: String, name: String, type: DeviceType)
+    func addDevice(_ uuid: String, name: String, type: DeviceType)
 }
 
 protocol DBShareProtocol {
-    func addShareData(type: Int)
-    func queryShareDatas(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]]
+    func addShareData(_ type: Int)
+    func queryShareDatas(_ beginDate: Date, endDate: Date) -> [[String: AnyObject]]
 }
 
 protocol DBManagerProtocol : DBUserProtocol, DBEvaluationProtocol, DBGoalProtocol, DBDeviceProtocol, DBShareProtocol {
@@ -62,21 +62,9 @@ protocol DBManagerProtocol : DBUserProtocol, DBEvaluationProtocol, DBGoalProtoco
 class DBManager {
     
     var userId: String?
-    
-    class func shareInstance() -> DBManager {
-        struct YYSingle {
-            static var predicate: dispatch_once_t = 0
-            static var instance: DBManager? = nil
-        }
-        
-        dispatch_once(&YYSingle.predicate, { () -> Void in
-            YYSingle.instance = DBManager()
-        })
-        
-        return YYSingle.instance!
-    }
+    static let sharedInstance = DBManager()
     
     init() {
-        userId = "\(UserData.shareInstance().userId!)"
+        userId = "\(UserData.sharedInstance.userId!)"
     }
 }

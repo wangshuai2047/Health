@@ -15,8 +15,8 @@ protocol EvaluationResultTableViewDelegate {
 
 class EvaluationResultTableView: UITableView {
 
-    private let scoreCellId = "EvaluationDetailScroeDescriptionCell"
-    private let detailCellId = "EvaluationDetailExtendCell"
+    fileprivate let scoreCellId = "EvaluationDetailScroeDescriptionCell"
+    fileprivate let detailCellId = "EvaluationDetailExtendCell"
     
     var selectedIndexRow: Int = -1
     var data: ScaleResultProtocol?
@@ -39,8 +39,8 @@ class EvaluationResultTableView: UITableView {
         self.dataSource = self
         self.delegate = self
         
-        self.registerNib(UINib(nibName: scoreCellId, bundle: nil), forCellReuseIdentifier: scoreCellId)
-        self.registerNib(UINib(nibName: detailCellId, bundle: nil), forCellReuseIdentifier: detailCellId)
+        self.register(UINib(nibName: scoreCellId, bundle: nil), forCellReuseIdentifier: scoreCellId)
+        self.register(UINib(nibName: detailCellId, bundle: nil), forCellReuseIdentifier: detailCellId)
         
         // 脂肪肝
 //        EvaluationDetailExtendViewModel(type
@@ -77,7 +77,7 @@ class EvaluationResultTableView: UITableView {
         list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.bmi))
         
         // 基础代谢
-        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.BMR))
+        list.append(EvaluationDetailExtendViewModel(type: EvaluationDetailExtendType.bmr))
         
         
         // 身体年龄
@@ -104,7 +104,7 @@ class EvaluationResultTableView: UITableView {
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
     }
 
@@ -118,11 +118,11 @@ class EvaluationResultTableView: UITableView {
 }
 
 extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else {
@@ -130,11 +130,11 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(scoreCellId, forIndexPath: indexPath) as! EvaluationDetailScroeDescriptionCell
-            cell.physiqueButton.addTarget(self, action: #selector(EvaluationResultTableView.tapPhysiqueButton), forControlEvents: UIControlEvents.TouchUpInside)
+        if (indexPath as NSIndexPath).section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: scoreCellId, for: indexPath) as! EvaluationDetailScroeDescriptionCell
+            cell.physiqueButton.addTarget(self, action: #selector(EvaluationResultTableView.tapPhysiqueButton), for: UIControlEvents.touchUpInside)
             
             // score
             cell.data = data
@@ -143,9 +143,9 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(detailCellId, forIndexPath: indexPath) as! EvaluationDetailExtendCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: detailCellId, for: indexPath) as! EvaluationDetailExtendCell
             
-            var info = list[indexPath.row]
+            var info = list[(indexPath as NSIndexPath).row]
             info.data = self.data
             cell.setViewModel(info)
             return cell
@@ -153,12 +153,12 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath as NSIndexPath).section == 0 {
             return EvaluationDetailScroeDescriptionCell.normalHeight
         }
         else {
-            if indexPath.row == selectedIndexRow {
+            if (indexPath as NSIndexPath).row == selectedIndexRow {
                 return EvaluationDetailExtendCell.extendHeight
             } else {
                 return EvaluationDetailExtendCell.normalHeight
@@ -166,10 +166,10 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 0 {
             if let disCell = cell as? EvaluationDetailScroeDescriptionCell {
-                disCell.physiqueButton.removeTarget(self, action: #selector(EvaluationResultTableView.tapPhysiqueButton), forControlEvents: UIControlEvents.TouchUpInside)
+                disCell.physiqueButton.removeTarget(self, action: #selector(EvaluationResultTableView.tapPhysiqueButton), for: UIControlEvents.touchUpInside)
             }
         }
         else {
@@ -177,18 +177,18 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section == 1 {
-            let info = list[indexPath.row]
+        if (indexPath as NSIndexPath).section == 1 {
+            let info = list[(indexPath as NSIndexPath).row]
             if data != nil {
                 let canExtend = info.type.canExtend(data!)
                 if canExtend {
-                    if selectedIndexRow == indexPath.row {
+                    if selectedIndexRow == (indexPath as NSIndexPath).row {
                         selectedIndexRow = -1
                     }
                     else {
-                        selectedIndexRow = indexPath.row
+                        selectedIndexRow = (indexPath as NSIndexPath).row
                     }
                     tableView.reloadData()
                     
@@ -197,7 +197,7 @@ extension EvaluationResultTableView: UITableViewDataSource, UITableViewDelegate 
             }
            
             
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

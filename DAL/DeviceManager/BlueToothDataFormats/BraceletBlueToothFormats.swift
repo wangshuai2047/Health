@@ -21,9 +21,9 @@ struct BraceletBlueToothFormats {
     
     var packageHead: BraceletPackageHead
     var packageBody: BraceletPackageBodyProtocol?
-    var responseTime: NSDate?
+    var responseTime: Date?
     
-    init(cmdId: UInt8, time: NSDate) {
+    init(cmdId: UInt8, time: Date) {
         
         // 现在只有时间
         if cmdId == BraceletBlueToothFormats.responseTimeCmdId {
@@ -50,20 +50,20 @@ struct BraceletBlueToothFormats {
         
     }
     
-    mutating func setSyncTime(date: NSDate) {
+    mutating func setSyncTime(_ date: Date) {
         responseTime = date
     }
     
     // data是包括包头的NSData对象
-    mutating func setBodyData(data: NSData) {
+    mutating func setBodyData(_ data: Data) {
         var index: Int = 8
         
         // 解析包体
         var cmd_version: UInt8 = 0
         var cmd_type: UInt8 = 0
-        data.getBytes(&cmd_version, range: NSRange(location: index, length: 1))
+        (data as NSData).getBytes(&cmd_version, range: NSRange(location: index, length: 1))
         index += 1
-        data.getBytes(&cmd_type, range: NSRange(location: index, length: 1))
+        (data as NSData).getBytes(&cmd_type, range: NSRange(location: index, length: 1))
         index += 1
         
         if packageHead.nCmdId == BraceletBlueToothFormats.deviceToAppCmdId {
@@ -102,7 +102,7 @@ struct BraceletBlueToothFormats {
         }
     }
     
-    init(data: NSData) {
+    init(data: Data) {
         // 解析包头
         var bMagicNumber: UInt8 = 0
         var bVer: UInt8 = 0
@@ -111,12 +111,12 @@ struct BraceletBlueToothFormats {
         var nSeq: UInt16 = 0
         
         var index: Int = 0
-        data.getBytes(&bMagicNumber, range: NSRange(location: index, length: 1))
+        (data as NSData).getBytes(&bMagicNumber, range: NSRange(location: index, length: 1))
         index += 1
-        data.getBytes(&bVer, range: NSRange(location: index, length: 1))
+        (data as NSData).getBytes(&bVer, range: NSRange(location: index, length: 1))
         index += 1
         
-        data.getUInt16Bytes(&nLength, range: NSRange(location: index, length: sizeof(UInt16)))
+        data.getUInt16Bytes(&nLength, range: NSRange(location: index, length: MemoryLayout<UInt16>.size))
         index += 2
         
         data.getUInt16Bytes(&nCmdId, range: NSRange(location: index, length: 2))
@@ -129,9 +129,9 @@ struct BraceletBlueToothFormats {
 //        setBodyData(data)
     }
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: Int(packageHead.nLength), repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: Int(packageHead.nLength))
         
         bytes[0] = packageHead.bMagicNumber
         bytes[1] = packageHead.bVer
@@ -145,8 +145,8 @@ struct BraceletBlueToothFormats {
         bytes[6] = UInt8(((packageHead.nSeq >> 8)&0xff))
         bytes[7] = UInt8(((packageHead.nSeq >> 0)&0xff))
         
-        let data = NSMutableData(bytes: bytes, length: 8)
-        data.appendData(packageBody!.toData())
+        var data = Data(bytes: bytes, count: 8)
+        data.append(packageBody!.toData())
         
         return data
     }
@@ -164,7 +164,7 @@ struct BraceletPackageHead {
 protocol BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { get }   // 协议子版本，目前默认0
     var cmd_type: UInt8 { get set }  // 命令类型
-    func toData() -> NSData
+    func toData() -> Data
 }
 
 //请求时间包
@@ -174,14 +174,14 @@ struct BraceletTimeReqPackageBody: BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { return 0 }
     var cmd_type: UInt8 = BraceletBlueToothFormats.requestTimeCmdId
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: 2, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: 2)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 2)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
     }
 }
 
@@ -191,18 +191,18 @@ struct BraceletTimeResPackageBody: BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { return 0 }
     var cmd_type: UInt8 = BraceletBlueToothFormats.responseTimeCmdId
     
-    var time: NSDate
+    var time: Date
     var timezone: UInt8 {
-        return UInt8(NSTimeZone.systemTimeZone().secondsFromGMT / 60 / 60)
+        return UInt8(NSTimeZone.system.secondsFromGMT() / 60 / 60)
     }
     
-    init(time: NSDate) {
+    init(time: Date) {
         self.time = time
     }
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: 7, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: 7)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
@@ -215,7 +215,7 @@ struct BraceletTimeResPackageBody: BraceletPackageBodyProtocol {
         
         bytes[6] = timezone
         
-        return NSData(bytes: bytes, length: 7)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: 7)
     }
 }
 
@@ -225,17 +225,17 @@ struct BraceletSportReqPackageBody: BraceletPackageBodyProtocol {
     var cmd_type: UInt8 = BraceletBlueToothFormats.sportCmdId
     
     var step_count: UInt16 = 0
-    var start_time: NSDate
+    var start_time: Date
     
     struct SportData {
-        var end_time: NSDate
+        var end_time: Date
         var steps: UInt16
         var stepsType: UInt16
     }
     
     var info: [SportData]
     
-    init(frontIndex: Int, data: NSData) {
+    init(frontIndex: Int, data: Data) {
         
         var index: Int = frontIndex
         data.getBytes(buffer:&step_count, range: NSRange(location: index, length: 2))
@@ -243,7 +243,7 @@ struct BraceletSportReqPackageBody: BraceletPackageBodyProtocol {
         var startTimeScamp: UInt32 = 0
         data.getBytes(buffer:&startTimeScamp, range: NSRange(location: index, length: 4))
         index+=4
-        start_time = NSDate(timeIntervalSince1970: NSTimeInterval(startTimeScamp))
+        start_time = Date(timeIntervalSince1970: TimeInterval(startTimeScamp))
         
         info = []
         for _ in 0...step_count-1 {
@@ -258,18 +258,18 @@ struct BraceletSportReqPackageBody: BraceletPackageBodyProtocol {
             data.getBytes(buffer: &stepsType, range: NSRange(location: index, length: 2))
             index+=2
             
-            info.append(SportData(end_time: NSDate(timeIntervalSince1970: NSTimeInterval(endTime)), steps: steps, stepsType: stepsType))
+            info.append(SportData(end_time: Date(timeIntervalSince1970: TimeInterval(endTime)), steps: steps, stepsType: stepsType))
         }
     }
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: 2, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: 2)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 2)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
     }
 }
 
@@ -278,14 +278,14 @@ struct BraceletSportResPackageBody: BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { return 0 }
     var cmd_type: UInt8 = BraceletBlueToothFormats.sportCmdId
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: 4, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: 4)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 4)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: 4)
     }
 }
 
@@ -296,7 +296,7 @@ struct BraceletDeviceVersionReqPackageBody: BraceletPackageBodyProtocol {
     var firm_ver: UInt16 = 0    // 固件版本号
     var device_model: Int = 0   // 设备类型
     
-    init(frontIndex: Int, data: NSData) {
+    init(frontIndex: Int, data: Data) {
         
         var index: Int = frontIndex
         data.getBytes(buffer:&firm_ver, range: NSRange(location: index, length: 2))
@@ -305,14 +305,14 @@ struct BraceletDeviceVersionReqPackageBody: BraceletPackageBodyProtocol {
         data.getBytes(buffer: &device_model, range: NSRange(location: index, length: 3))
     }
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: 2, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: 2)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 2)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
     }
 }
 
@@ -321,14 +321,14 @@ struct BraceletGeneralResPackageBody: BraceletPackageBodyProtocol {
     var cmd_version: UInt8 { return 0 }
     var cmd_type: UInt8 = BraceletBlueToothFormats.generalCmdId
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: 4, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: 4)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 4)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: 4)
     }
 }
 
@@ -341,7 +341,7 @@ struct BraceletBatteryReqPackageBody: BraceletPackageBodyProtocol {
     var Unused: UInt8 = 0
     var battery_voltage: UInt16 = 0
     
-    init(frontIndex: Int, data: NSData) {
+    init(frontIndex: Int, data: Data) {
         
         var index: Int = frontIndex
         data.getBytes(buffer:&percent, range: NSRange(location: index, length: 1))
@@ -353,13 +353,13 @@ struct BraceletBatteryReqPackageBody: BraceletPackageBodyProtocol {
         data.getBytes(buffer: &battery_voltage, range: NSRange(location: index, length: 2))
     }
     
-    func toData() -> NSData {
+    func toData() -> Data {
         
-        var bytes = [UInt8](count: 2, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: 2)
         
         bytes[0] = cmd_version
         bytes[1] = cmd_type
         
-        return NSData(bytes: bytes, length: 2)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
     }
 }

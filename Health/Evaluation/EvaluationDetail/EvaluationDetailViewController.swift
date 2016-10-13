@@ -76,29 +76,29 @@ class EvaluationDetailViewController: UIViewController {
     }
     */
 
-    @IBAction func backButtonPressed(sender: AnyObject) {
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
         BluetoothManager.shareInstance.stopScanDevice()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func deleteButtonPressed(sender: AnyObject) {
+    @IBAction func deleteButtonPressed(_ sender: AnyObject) {
         
         UIAlertView(title: "确认删除?", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定").show()
         
     }
     
-    @IBAction func shareButtonPressed(sender: AnyObject) {
+    @IBAction func shareButtonPressed(_ sender: AnyObject) {
         ShareViewController.showShareViewController(detailTableView.convertToImage(), delegate: self, rootController: self)
     }
     
 }
 
 extension EvaluationDetailViewController: UIAlertViewDelegate {
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if buttonIndex == 1 {
             if data != nil {
-                AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "删除中", detailMsg: nil, progress: nil)
-                EvaluationManager.shareInstance().deleteEvaluationData(data!, complete: { [unowned self] (error: NSError?) -> Void in
+                AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "删除中", detailMsg: nil, progress: nil)
+                EvaluationManager.sharedInstance.deleteEvaluationData(data!, complete: { [unowned self] (error: NSError?) -> Void in
                     if error == nil {
                         self.refreshAllData()
                     }
@@ -129,7 +129,7 @@ extension EvaluationDetailViewController: EvaluationResultTableViewDelegate {
 
 // MARK: - 分享
 extension EvaluationDetailViewController: ShareViewControllerDelegate {
-    func shareFinished(shareType: ShareType, error: NSError?) {
+    func shareFinished(_ shareType: ShareType, error: NSError?) {
         if error == nil {
             Alert.showErrorAlert("分享成功", message: nil)
         }
@@ -167,7 +167,7 @@ extension EvaluationDetailViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         // 如果是访客 没有历史记录
         if isVisitor {
@@ -176,7 +176,7 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         }
@@ -186,16 +186,16 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
             let cellId = "EvaluationDetailTableViewCell"
             
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
+            var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
             
             if cell == nil {
-                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-                cell?.selectionStyle = UITableViewCellSelectionStyle.None
+                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellId)
+                cell?.selectionStyle = UITableViewCellSelectionStyle.none
                 
             }
             
@@ -210,27 +210,27 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         }
         else {
             let cellId = "EvaluationDetailTableViewDataCell"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
+            var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
             
             if cell == nil {
-                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)
+                cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: cellId)
             }
             
-            let model: EvaluationDetailCellViewModel = viewModel.allDatas[indexPath.row]
+            let model: EvaluationDetailCellViewModel = viewModel.allDatas[(indexPath as NSIndexPath).row]
             cell?.textLabel?.text = "\(model.timeShowString)"
-            cell?.textLabel?.textColor = UIColor.darkGrayColor()
+            cell?.textLabel?.textColor = UIColor.darkGray
             
             let description = String(format: "体重:%.1fkg 体脂:%.1f%%", model.scaleResult.weight, model.scaleResult.fatPercentage)
             cell?.detailTextLabel?.text = description
-            cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
+            cell?.detailTextLabel?.textColor = UIColor.darkGray
             
             return cell!
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
             return detailTableView.currentViewHeight
         }
         else {
@@ -238,9 +238,9 @@ extension EvaluationDetailViewController: UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            let model = viewModel.allDatas[indexPath.row];
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 1 {
+            let model = viewModel.allDatas[(indexPath as NSIndexPath).row];
             data = model.scaleResult
             refreshData()
         }

@@ -15,7 +15,7 @@ public protocol ResultProtocol {
 
 public protocol ScaleResultProtocol: ResultProtocol {
     
-    var timeStamp: NSDate {get set}
+    var timeStamp: Date {get set}
     
     // true 男 false 女
     var gender: Bool { get set }

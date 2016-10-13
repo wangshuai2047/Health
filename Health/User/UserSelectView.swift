@@ -10,7 +10,7 @@ import UIKit
 
 protocol UserSelectViewDelegate {
     // 点击人物头像
-    func headButtonPressed(userId: Int)
+    func headButtonPressed(_ userId: Int)
     
     // 点击访客
     func visitorClicked()
@@ -19,17 +19,17 @@ protocol UserSelectViewDelegate {
     func addFamily()
     
     // 用户改变
-    func userChangeToUserId(userId: Int)
+    func userChangeToUserId(_ userId: Int)
 }
 
 class UserSelectView: UIView {
     
-    private let headImageViewTag = 1001
-    private let nameLabelTag = 1002
-    private let changePeopleButtonTag = 1003
-    private var userViews: [UIView] = []
-    private var scrollView: UIScrollView = UIScrollView()
-    private var showHeadView: UIView
+    fileprivate let headImageViewTag = 1001
+    fileprivate let nameLabelTag = 1002
+    fileprivate let changePeopleButtonTag = 1003
+    fileprivate var userViews: [UIView] = []
+    fileprivate var scrollView: UIScrollView = UIScrollView()
+    fileprivate var showHeadView: UIView
     
     var delegate: UserSelectViewDelegate?
     
@@ -40,7 +40,7 @@ class UserSelectView: UIView {
     // MARK: - 初始化
     required init?(coder aDecoder: NSCoder) {
         
-        showHeadView = NSBundle.mainBundle().loadNibNamed("UserView", owner: nil, options: nil)[0] as! UIView
+        showHeadView = Bundle.main.loadNibNamed("UserView", owner: nil, options: nil)?[0] as! UIView
         super.init(coder: aDecoder)
         
         self.clipsToBounds = true
@@ -54,8 +54,8 @@ class UserSelectView: UIView {
         self.addSubview(showHeadView)
         
         let (headButton, _, changeButton, _) = getShowViewControl()
-        headButton.addTarget(self, action: #selector(UserSelectView.headButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        changeButton.addTarget(self, action: #selector(UserSelectView.changePeoplePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        headButton.addTarget(self, action: #selector(UserSelectView.headButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        changeButton.addTarget(self, action: #selector(UserSelectView.changePeoplePressed(_:)), for: UIControlEvents.touchUpInside)
         
         // 讲头像设置为圆角
         headButton.layer.cornerRadius = headButton.frame.size.width/2
@@ -64,7 +64,7 @@ class UserSelectView: UIView {
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         scrollView.frame = self.bounds
         // add user
@@ -78,7 +78,7 @@ class UserSelectView: UIView {
             for view in userViews {
                 view.removeFromSuperview()
             }
-            userViews.removeAll(keepCapacity: false)
+            userViews.removeAll(keepingCapacity: false)
             
             for view in scrollView.subviews {
                 view.removeFromSuperview()
@@ -89,21 +89,23 @@ class UserSelectView: UIView {
             
             let (_, _, changeButton, _) = getShowViewControl()
             
-            for i in 0 ..< self.users.count {
-                let (userId, headURLStr, name) = self.users[i]
-                let view = createSelectedHeadView((headURLStr, name, i))
-                view.center = startCenter
-                scrollView.addSubview(view)
-                startCenter = CGPoint(x: startCenter.x + padding, y: startCenter.y)
-                
-                if changeButton.hidden {
-                    if i == 0 {
-                        setShowView((headURLStr, name))
+            if self.users.count > 0 {
+                for i in 0 ..< self.users.count {
+                    let (userId, headURLStr, name) = self.users[i]
+                    let view = createSelectedHeadView((headURLStr, name, i))
+                    view.center = startCenter
+                    scrollView.addSubview(view)
+                    startCenter = CGPoint(x: startCenter.x + padding, y: startCenter.y)
+                    
+                    if changeButton.isHidden {
+                        if i == 0 {
+                            setShowView((headURLStr, name))
+                        }
                     }
-                }
-                else {
-                    if UserManager.shareInstance().currentUser.userId == userId {
-                        setShowView((headURLStr, name))
+                    else {
+                        if UserManager.sharedInstance.currentUser.userId == userId {
+                            setShowView((headURLStr, name))
+                        }
                     }
                 }
             }
@@ -113,22 +115,22 @@ class UserSelectView: UIView {
         }
     }
 
-    private var needSetUsers: [(Int, String, String)]?
-    private var needExt: Bool?
+    fileprivate var needSetUsers: [(Int, String, String)]?
+    fileprivate var needExt: Bool?
     // MARK: - 选择视图
     // 数据格式 (userId, headURLStr, name)
-    func setUsers(users: [(Int, String, String)], isNeedExt: Bool) {
+    func setUsers(_ users: [(Int, String, String)], isNeedExt: Bool) {
         needSetUsers = users
         needExt = isNeedExt
         self.setNeedsDisplay()
     }
     
     // 设置切换按钮的隐藏与显示
-    func setChangeButton(hidden: Bool) {
+    func setChangeButton(_ hidden: Bool) {
         let (headButton, _, changeButton, nameYConstraint) = getShowViewControl()
-        changeButton.hidden = hidden
+        changeButton.isHidden = hidden
         
-        headButton.userInteractionEnabled = !hidden
+        headButton.isUserInteractionEnabled = !hidden
         
         if hidden {
             nameYConstraint.constant = 0
@@ -138,7 +140,7 @@ class UserSelectView: UIView {
         }
     }
     
-    func setShowViewUserId(userId: Int) {
+    func setShowViewUserId(_ userId: Int) {
         
         if needSetUsers != nil && needExt != nil {
             self.users = needSetUsers!
@@ -147,59 +149,61 @@ class UserSelectView: UIView {
             }
         }
         
-        for i in 0 ..< self.users.count {
-            let (currentUserId, headURLStr, name) = self.users[i]
-            if userId == currentUserId {
-                setShowView((headURLStr, name))
-                currentShowIndex = i
-                return
+        if self.users.count > 0 {
+            for i in 0 ..< self.users.count {
+                let (currentUserId, headURLStr, name) = self.users[i]
+                if userId == currentUserId {
+                    setShowView((headURLStr, name))
+                    currentShowIndex = i
+                    return
+                }
             }
         }
     }
     
-    func setShowView(info: (String, String)) {
+    func setShowView(_ info: (String, String)) {
         // 设置showView
         let (headURLStr, name) = info
         let (headButton, nameLabel, _, _) = getShowViewControl()
         
-        headButton.sd_setImageWithURL(NSURL(string: headURLStr), forState: UIControlState.Normal, placeholderImage: UIImage(named: "defaultHead"))
+        headButton.sd_setImage(with: URL(string: headURLStr), for: UIControlState(), placeholderImage: UIImage(named: "defaultHead"))
         nameLabel.text = name
     }
     
-    func createSelectedHeadView(info: (String, String, Int)) -> UIView {
-        let headView = UIView(frame: CGRectMake(0, 0, 80, self.frame.size.height))
+    func createSelectedHeadView(_ info: (String, String, Int)) -> UIView {
+        let headView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: self.frame.size.height))
         
         let (headURLStr, name, tag) = info
         
         // 头像
-        let headImageView = UIImageView(frame: CGRectMake(15, 8, 50, 50))
-        headImageView.sd_setImageWithURL(NSURL(string: headURLStr), placeholderImage: UIImage(named: "defaultHead"))
+        let headImageView = UIImageView(frame: CGRect(x: 15, y: 8, width: 50, height: 50))
+        headImageView.sd_setImage(with: URL(string: headURLStr), placeholderImage: UIImage(named: "defaultHead"))
         headView.addSubview(headImageView)
         headImageView.tag = headImageViewTag
         // 讲头像设置为圆角
         headImageView.layer.cornerRadius = headImageView.frame.size.width/2
         headImageView.layer.masksToBounds = true
         headImageView.layer.borderWidth = 0.1
-        headImageView.layer.borderColor = UIColor.blackColor().CGColor
+        headImageView.layer.borderColor = UIColor.black.cgColor
         
         // 名字
-        let nameLabel = UILabel(frame: CGRectMake(0, 66, 81, 21))
+        let nameLabel = UILabel(frame: CGRect(x: 0, y: 66, width: 81, height: 21))
         nameLabel.text = name
-        nameLabel.textAlignment = NSTextAlignment.Center
+        nameLabel.textAlignment = NSTextAlignment.center
         nameLabel.tag = nameLabelTag
         headView.addSubview(nameLabel)
         
         // 点击button
-        let button = UIButton(type: UIButtonType.Custom)
+        let button = UIButton(type: UIButtonType.custom)
         button.frame = headView.bounds
-        button.addTarget(self, action: #selector(UserSelectView.selectHeadViewClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(UserSelectView.selectHeadViewClick(_:)), for: UIControlEvents.touchUpInside)
         button.tag = tag
         headView.addSubview(button)
         
         return headView
     }
     
-    func selectHeadViewClick(button: UIButton) {
+    func selectHeadViewClick(_ button: UIButton) {
         let (userId, headURLStr, name) = self.users[button.tag]
         if userId == -2 {
             // 新增
@@ -213,7 +217,7 @@ class UserSelectView: UIView {
             
             let (headButton, nameLabel, _, _) = getShowViewControl()
             
-            headButton.sd_setImageWithURL(NSURL(string: headURLStr), forState: UIControlState.Normal, placeholderImage: UIImage(named: "defaultHead"))
+            headButton.sd_setImage(with: URL(string: headURLStr), for: UIControlState(), placeholderImage: UIImage(named: "defaultHead"))
             nameLabel.text = name
             
             delegate?.userChangeToUserId(userId)
@@ -221,20 +225,20 @@ class UserSelectView: UIView {
             currentShowIndex = button.tag
         }
         
-        self.scrollView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
-        self.showHeadView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
+        self.scrollView.frame = CGRect(x: 0, y: -self.bounds.size.height, width: self.bounds.size.width, height: self.bounds.size.height)
+        self.showHeadView.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
     }
     
     // MARK: - ShowView Method
-    func headButtonPressed(button: UIButton) {
+    func headButtonPressed(_ button: UIButton) {
         let (userId, _, _) = self.users[currentShowIndex]
         delegate?.headButtonPressed(userId)
     }
     
-    func changePeoplePressed(button: UIButton) {
+    func changePeoplePressed(_ button: UIButton) {
         
-        self.showHeadView.frame = CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)
-        self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
+        self.showHeadView.frame = CGRect(x: 0, y: -self.bounds.size.height, width: self.bounds.size.width, height: self.bounds.size.height)
+        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
         self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
     

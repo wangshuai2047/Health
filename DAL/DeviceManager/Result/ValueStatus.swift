@@ -9,29 +9,29 @@
 import Foundation
 
 enum ValueStatus {
-    case Low    // 偏低
-    case Normal // 正常
-    case High   // 偏高
+    case low    // 偏低
+    case normal // 正常
+    case high   // 偏高
     
     init(value: Float, low: Float, high: Float) {
         if value > high {
-            self = .High
+            self = .high
         }
         else if value < low {
-            self = .Low
+            self = .low
         }
         else {
-            self = .Normal
+            self = .normal
         }
     }
     
     var statusColor: UIColor {
         switch self {
-        case .Low:
+        case .low:
             return UIColor(red: 235/255.0, green: 189/255.0, blue: 72/255.0, alpha: 1)
-        case .Normal:
+        case .normal:
             return UIColor(red: 118/255.0, green: 218/255.0, blue: 66/255.0, alpha: 1)
-        case .High:
+        case .high:
             return UIColor(red: 211/255.0, green: 46/255.0, blue: 55/255.0, alpha: 1)
         }
     }

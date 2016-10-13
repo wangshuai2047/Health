@@ -10,31 +10,31 @@ import Foundation
 
 extension Request {
     
-    static func dataFilter(data: NSData!) -> (jsonObj : AnyObject? , error : NSError?) {
+    static func dataFilter(_ data: Data!) -> (jsonObj : AnyObject? , error : NSError?) {
         
         var err : NSError?
         
         do {
-            let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let jsonStr = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
             
             print("responseJson", jsonStr)
             
             
-            let result : NSDictionary? = try NSJSONSerialization.JSONObjectWithData(data,  options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+            let result : NSDictionary? = try JSONSerialization.jsonObject(with: data,  options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary
             
-            let message: AnyObject? = result?.valueForKey("errormsg")
+            let message: AnyObject? = result?.value(forKey: "errormsg") as AnyObject?
             print("responseStr: \(result) \(message)")
             
             if let jsonObj = result {
                 
-                if let code = jsonObj.valueForKey("code") as? Int {
+                if let code = jsonObj.value(forKey: "code") as? Int {
                     if code == 10000 {
                         // 请求成功
                         return (result, nil)
                     }
                     else {
                         // 请求失败
-                        if let msg = jsonObj.valueForKey("errormsg") as? String {
+                        if let msg = jsonObj.value(forKey: "errormsg") as? String {
                             err = NSError(domain: "Server logic error", code: code, userInfo: [NSLocalizedDescriptionKey : msg])
                         }
                         else
@@ -51,7 +51,7 @@ extension Request {
     }
     
     // 处理返回数据
-    static func dealResponseData(data: NSData!, response: NSURLResponse!, error: NSError!) -> (jsonObj : AnyObject? , error : NSError?) {
+    static func dealResponseData(_ data: Data!, response: URLResponse!, error: NSError!) -> (jsonObj : AnyObject? , error : NSError?) {
         if let err = error {
             return (nil, err)
         }

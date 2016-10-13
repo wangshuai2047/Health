@@ -28,33 +28,33 @@ class ScoreRequestTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }
     
     func test_ScoreRequest_queryScore_isSucess() {
-        let expectation = expectationWithDescription("test_ScoreRequest_queryScore_isSucess")
+        let expectation = self.expectation(withDescription: "test_ScoreRequest_queryScore_isSucess")
         
         ScoreRequest.queryScore(1234) { (allscore, monthscore, rank, monthrank, error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }
 
     func test_ScoreRequest_share_isSucess() {
-        let expectation = expectationWithDescription("")
+        let expectation = self.expectation(withDescription: "")
         
         ScoreRequest.share(1234, type: 1, platform: ThirdPlatformType.Weibo) { (error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_ScoreRequest_queryScore_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CompleteInfoDelegate {
-    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?)
+    func completeInfo(_ controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?)
 }
 
 class CompleteInfoViewController: UIViewController {
@@ -24,7 +24,7 @@ class CompleteInfoViewController: UIViewController {
     var name: String?
     var headURLString: String?
     
-    private let tempHeadPath = NSHomeDirectory() + "/Documents/headImage.jpg"
+    fileprivate let tempHeadPath = NSHomeDirectory() + "/Documents/headImage.jpg"
     
     @IBOutlet weak var backButton: UIButton!
     
@@ -56,17 +56,17 @@ class CompleteInfoViewController: UIViewController {
         pageControl.numberOfPages = 5
         pageControl.currentPage = 0
         
-        frontPageButton.hidden = true
+        frontPageButton.isHidden = true
         
         // 头像方法
-        headAndNameDataView.headIconButton.addTarget(self, action: Selector("headIconButtonPressed"), forControlEvents: UIControlEvents.TouchUpInside)
+        headAndNameDataView.headIconButton.addTarget(self, action: #selector(CompleteInfoViewController.headIconButtonPressed), for: UIControlEvents.touchUpInside)
         
-        backButton.hidden = !canBack
+        backButton.isHidden = !canBack
         
         initIfExistUserModel()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -81,7 +81,7 @@ class CompleteInfoViewController: UIViewController {
         self.view.layoutSubviews()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         
@@ -94,23 +94,23 @@ class CompleteInfoViewController: UIViewController {
         scrollContentView.translatesAutoresizingMaskIntoConstraints = false
         
         // top
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0))
         
         // bottom
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0))
         
         // left
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0))
         
         // right
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0))
         
         // height
-        heightConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.height)
+        heightConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.height)
         scrollContentView.addConstraint(heightConstraint!)
         
         // width
-        widthConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.width * 5)
+        widthConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.width * 5)
         scrollContentView.addConstraint(widthConstraint!)
     }
     
@@ -121,23 +121,23 @@ class CompleteInfoViewController: UIViewController {
         }
         
         if headURLString != nil {
-            if let headURL = NSURL(string: headURLString!) {
-                headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
+            if let headURL = URL(string: headURLString!) {
+                headAndNameDataView.headIconButton.sd_setImage(with: headURL, for: UIControlState())
             }
         }
         
         if let user = userModel {
             self.headAndNameDataView.nickNameTextField.text = user.name
             
-            self.headAndNameDataView.headIconButton.setImage(UIImage(named: "defaultHead"), forState: UIControlState.Normal)
+            self.headAndNameDataView.headIconButton.setImage(UIImage(named: "defaultHead"), for: UIControlState())
             if let headUrlStr =  user.headURL {
-                if let headURL = NSURL(string: headUrlStr) {
-                    self.headAndNameDataView.headIconButton.sd_setImageWithURL(headURL, forState: UIControlState.Normal)
+                if let headURL = URL(string: headUrlStr) {
+                    self.headAndNameDataView.headIconButton.sd_setImage(with: headURL, for: UIControlState())
                 }
             }
             
-            genderDataView.womanButton.selected = !user.gender
-            genderDataView.menButton.selected = user.gender
+            genderDataView.womanButton.isSelected = !user.gender
+            genderDataView.menButton.isSelected = user.gender
             
             ageDataView.selectedRow = Int(user.age)
             
@@ -163,23 +163,23 @@ class CompleteInfoViewController: UIViewController {
     // MARK: - Response Method
     func headIconButtonPressed() {
         // 选取照片 上传
-        UIActionSheet(title: "选取照片", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "照片库").showInView(self.view)
+        UIActionSheet(title: "选取照片", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "照片库").show(in: self.view)
     }
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func backgroundPressed(sender: AnyObject) {
+    @IBAction func backgroundPressed(_ sender: AnyObject) {
         headAndNameDataView.nickNameTextField.resignFirstResponder()
         organizationDataView.phoneTextField.resignFirstResponder()
         organizationDataView.codeTextField.resignFirstResponder()
     }
 
-    @IBAction func frontPageButtonPressed(sender: AnyObject) {
-        scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x - scrollView.bounds.size.width, 0), animated: true)
+    @IBAction func frontPageButtonPressed(_ sender: AnyObject) {
+        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0), animated: true)
     }
     
-    @IBAction func nextPageButtonPressed(sender: AnyObject) {
+    @IBAction func nextPageButtonPressed(_ sender: AnyObject) {
         
         
         if headAndNameDataView.name == nil || headAndNameDataView.name == "" {
@@ -194,7 +194,7 @@ class CompleteInfoViewController: UIViewController {
             delegate?.completeInfo(self, user: user, phone: organizationDataView.phone, organizationCode: organizationDataView.code)
         }
         else {
-            scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x + scrollView.bounds.size.width, 0), animated: true)
+            scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0), animated: true)
         }
     }
     
@@ -211,25 +211,25 @@ class CompleteInfoViewController: UIViewController {
 }
 
 extension CompleteInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        UIImageJPEGRepresentation(image, 0.2)?.writeToFile(tempHeadPath, atomically: false)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
+        try? UIImageJPEGRepresentation(image, 0.2)?.write(to: URL(fileURLWithPath: tempHeadPath), options: [])
         
-        self.headAndNameDataView.headIconButton.setImage(image, forState: UIControlState.Normal)
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        self.headAndNameDataView.headIconButton.setImage(image, for: UIControlState())
+        picker.dismiss(animated: true, completion: nil)
     }
 }
 
 extension CompleteInfoViewController: UIActionSheetDelegate {
-    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
         if buttonIndex == 1 {
             // 拍照
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
                 let picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
-                picker.videoQuality = UIImagePickerControllerQualityType.TypeLow
-                picker.sourceType = UIImagePickerControllerSourceType.Camera
-                self.navigationController?.presentViewController(picker, animated: true, completion: nil)
+                picker.videoQuality = UIImagePickerControllerQualityType.typeLow
+                picker.sourceType = UIImagePickerControllerSourceType.camera
+                self.navigationController?.present(picker, animated: true, completion: nil)
             }
             else {
                 UIAlertView(title: "错误", message: "设备不支持拍照", delegate: nil, cancelButtonTitle: "确定").show()
@@ -237,13 +237,13 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
         }
         else if buttonIndex == 2 {
             // 照片库
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
                 let picker = UIImagePickerController()
                 picker.delegate = self
                 picker.allowsEditing = true
-                picker.videoQuality = UIImagePickerControllerQualityType.TypeLow
-                picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-                self.navigationController?.presentViewController(picker, animated: true, completion: nil)
+                picker.videoQuality = UIImagePickerControllerQualityType.typeLow
+                picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                self.navigationController?.present(picker, animated: true, completion: nil)
             }
             else {
                 UIAlertView(title: "错误", message: "设备不支持选取照片", delegate: nil, cancelButtonTitle: "确定").show()
@@ -253,25 +253,25 @@ extension CompleteInfoViewController: UIActionSheetDelegate {
 }
 
 extension CompleteInfoViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetX = scrollView.contentOffset.x + scrollView.bounds.size.width / 2
         let page = Int(offsetX / scrollView.bounds.size.width)
         self.pageControl.currentPage = page
         
-        frontPageButton.hidden = false
-        nextPageButton.hidden = false
-        nextPageButton.setTitle("下一页", forState: UIControlState.Normal)
+        frontPageButton.isHidden = false
+        nextPageButton.isHidden = false
+        nextPageButton.setTitle("下一页", for: UIControlState())
         if page == pageControl.numberOfPages - 1 {
-            nextPageButton.setTitle("提交", forState: UIControlState.Normal)
+            nextPageButton.setTitle("提交", for: UIControlState())
         }
         else if page == 0 {
-            frontPageButton.hidden = true
+            frontPageButton.isHidden = true
         }
     }
 }
 
 extension CompleteInfoViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
 }

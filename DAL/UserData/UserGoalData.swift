@@ -10,18 +10,18 @@ import UIKit
 
 struct UserGoalData {
     enum GoalType: Int {
-        case None = 0
-        case Weight
-        case Fat
-        case Muscle
+        case none = 0
+        case weight
+        case fat
+        case muscle
         
         func description() -> String {
             switch self {
-            case .Weight:
+            case .weight:
                 return "减重"
-            case .Fat:
+            case .fat:
                 return "减脂"
-            case .Muscle:
+            case .muscle:
                 return "增肌"
             default:
                 return "未设置"
@@ -31,29 +31,29 @@ struct UserGoalData {
     
     static var type: GoalType {
         get {
-            if let type = NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.type") as? NSNumber {
-                return GoalType(rawValue: type.integerValue)!
+            if let type = UserDefaults.standard.object(forKey: "\(UserData.sharedInstance.userId!).UserGoalData.type") as? NSNumber {
+                return GoalType(rawValue: type.intValue)!
             }
             else {
-                return .None
+                return .none
             }
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue.rawValue, forKey: "\(UserData.shareInstance().userId!).UserGoalData.type")
+            UserDefaults.standard.set(newValue.rawValue, forKey: "\(UserData.sharedInstance.userId!).UserGoalData.type")
         }
     }
     
     // 目标数量
     static var number: Int? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.number") as? NSNumber)?.integerValue
+            return (UserDefaults.standard.object(forKey: "\(UserData.sharedInstance.userId!).UserGoalData.number") as? NSNumber)?.intValue
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("\(UserData.shareInstance().userId!).UserGoalData.number")
+                UserDefaults.standard.removeObject(forKey: "\(UserData.sharedInstance.userId!).UserGoalData.number")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "\(UserData.shareInstance().userId!).UserGoalData.number")
+                UserDefaults.standard.set(Int(newValue!), forKey: "\(UserData.sharedInstance.userId!).UserGoalData.number")
             }
         }
     }
@@ -61,37 +61,37 @@ struct UserGoalData {
     // 目标天数
     static var days: Int? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.days") as? NSNumber)?.integerValue
+            return (UserDefaults.standard.object(forKey: "\(UserData.sharedInstance.userId!).UserGoalData.days") as? NSNumber)?.intValue
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("\(UserData.shareInstance().userId!).UserGoalData.days")
+                UserDefaults.standard.removeObject(forKey: "\(UserData.sharedInstance.userId!).UserGoalData.days")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "\(UserData.shareInstance().userId!).UserGoalData.days")
+                UserDefaults.standard.set(Int(newValue!), forKey: "\(UserData.sharedInstance.userId!).UserGoalData.days")
             }
         }
     }
     
     // 设置目标的时间
-    static var setDate: NSDate? {
+    static var setDate: Date? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("\(UserData.shareInstance().userId!).UserGoalData.setDate") as? NSDate
+            return UserDefaults.standard.object(forKey: "\(UserData.sharedInstance.userId!).UserGoalData.setDate") as? Date
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("\(UserData.shareInstance().userId!).UserGoalData.setDate")
+                UserDefaults.standard.removeObject(forKey: "\(UserData.sharedInstance.userId!).UserGoalData.setDate")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: "\(UserData.shareInstance().userId!).UserGoalData.setDate")
+                UserDefaults.standard.set(newValue!, forKey: "\(UserData.sharedInstance.userId!).UserGoalData.setDate")
             }
         }
     }
     
     // 获取剩余天数
     static var restDays: Int? {
-        let endDate = setDate?.dateByAddingTimeInterval(NSTimeInterval(days! * 24 * 60 * 60))
-        let restTimeInterval = endDate!.timeIntervalSinceDate(NSDate())
+        let endDate = setDate?.addingTimeInterval(TimeInterval(days! * 24 * 60 * 60))
+        let restTimeInterval = endDate!.timeIntervalSince(Date())
         
         if restTimeInterval < 0 {
             return 0

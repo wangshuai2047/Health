@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DeviceScanViewControllerProtocol {
-    func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol)
+    func didSelected(_ controller: DeviceScanViewController, device: DeviceManagerProtocol)
 }
 
 class DeviceScanViewController: UIViewController {
@@ -21,19 +21,19 @@ class DeviceScanViewController: UIViewController {
     
     var delegate: DeviceScanViewControllerProtocol?
     
-    class func showDeviceScanViewController(scanTypes: [DeviceType]?, delegate: DeviceScanViewControllerProtocol?, rootController: UIViewController) {
+    class func showDeviceScanViewController(_ scanTypes: [DeviceType]?, delegate: DeviceScanViewControllerProtocol?, rootController: UIViewController) {
         
         let controller = DeviceScanViewController()
         controller.scanTypes = scanTypes
         controller.delegate = delegate
         if #available(iOS 8.0, *) {
-            controller.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         } else {
             // Fallback on earlier versions
-            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.currentContext
         }
         // UIModalPresentationFormSheet
-        rootController.presentViewController(controller, animated: true) { () -> Void in
+        rootController.present(controller, animated: true) { () -> Void in
             controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         }
     }
@@ -50,7 +50,7 @@ class DeviceScanViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let cellNib = UINib(nibName: cellId, bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: cellId)
+        tableView.register(cellNib, forCellReuseIdentifier: cellId)
         
         BluetoothManager.shareInstance.scanDevice(scanTypes) { [unowned self] (results: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void in
             self.scanResult = results
@@ -74,39 +74,39 @@ class DeviceScanViewController: UIViewController {
     }
     */
 
-    @IBAction func closeButtonPressed(sender: AnyObject) {
+    @IBAction func closeButtonPressed(_ sender: AnyObject) {
         BluetoothManager.shareInstance.stopScanDevice()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension DeviceScanViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scanResult.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! DeviceScanCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! DeviceScanCell
         
-        let device = scanResult[indexPath.row]
+        let device = scanResult[(indexPath as NSIndexPath).row]
         
         cell.iconImageView.image = UIImage(named: "weiboLogin")
         cell.nameLabel.text = device.name
         cell.uuidLabel.text = device.uuid
-        cell.rssiLabel.text = "\(device.RSSI.integerValue)"
+        cell.rssiLabel.text = "\(device.RSSI.intValue)"
         
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let device = scanResult[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let device = scanResult[(indexPath as NSIndexPath).row]
         BluetoothManager.shareInstance.stopScanDevice()
         delegate?.didSelected(self, device: device)
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

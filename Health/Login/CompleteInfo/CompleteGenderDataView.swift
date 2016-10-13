@@ -17,7 +17,7 @@ class CompleteGenderDataView: UIView {
     
     var gender: Bool {
         get {
-            return womanButton.selected ? false : true
+            return womanButton.isSelected ? false : true
         }
     }
     
@@ -29,15 +29,15 @@ class CompleteGenderDataView: UIView {
     }
     */
 
-    @IBAction func genderButtonPressed(sender: UIButton) {
+    @IBAction func genderButtonPressed(_ sender: UIButton) {
         
         if sender == womanButton {
-            womanButton.selected = true
-            menButton.selected = false
+            womanButton.isSelected = true
+            menButton.isSelected = false
         }
         else {
-            menButton.selected = true
-            womanButton.selected = false
+            menButton.isSelected = true
+            womanButton.isSelected = false
         }
         
     }

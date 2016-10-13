@@ -11,9 +11,9 @@ import UIKit
 class LaunchAnimationController: UIViewController {
 
     @IBOutlet weak var imageView: FLAnimatedImageView!
-    private var complete: (() -> Void)?
+    fileprivate var complete: (() -> Void)?
     
-    static func showLaunchAnimationController(complete: () -> Void) -> LaunchAnimationController {
+    static func showLaunchAnimationController(_ complete: @escaping () -> Void) -> LaunchAnimationController {
         let controller = LaunchAnimationController()
         controller.complete = complete;
         return controller;
@@ -23,13 +23,13 @@ class LaunchAnimationController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let url = NSBundle.mainBundle().URLForResource("launchAnimation", withExtension: "gif")
-        let data = NSData(contentsOfURL: url!)
+        let url = Bundle.main.url(forResource: "launchAnimation", withExtension: "gif")
+        let data = try? Data(contentsOf: url!)
         
         let animatedImage = FLAnimatedImage(animatedGIFData: data)
         imageView.animatedImage = animatedImage
         
-        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: Selector("animationFinished"), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: Selector("animationFinished"), userInfo: nil, repeats: false)
     }
     
     convenience init() {

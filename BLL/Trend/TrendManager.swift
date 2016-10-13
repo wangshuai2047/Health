@@ -9,8 +9,8 @@
 import Foundation
 
 struct TrendManager {
-    static func eightDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: AnyObject]] {
-        return DBManager.shareInstance().queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserManager.shareInstance().currentUser.userId)
+    static func eightDaysDatas(_ beginTimescamp: Date, endTimescamp: Date) -> [[String: AnyObject]] {
+        return DBManager.sharedInstance.queryEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserManager.sharedInstance.currentUser.userId)
     }
 }
 

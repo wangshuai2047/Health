@@ -15,7 +15,7 @@ class EvaluationData: NSManagedObject {
 // Insert code here to add functionality to your managed object subclass
 
     convenience init(context: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)!
-        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)!
+        self.init(entity: entityDescription, insertInto: context)
     }
 }

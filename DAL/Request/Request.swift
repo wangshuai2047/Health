@@ -10,34 +10,34 @@ import Foundation
 
 struct Request {
     
-    static func requestURL(type : String) -> String {
+    static func requestURL(_ type : String) -> String {
         let urlString = "http://s.bodivis.com.cn/easygtd/v1/user/\(type)"
         return urlString
     }
     
     
     
-    static func startWithRequest(url : String, method : String?, params : [String : String]?, completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
+    static func startWithRequest(_ url : String, method : String?, params : [String : String]?, completionHandler:  @escaping (_ data: Data? , _ response: URLResponse?, _ error: NSError?) -> Void) {
         
         // create request
-        let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
+        var request : URLRequest = URLRequest(url: URL(string: url)!)
         
         if let m = method {
-            request.HTTPMethod = m
+            request.httpMethod = m
         }
         
         // set body data
         if let bodyStrAndBoundary = generateFormDataBodyStr(params) {
-            request.HTTPBody = bodyStrAndBoundary.bodyStr.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-            request.setValue("\(bodyStrAndBoundary.bodyStr.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))", forHTTPHeaderField: "Content-Length")
+            request.httpBody = bodyStrAndBoundary.bodyStr.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            request.setValue("\(bodyStrAndBoundary.bodyStr.lengthOfBytes(using: String.Encoding.utf8))", forHTTPHeaderField: "Content-Length")
             request.setValue("multipart/form-data; boundary=Boundary+\(bodyStrAndBoundary.boundary)", forHTTPHeaderField: "Content-Type")
         }
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completionHandler(data: data, response: response, error: self.errorFilter(error))
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response:URLResponse?, error: NSError?) -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
+                completionHandler(data, response, self.errorFilter(error))
             })
-        })
+        } as! (Data?, URLResponse?, Error?) -> Void)
         
         task.resume()
     }
@@ -54,23 +54,23 @@ extension Request {
         return "http://s.bodivis.com.cn/index.php"
     }
     
-    static func startWithRequest(requestType: RequestType, params: [String : AnyObject], completionHandler: (data: NSData! , response: NSURLResponse!, error: NSError!) -> Void) {
+    static func startWithRequest(_ requestType: RequestType, params: [String : AnyObject], completionHandler: @escaping (_ data: Data? , _ response: URLResponse?, _ error: NSError?) -> Void) {
         // create request
-        let request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestPHPURL())!)
-        request.HTTPMethod = "POST"
+        var request : URLRequest = URLRequest(url: URL(string: requestPHPURL())!)
+        request.httpMethod = "POST"
         request.timeoutInterval = 15
-        request.HTTPBody = generatePHPStyleBodyStr(requestType.rawValue, params: params).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        request.httpBody = generatePHPStyleBodyStr(requestType.rawValue, params: params).data(using: String.Encoding.utf8, allowLossyConversion: true)
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response:NSURLResponse?, error: NSError?) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completionHandler(data: data, response: response, error: self.errorFilter(error))
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response:URLResponse?, error: Error?) -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
+                completionHandler(data, response, self.errorFilter(error as NSError?))
             })
         })
         
         task.resume()
     }
     
-    static func generatePHPStyleBodyStr(partnerCode: String, params: [String : AnyObject]) -> String {
+    static func generatePHPStyleBodyStr(_ partnerCode: String, params: [String : AnyObject]) -> String {
         var error: NSError? = nil
 //        var bodyStr: NSData?
 //        do {
@@ -84,7 +84,7 @@ extension Request {
 //        }
         
         let key = "04c67a23b87bc349cfdf8fa59e980723"
-        let timeInterval = NSDate().timeIntervalSince1970
+        let timeInterval = Date().timeIntervalSince1970
         let md5Key = String(format: "%i%@", arguments: [Int(timeInterval), key]).md5Value
         
         let httpBodyInfo = [
@@ -95,14 +95,14 @@ extension Request {
                 "encryption" : "md5"
             ],
             "body" : params
-        ]
+        ] as [String : Any]
         
         print("request HTTPBody \(httpBodyInfo)")
         
         
-        var httpBodyData: NSData?
+        var httpBodyData: Data?
         do {
-            httpBodyData = try NSJSONSerialization.dataWithJSONObject(httpBodyInfo, options: NSJSONWritingOptions.PrettyPrinted)
+            httpBodyData = try JSONSerialization.data(withJSONObject: httpBodyInfo, options: JSONSerialization.WritingOptions.prettyPrinted)
         } catch let error1 as NSError {
             error = error1
             httpBodyData = nil
@@ -111,14 +111,14 @@ extension Request {
             assert(true, error!.description)
         }
         
-        return String(NSString(data: httpBodyData!, encoding: NSUTF8StringEncoding)!)
+        return String(NSString(data: httpBodyData!, encoding: String.Encoding.utf8.rawValue)!)
     }
 }
 
 // data wrapper
 extension Request {
     
-    static func generateFormDataBodyStr(params : [String : String]?) -> (bodyStr : String, boundary : String)? {
+    static func generateFormDataBodyStr(_ params : [String : String]?) -> (bodyStr : String, boundary : String)? {
         
         let boundary = String(format: "%08X%08X", arc4random(),arc4random())
         // add form data
@@ -142,7 +142,7 @@ extension Request {
 // error filter
 extension Request {
     
-    private static func errorFilter(error : NSError?) -> NSError? {
+    fileprivate static func errorFilter(_ error : NSError?) -> NSError? {
         return error
     }
 }

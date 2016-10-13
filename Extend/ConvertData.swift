@@ -8,33 +8,42 @@
 
 import Foundation
 
-extension NSData {
+extension Data {
     
-    func getUInt16Bytes(inout buffer: UInt16, range: NSRange) {
-        let count = range.length / sizeof(UInt8)
+    func getUInt16Bytes(_ buffer: inout UInt16, range: NSRange) {
+        
+        
+        
+        let count = range.length / MemoryLayout<UInt8>.size
         // create array of appropriate length:
-        var bytes = [UInt8](count: count, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: count)
         // copy bytes into array
-        self.getBytes(&bytes, range: range)
+        (self as NSData).getBytes(&bytes, range: range)
         
         var outBuffer: [UInt8] = []
         for i in count-1...0 {
             outBuffer += [bytes[i]]
         }
-        buffer = UnsafePointer<UInt16>(outBuffer).memory
+        
+        buffer = UnsafePointer(outBuffer).withMemoryRebound(to: UInt16.self, capacity: 1) {
+            $0.pointee
+        }
     }
     
-    func getBytes<T>(inout buffer buffer: T, range: NSRange) {
+    func getBytes<T>(buffer: inout T, range: NSRange) {
         let count = range.length
         // create array of appropriate length:
-        var bytes = [UInt8](count: count, repeatedValue: 0)
+        var bytes = [UInt8](repeating: 0, count: count)
         // copy bytes into array
-        self.getBytes(&bytes, range: range)
+        (self as NSData).getBytes(&bytes, range: range)
         
         var outBuffer: [UInt8] = []
         for i in count-1...0 {
             outBuffer += [bytes[i]]
         }
-        buffer = UnsafePointer<T>(outBuffer).memory
+        
+        buffer = UnsafePointer(outBuffer).withMemoryRebound(to: T.self, capacity: 1) {
+            $0.pointee
+        }
     }
 }

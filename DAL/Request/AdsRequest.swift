@@ -20,19 +20,19 @@ struct RequestLoginAdModel {
 struct AdsRequest {
     
     
-    static func queryLaunchAds(complete: ((ad: RequestLoginAdModel?, error: NSError?) -> Void)) {
+    static func queryLaunchAds(_ complete: @escaping ((_ ad: RequestLoginAdModel?, _ error: NSError?) -> Void)) {
         
         RequestType.QueryLaunchAds.startRequest([:], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(ad: nil, error: err)
+                complete(nil, err)
                 #if DEBUG
                     println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(ad: RequestLoginAdModel(imageURL: jsonObj!.valueForKey("imageURL") as! String, linkURL: jsonObj!.valueForKey("targetURL") as! String), error: nil)
+                complete(RequestLoginAdModel(imageURL: jsonObj!.value(forKey: "imageURL") as! String, linkURL: jsonObj!.value(forKey: "targetURL") as! String), nil)
                 #if DEBUG
                     println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
@@ -40,11 +40,11 @@ struct AdsRequest {
         })
     }
     
-    static func queryActivityAds(userId: Int, complete: ((ads: [RequestLoginAdModel]?, error: NSError?) -> Void)) {
-        RequestType.QueryActivityAds.startRequest(["userId" : userId], completionHandler: { (data, response, error) -> Void in
+    static func queryActivityAds(_ userId: Int, complete: @escaping ((_ ads: [RequestLoginAdModel]?, _ error: NSError?) -> Void)) {
+        RequestType.QueryActivityAds.startRequest(["userId" : userId as AnyObject], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(ads: nil, error: err)
+                complete(nil, err)
                 #if DEBUG
                     println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
@@ -52,13 +52,13 @@ struct AdsRequest {
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
                 
-                let ads = jsonObj?.valueForKey("ads") as? [[String : String]]
+                let ads = jsonObj?.value(forKey: "ads") as? [[String : String]]
                 
                 var adModels: [RequestLoginAdModel] = []
                 for adInfo: [String : String] in ads! {
                     adModels += [RequestLoginAdModel(imageURL: adInfo["imageURL"]!, linkURL: adInfo["targetURL"]!)]
                 }
-                complete(ads: adModels, error: nil)
+                complete(adModels, nil)
                 #if DEBUG
                     println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif

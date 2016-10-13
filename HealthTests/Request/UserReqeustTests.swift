@@ -28,14 +28,14 @@ class UserReqeustTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }
 
     func test_UserRequest_CompleteInfo_isSuccess() {
         
-        let expectation = expectationWithDescription("test_UserRequest_CompleteInfo_isSuccess")
+        let expectation = self.expectation(withDescription: "test_UserRequest_CompleteInfo_isSuccess")
         
         let userId: Int = 10
         let gender: Bool = true
@@ -44,7 +44,7 @@ class UserReqeustTests: XCTestCase {
         let name: String = "Mfewfjweie"
         let phone: String = "18610729420"
         let organizationCode: String = "SHYD"
-        let imagePath = NSBundle.mainBundle().pathForResource("11111", ofType: "png")
+        let imagePath = Bundle.main.path(forResource: "11111", ofType: "png")
         let imageURL: String? = imagePath
         
         UserRequest.completeUserInfo(userId, gender: gender, height: height, age: age, name: name, phone: phone, organizationCode: organizationCode, imageURL: imageURL) { (headURL, error) -> Void in
@@ -52,7 +52,7 @@ class UserReqeustTests: XCTestCase {
             XCTAssertNil(error, "test_UserRequest_CompleteInfo_isSuccess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
         
@@ -60,7 +60,7 @@ class UserReqeustTests: XCTestCase {
     }
     
     func test_UserRequest_createAndDeleteUser_isSucess() {
-        let expectation = expectationWithDescription("test_UserRequest_createAndDeleteUser_isSucess")
+        let expectation = self.expectation(withDescription: "test_UserRequest_createAndDeleteUser_isSucess")
         
         let pid = 10
         let name = "Other"
@@ -77,20 +77,20 @@ class UserReqeustTests: XCTestCase {
             })
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
     }
     
     func test_UserRequest_feedback_isSucess() {
-        let expectation = expectationWithDescription("test_UserRequest_feedback_isSucess")
+        let expectation = self.expectation(withDescription: "test_UserRequest_feedback_isSucess")
         
         UserRequest.feedBack(10, feedback: "反馈测试") { (error: NSError?) -> Void in
             expectation.fulfill()
             XCTAssertNil(error, "test_UserRequest_feedback_isSucess 错误: \(error?.description)")
         }
         
-        waitForExpectationsWithTimeout(15) { (error: NSError?) -> Void in
+        waitForExpectations(withTimeout: 15) { (error: NSError?) -> Void in
             
         }
         

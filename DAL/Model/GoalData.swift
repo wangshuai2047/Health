@@ -15,13 +15,13 @@ class GoalData: NSManagedObject {
     @NSManaged var dataId: String
     @NSManaged var isUpload: NSNumber
     @NSManaged var steps: NSNumber
-    @NSManaged var startTime: NSDate
+    @NSManaged var startTime: Date
     @NSManaged var userId: NSNumber
-    @NSManaged var endTime: NSDate
+    @NSManaged var endTime: Date
     @NSManaged var stepsType: NSNumber
 
     convenience init(context: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)!
-        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)!
+        self.init(entity: entityDescription, insertInto: context)
     }
 }

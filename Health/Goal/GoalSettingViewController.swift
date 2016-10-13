@@ -47,7 +47,7 @@ class GoalSettingViewController: UIViewController {
         
         initContentView()
         
-        frontButton.hidden = true
+        frontButton.isHidden = true
         
         setGoalButtonPressed(weightGoalButton)
         
@@ -77,29 +77,29 @@ class GoalSettingViewController: UIViewController {
         scrollContentView.translatesAutoresizingMaskIntoConstraints = false
         
         // top
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0))
         
         // bottom
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0))
         
         // left
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0))
         
         // right
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0))
         
         // height
-        heightConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.height)
+        heightConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.height)
         scrollContentView.addConstraint(heightConstraint!)
         
         // width
-        widthConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.width * 3)
+        widthConstraint = NSLayoutConstraint(item: scrollContentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: scrollView.frame.size.width * 3)
         scrollContentView.addConstraint(widthConstraint!)
     }
     
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
 
     /*
@@ -113,15 +113,15 @@ class GoalSettingViewController: UIViewController {
     */
 
     // MARK: - scrollView Button
-    @IBAction func frontButtonPressed(sender: AnyObject) {
-        scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x - scrollView.bounds.size.width, 0), animated: true)
+    @IBAction func frontButtonPressed(_ sender: AnyObject) {
+        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0), animated: true)
     }
     
-    @IBAction func nextButtonPressed(sender: AnyObject) {
+    @IBAction func nextButtonPressed(_ sender: AnyObject) {
         
         if scrollView.contentOffset.x >= scrollView.contentSize.width - scrollView.frame.size.width {
-            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "提交中", detailMsg: nil, progress: nil)
-            GoalManager.setGoal(goalType, number: goalNumber(), days: strategyDayRange[setDaysGoalPicker.selectedRowInComponent(0)], complete: { [unowned self] (error: NSError?) -> Void in
+            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "提交中", detailMsg: nil, progress: nil)
+            GoalManager.setGoal(goalType, number: goalNumber(), days: strategyDayRange[setDaysGoalPicker.selectedRow(inComponent: 0)], complete: { [unowned self] (error: NSError?) -> Void in
                 
                 if error == nil {
                     self.backButtonPressed(NSObject())
@@ -135,7 +135,7 @@ class GoalSettingViewController: UIViewController {
             
         }
         else {
-            scrollView.setContentOffset(CGPointMake(scrollView.contentOffset.x + scrollView.bounds.size.width, 0), animated: true)
+            scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0), animated: true)
         }
         
     }
@@ -143,16 +143,16 @@ class GoalSettingViewController: UIViewController {
     
     // MARK: - setGoal Button
     
-    @IBAction func setGoalButtonPressed(button: UIButton) {
+    @IBAction func setGoalButtonPressed(_ button: UIButton) {
         
-        weightGoalButton.selected = false
+        weightGoalButton.isSelected = false
         weightGoalButton.alpha = 0.5
-        fatGoalButton.selected = false
+        fatGoalButton.isSelected = false
         fatGoalButton.alpha = 0.5
-        muscleGoalButton.selected = false
+        muscleGoalButton.isSelected = false
         muscleGoalButton.alpha = 0.5
         
-        button.selected = true
+        button.isSelected = true
         button.alpha = 1
         
         freshGoalStrategy()
@@ -160,7 +160,7 @@ class GoalSettingViewController: UIViewController {
     
     
     // 策略单位
-    var goalType: UserGoalData.GoalType = .None
+    var goalType: UserGoalData.GoalType = .none
     var unit: String?
     var strategyNumberRange: [Int] = []
     var strategyDayRange: [Int] = []
@@ -172,17 +172,17 @@ class GoalSettingViewController: UIViewController {
         strategyDayRange = []
         
         // 数值数据单位
-        if weightGoalButton.selected {
+        if weightGoalButton.isSelected {
             unit = "kg"
-            goalType = .Weight
+            goalType = .weight
         }
-        else if fatGoalButton.selected {
+        else if fatGoalButton.isSelected {
             unit = "公斤"
-            goalType = .Fat
+            goalType = .fat
         }
-        else if muscleGoalButton.selected {
+        else if muscleGoalButton.isSelected {
             unit = "double斤"
-            goalType = .Muscle
+            goalType = .muscle
         }
         
         // 设置范围值
@@ -205,36 +205,36 @@ class GoalSettingViewController: UIViewController {
     func setNumberDescription() {
         setNumberAttLabel.clear()
         setNumberAttLabel.append("您将\(goalType.description()): ", font: nil, color: deepBlue)
-        setNumberAttLabel.append(" \(strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)])", font: UIFont.systemFontOfSize(22), color: lightBlue)
+        setNumberAttLabel.append(" \(strategyNumberRange[setNumberGoalPicker.selectedRow(inComponent: 0)])", font: UIFont.systemFont(ofSize: 22), color: lightBlue)
         setNumberAttLabel.append("\(unit!)\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
     }
     
     func setDaysDescription() {
         setDaysAttLabel.clear()
         // 健康将脂肪含量减重到13公斤
-        if goalType == UserGoalData.GoalType.Weight {
+        if goalType == UserGoalData.GoalType.weight {
             setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康将体重减到", font: nil, color: deepBlue)
-            setDaysAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
+            setDaysAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFont(ofSize: 22), color: lightBlue)
             setDaysAttLabel.append("kg\n您采取", font: nil, color: deepBlue)
         }
         else {
             setDaysAttLabel.append("系统根据您的身体数据分析\n为了健康将脂肪含量减到", font: nil, color: deepBlue)
-            setDaysAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
+            setDaysAttLabel.append(" \(goalNumber()) ", font: UIFont.systemFont(ofSize: 22), color: lightBlue)
             setDaysAttLabel.append("公斤\n您采取", font: nil, color: deepBlue)
         }
         
-        setDaysAttLabel.append(" \(strategyDayRange[setDaysGoalPicker.selectedRowInComponent(0)]) ", font: UIFont.systemFontOfSize(22), color: lightBlue)
+        setDaysAttLabel.append(" \(strategyDayRange[setDaysGoalPicker.selectedRow(inComponent: 0)]) ", font: UIFont.systemFont(ofSize: 22), color: lightBlue)
         setDaysAttLabel.append("天的周期\n您也可以上下滑动修改目标数值", font: nil, color: deepBlue)
     }
     
     func goalNumber() -> Int {
         
         if viewModel.lastEvaluationData != nil {
-            if goalType == .Fat {
-                return Int((viewModel.lastEvaluationData!.fatWeight)) - strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)]
+            if goalType == .fat {
+                return Int((viewModel.lastEvaluationData!.fatWeight)) - strategyNumberRange[setNumberGoalPicker.selectedRow(inComponent: 0)]
             }
-            else if goalType == .Weight {
-                return Int((viewModel.lastEvaluationData!.weight)) - strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)]
+            else if goalType == .weight {
+                return Int((viewModel.lastEvaluationData!.weight)) - strategyNumberRange[setNumberGoalPicker.selectedRow(inComponent: 0)]
             }
         }
         
@@ -243,34 +243,34 @@ class GoalSettingViewController: UIViewController {
     
     func calculeDays() -> Int {
         
-        return viewModel.calculeSuggestDays(goalType, range: strategyNumberRange[setNumberGoalPicker.selectedRowInComponent(0)])
+        return viewModel.calculeSuggestDays(goalType, range: strategyNumberRange[setNumberGoalPicker.selectedRow(inComponent: 0)])
     }
 }
 
 
 extension GoalSettingViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetX = scrollView.contentOffset.x + scrollView.bounds.size.width / 2
         let page = Int(offsetX / scrollView.bounds.size.width)
         
-        frontButton.hidden = false
-        nextButton.hidden = false
-        nextButton.setTitle("下一页", forState: UIControlState.Normal)
+        frontButton.isHidden = false
+        nextButton.isHidden = false
+        nextButton.setTitle("下一页", for: UIControlState())
         if page == 2 {
-            nextButton.setTitle("完成", forState: UIControlState.Normal)
+            nextButton.setTitle("完成", for: UIControlState())
         }
         else if page == 0 {
-            frontButton.hidden = true
+            frontButton.isHidden = true
         }
     }
 }
 
 extension GoalSettingViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             
             if pickerView == setNumberGoalPicker {
@@ -289,7 +289,7 @@ extension GoalSettingViewController: UIPickerViewDataSource, UIPickerViewDelegat
         return 0
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == setNumberGoalPicker {
             if component == 0 {
@@ -311,11 +311,11 @@ extension GoalSettingViewController: UIPickerViewDataSource, UIPickerViewDelegat
         return ""
     }
     
-    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 80
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // 设置数值
         setNumberDescription()
         

@@ -8,15 +8,15 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     // 获取零点时间
-    func zeroTime() -> NSDate {
+    func zeroTime() -> Date {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        let nowDateString = dateFormatter.stringFromDate(self)
-        let date = dateFormatter.dateFromString(nowDateString)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        let nowDateString = dateFormatter.string(from: self)
+        let date = dateFormatter.date(from: nowDateString)
         
         return date!
     }
@@ -26,15 +26,15 @@ extension NSDate {
     }
     
     func currentZoneFormatDescription() -> String {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-        return dateFormatter.stringFromDate(self)
+        return dateFormatter.string(from: self)
     }
     
     func YYdd() -> String {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM.dd"
-        return dateFormatter.stringFromDate(self)
+        return dateFormatter.string(from: self)
     }
     
     // 获取小时数

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BindOrganzationViewControllerDelegate {
-    func bindFinished(code: String?, error: NSError?)
+    func bindFinished(_ code: String?, error: NSError?)
 }
 
 class BindOrganzationViewController: UIViewController {
@@ -18,24 +18,24 @@ class BindOrganzationViewController: UIViewController {
     
     @IBOutlet weak var codeTextField: UITextField!
     
-    class func showBindOrganzationViewController(delegate: BindOrganzationViewControllerDelegate?, rootController: UIViewController) {
+    class func showBindOrganzationViewController(_ delegate: BindOrganzationViewControllerDelegate?, rootController: UIViewController) {
         
         let controller = BindOrganzationViewController()
         controller.delegate = delegate
         if #available(iOS 8.0, *) {
-            controller.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         } else {
             // Fallback on earlier versions
-            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.currentContext
         }
         // UIModalPresentationFormSheet
-        rootController.presentViewController(controller, animated: true) { () -> Void in
+        rootController.present(controller, animated: true) { () -> Void in
             controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         }
     }
     
-    class func cancelBind(complete: (NSError?) -> Void) {
-        LoginManager.completeInfomation(UserData.shareInstance().name!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, phone: UserData.shareInstance().phone, organizationCode: nil, headURL: UserData.shareInstance().headURL, complete: complete)
+    class func cancelBind(_ complete: @escaping (NSError?) -> Void) {
+        LoginManager.completeInfomation(UserData.sharedInstance.name!, gender: UserData.sharedInstance.gender!, age: UserData.sharedInstance.age!, height: UserData.sharedInstance.height!, phone: UserData.sharedInstance.phone, organizationCode: nil, headURL: UserData.sharedInstance.headURL, complete: complete)
     }
     
     convenience init() {
@@ -64,17 +64,17 @@ class BindOrganzationViewController: UIViewController {
     }
     */
 
-    @IBAction func closeButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func sureButtonPressed(sender: AnyObject) {
-        LoginManager.completeInfomation(UserData.shareInstance().name!, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!, phone: UserData.shareInstance().phone, organizationCode: self.codeTextField.text == nil || self.codeTextField.text! == "" ? nil : self.codeTextField.text, headURL: UserData.shareInstance().headURL) { [unowned self] (error: NSError?) -> Void in
+    @IBAction func sureButtonPressed(_ sender: AnyObject) {
+        LoginManager.completeInfomation(UserData.sharedInstance.name!, gender: UserData.sharedInstance.gender!, age: UserData.sharedInstance.age!, height: UserData.sharedInstance.height!, phone: UserData.sharedInstance.phone, organizationCode: self.codeTextField.text == nil || self.codeTextField.text! == "" ? nil : self.codeTextField.text, headURL: UserData.sharedInstance.headURL) { [unowned self] (error: NSError?) -> Void in
             
             self.delegate?.bindFinished(self.codeTextField.text == nil || self.codeTextField.text == "" ? nil : self.codeTextField.text, error: error)
             
             if error == nil {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             else {
                 Alert.showError(error!)

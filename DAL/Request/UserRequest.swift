@@ -11,14 +11,14 @@ import Foundation
 struct UserRequest {
     
     // 上传头像
-    static func uploadHeadIcon(userId: UInt8, imageURL: NSURL, complete: ((error: NSError?) -> Void)) {
+    static func uploadHeadIcon(_ userId: UInt8, imageURL: URL, complete: @escaping ((_ error: NSError?) -> Void)) {
         let urlStr = Request.requestURL("")
         let params = ["userId": "\(userId)"]
         
         Request.startWithRequest(urlStr, method: "POST", params: params) { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(error: err)
+                complete(err)
                 #if DEBUG
                     println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
@@ -28,7 +28,7 @@ struct UserRequest {
                 
                 // warning
                 
-                complete(error: nil)
+                complete(nil)
                 #if DEBUG
                     println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
@@ -37,12 +37,12 @@ struct UserRequest {
     }
     
     // 完善个人资料
-    static func completeUserInfo(userId: Int, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, imageURL: String?, complete: ((imageURL: String?, error: NSError?) -> Void)) {
+    static func completeUserInfo(_ userId: Int, gender: Bool, height: UInt8, age: UInt8, name: String, phone: String?, organizationCode: String?, imageURL: String?, complete: @escaping ((_ imageURL: String?, _ error: NSError?) -> Void)) {
         
 //        complete(error: nil)
 //        return
         
-        var params = ["userId": NSNumber(integer: userId), "gender": NSNumber(integer: gender ? 1 : 2), "height": NSNumber(unsignedChar: height), "age": NSNumber(unsignedChar: age), "name": name]
+        var params = ["userId": NSNumber(value: userId as Int), "gender": NSNumber(value: gender ? 1 : 2 as Int), "height": NSNumber(value: height as UInt8), "age": NSNumber(value: age as UInt8), "name": name] as [String : Any]
         
         if phone != nil {
             params["phone"] = phone!
@@ -63,28 +63,28 @@ struct UserRequest {
             if let image = UIImage(contentsOfFile: imageURL!) {
                 let data = UIImageJPEGRepresentation(image, 1)
                 
-                let options: NSDataBase64EncodingOptions = [
-                    .Encoding76CharacterLineLength,
-                    .EncodingEndLineWithLineFeed
+                let options: NSData.Base64EncodingOptions = [
+                    .lineLength76Characters,
+                    .endLineWithLineFeed
                 ]
-                if let base64String = data?.base64EncodedStringWithOptions(options) {
+                if let base64String = data?.base64EncodedString(options: options) {
                     params["head"] = base64String
                 }
             }
             
         }
         
-        RequestType.CompleteUserInfo.startRequest(params, completionHandler: { (data, response, error) -> Void in
+        RequestType.CompleteUserInfo.startRequest(params as [String : AnyObject], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(imageURL: nil, error: err)
+                complete(nil, err)
                 #if DEBUG
                     println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(imageURL: jsonObj?["headURL"] as? String, error: nil)
+                complete(jsonObj?["headURL"] as? String, nil)
                 #if DEBUG
                     println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
@@ -92,8 +92,8 @@ struct UserRequest {
         })
     }
     
-    static func feedBack(userId: Int, feedback: String, complete: ((NSError?) -> Void)) {
-        RequestType.FeedBack.startRequest(["userId" : userId, "feedback" : feedback], completionHandler: { (data, response, error) -> Void in
+    static func feedBack(_ userId: Int, feedback: String, complete: @escaping ((NSError?) -> Void)) {
+        RequestType.FeedBack.startRequest(["userId" : userId as AnyObject, "feedback" : feedback as AnyObject], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
@@ -111,36 +111,36 @@ struct UserRequest {
         })
     }
     
-    static func createUser(pid: Int, name: String, height: Int, age: Int, gender: Bool,imageURL: String?, complete: ((userId: Int?, headURL: String?, NSError?) -> Void)) {
+    static func createUser(_ pid: Int, name: String, height: Int, age: Int, gender: Bool,imageURL: String?, complete: @escaping ((_ userId: Int?, _ headURL: String?, NSError?) -> Void)) {
         
-        var params = ["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(integer: gender ? 1 : 2)]
+        var params = ["pid" : pid, "name" : name, "height" : height, "age" : age, "gender" : NSNumber(value: gender ? 1 : 2 as Int)] as [String : Any]
         
         if imageURL != nil {
             if let image = UIImage(contentsOfFile: imageURL!) {
                 let data = UIImageJPEGRepresentation(image, 1)
                 
-                let options: NSDataBase64EncodingOptions = [
-                    .Encoding76CharacterLineLength,
-                    .EncodingEndLineWithLineFeed
+                let options: NSData.Base64EncodingOptions = [
+                    .lineLength76Characters,
+                    .endLineWithLineFeed
                 ]
-                if let base64String = data?.base64EncodedStringWithOptions(options) {
+                if let base64String = data?.base64EncodedString(options: options) {
                     params["head"] = base64String
                 }
             }
         }
         
-        RequestType.CreateUser.startRequest(params, completionHandler: { (data, response, error) -> Void in
+        RequestType.CreateUser.startRequest(params as [String : AnyObject], completionHandler: { (data, response, error) -> Void in
             
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(userId: nil, headURL: nil, err)
+                complete(nil, nil, err)
                 #if DEBUG
                     println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                complete(userId: jsonObj?.valueForKey("userId") as? Int, headURL: jsonObj?.valueForKey("headURL") as? String, nil)
+                complete(jsonObj?.value(forKey: "userId") as? Int, jsonObj?.value(forKey: "headURL") as? String, nil)
                 #if DEBUG
                     println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
@@ -148,8 +148,8 @@ struct UserRequest {
         })
     }
     
-    static func deleteUser(pid: Int, userId: Int, complete: ((NSError?) -> Void)) {
-        RequestType.DeleteUser.startRequest(["userId" : userId, "pid": pid], completionHandler: { (data, response, error) -> Void in
+    static func deleteUser(_ pid: Int, userId: Int, complete: @escaping ((NSError?) -> Void)) {
+        RequestType.DeleteUser.startRequest(["userId" : userId as AnyObject, "pid": pid as AnyObject], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
                 complete(err)

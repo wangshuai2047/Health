@@ -25,8 +25,8 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
                 data!.boneMuscleLevel,
                 data!.visceralFatContentStatus,
                 data!.fatPercentageStatus,
-                ValueStatus.Normal,     // 身体年龄
-                ValueStatus.Normal,     // 代谢
+                ValueStatus.normal,     // 身体年龄
+                ValueStatus.normal,     // 代谢
             ]
             
             if data!.hepaticAdiposeInfiltration != nil {
@@ -47,7 +47,7 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
     
     
     var lightColor: UIColor {
-        if UserManager.shareInstance().currentUser.gender {
+        if UserManager.sharedInstance.currentUser.gender {
             return lightBlue
         }
         else {
@@ -56,7 +56,7 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
     }
     
     var deepColor: UIColor {
-        if UserManager.shareInstance().currentUser.gender {
+        if UserManager.sharedInstance.currentUser.gender {
             return deepBlue
         }
         else {
@@ -68,10 +68,10 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         scoreCicleView.update([(0, deepColor), (100, lightColor)], animated: true)
-        physiqueImageView.image = UIImage(named: Physique.Athlete.selectedImageName(UserManager.shareInstance().currentUser.gender))
+        physiqueImageView.image = UIImage(named: Physique.athlete.selectedImageName(UserManager.sharedInstance.currentUser.gender))
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -91,14 +91,14 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
         
         for status in allStatus {
             // 重量
-            if status == .Low {
-                earlyWarningCount++
+            if status == .low {
+                earlyWarningCount += 1
             }
-            else if status == .Normal {
-                healthCount++
+            else if status == .normal {
+                healthCount += 1
             }
             else {
-                warningCount++
+                warningCount += 1
             }
         }
         return (warningCount, earlyWarningCount, healthCount)
@@ -120,17 +120,17 @@ class EvaluationDetailScroeDescriptionCell: UITableViewCell {
         
         // 您的体型为肥胖型，本次12项检查中，有XX项预警，XX项警告，XX项正常”，
         
-        let font = UIFont.systemFontOfSize(15)
+        let font = UIFont.systemFont(ofSize: 15)
         descriptionLabel.clear()
         descriptionLabel.isCenterAlignment = false
-        descriptionLabel.append("您的体型为", font: font, color: UIColor.grayColor())
+        descriptionLabel.append("您的体型为", font: font, color: UIColor.gray)
         descriptionLabel.append("\(data!.physique.description)", font: font, color: deepBlue)
-        descriptionLabel.append("。本次\(allStatus.count)项检查中有", font: font, color: UIColor.grayColor())
-        descriptionLabel.append("\(earlyWarningCount)", font: font, color: ValueStatus.Low.statusColor)
-        descriptionLabel.append("项预警，", font: font, color: UIColor.grayColor())
-        descriptionLabel.append("\(warningCount)", font: font, color: ValueStatus.High.statusColor)
-        descriptionLabel.append("项警告，", font: font, color: UIColor.grayColor())
-        descriptionLabel.append("\(hCount)", font: font, color: ValueStatus.Normal.statusColor)
-        descriptionLabel.append("项正常。", font: font, color: UIColor.grayColor())
+        descriptionLabel.append("。本次\(allStatus.count)项检查中有", font: font, color: UIColor.gray)
+        descriptionLabel.append("\(earlyWarningCount)", font: font, color: ValueStatus.low.statusColor)
+        descriptionLabel.append("项预警，", font: font, color: UIColor.gray)
+        descriptionLabel.append("\(warningCount)", font: font, color: ValueStatus.high.statusColor)
+        descriptionLabel.append("项警告，", font: font, color: UIColor.gray)
+        descriptionLabel.append("\(hCount)", font: font, color: ValueStatus.normal.statusColor)
+        descriptionLabel.append("项正常。", font: font, color: UIColor.gray)
     }
 }

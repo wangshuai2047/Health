@@ -24,11 +24,11 @@ struct GoalShowInfo {
         
         var needReduceFat: Float = 0 // kg
         // 转换 需改变的体脂率
-        if UserGoalData.type == UserGoalData.GoalType.Weight {
+        if UserGoalData.type == UserGoalData.GoalType.weight {
             needReduceFat = (scaleResult.weight - Float(UserGoalData.number!)) * scaleResult.fatPercentage / 100
 //            addFatPercentage = scaleResult.weight * scaleResult.standardFatPercentage / Float(UserGoalData.number!)
         }
-        else if UserGoalData.type == UserGoalData.GoalType.Fat {
+        else if UserGoalData.type == UserGoalData.GoalType.fat {
             needReduceFat = scaleResult.fatWeight - Float(UserGoalData.number!)
         }
         else {
@@ -83,10 +83,10 @@ struct GoalShowInfo {
         
         self.sevenDaysDatas = sevenDaysDatas
         
-        if UserGoalData.type == UserGoalData.GoalType.Weight {
+        if UserGoalData.type == UserGoalData.GoalType.weight {
             needReduceNumber = scaleResult.weight - Float(UserGoalData.number!)
         }
-        else if UserGoalData.type == UserGoalData.GoalType.Fat {
+        else if UserGoalData.type == UserGoalData.GoalType.fat {
             needReduceNumber = scaleResult.fatWeight - Float(UserGoalData.number!)
         }
         else {
@@ -101,7 +101,7 @@ struct GoalShowInfo {
 // MARK: - 计算随眠数据
 extension GoalShowInfo {
     
-    func praseSleepData(data: BraceletResult) {
+    func praseSleepData(_ data: BraceletResult) {
         
     }
 }

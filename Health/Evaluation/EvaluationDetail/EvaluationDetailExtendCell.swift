@@ -38,13 +38,13 @@ class EvaluationDetailExtendCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    func setViewModel(viewModel: EvaluationDetailExtendViewModel) {
+    func setViewModel(_ viewModel: EvaluationDetailExtendViewModel) {
         
         iconImageView.image = UIImage(named: viewModel.type.headIcon)
         titleLabel.text = viewModel.type.title
@@ -65,14 +65,14 @@ class EvaluationDetailExtendCell: UITableViewCell {
             // 等级描述
             descriptionLabel.clear()
             let levelDescription = viewModel.levelDescription
-            let font = UIFont.systemFontOfSize(13)
-            if viewModel.status == ValueStatus.High {
+            let font = UIFont.systemFont(ofSize: 13)
+            if viewModel.status == ValueStatus.high {
                 descriptionLabel.append(levelDescription.2, font: font, color: viewModel.status.statusColor)
             }
-            else if viewModel.status == ValueStatus.Normal {
+            else if viewModel.status == ValueStatus.normal {
                 descriptionLabel.append(levelDescription.1, font: font, color: viewModel.status.statusColor)
             }
-            else if viewModel.status == ValueStatus.Low {
+            else if viewModel.status == ValueStatus.low {
                 descriptionLabel.append(levelDescription.0, font: font, color: viewModel.status.statusColor)
             }
             

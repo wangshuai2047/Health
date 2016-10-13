@@ -10,44 +10,32 @@ import UIKit
 import CoreBluetooth
 
 class MyBodyManager: NSObject, DeviceManagerProtocol {
-    var name: String
-    var uuid: String
-    var RSSI = NSNumber(integer: 0)
-    var peripheral: CBPeripheral?
-    var characteristic: CBCharacteristic?
-    var type: DeviceType = DeviceType.MyBody
     
-    var serviceUUID: String { return "" }
-    var characteristicUUID: [String] { return [] }
-    
-    var fireInfo: [String : Any]?
-    var fireComplete: ((ResultProtocol?, NSError?) -> Void)?
-    
-    func fire(info: [String : Any], complete: (ResultProtocol?, NSError?) -> Void) {
+    internal func fire(_ info: [String : Any], complete: @escaping (ResultProtocol?, Error?) -> Void) {
         self.fireComplete = complete
         self.fireInfo = info
         
         if let userModel = fireInfo?["userModel"] as? UserModel {
             VScaleManager.sharedInstance().setCalulateDataWithUserID(110, gender: userModel.gender ? 0 : 1, age: userModel.age, height: userModel.height)
-            VScaleManager.sharedInstance().scanDevice({ [unowned self] (error: NSError!) -> Void in
+            VScaleManager.sharedInstance().scanDevice({ [unowned self] (error: Error?) -> Void in
                 if error == nil {
-                    VScaleManager.sharedInstance().scale({ [unowned self] (result: VTFatScaleTestResult!, error: NSError!) -> Void in
+                    VScaleManager.sharedInstance().scale({ [unowned self] (result: VTFatScaleTestResult?, error: Error?) -> Void in
                         // 生成 resultProtocol 对象
                         if error == nil {
-                            let scaleResult = MyBodyManager.scaleInputData(result.weight, waterContent: result.waterContent, visceralFatContent: Float(result.visceralFatContent), gender: userModel.gender, userId: userModel.userId, age: userModel.age, height: userModel.height)
-                            self.fireComplete?(scaleResult, error)
+                            let scaleResult = MyBodyManager.scaleInputData(result!.weight, waterContent: result!.waterContent, visceralFatContent: Float(result!.visceralFatContent), gender: userModel.gender, userId: userModel.userId, age: userModel.age, height: userModel.height)
+                            self.fireComplete?(scaleResult, error as NSError?)
                         }
                         else {
-                            self.fireComplete?(nil, error)
+                            self.fireComplete?(nil, error as NSError?)
                         }
-                    })
+                        })
                 }
                 else {
-                    self.fireComplete?(nil, error)
+                    self.fireComplete?(nil, error as NSError?)
                 }
                 
                 VScaleManager.sharedInstance().disconnect()
-            })
+                })
             
         }
         else {
@@ -55,6 +43,20 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
             fireComplete?(nil, NSError(domain: "MyBodyManager fire error", code: 0, userInfo: [NSLocalizedDescriptionKey:"fire info参数不对 没有userModel字段"]))
         }
     }
+
+
+    var name: String
+    var uuid: String
+    var RSSI = NSNumber(value: 0 as Int)
+    var peripheral: CBPeripheral?
+    var characteristic: CBCharacteristic?
+    var type: DeviceType = DeviceType.myBody
+    
+    var serviceUUID: String { return "" }
+    var characteristicUUID: [String] { return [] }
+    
+    var fireInfo: [String : Any]?
+    var fireComplete: ((ResultProtocol?, NSError?) -> Void)?
     
     init(name setName: String, uuid setUUID: String, peripheral setPeripheral: CBPeripheral?, characteristic setCharacteristic: CBCharacteristic?) {
         name = setName
@@ -64,14 +66,14 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
         super.init()// Use of 'self' in delegating initializer before self.init is called
     }
     
-    func transformResult(result: VTFatScaleTestResult) -> ScaleResultProtocol {
+    func transformResult(_ result: VTFatScaleTestResult) -> ScaleResultProtocol {
         
         let userModel = fireInfo?["userModel"] as! UserModel
         
         return MyBodyManager.scaleInputData(result.weight, waterContent: result.waterContent, visceralFatContent: Float(result.visceralFatContent), gender: userModel.gender, userId: userModel.userId, age: userModel.age, height: userModel.height)
     }
     
-    static func scaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResultProtocol {
+    static func scaleInputData(_ weight: Float, waterContent: Float, visceralFatContent: Float, gender: Bool, userId: Int, age: UInt8, height: UInt8) -> ScaleResultProtocol {
         
         /*
         从四点极称中，我们只需要三项数据：水分率、内脏脂肪率和体重
@@ -114,7 +116,7 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
 }
 
 extension MyBodyManager: CBCentralManagerDelegate {
-    func centralManagerDidUpdateState(central: CBCentralManager) {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
     }
 }

@@ -33,7 +33,7 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,44 +54,44 @@ class SettingViewController: UIViewController {
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // +1 最后一项是退出登录
         return list.count + 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = "SettingTableViewCellId"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellId)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellId)
         }
         
-        if indexPath.row == list.count {
+        if (indexPath as NSIndexPath).row == list.count {
             cell?.imageView?.image = UIImage()
             cell?.textLabel?.text = "退出登录"
         } else {
-            let (imageName, title, _) = list[indexPath.row]
+            let (imageName, title, _) = list[(indexPath as NSIndexPath).row]
             cell?.imageView?.image = UIImage(named: imageName)
             cell?.textLabel?.text = title
-            cell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         }
         
         return cell!
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == list.count {
+        if (indexPath as NSIndexPath).row == list.count {
             SettingManager.removeLocalNotification()
             LoginManager.logout()
             AppDelegate.applicationDelegate().changeToLoginController()
         }
-        else if indexPath.row == -1 {
+        else if (indexPath as NSIndexPath).row == -1 {
             // 成员资料修改管理
             let controller = CompleteInfoViewController()
             controller.userModel = UserManager.mainUser
@@ -115,27 +115,27 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 //            // 用户反馈管理
 //        }
         else {
-            let (_, _, controller) = list[indexPath.row]
+            let (_, _, controller) = list[(indexPath as NSIndexPath).row]
             AppDelegate.rootNavgationViewController().pushViewController(controller, animated: true)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
 }
 
 extension SettingViewController: CompleteInfoDelegate {
     
-    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+    func completeInfo(_ controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
         
         LoginManager.completeInfomation(user.name, gender: user.gender, age: user.age, height: UInt8(user.height), phone: phone, organizationCode: organizationCode, headURL:user.headURL, complete: { (error) -> Void in
             
             if error == nil {
                 // 跳转到主页
-                controller.navigationController?.popViewControllerAnimated(true)
+                controller.navigationController?.popViewController(animated: true)
             }
             else {
                 UIAlertView(title: "完善信息失败", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()

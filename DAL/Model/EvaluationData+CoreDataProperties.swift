@@ -64,7 +64,7 @@ extension EvaluationData {
     @NSManaged var sw: NSNumber?
     @NSManaged var swMax: NSNumber?
     @NSManaged var swMin: NSNumber?
-    @NSManaged var timeStamp: NSDate?
+    @NSManaged var timeStamp: Date?
     @NSManaged var trunkLimbBone: NSNumber?
     @NSManaged var trunkLimbFat: NSNumber?
     @NSManaged var trunkLimbMuscle: NSNumber?

@@ -19,13 +19,13 @@ class CompleteHeadAndNameDataView: UIView {
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         let layer = headIconButton.layer
         layer.masksToBounds = true
         layer.cornerRadius = headIconButton.frame.size.height / 2.0
         layer.borderWidth = 0.1
-        layer.borderColor = UIColor.blackColor().CGColor
+        layer.borderColor = UIColor.black.cgColor
 //        CALayer * layer = [self.headImageView layer];
 //        [layer setMasksToBounds:YES];
 //        [layer setCornerRadius:self.headImageView.frame.size.height/2.0];

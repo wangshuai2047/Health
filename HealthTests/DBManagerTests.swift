@@ -25,6 +25,6 @@ class DBManagerTests: XCTestCase {
     
     func test_DBManager_queryEvaluationData_isSuccess()
     {
-        DBManager.shareInstance().queryEvaluationDatas(NSDate(timeIntervalSinceNow: -24 * 60 * 60), endTimescamp: NSDate(), userId: 9)
+        DBManager.sharedInstance.queryEvaluationDatas(Date(timeIntervalSinceNow: -24 * 60 * 60), endTimescamp: Date(), userId: 9)
     }
 }

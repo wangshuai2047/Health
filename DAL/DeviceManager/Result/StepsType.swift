@@ -9,7 +9,7 @@
 import Foundation
 
 enum StepsType: UInt16 {
-    case Walk = 10
-    case Run = 11
-    case Sleep = 9
+    case walk = 10
+    case run = 11
+    case sleep = 9
 }

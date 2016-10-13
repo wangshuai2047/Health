@@ -15,6 +15,6 @@ import CoreData
 extension ShareData {
 
     @NSManaged var type: NSNumber?
-    @NSManaged var date: NSDate?
+    @NSManaged var date: Date?
 
 }

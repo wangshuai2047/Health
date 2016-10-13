@@ -17,7 +17,7 @@ class Device: NSManagedObject {
     @NSManaged var type: NSNumber   // 0 是秤 1是手环
 
     convenience init(context: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)!
-        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)!
+        self.init(entity: entityDescription, insertInto: context)
     }
 }

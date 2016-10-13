@@ -9,7 +9,7 @@
 import UIKit
 
 protocol VisitorAddDelegate {
-    func completeInfo(controller: VisitorAddViewController, user: UserModel)
+    func completeInfo(_ controller: VisitorAddViewController, user: UserModel)
 }
 
 class VisitorAddViewController: UIViewController {
@@ -29,7 +29,7 @@ class VisitorAddViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        maleButton.selected = true
+        maleButton.isSelected = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,32 +47,32 @@ class VisitorAddViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func closeButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func sexButtonPressed(sender: UIButton) {
+    @IBAction func sexButtonPressed(_ sender: UIButton) {
         if sender == maleButton {
-            maleButton.selected = true
-            femaleButton.selected = false
+            maleButton.isSelected = true
+            femaleButton.isSelected = false
         }
         else {
-            maleButton.selected = false
-            femaleButton.selected = true
+            maleButton.isSelected = false
+            femaleButton.isSelected = true
         }
     }
     
     
-    @IBAction func sureButtonPressed(sender: AnyObject) {
+    @IBAction func sureButtonPressed(_ sender: AnyObject) {
         
-        let user = UserModel(userId: -1, age: ageTextField.text!.UInt8Value, gender: maleButton.selected ? true : false, height: heightTextField.text!.UInt8Value, name: "访客", headURL: nil)
+        let user = UserModel(userId: -1, age: ageTextField.text!.UInt8Value, gender: maleButton.isSelected ? true : false, height: heightTextField.text!.UInt8Value, name: "访客", headURL: nil)
         
         delegate?.completeInfo(self, user: user)
         
         closeButtonPressed(sender)
     }
     
-    @IBAction func backgroundPressed(sender: AnyObject) {
+    @IBAction func backgroundPressed(_ sender: AnyObject) {
         ageTextField.resignFirstResponder()
         heightTextField.resignFirstResponder()
     }

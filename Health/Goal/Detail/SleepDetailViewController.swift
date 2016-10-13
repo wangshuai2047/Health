@@ -33,10 +33,10 @@ class SleepDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let nibCell = UINib(nibName: "GoalDetailTableViewCell", bundle: nil)
-        tableView.registerNib(nibCell, forCellReuseIdentifier: cellId)
+        tableView.register(nibCell, forCellReuseIdentifier: cellId)
         
         if GoalManager.isConnectDevice() {
-            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
+            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步手环数据", detailMsg: nil, progress: nil)
             GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
                 self.refreshData()
                 AppDelegate.applicationDelegate().hiddenHUD()
@@ -83,15 +83,15 @@ class SleepDetailViewController: UIViewController {
     }
     */
 
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func shareButtonPressed(sender: AnyObject) {
+    @IBAction func shareButtonPressed(_ sender: AnyObject) {
         ShareViewController.showShareViewController(self.view.convertToImage(), delegate: self, rootController: self)
     }
     
-    @IBAction func syncButtonPressed(sender: AnyObject) {
+    @IBAction func syncButtonPressed(_ sender: AnyObject) {
         if GoalManager.isConnectDevice() {
             GoalManager.syncDatas({ [unowned self] (error: NSError?) -> Void in
                 self.refreshData()
@@ -103,7 +103,7 @@ class SleepDetailViewController: UIViewController {
 
 // MARK: - 分享
 extension SleepDetailViewController: ShareViewControllerDelegate {
-    func shareFinished(shareType: ShareType, error: NSError?) {
+    func shareFinished(_ shareType: ShareType, error: NSError?) {
         if error == nil {
             Alert.showErrorAlert("分享成功", message: nil)
         }
@@ -114,24 +114,24 @@ extension SleepDetailViewController: ShareViewControllerDelegate {
 }
 
 extension SleepDetailViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 33
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sevenDaysData.count - 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! GoalDetailTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GoalDetailTableViewCell
         
         let colors = [lightSleepColor, lightSleepColor, lightSleepColor, deepSleepColor, deepSleepColor]
-        let (_, _, lightSleep, deepSleep) = sevenDaysData[indexPath.row + 1]
+        let (_, _, lightSleep, deepSleep) = sevenDaysData[(indexPath as NSIndexPath).row + 1]
         let lightSleepHour = GoalManager.dealSleepMinutesToHours(lightSleep)
         let deepSleepHour = GoalManager.dealSleepMinutesToHours(deepSleep)
         
         
-        cell.setColors(colors, step: Int(lightSleepHour + deepSleepHour), goalStep: 8, day: indexPath.row + 1, unit: "小时")
+        cell.setColors(colors, step: Int(lightSleepHour + deepSleepHour), goalStep: 8, day: (indexPath as NSIndexPath).row + 1, unit: "小时")
         
         return cell
     }

@@ -38,43 +38,43 @@ class EvaluationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        EvaluationManager.shareInstance().addTestDatas()
+//        EvaluationManager.sharedInstance.addTestDatas()
 
         // Do any additional setup after loading the view.\
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         
         userSelectView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
         
-        UIApplication.sharedApplication().applicationSupportsShakeToEdit = true
+        UIApplication.shared.applicationSupportsShakeToEdit = true
         self.becomeFirstResponder()
         
         showView(connectDeviceView)
-        EvaluationManager.shareInstance().setCheckStatusBlock { [unowned self] (status: CBCentralManagerState) -> Void in
+        EvaluationManager.sharedInstance.setCheckStatusBlock { [unowned self] (status: BluetoothStatus) -> Void in
             
             self.canScale = false
-            if status == CBCentralManagerState.PoweredOff {
+            if status == .poweredOff {
                 self.tipLabel.text = "蓝牙未打开,请打开蓝牙!"
             }
-            else if status == CBCentralManagerState.Unauthorized {
+            else if status == .unauthorized {
                 self.tipLabel.text = "蓝牙未被授权,请在设置中对此应用进行授权!"
             }
-            else if status == CBCentralManagerState.Unsupported {
+            else if status == .unsupported {
                 self.tipLabel.text = "设备不支持蓝牙,无法使用!"
             }
-            else if status == CBCentralManagerState.PoweredOn {
+            else if status == .poweredOn {
                 self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量!"
                 self.canScale = true
             }
         }
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步评测历史数据", detailMsg: nil, progress: nil)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步评测历史数据", detailMsg: nil, progress: nil)
         EvaluationManager.checkAndSyncEvaluationDatas { (error: NSError?) -> Void in
-            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "正在同步手环历史数据", detailMsg: nil, progress: nil)
+            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步手环历史数据", detailMsg: nil, progress: nil)
             // 开始目标数据同步
             GoalManager.checkAndSyncGoalDatas({ (error: NSError?) -> Void in
                 
-                AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步目标数据", detailMsg: nil, progress: nil)
+                AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "同步目标数据", detailMsg: nil, progress: nil)
                 GoalManager.checkSyncSettingDatas { (error: NSError?) -> Void in
                     AppDelegate.applicationDelegate().hiddenHUD()
                 }
@@ -84,15 +84,15 @@ class EvaluationViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.scrollView.contentSize = CGSizeMake(0, self.scrollView.contentSize.height)
+        self.scrollView.contentSize = CGSize(width: 0, height: self.scrollView.contentSize.height)
         
         self.view.layoutSubviews()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
-        userSelectView.setShowViewUserId(UserManager.shareInstance().currentUser.userId)
+        userSelectView.setUsers(UserManager.sharedInstance.queryAllUsers(), isNeedExt: true)
+        userSelectView.setShowViewUserId(UserManager.sharedInstance.currentUser.userId)
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,22 +112,22 @@ class EvaluationViewController: UIViewController {
     
     // MARK: - Response Method
     
-    @IBAction func backgroundPressed(sender: AnyObject) {
+    @IBAction func backgroundPressed(_ sender: AnyObject) {
         self.weightInputDataTextField.resignFirstResponder()
         self.waterContentInputDataTextField.resignFirstResponder()
         self.visceralFatContentInputDataTextField.resignFirstResponder()
     }
     // MARK: - notConnectDeviceView Response Method
-    @IBAction func buyDevicePressed(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://shop124322383.taobao.com/")!)
-//        EvaluationManager.shareInstance().addTestDatas()
+    @IBAction func buyDevicePressed(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: "https://shop124322383.taobao.com/")!)
+//        EvaluationManager.sharedInstance.addTestDatas()
     }
 
-    @IBAction func enterMyBodyDataPressed(sender: AnyObject) {
+    @IBAction func enterMyBodyDataPressed(_ sender: AnyObject) {
         showView(manualInputDataView)
     }
     
-    @IBAction func scanMyBodyDevicePressed(sender: AnyObject) {
+    @IBAction func scanMyBodyDevicePressed(_ sender: AnyObject) {
         
         // 现在改为返回评测界面
         self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量!"
@@ -135,7 +135,7 @@ class EvaluationViewController: UIViewController {
     }
     
     // MARK: - connectDeviceView Response Method
-    @IBAction func startEvaluationPressed(sender: AnyObject) {
+    @IBAction func startEvaluationPressed(_ sender: AnyObject) {
         
         if canScale {
             let detailController = EvaluationDetailViewController()
@@ -143,8 +143,8 @@ class EvaluationViewController: UIViewController {
             
             self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             
-            AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测试中", detailMsg: nil, progress: nil)
-            EvaluationManager.shareInstance().startScale {[unowned self] (result,isTimeOut, error) -> Void in
+            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "测试中", detailMsg: nil, progress: nil)
+            EvaluationManager.sharedInstance.startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
                     
@@ -160,7 +160,7 @@ class EvaluationViewController: UIViewController {
                         self.showView(self.connectDeviceView)
                         self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
                     }
-                    detailController.navigationController?.popViewControllerAnimated(true)
+                    _ = detailController.navigationController?.popViewController(animated: true)
 //                    Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
                 }
                 
@@ -171,50 +171,50 @@ class EvaluationViewController: UIViewController {
     
     // MARK: - manualInputDataView Response Method
     
-    @IBAction func manualInputDataCommitPressed(sender: AnyObject) {
+    @IBAction func manualInputDataCommitPressed(_ sender: AnyObject) {
         
-        self.pushToDetailEvaluationViewController(EvaluationManager.shareInstance().startScaleInputData(self.weightInputDataTextField.text!.floatValue, waterContent: self.waterContentInputDataTextField.text!.floatValue, visceralFatContent: self.visceralFatContentInputDataTextField.text!.floatValue))
+        self.pushToDetailEvaluationViewController(EvaluationManager.sharedInstance.startScaleInputData(self.weightInputDataTextField.text!.floatValue, waterContent: self.waterContentInputDataTextField.text!.floatValue, visceralFatContent: self.visceralFatContentInputDataTextField.text!.floatValue))
         showMainView()
     }
     
-    @IBAction func manualInputDataCancelPressed(sender: AnyObject) {
+    @IBAction func manualInputDataCancelPressed(_ sender: AnyObject) {
         showMainView()
     }
     
-    @IBAction func tryEvaluationAgainButtonPressed(sender: AnyObject) {
+    @IBAction func tryEvaluationAgainButtonPressed(_ sender: AnyObject) {
         showMainView()
     }
     
-    private func showMainView() {
-        if EvaluationManager.shareInstance().isConnectedMyBodyDevice {
+    fileprivate func showMainView() {
+        if EvaluationManager.sharedInstance.isConnectedMyBodyDevice {
             showView(connectDeviceView)
         } else {
             showView(notConnectDeviceView)
         }
     }
     
-    private func showView(view: UIView) {
-        notConnectDeviceView.hidden = true
-        connectDeviceView.hidden = true
-        manualInputDataView.hidden = true
-        evaluationResultView.hidden = true
+    fileprivate func showView(_ view: UIView) {
+        notConnectDeviceView.isHidden = true
+        connectDeviceView.isHidden = true
+        manualInputDataView.isHidden = true
+        evaluationResultView.isHidden = true
         
-        view.hidden = false
+        view.isHidden = false
     }
     
-    func pushToDetailEvaluationViewController(data: ScaleResultProtocol) {
+    func pushToDetailEvaluationViewController(_ data: ScaleResultProtocol) {
         let detailController = EvaluationDetailViewController()
         detailController.data = data
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
     }
     
-    func refreshEvaluationResultView(info: [String : AnyObject]) {
+    func refreshEvaluationResultView(_ info: [String : AnyObject]) {
         
     }
     
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         
-        if motion == UIEventSubtype.MotionShake {
+        if motion == UIEventSubtype.motionShake {
             startEvaluationPressed(event!)
         }
         
@@ -222,7 +222,7 @@ class EvaluationViewController: UIViewController {
 }
 
 extension EvaluationViewController: DeviceScanViewControllerProtocol {
-    func didSelected(controller: DeviceScanViewController, device: DeviceManagerProtocol) {
+    func didSelected(_ controller: DeviceScanViewController, device: DeviceManagerProtocol) {
         
         // 绑定
 //        SettingManager.bindDevice(device)
@@ -231,8 +231,8 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测试中", detailMsg: nil, progress: nil)
-        EvaluationManager.shareInstance().startScale {[unowned self] (info, isTimeOut, error) -> Void in
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "测试中", detailMsg: nil, progress: nil)
+        EvaluationManager.sharedInstance.startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
                 
                 detailController.data = info
@@ -247,7 +247,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
                     self.showView(self.connectDeviceView)
                     self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
                 }
-                detailController.navigationController?.popViewControllerAnimated(true)
+                _ = detailController.navigationController?.popViewController(animated: true)
                 
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
@@ -258,7 +258,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
 
 extension EvaluationViewController: UserSelectViewDelegate {
     // 点击人物头像
-    func headButtonPressed(userId: Int) {
+    func headButtonPressed(_ userId: Int) {
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         detailController.isRefreshAllData = true
@@ -269,13 +269,13 @@ extension EvaluationViewController: UserSelectViewDelegate {
         let controller = VisitorAddViewController()
         controller.delegate = self
         if #available(iOS 8.0, *) {
-            controller.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         } else {
             // Fallback on earlier versions
-            controller.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            controller.modalPresentationStyle = UIModalPresentationStyle.currentContext
         }
         // UIModalPresentationFormSheet
-        AppDelegate.rootNavgationViewController().presentViewController(controller, animated: true) { () -> Void in
+        AppDelegate.rootNavgationViewController().present(controller, animated: true) { () -> Void in
             controller.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         }
     }
@@ -289,13 +289,13 @@ extension EvaluationViewController: UserSelectViewDelegate {
     }
     
     // 用户改变
-    func userChangeToUserId(userId: Int) {
+    func userChangeToUserId(_ userId: Int) {
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
         
         EvaluationManager.checkAndSyncEvaluationDatas(userId) { [unowned self] (error: NSError?) -> Void in
             
-            UserManager.shareInstance().changeUserToUserId(userId)
+            UserManager.sharedInstance.changeUserToUserId(userId)
             self.userSelectView.setShowViewUserId(userId)
             AppDelegate.applicationDelegate().hiddenHUD()
         }
@@ -304,14 +304,14 @@ extension EvaluationViewController: UserSelectViewDelegate {
 
 extension EvaluationViewController: CompleteInfoDelegate {
     // 添加家庭成员
-    func completeInfo(controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
-        UserManager.shareInstance().addUser(user.name, gender: user.gender, age: user.age, height: user.height, imageURL: user.headURL) { [unowned self] (userModel, error: NSError?) -> Void in
+    func completeInfo(_ controller: CompleteInfoViewController, user: UserModel, phone: String?, organizationCode: String?) {
+        UserManager.sharedInstance.addUser(user.name, gender: user.gender, age: user.age, height: user.height, imageURL: user.headURL) { [unowned self] (userModel, error: NSError?) -> Void in
             if error == nil {
-                UserManager.shareInstance().changeUserToUserId(userModel!.userId)
-                self.userSelectView.setUsers(UserManager.shareInstance().queryAllUsers(), isNeedExt: true)
+                UserManager.sharedInstance.changeUserToUserId(userModel!.userId)
+                self.userSelectView.setUsers(UserManager.sharedInstance.queryAllUsers(), isNeedExt: true)
                 self.userSelectView.setShowViewUserId(userModel!.userId)
                 
-                controller.navigationController?.popViewControllerAnimated(false)
+                _ = controller.navigationController?.popViewController(animated: false)
                 
                 // 添加家庭成员 后默认是去进行评测
 //                self.startEvaluationPressed(NSObject())
@@ -325,15 +325,15 @@ extension EvaluationViewController: CompleteInfoDelegate {
 
 // 访客界面代理
 extension EvaluationViewController: VisitorAddDelegate {
-    func completeInfo(controller: VisitorAddViewController, user: UserModel) {
+    func completeInfo(_ controller: VisitorAddViewController, user: UserModel) {
         
         let detailController = EvaluationDetailViewController()
         detailController.isVisitor = true
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
         
-        AppDelegate.applicationDelegate().updateHUD(HUDType.Hotwheels, message: "测试中", detailMsg: nil, progress: nil)
-        EvaluationManager.shareInstance().visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "测试中", detailMsg: nil, progress: nil)
+        EvaluationManager.sharedInstance.visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
             self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
             if error == nil {
                 
@@ -348,7 +348,7 @@ extension EvaluationViewController: VisitorAddDelegate {
                     self.showView(self.connectDeviceView)
                     self.tipLabel.text = "评测错误, \(error!.localizedDescription)"
                 }
-                detailController.navigationController?.popViewControllerAnimated(true)
+                _ = detailController.navigationController?.popViewController(animated: true)
 //                Alert.showErrorAlert("评测错误", message: error?.localizedDescription)
             }
             

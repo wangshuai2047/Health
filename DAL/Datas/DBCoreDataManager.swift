@@ -8,41 +8,61 @@
 
 import UIKit
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 extension DBManager {
     
     // MARK: - Core Data stack
     
-    var applicationDocumentsDirectory: NSURL  {
+    var applicationDocumentsDirectory: URL  {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "yalin.Test" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
     }
     
     var managedObjectModel: NSManagedObjectModel {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("Health", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main.url(forResource: "Health", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
         }
     
     var persistentStoreCoordinator: NSPersistentStoreCoordinator? {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.userId!).sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent("\(self.userId!).sqlite")
 //        print("db Path: \(url)")
         
         var error: NSError? = nil
         let failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
         } catch let error1 as NSError {
             error = error1
             coordinator = nil
             // Report any error we got.
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
+            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
             dict[NSUnderlyingErrorKey] = error
             error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
@@ -60,7 +80,7 @@ extension DBManager {
         if coordinator == nil {
             return nil
         }
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.PrivateQueueConcurrencyType)
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
         }
@@ -71,11 +91,11 @@ extension DBManager {
 // MARK: - User Model操作
 extension DBManager: DBUserProtocol {
     
-    func addUser(setDatas: (setDatas: inout UserDBData) -> UserDBData) {
+    func addUser(_ setDatas: (_ setDatas: inout UserDBData) -> UserDBData) {
         let context = self.managedObjectContext!
-        var insertData = NSEntityDescription.insertNewObjectForEntityForName("UserDBData", inManagedObjectContext: context) as! UserDBData
+        var insertData = NSEntityDescription.insertNewObject(forEntityName: "UserDBData", into: context) as! UserDBData
         
-        setDatas(setDatas: &insertData)
+        _ = setDatas(&insertData)
         
         do {
             try context.save()
@@ -85,25 +105,26 @@ extension DBManager: DBUserProtocol {
         }
     }
     
-    func addOrUpdateUser(userModel: UserModel) {
+    func addOrUpdateUser(_ userModel: UserModel) {
         
         if let _ = queryUser(userModel.userId) {
             // 更新
             let context = self.managedObjectContext!
-            let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
-            
-            let request = NSFetchRequest()
+            let entityDescription = NSEntityDescription.entity(forEntityName: "UserDBData", in: context)
+            // ResultType' could not be inferred
+            let request = NSFetchRequest<NSFetchRequestResult>()
             request.entity = entityDescription
             request.predicate = NSPredicate(format: "userId == %d", userModel.userId)
             
-            let listData = (try! context.executeFetchRequest(request)) as! [UserDBData]
+            let listData = (try! context.fetch(request)) as! [UserDBData]
             
-            for var i = 0; i < listData.count; i++ {
-                
-                let managedObject = listData[i]
-                managedObject.name = userModel.name
-                if let headURL = userModel.headURL {
-                    managedObject.headURL = headURL
+            if listData.count > 0 {
+                for i in 0...listData.count - 1 {
+                    let managedObject = listData[i]
+                    managedObject.name = userModel.name
+                    if let headURL = userModel.headURL {
+                        managedObject.headURL = headURL
+                    }
                 }
             }
             
@@ -116,12 +137,12 @@ extension DBManager: DBUserProtocol {
         else {
             // 插入一个新的
             let context = self.managedObjectContext!
-            let insertData = NSEntityDescription.insertNewObjectForEntityForName("UserDBData", inManagedObjectContext: context) as! UserDBData
+            let insertData = NSEntityDescription.insertNewObject(forEntityName: "UserDBData", into: context) as! UserDBData
             
-            insertData.userId = NSNumber(integer: userModel.userId)
-            insertData.age = NSNumber(unsignedChar: userModel.age)
-            insertData.height = NSNumber(unsignedChar: userModel.height)
-            insertData.gender = NSNumber(bool: userModel.gender)
+            insertData.userId = NSNumber(value: userModel.userId as Int)
+            insertData.age = NSNumber(value: userModel.age as UInt8)
+            insertData.height = NSNumber(value: userModel.height as UInt8)
+            insertData.gender = NSNumber(value: userModel.gender as Bool)
             insertData.name = userModel.name
             if let headURL = userModel.headURL {
                 insertData.headURL = headURL
@@ -136,24 +157,24 @@ extension DBManager: DBUserProtocol {
         }
     }
     
-    func deleteUser(userId: Int) {
+    func deleteUser(_ userId: Int) {
         
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "UserDBData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "userId == %d", userId)
         
         let listData:[AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             print(error1)
             listData = nil
         }
         for data in listData as! [UserDBData] {
-            context.deleteObject(data)
+            context.delete(data)
             do {
                 try context.save()
                 print("删除成功")
@@ -167,13 +188,13 @@ extension DBManager: DBUserProtocol {
     func queryAllUser() -> [[String : AnyObject]] {
         
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "UserDBData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         
         var datas: [[String: AnyObject]] = []
-        if let listData = (try? context.executeFetchRequest(request)) as? [UserDBData] {
+        if let listData = (try? context.fetch(request)) as? [UserDBData] {
             for managedObject in listData {
                 datas += [userToDic(managedObject)]
             }
@@ -182,16 +203,16 @@ extension DBManager: DBUserProtocol {
         return datas
     }
     
-    func queryUser(userId: Int) -> [String: AnyObject]? {
+    func queryUser(_ userId: Int) -> [String: AnyObject]? {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "UserDBData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "userId == %d", userId)
         request.fetchLimit = 1
         
-        if let listData = (try? context.executeFetchRequest(request)) as? [UserDBData] {
+        if let listData = (try? context.fetch(request)) as? [UserDBData] {
             for managedObject in listData {
                 return userToDic(managedObject)
             }
@@ -202,20 +223,20 @@ extension DBManager: DBUserProtocol {
     
     func deleteAllUser() {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("UserDBData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "UserDBData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         
         let listData:[AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             print(error1)
             listData = nil
         }
         for data in listData as! [UserDBData] {
-            context.deleteObject(data)
+            context.delete(data)
             do {
                 try context.save()
                 print("删除成功")
@@ -244,11 +265,11 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func addEvaluationDatas(results: [ScaleResultProtocol], isUpload: Bool) {
+    func addEvaluationDatas(_ results: [ScaleResultProtocol], isUpload: Bool) {
         let context = self.managedObjectContext!
         
         for result in results {
-            let insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
+            let insertData = NSEntityDescription.insertNewObject(forEntityName: "EvaluationData", into: context) as! EvaluationData
             
             if let _ = result as? MyBodyResult {
                 insertData.deviceType = 0
@@ -258,20 +279,20 @@ extension DBManager: DBManagerProtocol {
             }
             
             insertData.dataId = result.dataId
-            insertData.userId = result.userId
+            insertData.userId = result.userId as NSNumber?
             insertData.timeStamp = result.timeStamp
-            insertData.isUpload = isUpload
+            insertData.isUpload = isUpload as NSNumber?
             
-            insertData.boneMuscleWeight = result.boneMuscleWeight
-            insertData.boneWeight = result.boneWeight
-            insertData.fatPercentage = result.fatPercentage
-            insertData.fatWeight = result.fatWeight
-            insertData.muscleWeight = result.muscleWeight
-            insertData.proteinWeight = result.proteinWeight
-            insertData.visceralFatPercentage = result.visceralFatPercentage
-            insertData.waterPercentage = result.waterPercentage
-            insertData.waterWeight = result.waterWeight
-            insertData.weight = result.weight
+            insertData.boneMuscleWeight = result.boneMuscleWeight as NSNumber?
+            insertData.boneWeight = result.boneWeight as NSNumber?
+            insertData.fatPercentage = result.fatPercentage as NSNumber?
+            insertData.fatWeight = result.fatWeight as NSNumber?
+            insertData.muscleWeight = result.muscleWeight as NSNumber?
+            insertData.proteinWeight = result.proteinWeight as NSNumber?
+            insertData.visceralFatPercentage = result.visceralFatPercentage as NSNumber?
+            insertData.waterPercentage = result.waterPercentage as NSNumber?
+            insertData.waterWeight = result.waterWeight as NSNumber?
+            insertData.weight = result.weight as NSNumber?
             // 脂肪肝
             if let hepaticAdiposeInfiltration = result.hepaticAdiposeInfiltration {
                 insertData.hepaticAdiposeInfiltration = hepaticAdiposeInfiltration ? 1 : 2  // 1为有  2为没有
@@ -279,59 +300,59 @@ extension DBManager: DBManagerProtocol {
             else {
                 insertData.hepaticAdiposeInfiltration = 0 // 0为不支持
             }
-            insertData.fatFreeBodyWeight = result.fatFreeBodyWeight
-            insertData.fatFreeBodyWeightMin = result.fatFreeBodyWeightRange.0
-            insertData.fatFreeBodyWeightMax = result.fatFreeBodyWeightRange.1
-            insertData.muscleWeightMin = result.muscleWeightRange.0
-            insertData.muscleWeightMax = result.muscleWeightRange.1
-            insertData.proteinWeightMin = result.proteinWeightRange.0
-            insertData.proteinWeightMax = result.proteinWeightRange.1
-            insertData.boneWeightMin = result.boneWeightRange.0
-            insertData.boneWeightMax = result.boneWeightRange.1
-            insertData.waterWeightMin = result.waterWeightRange.0
-            insertData.waterWeightMax = result.waterWeightRange.1
-            insertData.fatWeightMin = result.fatWeightRange.0
-            insertData.fatWeightMax = result.fatWeightRange.1
-            insertData.fatPercentageMin = result.fatPercentageRange.0
-            insertData.fatPercentageMax = result.fatPercentageRange.1
-            insertData.whr = result.WHR
-            insertData.whrMin = result.WHRRange.0
-            insertData.whrMax = result.WHRRange.1
-            insertData.bmi = result.BMI
-            insertData.bmiMin = result.BMIRange.0
-            insertData.bmiMax = result.BMIRange.1
-            insertData.bmr = result.BMR
-            insertData.bodyAge = result.bodyAge
-            insertData.boneMuscleWeightMin = result.boneMuscleRange.0
-            insertData.boneMuscleWeightMax = result.boneMuscleRange.1
-            insertData.muscleControl = result.muscleControl
-            insertData.fatControl = result.fatControl
-            insertData.weightControl = result.weightControl
-            insertData.sw = result.SW
-            insertData.swMin = result.SWRange.0
-            insertData.swMax = result.SWRange.1
-            insertData.goalWeight = result.goalWeight
-            insertData.m_smm = result.m_smm
-            insertData.rightUpperExtremityFat = result.rightUpperExtremityFat
-            insertData.rightUpperExtremityMuscle = result.rightUpperExtremityMuscle
-            insertData.rightUpperExtremityBone = result.rightUpperExtremityBone
-            insertData.leftUpperExtremityFat = result.leftUpperExtremityFat
-            insertData.leftUpperExtremityMuscle = result.leftUpperExtremityMuscle
-            insertData.leftUpperExtremityBone = result.leftUpperExtremityBone
-            insertData.trunkLimbFat = result.trunkLimbFat
-            insertData.trunkLimbMuscle = result.trunkLimbMuscle
-            insertData.trunkLimbBone = result.trunkLimbBone
-            insertData.rightLowerExtremityFat = result.rightLowerExtremityFat
-            insertData.rightLowerExtremityMuscle = result.rightLowerExtremityMuscle
-            insertData.rightLowerExtremityBone = result.rightLowerExtremityBone
-            insertData.leftLowerExtremityFat = result.leftLowerExtremityFat
-            insertData.leftLowerExtremityMuscle = result.leftLowerExtremityMuscle
-            insertData.leftLowerExtremityBone = result.leftLowerExtremityBone
-            insertData.externalMoisture = result.externalMoisture
-            insertData.internalMoisture = result.internalMoisture
-            insertData.edemaFactor = result.edemaFactor
-            insertData.obesity = result.obesity
-            insertData.score = result.score
+            insertData.fatFreeBodyWeight = result.fatFreeBodyWeight as NSNumber?
+            insertData.fatFreeBodyWeightMin = result.fatFreeBodyWeightRange.0 as NSNumber?
+            insertData.fatFreeBodyWeightMax = result.fatFreeBodyWeightRange.1 as NSNumber?
+            insertData.muscleWeightMin = result.muscleWeightRange.0 as NSNumber?
+            insertData.muscleWeightMax = result.muscleWeightRange.1 as NSNumber?
+            insertData.proteinWeightMin = result.proteinWeightRange.0 as NSNumber?
+            insertData.proteinWeightMax = result.proteinWeightRange.1 as NSNumber?
+            insertData.boneWeightMin = result.boneWeightRange.0 as NSNumber?
+            insertData.boneWeightMax = result.boneWeightRange.1 as NSNumber?
+            insertData.waterWeightMin = result.waterWeightRange.0 as NSNumber?
+            insertData.waterWeightMax = result.waterWeightRange.1 as NSNumber?
+            insertData.fatWeightMin = result.fatWeightRange.0 as NSNumber?
+            insertData.fatWeightMax = result.fatWeightRange.1 as NSNumber?
+            insertData.fatPercentageMin = result.fatPercentageRange.0 as NSNumber?
+            insertData.fatPercentageMax = result.fatPercentageRange.1 as NSNumber?
+            insertData.whr = result.WHR as NSNumber?
+            insertData.whrMin = result.WHRRange.0 as NSNumber?
+            insertData.whrMax = result.WHRRange.1 as NSNumber?
+            insertData.bmi = result.BMI as NSNumber?
+            insertData.bmiMin = result.BMIRange.0 as NSNumber?
+            insertData.bmiMax = result.BMIRange.1 as NSNumber?
+            insertData.bmr = result.BMR as NSNumber?
+            insertData.bodyAge = result.bodyAge as NSNumber?
+            insertData.boneMuscleWeightMin = result.boneMuscleRange.0 as NSNumber?
+            insertData.boneMuscleWeightMax = result.boneMuscleRange.1 as NSNumber?
+            insertData.muscleControl = result.muscleControl as NSNumber?
+            insertData.fatControl = result.fatControl as NSNumber?
+            insertData.weightControl = result.weightControl as NSNumber?
+            insertData.sw = result.SW as NSNumber?
+            insertData.swMin = result.SWRange.0 as NSNumber?
+            insertData.swMax = result.SWRange.1 as NSNumber?
+            insertData.goalWeight = result.goalWeight as NSNumber?
+            insertData.m_smm = result.m_smm as NSNumber?
+            insertData.rightUpperExtremityFat = result.rightUpperExtremityFat as NSNumber?
+            insertData.rightUpperExtremityMuscle = result.rightUpperExtremityMuscle as NSNumber?
+            insertData.rightUpperExtremityBone = result.rightUpperExtremityBone as NSNumber?
+            insertData.leftUpperExtremityFat = result.leftUpperExtremityFat as NSNumber?
+            insertData.leftUpperExtremityMuscle = result.leftUpperExtremityMuscle as NSNumber?
+            insertData.leftUpperExtremityBone = result.leftUpperExtremityBone as NSNumber?
+            insertData.trunkLimbFat = result.trunkLimbFat as NSNumber?
+            insertData.trunkLimbMuscle = result.trunkLimbMuscle as NSNumber?
+            insertData.trunkLimbBone = result.trunkLimbBone as NSNumber?
+            insertData.rightLowerExtremityFat = result.rightLowerExtremityFat as NSNumber?
+            insertData.rightLowerExtremityMuscle = result.rightLowerExtremityMuscle as NSNumber?
+            insertData.rightLowerExtremityBone = result.rightLowerExtremityBone as NSNumber?
+            insertData.leftLowerExtremityFat = result.leftLowerExtremityFat as NSNumber?
+            insertData.leftLowerExtremityMuscle = result.leftLowerExtremityMuscle as NSNumber?
+            insertData.leftLowerExtremityBone = result.leftLowerExtremityBone as NSNumber?
+            insertData.externalMoisture = result.externalMoisture as NSNumber?
+            insertData.internalMoisture = result.internalMoisture as NSNumber?
+            insertData.edemaFactor = result.edemaFactor as NSNumber?
+            insertData.obesity = result.obesity as NSNumber?
+            insertData.score = result.score as NSNumber?
             
         }
         
@@ -342,9 +363,9 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func addEvaluationData(result: ScaleResultProtocol) {
+    func addEvaluationData(_ result: ScaleResultProtocol) {
         let context = self.managedObjectContext!
-        let insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
+        let insertData = NSEntityDescription.insertNewObject(forEntityName: "EvaluationData", into: context) as! EvaluationData
         
         if let _ = result as? MyBodyResult {
             insertData.deviceType = 0
@@ -354,20 +375,20 @@ extension DBManager: DBManagerProtocol {
         }
         
         insertData.dataId = result.dataId
-        insertData.userId = result.userId
-        insertData.timeStamp = NSDate()
+        insertData.userId = result.userId as NSNumber?
+        insertData.timeStamp = Date()
         insertData.isUpload = false
         
-        insertData.boneMuscleWeight = result.boneMuscleWeight
-        insertData.boneWeight = result.boneWeight
-        insertData.fatPercentage = result.fatPercentage
-        insertData.fatWeight = result.fatWeight
-        insertData.muscleWeight = result.muscleWeight
-        insertData.proteinWeight = result.proteinWeight
-        insertData.visceralFatPercentage = result.visceralFatPercentage
-        insertData.waterPercentage = result.waterPercentage
-        insertData.waterWeight = result.waterWeight
-        insertData.weight = result.weight
+        insertData.boneMuscleWeight = result.boneMuscleWeight as NSNumber?
+        insertData.boneWeight = result.boneWeight as NSNumber?
+        insertData.fatPercentage = result.fatPercentage as NSNumber?
+        insertData.fatWeight = result.fatWeight as NSNumber?
+        insertData.muscleWeight = result.muscleWeight as NSNumber?
+        insertData.proteinWeight = result.proteinWeight as NSNumber?
+        insertData.visceralFatPercentage = result.visceralFatPercentage as NSNumber?
+        insertData.waterPercentage = result.waterPercentage as NSNumber?
+        insertData.waterWeight = result.waterWeight as NSNumber?
+        insertData.weight = result.weight as NSNumber?
         // 脂肪肝
         if let hepaticAdiposeInfiltration = result.hepaticAdiposeInfiltration {
             insertData.hepaticAdiposeInfiltration = hepaticAdiposeInfiltration ? 1 : 2  // 1为有  2为没有
@@ -375,59 +396,59 @@ extension DBManager: DBManagerProtocol {
         else {
             insertData.hepaticAdiposeInfiltration = 0 // 0为不支持
         }
-        insertData.fatFreeBodyWeight = result.fatFreeBodyWeight
-        insertData.fatFreeBodyWeightMin = result.fatFreeBodyWeightRange.0
-        insertData.fatFreeBodyWeightMax = result.fatFreeBodyWeightRange.1
-        insertData.muscleWeightMin = result.muscleWeightRange.0
-        insertData.muscleWeightMax = result.muscleWeightRange.1
-        insertData.proteinWeightMin = result.proteinWeightRange.0
-        insertData.proteinWeightMax = result.proteinWeightRange.1
-        insertData.boneWeightMin = result.boneWeightRange.0
-        insertData.boneWeightMax = result.boneWeightRange.1
-        insertData.waterWeightMin = result.waterWeightRange.0
-        insertData.waterWeightMax = result.waterWeightRange.1
-        insertData.fatWeightMin = result.fatWeightRange.0
-        insertData.fatWeightMax = result.fatWeightRange.1
-        insertData.fatPercentageMin = result.fatPercentageRange.0
-        insertData.fatPercentageMax = result.fatPercentageRange.1
-        insertData.whr = result.WHR
-        insertData.whrMin = result.WHRRange.0
-        insertData.whrMax = result.WHRRange.1
-        insertData.bmi = result.BMI
-        insertData.bmiMin = result.BMIRange.0
-        insertData.bmiMax = result.BMIRange.1
-        insertData.bmr = result.BMR
-        insertData.bodyAge = result.bodyAge
-        insertData.boneMuscleWeightMin = result.boneMuscleRange.0
-        insertData.boneMuscleWeightMax = result.boneMuscleRange.1
-        insertData.muscleControl = result.muscleControl
-        insertData.fatControl = result.fatControl
-        insertData.weightControl = result.weightControl
-        insertData.sw = result.SW
-        insertData.swMin = result.SWRange.0
-        insertData.swMax = result.SWRange.1
-        insertData.goalWeight = result.goalWeight
-        insertData.m_smm = result.m_smm
-        insertData.rightUpperExtremityFat = result.rightUpperExtremityFat
-        insertData.rightUpperExtremityMuscle = result.rightUpperExtremityMuscle
-        insertData.rightUpperExtremityBone = result.rightUpperExtremityBone
-        insertData.leftUpperExtremityFat = result.leftUpperExtremityFat
-        insertData.leftUpperExtremityMuscle = result.leftUpperExtremityMuscle
-        insertData.leftUpperExtremityBone = result.leftUpperExtremityBone
-        insertData.trunkLimbFat = result.trunkLimbFat
-        insertData.trunkLimbMuscle = result.trunkLimbMuscle
-        insertData.trunkLimbBone = result.trunkLimbBone
-        insertData.rightLowerExtremityFat = result.rightLowerExtremityFat
-        insertData.rightLowerExtremityMuscle = result.rightLowerExtremityMuscle
-        insertData.rightLowerExtremityBone = result.rightLowerExtremityBone
-        insertData.leftLowerExtremityFat = result.leftLowerExtremityFat
-        insertData.leftLowerExtremityMuscle = result.leftLowerExtremityMuscle
-        insertData.leftLowerExtremityBone = result.leftLowerExtremityBone
-        insertData.externalMoisture = result.externalMoisture
-        insertData.internalMoisture = result.internalMoisture
-        insertData.edemaFactor = result.edemaFactor
-        insertData.obesity = result.obesity
-        insertData.score = result.score
+        insertData.fatFreeBodyWeight = result.fatFreeBodyWeight as NSNumber?
+        insertData.fatFreeBodyWeightMin = result.fatFreeBodyWeightRange.0 as NSNumber?
+        insertData.fatFreeBodyWeightMax = result.fatFreeBodyWeightRange.1 as NSNumber?
+        insertData.muscleWeightMin = result.muscleWeightRange.0 as NSNumber?
+        insertData.muscleWeightMax = result.muscleWeightRange.1 as NSNumber?
+        insertData.proteinWeightMin = result.proteinWeightRange.0 as NSNumber?
+        insertData.proteinWeightMax = result.proteinWeightRange.1 as NSNumber?
+        insertData.boneWeightMin = result.boneWeightRange.0 as NSNumber?
+        insertData.boneWeightMax = result.boneWeightRange.1 as NSNumber?
+        insertData.waterWeightMin = result.waterWeightRange.0 as NSNumber?
+        insertData.waterWeightMax = result.waterWeightRange.1 as NSNumber?
+        insertData.fatWeightMin = result.fatWeightRange.0 as NSNumber?
+        insertData.fatWeightMax = result.fatWeightRange.1 as NSNumber?
+        insertData.fatPercentageMin = result.fatPercentageRange.0 as NSNumber?
+        insertData.fatPercentageMax = result.fatPercentageRange.1 as NSNumber?
+        insertData.whr = result.WHR as NSNumber?
+        insertData.whrMin = result.WHRRange.0 as NSNumber?
+        insertData.whrMax = result.WHRRange.1 as NSNumber?
+        insertData.bmi = result.BMI as NSNumber?
+        insertData.bmiMin = result.BMIRange.0 as NSNumber?
+        insertData.bmiMax = result.BMIRange.1 as NSNumber?
+        insertData.bmr = result.BMR as NSNumber?
+        insertData.bodyAge = result.bodyAge as NSNumber?
+        insertData.boneMuscleWeightMin = result.boneMuscleRange.0 as NSNumber?
+        insertData.boneMuscleWeightMax = result.boneMuscleRange.1 as NSNumber?
+        insertData.muscleControl = result.muscleControl as NSNumber?
+        insertData.fatControl = result.fatControl as NSNumber?
+        insertData.weightControl = result.weightControl as NSNumber?
+        insertData.sw = result.SW as NSNumber?
+        insertData.swMin = result.SWRange.0 as NSNumber?
+        insertData.swMax = result.SWRange.1 as NSNumber?
+        insertData.goalWeight = result.goalWeight as NSNumber?
+        insertData.m_smm = result.m_smm as NSNumber?
+        insertData.rightUpperExtremityFat = result.rightUpperExtremityFat as NSNumber?
+        insertData.rightUpperExtremityMuscle = result.rightUpperExtremityMuscle as NSNumber?
+        insertData.rightUpperExtremityBone = result.rightUpperExtremityBone as NSNumber?
+        insertData.leftUpperExtremityFat = result.leftUpperExtremityFat as NSNumber?
+        insertData.leftUpperExtremityMuscle = result.leftUpperExtremityMuscle as NSNumber?
+        insertData.leftUpperExtremityBone = result.leftUpperExtremityBone as NSNumber?
+        insertData.trunkLimbFat = result.trunkLimbFat as NSNumber?
+        insertData.trunkLimbMuscle = result.trunkLimbMuscle as NSNumber?
+        insertData.trunkLimbBone = result.trunkLimbBone as NSNumber?
+        insertData.rightLowerExtremityFat = result.rightLowerExtremityFat as NSNumber?
+        insertData.rightLowerExtremityMuscle = result.rightLowerExtremityMuscle as NSNumber?
+        insertData.rightLowerExtremityBone = result.rightLowerExtremityBone as NSNumber?
+        insertData.leftLowerExtremityFat = result.leftLowerExtremityFat as NSNumber?
+        insertData.leftLowerExtremityMuscle = result.leftLowerExtremityMuscle as NSNumber?
+        insertData.leftLowerExtremityBone = result.leftLowerExtremityBone as NSNumber?
+        insertData.externalMoisture = result.externalMoisture as NSNumber?
+        insertData.internalMoisture = result.internalMoisture as NSNumber?
+        insertData.edemaFactor = result.edemaFactor as NSNumber?
+        insertData.obesity = result.obesity as NSNumber?
+        insertData.score = result.score as NSNumber?
         
         do {
             try context.save()
@@ -438,13 +459,13 @@ extension DBManager: DBManagerProtocol {
         
     }
     
-    func addEvaluationData(setDatas:(inout setDatas: EvaluationData)-> EvaluationData) {
+    func addEvaluationData(_ setDatas:( _ setDatas: inout EvaluationData)-> EvaluationData) {
         
         let context = self.managedObjectContext!
-        var insertData = NSEntityDescription.insertNewObjectForEntityForName("EvaluationData", inManagedObjectContext: context) as! EvaluationData
+        var insertData = NSEntityDescription.insertNewObject(forEntityName: "EvaluationData", into: context) as! EvaluationData
         
-        insertData.dataId = NSUUID().UUIDString
-        setDatas(setDatas: &insertData)
+        insertData.dataId = UUID().uuidString
+        _ = setDatas(&insertData)
         
         do {
             try context.save()
@@ -454,18 +475,18 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func deleteEvaluationData(dataId: String, userId: Int) {
+    func deleteEvaluationData(_ dataId: String, userId: Int) {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "dataId == %@ AND userId == %d", dataId, userId)
 //        request.predicate = NSPredicate(format: "dataId == %@", dataId)
         
         let listData:[AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
             
             print(listData)
             
@@ -474,7 +495,7 @@ extension DBManager: DBManagerProtocol {
             listData = nil
         }
         for data in listData as! [EvaluationData] {
-            context.deleteObject(data)
+            context.delete(data)
             do {
                 try context.save()
                 print("删除成功")
@@ -484,19 +505,19 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func deleteEvaluationDatas(date: NSDate) {
+    func deleteEvaluationDatas(_ date: Date) {
         let context = self.managedObjectContext!
         
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "timeStamp <= %@", date)
+        request.predicate = NSPredicate(format: "timeStamp <= %@", date as CVarArg)
         
         var error: NSError? = nil
         let listData:[AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -505,7 +526,7 @@ extension DBManager: DBManagerProtocol {
         
         if let datas = listData {
             for data in datas as! [EvaluationData] {
-                context.deleteObject(data)
+                context.delete(data)
             }
             
             do {
@@ -516,17 +537,17 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func queryEvaluationData(dataId: String, userId: Int) -> [String: AnyObject]? {
+    func queryEvaluationData(_ dataId: String, userId: Int) -> [String: AnyObject]? {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "dataId == %@ AND userId == %d", dataId, userId)
         
         let listData: [AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error as NSError {
             print(error)
             listData = nil
@@ -539,18 +560,18 @@ extension DBManager: DBManagerProtocol {
         return nil
     }
     
-    func queryEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int) -> [[String: AnyObject]] {
+    func queryEvaluationDatas(_ beginTimescamp: Date, endTimescamp: Date, userId: Int) -> [[String: AnyObject]] {
         
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp, endTimescamp, userId)
+        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp as CVarArg, endTimescamp as CVarArg, userId)
         let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         request.sortDescriptors = [endDateSort]
         
-        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        let listData = (try! context.fetch(request)) as! [EvaluationData]
         
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
@@ -559,18 +580,18 @@ extension DBManager: DBManagerProtocol {
         return datas
     }
     
-    func queryCountEvaluationDatas(beginTimescamp: NSDate, endTimescamp: NSDate, userId: Int, count: Int) -> [[String: AnyObject]] {
+    func queryCountEvaluationDatas(_ beginTimescamp: Date, endTimescamp: Date, userId: Int, count: Int) -> [[String: AnyObject]] {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp, endTimescamp, userId)
+        request.predicate = NSPredicate(format: "timeStamp >= %@ AND timeStamp <= %@ AND userId == %d", beginTimescamp as CVarArg, endTimescamp as CVarArg, userId)
         request.fetchLimit = count
         let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         request.sortDescriptors = [endDateSort]
         
-        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        let listData = (try! context.fetch(request)) as! [EvaluationData]
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
             datas += [convertModel(managedObject)]
@@ -580,13 +601,13 @@ extension DBManager: DBManagerProtocol {
     
     func queryNoUploadEvaluationDatas() -> [[String: AnyObject]] {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
+        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(value: false as Bool))
         
-        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        let listData = (try! context.fetch(request)) as! [EvaluationData]
         
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
@@ -595,27 +616,29 @@ extension DBManager: DBManagerProtocol {
         return datas
     }
     
-    func updateUploadEvaluationDatas(newDataIdInfos: [[String: AnyObject]]) {
+    func updateUploadEvaluationDatas(_ newDataIdInfos: [[String: AnyObject]]) {
         
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
+        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(value: false as Bool))
         
-        let listData = (try! context.executeFetchRequest(request)) as! [EvaluationData]
+        let listData = (try! context.fetch(request)) as! [EvaluationData]
         
         if listData.count != newDataIdInfos.count {
             return
         }
         
-        for var i = 0; i < listData.count; i++ {
-            
-            let managedObject = listData[i]
-            let info = newDataIdInfos[i]
-            managedObject.dataId = info["dataId"] as? String
-            managedObject.isUpload = NSNumber(bool: true)
+        if listData.count > 0 {
+            for i in 0...listData.count-1 {
+                
+                let managedObject = listData[i]
+                let info = newDataIdInfos[i]
+                managedObject.dataId = info["dataId"] as? String
+                managedObject.isUpload = NSNumber(value: true as Bool)
+            }
         }
         
         do {
@@ -625,18 +648,18 @@ extension DBManager: DBManagerProtocol {
         }
     }
     
-    func queryLastEvaluationData(userId: Int) -> [String : AnyObject]? {
+    func queryLastEvaluationData(_ userId: Int) -> [String : AnyObject]? {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("EvaluationData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "EvaluationData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "userId == %@", NSNumber(integer:userId))
+        request.predicate = NSPredicate(format: "userId == %@", NSNumber(value: userId as Int))
         let endDateSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         request.sortDescriptors = [endDateSort]
         request.fetchLimit = 1
         
-        if let listData = (try? context.executeFetchRequest(request)) as? [EvaluationData] {
+        if let listData = (try? context.fetch(request)) as? [EvaluationData] {
             if listData.count > 0 {
                 return convertModel(listData.first!)
             }
@@ -649,21 +672,21 @@ extension DBManager: DBManagerProtocol {
 // MARK: - 目标数据
 extension DBManager {
     
-    func addGoalDatas(data: BraceletResultProtocol) {
+    func addGoalDatas(_ data: BraceletResultProtocol) {
         
         let context = self.managedObjectContext!
         
         for result in data.results {
-            let insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
+            let insertData = NSEntityDescription.insertNewObject(forEntityName: "GoalData", into: context) as! GoalData
             
             insertData.dataId = result.dataId
-            insertData.userId = NSNumber(integer: result.userId)
+            insertData.userId = NSNumber(value: result.userId as Int)
             insertData.isUpload = false
             
             insertData.startTime = result.startTime
             insertData.endTime = result.endTime
-            insertData.steps = NSNumber(unsignedShort: result.steps)
-            insertData.stepsType = NSNumber(unsignedShort: result.stepsType.rawValue)
+            insertData.steps = NSNumber(value: result.steps as UInt16)
+            insertData.stepsType = NSNumber(value: result.stepsType.rawValue as UInt16)
             
         }
         
@@ -675,15 +698,15 @@ extension DBManager {
         
     }
     
-    func addGoalData(setDatas: (inout setDatas: GoalData) -> GoalData) {
+    func addGoalData(_ setDatas: @escaping ( _ setDatas: inout GoalData) -> GoalData) {
         
         let context = self.managedObjectContext!
         
-        context.performBlock { () -> Void in
-            var insertData = NSEntityDescription.insertNewObjectForEntityForName("GoalData", inManagedObjectContext: context) as! GoalData
+        context.perform { () -> Void in
+            var insertData = NSEntityDescription.insertNewObject(forEntityName: "GoalData", into: context) as! GoalData
             
-            insertData.dataId = NSUUID().UUIDString
-            setDatas(setDatas: &insertData)
+            insertData.dataId = UUID().uuidString
+            _ = setDatas(&insertData)
             
             do {
                 try context.save()
@@ -694,27 +717,27 @@ extension DBManager {
         }
     }
     
-    func deleteGoalData(dataId: String) {
+    func deleteGoalData(_ dataId: String) {
         let context = self.managedObjectContext!
         
-        context.performBlock { () -> Void in
-            let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        context.perform { () -> Void in
+            let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)
             
-            let request = NSFetchRequest()
+            let request = NSFetchRequest<NSFetchRequestResult>()
             request.entity = entityDescription
             request.predicate = NSPredicate(format: "dataId == %@", dataId)
             
             var error: NSError? = nil
             let listData:[AnyObject]?
             do {
-                listData = try context.executeFetchRequest(request)
+                listData = try context.fetch(request)
             } catch let error1 as NSError {
                 error = error1
                 listData = nil
                 print(error)
             }
             for data in listData as! [EvaluationData] {
-                context.deleteObject(data)
+                context.delete(data)
                 var savingError: NSError? = nil
                 do {
                     try context.save()
@@ -727,19 +750,19 @@ extension DBManager {
         }
     }
     
-    func deleteGoalDatas(date: NSDate) {
+    func deleteGoalDatas(_ date: Date) {
         let context = self.managedObjectContext!
         
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "endTime <= %@", date)
+        request.predicate = NSPredicate(format: "endTime <= %@", date as CVarArg)
         
         var error: NSError? = nil
         let listData:[AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -748,7 +771,7 @@ extension DBManager {
         
         if let datas = listData {
             for data in datas as! [GoalData] {
-                context.deleteObject(data)
+                context.delete(data)
             }
             
             do {
@@ -760,13 +783,13 @@ extension DBManager {
         
     }
     
-    func queryGoalData(dataId: String) -> [String: AnyObject]? {
+    func queryGoalData(_ dataId: String) -> [String: AnyObject]? {
         
         let context = self.managedObjectContext!
         
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.fetchLimit = 1
         request.predicate = NSPredicate(format: "dataId == %@", dataId)
@@ -774,7 +797,7 @@ extension DBManager {
         var error: NSError? = nil
         let listData: [AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -790,9 +813,9 @@ extension DBManager {
     
     func queryLastGoalData() -> [String: AnyObject]? {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.fetchLimit = 1
         let endDateSort = NSSortDescriptor(key: "endTime", ascending: false)
@@ -801,7 +824,7 @@ extension DBManager {
         var error: NSError? = nil
         let listData: [AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -815,16 +838,16 @@ extension DBManager {
         return nil
     }
     
-    func queryGoalData(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]] {
+    func queryGoalData(_ beginDate: Date, endDate: Date) -> [[String: AnyObject]] {
         
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "startTime >= %@ and endTime < %@", beginDate, endDate)
+        request.predicate = NSPredicate(format: "startTime >= %@ and endTime < %@", beginDate as CVarArg, endDate as CVarArg)
         
-        let listData: [NSManagedObject] = (try! context.executeFetchRequest(request)) as! [NSManagedObject]
+        let listData: [NSManagedObject] = (try! context.fetch(request)) as! [NSManagedObject]
         
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
@@ -836,13 +859,13 @@ extension DBManager {
     
     func queryNoUploadGoalDatas() -> [[String: AnyObject]] {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
+        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(value: false as Bool))
         
-        let listData = (try! context.executeFetchRequest(request)) as! [GoalData]
+        let listData = (try! context.fetch(request)) as! [GoalData]
         
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
@@ -851,26 +874,28 @@ extension DBManager {
         return datas
     }
     
-    func updateUploadGoalDatas(newDataIdInfos: [[String: AnyObject]]) {
+    func updateUploadGoalDatas(_ newDataIdInfos: [[String: AnyObject]]) {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("GoalData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "GoalData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(bool: false))
+        request.predicate = NSPredicate(format: "isUpload == %@", NSNumber(value: false as Bool))
         
-        let listData = (try! context.executeFetchRequest(request)) as! [GoalData]
+        let listData = (try! context.fetch(request)) as! [GoalData]
         
         if listData.count != newDataIdInfos.count {
             return
         }
         
-        for var i = 0; i < listData.count && i < newDataIdInfos.count; i++ {
-            
+        var i = 0
+        while i < listData.count && i < newDataIdInfos.count {
             let managedObject = listData[i]
             let info = newDataIdInfos[i]
             managedObject.dataId =  String(format: "%@", info["dataid"] as! NSNumber)
-            managedObject.isUpload = NSNumber(bool: true)
+            managedObject.isUpload = NSNumber(value: true as Bool)
+            
+            i += 1
         }
         
         do {
@@ -884,17 +909,17 @@ extension DBManager {
 // MARK: - Device Model 操作
 extension DBManager {
     
-    func haveConnectedWithType(type: DeviceType) -> Bool {
+    func haveConnectedWithType(_ type: DeviceType) -> Bool {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "type == %d", type.rawValue)
         
         var error: NSError? = nil
         let listData: [AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -908,25 +933,25 @@ extension DBManager {
         }
     }
     
-    func removeDeviceBind(type: DeviceType) {
+    func removeDeviceBind(_ type: DeviceType) {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "type == %d", type.rawValue)
         
         var error: NSError? = nil
         let listData:[AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
             print(error)
         }
         for data in listData as! [Device] {
-            context.deleteObject(data)
+            context.delete(data)
             var savingError: NSError? = nil
             do {
                 try context.save()
@@ -941,15 +966,15 @@ extension DBManager {
     var haveConnectedScale: Bool {
         
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "type == %d OR type == %d OR type == %d", DeviceType.MyBody.rawValue, DeviceType.MyBodyMini.rawValue, DeviceType.MyBodyPlus.rawValue)
+        request.predicate = NSPredicate(format: "type == %d OR type == %d OR type == %d", DeviceType.myBody.rawValue, DeviceType.myBodyMini.rawValue, DeviceType.myBodyPlus.rawValue)
         
         var error: NSError? = nil
         let listData: [AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -966,15 +991,15 @@ extension DBManager {
     
     var haveConnectedBracelet: Bool {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "type == 1")
         
         var error: NSError? = nil
         let listData: [AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -988,20 +1013,20 @@ extension DBManager {
         }
     }
     
-    func addDevice(uuid: String, name: String, type: DeviceType) {
+    func addDevice(_ uuid: String, name: String, type: DeviceType) {
         
         let context = self.managedObjectContext!
         
         // 先搜索
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "uuid == %@", uuid)
         
         var error: NSError? = nil
         let listData: [AnyObject]?
         do {
-            listData = try context.executeFetchRequest(request)
+            listData = try context.fetch(request)
         } catch let error1 as NSError {
             error = error1
             listData = nil
@@ -1011,11 +1036,11 @@ extension DBManager {
             NSLog("Insert Device Fail, exist the UUID")
         }
         else {
-            let insertData = NSEntityDescription.insertNewObjectForEntityForName("Device", inManagedObjectContext: context) as! Device
+            let insertData = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! Device
             
             insertData.uuid = uuid
             insertData.name = name
-            insertData.type = NSNumber(short: type.rawValue)
+            insertData.type = NSNumber(value: type.rawValue as Int16)
             
             do {
                 try context.save()
@@ -1028,16 +1053,16 @@ extension DBManager {
     
     func braceletInfo() -> (uuid: String, name: String)? {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         request.predicate = NSPredicate(format: "type == 1")
         request.fetchLimit = 1
         
-        if let listData = try? context.executeFetchRequest(request) as? [Device] {
+        if let listData = try? context.fetch(request) as? [Device] {
             if listData!.count > 0 {
                 let model = listData!.first
-                return (model!.valueForKey("uuid") as! String, model?.valueForKey("name") as! String)
+                return (model!.value(forKey: "uuid") as! String, model?.value(forKey: "name") as! String)
             }
         }
         
@@ -1046,16 +1071,16 @@ extension DBManager {
     
     func myBodyInfo() -> (uuid: String, name: String)? {
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("Device", inManagedObjectContext: context)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Device", in: context)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "type == %d OR type == %d OR type == %d", DeviceType.MyBody.rawValue, DeviceType.MyBodyMini.rawValue, DeviceType.MyBodyPlus.rawValue)
+        request.predicate = NSPredicate(format: "type == %d OR type == %d OR type == %d", DeviceType.myBody.rawValue, DeviceType.myBodyMini.rawValue, DeviceType.myBodyPlus.rawValue)
         request.fetchLimit = 1
         
-        if let listData = try? context.executeFetchRequest(request) as? [Device] {
+        if let listData = try? context.fetch(request) as? [Device] {
             if listData!.count > 0 {
                 let model = listData!.first
-                return (model!.valueForKey("uuid") as! String, model?.valueForKey("name") as! String)
+                return (model!.value(forKey: "uuid") as! String, model?.value(forKey: "name") as! String)
             }
         }
         
@@ -1065,13 +1090,13 @@ extension DBManager {
 
 // MARK: - 分享数据
 extension DBManager {
-    func addShareData(type: Int) {
+    func addShareData(_ type: Int) {
         
         let context = self.managedObjectContext!
-        let insertData = NSEntityDescription.insertNewObjectForEntityForName("ShareData", inManagedObjectContext: context) as! ShareData
+        let insertData = NSEntityDescription.insertNewObject(forEntityName: "ShareData", into: context) as! ShareData
         
-        insertData.type = NSNumber(integer: type)
-        insertData.date = NSDate()
+        insertData.type = NSNumber(value: type as Int)
+        insertData.date = Date()
         
         do {
             try context.save()
@@ -1081,16 +1106,16 @@ extension DBManager {
         }
     }
     
-    func queryShareDatas(beginDate: NSDate, endDate: NSDate) -> [[String: AnyObject]] {
+    func queryShareDatas(_ beginDate: Date, endDate: Date) -> [[String: AnyObject]] {
         
         let context = self.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("ShareData", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "ShareData", in: context)
         
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
-        request.predicate = NSPredicate(format: "date >= %@ and date < %@", beginDate, endDate)
+        request.predicate = NSPredicate(format: "date >= %@ and date < %@", beginDate as CVarArg, endDate as CVarArg)
         
-        let listData: [NSManagedObject] = (try! context.executeFetchRequest(request)) as! [NSManagedObject]
+        let listData: [NSManagedObject] = (try! context.fetch(request)) as! [NSManagedObject]
         
         var datas: [[String: AnyObject]] = []
         for managedObject in listData {
@@ -1120,26 +1145,26 @@ dataId: String
 // MARK: - 数据工厂
 extension DBManager {
     
-    func shareDataToDic(shareData: NSManagedObject) -> [String : AnyObject] {
+    func shareDataToDic(_ shareData: NSManagedObject) -> [String : AnyObject] {
         return [
-            "type" : shareData.valueForKey("type") as! NSNumber,
-            "date" : shareData.valueForKey("date") as! NSDate,
+            "type" : shareData.value(forKey: "type") as! NSNumber,
+            "date" : shareData.value(forKey: "date") as! Date as AnyObject,
         ]
     }
     
-    func goalDataToDic(goalData: NSManagedObject) -> [String: AnyObject] {
+    func goalDataToDic(_ goalData: NSManagedObject) -> [String: AnyObject] {
         return [
-            "stepsType" : goalData.valueForKey("stepsType") as! NSNumber,
-            "steps" : goalData.valueForKey("steps") as! NSNumber,
-            "dataId" : goalData.valueForKey("dataId") as! String,
-            "userId" : goalData.valueForKey("userId") as! NSNumber,
-            "isUpload" : goalData.valueForKey("isUpload") as! NSNumber,
-            "startTime" : goalData.valueForKey("startTime") as! NSDate,
-            "endTime" : goalData.valueForKey("endTime") as! NSDate,
+            "stepsType" : goalData.value(forKey: "stepsType") as! NSNumber,
+            "steps" : goalData.value(forKey: "steps") as! NSNumber,
+            "dataId" : goalData.value(forKey: "dataId") as! String as AnyObject,
+            "userId" : goalData.value(forKey: "userId") as! NSNumber,
+            "isUpload" : goalData.value(forKey: "isUpload") as! NSNumber,
+            "startTime" : goalData.value(forKey: "startTime") as! Date as AnyObject,
+            "endTime" : goalData.value(forKey: "endTime") as! Date as AnyObject,
         ]
     }
     
-    func userToDic(user: UserDBData) -> [String: AnyObject] {
+    func userToDic(_ user: UserDBData) -> [String: AnyObject] {
         
         /*
         @NSManaged var age: NSNumber
@@ -1149,46 +1174,46 @@ extension DBManager {
         @NSManaged var gender: NSNumber
 */
         var info: [String: NSObject] = [
-            "age" : user.valueForKey("age") as! NSNumber,
-            "height" : user.valueForKey("height") as! NSNumber,
-            "name" : user.valueForKey("name") as! String,
-            "userId" : user.valueForKey("userId") as! NSNumber,
-            "gender" : user.valueForKey("gender") as! NSNumber,
+            "age" : user.value(forKey: "age") as! NSNumber,
+            "height" : user.value(forKey: "height") as! NSNumber,
+            "name" : user.value(forKey: "name") as! String as NSObject,
+            "userId" : user.value(forKey: "userId") as! NSNumber,
+            "gender" : user.value(forKey: "gender") as! NSNumber,
         ]
-        if let headURL = user.valueForKey("headURL") as? String {
-            info["headURL"] = headURL
+        if let headURL = user.value(forKey: "headURL") as? String {
+            info["headURL"] = headURL as NSObject
         }
         else {
-            info["headURL"] = ""
+            info["headURL"] = "" as NSObject
         }
         
         return info
     }
     
-    func convertModel(data: EvaluationData) -> [String: AnyObject] {
-        let dataId = data.valueForKey("dataId") as! String
-        let isUpload = (data.valueForKey("isUpload") as! NSNumber)
-        let timeStamp = (data.valueForKey("timeStamp") as! NSDate)
-        let userId = (data.valueForKey("userId") as! NSNumber)
-        let weight = (data.valueForKey("weight") as! NSNumber)
-        let waterPercentage = (data.valueForKey("waterPercentage") as! NSNumber)
-        let visceralFatPercentage = (data.valueForKey("visceralFatPercentage") as! NSNumber)
-        let fatPercentage = (data.valueForKey("fatPercentage") as! NSNumber)
-        let fatWeight = (data.valueForKey("fatWeight") as! NSNumber)
-        let waterWeight = (data.valueForKey("waterWeight") as! NSNumber)
-        let muscleWeight = (data.valueForKey("muscleWeight") as! NSNumber)
-        let proteinWeight = (data.valueForKey("proteinWeight") as! NSNumber)
-        let boneWeight = (data.valueForKey("boneWeight") as! NSNumber)
-        let boneMuscleWeight = (data.valueForKey("boneMuscleWeight") as! NSNumber)
+    func convertModel(_ data: EvaluationData) -> [String: AnyObject] {
+        let dataId = data.value(forKey: "dataId") as! String
+        let isUpload = (data.value(forKey: "isUpload") as! NSNumber)
+        let timeStamp = (data.value(forKey: "timeStamp") as! Date)
+        let userId = (data.value(forKey: "userId") as! NSNumber)
+        let weight = (data.value(forKey: "weight") as! NSNumber)
+        let waterPercentage = (data.value(forKey: "waterPercentage") as! NSNumber)
+        let visceralFatPercentage = (data.value(forKey: "visceralFatPercentage") as! NSNumber)
+        let fatPercentage = (data.value(forKey: "fatPercentage") as! NSNumber)
+        let fatWeight = (data.value(forKey: "fatWeight") as! NSNumber)
+        let waterWeight = (data.value(forKey: "waterWeight") as! NSNumber)
+        let muscleWeight = (data.value(forKey: "muscleWeight") as! NSNumber)
+        let proteinWeight = (data.value(forKey: "proteinWeight") as! NSNumber)
+        let boneWeight = (data.value(forKey: "boneWeight") as! NSNumber)
+        let boneMuscleWeight = (data.value(forKey: "boneMuscleWeight") as! NSNumber)
         
         
         var info: [String : AnyObject] = [:]
         
-        info["deviceType"] = (data.valueForKey("deviceType") as! NSNumber)
+        info["deviceType"] = (data.value(forKey: "deviceType") as! NSNumber)
         
-        info["dataId"] = dataId
-        info["userId"] = userId
-        info["timeStamp"] = timeStamp
+        info["dataId"] = dataId as AnyObject
+        info["userId"] = userId as AnyObject
+        info["timeStamp"] = timeStamp as AnyObject
         info["isUpload"] = isUpload
         
         info["boneMuscleWeight"] = boneMuscleWeight
@@ -1203,71 +1228,71 @@ extension DBManager {
         info["weight"] = weight
         
         // 脂肪肝  1为有  2为没有  0为不支持
-        if let hepaticAdiposeInfiltration = data.valueForKey("hepaticAdiposeInfiltration") as? NSNumber {
-            if hepaticAdiposeInfiltration.integerValue == 1 {
-                info["hepaticAdiposeInfiltration"] = NSNumber(bool: true)
-            } else if hepaticAdiposeInfiltration.integerValue == 2 {
-                info["hepaticAdiposeInfiltration"] = NSNumber(bool: false)
+        if let hepaticAdiposeInfiltration = data.value(forKey: "hepaticAdiposeInfiltration") as? NSNumber {
+            if hepaticAdiposeInfiltration.intValue == 1 {
+                info["hepaticAdiposeInfiltration"] = NSNumber(value: true as Bool)
+            } else if hepaticAdiposeInfiltration.intValue == 2 {
+                info["hepaticAdiposeInfiltration"] = NSNumber(value: false as Bool)
             }
         }
         
         
-        info["fatFreeBodyWeight"] = data.valueForKey("fatFreeBodyWeight") as! NSNumber
-        info["fatFreeBodyWeightMin"] = data.valueForKey("fatFreeBodyWeightMin") as! NSNumber
-        info["fatFreeBodyWeightMax"] = data.valueForKey("fatFreeBodyWeightMax") as! NSNumber
-        info["muscleWeightMin"] = data.valueForKey("muscleWeightMin") as! NSNumber
-        info["muscleWeightMax"] = data.valueForKey("muscleWeightMax") as! NSNumber
-        info["proteinWeightMin"] = data.valueForKey("proteinWeightMin") as! NSNumber
-        info["proteinWeightMax"] = data.valueForKey("proteinWeightMax") as! NSNumber
-        info["boneWeightMin"] = data.valueForKey("boneWeightMin") as! NSNumber
-        info["boneWeightMax"] = data.valueForKey("boneWeightMax") as! NSNumber
-        info["waterWeightMin"] = data.valueForKey("waterWeightMin") as! NSNumber
-        info["waterWeightMax"] = data.valueForKey("waterWeightMax") as! NSNumber
-        info["fatWeightMin"] = data.valueForKey("fatWeightMin") as! NSNumber
-        info["fatWeightMax"] = data.valueForKey("fatWeightMax") as! NSNumber
-        info["fatPercentageMin"] = data.valueForKey("fatPercentageMin") as! NSNumber
-        info["fatPercentageMax"] = data.valueForKey("fatPercentageMax") as! NSNumber
-        info["whr"] = data.valueForKey("whr") as! NSNumber
-        info["whrMin"] = data.valueForKey("whrMin") as! NSNumber
-        info["whrMax"] = data.valueForKey("whrMax") as! NSNumber
-        info["bmi"] = data.valueForKey("bmi") as! NSNumber
-        info["bmiMin"] = data.valueForKey("bmiMin") as! NSNumber
-        info["bmiMax"] = data.valueForKey("bmiMax") as! NSNumber
-        info["bmr"] = data.valueForKey("bmr") as! NSNumber
-        info["bodyAge"] = data.valueForKey("bodyAge") as! NSNumber
-        let boneMuscleWeightMin = data.valueForKey("boneMuscleWeightMin") as! NSNumber
-        let boneMuscleWeightMax = data.valueForKey("boneMuscleWeightMax") as! NSNumber
+        info["fatFreeBodyWeight"] = data.value(forKey: "fatFreeBodyWeight") as! NSNumber
+        info["fatFreeBodyWeightMin"] = data.value(forKey: "fatFreeBodyWeightMin") as! NSNumber
+        info["fatFreeBodyWeightMax"] = data.value(forKey: "fatFreeBodyWeightMax") as! NSNumber
+        info["muscleWeightMin"] = data.value(forKey: "muscleWeightMin") as! NSNumber
+        info["muscleWeightMax"] = data.value(forKey: "muscleWeightMax") as! NSNumber
+        info["proteinWeightMin"] = data.value(forKey: "proteinWeightMin") as! NSNumber
+        info["proteinWeightMax"] = data.value(forKey: "proteinWeightMax") as! NSNumber
+        info["boneWeightMin"] = data.value(forKey: "boneWeightMin") as! NSNumber
+        info["boneWeightMax"] = data.value(forKey: "boneWeightMax") as! NSNumber
+        info["waterWeightMin"] = data.value(forKey: "waterWeightMin") as! NSNumber
+        info["waterWeightMax"] = data.value(forKey: "waterWeightMax") as! NSNumber
+        info["fatWeightMin"] = data.value(forKey: "fatWeightMin") as! NSNumber
+        info["fatWeightMax"] = data.value(forKey: "fatWeightMax") as! NSNumber
+        info["fatPercentageMin"] = data.value(forKey: "fatPercentageMin") as! NSNumber
+        info["fatPercentageMax"] = data.value(forKey: "fatPercentageMax") as! NSNumber
+        info["whr"] = data.value(forKey: "whr") as! NSNumber
+        info["whrMin"] = data.value(forKey: "whrMin") as! NSNumber
+        info["whrMax"] = data.value(forKey: "whrMax") as! NSNumber
+        info["bmi"] = data.value(forKey: "bmi") as! NSNumber
+        info["bmiMin"] = data.value(forKey: "bmiMin") as! NSNumber
+        info["bmiMax"] = data.value(forKey: "bmiMax") as! NSNumber
+        info["bmr"] = data.value(forKey: "bmr") as! NSNumber
+        info["bodyAge"] = data.value(forKey: "bodyAge") as! NSNumber
+        let boneMuscleWeightMin = data.value(forKey: "boneMuscleWeightMin") as! NSNumber
+        let boneMuscleWeightMax = data.value(forKey: "boneMuscleWeightMax") as! NSNumber
         info["boneMuscleWeightMin"] = boneMuscleWeightMin
         info["boneMuscleWeightMax"] = boneMuscleWeightMax
-        info["muscleControl"] = data.valueForKey("muscleControl") as! NSNumber
-        info["fatControl"] = data.valueForKey("fatControl") as! NSNumber
-        info["weightControl"] = data.valueForKey("weightControl") as! NSNumber
-        info["sw"] = data.valueForKey("sw") as! NSNumber
-        info["swMin"] = data.valueForKey("swMin") as! NSNumber
-        info["swMax"] = data.valueForKey("swMax") as! NSNumber
-        info["goalWeight"] = data.valueForKey("goalWeight") as! NSNumber
-        info["m_smm"] = data.valueForKey("m_smm") as! NSNumber
-        info["rightUpperExtremityFat"] = data.valueForKey("rightUpperExtremityFat") as! NSNumber
-        info["rightUpperExtremityMuscle"] = data.valueForKey("rightUpperExtremityMuscle") as! NSNumber
-        info["rightUpperExtremityBone"] = data.valueForKey("rightUpperExtremityBone") as! NSNumber
-        info["leftUpperExtremityFat"] = data.valueForKey("leftUpperExtremityFat") as! NSNumber
-        info["leftUpperExtremityMuscle"] = data.valueForKey("leftUpperExtremityMuscle") as! NSNumber
-        info["leftUpperExtremityBone"] = data.valueForKey("leftUpperExtremityBone") as! NSNumber
-        info["trunkLimbFat"] = data.valueForKey("trunkLimbFat") as! NSNumber
-        info["trunkLimbMuscle"] = data.valueForKey("trunkLimbMuscle") as! NSNumber
-        info["trunkLimbBone"] = data.valueForKey("trunkLimbBone") as! NSNumber
-        info["rightLowerExtremityFat"] = data.valueForKey("rightLowerExtremityFat") as! NSNumber
-        info["rightLowerExtremityMuscle"] = data.valueForKey("rightLowerExtremityMuscle") as! NSNumber
-        info["rightLowerExtremityBone"] = data.valueForKey("rightLowerExtremityBone") as! NSNumber
-        info["leftLowerExtremityFat"] = data.valueForKey("leftLowerExtremityFat") as! NSNumber
-        info["leftLowerExtremityMuscle"] = data.valueForKey("leftLowerExtremityMuscle") as! NSNumber
-        info["leftLowerExtremityBone"] = data.valueForKey("leftLowerExtremityBone") as! NSNumber
+        info["muscleControl"] = data.value(forKey: "muscleControl") as! NSNumber
+        info["fatControl"] = data.value(forKey: "fatControl") as! NSNumber
+        info["weightControl"] = data.value(forKey: "weightControl") as! NSNumber
+        info["sw"] = data.value(forKey: "sw") as! NSNumber
+        info["swMin"] = data.value(forKey: "swMin") as! NSNumber
+        info["swMax"] = data.value(forKey: "swMax") as! NSNumber
+        info["goalWeight"] = data.value(forKey: "goalWeight") as! NSNumber
+        info["m_smm"] = data.value(forKey: "m_smm") as! NSNumber
+        info["rightUpperExtremityFat"] = data.value(forKey: "rightUpperExtremityFat") as! NSNumber
+        info["rightUpperExtremityMuscle"] = data.value(forKey: "rightUpperExtremityMuscle") as! NSNumber
+        info["rightUpperExtremityBone"] = data.value(forKey: "rightUpperExtremityBone") as! NSNumber
+        info["leftUpperExtremityFat"] = data.value(forKey: "leftUpperExtremityFat") as! NSNumber
+        info["leftUpperExtremityMuscle"] = data.value(forKey: "leftUpperExtremityMuscle") as! NSNumber
+        info["leftUpperExtremityBone"] = data.value(forKey: "leftUpperExtremityBone") as! NSNumber
+        info["trunkLimbFat"] = data.value(forKey: "trunkLimbFat") as! NSNumber
+        info["trunkLimbMuscle"] = data.value(forKey: "trunkLimbMuscle") as! NSNumber
+        info["trunkLimbBone"] = data.value(forKey: "trunkLimbBone") as! NSNumber
+        info["rightLowerExtremityFat"] = data.value(forKey: "rightLowerExtremityFat") as! NSNumber
+        info["rightLowerExtremityMuscle"] = data.value(forKey: "rightLowerExtremityMuscle") as! NSNumber
+        info["rightLowerExtremityBone"] = data.value(forKey: "rightLowerExtremityBone") as! NSNumber
+        info["leftLowerExtremityFat"] = data.value(forKey: "leftLowerExtremityFat") as! NSNumber
+        info["leftLowerExtremityMuscle"] = data.value(forKey: "leftLowerExtremityMuscle") as! NSNumber
+        info["leftLowerExtremityBone"] = data.value(forKey: "leftLowerExtremityBone") as! NSNumber
         
-        info["externalMoisture"] = data.valueForKey("externalMoisture") as! NSNumber
-        info["internalMoisture"] = data.valueForKey("internalMoisture") as! NSNumber
-        info["edemaFactor"] = data.valueForKey("edemaFactor") as! NSNumber
-        info["obesity"] = data.valueForKey("obesity") as! NSNumber
-        let score = data.valueForKey("score") as! NSNumber
+        info["externalMoisture"] = data.value(forKey: "externalMoisture") as! NSNumber
+        info["internalMoisture"] = data.value(forKey: "internalMoisture") as! NSNumber
+        info["edemaFactor"] = data.value(forKey: "edemaFactor") as! NSNumber
+        info["obesity"] = data.value(forKey: "obesity") as! NSNumber
+        let score = data.value(forKey: "score") as! NSNumber
         info["score"] = score
         
         print("timeStamptimeStamp \(info["timeStamp"])")

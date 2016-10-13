@@ -10,24 +10,24 @@ import Foundation
 
 struct ScoreRequest {
     // 'allscore'总积分,'monthscore',当月积分'rank',会员等级 'monthrank' 当月等级
-    static func queryScore(userId: Int, complete: ((allscore: Int?, monthscore: Int?, rank: Int?, monthrank: Int?, NSError?) -> Void)) {
+    static func queryScore(_ userId: Int, complete: @escaping ((_ allscore: Int?, _ monthscore: Int?, _ rank: Int?, _ monthrank: Int?, NSError?) -> Void)) {
         
-        RequestType.QueryScore.startRequest(["userId": userId], completionHandler: { (data, response, error) -> Void in
+        RequestType.QueryScore.startRequest(["userId": userId as AnyObject], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
-                complete(allscore: nil,monthscore: nil,rank: nil,monthrank: nil, err)
+                complete(nil,nil,nil,nil, err)
                 #if DEBUG
                     println("\n----------\n\(#function) \nerror:\(err.localizedDescription)\n==========")
                 #endif
             }
             else {
                 let jsonObj: NSDictionary? = result.jsonObj as? NSDictionary
-                let scoreInfo = jsonObj?.valueForKey("score") as? NSDictionary
-                let allscore = scoreInfo?.valueForKey("allscore") as? Int
-                let monthscore = scoreInfo?.valueForKey("monthscore") as? Int
-                let rank = scoreInfo?.valueForKey("rank") as? Int
-                let monthrank = scoreInfo?.valueForKey("monthrank") as? Int
-                complete(allscore: allscore,monthscore: monthscore,rank: rank,monthrank: monthrank,nil)
+                let scoreInfo = jsonObj?.value(forKey: "score") as? NSDictionary
+                let allscore = scoreInfo?.value(forKey: "allscore") as? Int
+                let monthscore = scoreInfo?.value(forKey: "monthscore") as? Int
+                let rank = scoreInfo?.value(forKey: "rank") as? Int
+                let monthrank = scoreInfo?.value(forKey: "monthrank") as? Int
+                complete(allscore,monthscore,rank,monthrank,nil)
                 #if DEBUG
                     println("\n----------\n\(#function) \nresult \(jsonObj)\n==========")
                 #endif
@@ -35,8 +35,8 @@ struct ScoreRequest {
         })
     }
     
-    static func share(userId: Int, type: Int, platform: ThirdPlatformType, complete: ((NSError?) -> Void)) {
-        RequestType.Share.startRequest(["userId" : userId, "type": type, "platform": platform.rawValue], completionHandler: { (data, response, error) -> Void in
+    static func share(_ userId: Int, type: Int, platform: ThirdPlatformType, complete: @escaping ((NSError?) -> Void)) {
+        RequestType.Share.startRequest(["userId" : userId as AnyObject, "type": type as AnyObject, "platform": platform.rawValue as AnyObject], completionHandler: { (data, response, error) -> Void in
             let result = Request.dealResponseData(data, response: response, error: error)
             if let err = result.error {
                 complete(err)

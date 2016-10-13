@@ -9,20 +9,11 @@
 import UIKit
 
 class EvaluationManager :NSObject {
-    class func shareInstance() -> EvaluationManager {
-        struct Singleton {
-            static var predicate: dispatch_once_t = 0
-            static var instance: EvaluationManager? = nil
-        }
-        dispatch_once(&Singleton.predicate, { () -> Void in
-            Singleton.instance = EvaluationManager()
-        })
-        
-        return Singleton.instance!
-    }
+    
+    static let sharedInstance = EvaluationManager()
     
     var myBodyUUID: String? {
-        if let info = DBManager.shareInstance().myBodyInfo() {
+        if let info = DBManager.sharedInstance.myBodyInfo() {
             return info.uuid
         }
         return nil
@@ -33,68 +24,68 @@ class EvaluationManager :NSObject {
     }
     
     var isConnectedMyBodyDevice: Bool {
-        return DBManager.shareInstance().haveConnectedScale
+        return DBManager.sharedInstance.haveConnectedScale
     }
     
-    func scan(complete: (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void) {
-        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void in
-            complete(devices: devices,isTimeOut: isTimeOut, error: error)
+    func scan(_ complete: @escaping (_ devices: [DeviceManagerProtocol],_ isTimeOut: Bool, _ error: NSError?) -> Void) {
+        BluetoothManager.shareInstance.scanDevice([DeviceType.myBody, DeviceType.myBodyMini, DeviceType.myBodyPlus]) { (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void in
+            complete(devices,isTimeOut, error)
         }
     }
     
-    func startScaleInputData(weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResultProtocol {
+    func startScaleInputData(_ weight: Float, waterContent: Float, visceralFatContent: Float) -> ScaleResultProtocol {
         
-        return MyBodyManager.scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserManager.shareInstance().currentUser.gender, userId: UserManager.shareInstance().currentUser.userId, age: UserManager.shareInstance().currentUser.age, height: UserManager.shareInstance().currentUser.height)
+        return MyBodyManager.scaleInputData(weight, waterContent: waterContent, visceralFatContent: visceralFatContent, gender: UserManager.sharedInstance.currentUser.gender, userId: UserManager.sharedInstance.currentUser.userId, age: UserManager.sharedInstance.currentUser.age, height: UserManager.sharedInstance.currentUser.height)
     }
     
     func addTestDatas() {
-        for var i = 41; i >= 0; i-- {
-            let weight = 60 + random() % 10
-            let waterPercentage = 55 + random() % 11
-            let visceralFatContent = 10 + random() % 10
+        for _ in 41...0 {
+            let weight = 60 + arc4random() % 10
+            let waterPercentage = 55 + arc4random() % 11
+            let visceralFatContent = 10 + arc4random() % 10
             
             let result = startScaleInputData(Float(weight), waterContent: Float(waterPercentage), visceralFatContent: Float(visceralFatContent))
             
-            DBManager.shareInstance().addEvaluationData(result)
+            DBManager.sharedInstance.addEvaluationData(result)
         }
     }
     
-    func setCheckStatusBlock(complete: (CBCentralManagerState) -> Void) {
+    func setCheckStatusBlock(_ complete: @escaping (BluetoothStatus) -> Void) {
         BluetoothManager.shareInstance.setCheckStatusBlock(complete)
     }
     
     // 开始测量秤
-    func startScale(complete: (info: ScaleResultProtocol?, isTimeOut: Bool, error: NSError?) -> Void) {
+    func startScale(_ complete: @escaping (_ info: ScaleResultProtocol?, _ isTimeOut: Bool, _ error: NSError?) -> Void) {
         
-        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol], isTimeOut: Bool, error: NSError?) -> Void in
+        BluetoothManager.shareInstance.scanDevice([DeviceType.myBody, DeviceType.myBodyMini, DeviceType.myBodyPlus]) { (devices: [DeviceManagerProtocol], isTimeOut: Bool, error: NSError?) -> Void in
             
             if error == nil {
                 if devices.count > 0 {
-                    let userModel = UserManager.shareInstance().currentUser
+                    let userModel = UserManager.sharedInstance.currentUser
                     let device = devices.first!
                     BluetoothManager.shareInstance.fire(device.uuid, info: ["userModel" : userModel], complete: { (result: ResultProtocol?, isTimeOut: Bool, error: NSError?) -> Void in
                         if error == nil {
                             if let braceletResult = result as? ScaleResultProtocol {
                                 
                                 // 存数据库
-                                DBManager.shareInstance().addEvaluationData(braceletResult)
+                                DBManager.sharedInstance.addEvaluationData(braceletResult)
                                 
                                 self.updateEvaluationData()
                             }
                         }
-                        complete(info: result as? ScaleResultProtocol,isTimeOut: isTimeOut, error: error)
+                        complete(result as? ScaleResultProtocol,isTimeOut, error)
                     })
                 }
             }
             else {
-                complete(info: nil,isTimeOut: isTimeOut, error: error)
+                complete(nil,isTimeOut, error)
             }
         }
     }
     
     // 访客测量
-    func visitorStartScale(user: UserModel, complete: (info: ScaleResultProtocol?,isTimeOut: Bool, error: NSError?) -> Void) {
-        BluetoothManager.shareInstance.scanDevice([DeviceType.MyBody, DeviceType.MyBodyMini, DeviceType.MyBodyPlus]) { (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void in
+    func visitorStartScale(_ user: UserModel, complete: @escaping (_ info: ScaleResultProtocol?,_ isTimeOut: Bool, _ error: NSError?) -> Void) {
+        BluetoothManager.shareInstance.scanDevice([DeviceType.myBody, DeviceType.myBodyMini, DeviceType.myBodyPlus]) { (devices: [DeviceManagerProtocol],isTimeOut: Bool, error: NSError?) -> Void in
             
             if error == nil {
                 if devices.count > 0 {
@@ -104,39 +95,39 @@ class EvaluationManager :NSObject {
                             if let braceletResult = result as? ScaleResultProtocol {
                                 
                                 // 存数据库
-                                DBManager.shareInstance().addEvaluationData(braceletResult)
+                                DBManager.sharedInstance.addEvaluationData(braceletResult)
                             }
                         }
-                        complete(info: result as? ScaleResultProtocol,isTimeOut: isTimeOut, error: error)
+                        complete(result as? ScaleResultProtocol,isTimeOut, error)
                     })
                 }
             }
             else {
-                complete(info: nil,isTimeOut: isTimeOut, error: error)
+                complete(nil,isTimeOut, error)
             }
         }
     }
     
-    static func mouthDaysDatas(beginTimescamp: NSDate, endTimescamp: NSDate) -> [[String: AnyObject]] {
-        return DBManager.shareInstance().queryCountEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserManager.shareInstance().currentUser.userId, count: 5)
+    static func mouthDaysDatas(_ beginTimescamp: Date, endTimescamp: Date) -> [[String: AnyObject]] {
+        return DBManager.sharedInstance.queryCountEvaluationDatas(beginTimescamp, endTimescamp: endTimescamp, userId: UserManager.sharedInstance.currentUser.userId, count: 5)
     }
     
-    static func checkAndSyncEvaluationDatas(userId: Int, complete: (NSError?) -> Void) {
+    static func checkAndSyncEvaluationDatas(_ userId: Int, complete: @escaping (NSError?) -> Void) {
         
         var user: UserModel? = nil
-        if userId == UserData.shareInstance().userId {
-            user = UserModel(userId: userId, age: UserData.shareInstance().age!, gender: UserData.shareInstance().gender!, height: UserData.shareInstance().height!, name: UserData.shareInstance().name!, headURL: nil)
+        if userId == UserData.sharedInstance.userId {
+            user = UserModel(userId: userId, age: UserData.sharedInstance.age!, gender: UserData.sharedInstance.gender!, height: UserData.sharedInstance.height!, name: UserData.sharedInstance.name!, headURL: nil)
         }
-        else if let userInfo = DBManager.shareInstance().queryUser(userId) {
+        else if let userInfo = DBManager.sharedInstance.queryUser(userId) {
             user = UserModel(info: userInfo)
         }
         
         if user != nil {
             // 看是否需要获取历史信息
-            let lastInfo = DBManager.shareInstance().queryLastEvaluationData(userId)
+            let lastInfo = DBManager.sharedInstance.queryLastEvaluationData(userId)
             
             if lastInfo == nil {
-                EvaluationRequest.queryEvaluationDatas(userId, startDate: NSDate(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: NSDate(), complete: { (datas, error: NSError?) -> Void in
+                EvaluationRequest.queryEvaluationDatas(userId, startDate: Date(timeIntervalSinceNow: -30 * 24 * 60 * 60), endDate: Date(), complete: { (datas, error: NSError?) -> Void in
                     
                     if error == nil {
                         var results: [ScaleResultProtocol] = []
@@ -144,11 +135,11 @@ class EvaluationManager :NSObject {
                         for data in datas! {
                             var info = data;
                             let fatPercentage = (data["fatPercentage"] as! NSNumber).floatValue
-                            info["fatPercentage"] = NSNumber(float: fatPercentage * 100)
+                            info["fatPercentage"] = NSNumber(value: fatPercentage * 100 as Float)
                             results.append(ScaleResultProtocolCreate(info, gender: user!.gender, age: user!.age, height: user!.height))
                         }
                         
-                        DBManager.shareInstance().addEvaluationDatas(results, isUpload: true)
+                        DBManager.sharedInstance.addEvaluationDatas(results, isUpload: true)
                     }
                     
                     complete(error)
@@ -164,9 +155,9 @@ class EvaluationManager :NSObject {
         
     }
     
-    static func checkAndSyncEvaluationDatas(complete: (NSError?) -> Void) {
+    static func checkAndSyncEvaluationDatas(_ complete: @escaping (NSError?) -> Void) {
         
-        let users = DBManager.shareInstance().queryAllUser()
+        let users = DBManager.sharedInstance.queryAllUser()
         for userInfo in users {
             let user = UserModel(info: userInfo)
             self.checkAndSyncEvaluationDatas(user.userId, complete: { (error: NSError?) -> Void in
@@ -174,23 +165,23 @@ class EvaluationManager :NSObject {
             })
         }
         
-        self.checkAndSyncEvaluationDatas(UserData.shareInstance().userId!, complete: complete)
+        self.checkAndSyncEvaluationDatas(UserData.sharedInstance.userId!, complete: complete)
     }
     
     func updateEvaluationData() {
         // 获取所有没上传的数据
-        let datas = DBManager.shareInstance().queryNoUploadEvaluationDatas()
+        let datas = DBManager.sharedInstance.queryNoUploadEvaluationDatas()
         
         var uploadDatas: [[String : AnyObject]] = []
         for info in datas {
             let gender: Bool
             let age: UInt8
             let height: UInt8
-            let userId = (info["userId"] as! NSNumber).integerValue
-            if let userInfo = DBManager.shareInstance().queryUser(userId) {
+            let userId = (info["userId"] as! NSNumber).intValue
+            if let userInfo = DBManager.sharedInstance.queryUser(userId) {
                 gender = (userInfo["gender"] as! NSNumber).boolValue
-                age = (userInfo["age"] as! NSNumber).unsignedCharValue
-                height = (userInfo["height"] as! NSNumber).unsignedCharValue
+                age = (userInfo["age"] as! NSNumber).uint8Value
+                height = (userInfo["height"] as! NSNumber).uint8Value
             }
             else {
                 gender = UserManager.mainUser.gender
@@ -199,51 +190,51 @@ class EvaluationManager :NSObject {
             }
             
             let result = ScaleResultProtocolCreate(info, gender: gender, age: age, height: height)
-            uploadDatas.append(result.uploadInfo((info["timeStamp"] as! NSDate).secondTimeInteval()))
+            uploadDatas.append(result.uploadInfo((info["timeStamp"] as! Date).secondTimeInteval()))
         }
         
         // 上传
         EvaluationRequest.uploadEvaluationDatas(UserManager.mainUser.userId, datas: uploadDatas) { (info, error: NSError?) -> Void in
             if error == nil {
                 // 更新数据
-                DBManager.shareInstance().updateUploadEvaluationDatas(info!)
+                DBManager.sharedInstance.updateUploadEvaluationDatas(info!)
                 
                 // 删除一月前数据
-                DBManager.shareInstance().deleteEvaluationDatas(NSDate(timeIntervalSinceNow: -31 * 24 * 60 * 60))
+                DBManager.sharedInstance.deleteEvaluationDatas(Date(timeIntervalSinceNow: -31 * 24 * 60 * 60))
             }
         }
     }
     
-    func deleteEvaluationData(result: ScaleResultProtocol, complete: (NSError?) -> Void) {
+    func deleteEvaluationData(_ result: ScaleResultProtocol, complete: @escaping (NSError?) -> Void) {
         
         EvaluationRequest.deleteEvaluationData(result.dataId, userId: result.userId) { (error: NSError?) -> Void in
             if error == nil {
-                DBManager.shareInstance().deleteEvaluationData(result.dataId,userId: result.userId)
+                DBManager.sharedInstance.deleteEvaluationData(result.dataId,userId: result.userId)
             }
             complete(error)
         }
         
     }
     
-    func share(shareType: ShareType, image: UIImage, complete: (NSError?) -> Void) {
+    func share(_ shareType: ShareType, image: UIImage, complete: @escaping (NSError?) -> Void) {
         ShareSDKHelper.shareImage(shareType, image: image, isEvaluation: false) { (error: NSError?) -> Void in
             
             if error == nil {
                 let platformType: ThirdPlatformType
-                if shareType == ShareType.QQFriend {
+                if shareType == ShareType.qqFriend {
                     platformType = ThirdPlatformType.QQ
                 }
-                else if shareType == ShareType.WeiBo {
+                else if shareType == ShareType.weiBo {
                     platformType = ThirdPlatformType.Weibo
                 }
                 else {
                     platformType = ThirdPlatformType.WeChat
                 }
                 
-                ScoreRequest.share(UserData.shareInstance().userId!, type: 1, platform: platformType, complete: { (error: NSError?) -> Void in
+                ScoreRequest.share(UserData.sharedInstance.userId!, type: 1, platform: platformType, complete: { (error: NSError?) -> Void in
                     
                     if error == nil {
-                        DBManager.shareInstance().addShareData(shareType.rawValue)
+                        DBManager.sharedInstance.addShareData(shareType.rawValue)
                     }
                     
                     complete(error)

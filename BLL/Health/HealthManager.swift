@@ -10,46 +10,46 @@ import UIKit
 
 class HealthManager: NSObject {
     
-    static private var syncBraceletDate: NSDate? {
+    static fileprivate var syncBraceletDate: Date? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("HealthManager.syncBraceletDate") as? NSDate
+            return UserDefaults.standard.object(forKey: "HealthManager.syncBraceletDate") as? Date
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "HealthManager.syncBraceletDate")
+            UserDefaults.standard.set(newValue, forKey: "HealthManager.syncBraceletDate")
         }
     }
     
-    static private var syncScaleDate: NSDate? {
+    static fileprivate var syncScaleDate: Date? {
         get {
-        return NSUserDefaults.standardUserDefaults().objectForKey("HealthManager.syncScaleDate") as? NSDate
+        return UserDefaults.standard.object(forKey: "HealthManager.syncScaleDate") as? Date
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "HealthManager.syncScaleDate")
+            UserDefaults.standard.set(newValue, forKey: "HealthManager.syncScaleDate")
         }
     }
     
     static func syncHealthData() {
         
-        if UserData.shareInstance().userId == nil {
+        if UserData.sharedInstance.userId == nil {
             return
         }
         
         // 获取运动步数
         
         // 获取未同步的时间
-        var startDate = NSDate(timeIntervalSinceNow: -24 * 60 * 60)
+        var startDate = Date(timeIntervalSinceNow: -24 * 60 * 60)
         if let lastSyncDate = syncScaleDate {
             startDate = lastSyncDate
         }
         
         let result: ScaleResultProtocol?
-        if let evaluationData = DBManager.shareInstance().queryLastEvaluationData(UserData.shareInstance().userId!) {
-            result = ScaleResultProtocolCreate(evaluationData, gender: UserData.shareInstance().gender!, age: UserData.shareInstance().age!, height: UserData.shareInstance().height!)
+        if let evaluationData = DBManager.sharedInstance.queryLastEvaluationData(UserData.sharedInstance.userId!) {
+            result = ScaleResultProtocolCreate(evaluationData, gender: UserData.sharedInstance.gender!, age: UserData.sharedInstance.age!, height: UserData.sharedInstance.height!)
             
-            let timeStamp = evaluationData["timeStamp"] as! NSDate;
+            let timeStamp = evaluationData["timeStamp"] as! Date;
             
             // 体重
-            HealthDataManager.shareInstance().saveWeightData(result!.weight, fatPercentage: result!.fatPercentage, bmi: result!.BMI, date: timeStamp)
+            HealthDataManager.sharedInstance.saveWeightData(result!.weight, fatPercentage: result!.fatPercentage, bmi: result!.BMI, date: timeStamp)
             
             syncScaleDate = startDate
         }
@@ -59,25 +59,25 @@ class HealthManager: NSObject {
             startDate = lastSyncDate
         }
         else {
-            startDate = NSDate(timeIntervalSinceNow: -24 * 60 * 60)
+            startDate = Date(timeIntervalSinceNow: -24 * 60 * 60)
             
         }
         
-        let list = DBManager.shareInstance().queryGoalData(startDate, endDate: NSDate())
+        let list = DBManager.sharedInstance.queryGoalData(startDate, endDate: Date())
         let (walkStep , _, sleepTime, deepSleepTime, sleepStartDate, sleepEndDate) = HealthDataHelper.parseOneDaySportDatas(list)
         if list.count > 0 {
             let info = list[0]
-            startDate = info["startTime"] as! NSDate
+            startDate = info["startTime"] as! Date
             
             let lastInfo = list.last
-            let endDate = lastInfo!["endTime"] as! NSDate
+            let endDate = lastInfo!["endTime"] as! Date
             syncBraceletDate = endDate
             
             // 步行数据
-            HealthDataManager.shareInstance().saveWalkData(startDate, endDate: endDate, steps: Double(walkStep))
+            HealthDataManager.sharedInstance.saveWalkData(startDate, endDate: endDate, steps: Double(walkStep))
             
             // 睡眠数据
-            HealthDataManager.shareInstance().saveSleepData(sleepStartDate, endDate: sleepEndDate , sleepTime: sleepTime, deepSleepTime: deepSleepTime)
+            HealthDataManager.sharedInstance.saveSleepData(sleepStartDate, endDate: sleepEndDate , sleepTime: sleepTime, deepSleepTime: deepSleepTime)
         }
         
     }

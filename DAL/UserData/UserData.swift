@@ -11,128 +11,117 @@ import Foundation
 // 储存类 必须是class
 class UserData {
 
+    static let sharedInstance = UserData()
+
     var userId: Int? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.userId") as? NSNumber)?.integerValue
+            return (UserDefaults.standard.object(forKey: "UserData.userId") as? NSNumber)?.intValue
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.userId")
+                UserDefaults.standard.removeObject(forKey: "UserData.userId")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.userId")
+                UserDefaults.standard.set(Int(newValue!), forKey: "UserData.userId")
             }
         }
     }
     
     var gender: Bool? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.gender") as? NSNumber)?.boolValue
+            return (UserDefaults.standard.object(forKey: "UserData.gender") as? NSNumber)?.boolValue
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.gender")
+                UserDefaults.standard.removeObject(forKey: "UserData.gender")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Bool(newValue!), forKey: "UserData.gender")
+                UserDefaults.standard.set(Bool(newValue!), forKey: "UserData.gender")
             }
         }
     }
     
     var height: UInt8? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.height") as? NSNumber)?.unsignedCharValue
+            return (UserDefaults.standard.object(forKey: "UserData.height") as? NSNumber)?.uint8Value
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.height")
+                UserDefaults.standard.removeObject(forKey: "UserData.height")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.height")
+                UserDefaults.standard.set(Int(newValue!), forKey: "UserData.height")
             }
         }
     }
     
     var weight: Int? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.weight") as? NSNumber)?.integerValue
+            return (UserDefaults.standard.object(forKey: "UserData.weight") as? NSNumber)?.intValue
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.weight")
+                UserDefaults.standard.removeObject(forKey: "UserData.weight")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.weight")
+                UserDefaults.standard.set(Int(newValue!), forKey: "UserData.weight")
             }
         }
     }
     
     var name: String? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.name") as? String)
+            return (UserDefaults.standard.object(forKey: "UserData.name") as? String)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.name")
+            UserDefaults.standard.set(newValue, forKey: "UserData.name")
         }
     }
     
     var age: UInt8? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.age") as? NSNumber)?.unsignedCharValue
+            return (UserDefaults.standard.object(forKey: "UserData.age") as? NSNumber)?.uint8Value
         }
         set {
             if newValue == nil {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("UserData.age")
+                UserDefaults.standard.removeObject(forKey: "UserData.age")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(Int(newValue!), forKey: "UserData.age")
+                UserDefaults.standard.set(Int(newValue!), forKey: "UserData.age")
             }
         }
     }
     
     var phone: String? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.phone") as? String)
+            return (UserDefaults.standard.object(forKey: "UserData.phone") as? String)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.phone")
+            UserDefaults.standard.set(newValue, forKey: "UserData.phone")
         }
     }
     
     var organizationCode: String? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.organizationCode") as? String)
+            return (UserDefaults.standard.object(forKey: "UserData.organizationCode") as? String)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.organizationCode")
+            UserDefaults.standard.set(newValue, forKey: "UserData.organizationCode")
         }
     }
     
     var headURL: String? {
         get {
-            return (NSUserDefaults.standardUserDefaults().objectForKey("UserData.headURL") as? String)
+            return (UserDefaults.standard.object(forKey: "UserData.headURL") as? String)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "UserData.headURL")
+            UserDefaults.standard.set(newValue, forKey: "UserData.headURL")
         }
     }
     
     var isBindQQ: Bool?
     var isBindWeChat: Bool?
     var isBindWeiBo: Bool?
-    
-    static func shareInstance() -> UserData {
-        struct YYSingle {
-            static var predicate: dispatch_once_t = 0
-            static var instance: UserData? = nil
-        }
-        
-        dispatch_once(&YYSingle.predicate, { () -> Void in
-            YYSingle.instance = UserData()
-        })
-        
-        return YYSingle.instance!
-    }
     
     func clearDatas() {
         self.userId = nil
@@ -145,7 +134,7 @@ class UserData {
         self.organizationCode = nil
         self.headURL = nil
         
-        DBManager.shareInstance().deleteAllUser()
+        DBManager.sharedInstance.deleteAllUser()
     }
     
 }

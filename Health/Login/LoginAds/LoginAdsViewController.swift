@@ -21,7 +21,7 @@ class LoginAdsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +31,7 @@ class LoginAdsViewController: UIViewController {
     
 
     // MARK: Response Method
-    @IBAction func adTimerButtonPressed(sender: AnyObject) {
+    @IBAction func adTimerButtonPressed(_ sender: AnyObject) {
         
         if LoginManager.showedGUI {
             
@@ -44,7 +44,7 @@ class LoginAdsViewController: UIViewController {
         }
     }
     
-    @IBAction func enterUrlButtonPressed(sender: AnyObject) {
+    @IBAction func enterUrlButtonPressed(_ sender: AnyObject) {
     }
     
     

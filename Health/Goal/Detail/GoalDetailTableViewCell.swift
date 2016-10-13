@@ -24,20 +24,20 @@ class GoalDetailTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
     // colors 必须有5个 3个是目标之前的 3个是目标之后的
-    func setColors(colors: [UIColor], step: Int, goalStep: Int, day: Int, unit: String) {
+    func setColors(_ colors: [UIColor], step: Int, goalStep: Int, day: Int, unit: String) {
         if colors.count < 5 {
-            process1Label.backgroundColor = UIColor.clearColor()
-            process2Label.backgroundColor = UIColor.clearColor()
-            process3Label.backgroundColor = UIColor.clearColor()
-            process4Label.backgroundColor = UIColor.clearColor()
-            process5Label.backgroundColor = UIColor.clearColor()
+            process1Label.backgroundColor = UIColor.clear
+            process2Label.backgroundColor = UIColor.clear
+            process3Label.backgroundColor = UIColor.clear
+            process4Label.backgroundColor = UIColor.clear
+            process5Label.backgroundColor = UIColor.clear
             
             processLabelConstraint.constant = self.bounds.size.width
             titleLabel.text = "颜色数量错误"
