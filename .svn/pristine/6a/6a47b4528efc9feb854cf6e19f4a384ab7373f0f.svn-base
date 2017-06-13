@@ -1,0 +1,431 @@
+0000000000000000000000000000000000000000 d907ceb985361e590bf4b12d79292b7ffced066a Yalin <Yalin@localhost.home> 1439564754 +0800	commit (initial): Initial Commit
+d907ceb985361e590bf4b12d79292b7ffced066a 49ddc2773d869bafd40b50129e2f91aba2ca0e05 Yalin <Yalin@localhost.home> 1439659000 +0800	commit: finished core data code survey
+49ddc2773d869bafd40b50129e2f91aba2ca0e05 87ceb9a04a32d3ca63bfc5689a756aaba96760c7 Yalin <Yalin@localhost.home> 1440115702 +0800	commit: 0.0.2
+87ceb9a04a32d3ca63bfc5689a756aaba96760c7 a41d366647c8ae80f446a453d3e801a83effa5e3 Yalin <Yalin@localhost.home> 1440420543 +0800	commit: add images
+a41d366647c8ae80f446a453d3e801a83effa5e3 305e9c7011ec963f19e32ca49f3c77c5d93da46c Yalin <523031393@qq.com> 1440679357 +0800	commit: finished evaluate
+305e9c7011ec963f19e32ca49f3c77c5d93da46c bb34f94b65ba3edade62228c3ad248674791648b Yalin <523031393@qq.com> 1440777202 +0800	commit: finished view
+bb34f94b65ba3edade62228c3ad248674791648b 65f96b4f84d087937525233ca8444fb761ddbb70 Yalin <523031393@qq.com> 1441029977 +0800	commit: calute evaluation
+65f96b4f84d087937525233ca8444fb761ddbb70 42786eec24c80138ab476fbf9c6a55498dcc2035 Yalin <523031393@qq.com> 1441032367 +0800	commit: finished evaluation
+42786eec24c80138ab476fbf9c6a55498dcc2035 3a46a8c615f774621a901c863573c1385650f2a2 Yalin <523031393@qq.com> 1441032389 +0800	commit: add evaluation Images
+3a46a8c615f774621a901c863573c1385650f2a2 f4e9e6626da78629d2661d2fd60ed8d89add9f36 Yalin <523031393@qq.com> 1441163037 +0800	commit: go goal module
+f4e9e6626da78629d2661d2fd60ed8d89add9f36 cffa7b734156e8d2fbcf15fd15c52cb52883de82 Yalin <523031393@qq.com> 1441295581 +0800	commit: finish bracelet connect
+cffa7b734156e8d2fbcf15fd15c52cb52883de82 b8035e9f195b78bc9734bc5042585c9aa8e4dc93 Yalin <523031393@qq.com> 1441423673 +0800	commit: mybody an bracelet device is success
+b8035e9f195b78bc9734bc5042585c9aa8e4dc93 063086f6b559e5034e657cc060c985aeae09e01a Yalin <523031393@qq.com> 1441506941 +0800	commit: finished goal data save
+063086f6b559e5034e657cc060c985aeae09e01a 5da78f030037af2a8f850862cb4829503f295798 Yalin <523031393@qq.com> 1441757271 +0800	commit: add unit test with request
+5da78f030037af2a8f850862cb4829503f295798 2625e48f87e5f2588186d60f4b10d9c001d028a9 Yalin <523031393@qq.com> 1441798802 +0800	commit: userId Int8 to Int
+2625e48f87e5f2588186d60f4b10d9c001d028a9 7ce67076a234f71a9ffbe549fe2c6f7e8d18a4d3 Yalin <523031393@qq.com> 1441809837 +0800	commit: userId Int8 to Int
+7ce67076a234f71a9ffbe549fe2c6f7e8d18a4d3 1ff6302ec8337142cd7af2b0c6e63cbc7114c92c Yalin <523031393@qq.com> 1441845607 +0800	commit: evaluation view changed
+1ff6302ec8337142cd7af2b0c6e63cbc7114c92c 8616d1dc533b5139721575e6fce9023c4617ed6b Yalin <523031393@qq.com> 1441888927 +0800	commit: finshed evaluation view changes
+8616d1dc533b5139721575e6fce9023c4617ed6b 923ee54c63c3ace84da8003d8a5964721cb2c6c3 Yalin <523031393@qq.com> 1441960064 +0800	commit: some commit
+923ee54c63c3ace84da8003d8a5964721cb2c6c3 853ef5867bdd16ed055a9791fdc005668ccc4a24 Yalin <523031393@qq.com> 1441960375 +0800	commit: 更改评测详情描述
+853ef5867bdd16ed055a9791fdc005668ccc4a24 853ef5867bdd16ed055a9791fdc005668ccc4a24 Yalin <523031393@qq.com> 1441960415 +0800	checkout: moving from master to addEvalutionPhysiqueView
+853ef5867bdd16ed055a9791fdc005668ccc4a24 505f7dcb3709ebd828c898342c03522020fa3898 Yalin <523031393@qq.com> 1441978867 +0800	commit: add finished
+505f7dcb3709ebd828c898342c03522020fa3898 853ef5867bdd16ed055a9791fdc005668ccc4a24 Yalin <523031393@qq.com> 1441978892 +0800	checkout: moving from addEvalutionPhysiqueView to master
+853ef5867bdd16ed055a9791fdc005668ccc4a24 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441978892 +0800	merge addEvalutionPhysiqueView: Merge made by the 'recursive' strategy.
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 505f7dcb3709ebd828c898342c03522020fa3898 Yalin <523031393@qq.com> 1441978892 +0800	checkout: moving from master to addEvalutionPhysiqueView
+505f7dcb3709ebd828c898342c03522020fa3898 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441978901 +0800	checkout: moving from addEvalutionPhysiqueView to master
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441978997 +0800	checkout: moving from master to BraceletSync
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441979042 +0800	checkout: moving from BraceletSync to master
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441979069 +0800	checkout: moving from master to set-activity-setting-Image
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441981987 +0800	checkout: moving from set-activity-setting-Image to master
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441981990 +0800	checkout: moving from master to set-activity-setting-Image
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 71fa0d280ae81dd9a44aa0f3fab262922621e5aa Yalin <523031393@qq.com> 1441982030 +0800	commit: 设置和活动图片添加完成
+71fa0d280ae81dd9a44aa0f3fab262922621e5aa 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1441982042 +0800	checkout: moving from set-activity-setting-Image to master
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 7b779bd5ceaa0c8c700b30d1be9216f9c4625699 Yalin <523031393@qq.com> 1441982051 +0800	merge set-activity-setting-Image: Merge made by the 'recursive' strategy.
+7b779bd5ceaa0c8c700b30d1be9216f9c4625699 71fa0d280ae81dd9a44aa0f3fab262922621e5aa Yalin <523031393@qq.com> 1441982067 +0800	checkout: moving from master to set-activity-setting-Image
+71fa0d280ae81dd9a44aa0f3fab262922621e5aa 7b779bd5ceaa0c8c700b30d1be9216f9c4625699 Yalin <523031393@qq.com> 1441982070 +0800	checkout: moving from set-activity-setting-Image to master
+7b779bd5ceaa0c8c700b30d1be9216f9c4625699 e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 Yalin <523031393@qq.com> 1442234986 +0800	commit: 调试接口
+e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 Yalin <523031393@qq.com> 1442235042 +0800	checkout: moving from master to release
+e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 Yalin <523031393@qq.com> 1442235061 +0800	checkout: moving from release to hiddenFunc
+e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 174dea7c0a89472106a756474997d62cf17819cb Yalin <523031393@qq.com> 1442237621 +0800	commit: 修改 swift1.x to swift2
+174dea7c0a89472106a756474997d62cf17819cb 64b09769e9ac474144eada8edfa350761df802f0 Yalin <523031393@qq.com> 1442237738 +0800	commit: 修改 main.storyboard
+64b09769e9ac474144eada8edfa350761df802f0 c0df5c51a963e0d346f7ace98897fe221c1441fc Yalin <523031393@qq.com> 1442237839 +0800	commit: 设置页 隐藏
+c0df5c51a963e0d346f7ace98897fe221c1441fc bd98aacce7933fc58cb90a37212c2807a896dc19 Yalin <523031393@qq.com> 1442237876 +0800	commit: 登录页 社交登录隐藏
+bd98aacce7933fc58cb90a37212c2807a896dc19 fbe3d430013754476fa1aec0bf51308c7a0604d6 Yalin <523031393@qq.com> 1442237945 +0800	commit: 评测详情页 隐藏分享按钮
+fbe3d430013754476fa1aec0bf51308c7a0604d6 e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 Yalin <523031393@qq.com> 1442238103 +0800	checkout: moving from hiddenFunc to release
+e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 e7b4de6475695e60f749cc50b91713b866c1b29b Yalin <523031393@qq.com> 1442238139 +0800	commit: some
+e7b4de6475695e60f749cc50b91713b866c1b29b e7b4de6475695e60f749cc50b91713b866c1b29b Yalin <523031393@qq.com> 1442238155 +0800	checkout: moving from release to release
+e7b4de6475695e60f749cc50b91713b866c1b29b 80ecb05e4b751021ccdf9cd8e8f19d01704d272a Yalin <523031393@qq.com> 1442238164 +0800	commit (merge): Merge branch 'hiddenFunc' into release
+80ecb05e4b751021ccdf9cd8e8f19d01704d272a 80ecb05e4b751021ccdf9cd8e8f19d01704d272a Yalin <523031393@qq.com> 1442238201 +0800	checkout: moving from release to develop
+80ecb05e4b751021ccdf9cd8e8f19d01704d272a d1331255bbd53dde1cf7879a618d4471794c0802 Yalin <523031393@qq.com> 1442240663 +0800	commit: login 逻辑
+d1331255bbd53dde1cf7879a618d4471794c0802 e5df2244d81df6a09d82aa45e410229b4c64d9a4 Yalin <523031393@qq.com> 1442338452 +0800	commit: 完成图表添加
+e5df2244d81df6a09d82aa45e410229b4c64d9a4 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442368259 +0800	commit: 完善信息
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 80ecb05e4b751021ccdf9cd8e8f19d01704d272a Yalin <523031393@qq.com> 1442368273 +0800	checkout: moving from develop to release
+80ecb05e4b751021ccdf9cd8e8f19d01704d272a 8fa31950db73aab0f784fb5a27308004b8daaa38 Yalin <523031393@qq.com> 1442368287 +0800	merge develop: Merge made by the 'recursive' strategy.
+8fa31950db73aab0f784fb5a27308004b8daaa38 8fa31950db73aab0f784fb5a27308004b8daaa38 Yalin <523031393@qq.com> 1442370295 +0800	checkout: moving from release to test
+8fa31950db73aab0f784fb5a27308004b8daaa38 52ae20aba0a16641c262272b43efa7957d43d863 Yalin <523031393@qq.com> 1442384717 +0800	commit: 修改趋势页崩溃问题
+52ae20aba0a16641c262272b43efa7957d43d863 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442384744 +0800	checkout: moving from test to develop
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442384840 +0800	checkout: moving from develop to addGoalFunc
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1442405128 +0800	checkout: moving from addGoalFunc to BraceletSync
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442405166 +0800	checkout: moving from BraceletSync to develop
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1442405171 +0800	checkout: moving from develop to BraceletSync
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442406499 +0800	checkout: moving from BraceletSync to develop
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442406503 +0800	checkout: moving from develop to addGoalFunc
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 2c947ca4285ece64e827cc0ef26bbfcca86b1b02 Yalin <523031393@qq.com> 1442406860 +0800	checkout: moving from addGoalFunc to BraceletSync
+2c947ca4285ece64e827cc0ef26bbfcca86b1b02 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442406878 +0800	checkout: moving from BraceletSync to addGoalFunc
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 52ae20aba0a16641c262272b43efa7957d43d863 Yalin <523031393@qq.com> 1442409428 +0800	checkout: moving from addGoalFunc to test
+52ae20aba0a16641c262272b43efa7957d43d863 573e2ffa0f74d61e9dc860bc3a7502d1d084a321 Yalin <523031393@qq.com> 1442409852 +0800	commit: 添加删除评测数据功能
+573e2ffa0f74d61e9dc860bc3a7502d1d084a321 ff7814e802f9b0cce7a4eb6173dfdb43d17574a2 Yalin <523031393@qq.com> 1442413304 +0800	commit: 添加评测删除功能
+ff7814e802f9b0cce7a4eb6173dfdb43d17574a2 03ec7c594b58c2742d27adefc78cccc98d15764f Yalin <523031393@qq.com> 1442449250 +0800	commit: 修改登录能获取到验证码
+03ec7c594b58c2742d27adefc78cccc98d15764f e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 Yalin <523031393@qq.com> 1442449922 +0800	commit: 添加头像代码，修改了获取头像网页无法解析的bug
+e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442469846 +0800	checkout: moving from test to addGoalFunc
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442469869 +0800	checkout: moving from addGoalFunc to develop
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442470031 +0800	checkout: moving from develop to addGoalFunc
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 cc9e1fe54b399b723c2f8c33cd1eb5d7a54a7028 Yalin <523031393@qq.com> 1442470055 +0800	commit: 添加完目标界面
+cc9e1fe54b399b723c2f8c33cd1eb5d7a54a7028 d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442470059 +0800	checkout: moving from addGoalFunc to develop
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 cc9e1fe54b399b723c2f8c33cd1eb5d7a54a7028 Yalin <523031393@qq.com> 1442470066 +0800	checkout: moving from develop to addGoalFunc
+cc9e1fe54b399b723c2f8c33cd1eb5d7a54a7028 a410e31bec72780d7c5be8c9a9eb5b8b019deb12 Yalin <523031393@qq.com> 1442490026 +0800	commit: 调通手环数据同步。修改同步时的服务判断
+a410e31bec72780d7c5be8c9a9eb5b8b019deb12 e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 Yalin <523031393@qq.com> 1442492478 +0800	checkout: moving from addGoalFunc to test
+e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 a410e31bec72780d7c5be8c9a9eb5b8b019deb12 Yalin <523031393@qq.com> 1442492491 +0800	checkout: moving from test to addGoalFunc
+a410e31bec72780d7c5be8c9a9eb5b8b019deb12 a2856415ac327f250b99513825de9aafc11728d5 Yalin <523031393@qq.com> 1442535072 +0800	commit: 调通从CoreData获取手环数据
+a2856415ac327f250b99513825de9aafc11728d5 e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 Yalin <523031393@qq.com> 1442564348 +0800	checkout: moving from addGoalFunc to test
+e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 a2856415ac327f250b99513825de9aafc11728d5 Yalin <523031393@qq.com> 1442592290 +0800	checkout: moving from test to addGoalFunc
+a2856415ac327f250b99513825de9aafc11728d5 27fa51c88c155e2d1af2a2b7eff647a75db33686 Yalin <523031393@qq.com> 1442624739 +0800	commit: 修改手环 地址判断
+27fa51c88c155e2d1af2a2b7eff647a75db33686 e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 Yalin <523031393@qq.com> 1442624744 +0800	checkout: moving from addGoalFunc to test
+e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 27fa51c88c155e2d1af2a2b7eff647a75db33686 Yalin <523031393@qq.com> 1442624781 +0800	checkout: moving from test to addGoalFunc
+27fa51c88c155e2d1af2a2b7eff647a75db33686 8fa31950db73aab0f784fb5a27308004b8daaa38 Yalin <523031393@qq.com> 1442967375 +0800	checkout: moving from addGoalFunc to release
+8fa31950db73aab0f784fb5a27308004b8daaa38 27fa51c88c155e2d1af2a2b7eff647a75db33686 Yalin <523031393@qq.com> 1442967379 +0800	checkout: moving from release to addGoalFunc
+27fa51c88c155e2d1af2a2b7eff647a75db33686 01e9b24642eb573b9ff31ac88cb4414964b1b700 Yalin <523031393@qq.com> 1442967396 +0800	commit: 添加完一些手环功能
+01e9b24642eb573b9ff31ac88cb4414964b1b700 8fa31950db73aab0f784fb5a27308004b8daaa38 Yalin <523031393@qq.com> 1442967403 +0800	checkout: moving from addGoalFunc to release
+8fa31950db73aab0f784fb5a27308004b8daaa38 3e75164888f0b1315b90ac6af0ad359d9ac3e64e Yalin <523031393@qq.com> 1442967415 +0800	merge test: Merge made by the 'recursive' strategy.
+3e75164888f0b1315b90ac6af0ad359d9ac3e64e d72c5e895d0d2efef25230ce123ccbbbb3d10d92 Yalin <523031393@qq.com> 1442967475 +0800	checkout: moving from release to develop
+d72c5e895d0d2efef25230ce123ccbbbb3d10d92 6f95a1e1ba17a09ea86c23eccd34423e1b3b4a05 Yalin <523031393@qq.com> 1442967541 +0800	commit: 删除测试图片
+6f95a1e1ba17a09ea86c23eccd34423e1b3b4a05 6f95a1e1ba17a09ea86c23eccd34423e1b3b4a05 Yalin <523031393@qq.com> 1442967551 +0800	checkout: moving from develop to develop
+6f95a1e1ba17a09ea86c23eccd34423e1b3b4a05 32b839ccce1ba5b74bf9a0ce83360783633b784d Yalin <523031393@qq.com> 1442967640 +0800	commit (merge): Merge branch 'release' into develop
+32b839ccce1ba5b74bf9a0ce83360783633b784d 32b839ccce1ba5b74bf9a0ce83360783633b784d Yalin <523031393@qq.com> 1442967670 +0800	checkout: moving from develop to develop
+32b839ccce1ba5b74bf9a0ce83360783633b784d 7fe628ec2fb55a2291455cbf0f9040e2dc3548a4 Yalin <523031393@qq.com> 1442967868 +0800	commit (merge): Merge branch 'addGoalFunc' into develop
+7fe628ec2fb55a2291455cbf0f9040e2dc3548a4 29713f7dd9fcaf90cca0688fc38d4da3a946c02d Yalin <523031393@qq.com> 1442969781 +0800	commit: 修改合并后的bug
+29713f7dd9fcaf90cca0688fc38d4da3a946c02d 6a7554812924981c101fc8f129e26e3ba695aaa7 Yalin <523031393@qq.com> 1443053971 +0800	commit: 完成目标详情页
+6a7554812924981c101fc8f129e26e3ba695aaa7 e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 Yalin <523031393@qq.com> 1443152106 +0800	checkout: moving from develop to test
+e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 Yalin <523031393@qq.com> 1443187300 +0800	checkout: moving from test to master
+e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 Yalin <523031393@qq.com> 1443187303 +0800	checkout: moving from master to test
+e823f5eafa9ccf1f8744dcab6a2d9acd115cdf41 1c56478b7b812aeb2441a982f9e182c0850afb62 Yalin <523031393@qq.com> 1443187366 +0800	commit: some evaluation detail view
+1c56478b7b812aeb2441a982f9e182c0850afb62 e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 Yalin <523031393@qq.com> 1443187373 +0800	checkout: moving from test to master
+e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 1c56478b7b812aeb2441a982f9e182c0850afb62 Yalin <523031393@qq.com> 1444052876 +0800	checkout: moving from master to test
+1c56478b7b812aeb2441a982f9e182c0850afb62 3e75164888f0b1315b90ac6af0ad359d9ac3e64e Yalin <523031393@qq.com> 1444053093 +0800	checkout: moving from test to release
+3e75164888f0b1315b90ac6af0ad359d9ac3e64e 1c56478b7b812aeb2441a982f9e182c0850afb62 Yalin <523031393@qq.com> 1444053318 +0800	checkout: moving from release to test
+1c56478b7b812aeb2441a982f9e182c0850afb62 b8afaad23091b670112288b8ade0acb127909a00 Yalin <523031393@qq.com> 1444058075 +0800	commit: 修改动态库link
+b8afaad23091b670112288b8ade0acb127909a00 6a7554812924981c101fc8f129e26e3ba695aaa7 Yalin <523031393@qq.com> 1444058084 +0800	checkout: moving from test to develop
+6a7554812924981c101fc8f129e26e3ba695aaa7 617e0c183c097825cf0280ad50779388d2520bd0 Yalin <523031393@qq.com> 1444058348 +0800	commit (merge): Merge branch 'test' into develop
+617e0c183c097825cf0280ad50779388d2520bd0 b8afaad23091b670112288b8ade0acb127909a00 Yalin <523031393@qq.com> 1444058365 +0800	checkout: moving from develop to test
+b8afaad23091b670112288b8ade0acb127909a00 3f97a1c31431cd6912f245d0bc47d4af75ecc011 Yalin <523031393@qq.com> 1444090002 +0800	commit: 修改体型介绍页面
+3f97a1c31431cd6912f245d0bc47d4af75ecc011 617e0c183c097825cf0280ad50779388d2520bd0 Yalin <523031393@qq.com> 1444090021 +0800	checkout: moving from test to develop
+617e0c183c097825cf0280ad50779388d2520bd0 88ed5cf4e211a325703806e01a84572dd87f0837 Yalin <523031393@qq.com> 1444090025 +0800	commit (merge): Merge branch 'test' into develop
+88ed5cf4e211a325703806e01a84572dd87f0837 3f97a1c31431cd6912f245d0bc47d4af75ecc011 Yalin <523031393@qq.com> 1444090032 +0800	checkout: moving from develop to test
+3f97a1c31431cd6912f245d0bc47d4af75ecc011 88ed5cf4e211a325703806e01a84572dd87f0837 Yalin <523031393@qq.com> 1444090155 +0800	checkout: moving from test to develop
+88ed5cf4e211a325703806e01a84572dd87f0837 88ed5cf4e211a325703806e01a84572dd87f0837 Yalin <523031393@qq.com> 1444090183 +0800	checkout: moving from develop to add-device-setting-view
+88ed5cf4e211a325703806e01a84572dd87f0837 3f97a1c31431cd6912f245d0bc47d4af75ecc011 Yalin <523031393@qq.com> 1444090413 +0800	checkout: moving from add-device-setting-view to test
+3f97a1c31431cd6912f245d0bc47d4af75ecc011 88ed5cf4e211a325703806e01a84572dd87f0837 Yalin <523031393@qq.com> 1444090462 +0800	checkout: moving from test to develop
+88ed5cf4e211a325703806e01a84572dd87f0837 3f97a1c31431cd6912f245d0bc47d4af75ecc011 Yalin <523031393@qq.com> 1444090462 +0800	checkout: moving from develop to test
+3f97a1c31431cd6912f245d0bc47d4af75ecc011 b857733242e12a63888c292dbdc5f009f08736f0 Yalin <523031393@qq.com> 1444090489 +0800	commit: 更换体重秤的库
+b857733242e12a63888c292dbdc5f009f08736f0 88ed5cf4e211a325703806e01a84572dd87f0837 Yalin <523031393@qq.com> 1444090502 +0800	checkout: moving from test to develop
+88ed5cf4e211a325703806e01a84572dd87f0837 b857733242e12a63888c292dbdc5f009f08736f0 Yalin <523031393@qq.com> 1444090508 +0800	checkout: moving from develop to test
+b857733242e12a63888c292dbdc5f009f08736f0 88ed5cf4e211a325703806e01a84572dd87f0837 Yalin <523031393@qq.com> 1444090562 +0800	checkout: moving from test to develop
+88ed5cf4e211a325703806e01a84572dd87f0837 e8470236d869126893bec67cd190a68d2285faab Yalin <523031393@qq.com> 1444090562 +0800	merge test: Merge made by the 'recursive' strategy.
+e8470236d869126893bec67cd190a68d2285faab b857733242e12a63888c292dbdc5f009f08736f0 Yalin <523031393@qq.com> 1444090562 +0800	checkout: moving from develop to test
+b857733242e12a63888c292dbdc5f009f08736f0 88ed5cf4e211a325703806e01a84572dd87f0837 Yalin <523031393@qq.com> 1444090580 +0800	checkout: moving from test to add-device-setting-view
+88ed5cf4e211a325703806e01a84572dd87f0837 241e6d4985747eae0c064c78c6c9690601ad799e Yalin <523031393@qq.com> 1444094753 +0800	commit: 添加 绑定设备界面 和 第三方绑定界面
+241e6d4985747eae0c064c78c6c9690601ad799e e8470236d869126893bec67cd190a68d2285faab Yalin <523031393@qq.com> 1444201535 +0800	checkout: moving from add-device-setting-view to develop
+e8470236d869126893bec67cd190a68d2285faab 998df770b6a9048be3eef0f3d663f0c3efef10c8 Yalin <523031393@qq.com> 1444201535 +0800	merge add-device-setting-view: Merge made by the 'recursive' strategy.
+998df770b6a9048be3eef0f3d663f0c3efef10c8 241e6d4985747eae0c064c78c6c9690601ad799e Yalin <523031393@qq.com> 1444201535 +0800	checkout: moving from develop to add-device-setting-view
+241e6d4985747eae0c064c78c6c9690601ad799e fd916436cc2a9ef9e513be83aaa920fc3a45dd55 Yalin <523031393@qq.com> 1444201558 +0800	commit: not finished
+fd916436cc2a9ef9e513be83aaa920fc3a45dd55 998df770b6a9048be3eef0f3d663f0c3efef10c8 Yalin <523031393@qq.com> 1444201581 +0800	checkout: moving from add-device-setting-view to develop
+998df770b6a9048be3eef0f3d663f0c3efef10c8 29231a67d07740418429e9b20b8e2172182c6b9f Yalin <523031393@qq.com> 1444201581 +0800	merge add-device-setting-view: Merge made by the 'recursive' strategy.
+29231a67d07740418429e9b20b8e2172182c6b9f fd916436cc2a9ef9e513be83aaa920fc3a45dd55 Yalin <523031393@qq.com> 1444201581 +0800	checkout: moving from develop to add-device-setting-view
+fd916436cc2a9ef9e513be83aaa920fc3a45dd55 29231a67d07740418429e9b20b8e2172182c6b9f Yalin <523031393@qq.com> 1444201599 +0800	checkout: moving from add-device-setting-view to develop
+29231a67d07740418429e9b20b8e2172182c6b9f 29231a67d07740418429e9b20b8e2172182c6b9f Yalin <523031393@qq.com> 1444201659 +0800	checkout: moving from develop to upload-goal-data
+29231a67d07740418429e9b20b8e2172182c6b9f 29231a67d07740418429e9b20b8e2172182c6b9f Yalin <523031393@qq.com> 1444202210 +0800	checkout: moving from upload-goal-data to develop
+29231a67d07740418429e9b20b8e2172182c6b9f 29231a67d07740418429e9b20b8e2172182c6b9f Yalin <523031393@qq.com> 1444202237 +0800	checkout: moving from develop to finished-Activity-Views
+29231a67d07740418429e9b20b8e2172182c6b9f 97f80f73afae5066421eb60fb888e8488a332ebb Yalin <523031393@qq.com> 1444206791 +0800	commit: 完成 活动广告功能
+97f80f73afae5066421eb60fb888e8488a332ebb 590d57ac9deb2bbe5b0c5d80552fe9cd6f65277a Yalin <523031393@qq.com> 1444210282 +0800	commit: 完成积分绑定与点亮绑定
+590d57ac9deb2bbe5b0c5d80552fe9cd6f65277a 29231a67d07740418429e9b20b8e2172182c6b9f Yalin <523031393@qq.com> 1444210288 +0800	checkout: moving from finished-Activity-Views to develop
+29231a67d07740418429e9b20b8e2172182c6b9f 9a4c44a3f02efdfa3832d79b04f3b69a390267a8 Yalin <523031393@qq.com> 1444210298 +0800	merge finished-Activity-Views: Merge made by the 'recursive' strategy.
+9a4c44a3f02efdfa3832d79b04f3b69a390267a8 7973ab31cb344ae6f9105bef8436e387948db612 Yalin <523031393@qq.com> 1444213475 +0800	commit: 将手环数据上传
+7973ab31cb344ae6f9105bef8436e387948db612 4b1dfe1dea0d4c83e8d1625606033b3e63d635e3 Yalin <523031393@qq.com> 1444229459 +0800	commit: 完成用户反馈界面
+4b1dfe1dea0d4c83e8d1625606033b3e63d635e3 b857733242e12a63888c292dbdc5f009f08736f0 Yalin <523031393@qq.com> 1444271820 +0800	checkout: moving from develop to test
+b857733242e12a63888c292dbdc5f009f08736f0 4b1dfe1dea0d4c83e8d1625606033b3e63d635e3 Yalin <523031393@qq.com> 1444272891 +0800	checkout: moving from test to develop
+4b1dfe1dea0d4c83e8d1625606033b3e63d635e3 41eebc9fdb2a6ad8ab45f5d08523ffeeb12c9c84 Yalin <523031393@qq.com> 1444274391 +0800	commit: 放开User选择模块
+41eebc9fdb2a6ad8ab45f5d08523ffeeb12c9c84 41eebc9fdb2a6ad8ab45f5d08523ffeeb12c9c84 Yalin <523031393@qq.com> 1444274423 +0800	checkout: moving from develop to do-user-module
+41eebc9fdb2a6ad8ab45f5d08523ffeeb12c9c84 0499dba5bb28ffa612e15c6dd524e114c411a198 Yalin <523031393@qq.com> 1444284589 +0800	commit: some temp commit
+0499dba5bb28ffa612e15c6dd524e114c411a198 b857733242e12a63888c292dbdc5f009f08736f0 Yalin <523031393@qq.com> 1444284594 +0800	checkout: moving from do-user-module to test
+b857733242e12a63888c292dbdc5f009f08736f0 71a5b49b68120f29f1904805713214e26b09bd35 Yalin <523031393@qq.com> 1444284932 +0800	commit: 修改体型详细界面的文案
+71a5b49b68120f29f1904805713214e26b09bd35 41eebc9fdb2a6ad8ab45f5d08523ffeeb12c9c84 Yalin <523031393@qq.com> 1444284937 +0800	checkout: moving from test to develop
+41eebc9fdb2a6ad8ab45f5d08523ffeeb12c9c84 ca89d11e951168c56bc0c39168f6dfc06b6bc02c Yalin <523031393@qq.com> 1444285125 +0800	commit (merge): Merge branch 'test' into develop
+ca89d11e951168c56bc0c39168f6dfc06b6bc02c 71a5b49b68120f29f1904805713214e26b09bd35 Yalin <523031393@qq.com> 1444285141 +0800	checkout: moving from develop to test
+71a5b49b68120f29f1904805713214e26b09bd35 2bc22d65eb426fdf53a48349d445bbb787a23370 Yalin <523031393@qq.com> 1444285530 +0800	commit: 修改体型详细页面 界面不好看问题
+2bc22d65eb426fdf53a48349d445bbb787a23370 ca89d11e951168c56bc0c39168f6dfc06b6bc02c Yalin <523031393@qq.com> 1444285534 +0800	checkout: moving from test to develop
+ca89d11e951168c56bc0c39168f6dfc06b6bc02c 6fd698531945bf8f776a22335050c9a4bfcc391a Yalin <523031393@qq.com> 1444285544 +0800	merge test: Merge made by the 'recursive' strategy.
+6fd698531945bf8f776a22335050c9a4bfcc391a 0499dba5bb28ffa612e15c6dd524e114c411a198 Yalin <523031393@qq.com> 1444285555 +0800	checkout: moving from develop to do-user-module
+0499dba5bb28ffa612e15c6dd524e114c411a198 c7e601bb709c9c68a4e2ae3b2d5fac857dc58d59 Yalin <523031393@qq.com> 1444303436 +0800	commit: 调试好 用户界面 滑动时 不向下偏移的问题
+c7e601bb709c9c68a4e2ae3b2d5fac857dc58d59 6123a2f2205cb6e3b94b188a3a395e3b10734380 Yalin <523031393@qq.com> 1444305611 +0800	commit: 重构完善信息 controller 以便开发添加家庭用户
+6123a2f2205cb6e3b94b188a3a395e3b10734380 15e9576d7c4620b92be3d35de020fc10ac768304 Yalin <523031393@qq.com> 1444317319 +0800	commit: 完成 评测界面的 切换用户
+15e9576d7c4620b92be3d35de020fc10ac768304 a9dd23031d58e6743ebe6cce4c7cb71808ec0be3 Yalin <523031393@qq.com> 1444317899 +0800	commit: 完成 趋势界面的 用户切换
+a9dd23031d58e6743ebe6cce4c7cb71808ec0be3 4d7f1cccc916112f476d4a7d3dc1c7ca7314564f Yalin <523031393@qq.com> 1444321748 +0800	commit: 访客以及访客评测功能添加完毕
+4d7f1cccc916112f476d4a7d3dc1c7ca7314564f 6fd698531945bf8f776a22335050c9a4bfcc391a Yalin <523031393@qq.com> 1444321794 +0800	checkout: moving from do-user-module to develop
+6fd698531945bf8f776a22335050c9a4bfcc391a 64697d13517ce9e1845a70d0e568e534a3f03216 Yalin <523031393@qq.com> 1444321808 +0800	merge do-user-module: Merge made by the 'recursive' strategy.
+64697d13517ce9e1845a70d0e568e534a3f03216 64697d13517ce9e1845a70d0e568e534a3f03216 Yalin <523031393@qq.com> 1444348100 +0800	checkout: moving from develop to add-third-party
+64697d13517ce9e1845a70d0e568e534a3f03216 b68bb39187f6a4d2f6bb70254f3e8e664209a1e2 Yalin <523031393@qq.com> 1444384692 +0800	commit: 完成微信登录
+b68bb39187f6a4d2f6bb70254f3e8e664209a1e2 c4ab0028bd5658ed14423b142ce6277332331bef Yalin <523031393@qq.com> 1444400489 +0800	commit: 完成 微博 微信 qq的登录
+c4ab0028bd5658ed14423b142ce6277332331bef e4282fa91f999484c4bc6fa52552c8b2338ea465 Yalin <523031393@qq.com> 1444404443 +0800	commit: 完成分享的业务逻辑
+e4282fa91f999484c4bc6fa52552c8b2338ea465 e2ddbd67cd40eaa81bc4b9f05700467e2557c04d Yalin <523031393@qq.com> 1444408371 +0800	commit: 完成分享功能
+e2ddbd67cd40eaa81bc4b9f05700467e2557c04d 64697d13517ce9e1845a70d0e568e534a3f03216 Yalin <523031393@qq.com> 1444408378 +0800	checkout: moving from add-third-party to develop
+64697d13517ce9e1845a70d0e568e534a3f03216 e2ddbd67cd40eaa81bc4b9f05700467e2557c04d Yalin <523031393@qq.com> 1444408384 +0800	checkout: moving from develop to add-third-party
+e2ddbd67cd40eaa81bc4b9f05700467e2557c04d 64697d13517ce9e1845a70d0e568e534a3f03216 Yalin <523031393@qq.com> 1444408392 +0800	checkout: moving from add-third-party to develop
+64697d13517ce9e1845a70d0e568e534a3f03216 726c51770d7cb2d94cccc9f7d5e90fc64701110e Yalin <523031393@qq.com> 1444408408 +0800	merge add-third-party: Merge made by the 'recursive' strategy.
+726c51770d7cb2d94cccc9f7d5e90fc64701110e fcf33bd585204b03af95fe7e56e96aac4fb53179 Yalin <523031393@qq.com> 1444433540 +0800	commit: 添加 设置页面 第三方绑定业务逻辑
+fcf33bd585204b03af95fe7e56e96aac4fb53179 7f0aa67ef36f55bcb007d6627f2e5c970dec39fd Yalin <523031393@qq.com> 1444436529 +0800	commit: 完成 绑定手机号和集团码的功能
+7f0aa67ef36f55bcb007d6627f2e5c970dec39fd 790729045430b644fecb0103244c5ee871af474f Yalin <523031393@qq.com> 1444436554 +0800	commit: 添加绑定集团码的viewcontroller
+790729045430b644fecb0103244c5ee871af474f 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444441585 +0800	commit: 将第三方登录失败时 取消绑定
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 2bc22d65eb426fdf53a48349d445bbb787a23370 Yalin <523031393@qq.com> 1444441961 +0800	checkout: moving from develop to test
+2bc22d65eb426fdf53a48349d445bbb787a23370 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444442204 +0800	checkout: moving from test to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 2bc22d65eb426fdf53a48349d445bbb787a23370 Yalin <523031393@qq.com> 1444442691 +0800	checkout: moving from develop to test
+2bc22d65eb426fdf53a48349d445bbb787a23370 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444442717 +0800	checkout: moving from test to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 2bc22d65eb426fdf53a48349d445bbb787a23370 Yalin <523031393@qq.com> 1444442730 +0800	checkout: moving from develop to test
+2bc22d65eb426fdf53a48349d445bbb787a23370 3e75164888f0b1315b90ac6af0ad359d9ac3e64e Yalin <523031393@qq.com> 1444442758 +0800	checkout: moving from test to release
+3e75164888f0b1315b90ac6af0ad359d9ac3e64e 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444442769 +0800	checkout: moving from release to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 2bc22d65eb426fdf53a48349d445bbb787a23370 Yalin <523031393@qq.com> 1444442788 +0800	checkout: moving from develop to test
+2bc22d65eb426fdf53a48349d445bbb787a23370 3e75164888f0b1315b90ac6af0ad359d9ac3e64e Yalin <523031393@qq.com> 1444443889 +0800	checkout: moving from test to release
+3e75164888f0b1315b90ac6af0ad359d9ac3e64e 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444443893 +0800	checkout: moving from release to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 2bc22d65eb426fdf53a48349d445bbb787a23370 Yalin <523031393@qq.com> 1444443997 +0800	checkout: moving from develop to test
+2bc22d65eb426fdf53a48349d445bbb787a23370 63ff0ddefea9037e73751298dfbbb8efe4752447 Yalin <523031393@qq.com> 1444463549 +0800	commit: 更改数据库结构和之后的一样 保证一致
+63ff0ddefea9037e73751298dfbbb8efe4752447 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444476582 +0800	checkout: moving from test to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444477736 +0800	checkout: moving from develop to health-kit-add
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444483565 +0800	checkout: moving from health-kit-add to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444485223 +0800	checkout: moving from develop to reconsitution-bluetooth
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 3e34e5f5999e6e48dd986abaeef921edfbdcc076 Yalin <523031393@qq.com> 1444528477 +0800	commit: some commit
+3e34e5f5999e6e48dd986abaeef921edfbdcc076 63ff0ddefea9037e73751298dfbbb8efe4752447 Yalin <523031393@qq.com> 1444528485 +0800	checkout: moving from reconsitution-bluetooth to test
+63ff0ddefea9037e73751298dfbbb8efe4752447 fc6d78028cf3976b5c38d990dd62540465464d51 Yalin <523031393@qq.com> 1444531371 +0800	commit: 修改只有一条数据时 趋势页面崩溃的问题
+fc6d78028cf3976b5c38d990dd62540465464d51 3e34e5f5999e6e48dd986abaeef921edfbdcc076 Yalin <523031393@qq.com> 1444531444 +0800	checkout: moving from test to reconsitution-bluetooth
+3e34e5f5999e6e48dd986abaeef921edfbdcc076 b923476d740b5bb62691671eb4fe3f148c16f289 Yalin <523031393@qq.com> 1444579776 +0800	commit: 蓝牙重构
+b923476d740b5bb62691671eb4fe3f148c16f289 fc6d78028cf3976b5c38d990dd62540465464d51 Yalin <523031393@qq.com> 1444579784 +0800	checkout: moving from reconsitution-bluetooth to test
+fc6d78028cf3976b5c38d990dd62540465464d51 a11239d7bc042fdf2e062cd7869e1bffa22ae3bf Yalin <523031393@qq.com> 1444580357 +0800	commit: 添加启动页图片
+a11239d7bc042fdf2e062cd7869e1bffa22ae3bf 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444580382 +0800	checkout: moving from test to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 dc6a5672880a99eeae2f62ba6dcca4b80587fd89 Yalin <523031393@qq.com> 1444580385 +0800	commit (merge): Merge branch 'test' into develop
+dc6a5672880a99eeae2f62ba6dcca4b80587fd89 b923476d740b5bb62691671eb4fe3f148c16f289 Yalin <523031393@qq.com> 1444580402 +0800	checkout: moving from develop to reconsitution-bluetooth
+b923476d740b5bb62691671eb4fe3f148c16f289 3e34e5f5999e6e48dd986abaeef921edfbdcc076 Yalin <523031393@qq.com> 1444580729 +0800	reset: moving to 3e34e5f5999e6e48dd986abaeef921edfbdcc076
+3e34e5f5999e6e48dd986abaeef921edfbdcc076 76908f3a5235aaf1fd424c4e7a58527414138973 Yalin <523031393@qq.com> 1444580785 +0800	commit: Merge branch 'test' into reconsitution-bluetooth
+76908f3a5235aaf1fd424c4e7a58527414138973 dc6a5672880a99eeae2f62ba6dcca4b80587fd89 Yalin <523031393@qq.com> 1444580814 +0800	checkout: moving from reconsitution-bluetooth to develop
+dc6a5672880a99eeae2f62ba6dcca4b80587fd89 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444580825 +0800	reset: moving to 15f85226bfe18595d3a7b3f38c291476bd2e2dc3
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 76908f3a5235aaf1fd424c4e7a58527414138973 Yalin <523031393@qq.com> 1444616321 +0800	checkout: moving from develop to reconsitution-bluetooth
+76908f3a5235aaf1fd424c4e7a58527414138973 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444616323 +0800	checkout: moving from reconsitution-bluetooth to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 76908f3a5235aaf1fd424c4e7a58527414138973 Yalin <523031393@qq.com> 1444616539 +0800	checkout: moving from develop to reconsitution-bluetooth
+76908f3a5235aaf1fd424c4e7a58527414138973 4e13fda0c039f64a549be6c28ecbdbd2c7a46894 Yalin <523031393@qq.com> 1444617452 +0800	commit: some commit
+4e13fda0c039f64a549be6c28ecbdbd2c7a46894 a11239d7bc042fdf2e062cd7869e1bffa22ae3bf Yalin <523031393@qq.com> 1444617457 +0800	checkout: moving from reconsitution-bluetooth to test
+a11239d7bc042fdf2e062cd7869e1bffa22ae3bf 4e13fda0c039f64a549be6c28ecbdbd2c7a46894 Yalin <523031393@qq.com> 1444617727 +0800	checkout: moving from test to reconsitution-bluetooth
+4e13fda0c039f64a549be6c28ecbdbd2c7a46894 365587da88410cc4becf09b5bbd3312dce55daf4 Yalin <523031393@qq.com> 1444632469 +0800	commit: commit
+365587da88410cc4becf09b5bbd3312dce55daf4 a11239d7bc042fdf2e062cd7869e1bffa22ae3bf Yalin <523031393@qq.com> 1444632473 +0800	checkout: moving from reconsitution-bluetooth to test
+a11239d7bc042fdf2e062cd7869e1bffa22ae3bf 365587da88410cc4becf09b5bbd3312dce55daf4 Yalin <523031393@qq.com> 1444633317 +0800	checkout: moving from test to reconsitution-bluetooth
+365587da88410cc4becf09b5bbd3312dce55daf4 a11239d7bc042fdf2e062cd7869e1bffa22ae3bf Yalin <523031393@qq.com> 1444634329 +0800	checkout: moving from reconsitution-bluetooth to test
+a11239d7bc042fdf2e062cd7869e1bffa22ae3bf 2f792ddbeca608dccfb9b914c2a88becc4ec5973 Yalin <523031393@qq.com> 1444634355 +0800	commit: 修改启动公司名
+2f792ddbeca608dccfb9b914c2a88becc4ec5973 365587da88410cc4becf09b5bbd3312dce55daf4 Yalin <523031393@qq.com> 1444634408 +0800	checkout: moving from test to reconsitution-bluetooth
+365587da88410cc4becf09b5bbd3312dce55daf4 2f792ddbeca608dccfb9b914c2a88becc4ec5973 Yalin <523031393@qq.com> 1444634919 +0800	checkout: moving from reconsitution-bluetooth to test
+2f792ddbeca608dccfb9b914c2a88becc4ec5973 8daad19c98187728bc80a15241461cfba19b6bc8 Yalin <523031393@qq.com> 1444635693 +0800	commit: commit
+8daad19c98187728bc80a15241461cfba19b6bc8 365587da88410cc4becf09b5bbd3312dce55daf4 Yalin <523031393@qq.com> 1444635697 +0800	checkout: moving from test to reconsitution-bluetooth
+365587da88410cc4becf09b5bbd3312dce55daf4 2e07a3c604607bf49f4f99dc566a24116e44bd2f Yalin <523031393@qq.com> 1444637502 +0800	commit: some change
+2e07a3c604607bf49f4f99dc566a24116e44bd2f 8daad19c98187728bc80a15241461cfba19b6bc8 Yalin <523031393@qq.com> 1444637511 +0800	checkout: moving from reconsitution-bluetooth to test
+8daad19c98187728bc80a15241461cfba19b6bc8 2e07a3c604607bf49f4f99dc566a24116e44bd2f Yalin <523031393@qq.com> 1444638425 +0800	checkout: moving from test to reconsitution-bluetooth
+2e07a3c604607bf49f4f99dc566a24116e44bd2f 9ea4942998e8096b731eb8fea0f33ffa50e5c028 Yalin <523031393@qq.com> 1444708028 +0800	commit: some
+9ea4942998e8096b731eb8fea0f33ffa50e5c028 8daad19c98187728bc80a15241461cfba19b6bc8 Yalin <523031393@qq.com> 1444708031 +0800	checkout: moving from reconsitution-bluetooth to test
+8daad19c98187728bc80a15241461cfba19b6bc8 57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 Yalin <523031393@qq.com> 1444715905 +0800	commit: 添加launchImage 和 添加摇一摇代码
+57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 15f85226bfe18595d3a7b3f38c291476bd2e2dc3 Yalin <523031393@qq.com> 1444715911 +0800	checkout: moving from test to develop
+15f85226bfe18595d3a7b3f38c291476bd2e2dc3 355a8288dbedfaa00eee647034440e7f0f0e536a Yalin <523031393@qq.com> 1444723684 +0800	commit (merge): Merge branch 'test' into develop
+355a8288dbedfaa00eee647034440e7f0f0e536a 3e75164888f0b1315b90ac6af0ad359d9ac3e64e Yalin <523031393@qq.com> 1444728000 +0800	checkout: moving from develop to release
+3e75164888f0b1315b90ac6af0ad359d9ac3e64e 4b63b15a657732f48319669ff5718e43ef49fe30 Yalin <523031393@qq.com> 1444728000 +0800	merge test: Merge made by the 'recursive' strategy.
+4b63b15a657732f48319669ff5718e43ef49fe30 355a8288dbedfaa00eee647034440e7f0f0e536a Yalin <523031393@qq.com> 1444728001 +0800	checkout: moving from release to develop
+355a8288dbedfaa00eee647034440e7f0f0e536a 4b63b15a657732f48319669ff5718e43ef49fe30 Yalin <523031393@qq.com> 1444728011 +0800	checkout: moving from develop to release
+4b63b15a657732f48319669ff5718e43ef49fe30 e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 Yalin <523031393@qq.com> 1444728025 +0800	checkout: moving from release to master
+e76b1b20ea36bff4c1909dcbd5063bd1827c8ba1 7d4f7846e22de082d92656288f5fe7f03e18063e Yalin <523031393@qq.com> 1444728067 +0800	merge release: Merge made by the 'recursive' strategy.
+7d4f7846e22de082d92656288f5fe7f03e18063e 9ea4942998e8096b731eb8fea0f33ffa50e5c028 Yalin <523031393@qq.com> 1444728076 +0800	checkout: moving from master to reconsitution-bluetooth
+9ea4942998e8096b731eb8fea0f33ffa50e5c028 47906d1d31c5e12b9746c54fc3da30e845f2973f Yalin <523031393@qq.com> 1444783354 +0800	commit: 继续修改蓝牙协议
+47906d1d31c5e12b9746c54fc3da30e845f2973f b3c965ea6dec0cb9889528cc47284630d84ed6c8 Yalin <523031393@qq.com> 1444794794 +0800	commit: 修改 评测数据结果数据格式
+b3c965ea6dec0cb9889528cc47284630d84ed6c8 8495481bdb2de0204901adfa9948f9af0e90be28 Yalin <523031393@qq.com> 1444810611 +0800	commit: 完成新秤的代码 等待新秤调试
+8495481bdb2de0204901adfa9948f9af0e90be28 355a8288dbedfaa00eee647034440e7f0f0e536a Yalin <523031393@qq.com> 1444810640 +0800	checkout: moving from reconsitution-bluetooth to develop
+355a8288dbedfaa00eee647034440e7f0f0e536a e068571e19eb46f9716e170aa4a4b2ddfa420182 Yalin <523031393@qq.com> 1444811176 +0800	commit (merge): Merge branch 'reconsitution-bluetooth' into develop
+e068571e19eb46f9716e170aa4a4b2ddfa420182 e068571e19eb46f9716e170aa4a4b2ddfa420182 Yalin <523031393@qq.com> 1444812741 +0800	checkout: moving from develop to old-scale-function
+e068571e19eb46f9716e170aa4a4b2ddfa420182 703e8a469f3082024bebdf4044908d3e894865b6 Yalin <523031393@qq.com> 1444813934 +0800	commit: some
+703e8a469f3082024bebdf4044908d3e894865b6 57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 Yalin <523031393@qq.com> 1444813940 +0800	checkout: moving from old-scale-function to test
+57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 703e8a469f3082024bebdf4044908d3e894865b6 Yalin <523031393@qq.com> 1444814042 +0800	checkout: moving from test to old-scale-function
+703e8a469f3082024bebdf4044908d3e894865b6 57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 Yalin <523031393@qq.com> 1444814915 +0800	checkout: moving from old-scale-function to test
+57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 703e8a469f3082024bebdf4044908d3e894865b6 Yalin <523031393@qq.com> 1444814995 +0800	checkout: moving from test to old-scale-function
+703e8a469f3082024bebdf4044908d3e894865b6 3b79ffe40f07f3a455872c027521488c543afc72 Yalin <523031393@qq.com> 1444815966 +0800	commit: finished
+3b79ffe40f07f3a455872c027521488c543afc72 b1e6ed900e3c9d78592ccde158716d3b8c2d3085 Yalin <523031393@qq.com> 1444824276 +0800	commit: nothing
+b1e6ed900e3c9d78592ccde158716d3b8c2d3085 e068571e19eb46f9716e170aa4a4b2ddfa420182 Yalin <523031393@qq.com> 1444824285 +0800	checkout: moving from old-scale-function to develop
+e068571e19eb46f9716e170aa4a4b2ddfa420182 24bc52034522a177823197e664ff4713c13fcb72 Yalin <523031393@qq.com> 1444824306 +0800	commit: some
+24bc52034522a177823197e664ff4713c13fcb72 1c0008bc95e9763c1d2802af1e9382ef513cbb40 Yalin <523031393@qq.com> 1444824322 +0800	merge old-scale-function: Merge made by the 'recursive' strategy.
+1c0008bc95e9763c1d2802af1e9382ef513cbb40 b1e6ed900e3c9d78592ccde158716d3b8c2d3085 Yalin <523031393@qq.com> 1444824331 +0800	checkout: moving from develop to old-scale-function
+b1e6ed900e3c9d78592ccde158716d3b8c2d3085 57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 Yalin <523031393@qq.com> 1444824334 +0800	checkout: moving from old-scale-function to test
+57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 b1e6ed900e3c9d78592ccde158716d3b8c2d3085 Yalin <523031393@qq.com> 1444824348 +0800	checkout: moving from test to old-scale-function
+b1e6ed900e3c9d78592ccde158716d3b8c2d3085 57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 Yalin <523031393@qq.com> 1444824355 +0800	checkout: moving from old-scale-function to test
+57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 1c0008bc95e9763c1d2802af1e9382ef513cbb40 Yalin <523031393@qq.com> 1444824364 +0800	checkout: moving from test to develop
+1c0008bc95e9763c1d2802af1e9382ef513cbb40 57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 Yalin <523031393@qq.com> 1444824385 +0800	checkout: moving from develop to test
+57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 1c0008bc95e9763c1d2802af1e9382ef513cbb40 Yalin <523031393@qq.com> 1444824436 +0800	checkout: moving from test to develop
+1c0008bc95e9763c1d2802af1e9382ef513cbb40 57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 Yalin <523031393@qq.com> 1444824537 +0800	checkout: moving from develop to test
+57467f7e7282a3b1a2ee11e33de2f6f376b4bb51 0db3845829e7f5aedf01f8a980908d52a5ddf081 Yalin <523031393@qq.com> 1444829728 +0800	commit: 修改客户端的数据库结构适应新秤
+0db3845829e7f5aedf01f8a980908d52a5ddf081 1c0008bc95e9763c1d2802af1e9382ef513cbb40 Yalin <523031393@qq.com> 1444829820 +0800	checkout: moving from test to develop
+1c0008bc95e9763c1d2802af1e9382ef513cbb40 d0d2b225201e43b62aa2cef40729dfc6dfa7bf16 Yalin <523031393@qq.com> 1444829954 +0800	commit (merge): Merge branch 'test' into develop
+d0d2b225201e43b62aa2cef40729dfc6dfa7bf16 7e43ca6825eeb072f65b622c3bf69b7204a4fe09 Yalin <523031393@qq.com> 1444830275 +0800	commit: fix copilots
+7e43ca6825eeb072f65b622c3bf69b7204a4fe09 0db3845829e7f5aedf01f8a980908d52a5ddf081 Yalin <523031393@qq.com> 1444832078 +0800	checkout: moving from develop to test
+0db3845829e7f5aedf01f8a980908d52a5ddf081 af317394eabf2fa97c79665879f11bf01c64240a Yalin <523031393@qq.com> 1444832332 +0800	commit: 将脂肪肝字段改为Int类型
+af317394eabf2fa97c79665879f11bf01c64240a 7e43ca6825eeb072f65b622c3bf69b7204a4fe09 Yalin <523031393@qq.com> 1444832338 +0800	checkout: moving from test to develop
+7e43ca6825eeb072f65b622c3bf69b7204a4fe09 357dd42e4270dca52b32f30e173364e53eaa7129 Yalin <523031393@qq.com> 1444836264 +0800	commit (merge): 修改数据库对应的评测类方法
+357dd42e4270dca52b32f30e173364e53eaa7129 af317394eabf2fa97c79665879f11bf01c64240a Yalin <523031393@qq.com> 1444836293 +0800	checkout: moving from develop to test
+af317394eabf2fa97c79665879f11bf01c64240a 18874c344af67677b469db333039c34671b0bb4a Yalin <523031393@qq.com> 1444836525 +0800	commit: 数据库添加设备类型字段
+18874c344af67677b469db333039c34671b0bb4a 357dd42e4270dca52b32f30e173364e53eaa7129 Yalin <523031393@qq.com> 1444836529 +0800	checkout: moving from test to develop
+357dd42e4270dca52b32f30e173364e53eaa7129 cc38baed2bb59a58ade121d774aef1b16708f904 Yalin <523031393@qq.com> 1444836538 +0800	merge test: Merge made by the 'recursive' strategy.
+cc38baed2bb59a58ade121d774aef1b16708f904 ba207ce6d1663ba291af195108dadcb4caab341c Yalin <523031393@qq.com> 1444867580 +0800	commit: 完成 评测模型的更改 以及数据库的操作
+ba207ce6d1663ba291af195108dadcb4caab341c 18874c344af67677b469db333039c34671b0bb4a Yalin <523031393@qq.com> 1444915832 +0800	checkout: moving from develop to test
+18874c344af67677b469db333039c34671b0bb4a ba207ce6d1663ba291af195108dadcb4caab341c Yalin <523031393@qq.com> 1444917841 +0800	checkout: moving from test to develop
+ba207ce6d1663ba291af195108dadcb4caab341c 3fb1a874cb4f9717b13536a3a8455be42d8db68e Yalin <523031393@qq.com> 1444918988 +0800	commit: 修改 徽章的计算方法
+3fb1a874cb4f9717b13536a3a8455be42d8db68e 0f9a46878e12105a56437c92a5e84113ecef006c Yalin <523031393@qq.com> 1444919650 +0800	commit: 修改设置目标界面的界面错乱问题
+0f9a46878e12105a56437c92a5e84113ecef006c 0e018517de79c4f13dfbe5076042e88d25c3d389 Yalin <523031393@qq.com> 1445010071 +0800	commit: 添加健康中心代码
+0e018517de79c4f13dfbe5076042e88d25c3d389 18874c344af67677b469db333039c34671b0bb4a Yalin <523031393@qq.com> 1445010081 +0800	checkout: moving from develop to test
+18874c344af67677b469db333039c34671b0bb4a a209cc2d9a7e805a9eb7aa58b1172dc003e46a8d Yalin <523031393@qq.com> 1445010519 +0800	commit: 修改最新秤的数据库
+a209cc2d9a7e805a9eb7aa58b1172dc003e46a8d 0e018517de79c4f13dfbe5076042e88d25c3d389 Yalin <523031393@qq.com> 1445010525 +0800	checkout: moving from test to develop
+0e018517de79c4f13dfbe5076042e88d25c3d389 2336a57995bcbf197f0d2fe68840ff477df40314 Yalin <523031393@qq.com> 1445010536 +0800	merge test: Merge made by the 'recursive' strategy.
+2336a57995bcbf197f0d2fe68840ff477df40314 5b520434c2902ec85fe3d40e85c9126da2f00499 Yalin <523031393@qq.com> 1445011510 +0800	commit: 完成代码设置界面代码绑定设备代码
+5b520434c2902ec85fe3d40e85c9126da2f00499 624ce9335f944e4fac32d8604313819167c2ede7 Yalin <523031393@qq.com> 1445011916 +0800	commit: 修改新秤的协议
+624ce9335f944e4fac32d8604313819167c2ede7 e7a767b00e86abc718686fa8023227ee237df25e Yalin <523031393@qq.com> 1445012076 +0800	commit: 修改评测界面详细界面的脂肪肝判断
+e7a767b00e86abc718686fa8023227ee237df25e 237edb156e01916ef8272919b9e0b297eb82915b Yalin <523031393@qq.com> 1445100216 +0800	commit: Health Kit 健康中心
+237edb156e01916ef8272919b9e0b297eb82915b 722ad3195e624e8788541a1801c72f8d71d99188 Yalin <523031393@qq.com> 1445100660 +0800	commit: 完成 健康中心 睡眠对接
+722ad3195e624e8788541a1801c72f8d71d99188 de47de4053db36775226cbdda35e005e9fd69f04 Yalin <523031393@qq.com> 1445143327 +0800	commit: 调试好老秤的评测
+de47de4053db36775226cbdda35e005e9fd69f04 87fae9a1ad304b09c27b28535a5160c39bccdac6 Yalin <523031393@qq.com> 1445144220 +0800	commit: 完成qq健康中心的代码
+87fae9a1ad304b09c27b28535a5160c39bccdac6 e171ff965fb6b7405b9befd71e42c0cc62e4a9de Yalin <523031393@qq.com> 1445145291 +0800	commit: some
+e171ff965fb6b7405b9befd71e42c0cc62e4a9de e171ff965fb6b7405b9befd71e42c0cc62e4a9de Yalin <523031393@qq.com> 1445145329 +0800	checkout: moving from develop to chang-evaluation-phy-image
+e171ff965fb6b7405b9befd71e42c0cc62e4a9de 621be604ff3668c015c513e1e72de651a55eed4b Yalin <523031393@qq.com> 1445148071 +0800	commit: 体型图修改完成
+621be604ff3668c015c513e1e72de651a55eed4b e171ff965fb6b7405b9befd71e42c0cc62e4a9de Yalin <523031393@qq.com> 1445148078 +0800	checkout: moving from chang-evaluation-phy-image to develop
+e171ff965fb6b7405b9befd71e42c0cc62e4a9de 76224c1f9920f6f136aa925f204c91e145e97d49 Yalin <523031393@qq.com> 1445148089 +0800	merge chang-evaluation-phy-image: Merge made by the 'recursive' strategy.
+76224c1f9920f6f136aa925f204c91e145e97d49 e649545564edaa57271d270056fc013ac2d274bb Yalin <523031393@qq.com> 1445154046 +0800	commit: 修改目标计算
+e649545564edaa57271d270056fc013ac2d274bb 2a5146e75fde63028905316c915ea898bfbec97f Yalin <523031393@qq.com> 1445154662 +0800	commit: 添加一些缺失的图标
+2a5146e75fde63028905316c915ea898bfbec97f 95c3c983560f5e0902b0dcf1f03cbfa576d0a850 Yalin <523031393@qq.com> 1445156940 +0800	commit: 萧条时
+95c3c983560f5e0902b0dcf1f03cbfa576d0a850 19c4d461277407e30f093b093f84a8535c608726 Yalin <523031393@qq.com> 1445159244 +0800	commit: 评测页面的图片
+19c4d461277407e30f093b093f84a8535c608726 cf81f79060bffb9513ee3f10e5804600fc0b77f4 Yalin <523031393@qq.com> 1445244772 +0800	commit: 修改分享代码
+cf81f79060bffb9513ee3f10e5804600fc0b77f4 77f2756eea2266253bb5513d5b786bce55286548 Yalin <523031393@qq.com> 1445247457 +0800	commit: 积分修改完成
+77f2756eea2266253bb5513d5b786bce55286548 9301b8ad8c6fa753d18b3c0810802c51fca1a12d Yalin <523031393@qq.com> 1445256137 +0800	commit: 修改用户头像显示 能显示头像
+9301b8ad8c6fa753d18b3c0810802c51fca1a12d dccc5b0639f7e7bf2df61c4ce7ceb2ceb1f0cfcf Yalin <523031393@qq.com> 1445265031 +0800	commit: 添加管理家庭成员
+dccc5b0639f7e7bf2df61c4ce7ceb2ceb1f0cfcf bbc6b332b0b4ce6d3c256bf5308e2496ccbd2711 Yalin <523031393@qq.com> 1445268958 +0800	commit: 登陆 和 家庭用户调试完成
+bbc6b332b0b4ce6d3c256bf5308e2496ccbd2711 a713e5febab6171dbd04b25ddc412c5ba1a929bd Yalin <523031393@qq.com> 1445325878 +0800	commit: 演示版本
+a713e5febab6171dbd04b25ddc412c5ba1a929bd 74ae07fd3bce6c8fcf83272ebc74cc6c629922fd Yalin <523031393@qq.com> 1445348111 +0800	commit: 调通新秤
+74ae07fd3bce6c8fcf83272ebc74cc6c629922fd cb241fd5b27729147441f2f3e22c1168d61c738d Yalin <523031393@qq.com> 1445349593 +0800	commit: 修改上传评测数据崩溃问题
+cb241fd5b27729147441f2f3e22c1168d61c738d cb241fd5b27729147441f2f3e22c1168d61c738d Yalin <523031393@qq.com> 1445414098 +0800	checkout: moving from develop to bug-fix
+cb241fd5b27729147441f2f3e22c1168d61c738d d8350bd1901e0498b189c9bdebf54fe5ac6a3aed Yalin <523031393@qq.com> 1445495837 +0800	commit: some
+d8350bd1901e0498b189c9bdebf54fe5ac6a3aed a209cc2d9a7e805a9eb7aa58b1172dc003e46a8d Yalin <523031393@qq.com> 1445495843 +0800	checkout: moving from bug-fix to test
+a209cc2d9a7e805a9eb7aa58b1172dc003e46a8d 4b63b15a657732f48319669ff5718e43ef49fe30 Yalin <523031393@qq.com> 1445499145 +0800	checkout: moving from test to release
+4b63b15a657732f48319669ff5718e43ef49fe30 d45aa80a63451a9242bb5ce2ec7e7d5a43327a95 Yalin <523031393@qq.com> 1445499155 +0800	merge test: Merge made by the 'recursive' strategy.
+d45aa80a63451a9242bb5ce2ec7e7d5a43327a95 7d4f7846e22de082d92656288f5fe7f03e18063e Yalin <523031393@qq.com> 1445499174 +0800	checkout: moving from release to master
+7d4f7846e22de082d92656288f5fe7f03e18063e c6c396047d7f6872ede163ce64c00b99b35ece1a Yalin <523031393@qq.com> 1445499175 +0800	merge test: Merge made by the 'recursive' strategy.
+c6c396047d7f6872ede163ce64c00b99b35ece1a d45aa80a63451a9242bb5ce2ec7e7d5a43327a95 Yalin <523031393@qq.com> 1445499175 +0800	checkout: moving from master to release
+d45aa80a63451a9242bb5ce2ec7e7d5a43327a95 c6c396047d7f6872ede163ce64c00b99b35ece1a Yalin <523031393@qq.com> 1445499195 +0800	checkout: moving from release to master
+c6c396047d7f6872ede163ce64c00b99b35ece1a a209cc2d9a7e805a9eb7aa58b1172dc003e46a8d Yalin <523031393@qq.com> 1445499198 +0800	checkout: moving from master to test
+a209cc2d9a7e805a9eb7aa58b1172dc003e46a8d b557c9710b314e2331853680c335f6616c6b52ad Yalin <523031393@qq.com> 1445499255 +0800	commit: 构建版本2
+b557c9710b314e2331853680c335f6616c6b52ad d45aa80a63451a9242bb5ce2ec7e7d5a43327a95 Yalin <523031393@qq.com> 1445507878 +0800	checkout: moving from test to release
+d45aa80a63451a9242bb5ce2ec7e7d5a43327a95 6e227befc03c743c9d056b4459a9c5d33842788d Yalin <523031393@qq.com> 1445507878 +0800	merge test: Merge made by the 'recursive' strategy.
+6e227befc03c743c9d056b4459a9c5d33842788d b557c9710b314e2331853680c335f6616c6b52ad Yalin <523031393@qq.com> 1445507878 +0800	checkout: moving from release to test
+b557c9710b314e2331853680c335f6616c6b52ad c6c396047d7f6872ede163ce64c00b99b35ece1a Yalin <523031393@qq.com> 1445507888 +0800	checkout: moving from test to master
+c6c396047d7f6872ede163ce64c00b99b35ece1a 703bead7f52cd800e1699890e15793fcf476c674 Yalin <523031393@qq.com> 1445507889 +0800	merge test: Merge made by the 'recursive' strategy.
+703bead7f52cd800e1699890e15793fcf476c674 b557c9710b314e2331853680c335f6616c6b52ad Yalin <523031393@qq.com> 1445507889 +0800	checkout: moving from master to test
+b557c9710b314e2331853680c335f6616c6b52ad 90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed Yalin <523031393@qq.com> 1445507901 +0800	commit: 构建版本3
+90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed 703bead7f52cd800e1699890e15793fcf476c674 Yalin <523031393@qq.com> 1445507915 +0800	checkout: moving from test to master
+703bead7f52cd800e1699890e15793fcf476c674 90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed Yalin <523031393@qq.com> 1445507944 +0800	checkout: moving from master to test
+90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed 6e227befc03c743c9d056b4459a9c5d33842788d Yalin <523031393@qq.com> 1445507955 +0800	checkout: moving from test to release
+6e227befc03c743c9d056b4459a9c5d33842788d c3e23746b08342cc976031a7331daaa88945d14d Yalin <523031393@qq.com> 1445507955 +0800	merge test: Merge made by the 'recursive' strategy.
+c3e23746b08342cc976031a7331daaa88945d14d 90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed Yalin <523031393@qq.com> 1445507955 +0800	checkout: moving from release to test
+90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed c3e23746b08342cc976031a7331daaa88945d14d Yalin <523031393@qq.com> 1445507958 +0800	checkout: moving from test to release
+c3e23746b08342cc976031a7331daaa88945d14d 703bead7f52cd800e1699890e15793fcf476c674 Yalin <523031393@qq.com> 1445507988 +0800	checkout: moving from release to master
+703bead7f52cd800e1699890e15793fcf476c674 8d387d763e28bcb4df307cca2cfe57a326bed99e Yalin <523031393@qq.com> 1445507988 +0800	merge test: Merge made by the 'recursive' strategy.
+8d387d763e28bcb4df307cca2cfe57a326bed99e c3e23746b08342cc976031a7331daaa88945d14d Yalin <523031393@qq.com> 1445507988 +0800	checkout: moving from master to release
+c3e23746b08342cc976031a7331daaa88945d14d d8350bd1901e0498b189c9bdebf54fe5ac6a3aed Yalin <523031393@qq.com> 1445507998 +0800	checkout: moving from release to bug-fix
+d8350bd1901e0498b189c9bdebf54fe5ac6a3aed 6510f8993f6ff6116317194cb03f07f0a1ada5d6 Yalin <523031393@qq.com> 1445524928 +0800	commit: 评测详细界面 改为可展开的
+6510f8993f6ff6116317194cb03f07f0a1ada5d6 1b4c149bb5d45903c44b68071a1e513d3df9b4b0 Yalin <523031393@qq.com> 1445526842 +0800	commit: 添加 在运动睡眠详细界面 添加同步功能
+1b4c149bb5d45903c44b68071a1e513d3df9b4b0 b63e9761a34ba1b741a9bf38e0a910e56ada686a Yalin <523031393@qq.com> 1445527785 +0800	commit: 积分界面 添加等级label
+b63e9761a34ba1b741a9bf38e0a910e56ada686a 0f516e2dfb43a2ad96c94c42ddd795bd64548255 Yalin <523031393@qq.com> 1445571209 +0800	commit: 修改一些bug
+0f516e2dfb43a2ad96c94c42ddd795bd64548255 22b0689faed63fc6f93962bb522c0f3fe2b3b9e8 Yalin <523031393@qq.com> 1445572019 +0800	commit: 活动目标 名字往下一移动点
+22b0689faed63fc6f93962bb522c0f3fe2b3b9e8 20d05b55d040c8398938c102f7902872f7c7236a Yalin <523031393@qq.com> 1445572156 +0800	commit: 趋势界面 上面的提示语需要修改 去掉第二行
+20d05b55d040c8398938c102f7902872f7c7236a 603f67e513d87a9b58fc99d77c2a290a2eaa6cdf Yalin <523031393@qq.com> 1445608947 +0800	commit: 修改 趋势界面 按钮逻辑
+603f67e513d87a9b58fc99d77c2a290a2eaa6cdf 856b9b074ecb0147def052c2521297803442a7ea Yalin <523031393@qq.com> 1445612735 +0800	commit: 添加体型图 体型提示界面 体型图片拉伸问题
+856b9b074ecb0147def052c2521297803442a7ea d00923c368d8a0370c8f48f1d00ef6ae0c51c437 Yalin <523031393@qq.com> 1445613027 +0800	commit: 访客放到 新增后面 新增改为增加用户
+d00923c368d8a0370c8f48f1d00ef6ae0c51c437 0e63f590d40cd0efe0e79aaf5d36275fc3a76b2c Yalin <523031393@qq.com> 1445614687 +0800	commit: - 标尺界面 刻度太密 单位是cm 默认170 240上限 120下限 公分改为CM
+0e63f590d40cd0efe0e79aaf5d36275fc3a76b2c f7b4dd2f1d0a2d274101e9bdb382942760a53a22 Yalin <523031393@qq.com> 1445616872 +0800	commit: 用户成员可以修改 用户可以修改
+f7b4dd2f1d0a2d274101e9bdb382942760a53a22 323bf124e3a24bfa67eea16c1133713960fa9fb7 Yalin <523031393@qq.com> 1445651627 +0800	commit: 修改同步图标
+323bf124e3a24bfa67eea16c1133713960fa9fb7 26cb17aa46eb1b1e2891d98e798816de1ff6dd08 Yalin <523031393@qq.com> 1445652622 +0800	commit: 完善信息界面 如果名字没填 不能往下划
+26cb17aa46eb1b1e2891d98e798816de1ff6dd08 cb241fd5b27729147441f2f3e22c1168d61c738d Yalin <523031393@qq.com> 1445653079 +0800	checkout: moving from bug-fix to develop
+cb241fd5b27729147441f2f3e22c1168d61c738d 176ba2e5d6d65c7585f305398ce48d48869b2968 Yalin <523031393@qq.com> 1445653079 +0800	merge bug-fix: Merge made by the 'recursive' strategy.
+176ba2e5d6d65c7585f305398ce48d48869b2968 26cb17aa46eb1b1e2891d98e798816de1ff6dd08 Yalin <523031393@qq.com> 1445653079 +0800	checkout: moving from develop to bug-fix
+26cb17aa46eb1b1e2891d98e798816de1ff6dd08 176ba2e5d6d65c7585f305398ce48d48869b2968 Yalin <523031393@qq.com> 1445653088 +0800	checkout: moving from bug-fix to develop
+176ba2e5d6d65c7585f305398ce48d48869b2968 26cb17aa46eb1b1e2891d98e798816de1ff6dd08 Yalin <523031393@qq.com> 1445653097 +0800	checkout: moving from develop to bug-fix
+26cb17aa46eb1b1e2891d98e798816de1ff6dd08 c066075fb08592fce4539812a894cb488157454c Yalin <523031393@qq.com> 1445659968 +0800	commit: 修改评测流程
+c066075fb08592fce4539812a894cb488157454c 49288f202ad2532263bc6d17c8a14dc463f3ba16 Yalin <523031393@qq.com> 1445661920 +0800	commit: 新秤逻辑bug修改
+49288f202ad2532263bc6d17c8a14dc463f3ba16 93b21166ba62059cba77cbe97ba22511c4faf09d Yalin <523031393@qq.com> 1445663481 +0800	commit: 修改访客 图标
+93b21166ba62059cba77cbe97ba22511c4faf09d 4042e516a74ac00340c9d319fb4f19ffbcd6ac68 Yalin <523031393@qq.com> 1445778589 +0800	commit: bug fix
+4042e516a74ac00340c9d319fb4f19ffbcd6ac68 951f880589ff59c563dcc9a31e6d128de5a27704 Yalin <523031393@qq.com> 1445786140 +0800	commit: some
+951f880589ff59c563dcc9a31e6d128de5a27704 12a4e6da0f86010144a5f22ee9af6d0fd2cccca5 Yalin <523031393@qq.com> 1445789114 +0800	commit: some
+12a4e6da0f86010144a5f22ee9af6d0fd2cccca5 5e1cc7b4716906d845fdc232ccd08f485e39361c Yalin <523031393@qq.com> 1445789796 +0800	commit: 修改 头像路径
+5e1cc7b4716906d845fdc232ccd08f485e39361c 53b26709ea07901dfb307da38708da6873422417 Yalin <523031393@qq.com> 1445790346 +0800	commit: 修改 显示主账户不能切换的问题
+53b26709ea07901dfb307da38708da6873422417 f2a4592d6a06dbb247db323a8ccaab67c6253b14 Yalin <523031393@qq.com> 1445791229 +0800	commit: 发包了
+f2a4592d6a06dbb247db323a8ccaab67c6253b14 176ba2e5d6d65c7585f305398ce48d48869b2968 Yalin <523031393@qq.com> 1445791239 +0800	checkout: moving from bug-fix to develop
+176ba2e5d6d65c7585f305398ce48d48869b2968 3b3c9eadd2152a35ba1a94c1b759624d467c12eb Yalin <523031393@qq.com> 1445791260 +0800	merge bug-fix: Merge made by the 'recursive' strategy.
+3b3c9eadd2152a35ba1a94c1b759624d467c12eb 171044c5f374b2c60abfd1cad6d088de8c87c231 Yalin <523031393@qq.com> 1445923766 +0800	commit: bug 已修改完
+171044c5f374b2c60abfd1cad6d088de8c87c231 7d411b417bbddf0502edea6fe88199ccd42fdca9 Yalin <523031393@qq.com> 1445926139 +0800	commit: 调整 骨骼肌 和 内脏脂肪范围
+7d411b417bbddf0502edea6fe88199ccd42fdca9 2db23275685ae66130af5050836813d4d638d98c Yalin <523031393@qq.com> 1445928234 +0800	commit: some
+2db23275685ae66130af5050836813d4d638d98c 2eba55fad11e3fc1657289e7de35d28134d214d9 Yalin <523031393@qq.com> 1445958979 +0800	commit: some bug fix
+2eba55fad11e3fc1657289e7de35d28134d214d9 332cba17ea359c0208e7430dfe13303c600edace Yalin <523031393@qq.com> 1445964410 +0800	commit: 引导页添加完成
+332cba17ea359c0208e7430dfe13303c600edace eebde4c0316bd74112e046bfb139cb61c3979680 Yalin <523031393@qq.com> 1446033404 +0800	commit: some
+eebde4c0316bd74112e046bfb139cb61c3979680 6941a268fc5d50ac0849cd978de21ef76e85d38e Yalin <523031393@qq.com> 1446049994 +0800	commit: bug 修改完了
+6941a268fc5d50ac0849cd978de21ef76e85d38e 24ff2d6d9ad159b3c0592326ea7a306901a9bd16 Yalin <523031393@qq.com> 1446184050 +0800	commit: bug 修改
+24ff2d6d9ad159b3c0592326ea7a306901a9bd16 5b7940f26075e79fd7bbbd785fab7e5f8c6f6eb5 Yalin <523031393@qq.com> 1446911678 +0800	commit: 添加启动页面动画
+5b7940f26075e79fd7bbbd785fab7e5f8c6f6eb5 1907821731c1c5fc994310cf645a41f9e2b18a9a Yalin <523031393@qq.com> 1447073167 +0800	commit: 修改完成bug
+1907821731c1c5fc994310cf645a41f9e2b18a9a 1907821731c1c5fc994310cf645a41f9e2b18a9a Yalin <523031393@qq.com> 1447073199 +0800	checkout: moving from develop to ScaleTest
+1907821731c1c5fc994310cf645a41f9e2b18a9a 90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed Yalin <523031393@qq.com> 1447666297 +0800	checkout: moving from ScaleTest to test
+90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed 1907821731c1c5fc994310cf645a41f9e2b18a9a Yalin <523031393@qq.com> 1447666302 +0800	checkout: moving from test to ScaleTest
+1907821731c1c5fc994310cf645a41f9e2b18a9a 572e25209e0bc8d98b35c880a05b0c7b279ad8ec Yalin <523031393@qq.com> 1447666315 +0800	commit: 测量重构
+572e25209e0bc8d98b35c880a05b0c7b279ad8ec 90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed Yalin <523031393@qq.com> 1447666319 +0800	checkout: moving from ScaleTest to test
+90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed 1907821731c1c5fc994310cf645a41f9e2b18a9a Yalin <523031393@qq.com> 1447817774 +0800	checkout: moving from test to develop
+1907821731c1c5fc994310cf645a41f9e2b18a9a 542d6ae7b364ad6ddf6b46c25f6520827c89b669 Yalin <523031393@qq.com> 1447831654 +0800	commit: 修改新秤评测不了问题
+542d6ae7b364ad6ddf6b46c25f6520827c89b669 572e25209e0bc8d98b35c880a05b0c7b279ad8ec Yalin <523031393@qq.com> 1447831670 +0800	checkout: moving from develop to ScaleTest
+572e25209e0bc8d98b35c880a05b0c7b279ad8ec 542d6ae7b364ad6ddf6b46c25f6520827c89b669 Yalin <523031393@qq.com> 1447831693 +0800	checkout: moving from ScaleTest to develop
+542d6ae7b364ad6ddf6b46c25f6520827c89b669 e75d544654090be615cf861d3d5670124eeda791 Yalin <523031393@qq.com> 1447832566 +0800	commit (merge): Merge branch 'ScaleTest' into develop
+e75d544654090be615cf861d3d5670124eeda791 3f6978a210d9b7d249d9a3d05ff28f15dd41021c Yalin <523031393@qq.com> 1447838610 +0800	commit: 修改脂肪肝文案和趋势界面进入详情脂肪肝显示不对的问题
+3f6978a210d9b7d249d9a3d05ff28f15dd41021c 90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed Yalin <523031393@qq.com> 1448335459 +0800	checkout: moving from develop to test
+90a8275c0c2cb5fb5c2327225934d1b4bc8a5aed 3f6978a210d9b7d249d9a3d05ff28f15dd41021c Yalin <523031393@qq.com> 1448501675 +0800	checkout: moving from test to develop
+3f6978a210d9b7d249d9a3d05ff28f15dd41021c 8d387d763e28bcb4df307cca2cfe57a326bed99e Yalin <523031393@qq.com> 1449111546 +0800	checkout: moving from develop to master
+8d387d763e28bcb4df307cca2cfe57a326bed99e cd03082bfdb3765dbf66067bf2420342d8ecaa44 Yalin <523031393@qq.com> 1449111778 +0800	commit (merge): Merge branch 'develop'
+cd03082bfdb3765dbf66067bf2420342d8ecaa44 082dd8da13d1426d6229072f1911024bbd9ea98c Yalin <523031393@qq.com> 1449112333 +0800	commit (merge): git init
+082dd8da13d1426d6229072f1911024bbd9ea98c 3f6978a210d9b7d249d9a3d05ff28f15dd41021c Yalin <523031393@qq.com> 1449207383 +0800	checkout: moving from master to develop
+3f6978a210d9b7d249d9a3d05ff28f15dd41021c 06973fb099c64b34a8bcfa3c3e790f72a6e980ef Yalin <523031393@qq.com> 1450143649 +0800	commit: change
+06973fb099c64b34a8bcfa3c3e790f72a6e980ef 4bd3e1676916007e7694849cbdc8bdf4ef147356 Yalin <523031393@qq.com> 1451462415 +0800	commit: some
+4bd3e1676916007e7694849cbdc8bdf4ef147356 75936a823f86a38297851461107d13edad2a16f6 Yalin <523031393@qq.com> 1451532399 +0800	commit: 修改bug
+75936a823f86a38297851461107d13edad2a16f6 ea35ea60ffd60a81e07bd215a4c7ac35e07b8257 Yalin <523031393@qq.com> 1451787174 +0800	commit: bug xiugai
+ea35ea60ffd60a81e07bd215a4c7ac35e07b8257 64048ab253d3ff1c56a2aa0d500ffdaeffc9c1e3 Yalin <523031393@qq.com> 1451832544 +0800	commit: bug fix
+64048ab253d3ff1c56a2aa0d500ffdaeffc9c1e3 0068e3642a10ce8acac22a1f851e44411838a854 Yalin <523031393@qq.com> 1451976921 +0800	commit: bug fix
+0068e3642a10ce8acac22a1f851e44411838a854 082dd8da13d1426d6229072f1911024bbd9ea98c Yalin <523031393@qq.com> 1451976943 +0800	checkout: moving from develop to master
+082dd8da13d1426d6229072f1911024bbd9ea98c 082dd8da13d1426d6229072f1911024bbd9ea98c Yalin <523031393@qq.com> 1451976949 +0800	checkout: moving from master to master
+082dd8da13d1426d6229072f1911024bbd9ea98c 082dd8da13d1426d6229072f1911024bbd9ea98c Yalin <523031393@qq.com> 1451976953 +0800	checkout: moving from master to master
+082dd8da13d1426d6229072f1911024bbd9ea98c 082dd8da13d1426d6229072f1911024bbd9ea98c Yalin <523031393@qq.com> 1451976955 +0800	checkout: moving from master to master
+082dd8da13d1426d6229072f1911024bbd9ea98c e721712f6cc38d964c9d0f150ae62b5fec84a30c Yalin <523031393@qq.com> 1451976967 +0800	merge develop: Merge made by the 'recursive' strategy.
+e721712f6cc38d964c9d0f150ae62b5fec84a30c 0613f218569a6e9f592cb0de408aa1f95b9434df Yalin <523031393@qq.com> 1452073403 +0800	commit: bug fix
+0613f218569a6e9f592cb0de408aa1f95b9434df 01e55b5ba16abe3997887770f7beb737fc1a4699 Yalin <523031393@qq.com> 1452079736 +0800	commit: tag 6
+01e55b5ba16abe3997887770f7beb737fc1a4699 197d46280546d67668b22fbd907f7d0496dcc213 Yalin <523031393@qq.com> 1452079928 +0800	commit: tag 1.0.2
+197d46280546d67668b22fbd907f7d0496dcc213 69fc8164946c64f56c781c2f2e04e3d6df6fe1ac Yalin <523031393@qq.com> 1453596847 +0800	commit: some
+69fc8164946c64f56c781c2f2e04e3d6df6fe1ac f5cd01ba9d0558d28ae887a41b04a61eec7c330b Yalin <523031393@qq.com> 1453734360 +0800	commit: 修改bug
+f5cd01ba9d0558d28ae887a41b04a61eec7c330b 0068e3642a10ce8acac22a1f851e44411838a854 Yalin <523031393@qq.com> 1453734416 +0800	checkout: moving from master to develop
+0068e3642a10ce8acac22a1f851e44411838a854 f5cd01ba9d0558d28ae887a41b04a61eec7c330b Yalin <523031393@qq.com> 1453734425 +0800	checkout: moving from develop to master
+f5cd01ba9d0558d28ae887a41b04a61eec7c330b 41f3e20f71dfbbd2ee1bd2b42458fee158b80bb5 Yalin <523031393@qq.com> 1460166028 +0800	commit: 修改了一些问题
+41f3e20f71dfbbd2ee1bd2b42458fee158b80bb5 dfc47f175c5165c20c46b4ca724ac39e23c26271 Yalin <523031393@qq.com> 1461246040 +0800	commit: tag 1.0.3 发布 build 8
+dfc47f175c5165c20c46b4ca724ac39e23c26271 c3e23746b08342cc976031a7331daaa88945d14d Yalin <523031393@qq.com> 1461246052 +0800	checkout: moving from master to release
+c3e23746b08342cc976031a7331daaa88945d14d 0068e3642a10ce8acac22a1f851e44411838a854 Yalin <523031393@qq.com> 1461246085 +0800	checkout: moving from release to develop
+0068e3642a10ce8acac22a1f851e44411838a854 dfc47f175c5165c20c46b4ca724ac39e23c26271 Yalin <523031393@qq.com> 1461246089 +0800	checkout: moving from develop to master
+dfc47f175c5165c20c46b4ca724ac39e23c26271 0068e3642a10ce8acac22a1f851e44411838a854 Yalin <523031393@qq.com> 1461246098 +0800	checkout: moving from master to develop
+0068e3642a10ce8acac22a1f851e44411838a854 a503f8fbecdeebf27cabb22d832d277af6d58dcf Yalin <523031393@qq.com> 1461246197 +0800	merge master: Merge made by the 'recursive' strategy.
+a503f8fbecdeebf27cabb22d832d277af6d58dcf dfc47f175c5165c20c46b4ca724ac39e23c26271 Yalin <523031393@qq.com> 1461246212 +0800	checkout: moving from develop to master
+dfc47f175c5165c20c46b4ca724ac39e23c26271 dfc47f175c5165c20c46b4ca724ac39e23c26271 Yalin <523031393@qq.com> 1461246217 +0800	checkout: moving from master to master
+dfc47f175c5165c20c46b4ca724ac39e23c26271 dfc47f175c5165c20c46b4ca724ac39e23c26271 Yalin <523031393@qq.com> 1461246219 +0800	checkout: moving from master to master
+dfc47f175c5165c20c46b4ca724ac39e23c26271 c3e23746b08342cc976031a7331daaa88945d14d Yalin <523031393@qq.com> 1461246222 +0800	checkout: moving from master to release
+c3e23746b08342cc976031a7331daaa88945d14d 0aa206866c1c589c23701e732663ac092ed809bf Yalin <523031393@qq.com> 1461246251 +0800	merge master: Merge made by the 'recursive' strategy.
+0aa206866c1c589c23701e732663ac092ed809bf a503f8fbecdeebf27cabb22d832d277af6d58dcf Yalin <523031393@qq.com> 1461246273 +0800	checkout: moving from release to develop
+a503f8fbecdeebf27cabb22d832d277af6d58dcf dfc47f175c5165c20c46b4ca724ac39e23c26271 Yalin <523031393@qq.com> 1461246277 +0800	checkout: moving from develop to master
+dfc47f175c5165c20c46b4ca724ac39e23c26271 a503f8fbecdeebf27cabb22d832d277af6d58dcf Yalin <523031393@qq.com> 1461246280 +0800	checkout: moving from master to develop
+a503f8fbecdeebf27cabb22d832d277af6d58dcf 662add011ff02329388bed8ee34a148c5e908884 Yalin <523031393@qq.com> 1461507054 +0800	commit: delete healthKit
+662add011ff02329388bed8ee34a148c5e908884 0aa206866c1c589c23701e732663ac092ed809bf Yalin <523031393@qq.com> 1461507061 +0800	checkout: moving from develop to release
+0aa206866c1c589c23701e732663ac092ed809bf cc69c3882c296985b6a20db51477d0d3a15c5dfa Yalin <523031393@qq.com> 1461507088 +0800	merge develop: Merge made by the 'recursive' strategy.
+cc69c3882c296985b6a20db51477d0d3a15c5dfa 662add011ff02329388bed8ee34a148c5e908884 Yalin <523031393@qq.com> 1462858802 +0800	checkout: moving from release to develop
+662add011ff02329388bed8ee34a148c5e908884 3fa39a324e083ee34fb7a6270555688253d6d247 Yalin <523031393@qq.com> 1465352912 +0800	commit: 修改去酯体重公式，修改控制量取值到1位小数点
+3fa39a324e083ee34fb7a6270555688253d6d247 39768790c2480ddce8ed406e9b38a15171052e63 yangyalin <yangyalin@nationsky.com> 1476367602 +0800	commit: swift3.0 xcode8 适配

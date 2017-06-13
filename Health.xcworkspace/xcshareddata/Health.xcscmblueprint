@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9b25fe7d-da4b-d246-ac2c-bf72397b697b++1407",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "9b25fe7d-da4b-d246-ac2c-bf72397b697b++1407" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9b25fe7d-da4b-d246-ac2c-bf72397b697b++1407" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "79FBBED6-E4DD-4215-BB6F-DA1316551AD6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9b25fe7d-da4b-d246-ac2c-bf72397b697b++1407" : "Health-iOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Health",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Health.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/www.tfht.com.cn\/svn\/IOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9b25fe7d-da4b-d246-ac2c-bf72397b697b++1407"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.coding.net:YalinY\/Health.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9b25fe7d-da4b-d246-ac2c-bf72397b697b++1407"
+    }
+  ]
+}

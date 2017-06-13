@@ -46,6 +46,7 @@ typedef NS_ENUM(NSUInteger, VCStatus) {
 - (void)scale:(void (^)(VTFatScaleTestResult *result, NSError *error))complete;
 - (void)connect;
 - (void)disconnect;
+- (void)disconnectCustom;
 @end
 
 

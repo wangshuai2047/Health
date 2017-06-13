@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="213" id="KGk-i7-Jjw" customClass="EvaluationPhysiqueDetailCell" customModule="Health" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="475" height="213"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="475" height="212.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-51-h3v">
+                        <rect key="frame" x="0.0" y="0.0" width="158.5" height="212.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运动员型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8h-Yd-rch">
+                                <rect key="frame" x="8" y="181" width="142.5" height="23"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="6B8-dK-XwP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="athleteFemaleSelected" translatesAutoresizingMaskIntoConstraints="NO" id="V2o-gT-gtm">
+                                <rect key="frame" x="21" y="8" width="116" height="165"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDo-Ks-uS7">
+                                <rect key="frame" x="21" y="8" width="116" height="165"/>
+                                <animations/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w8h-Yd-rch" firstAttribute="leading" secondItem="f1i-51-h3v" secondAttribute="leading" constant="8" id="F53-4k-LgD"/>
+                            <constraint firstItem="hDo-Ks-uS7" firstAttribute="height" secondItem="V2o-gT-gtm" secondAttribute="height" id="Lxe-28-s6N"/>
+                            <constraint firstItem="V2o-gT-gtm" firstAttribute="top" secondItem="f1i-51-h3v" secondAttribute="top" constant="8" id="Tt3-YD-dS7"/>
+                            <constraint firstItem="hDo-Ks-uS7" firstAttribute="width" secondItem="V2o-gT-gtm" secondAttribute="width" id="VK8-mf-e3Q"/>
+                            <constraint firstItem="V2o-gT-gtm" firstAttribute="leading" secondItem="f1i-51-h3v" secondAttribute="leading" constant="21" id="X2j-EP-fFZ"/>
+                            <constraint firstItem="hDo-Ks-uS7" firstAttribute="centerY" secondItem="V2o-gT-gtm" secondAttribute="centerY" id="bPl-cm-6zZ"/>
+                            <constraint firstAttribute="trailing" secondItem="V2o-gT-gtm" secondAttribute="trailing" constant="21.5" id="eK7-gH-EHu"/>
+                            <constraint firstAttribute="trailing" secondItem="w8h-Yd-rch" secondAttribute="trailing" constant="8" id="eeS-Jc-331"/>
+                            <constraint firstItem="w8h-Yd-rch" firstAttribute="top" secondItem="V2o-gT-gtm" secondAttribute="bottom" constant="8" id="nqF-2C-BSM"/>
+                            <constraint firstAttribute="bottom" secondItem="w8h-Yd-rch" secondAttribute="bottom" constant="8.5" id="xOj-kW-7Il"/>
+                            <constraint firstItem="hDo-Ks-uS7" firstAttribute="centerX" secondItem="V2o-gT-gtm" secondAttribute="centerX" id="zCB-EP-fun"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLK-T8-f1J">
+                        <rect key="frame" x="158.5" y="0.0" width="158" height="212.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运动员型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgQ-6z-Z6P">
+                                <rect key="frame" x="8" y="181" width="142.5" height="23"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="WVO-ui-lRT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="athleteFemaleSelected" translatesAutoresizingMaskIntoConstraints="NO" id="A2U-hi-sIr">
+                                <rect key="frame" x="21" y="8" width="116" height="165"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLo-b4-1Zg">
+                                <rect key="frame" x="21" y="8" width="116" height="165"/>
+                                <animations/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rLo-b4-1Zg" firstAttribute="width" secondItem="A2U-hi-sIr" secondAttribute="width" id="2OU-HR-m5Z"/>
+                            <constraint firstItem="PgQ-6z-Z6P" firstAttribute="leading" secondItem="DLK-T8-f1J" secondAttribute="leading" constant="8" id="2y8-vH-KO2"/>
+                            <constraint firstItem="rLo-b4-1Zg" firstAttribute="centerY" secondItem="A2U-hi-sIr" secondAttribute="centerY" id="7vo-ja-hfv"/>
+                            <constraint firstAttribute="trailing" secondItem="PgQ-6z-Z6P" secondAttribute="trailing" constant="7.5" id="FA4-ic-hXC"/>
+                            <constraint firstItem="A2U-hi-sIr" firstAttribute="top" secondItem="DLK-T8-f1J" secondAttribute="top" constant="8" id="H5H-xA-5cP"/>
+                            <constraint firstItem="rLo-b4-1Zg" firstAttribute="centerX" secondItem="A2U-hi-sIr" secondAttribute="centerX" id="HHa-Nd-Jar"/>
+                            <constraint firstItem="PgQ-6z-Z6P" firstAttribute="top" secondItem="A2U-hi-sIr" secondAttribute="bottom" constant="8" id="aL7-vk-DZE"/>
+                            <constraint firstItem="rLo-b4-1Zg" firstAttribute="height" secondItem="A2U-hi-sIr" secondAttribute="height" id="bQY-eF-rEN"/>
+                            <constraint firstAttribute="bottom" secondItem="PgQ-6z-Z6P" secondAttribute="bottom" constant="8.5" id="qdK-Zx-bfl"/>
+                            <constraint firstItem="A2U-hi-sIr" firstAttribute="leading" secondItem="DLK-T8-f1J" secondAttribute="leading" constant="21" id="sEu-tD-R4F"/>
+                            <constraint firstAttribute="trailing" secondItem="A2U-hi-sIr" secondAttribute="trailing" constant="21" id="xIF-m2-GpX"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grw-da-kW8">
+                        <rect key="frame" x="316" y="0.0" width="158.5" height="212.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运动员型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLG-Zw-phq">
+                                <rect key="frame" x="8" y="181" width="142.5" height="23"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="VmG-AX-EIe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="athleteFemaleSelected" translatesAutoresizingMaskIntoConstraints="NO" id="eIA-h3-bQu">
+                                <rect key="frame" x="21" y="8" width="116" height="165"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4V-a6-pBO">
+                                <rect key="frame" x="21" y="8" width="116" height="165"/>
+                                <animations/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y4V-a6-pBO" firstAttribute="centerX" secondItem="eIA-h3-bQu" secondAttribute="centerX" id="AG4-0H-fwC"/>
+                            <constraint firstAttribute="trailing" secondItem="eIA-h3-bQu" secondAttribute="trailing" constant="21.5" id="BuY-jN-sls"/>
+                            <constraint firstAttribute="bottom" secondItem="mLG-Zw-phq" secondAttribute="bottom" constant="8.5" id="I3I-1J-fjJ"/>
+                            <constraint firstItem="y4V-a6-pBO" firstAttribute="centerY" secondItem="eIA-h3-bQu" secondAttribute="centerY" id="Yac-We-83e"/>
+                            <constraint firstItem="eIA-h3-bQu" firstAttribute="top" secondItem="grw-da-kW8" secondAttribute="top" constant="8" id="agd-aA-zoV"/>
+                            <constraint firstItem="y4V-a6-pBO" firstAttribute="height" secondItem="eIA-h3-bQu" secondAttribute="height" id="cAE-63-fyO"/>
+                            <constraint firstItem="mLG-Zw-phq" firstAttribute="leading" secondItem="grw-da-kW8" secondAttribute="leading" constant="8" id="fZk-d0-SFl"/>
+                            <constraint firstItem="mLG-Zw-phq" firstAttribute="top" secondItem="eIA-h3-bQu" secondAttribute="bottom" constant="8" id="hAB-le-i0q"/>
+                            <constraint firstItem="y4V-a6-pBO" firstAttribute="width" secondItem="eIA-h3-bQu" secondAttribute="width" id="mBT-TL-aQs"/>
+                            <constraint firstItem="eIA-h3-bQu" firstAttribute="leading" secondItem="grw-da-kW8" secondAttribute="leading" constant="21" id="mDf-jE-ljh"/>
+                            <constraint firstAttribute="trailing" secondItem="mLG-Zw-phq" secondAttribute="trailing" constant="8" id="o7q-0Y-r8c"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="DLK-T8-f1J" firstAttribute="leading" secondItem="f1i-51-h3v" secondAttribute="trailing" id="2QH-Ur-13g"/>
+                    <constraint firstItem="grw-da-kW8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5lP-5T-cre"/>
+                    <constraint firstAttribute="bottom" secondItem="DLK-T8-f1J" secondAttribute="bottom" id="75K-qC-Yd3"/>
+                    <constraint firstItem="f1i-51-h3v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Zeq-su-TMP"/>
+                    <constraint firstItem="DLK-T8-f1J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cez-Ec-LDy"/>
+                    <constraint firstAttribute="bottom" secondItem="f1i-51-h3v" secondAttribute="bottom" id="dUf-Ox-Mac"/>
+                    <constraint firstItem="grw-da-kW8" firstAttribute="leading" secondItem="DLK-T8-f1J" secondAttribute="trailing" id="ecy-jZ-p7J"/>
+                    <constraint firstAttribute="bottom" secondItem="grw-da-kW8" secondAttribute="bottom" id="izZ-FV-czN"/>
+                    <constraint firstItem="f1i-51-h3v" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jww-AP-b2H"/>
+                    <constraint firstItem="DLK-T8-f1J" firstAttribute="width" secondItem="f1i-51-h3v" secondAttribute="width" id="ofv-fF-PcR"/>
+                    <constraint firstItem="grw-da-kW8" firstAttribute="width" secondItem="f1i-51-h3v" secondAttribute="width" id="qVp-7C-Zo2"/>
+                    <constraint firstAttribute="trailing" secondItem="grw-da-kW8" secondAttribute="trailing" id="w23-Yi-eDP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="physiqueButton1" destination="hDo-Ks-uS7" id="r9W-g9-Xf2"/>
+                <outlet property="physiqueButton2" destination="rLo-b4-1Zg" id="mxB-rC-JHb"/>
+                <outlet property="physiqueButton3" destination="y4V-a6-pBO" id="50f-pS-6Hg"/>
+                <outlet property="physiqueImageView1" destination="V2o-gT-gtm" id="uMR-PF-tyb"/>
+                <outlet property="physiqueImageView2" destination="A2U-hi-sIr" id="A9d-nY-kWO"/>
+                <outlet property="physiqueImageView3" destination="eIA-h3-bQu" id="JMh-RH-KJa"/>
+                <outlet property="titleLabel1" destination="w8h-Yd-rch" id="VrQ-rZ-lZf"/>
+                <outlet property="titleLabel2" destination="PgQ-6z-Z6P" id="lr8-Rj-Z0U"/>
+                <outlet property="titleLabel3" destination="mLG-Zw-phq" id="WpR-pi-Z0I"/>
+            </connections>
+            <point key="canvasLocation" x="355.5" y="359.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="athleteFemaleSelected" width="100" height="285"/>
+    </resources>
+</document>

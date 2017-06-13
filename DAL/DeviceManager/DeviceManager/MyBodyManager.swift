@@ -22,6 +22,7 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
                     VScaleManager.sharedInstance().scale({ [unowned self] (result: VTFatScaleTestResult?, error: Error?) -> Void in
                         // 生成 resultProtocol 对象
                         if error == nil {
+                            
                             let scaleResult = MyBodyManager.scaleInputData(result!.weight, waterContent: result!.waterContent, visceralFatContent: Float(result!.visceralFatContent), gender: userModel.gender, userId: userModel.userId, age: userModel.age, height: userModel.height)
                             self.fireComplete?(scaleResult, error as NSError?)
                         }
@@ -102,12 +103,20 @@ class MyBodyManager: NSObject, DeviceManagerProtocol {
         let waterWeight = weight * waterContent / 100
         // 肌肉重
         let muscleWeight = waterWeight / 0.78
+
         // 蛋白质重
         let proteinWeight =  muscleWeight - waterWeight
         // 骨重
         let boneWeight = weight - fatWeight - muscleWeight
         // 骨骼肌重
-        let boneMuscleWeight = muscleWeight * 0.7135
+//        let boneMuscleWeight = muscleWeight * 0.7135
+
+        var boneMuscleWeight:Float!
+        if gender  == true{//男
+            boneMuscleWeight = (muscleWeight - 0.4) * 0.7135
+        } else {//女
+            boneMuscleWeight = (muscleWeight - 1.5) * 0.7135
+        }
         
         let result = MyBodyResult(userId: userId, gender: gender, age: age, height: height, weight: weight, waterContent: waterContent, visceralFatContent: visceralFatContent, fatPercentage: fatPercentage, fatWeight: fatWeight, waterWeight: waterWeight, muscleWeight: muscleWeight, proteinWeight: proteinWeight, boneWeight: boneWeight, boneMuscleWeight: boneMuscleWeight)
         

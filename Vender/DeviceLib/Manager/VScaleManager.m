@@ -116,6 +116,11 @@ static VScaleManager *instance = nil;
     }
 }
 
+- (void)disconnectCustom
+{
+    [deviceModel disconnect];
+}
+
 - (void)setCalulateDataWithUserID:(UInt8)userID gender:(UInt8)gender age:(UInt8)age height:(UInt8)height
 {
     _userID = userID;
@@ -222,15 +227,26 @@ static VScaleManager *instance = nil;
                         break;
                     case VCStatusCaculate:{
                         NSLog(@"VC_STATUS_CACULATING done");
+                        
                         [self gotoStatus:VCStatusCaculate];
                         [self.delegate updateUIDataWithFatScale:self.scaleResult];
                         [deviceModel disconnect];
                         
-                        
                         NSError *error = nil;
+                        NSLog(@"------result------\n");
+                        NSLog(@"waterContent = %f",[(VTFatScaleTestResult*)result waterContent]);
+                        NSLog(@"fatContent = %f",[(VTFatScaleTestResult*)result fatContent]);
+                        NSLog(@"boneContent = %f",[(VTFatScaleTestResult*)result boneContent]);
+                        NSLog(@"------result------\n");
+
                         if ([(VTFatScaleTestResult *)result waterContent] == 0) {
                             error = [NSError errorWithDomain:@"VScale Error" code:1 userInfo:@{NSLocalizedDescriptionKey : @"测试失败"}];
                         }
+//                        else
+//                        {
+//                            error = nil;
+//                            [deviceModel disconnect];
+//                        }
                         
                         if (_scaleComplete) {
                             _scaleComplete(result, error);
@@ -284,6 +300,10 @@ static VScaleManager *instance = nil;
 - (Boolean) didDiscovered:(VTDeviceManager *)dm device:(VTDeviceModel *)device{
     NSLog(@"didDiscovered");
     if ([device.UUID isEqualToString:@"4588E96E-AE96-1950-FB77-9D76F3284961"]) {
+        return YES;
+    }
+    else if ([device.UUID isEqualToString:@"73DF8CB2-2531-482B-939D-FBF355CD2AA9"])
+    {
         return YES;
     }
     return NO;

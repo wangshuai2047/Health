@@ -1,0 +1,10 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "codingios"]
+	url = git@git.coding.net:YalinY/Health.git
+	fetch = +refs/heads/*:refs/remotes/codingios/*

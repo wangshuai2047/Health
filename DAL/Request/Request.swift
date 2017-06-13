@@ -11,7 +11,7 @@ import Foundation
 struct Request {
     
     static func requestURL(_ type : String) -> String {
-        let urlString = "http://s.bodivis.com.cn/easygtd/v1/user/\(type)"
+        let urlString = "https://s.bodivis.com.cn/easygtd/v1/user/\(type)"
         return urlString
     }
     
@@ -47,25 +47,44 @@ struct Request {
 extension Request {
     
     static func requestPHPPathURL() -> String {
-        return "http://s.bodivis.com.cn/"
+        return "https://s.bodivis.com.cn/"
     }
     
-    static func requestPHPURL() -> String {
-        return "http://s.bodivis.com.cn/index.php"
+    static func requestPHPURL() -> String {//使用的url
+        return "https://s.bodivis.com.cn/index.php"
+//        return "http://192.168.1.112:81/api/index.php"
     }
     
     static func startWithRequest(_ requestType: RequestType, params: [String : AnyObject], completionHandler: @escaping (_ data: Data? , _ response: URLResponse?, _ error: NSError?) -> Void) {
         // create request
         var request : URLRequest = URLRequest(url: URL(string: requestPHPURL())!)
         request.httpMethod = "POST"
-        request.timeoutInterval = 15
+//        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 30
         request.httpBody = generatePHPStyleBodyStr(requestType.rawValue, params: params).data(using: String.Encoding.utf8, allowLossyConversion: true)
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response:URLResponse?, error: Error?) -> Void in
+        let session = URLSession.init(configuration: URLSessionConfiguration.default, delegate: AppDelegate.applicationDelegate(), delegateQueue: OperationQueue.main)
+        
+        let task = session.dataTask(with: request) { (data: Data?, response:URLResponse?, error: Error?) in
             DispatchQueue.main.async(execute: { () -> Void in
+                let httpResponse = response as! HTTPURLResponse
+                let code = httpResponse.statusCode
+                let string = NSString.init(data: data!, encoding: String.Encoding.utf8.rawValue)
+//                print("string \(string)")
+                print("code \(code)")
                 completionHandler(data, response, self.errorFilter(error as NSError?))
             })
-        })
+        }
+        
+//        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response:URLResponse?, error: Error?) -> Void in
+//            DispatchQueue.main.async(execute: { () -> Void in
+//                let httpResponse = response as! HTTPURLResponse
+//                let code = httpResponse.statusCode
+//                print("code \(code)")
+//                completionHandler(data, response, self.errorFilter(error as NSError?))
+//            })
+//        })
         
         task.resume()
     }
@@ -97,7 +116,7 @@ extension Request {
             "body" : params
         ] as [String : Any]
         
-        print("request HTTPBody \(httpBodyInfo)")
+//        print("request HTTPBody \(httpBodyInfo)")
         
         
         var httpBodyData: Data?

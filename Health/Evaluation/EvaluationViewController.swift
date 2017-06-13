@@ -33,10 +33,16 @@ class EvaluationViewController: UIViewController {
     @IBOutlet weak var bodyFatLevelLabel: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     var canScale: Bool = false
+    var timeoutTimer: Timer?
+    var scanTime: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
 //        EvaluationManager.sharedInstance.addTestDatas()
 
@@ -46,10 +52,31 @@ class EvaluationViewController: UIViewController {
         userSelectView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
         
-        UIApplication.shared.applicationSupportsShakeToEdit = true
-        self.becomeFirstResponder()
+        // 摇一摇
+//        UIApplication.shared.applicationSupportsShakeToEdit = true
+//        self.becomeFirstResponder()
         
         showView(connectDeviceView)
+        self.checkUpBlueToothState()
+        
+        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步评测历史数据", detailMsg: nil, progress: nil)
+        EvaluationManager.checkAndSyncEvaluationDatas { (error: NSError?) -> Void in
+            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步手环历史数据", detailMsg: nil, progress: nil)
+            // 开始目标数据同步
+            GoalManager.checkAndSyncGoalDatas({ (error: NSError?) -> Void in
+                
+                AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "同步目标数据", detailMsg: nil, progress: nil)
+                GoalManager.checkSyncSettingDatas { (error: NSError?) -> Void in
+                    AppDelegate.applicationDelegate().hiddenHUD()
+                }
+            })
+        }
+        
+        
+        
+    }
+    
+    func checkUpBlueToothState() {
         EvaluationManager.sharedInstance.setCheckStatusBlock { [unowned self] (status: BluetoothStatus) -> Void in
             
             self.canScale = false
@@ -63,22 +90,9 @@ class EvaluationViewController: UIViewController {
                 self.tipLabel.text = "设备不支持蓝牙,无法使用!"
             }
             else if status == .poweredOn {
-                self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量!"
+                self.tipLabel.text = "蓝牙已打开，请上秤后点击下方“开始身体评测”按钮，将秤放在坚硬平整的地面上，赤脚测量!"
                 self.canScale = true
             }
-        }
-        
-        AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步评测历史数据", detailMsg: nil, progress: nil)
-        EvaluationManager.checkAndSyncEvaluationDatas { (error: NSError?) -> Void in
-            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "正在同步手环历史数据", detailMsg: nil, progress: nil)
-            // 开始目标数据同步
-            GoalManager.checkAndSyncGoalDatas({ (error: NSError?) -> Void in
-                
-                AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "同步目标数据", detailMsg: nil, progress: nil)
-                GoalManager.checkSyncSettingDatas { (error: NSError?) -> Void in
-                    AppDelegate.applicationDelegate().hiddenHUD()
-                }
-            })
         }
     }
     
@@ -94,6 +108,8 @@ class EvaluationViewController: UIViewController {
         userSelectView.setUsers(UserManager.sharedInstance.queryAllUsers(), isNeedExt: true)
         userSelectView.setShowViewUserId(UserManager.sharedInstance.currentUser.userId)
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -119,7 +135,8 @@ class EvaluationViewController: UIViewController {
     }
     // MARK: - notConnectDeviceView Response Method
     @IBAction func buyDevicePressed(_ sender: AnyObject) {
-        UIApplication.shared.openURL(URL(string: "https://shop124322383.taobao.com/")!)
+//        UIApplication.shared.openURL(URL(string: "https://shop124322383.taobao.com/")!)
+        UIApplication.shared.openURL(URL(string: "https://bodivis.m.tmall.com")!)
 //        EvaluationManager.sharedInstance.addTestDatas()
     }
 
@@ -130,20 +147,37 @@ class EvaluationViewController: UIViewController {
     @IBAction func scanMyBodyDevicePressed(_ sender: AnyObject) {
         
         // 现在改为返回评测界面
-        self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量!"
+        self.tipLabel.text = "蓝牙已打开，请上秤后点击下方“开始身体评测”按钮，将秤放在坚硬平整的地面上，赤脚测量!"
         showView(connectDeviceView)
     }
     
-    // MARK: - connectDeviceView Response Method
+    // MARK: - connectDeviceView Response Method 开始测试
     @IBAction func startEvaluationPressed(_ sender: AnyObject) {
-        
         if canScale {
+            
             let detailController = EvaluationDetailViewController()
             AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
             
-            self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
+            self.tipLabel.text = "蓝牙已打开，请上秤后点击下方“开始身体评测”按钮，将秤放在坚硬平整的地面上，赤脚测量"
             
-            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "测试中", detailMsg: nil, progress: nil)
+            NotificationCenter.default.addObserver(self, selector:#selector(self.notificationMethod), name: NSNotification.Name(rawValue: "removeTimer"), object: nil)
+            
+//            detailController.middleView.frame = CGRect(x:0,y:100,width:UIScreen.main.bounds.size.width,height:UIScreen.main.bounds.size.height)
+//            detailController.middleView.backgroundColor = UIColor.clear
+//            detailController.view.addSubview(detailController.middleView)
+//            detailController.middleView.isHidden = false
+//            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "搜索设备中(15)s倒计时", detailMsg: nil, progress: nil, currentView: detailController.middleView)
+            AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "搜索设备中(15)s倒计时", detailMsg: nil, progress: nil)
+            scanTime = 15
+            if timeoutTimer != nil {
+                if timeoutTimer!.isValid {
+                    timeoutTimer?.invalidate()
+                }
+                timeoutTimer = nil
+            }
+            
+            timeoutTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.scanTimerFinished), userInfo: nil, repeats: true)
+            
             EvaluationManager.sharedInstance.startScale {[unowned self] (result,isTimeOut, error) -> Void in
                 
                 if error == nil {
@@ -165,9 +199,16 @@ class EvaluationViewController: UIViewController {
                 }
                 
                 AppDelegate.applicationDelegate().hiddenHUD()
+//                detailController.middleView.isHidden = true
             }
         }
+        else
+        {
+            UIAlertView(title: nil, message: "蓝牙未打开,请打开蓝牙", delegate: nil, cancelButtonTitle: "好的").show()
+        }
     }
+    
+
     
     // MARK: - manualInputDataView Response Method
     
@@ -215,9 +256,30 @@ class EvaluationViewController: UIViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         
         if motion == UIEventSubtype.motionShake {
-            startEvaluationPressed(event!)
+//            startEvaluationPressed(event!)
         }
         
+    }
+    
+    func scanTimerFinished() {
+        if scanTime! > 0
+        {
+            scanTime = scanTime! - 1//"\(scanTime)"
+            AppDelegate.applicationDelegate().progressHUD?.labelText = "搜索设备中(" + String(format: "%d", scanTime!) + ")s倒计时"
+        }
+        else
+        {
+            timeoutTimer?.invalidate()
+            timeoutTimer = nil
+        }
+        
+    }
+    
+    func notificationMethod()
+    {
+        timeoutTimer?.invalidate()
+        timeoutTimer = nil
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -230,7 +292,7 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
         let detailController = EvaluationDetailViewController()
         AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
         
-        self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
+        self.tipLabel.text = "蓝牙已打开，请上秤后点击下方“开始身体评测”按钮，将秤放在坚硬平整的地面上，赤脚测量"
         AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "测试中", detailMsg: nil, progress: nil)
         EvaluationManager.sharedInstance.startScale {[unowned self] (info, isTimeOut, error) -> Void in
             if error == nil {
@@ -257,14 +319,31 @@ extension EvaluationViewController: DeviceScanViewControllerProtocol {
 }
 
 extension EvaluationViewController: UserSelectViewDelegate {
-    // 点击人物头像
+    // MARK: -  点击人物头像
     func headButtonPressed(_ userId: Int) {
+//        let detailController = EvaluationDetailViewController()
+//        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+//        detailController.isRefreshAllData = true
         let detailController = EvaluationDetailViewController()
-        AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
-        detailController.isRefreshAllData = true
+        detailController.viewModel.reloadData()
+        if (detailController.viewModel.allDatas.count > 0)
+        {
+            AppDelegate.rootNavgationViewController().pushViewController(detailController, animated: true)
+            detailController.isRefreshAllData = true
+        }
+        else
+        {
+            AppDelegate.applicationDelegate().progressHUD?.yOffset = 200
+            AppDelegate.applicationDelegate().updateHUD(HUDType.onlyMsg, message: "没有评测数据", detailMsg: nil, progress: nil)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
+                AppDelegate.applicationDelegate().hiddenHUD()
+                AppDelegate.applicationDelegate().progressHUD?.yOffset = 0
+            }
+            
+        }
     }
     
-    // 点击访客
+    // MARK: -  点击访客
     func visitorClicked() {
         let controller = VisitorAddViewController()
         controller.delegate = self
@@ -280,7 +359,7 @@ extension EvaluationViewController: UserSelectViewDelegate {
         }
     }
     
-    // 添加家庭成员
+    // MARK: -  添加家庭成员
     func addFamily() {
         let completeInfoController = CompleteInfoViewController()
         completeInfoController.delegate = self
@@ -288,7 +367,7 @@ extension EvaluationViewController: UserSelectViewDelegate {
         AppDelegate.rootNavgationViewController().pushViewController(completeInfoController, animated: true)
     }
     
-    // 用户改变
+    // MARK: -  用户改变
     func userChangeToUserId(_ userId: Int) {
         
         AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "同步数据", detailMsg: nil, progress: nil)
@@ -334,7 +413,7 @@ extension EvaluationViewController: VisitorAddDelegate {
         
         AppDelegate.applicationDelegate().updateHUD(HUDType.hotwheels, message: "测试中", detailMsg: nil, progress: nil)
         EvaluationManager.sharedInstance.visitorStartScale(user) {[unowned self] (info,isTimeOut, error) -> Void in
-            self.tipLabel.text = "蓝牙已打开，请上秤后摇一摇手机，将秤放在坚硬平整的地面上，赤脚测量"
+            self.tipLabel.text = "蓝牙已打开，请上秤后点击下方“开始身体评测”按钮，将秤放在坚硬平整的地面上，赤脚测量"
             if error == nil {
                 
                 detailController.data = info

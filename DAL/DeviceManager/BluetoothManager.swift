@@ -14,6 +14,7 @@ enum DeviceType: Int16 {
     case bracelet
     case myBodyMini
     case myBodyPlus
+    case myBodyMiniWhite
     
     var AdvDataManufacturerData: Data {
         
@@ -56,6 +57,8 @@ enum DeviceType: Int16 {
             return mybodyNewData
         case .myBodyPlus:
             return mybodyNewData
+        case .myBodyMiniWhite:
+            return mybodyNewData
 //        default:
 //            return NSData()
         }
@@ -86,7 +89,9 @@ enum BluetoothStatus {
 
 class BluetoothManager: NSObject {
     
-    fileprivate var centralManager: CBCentralManager
+//    fileprivate var centralManager: CBCentralManager
+     var centralManager: CBCentralManager
+
     fileprivate var timeoutTimer: Timer?
     
     fileprivate var isScan: Bool = true
@@ -96,7 +101,9 @@ class BluetoothManager: NSObject {
     fileprivate var scanDevice = NSMutableDictionary()
     fileprivate var scanDeviceType: [DeviceType]?
     
-    fileprivate var currentDevice: DeviceManagerProtocol?
+//    fileprivate var currentDevice: DeviceManagerProtocol?
+     var currentDevice: DeviceManagerProtocol?
+
     fileprivate var currentFireInfo: [String : AnyObject]?
     
     
@@ -109,12 +116,14 @@ class BluetoothManager: NSObject {
     }
     
     func scanDevice(_ scanTypes: [DeviceType]? ,complete: @escaping ([DeviceManagerProtocol], _ isTimeOut: Bool, NSError?) -> Void) {
+//        clearWork()
         isScan = true
         scanDevice.removeAllObjects()
         scanClosure = complete
         scanDeviceType = scanTypes
-        centralManager.scanForPeripherals(withServices: nil, options: nil)
         centralManager.delegate = self;
+        centralManager.scanForPeripherals(withServices: nil, options: nil)
+        
         
 //        timeoutTimer = NSTimer(timeInterval: 30, target: self, selector: Selector("scanTimerFinished"), userInfo: nil, repeats: false)
 //        timeoutTimer?.fire()
@@ -149,7 +158,7 @@ class BluetoothManager: NSObject {
     func connect(_ peripheral: CBPeripheral) {
         
         if currentDevice?.type == DeviceType.myBody {
-            self.clearWork()
+//            self.clearWork()
         }
         else {
             centralManager.delegate = self
@@ -184,6 +193,7 @@ class BluetoothManager: NSObject {
                             
                             let currentDevice = self.currentDevice!
                             self.connect(self.currentDevice!.peripheral!)
+                            
                             currentDevice.fire(info, complete: { [unowned self] (result: ResultProtocol?, error: Error?) -> Void in
                                 
                                 complete(result,isTimeOut, error as NSError?)
@@ -212,8 +222,9 @@ class BluetoothManager: NSObject {
             NSLog("\(self.centralManager)xxxxxxxxxxxxxxxxxxxxxxxxx\(currentDevice!.peripheral!)");
             self.centralManager.cancelPeripheralConnection(currentDevice!.peripheral!)
         }
+//        VScaleManager.sharedInstance().disconnectCustom()
         self.centralManager.stopScan()
-        self.centralManager.delegate = nil
+//        self.centralManager.delegate = nil
         currentDevice?.peripheral?.delegate = nil
         currentDevice?.peripheral = nil
         currentDevice?.characteristic = nil
@@ -249,7 +260,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
         var status = BluetoothStatus.unsupported
-        
+                
         if #available(iOS 10.0, *) {
             switch central.state{
             case CBManagerState.unauthorized:
@@ -262,9 +273,13 @@ extension BluetoothManager: CBCentralManagerDelegate {
                 print("Bluetooth is currently powered on and available to use.")
                 status = .poweredOn
                 centralManager.scanForPeripherals(withServices: nil, options: nil)
-            default:break
+            default:
+                print("up 10.0")
+                break
             }
         } else {
+            
+            print("xxxxxxxxx")
             // Fallback on earlier versions
             switch central.state.rawValue {
             case 3: // CBCentralManagerState.unauthorized :
@@ -277,15 +292,19 @@ extension BluetoothManager: CBCentralManagerDelegate {
                 print("Bluetooth is currently powered on and available to use.")
                 centralManager.scanForPeripherals(withServices: nil, options: nil)
                 status = .poweredOn
-            default:break
+            default:
+                print("below 10.0")
+                break
             }
         }
         
         self.status = status
         statusBlock?(status)
     }
-    
+    //搜索外设
     func isScanMyDevice(_ scanTypes: inout [DeviceType]?, peripheral: CBPeripheral, advertisementData: [String : AnyObject]) -> DeviceManagerProtocol? {
+        
+//        AppDelegate.applicationDelegate().progressHUD?.labelText = "搜索设备中"
         
         let kCBAdvDataIsConnectable = advertisementData["kCBAdvDataIsConnectable"] as? NSNumber
         
@@ -294,41 +313,56 @@ extension BluetoothManager: CBCentralManagerDelegate {
         }
         
         if scanTypes == nil {
-            scanTypes = [DeviceType.myBody, .bracelet, .myBodyMini, .myBodyPlus]
+            scanTypes = [DeviceType.myBody, .bracelet, .myBodyMini, .myBodyPlus, .myBodyMiniWhite]
         }
         
         // 判断是否是手环
         if scanTypes!.contains(DeviceType.bracelet) {
             if let kCBAdvDataManufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? Data {
-                
-                let macData = kCBAdvDataManufacturerData.subdata(in: kCBAdvDataManufacturerData.count - 6..<kCBAdvDataManufacturerData.count - 3)
-//                let macData = kCBAdvDataManufacturerData.subdata(with: NSRange(location: kCBAdvDataManufacturerData.count - 6, length: 3))
-                
-                if macData == DeviceType.bracelet.AdvDataManufacturerData {
-                    return BraceletManager(name: peripheral.name == nil ? "手环" : peripheral.name!, uuid: peripheral.identifier.uuidString, peripheral: peripheral, characteristic: nil)
+                if kCBAdvDataManufacturerData.count >= 6
+                {
+                    let macData = kCBAdvDataManufacturerData.subdata(in: kCBAdvDataManufacturerData.count - 6..<kCBAdvDataManufacturerData.count - 3)
+                    //                let macData = kCBAdvDataManufacturerData.subdata(with: NSRange(location: kCBAdvDataManufacturerData.count - 6, length: 3))
+                    
+                    if macData == DeviceType.bracelet.AdvDataManufacturerData {
+                        return BraceletManager(name: peripheral.name == nil ? "手环" : peripheral.name!, uuid: peripheral.identifier.uuidString, peripheral: peripheral, characteristic: nil)
+                    }
                 }
+                
             }
         }
         
-        // 判断是否是 老秤
+        // 判断是否是 老秤－大白
         if scanTypes!.contains(DeviceType.myBody) {
             if peripheral.name == "VScale" {
                 return MyBodyManager(name: peripheral.name!, uuid: peripheral.identifier.uuidString, peripheral: peripheral, characteristic: nil)
             }
         }
         
-        // 判断是否是 新秤
+        // 判断是否是 新秤－小黑
         if scanTypes!.contains(DeviceType.myBodyMini) || scanTypes!.contains(DeviceType.myBodyPlus) {
             if peripheral.name == "BodyMini" || peripheral.name == "BodyPlus" {
                 return MyBodyMiniAndPlusManager(name: peripheral.name!, uuid: peripheral.identifier.uuidString, peripheral: peripheral, characteristic: nil)
             }
         }
         
+        // 判断是否是 新秤－小白
+        if scanTypes!.contains(DeviceType.myBodyMiniWhite) {
+            NSLog("\(peripheral.name)")
+            if peripheral.name == "BodyMini1"  {
+                return MyBodyMiniWhiteManager(name: peripheral.name!, uuid: peripheral.identifier.uuidString, peripheral: peripheral, characteristic: nil)
+
+            }
+        }
+        
         return nil
     }
-    
+    //3.查到外设后，停止扫描，连接设备
+    //广播、扫描的响应数据保存在advertisementData 中，可以通过CBAdvertisementData 来访问它。
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
+        
+
         print("--------------------------------- %s",#function)
         
         print("CenCentalManagerDelegate didDiscoverPeripheral")
@@ -338,6 +372,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
         
         if let device = isScanMyDevice(&scanDeviceType, peripheral: peripheral, advertisementData: advertisementData as [String : AnyObject]) {
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeTimer"), object: nil)
+            
+            AppDelegate.applicationDelegate().progressHUD?.labelText = "正在连接"
+            
+            NSLog("---\(device.uuid)")
             device.RSSI = RSSI
             scanDevice.setObject(device, forKey: device.uuid as NSCopying)
             
@@ -347,16 +386,24 @@ extension BluetoothManager: CBCentralManagerDelegate {
             }
             scanClosure?(devices, false, nil)
         }
-    }
+        
+        
+
+}
     
+    
+    
+    //4.连接外设成功，开始发现服务
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        AppDelegate.applicationDelegate().progressHUD?.labelText = "已连接"
         // 连接上 外设  开始查找服务
         NSLog("Did connect to peripheral: %@", peripheral);
         currentDevice?.peripheral?.delegate = self
         currentDevice?.peripheral?.discoverServices(nil)
         currentDevice?.centralManager?(central, didConnect: peripheral)
+
     }
-    
+    //连接外设失败
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         NSLog("connect peripheral error: \(error!)")
 //        syncComplete?([], error)
@@ -372,11 +419,18 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
 }
 
-// 外设服务
+
 extension BluetoothManager: CBPeripheralDelegate {
+    // 外设服务
+    //5.请求周边去寻找它的服务所列出的特征
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        
+//        AppDelegate.applicationDelegate().progressHUD?.labelText = "测试中"
+        
         if error == nil && currentDevice?.peripheral?.services != nil {
             for service: CBService in currentDevice!.peripheral!.services! {
+                NSLog("currentDevice!.serviceUUID==\(currentDevice!.serviceUUID)")
+                NSLog("service.uuid==\(service.uuid)")
                 if service.uuid == CBUUID(string: currentDevice!.serviceUUID) {
                     currentDevice?.peripheral!.discoverCharacteristics(nil, for: service)
                     break
@@ -387,20 +441,46 @@ extension BluetoothManager: CBPeripheralDelegate {
             currentDevice?.peripheral?(peripheral, didDiscoverServices: error)
         }
     }
-    
+    //6.已搜索到Characteristics
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         currentDevice?.peripheral?(peripheral, didDiscoverCharacteristicsFor: service, error: error)
+
     }
     
+
+    //8.获取外设发来的数据，不论是read和notify,获取数据都是从这个方法中读取。
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        
         currentDevice?.peripheral?(peripheral, didUpdateValueFor: characteristic, error: error)
+        
     }
-    
+    //用于检测中心向外设写数据是否成功
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        
+        AppDelegate.applicationDelegate().progressHUD?.labelText = "测试中，请稍候"
+        
         currentDevice?.peripheral?(peripheral, didWriteValueFor: characteristic, error: error)
+        
+    }
+    //7.这个是接收蓝牙通知，很少用。读取外设数据主要用上面那个方法didUpdateValueForCharacteristic。
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        
+        currentDevice?.peripheral?(peripheral, didUpdateNotificationStateFor: characteristic, error: error)
+        
+        
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-        currentDevice?.peripheral?(peripheral, didUpdateNotificationStateFor: characteristic, error: error)
-    }
+//    private func peripheral(_ peripheral: CBPeripheral, didSubscribeToCharacteristic characteristic: CBCharacteristic, error: Error?) {
+//        
+//        NSLog("订阅了的数据\(characteristic)")
+//    }
+    
+    /*
+     //订阅characteristics
+     -(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic{
+     NSLog(@"订阅了 %@的数据",characteristic.UUID);
+     //每秒执行一次给主设备发送一个当前时间的秒数
+     timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(sendData:) userInfo:characteristic  repeats:YES];
+     }
+     */
 }

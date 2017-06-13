@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3511E9FDDF87881CB0D0657C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331D48E4B2E73489E6443B /* libPods.a */; };
+		031E94691E0CC21B0090962E /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E94681E0CC21B0090962E /* SwiftyJSON.swift */; };
+		033F4C7A1DB0D491002E5773 /* MyBodyMiniWhiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F4C791DB0D491002E5773 /* MyBodyMiniWhiteManager.swift */; };
+		033F4C7C1DB0D4E1002E5773 /* MyBodyMiniWhiteResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F4C7B1DB0D4E1002E5773 /* MyBodyMiniWhiteResult.swift */; };
+		03D48C431DB070A600CA95B4 /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D48C421DB070A600CA95B4 /* DoubleYAxisLineChart.swift */; };
+		03D48C451DB070BC00CA95B4 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D48C441DB070BC00CA95B4 /* Request.swift */; };
+		03D48C471DB070C900CA95B4 /* ResponseDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D48C461DB070C900CA95B4 /* ResponseDataFilter.swift */; };
+		03D48C491DB0713F00CA95B4 /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D48C481DB0713F00CA95B4 /* DoubleYLineChartCell.xib */; };
+		03E338101E5AB5F9007F972F /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E3380F1E5AB5F9007F972F /* libWeiboSDK.a */; };
+		03E338121E5AB624007F972F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E338111E5AB624007F972F /* libWeChatSDK.a */; };
+		03E338141E5AB64D007F972F /* libvtble_scale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E338131E5AB64D007F972F /* libvtble_scale.a */; };
+		03F465CD1DB8BAE5007B9A12 /* MybodyMiniWhiteBlueToothFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F465CC1DB8BAE5007B9A12 /* MybodyMiniWhiteBlueToothFormats.swift */; };
+		5C24887CCE8C4A485C9444B5 /* libPods-Health.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4169841DD85E141579CB4783 /* libPods-Health.a */; };
 		E0039BD61BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */; };
 		E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */; };
 		E0039C3E1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */; };
 		E0039C401BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C241BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		E0039C421BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C261BCF28C10014ED50 /* libWeiboSDK.a */; };
 		E0039C441BCF28C10014ED50 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C301BCF28C10014ED50 /* WeiboSDK.bundle */; };
-		E0039C461BCF28C10014ED50 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C341BCF28C10014ED50 /* libWeChatSDK.a */; };
 		E0039C481BCF28C10014ED50 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C371BCF28C10014ED50 /* MOBFoundation.framework */; };
 		E0039C4A1BCF28C10014ED50 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0039C381BCF28C10014ED50 /* ShareSDK.bundle */; };
 		E0039C4C1BCF28C10014ED50 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0039C391BCF28C10014ED50 /* ShareSDK.framework */; };
@@ -100,7 +109,6 @@
 		E07EE9D71BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */; };
 		E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24511B807BE4004269BB /* DBCoreDataManager.swift */; };
 		E08A24541B807BE4004269BB /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08A24521B807BE4004269BB /* DBManager.swift */; };
-		E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E08A24651B808154004269BB /* libvtble_scale.a */; };
 		E08B32821B85A6C50040ADE7 /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32811B85A6C50040ADE7 /* GoalManager.swift */; };
 		E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B32871B85A7020040ADE7 /* SettingManager.swift */; };
 		E08B328B1B85A7210040ADE7 /* TrendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B328A1B85A7210040ADE7 /* TrendManager.swift */; };
@@ -138,8 +146,6 @@
 		E0C50B921B861A04007A9393 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B911B861A04007A9393 /* UserRequest.swift */; };
 		E0C50BA01B862381007A9393 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50B9F1B862381007A9393 /* UserManager.swift */; };
 		E0C50BA41B862AA0007A9393 /* UserSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C50BA31B862AA0007A9393 /* UserSelectView.swift */; };
-		E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */; };
-		E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */; };
 		E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */; };
 		E0CD63131BA2501A00477090 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63121BA2501A00477090 /* UserModel.swift */; };
 		E0CD63161BA2511F00477090 /* UserDBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD63151BA2511F00477090 /* UserDBData.swift */; };
@@ -176,21 +182,28 @@
 		E0FBED331B835BA900A70598 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED321B835BA900A70598 /* LoginManager.swift */; };
 		E0FBED3A1B835BEE00A70598 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED381B835BEE00A70598 /* LoginViewController.swift */; };
 		E0FBED3C1B835BEE00A70598 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0FBED391B835BEE00A70598 /* LoginViewController.xib */; };
-		E0FBED431B835C9100A70598 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED411B835C9100A70598 /* Request.swift */; };
-		E0FBED451B835C9100A70598 /* ResponseDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */; };
 		E0FCC5B11BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FCC5AF1BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift */; };
 		E0FCC5B21BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0FCC5B01BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		961ED9F671AA0E4D212A73A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		A1331D48E4B2E73489E6443B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5030CB749F74A7C0EA0A589 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		031E94681E0CC21B0090962E /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		033F4C791DB0D491002E5773 /* MyBodyMiniWhiteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBodyMiniWhiteManager.swift; sourceTree = "<group>"; };
+		033F4C7B1DB0D4E1002E5773 /* MyBodyMiniWhiteResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBodyMiniWhiteResult.swift; sourceTree = "<group>"; };
+		03D48C421DB070A600CA95B4 /* DoubleYAxisLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleYAxisLineChart.swift; path = Vender/Charts/DoubleYAxisLineChart/DoubleYAxisLineChart.swift; sourceTree = SOURCE_ROOT; };
+		03D48C441DB070BC00CA95B4 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		03D48C461DB070C900CA95B4 /* ResponseDataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDataFilter.swift; sourceTree = "<group>"; };
+		03D48C481DB0713F00CA95B4 /* DoubleYLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoubleYLineChartCell.xib; path = Vender/Charts/DoubleYAxisLineChart/DoubleYLineChartCell.xib; sourceTree = SOURCE_ROOT; };
+		03E3380F1E5AB5F9007F972F /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		03E338111E5AB624007F972F /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		03E338131E5AB64D007F972F /* libvtble_scale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libvtble_scale.a; sourceTree = "<group>"; };
+		03F465CC1DB8BAE5007B9A12 /* MybodyMiniWhiteBlueToothFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MybodyMiniWhiteBlueToothFormats.swift; sourceTree = "<group>"; };
+		131CE7C1CBF57A087A2E2081 /* Pods-Health.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health.release.xcconfig"; path = "Pods/Target Support Files/Pods-Health/Pods-Health.release.xcconfig"; sourceTree = "<group>"; };
+		4169841DD85E141579CB4783 /* libPods-Health.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Health.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0039BD41BCE9B0A0014ED50 /* EvaluationData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EvaluationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E0039BD51BCE9B0A0014ED50 /* EvaluationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationData.swift; sourceTree = "<group>"; };
 		E0039C231BCF28C10014ED50 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		E0039C241BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
-		E0039C261BCF28C10014ED50 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		E0039C271BCF28C10014ED50 /* WBHttpRequest+WeiboGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboGame.h"; sourceTree = "<group>"; };
 		E0039C281BCF28C10014ED50 /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
 		E0039C291BCF28C10014ED50 /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
@@ -203,7 +216,6 @@
 		E0039C301BCF28C10014ED50 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		E0039C311BCF28C10014ED50 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		E0039C321BCF28C10014ED50 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
-		E0039C341BCF28C10014ED50 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E0039C351BCF28C10014ED50 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		E0039C361BCF28C10014ED50 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		E0039C371BCF28C10014ED50 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
@@ -295,7 +307,6 @@
 		E07EE9D41BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationPhysiqueDetailViewController.xib; sourceTree = "<group>"; };
 		E08A24511B807BE4004269BB /* DBCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCoreDataManager.swift; sourceTree = "<group>"; };
 		E08A24521B807BE4004269BB /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
-		E08A24651B808154004269BB /* libvtble_scale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libvtble_scale.a; sourceTree = "<group>"; };
 		E08A24751B8083F5004269BB /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		E08A24761B8083F5004269BB /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
 		E08A24771B8083F5004269BB /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
@@ -371,8 +382,6 @@
 		E0C50B9C1B861DAC007A9393 /* UserReqeustTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserReqeustTests.swift; path = HealthTests/Request/UserReqeustTests.swift; sourceTree = SOURCE_ROOT; };
 		E0C50B9F1B862381007A9393 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = BLL/User/UserManager.swift; sourceTree = SOURCE_ROOT; };
 		E0C50BA31B862AA0007A9393 /* UserSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSelectView.swift; path = Health/User/UserSelectView.swift; sourceTree = SOURCE_ROOT; };
-		E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleYAxisLineChart.swift; sourceTree = "<group>"; };
-		E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleYLineChartCell.xib; sourceTree = "<group>"; };
 		E0CBCC0B1BC4AAA000B2F361 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		E0CD63121BA2501A00477090 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E0CD63151BA2511F00477090 /* UserDBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDBData.swift; sourceTree = "<group>"; };
@@ -411,11 +420,10 @@
 		E0FBED321B835BA900A70598 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		E0FBED381B835BEE00A70598 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Health/Login/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		E0FBED391B835BEE00A70598 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Health/Login/LoginViewController.xib; sourceTree = SOURCE_ROOT; };
-		E0FBED411B835C9100A70598 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = "../../../../../../../workSpace/Project/好体知/Code/Health/DAL/Request/Request.swift"; sourceTree = "<group>"; };
-		E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseDataFilter.swift; path = "../../../../../../../workSpace/Project/好体知/Code/Health/DAL/Request/ResponseDataFilter.swift"; sourceTree = "<group>"; };
 		E0FCC5AF1BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationDetailScroeDescriptionCell.swift; sourceTree = "<group>"; };
 		E0FCC5B01BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationDetailScroeDescriptionCell.xib; sourceTree = "<group>"; };
 		E0FDBBC11B9D81D800AE1A7C /* ScaleResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleResultTests.swift; sourceTree = "<group>"; };
+		E4BB2BD75A5DEFEE964BD6F3 /* Pods-Health.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Health/Pods-Health.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,7 +435,6 @@
 				E0418EDE1BC2BAC500B2788D /* Foundation.framework in Frameworks */,
 				E0418EDC1BC2BABC00B2788D /* UIKit.framework in Frameworks */,
 				E0039C501BCF28C10014ED50 /* ShareSDKExtension.framework in Frameworks */,
-				E0039C421BCF28C10014ED50 /* libWeiboSDK.a in Frameworks */,
 				E0039C4C1BCF28C10014ED50 /* ShareSDK.framework in Frameworks */,
 				E005808E1B9E588700ABDF1A /* Security.framework in Frameworks */,
 				E0039C3E1BCF28C10014ED50 /* TencentOpenAPI.framework in Frameworks */,
@@ -436,19 +443,29 @@
 				E060CD8B1B8401810002AEE7 /* Social.framework in Frameworks */,
 				E0039C481BCF28C10014ED50 /* MOBFoundation.framework in Frameworks */,
 				E060CD891B8401790002AEE7 /* ImageIO.framework in Frameworks */,
+				03E338121E5AB624007F972F /* libWeChatSDK.a in Frameworks */,
 				E060CD871B8401700002AEE7 /* JavaScriptCore.framework in Frameworks */,
+				03E338101E5AB5F9007F972F /* libWeiboSDK.a in Frameworks */,
 				E00C01671B7FABA0006A4343 /* CoreBluetooth.framework in Frameworks */,
 				E0039C541BCF28C10014ED50 /* ShareSDKUI.framework in Frameworks */,
 				E09EC8EA1B7E406B00CC07E3 /* CoreData.framework in Frameworks */,
-				E08A24681B808154004269BB /* libvtble_scale.a in Frameworks */,
-				3511E9FDDF87881CB0D0657C /* libPods.a in Frameworks */,
-				E0039C461BCF28C10014ED50 /* libWeChatSDK.a in Frameworks */,
+				03E338141E5AB64D007F972F /* libvtble_scale.a in Frameworks */,
+				5C24887CCE8C4A485C9444B5 /* libPods-Health.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		706B1CFCA5877A06265B2EBD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E4BB2BD75A5DEFEE964BD6F3 /* Pods-Health.debug.xcconfig */,
+				131CE7C1CBF57A087A2E2081 /* Pods-Health.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B3076E6D2DA86A662569F363 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,18 +477,9 @@
 				E060CD8A1B8401810002AEE7 /* Social.framework */,
 				E060CD881B8401790002AEE7 /* ImageIO.framework */,
 				E060CD861B8401700002AEE7 /* JavaScriptCore.framework */,
-				A1331D48E4B2E73489E6443B /* libPods.a */,
+				4169841DD85E141579CB4783 /* libPods-Health.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BAB5A6A4D29AAC58CB364415 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A5030CB749F74A7C0EA0A589 /* Pods.debug.xcconfig */,
-				961ED9F671AA0E4D212A73A3 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		E0039C1F1BCF28C10014ED50 /* ShareSDK */ = {
@@ -519,7 +527,7 @@
 		E0039C251BCF28C10014ED50 /* SinaWeiboSDK */ = {
 			isa = PBXGroup;
 			children = (
-				E0039C261BCF28C10014ED50 /* libWeiboSDK.a */,
+				03E3380F1E5AB5F9007F972F /* libWeiboSDK.a */,
 				E0039C271BCF28C10014ED50 /* WBHttpRequest+WeiboGame.h */,
 				E0039C281BCF28C10014ED50 /* WBHttpRequest+WeiboShare.h */,
 				E0039C291BCF28C10014ED50 /* WBHttpRequest+WeiboToken.h */,
@@ -539,7 +547,7 @@
 		E0039C331BCF28C10014ED50 /* WeChatSDK */ = {
 			isa = PBXGroup;
 			children = (
-				E0039C341BCF28C10014ED50 /* libWeChatSDK.a */,
+				03E338111E5AB624007F972F /* libWeChatSDK.a */,
 				E0039C351BCF28C10014ED50 /* WXApi.h */,
 				E0039C361BCF28C10014ED50 /* WXApiObject.h */,
 			);
@@ -628,6 +636,7 @@
 				E0255E7A1BC9562A00CEE5D4 /* BraceletResult.swift */,
 				E0255E7D1BC9573E00CEE5D4 /* MyBodyResult.swift */,
 				E0E735CC1BCD5E990073A896 /* MyBodyMiniAndPlusResult.swift */,
+				033F4C7B1DB0D4E1002E5773 /* MyBodyMiniWhiteResult.swift */,
 				E0255E6B1BC9556300CEE5D4 /* ValueStatus.swift */,
 				E0255E6C1BC9556300CEE5D4 /* WeightStatus.swift */,
 				E0255E771BC955BB00CEE5D4 /* StepsType.swift */,
@@ -643,6 +652,7 @@
 				E0255E841BC95C8000CEE5D4 /* BraceletManager.swift */,
 				E0255E871BC9680300CEE5D4 /* MyBodyManager.swift */,
 				E0255E8A1BC9681800CEE5D4 /* MyBodyMiniAndPlusManager.swift */,
+				033F4C791DB0D491002E5773 /* MyBodyMiniWhiteManager.swift */,
 			);
 			path = DeviceManager;
 			sourceTree = "<group>";
@@ -699,15 +709,16 @@
 		E08A24561B807BFA004269BB /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				031E94681E0CC21B0090962E /* SwiftyJSON.swift */,
+				03D48C461DB070C900CA95B4 /* ResponseDataFilter.swift */,
+				03D48C441DB070BC00CA95B4 /* Request.swift */,
 				E060CD101B836F1C0002AEE7 /* LoginRequest.swift */,
 				E060CD131B8377E50002AEE7 /* AdsRequest.swift */,
 				E0C50B911B861A04007A9393 /* UserRequest.swift */,
 				E00580811B9DE88900ABDF1A /* EvaluationRequest.swift */,
 				E00580841B9DE8A600ABDF1A /* GoalRequest.swift */,
 				E00580871B9DE8CA00ABDF1A /* ScoreRequest.swift */,
-				E0FBED411B835C9100A70598 /* Request.swift */,
 				E0A45B241B9E8FC40085E5B5 /* RequestType.swift */,
-				E0FBED421B835C9100A70598 /* ResponseDataFilter.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -835,9 +846,9 @@
 		E08A24631B80810A004269BB /* DeviceLib */ = {
 			isa = PBXGroup;
 			children = (
+				03E338131E5AB64D007F972F /* libvtble_scale.a */,
 				E09528891B82A43E00F7B8D0 /* Manager */,
 				E08A24721B8083F5004269BB /* inc */,
-				E08A24651B808154004269BB /* libvtble_scale.a */,
 			);
 			path = DeviceLib;
 			sourceTree = "<group>";
@@ -934,8 +945,8 @@
 				E09EC8EB1B7E407D00CC07E3 /* Framework */,
 				E09EC8CF1B7E3B5000CC07E3 /* HealthTests */,
 				E09EC8B31B7E3B5000CC07E3 /* Products */,
-				BAB5A6A4D29AAC58CB364415 /* Pods */,
 				B3076E6D2DA86A662569F363 /* Frameworks */,
+				706B1CFCA5877A06265B2EBD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1146,9 +1157,9 @@
 		E0C588531BA6FD68000955FC /* DoubleYAxisLineChart */ = {
 			isa = PBXGroup;
 			children = (
-				E0C588541BA6FD68000955FC /* DoubleYAxisLineChart.swift */,
+				03D48C481DB0713F00CA95B4 /* DoubleYLineChartCell.xib */,
+				03D48C421DB070A600CA95B4 /* DoubleYAxisLineChart.swift */,
 				E052D1551C34156100E52C9F /* DoubleYLineChartCell.swift */,
-				E0C588561BA6FD68000955FC /* DoubleYLineChartCell.xib */,
 			);
 			path = DoubleYAxisLineChart;
 			sourceTree = "<group>";
@@ -1183,6 +1194,7 @@
 			children = (
 				E0EDBDF11BCE5B4700137FB0 /* BraceletBlueToothFormats.swift */,
 				E0EDBDF21BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift */,
+				03F465CC1DB8BAE5007B9A12 /* MybodyMiniWhiteBlueToothFormats.swift */,
 			);
 			path = BlueToothDataFormats;
 			sourceTree = "<group>";
@@ -1243,8 +1255,8 @@
 				E0418EE71BC34B2600B2788D /* ThirdPlatformBindController.xib */,
 				E0418EEC1BC34C3200B2788D /* ThirdPlatformBindCell.swift */,
 				E0418EED1BC34C3200B2788D /* ThirdPlatformBindCell.xib */,
-				E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */,
 				E0E5DE8F1BC88A78001BCCD1 /* BindOrganzationViewController.xib */,
+				E0E5DE8E1BC88A78001BCCD1 /* BindOrganzationViewController.swift */,
 				E0E5DE921BC88A89001BCCD1 /* BindPhoneViewController.swift */,
 				E0E5DE931BC88A89001BCCD1 /* BindPhoneViewController.xib */,
 			);
@@ -1312,12 +1324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E09EC8D61B7E3B5000CC07E3 /* Build configuration list for PBXNativeTarget "Health" */;
 			buildPhases = (
-				AED071744AB930546A88F55B /* Check Pods Manifest.lock */,
+				849F23981AEA0B6A07DC0040 /* [CP] Check Pods Manifest.lock */,
 				E09EC8AE1B7E3B5000CC07E3 /* Sources */,
 				E09EC8AF1B7E3B5000CC07E3 /* Frameworks */,
 				E09EC8B01B7E3B5000CC07E3 /* Resources */,
-				2241F97EB4DAE1A938D48145 /* Copy Pods Resources */,
-				2C47D2FA709847369C92A596 /* Embed Pods Frameworks */,
+				914C94745FF34CB7438621FF /* [CP] Embed Pods Frameworks */,
+				CFD4C7679BD326C72868AA6F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1341,7 +1353,7 @@
 				TargetAttributes = {
 					E09EC8B11B7E3B5000CC07E3 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 932M9W363W;
+						DevelopmentTeam = WCG9JY755C;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1390,7 +1402,6 @@
 				E0092D3F1BDA7F9700396A46 /* EvaluationPhysiqueIntroduceViewController.xib in Resources */,
 				E09EC8C71B7E3B5000CC07E3 /* LaunchScreen.xib in Resources */,
 				E05B1A361B8E077700B37F1C /* UserSelectView.xib in Resources */,
-				E0C588591BA6FD68000955FC /* DoubleYLineChartCell.xib in Resources */,
 				E05B1A331B8E04B000B37F1C /* UserView.xib in Resources */,
 				E021FCB81B8F5B8E00565FDB /* EvaluationDetailViewController.xib in Resources */,
 				E0E079541BD520A9008B8BE3 /* FamilyMembersViewController.xib in Resources */,
@@ -1405,6 +1416,7 @@
 				E007CC241BCAA5DC00365FA8 /* DeviceScanCell.xib in Resources */,
 				E0418EF01BC34C3200B2788D /* ThirdPlatformBindCell.xib in Resources */,
 				E0A0B1291B8B53D200E9BF69 /* SleepDetailViewController.xib in Resources */,
+				03D48C491DB0713F00CA95B4 /* DoubleYLineChartCell.xib in Resources */,
 				E0039C521BCF28C10014ED50 /* ShareSDKUI.bundle in Resources */,
 				E0E5DE951BC88A89001BCCD1 /* BindPhoneViewController.xib in Resources */,
 				E0039C401BCF28C10014ED50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -1427,49 +1439,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2241F97EB4DAE1A938D48145 /* Copy Pods Resources */ = {
+		849F23981AEA0B6A07DC0040 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2C47D2FA709847369C92A596 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AED071744AB930546A88F55B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		914C94745FF34CB7438621FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Health/Pods-Health-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFD4C7679BD326C72868AA6F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Health/Pods-Health-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1484,7 +1496,6 @@
 				E0418EEE1BC34C3200B2788D /* ThirdPlatformBindCell.swift in Sources */,
 				E0C50BA01B862381007A9393 /* UserManager.swift in Sources */,
 				E0039BD81BCE9B0A0014ED50 /* EvaluationData.swift in Sources */,
-				E0C588571BA6FD68000955FC /* DoubleYAxisLineChart.swift in Sources */,
 				E00580821B9DE88900ABDF1A /* EvaluationRequest.swift in Sources */,
 				E0E079571BD521CF008B8BE3 /* FamilyMembersCell.swift in Sources */,
 				E0F9DB0B1B854B9100504454 /* GoalViewController.swift in Sources */,
@@ -1510,12 +1521,13 @@
 				E0B29B071B9BD2D000F2F2CC /* GoalData.swift in Sources */,
 				E09AAC531BB05C4A00CE2CCB /* GoalDetailTableViewCell.swift in Sources */,
 				E094E01D1BD283060017079B /* HealthManager.swift in Sources */,
+				03D48C451DB070BC00CA95B4 /* Request.swift in Sources */,
 				E0E5DE9B1BC8AD8E001BCCD1 /* ShareData.swift in Sources */,
 				E0E5DE9C1BC8AD8E001BCCD1 /* ShareData+CoreDataProperties.swift in Sources */,
 				E07EE9D51BA2D40D007CE727 /* EvaluationPhysiqueDetailViewController.swift in Sources */,
 				E005808B1B9E55FE00ABDF1A /* Crypto.swift in Sources */,
-				E0FBED431B835C9100A70598 /* Request.swift in Sources */,
 				E046FC5D1BDFD10500DC116C /* FXBlurView.m in Sources */,
+				03F465CD1DB8BAE5007B9A12 /* MybodyMiniWhiteBlueToothFormats.swift in Sources */,
 				E015BB5B1BC5520700225C32 /* FeedbackCell.swift in Sources */,
 				E01918011BC81B98002819CB /* UIView_ConvertToImage.swift in Sources */,
 				E0CBCC0C1BC4AAA000B2F361 /* BluetoothManager.swift in Sources */,
@@ -1531,8 +1543,10 @@
 				E08A24531B807BE4004269BB /* DBCoreDataManager.swift in Sources */,
 				E08B32941B85A88F0040ADE7 /* CompleteHeadAndNameDataView.swift in Sources */,
 				E0EDBDF41BCE5B4700137FB0 /* MybodyMiniAndPlusBlueToothFormats.swift in Sources */,
+				033F4C7A1DB0D491002E5773 /* MyBodyMiniWhiteManager.swift in Sources */,
 				E05382D61B991C2F002FE2EB /* ConvertData.swift in Sources */,
 				E01917FB1BC80FA4002819CB /* ShareViewController.swift in Sources */,
+				031E94691E0CC21B0090962E /* SwiftyJSON.swift in Sources */,
 				E0255E7E1BC9573E00CEE5D4 /* MyBodyResult.swift in Sources */,
 				E0DD140F1B91795A0079F957 /* ConvertString.swift in Sources */,
 				E061AC651BD7ABE50046094B /* EvaluationResultTableView.swift in Sources */,
@@ -1546,10 +1560,12 @@
 				E08B32881B85A7020040ADE7 /* SettingManager.swift in Sources */,
 				E01B20861B9A99DB00951997 /* GoalSettingViewController.swift in Sources */,
 				E0AF85B31BAABE81005BB95E /* GoalShowInfo.swift in Sources */,
+				03D48C471DB070C900CA95B4 /* ResponseDataFilter.swift in Sources */,
 				E0E5DE941BC88A89001BCCD1 /* BindPhoneViewController.swift in Sources */,
 				E0A1D6541BE85BFA00BE2C02 /* LaunchAnimationController.swift in Sources */,
 				E0F70D501B93362900341F1C /* ConvertFloat.swift in Sources */,
 				E08B32A01B85A99B0040ADE7 /* CompleteOrganizationDataView.swift in Sources */,
+				03D48C431DB070A600CA95B4 /* DoubleYAxisLineChart.swift in Sources */,
 				E0255E881BC9680300CEE5D4 /* MyBodyManager.swift in Sources */,
 				E0CD63131BA2501A00477090 /* UserModel.swift in Sources */,
 				E061AC621BD7915D0046094B /* EvaluationDetailExtendCell.swift in Sources */,
@@ -1586,11 +1602,11 @@
 				E08B328B1B85A7210040ADE7 /* TrendManager.swift in Sources */,
 				E0A0B1241B8B53C200E9BF69 /* SportDetailViewController.swift in Sources */,
 				E0F9DB0F1B854BAF00504454 /* SettingViewController.swift in Sources */,
-				E0FBED451B835C9100A70598 /* ResponseDataFilter.swift in Sources */,
 				E0255E731BC9556300CEE5D4 /* ValueStatus.swift in Sources */,
 				E0F9DAEF1B84D4D300504454 /* EvaluationManager.swift in Sources */,
 				E0418EE81BC34B2600B2788D /* ThirdPlatformBindController.swift in Sources */,
 				E0FCC5B11BD7C4E000438731 /* EvaluationDetailScroeDescriptionCell.swift in Sources */,
+				033F4C7C1DB0D4E1002E5773 /* MyBodyMiniWhiteResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1633,8 +1649,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yalin yang (VFFW2K6U5E)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yalin yang (VFFW2K6U5E)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tong Fang Health Technology (Beijing) Co., Ltd. (WCG9JY755C)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tong Fang Health Technology (Beijing) Co., Ltd. (WCG9JY755C)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1656,7 +1672,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
+				PROVISIONING_PROFILE = "82404343-b75d-4593-8065-3ecbd74714e7";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1679,8 +1695,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yalin yang (VFFW2K6U5E)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yalin yang (VFFW2K6U5E)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tong Fang Health Technology (Beijing) Co., Ltd. (WCG9JY755C)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tong Fang Health Technology (Beijing) Co., Ltd. (WCG9JY755C)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1695,7 +1711,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "94f4df6b-a34b-4fe4-bc4f-14ad4b4f7bb4";
+				PROVISIONING_PROFILE = "82404343-b75d-4593-8065-3ecbd74714e7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1703,14 +1719,16 @@
 		};
 		E09EC8D71B7E3B5000CC07E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5030CB749F74A7C0EA0A589 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E4BB2BD75A5DEFEE964BD6F3 /* Pods-Health.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WCG9JY755C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1740,7 +1758,7 @@
 					"-licucore",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis1;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
@@ -1752,14 +1770,16 @@
 		};
 		E09EC8D81B7E3B5000CC07E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 961ED9F671AA0E4D212A73A3 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 131CE7C1CBF57A087A2E2081 /* Pods-Health.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WCG9JY755C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1789,7 +1809,7 @@
 					"-licucore",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis1;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.bodivis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Health/Health-Bridging-Header.h";
